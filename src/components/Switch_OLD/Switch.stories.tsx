@@ -8,8 +8,12 @@ import type { IOmit } from '~/helpers/types';
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { ISwitchProps } from './Switch.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { componentShowcaseFactory } from '../ComponentShowcase';
+import { ComponentShowcase } from '../ComponentShowcase';
 import { Switch } from './Switch';
+
+// https://m3.material.io/components/switch/overview
+// https://material-web.dev/components/switch/
+// https://github.com/material-components/material-web/blob/main/switch/demo/stories.ts
 
 const meta = {
   component: Switch,
@@ -18,30 +22,29 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onChange: (...args) => sbHandleEvent('onChange', args, 300),
+  onChange: (...args) => sbHandleEvent('change', args, 300),
 } satisfies Partial<ISwitchProps>;
 
 const states: Array<IComponentPresentation<ISwitchProps>> = [
   { legend: 'Normal' },
-  { legend: 'Focused', props: { interactions: { focused: true } } },
-  { legend: 'Hovered', props: { interactions: { hovered: true } } },
-  { legend: 'Pressed', props: { interactions: { pressed: true } } },
+  { legend: 'Focused', props: { visualState: { focused: true } } },
+  { legend: 'Hovered', props: { visualState: { hovered: true } } },
+  { legend: 'Pressed', props: { visualState: { pressed: true } } },
   { legend: 'Loading', props: { loading: true } },
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const SwitchShowcase = componentShowcaseFactory(Switch);
-
 export const Uncontrolled: IStory = {
   render: (props) => (
-    <SwitchShowcase
+    <ComponentShowcase
+      component={Switch}
       props={props}
       cols={[
         { legend: 'Basic' },
         {
-          legend: 'With checked icon',
+          legend: 'With selected icon',
           props: {
-            showOnlyCheckedIcon: true,
+            showOnlySelectedIcon: true,
             defaultChecked: true,
           },
         },
@@ -71,18 +74,17 @@ const ControlledSwitch: React.FC<IOmit<ISwitchProps, 'checked'>> = (props) => {
   );
 };
 
-const ControlledSwitchShowcase = componentShowcaseFactory(ControlledSwitch);
-
 export const Controlled: IStory = {
   render: (props) => (
-    <ControlledSwitchShowcase
+    <ComponentShowcase
+      component={ControlledSwitch}
       props={props}
       cols={[
         { legend: 'Basic' },
         {
-          legend: 'With checked icon',
+          legend: 'With selected icon',
           props: {
-            showOnlyCheckedIcon: true,
+            showOnlySelectedIcon: true,
             defaultChecked: true,
           },
         },
@@ -95,11 +97,12 @@ export const Controlled: IStory = {
 
 export const Configurations: IStory = {
   render: (props) => (
-    <SwitchShowcase
+    <ComponentShowcase
+      component={Switch}
       props={props}
       cols={states}
       rows={[
-        { legend: 'Unchecked' },
+        { legend: 'Unselected' },
         { legend: 'Selected', props: { defaultChecked: true } },
       ]}
       groups={[
@@ -107,8 +110,8 @@ export const Configurations: IStory = {
           legend: 'Basic',
         },
         {
-          legend: 'With checked icons',
-          props: { showOnlyCheckedIcon: true },
+          legend: 'With selected icons',
+          props: { showOnlySelectedIcon: true },
         },
         {
           legend: 'With icons',
@@ -118,7 +121,7 @@ export const Configurations: IStory = {
           legend: 'With custom icons',
           props: {
             icon: <FontAwesomeIcon icon={faMinus} />,
-            checkedIcon: <FontAwesomeIcon icon={faPlus} />,
+            selectedIcon: <FontAwesomeIcon icon={faPlus} />,
           },
         },
       ]}

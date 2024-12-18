@@ -2,7 +2,7 @@ import stylex from '@stylexjs/stylex';
 
 import type { IVisualStateProps } from './VisualState.types';
 import { ButtonBase } from '../ButtonBase';
-import { Stack } from '../Stack';
+// import { Stack } from '../Stack';
 import { useVisualState } from './useVisualState';
 import {
   visualStateFocusRingStyles,
@@ -26,7 +26,7 @@ export const VisualState: React.FC<IVisualStateProps> = (props) => {
       draggable={true}
       disabled={disabled}
     >
-      <Stack horizontal gap={4}>
+      {/* <Stack horizontal gap={4}>
         <div {...stylex.props(visualStateStyles.states)}>
           <div
             {...stylex.props(
@@ -67,7 +67,7 @@ export const VisualState: React.FC<IVisualStateProps> = (props) => {
         </div>
 
         {children}
-      </Stack>
+      </Stack> */}
     </ButtonBase>
   );
 };

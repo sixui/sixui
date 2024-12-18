@@ -28,50 +28,18 @@ type IModifier =
 const DENSITY = px(getDensity({ min: -4, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
-  container: {
-    leadingSpace: {
-      normal: px(space(6)),
-      withStartSlot: px(space(4)),
-      withEndSlot: px(space(6)),
-    },
-    trailingSpace: {
-      normal: px(space(6)),
-      withStartSlot: px(space(6)),
-      withEndSlot: px(space(4)),
-    },
-    color: {
-      normal: 'unset',
-      disabled: 'unset',
-    },
-    elevation: {
-      normal: 'unset',
-      disabled: 'unset',
-      focused: 'unset',
-      hovered: 'unset',
-      pressed: 'unset',
-    },
-    opacity: {
-      disabled: themeTokens.state.containerOpacity.disabled,
-    },
-    height: px(40),
-    minWidth: px(64),
-    shape: {
-      topLeft: px(themeTokens.shape.corner.full),
-      topRight: px(themeTokens.shape.corner.full),
-      bottomRight: px(themeTokens.shape.corner.full),
-      bottomLeft: px(themeTokens.shape.corner.full),
-    },
+  leadingSpace: {
+    normal: px(space(6)),
+    withStartSlot: px(space(4)),
+    withEndSlot: px(space(6)),
   },
-  stateLayer: {
-    color: {
-      hovered: themeTokens.colorScheme.onSurface,
-      pressed: themeTokens.colorScheme.onSurface,
-    },
-    opacity: {
-      hovered: themeTokens.state.stateLayerOpacity.hovered,
-      pressed: themeTokens.state.stateLayerOpacity.pressed,
-    },
+  trailingSpace: {
+    normal: px(space(6)),
+    withStartSlot: px(space(6)),
+    withEndSlot: px(space(4)),
   },
+  height: px(40),
+  minWidth: px(64),
   label: {
     typography: themeTokens.typeScale.label.lg,
     color: {
@@ -99,19 +67,6 @@ const [tokensClassName, tokens] = createTheme({
       disabled: themeTokens.state.opacity.disabled,
     },
   },
-  outline: {
-    style: 'unset',
-    width: px(themeTokens.outline.width.xs),
-    color: {
-      normal: themeTokens.colorScheme.outline,
-      disabled: themeTokens.colorScheme.onSurface,
-      focused: themeTokens.colorScheme.outline,
-      pressed: themeTokens.colorScheme.outline,
-    },
-    opacity: {
-      disabled: themeTokens.state.outlineOpacity.disabled,
-    },
-  },
 });
 
 const halfSpinKeyframes = keyframes({
@@ -123,18 +78,7 @@ const classNames = createStyles({
   root: {
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {
-        color: {
-          normal: tokens.container.color.normal,
-          disabled: tokens.container.color.disabled,
-        },
-        opacity: {
-          disabled: tokens.container.opacity.disabled,
-        },
-        elevation: {
-          normal: tokens.container.elevation.normal,
-          disabled: tokens.container.elevation.disabled,
-        },
-        shape: tokens.container.shape,
+        shape: px(themeTokens.shape.corner.full),
       },
     }),
 
@@ -150,93 +94,42 @@ const classNames = createStyles({
     // other if one button has an icon and the other does not.
     verticalAlign: 'top',
 
-    paddingInlineStart: tokens.container.leadingSpace.normal,
-    paddingInlineEnd: tokens.container.trailingSpace.normal,
+    paddingInlineStart: tokens.leadingSpace.normal,
+    paddingInlineEnd: tokens.trailingSpace.normal,
     // min-height instead of height so that label can wrap and expand height
-    minHeight: calc.add(tokens.container.height, DENSITY),
+    minHeight: calc.add(tokens.height, DENSITY),
     // Add extra space between label and the edge for if the label text wraps.
     // The padding added should be relative to the height of the container and
     // the height of its content on a single line (label or icon, whichever is
     // bigger).
     paddingBlock: calc.divide(
-      calc.subtract(
-        tokens.container.height,
-        tokens.label.typography.lineHeight,
-      ),
+      calc.subtract(tokens.height, tokens.label.typography.lineHeight),
       2,
     ),
     minWidth: calc.subtract(
-      tokens.container.minWidth,
-      tokens.container.leadingSpace.normal,
-      tokens.container.trailingSpace.normal,
+      tokens.minWidth,
+      tokens.leadingSpace.normal,
+      tokens.trailingSpace.normal,
     ),
 
     selectors: {
       [getModifierSelector<IModifier>('disabled')]: {
         cursor: 'default',
       },
-      [getModifierSelector<IModifier>('focused')]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
-          container: {
-            elevation: {
-              normal: fallbackVar(
-                tokens.container.elevation.focused,
-                tokens.container.elevation.normal,
-              ),
-            },
-          },
-        }),
-      },
-      [getModifierSelector<IModifier>('hovered')]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
-          container: {
-            elevation: {
-              normal: fallbackVar(
-                tokens.container.elevation.hovered,
-                tokens.container.elevation.normal,
-              ),
-            },
-          },
-        }),
-      },
-      [getModifierSelector<IModifier>('pressed')]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
-          container: {
-            elevation: {
-              normal: fallbackVar(
-                tokens.container.elevation.pressed,
-                tokens.container.elevation.normal,
-              ),
-            },
-          },
-        }),
-      },
-      [getModifierSelector<IModifier>('loading')]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
-          container: {
-            elevation: {
-              disabled: fallbackVar(
-                tokens.container.elevation.pressed,
-                tokens.container.elevation.normal,
-              ),
-            },
-          },
-        }),
-      },
       [getModifierSelector<IModifier>('with-leading-slot')]: {
-        paddingInlineStart: tokens.container.leadingSpace.withStartSlot,
-        paddingInlineEnd: tokens.container.trailingSpace.withStartSlot,
+        paddingInlineStart: tokens.leadingSpace.withStartSlot,
+        paddingInlineEnd: tokens.trailingSpace.withStartSlot,
       },
       [getModifierSelector<IModifier>('with-trailing-slot')]: {
-        paddingInlineStart: tokens.container.leadingSpace.withEndSlot,
-        paddingInlineEnd: tokens.container.trailingSpace.withEndSlot,
+        paddingInlineStart: tokens.leadingSpace.withEndSlot,
+        paddingInlineEnd: tokens.trailingSpace.withEndSlot,
       },
       [getModifierSelector<IModifier>([
         'with-leading-slot',
         'with-trailing-slot',
       ])]: {
-        paddingInlineStart: tokens.container.leadingSpace.withStartSlot,
-        paddingInlineEnd: tokens.container.trailingSpace.withEndSlot,
+        paddingInlineStart: tokens.leadingSpace.withStartSlot,
+        paddingInlineEnd: tokens.trailingSpace.withEndSlot,
       },
     },
   },
@@ -375,50 +268,13 @@ const classNames = createStyles({
     whiteSpace: 'nowrap',
     textAlign: 'center',
     justifyContent: 'center',
-    paddingInlineStart: tokens.container.leadingSpace.normal,
-    paddingInlineEnd: tokens.container.trailingSpace.normal,
+    paddingInlineStart: tokens.leadingSpace.normal,
+    paddingInlineEnd: tokens.trailingSpace.normal,
   },
   invisible: {
     visibility: 'hidden',
   },
-  stateLayer: {
-    vars: createTokensVars(StateLayer.theme.tokens, {
-      color: {
-        hovered: tokens.stateLayer.color.hovered,
-        pressed: fallbackVar(
-          tokens.stateLayer.color.pressed,
-          tokens.stateLayer.color.hovered,
-        ),
-      },
-    }),
-  },
-  outline: ({ root }) => ({
-    borderStyle: tokens.outline.style,
-    borderWidth: `max(${tokens.outline.width}, 1px)`,
-    borderColor: tokens.outline.color.normal,
-
-    selectors: {
-      [getModifierSelector<IModifier>('focused', root)]: {
-        borderColor: fallbackVar(
-          tokens.outline.color.focused,
-          tokens.outline.color.normal,
-        ),
-      },
-      [getModifierSelector<IModifier>('pressed', root)]: {
-        borderColor: fallbackVar(
-          tokens.outline.color.pressed,
-          tokens.outline.color.normal,
-        ),
-      },
-      [getModifierSelector<IModifier>('disabled', root)]: {
-        borderColor: fallbackVar(
-          tokens.outline.color.disabled,
-          tokens.outline.color.normal,
-        ),
-        opacity: tokens.outline.opacity.disabled,
-      },
-    },
-  }),
+  stateLayer: {},
 });
 
 export type IButtonThemeFactory = IComponentThemeFactory<{
@@ -437,106 +293,130 @@ export const buttonTheme = componentThemeFactory<IButtonThemeFactory>({
 export const buttonThemeVariants = {
   elevated: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
-        container: {
-          color: {
-            normal: themeTokens.colorScheme.surfaceContainerLow,
-            disabled: themeTokens.colorScheme.onSurface,
+      vars: {
+        ...createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: {
+              normal: themeTokens.colorScheme.surfaceContainerLow,
+              disabled: themeTokens.colorScheme.onSurface,
+            },
+            elevation: {
+              normal: elevationLevelPreset[1],
+              focused: elevationLevelPreset[1],
+              hovered: elevationLevelPreset[2],
+              pressed: elevationLevelPreset[1],
+              disabled: elevationLevelPreset[0],
+            },
           },
-          elevation: {
-            normal: elevationLevelPreset[1],
-            focused: elevationLevelPreset[1],
-            hovered: elevationLevelPreset[2],
-            pressed: elevationLevelPreset[1],
-            disabled: elevationLevelPreset[0],
+        }),
+        ...createTokensVars(tokens, {
+          label: {
+            color: {
+              normal: themeTokens.colorScheme.primary,
+              disabled: themeTokens.colorScheme.onSurface,
+            },
           },
-        },
-        label: {
-          color: {
-            normal: themeTokens.colorScheme.primary,
-            disabled: themeTokens.colorScheme.onSurface,
-          },
-        },
-        stateLayer: {
-          color: {
-            hovered: themeTokens.colorScheme.primary,
-            pressed: themeTokens.colorScheme.primary,
-          },
+        }),
+      },
+    },
+    stateLayer: {
+      vars: createTokensVars(StateLayer.theme.tokens, {
+        color: {
+          hovered: themeTokens.colorScheme.primary,
+          pressed: themeTokens.colorScheme.primary,
         },
       }),
     },
   }),
   filled: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
-        container: {
-          color: {
-            normal: themeTokens.colorScheme.primary,
-            disabled: themeTokens.colorScheme.onSurface,
+      vars: {
+        ...createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: {
+              normal: themeTokens.colorScheme.primary,
+              disabled: themeTokens.colorScheme.onSurface,
+            },
+            elevation: {
+              hovered: elevationLevelPreset[1],
+            },
           },
-          elevation: {
-            hovered: elevationLevelPreset[1],
+        }),
+        ...createTokensVars(tokens, {
+          label: {
+            color: {
+              normal: themeTokens.colorScheme.onPrimary,
+              disabled: themeTokens.colorScheme.onSurface,
+            },
           },
-        },
-        label: {
-          color: {
-            normal: themeTokens.colorScheme.onPrimary,
-            disabled: themeTokens.colorScheme.onSurface,
-          },
-        },
-        stateLayer: {
-          color: {
-            hovered: themeTokens.colorScheme.onPrimary,
-            pressed: themeTokens.colorScheme.onPrimary,
-          },
+        }),
+      },
+    },
+    stateLayer: {
+      vars: createTokensVars(StateLayer.theme.tokens, {
+        color: {
+          hovered: themeTokens.colorScheme.onPrimary,
+          pressed: themeTokens.colorScheme.onPrimary,
         },
       }),
     },
   }),
   filledTonal: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
-        container: {
-          color: {
-            normal: themeTokens.colorScheme.secondaryContainer,
-            disabled: themeTokens.colorScheme.onSurface,
+      vars: {
+        ...createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: {
+              normal: themeTokens.colorScheme.secondaryContainer,
+              disabled: themeTokens.colorScheme.onSurface,
+            },
+            elevation: {
+              hovered: elevationLevelPreset[1],
+            },
           },
-          elevation: {
-            hovered: elevationLevelPreset[1],
+        }),
+        ...createTokensVars(tokens, {
+          label: {
+            color: {
+              normal: themeTokens.colorScheme.onSecondaryContainer,
+              disabled: themeTokens.colorScheme.onSurface,
+            },
           },
-        },
-        label: {
-          color: {
-            normal: themeTokens.colorScheme.onSecondaryContainer,
-            disabled: themeTokens.colorScheme.onSurface,
-          },
-        },
-        stateLayer: {
-          color: {
-            hovered: themeTokens.colorScheme.onSecondaryContainer,
-            pressed: themeTokens.colorScheme.onSecondaryContainer,
-          },
+        }),
+      },
+    },
+    stateLayer: {
+      vars: createTokensVars(StateLayer.theme.tokens, {
+        color: {
+          hovered: themeTokens.colorScheme.onSecondaryContainer,
+          pressed: themeTokens.colorScheme.onSecondaryContainer,
         },
       }),
     },
   }),
   outlined: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
-        label: {
-          color: {
-            normal: themeTokens.colorScheme.primary,
-            disabled: themeTokens.colorScheme.onSurface,
+      vars: {
+        ...createTokensVars(PaperBase.theme.tokens, {
+          outline: {
+            style: 'solid',
           },
-        },
-        outline: {
-          style: 'solid',
-        },
-        stateLayer: {
-          color: {
-            hovered: themeTokens.colorScheme.primary,
-            pressed: themeTokens.colorScheme.primary,
+        }),
+        ...createTokensVars(tokens, {
+          label: {
+            color: {
+              normal: themeTokens.colorScheme.primary,
+              disabled: themeTokens.colorScheme.onSurface,
+            },
           },
+        }),
+      },
+    },
+    stateLayer: {
+      vars: createTokensVars(StateLayer.theme.tokens, {
+        color: {
+          hovered: themeTokens.colorScheme.primary,
+          pressed: themeTokens.colorScheme.primary,
         },
       }),
     },
@@ -544,17 +424,15 @@ export const buttonThemeVariants = {
   text: createStyles({
     root: {
       vars: createTokensVars(tokens, {
-        container: {
-          leadingSpace: {
-            normal: px(space(3)),
-            withStartSlot: px(space(3)),
-            withEndSlot: px(space(4)),
-          },
-          trailingSpace: {
-            normal: px(space(3)),
-            withStartSlot: px(space(4)),
-            withEndSlot: px(space(3)),
-          },
+        leadingSpace: {
+          normal: px(space(3)),
+          withStartSlot: px(space(3)),
+          withEndSlot: px(space(4)),
+        },
+        trailingSpace: {
+          normal: px(space(3)),
+          withStartSlot: px(space(4)),
+          withEndSlot: px(space(3)),
         },
         label: {
           color: {
@@ -562,46 +440,59 @@ export const buttonThemeVariants = {
             disabled: themeTokens.colorScheme.onSurface,
           },
         },
-        stateLayer: {
-          color: {
-            hovered: themeTokens.colorScheme.primary,
-            pressed: themeTokens.colorScheme.primary,
-          },
+      }),
+    },
+    stateLayer: {
+      vars: createTokensVars(StateLayer.theme.tokens, {
+        color: {
+          hovered: themeTokens.colorScheme.primary,
+          pressed: themeTokens.colorScheme.primary,
         },
       }),
     },
   }),
   danger: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
-        container: {
-          color: {
-            normal: themeTokens.colorScheme.errorContainer,
-            disabled: themeTokens.colorScheme.onSurface,
+      vars: {
+        ...createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: {
+              normal: themeTokens.colorScheme.errorContainer,
+              disabled: themeTokens.colorScheme.onSurface,
+            },
+            elevation: {
+              hovered: elevationLevelPreset[1],
+            },
           },
-          elevation: {
-            hovered: elevationLevelPreset[1],
+        }),
+        ...createTokensVars(tokens, {
+          label: {
+            color: {
+              normal: themeTokens.colorScheme.onErrorContainer,
+              disabled: themeTokens.colorScheme.onSurface,
+            },
           },
-        },
-        label: {
-          color: {
-            normal: themeTokens.colorScheme.onErrorContainer,
-            disabled: themeTokens.colorScheme.onSurface,
-          },
-        },
-        stateLayer: {
-          color: {
-            hovered: themeTokens.colorScheme.onErrorContainer,
-            pressed: themeTokens.colorScheme.onErrorContainer,
-          },
+        }),
+      },
+    },
+    stateLayer: {
+      vars: createTokensVars(StateLayer.theme.tokens, {
+        color: {
+          hovered: themeTokens.colorScheme.onErrorContainer,
+          pressed: themeTokens.colorScheme.onErrorContainer,
         },
       }),
     },
   }),
   snackbar: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
-        container: {
+      vars: {
+        ...createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            shape: px(themeTokens.shape.corner.xs),
+          },
+        }),
+        ...createTokensVars(tokens, {
           leadingSpace: {
             normal: px(space(4)),
             withStartSlot: px(space(3)),
@@ -613,28 +504,24 @@ export const buttonThemeVariants = {
             withEndSlot: px(space(3)),
           },
           height: px(32),
-          shape: {
-            topLeft: px(themeTokens.shape.corner.xs),
-            topRight: px(themeTokens.shape.corner.xs),
-            bottomRight: px(themeTokens.shape.corner.xs),
-            bottomLeft: px(themeTokens.shape.corner.xs),
+          icon: {
+            color: {
+              normal: themeTokens.colorScheme.inversePrimary,
+            },
           },
-        },
-        icon: {
-          color: {
-            normal: themeTokens.colorScheme.inversePrimary,
+          label: {
+            color: {
+              normal: themeTokens.colorScheme.inversePrimary,
+            },
           },
-        },
-        label: {
-          color: {
-            normal: themeTokens.colorScheme.inversePrimary,
-          },
-        },
-        stateLayer: {
-          color: {
-            hovered: themeTokens.colorScheme.inversePrimary,
-            pressed: themeTokens.colorScheme.inversePrimary,
-          },
+        }),
+      },
+    },
+    stateLayer: {
+      vars: createTokensVars(StateLayer.theme.tokens, {
+        color: {
+          hovered: themeTokens.colorScheme.inversePrimary,
+          pressed: themeTokens.colorScheme.inversePrimary,
         },
       }),
     },

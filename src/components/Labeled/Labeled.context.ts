@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import { createOptionalContext } from '~/helpers/createOptionalContext';
 
 export type ILabeledContextValue = {
   id?: string;
@@ -16,6 +16,5 @@ export type ILabeledContextValue = {
   loading?: boolean;
 };
 
-export const LabeledContext = createContext<ILabeledContextValue | undefined>(
-  undefined,
-);
+export const [LabeledContextProvider, useLabeledContext] =
+  createOptionalContext<ILabeledContextValue>();

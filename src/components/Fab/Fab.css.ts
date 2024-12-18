@@ -17,12 +17,7 @@ type IModifier = 'extended' | 'lowered';
 const [tokensClassName, tokens] = createTheme({
   container: {
     size: px(56),
-    shape: {
-      topLeft: px(themeTokens.shape.corner.lg),
-      topRight: px(themeTokens.shape.corner.lg),
-      bottomRight: px(themeTokens.shape.corner.lg),
-      bottomLeft: px(themeTokens.shape.corner.lg),
-    },
+    shape: px(themeTokens.shape.corner.lg),
     color: {
       normal: {
         regular: 'unset',

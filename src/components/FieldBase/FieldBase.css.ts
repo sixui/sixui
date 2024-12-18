@@ -56,9 +56,10 @@ const [tokensClassName, tokens] = createTheme({
   },
   container: {
     minHeight: calc.add(px(56), DENSITY),
-    shape: {
-      topLeft: px(themeTokens.shape.corner.xs),
-      topRight: px(themeTokens.shape.corner.xs),
+    shape: px(themeTokens.shape.corner.xs),
+    shapes: {
+      topLeft: 'inherit',
+      topRight: 'inherit',
       bottomRight: px(themeTokens.shape.corner.none),
       bottomLeft: px(themeTokens.shape.corner.none),
     },
@@ -316,6 +317,7 @@ const classNames = createStyles({
           disabled: tokens.container.color.disabled,
         },
         shape: tokens.container.shape,
+        shapes: tokens.container.shapes,
       },
     }),
 
@@ -1127,12 +1129,7 @@ export const fieldBaseThemeVariants = {
     root: {
       vars: createTokensVars(tokens, {
         container: {
-          shape: {
-            topLeft: px(themeTokens.shape.corner.xs),
-            topRight: px(themeTokens.shape.corner.xs),
-            bottomRight: px(themeTokens.shape.corner.xs),
-            bottomLeft: px(themeTokens.shape.corner.xs),
-          },
+          shape: px(themeTokens.shape.corner.xs),
           color: {
             disabled: 'unset',
           },

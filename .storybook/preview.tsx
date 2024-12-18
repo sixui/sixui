@@ -13,6 +13,8 @@ import * as styles from './preview.css';
 import '~/styles/main.css';
 import '~/styles/storybook.css';
 
+import { Button } from '~/components/Button';
+
 const preview: Preview = {
   parameters: {
     // https://github.com/storybookjs/storybook/issues/17098#issuecomment-1049679681
@@ -69,17 +71,22 @@ export const decorators: Array<Decorator> = [
             //       // root: styles.testBorder,
             //     },
             //   }),
-            // Avatar: Avatar.extend({
-            //   defaultProps: {
-            //     children: '☀️',
-            //     outline: '$md',
-            //     outlineStyle: 'solid',
-            //     outlineColor: '$primary',
-            //   },
-            //   classNames: {
-            //     root: styles.testVariant,
-            //   },
-            // }),
+            Avatar: Avatar.extend({
+              // defaultProps: {
+              //   children: '☀️',
+              //   outline: '$md',
+              //   outlineStyle: 'solid',
+              //   outlineColor: '$primary',
+              // },
+              classNames: {
+                root: styles.avatarTheme,
+              },
+            }),
+            Button: Button.extend({
+              classNames: {
+                root: styles.buttonTheme,
+              },
+            }),
             // StateLayer: StateLayer.extend({
             //   classNames: {
             //     // root: styles.testBorder,

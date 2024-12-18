@@ -202,7 +202,6 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
         onClick={onClick ? handleClick : undefined}
         classNames={mergeClassNames(classNames, {
           stateLayer: getStyles('stateLayer').className,
-          outline: getStyles('outline').className,
         })}
         readOnly={readOnly}
         ref={forwardedRef}

@@ -1,79 +1,72 @@
-import { forwardRef, useCallback, useContext, useRef, useState } from 'react';
-import { useMergeRefs } from '@floating-ui/react';
-import { asArray } from '@olivierpascal/helpers';
+import { useCallback, useState } from 'react';
 
-import type { ISwitchProps } from './Switch.types';
-import { iconCheckMark, iconXMark } from '~/assets/icons';
+import type { ISwitchThemeFactory } from './Switch.css';
+import type { ISwitchFactory } from './Switch.types';
 import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 import { useControlledValue } from '~/hooks/useControlledValue';
-import { useStyles } from '~/hooks/useStyles';
-import { Base } from '../Base';
+import { useMergeRefs } from '~/hooks/useMergeRefs';
+import { componentFactory } from '~/utils/component/componentFactory';
+import { useProps } from '~/utils/component/useProps';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { FocusRing } from '../FocusRing';
-import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
-import { LabeledContext } from '../Labeled';
-import { StateLayer } from '../StateLayer';
-import { SvgIcon } from '../SvgIcon';
-import { useVisualState } from '../VisualState';
-import {
-  switchCircularProgressIndicatorStyles,
-  switchFocusRingStyles,
-  switchStateLayerStyles,
-  switchStyles,
-} from './Switch.styles';
-import { switchTheme } from './Switch.stylex';
+import { useLabeledContext } from '../Labeled';
+import { PaperBase } from '../PaperBase';
+import { useStateLayer } from '../StateLayer';
+import { basicTemplateTheme } from './Switch.css';
 
-// https://github.com/material-components/material-web/blob/main/switch/internal/switch.ts
+const COMPONENT_NAME = 'Switch';
 
-export const Switch = forwardRef<HTMLInputElement, ISwitchProps>(
-  function Switch(props, forwardedRef) {
+export const Switch = componentFactory<ISwitchFactory>(
+  (props, forwardedRef) => {
     const {
+      classNames,
+      className,
       styles,
-      sx,
-      innerStyles,
-      visualState: visualStateProp,
+      style,
+      interactions,
+      interactionsMergeStrategy,
       checked: checkedProp,
       defaultChecked,
-      loading: loadingProp,
-      icons,
-      showOnlySelectedIcon: showOnlySelectedIconProp,
-      loadingAnimation = 'progressIndicator',
       onChange,
+      disabled,
+      readOnly,
+      loading,
+      icons,
       icon,
-      selectedIcon,
-      readOnly: readOnlyProp,
+      checkedIcon,
+      showOnlySelectedIcon,
+      loadingAnimation = 'progressIndicator',
       ...other
-    } = props;
+    } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const labeledContext = useContext(LabeledContext);
+    const labeledContext = useLabeledContext();
     const [handlingChange, setHandlingChange] = useState(false);
-    const loading =
-      (loadingProp || handlingChange || labeledContext?.loading) &&
-      loadingAnimation === 'progressIndicator';
-    const readOnly = readOnlyProp || loading || labeledContext?.readOnly;
-    const visuallyDisabled =
-      other.disabled || labeledContext?.disabled || readOnly;
-
-    const actionRef = useRef<HTMLInputElement>(null);
-    const { visualState, setRef: setVisualStateRef } = useVisualState(
-      visualStateProp,
-      { disabled: visuallyDisabled },
-    );
-    const handleRef = useMergeRefs([
-      forwardedRef,
-      setVisualStateRef,
-      actionRef,
-    ]);
-
-    const { combineStyles, getStyles, globalStyles } = useStyles({
-      componentName: 'Switch',
-      styles: [switchStyles, styles],
-      visualState,
-    });
-
     const [checked, setChecked] = useControlledValue({
       controlled: checkedProp,
       default: !!defaultChecked,
-      name: 'Switch',
+      name: COMPONENT_NAME,
+    });
+
+    const disabledOrReadOnly = disabled || labeledContext?.disabled || readOnly;
+
+    const stateLayer = useStateLayer<HTMLDivElement>({
+      baseState: interactions,
+      mergeStrategy: interactionsMergeStrategy,
+      disabled: disabledOrReadOnly,
+    });
+    const handleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
+
+    const { getStyles } = useComponentTheme<ISwitchThemeFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
+      className,
+      styles,
+      style,
+      theme: basicTemplateTheme,
+      modifiers: {
+        disabled: disabledOrReadOnly,
+        checked,
+      },
     });
 
     const handleChange: React.ChangeEventHandler<HTMLInputElement> =
@@ -95,151 +88,35 @@ export const Switch = forwardRef<HTMLInputElement, ISwitchProps>(
         [handlingChange, onChange, setChecked],
       );
 
-    const hasCustomIcons = !!icon || !!selectedIcon;
-    const hasIcons = icons || loading || hasCustomIcons;
-    const showOnlySelectedIcon = !loading && showOnlySelectedIconProp;
-    const shouldShowIcons = hasIcons || showOnlySelectedIcon;
-
     return (
-      <Base
-        sx={[
-          switchTheme,
-          globalStyles,
-          combineStyles('host', visuallyDisabled && 'host$disabled'),
-          sx,
-        ]}
+      <PaperBase
+        {...getStyles('root')}
+        ref={forwardedRef}
+        interactions={stateLayer.interactionsContext.state}
+        {...other}
       >
-        <div {...getStyles('switch', checked && 'switch$selected')}>
-          <input
-            type="checkbox"
-            role="switch"
-            checked={checked}
-            onChange={visuallyDisabled ? undefined : handleChange}
-            data-cy="switch"
-            id={labeledContext?.id}
-            required={labeledContext?.required}
-            {...other}
-            {...getStyles('input')}
-            ref={handleRef}
-          />
+        <input
+          type="checkbox"
+          role="switch"
+          checked={checked}
+          onChange={disabledOrReadOnly ? undefined : handleChange}
+          data-cy="switch"
+          id={labeledContext?.id}
+          required={labeledContext?.required}
+          {...other}
+          {...getStyles('input')}
+          ref={handleRef}
+        />
+        {!disabled && (
           <FocusRing
-            styles={[switchFocusRingStyles, ...asArray(innerStyles?.focusRing)]}
-            for={actionRef}
-            visualState={visualState}
+            {...getStyles('focusRing')}
+            interactions={stateLayer.interactionsContext.state}
           />
-
-          <span {...getStyles('track')}>
-            <div
-              {...getStyles(
-                'background',
-                visuallyDisabled && 'background$disabled',
-                'trackBackground',
-                checked && 'trackBackground$selected',
-                visuallyDisabled &&
-                  (checked
-                    ? 'trackBackground$disabled$selected'
-                    : 'trackBackground$disabled'),
-              )}
-            />
-            <span
-              {...getStyles(
-                'handleContainer',
-                checked && 'handleContainer$selected',
-                visuallyDisabled && 'handleContainer$disabled',
-              )}
-            >
-              <StateLayer
-                styles={[
-                  switchStateLayerStyles,
-                  ...asArray(innerStyles?.stateLayer),
-                ]}
-                for={actionRef}
-                disabled={visuallyDisabled}
-                interactionState={visualState}
-              />
-              <span
-                {...getStyles(
-                  'handle',
-                  checked && 'handle$selected',
-                  loading && 'handle$loading',
-                  visuallyDisabled &&
-                    (checked ? 'handle$disabled$selected' : 'handle$disabled'),
-                  (showOnlySelectedIcon ? checked : hasIcons) &&
-                    'handle$withIcon',
-                )}
-              >
-                <div
-                  {...getStyles(
-                    'background',
-                    'handleBackground',
-                    checked && 'handleBackground$selected',
-                    visuallyDisabled &&
-                      (checked
-                        ? 'handleBackground$disabled$selected'
-                        : 'handleBackground$disabled'),
-                  )}
-                />
-
-                {shouldShowIcons ? (
-                  <div {...getStyles('icons')}>
-                    <div
-                      {...getStyles(
-                        'icon',
-                        !loading &&
-                          (checked ? 'icon$size$selected' : 'icon$size'),
-                        checked && 'icon$on$selected',
-                        checked &&
-                          visuallyDisabled &&
-                          'icon$on$selected$disabled',
-                      )}
-                    >
-                      {loading ? (
-                        <IndeterminateCircularProgressIndicator
-                          styles={[
-                            switchCircularProgressIndicatorStyles,
-                            ...asArray(innerStyles?.circularProgressIndicator),
-                          ]}
-                        />
-                      ) : selectedIcon ? (
-                        selectedIcon
-                      ) : !hasCustomIcons ? (
-                        <SvgIcon icon={iconCheckMark} />
-                      ) : null}
-                    </div>
-
-                    {showOnlySelectedIcon ? null : (
-                      <div
-                        {...getStyles(
-                          'icon',
-                          !loading &&
-                            (checked ? 'icon$size$selected' : 'icon$size'),
-                          !checked && 'icon$on',
-                          !checked && visuallyDisabled && 'icon$on$disabled',
-                        )}
-                      >
-                        {loading ? (
-                          <IndeterminateCircularProgressIndicator
-                            styles={[
-                              switchCircularProgressIndicatorStyles,
-                              ...asArray(
-                                innerStyles?.circularProgressIndicator,
-                              ),
-                            ]}
-                          />
-                        ) : icon ? (
-                          icon
-                        ) : !hasCustomIcons ? (
-                          <SvgIcon icon={iconXMark} />
-                        ) : null}
-                      </div>
-                    )}
-                  </div>
-                ) : null}
-              </span>
-            </span>
-          </span>
-        </div>
-      </Base>
+        )}
+      </PaperBase>
     );
   },
 );
+
+Switch.theme = basicTemplateTheme;
+Switch.displayName = `@sixui/${COMPONENT_NAME}`;

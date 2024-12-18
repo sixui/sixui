@@ -7,7 +7,7 @@ export type ICreateOptionalContextResult<TContextValue> = [
   }: {
     value: TContextValue;
     children: React.ReactNode;
-  }) => JSX.Element,
+  }) => React.JSX.Element,
   () => TContextValue | undefined,
 ];
 
@@ -25,7 +25,7 @@ export const createOptionalContext = <TContextValue,>(
   }: {
     value: TContextValue;
     children: React.ReactNode;
-  }): JSX.Element => (
+  }): React.JSX.Element => (
     <Context.Provider value={value}>{children}</Context.Provider>
   );
 

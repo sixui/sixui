@@ -13,6 +13,7 @@ import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { Avatar } from '../Avatar';
 import { Button } from '../Button';
+import { PaperBase } from '../PaperBase';
 import { themeTokens } from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
@@ -27,28 +28,22 @@ type IModifier =
 const DENSITY = px(getDensity({ min: -2, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
+  leadingSpace: {
+    normal: px(space(4)),
+    withStartSlot: px(space(2)),
+    withEndSlot: px(space(4)),
+  },
+  trailingSpace: {
+    normal: px(space(4)),
+    withStartSlot: px(space(4)),
+    withEndSlot: px(space(2)),
+  },
+  height: px(32),
   container: {
-    leadingSpace: {
-      normal: px(space(4)),
-      withStartSlot: px(space(2)),
-      withEndSlot: px(space(4)),
-    },
-    trailingSpace: {
-      normal: px(space(4)),
-      withStartSlot: px(space(4)),
-      withEndSlot: px(space(2)),
-    },
     color: {
       normal: themeTokens.colorScheme.surfaceContainerLow,
-      disabled: 'inherit',
     },
-    height: px(32),
-    shape: {
-      topLeft: px(themeTokens.shape.corner.sm),
-      topRight: px(themeTokens.shape.corner.sm),
-      bottomRight: px(themeTokens.shape.corner.sm),
-      bottomLeft: px(themeTokens.shape.corner.sm),
-    },
+    shape: px(themeTokens.shape.corner.sm),
   },
   container$elevated: {
     elevation: {
@@ -73,31 +68,7 @@ const [tokensClassName, tokens] = createTheme({
     leadingSpace: {
       withStartSlot: px(space(1)),
     },
-    shape: {
-      topLeft: px(themeTokens.shape.corner.full),
-      topRight: px(themeTokens.shape.corner.full),
-      bottomRight: px(themeTokens.shape.corner.full),
-      bottomLeft: px(themeTokens.shape.corner.full),
-    },
-  },
-  outline: {
-    style: 'solid',
-    width: px(themeTokens.outline.width.xs),
-    color: {
-      normal: themeTokens.colorScheme.outline,
-      disabled: themeTokens.colorScheme.onSurface,
-      focused: themeTokens.colorScheme.outline,
-      pressed: themeTokens.colorScheme.outline,
-    },
-    opacity: {
-      disabled: themeTokens.state.outlineOpacity.disabled,
-    },
-  },
-  outline$elevated: {
-    style: 'unset',
-  },
-  outline$selected: {
-    style: 'unset',
+    shape: px(themeTokens.shape.corner.full),
   },
   icon: {
     size: px(18),
@@ -146,26 +117,27 @@ const [tokensClassName, tokens] = createTheme({
   },
   avatar: {
     size: px(24),
-    shape: {
-      topLeft: px(themeTokens.shape.corner.full),
-      topRight: px(themeTokens.shape.corner.full),
-      bottomRight: px(themeTokens.shape.corner.full),
-      bottomLeft: px(themeTokens.shape.corner.full),
-    },
+    shape: px(themeTokens.shape.corner.full),
   },
 });
 
 const classNames = createStyles({
   root: {
-    vars: createTokensVars(Button.theme.tokens, {
-      container: tokens.container,
-      outline: tokens.outline,
-      icon: tokens.icon,
-      label: tokens.label,
-    }),
+    vars: {
+      ...createTokensVars(PaperBase.theme.tokens, {
+        container: tokens.container,
+      }),
+      ...createTokensVars(Button.theme.tokens, {
+        leadingSpace: tokens.leadingSpace,
+        trailingSpace: tokens.trailingSpace,
+        height: tokens.height,
+        icon: tokens.icon,
+        label: tokens.label,
+      }),
+    },
 
     minWidth: 'unset',
-    height: calc.add(tokens.container.height, DENSITY),
+    height: calc.add(tokens.height, DENSITY),
     transitionProperty: 'border-radius',
     transitionDuration: themeTokens.motion.duration.medium.$4,
     transitionTimingFunction: themeTokens.motion.easing.emphasized.decelerate,
@@ -181,67 +153,69 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>({
         elevated: true,
       })]: {
-        vars: createTokensVars(Button.theme.tokens, {
+        vars: createTokensVars(PaperBase.theme.tokens, {
           container: tokens.container$elevated,
-          outline: tokens.outline$elevated,
         }),
       },
       [getModifierSelector<IModifier>({
         selected: true,
       })]: {
-        vars: createTokensVars(Button.theme.tokens, {
-          container: tokens.container$selected,
-          outline: tokens.outline$selected,
-          icon: tokens.icon$selected,
-          label: {
-            color: {
-              normal: fallbackVar(
-                tokens.label$selected.color.normal,
-                tokens.label.color.normal,
-              ),
-              focused: fallbackVar(
-                tokens.label$selected.color.focused,
-                tokens.label.color.focused,
-              ),
-              hovered: fallbackVar(
-                tokens.label$selected.color.hovered,
-                tokens.label.color.hovered,
-              ),
-              pressed: fallbackVar(
-                tokens.label$selected.color.pressed,
-                tokens.label.color.pressed,
-              ),
-              disabled: fallbackVar(
-                tokens.label$selected.color.disabled,
-                tokens.label.color.disabled,
-              ),
+        vars: {
+          ...createTokensVars(PaperBase.theme.tokens, {
+            container: tokens.container$selected,
+          }),
+          ...createTokensVars(Button.theme.tokens, {
+            icon: tokens.icon$selected,
+            label: {
+              color: {
+                normal: fallbackVar(
+                  tokens.label$selected.color.normal,
+                  tokens.label.color.normal,
+                ),
+                focused: fallbackVar(
+                  tokens.label$selected.color.focused,
+                  tokens.label.color.focused,
+                ),
+                hovered: fallbackVar(
+                  tokens.label$selected.color.hovered,
+                  tokens.label.color.hovered,
+                ),
+                pressed: fallbackVar(
+                  tokens.label$selected.color.pressed,
+                  tokens.label.color.pressed,
+                ),
+                disabled: fallbackVar(
+                  tokens.label$selected.color.disabled,
+                  tokens.label.color.disabled,
+                ),
+              },
             },
-          },
-        }),
+          }),
+        },
       },
       [getModifierSelector<IModifier>({
         avatar: true,
       })]: {
-        vars: createTokensVars(Button.theme.tokens, {
-          container: tokens.container$avatar,
-          icon: tokens.icon$avatar,
-        }),
+        vars: {
+          ...createTokensVars(PaperBase.theme.tokens, {
+            container: tokens.container$avatar,
+          }),
+          ...createTokensVars(Button.theme.tokens, {
+            icon: tokens.icon$avatar,
+          }),
+        },
       },
     },
   },
   avatar: ({ root }) => ({
     vars: createTokensVars(Avatar.theme.tokens, {
-      container: {
-        size: tokens.icon.size,
-      },
+      size: tokens.icon.size,
     }),
 
     selectors: {
       [getModifierSelector<IModifier>({ avatar: true }, root)]: {
         vars: createTokensVars(Avatar.theme.tokens, {
-          container: {
-            size: px(24),
-          },
+          size: px(24),
         }),
       },
       [getModifierSelector<IModifier>({ avatar: false }, root)]: {

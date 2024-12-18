@@ -50,12 +50,7 @@ const classNames = createStyles({
         elevation: {
           normal: tokens.container.elevation,
         },
-        shape: {
-          topLeft: tokens.container.shape,
-          topRight: tokens.container.shape,
-          bottomRight: tokens.container.shape,
-          bottomLeft: tokens.container.shape,
-        },
+        shape: tokens.container.shape,
       },
     }),
 

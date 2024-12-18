@@ -24,12 +24,7 @@ const [tokensClassName, tokens] = createTheme({
   container: {
     color: themeTokens.colorScheme.surfaceContainerHigh,
     elevation: elevationLevelPreset[3],
-    shape: {
-      topLeft: px(themeTokens.shape.corner.xl),
-      topRight: px(themeTokens.shape.corner.xl),
-      bottomRight: px(themeTokens.shape.corner.xl),
-      bottomLeft: px(themeTokens.shape.corner.xl),
-    },
+    shape: px(themeTokens.shape.corner.xl),
     width: {
       xs: px(160),
       sm: px(200),

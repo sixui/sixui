@@ -14,8 +14,8 @@ const [tokensClassName, tokens] = createTheme({
   color: themeTokens.colorScheme.secondary,
   animationDuration: themeTokens.motion.duration.long.$4,
   offset: {
-    inward: px('0px'),
-    outward: px('2px'),
+    inward: px(0),
+    outward: px(2),
   },
   width: {
     normal: px(themeTokens.outline.width.md),

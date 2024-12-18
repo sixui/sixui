@@ -1,9 +1,10 @@
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
+import type { IPaperOwnProps } from '../Paper';
 import type { badgeTheme, IBadgeThemeFactory } from './Badge.css';
 
-export interface IBadgeOwnProps {
+export interface IBadgeOwnProps extends IPaperOwnProps {
   value?: string | number;
   maxValue?: number;
   showZero?: boolean;

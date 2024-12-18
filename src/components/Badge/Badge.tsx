@@ -6,7 +6,7 @@ import { isNumeric } from '~/helpers/isNumeric';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../Box';
+import { Paper } from '../Paper';
 import { badgeTheme } from './Badge.css';
 
 const COMPONENT_NAME = 'Badge';
@@ -54,7 +54,7 @@ export const Badge = polymorphicComponentFactory<IBadgeFactory>(
     );
 
     return (
-      <Box
+      <Paper
         {...getStyles([
           'root',
           invisible && 'root$invisible',
@@ -63,9 +63,8 @@ export const Badge = polymorphicComponentFactory<IBadgeFactory>(
         ref={forwardedRef}
         {...other}
       >
-        <div {...getStyles('background')} />
         <div {...getStyles('label')}>{displayValue}</div>
-      </Box>
+      </Paper>
     );
   },
 );

@@ -14,16 +14,7 @@ import { themeTokens } from '../ThemeProvider';
 const DENSITY = px(getDensity({ min: -3, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
-  container: {
-    size: px(40),
-    shape: {
-      topLeft: px(themeTokens.shape.corner.full),
-      topRight: px(themeTokens.shape.corner.full),
-      bottomRight: px(themeTokens.shape.corner.full),
-      bottomLeft: px(themeTokens.shape.corner.full),
-    },
-    color: themeTokens.colorScheme.primaryContainer,
-  },
+  size: px(40),
   label: {
     color: themeTokens.colorScheme.onPrimaryContainer,
     typography: themeTokens.typeScale.title.md,
@@ -37,13 +28,13 @@ const vars = {
 const classNames = createStyles({
   root: {
     vars: {
-      [vars.size]: calc.add(tokens.container.size, DENSITY),
+      [vars.size]: calc.add(tokens.size, DENSITY),
       ...createTokensVars(PaperBase.theme.tokens, {
         container: {
           color: {
-            normal: tokens.container.color,
+            normal: themeTokens.colorScheme.primaryContainer,
           },
-          shape: tokens.container.shape,
+          shape: px(themeTokens.shape.corner.full),
         },
       }),
     },

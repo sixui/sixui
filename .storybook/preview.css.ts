@@ -1,9 +1,12 @@
-import { style } from '@vanilla-extract/css';
+import { layer, style } from '@vanilla-extract/css';
 
 import { Avatar } from '~/components/Avatar';
+import { PaperBase } from '~/components/PaperBase';
 import { themeTokens } from '~/components/ThemeProvider';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
+
+const base = layer();
 
 export const storyWrapper = style({
   position: 'relative',
@@ -14,15 +17,20 @@ export const storyWrapper = style({
 });
 
 // FIXME: delete
-export const testVariant = style({
-  // border: '4px solid green',
-  selectors: {
-    [getModifierSelector('variant="icon"')]: {
-      vars: {
-        [Avatar.theme.tokens.container.color]: 'green',
-      },
-      // border: '4px solid purple',
-    },
+export const avatarTheme = style({
+  vars: {
+    // [PaperBase.theme.tokens.container.opacity.normal]: '0.5',
+  },
+});
+
+// FIXME: delete
+export const buttonTheme = style({
+  vars: {
+    // This should be defined in a specific user theme css layer. The problem is
+    // that vanilla-extract-css does not support `@layer` in `createTheme`.
+    // https://github.com/vanilla-extract-css/vanilla-extract/discussions/1472
+    // So the app theme would not apply.
+    // [PaperBase.theme.tokens.container.color.normal]: 'red',
   },
 });
 

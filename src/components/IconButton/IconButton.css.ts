@@ -8,35 +8,15 @@ import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { Button } from '../Button';
+import { PaperBase } from '../PaperBase';
+import { StateLayer } from '../StateLayer';
 import { themeTokens } from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
 type IModifier = 'toggle' | 'selected';
 
 const [tokensClassName, tokens] = createTheme({
-  container: {
-    color: {
-      normal: 'unset',
-      disabled: 'unset',
-    },
-    opacity: {
-      disabled: themeTokens.state.containerOpacity.disabled,
-    },
-    size: px(40),
-    shape: px(themeTokens.shape.corner.full),
-  },
-  container$selected: {
-    color: {
-      normal: 'unset',
-      disabled: 'unset',
-    },
-  },
-  container$unselected: {
-    color: {
-      normal: 'unset',
-      disabled: 'unset',
-    },
-  },
+  size: px(40),
   icon: {
     labelSpace: px(0),
     color: {
@@ -67,51 +47,23 @@ const [tokensClassName, tokens] = createTheme({
       pressed: 'inherit',
     },
   },
-  stateLayer: {
-    color: {
-      hovered: 'unset',
-      pressed: 'unset',
-    },
-    opacity: {
-      hovered: themeTokens.state.stateLayerOpacity.hovered,
-      pressed: themeTokens.state.stateLayerOpacity.pressed,
-    },
-  },
-  stateLayer$toggle: {
-    color: {
-      hovered: 'unset',
-      pressed: 'unset',
-    },
-  },
-  stateLayer$toggle$selected: {
-    color: {
-      hovered: 'unset',
-      pressed: 'unset',
-    },
-  },
-  outline: {
-    style: 'unset',
-    width: px(themeTokens.outline.width.none),
-    color: {
-      normal: themeTokens.colorScheme.outline,
-      disabled: themeTokens.colorScheme.onSurface,
-      focused: themeTokens.colorScheme.outline,
-      pressed: themeTokens.colorScheme.outline,
-    },
-    opacity: {
-      disabled: themeTokens.state.outlineOpacity.disabled,
-    },
-  },
 });
 
 const classNames = createStyles({
   root: {
-    width: tokens.container.size,
+    width: tokens.size,
     flexShrink: 0,
 
-    vars: createTokensVars(Button.theme.tokens, {
-      stateLayer: tokens.stateLayer,
-      container: {
+    vars: {
+      ...createTokensVars(PaperBase.theme.tokens, {
+        container: {
+          shape: px(themeTokens.shape.corner.full),
+          color: {
+            disabled: 'inherit',
+          },
+        },
+      }),
+      ...createTokensVars(Button.theme.tokens, {
         leadingSpace: {
           normal: '0px',
           withStartSlot: '0px',
@@ -122,41 +74,25 @@ const classNames = createStyles({
           withStartSlot: '0px',
           withEndSlot: '0px',
         },
-        elevation: {
-          normal: elevationLevelPreset[0],
+        minWidth: tokens.size,
+        height: tokens.size,
+        label: {
+          typography: {
+            lineHeight: tokens.icon.size,
+          },
         },
-        minWidth: tokens.container.size,
-        height: tokens.container.size,
-        shape: {
-          topLeft: px(tokens.container.shape),
-          topRight: px(tokens.container.shape),
-          bottomRight: px(tokens.container.shape),
-          bottomLeft: px(tokens.container.shape),
-        },
-        opacity: tokens.container.opacity,
-        color: tokens.container.color,
-      },
-      label: {
-        typography: {
-          lineHeight: tokens.icon.size,
-        },
-      },
-      icon: tokens.icon,
-      outline: tokens.outline,
-    }),
+        icon: tokens.icon,
+      }),
+    },
 
     selectors: {
       [getModifierSelector<IModifier>('toggle')]: {
         vars: createTokensVars(Button.theme.tokens, {
-          stateLayer: tokens.stateLayer$toggle,
-          container: tokens.container$unselected,
           icon: tokens.icon$toggle,
         }),
       },
       [getModifierSelector<IModifier>(['toggle', 'selected'])]: {
         vars: createTokensVars(Button.theme.tokens, {
-          stateLayer: tokens.stateLayer$toggle$selected,
-          container: tokens.container$selected,
           icon: tokens.icon$toggle$selected,
         }),
       },
@@ -180,286 +116,349 @@ export const iconButtonTheme = componentThemeFactory<IIconButtonThemeFactory>({
 export const iconButtonThemeVariants = {
   standard: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
-        icon: {
-          color: {
-            normal: themeTokens.colorScheme.onSurfaceVariant,
-            disabled: themeTokens.colorScheme.onSurface,
-          },
-        },
-        icon$toggle: {
-          color: {
-            normal: themeTokens.colorScheme.onSurfaceVariant,
-          },
-        },
-        icon$toggle$selected: {
-          color: {
-            normal: themeTokens.colorScheme.primary,
-          },
-        },
-        stateLayer: {
+      vars: {
+        ...createTokensVars(StateLayer.theme.tokens, {
           color: {
             hovered: themeTokens.colorScheme.onSurfaceVariant,
           },
-        },
-        stateLayer$toggle: {
-          color: {
-            hovered: themeTokens.colorScheme.onSurfaceVariant,
+        }),
+        ...createTokensVars(tokens, {
+          icon: {
+            color: {
+              normal: themeTokens.colorScheme.onSurfaceVariant,
+              disabled: themeTokens.colorScheme.onSurface,
+            },
           },
-        },
-        stateLayer$toggle$selected: {
-          color: {
-            hovered: themeTokens.colorScheme.onSurfaceVariant,
+          icon$toggle: {
+            color: {
+              normal: themeTokens.colorScheme.onSurfaceVariant,
+            },
           },
+          icon$toggle$selected: {
+            color: {
+              normal: themeTokens.colorScheme.primary,
+            },
+          },
+        }),
+      },
+      selectors: {
+        [getModifierSelector<IModifier>('toggle')]: {
+          vars: createTokensVars(StateLayer.theme.tokens, {
+            color: {
+              hovered: themeTokens.colorScheme.onSurfaceVariant,
+            },
+          }),
         },
-      }),
+        [getModifierSelector<IModifier>(['toggle', 'selected'])]: {
+          vars: createTokensVars(StateLayer.theme.tokens, {
+            color: {
+              hovered: themeTokens.colorScheme.onSurfaceVariant,
+            },
+          }),
+        },
+      },
     },
   }),
   filled: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
-        container: {
-          color: {
-            normal: themeTokens.colorScheme.primary,
-            disabled: themeTokens.colorScheme.onSurface,
+      vars: {
+        ...createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: {
+              normal: themeTokens.colorScheme.primary,
+            },
           },
-        },
-        container$unselected: {
-          color: {
-            normal: themeTokens.colorScheme.surfaceContainerHighest,
-          },
-        },
-        container$selected: {
-          color: {
-            normal: themeTokens.colorScheme.primary,
-          },
-        },
-        icon: {
-          color: {
-            normal: themeTokens.colorScheme.onPrimary,
-            disabled: themeTokens.colorScheme.onSurface,
-          },
-        },
-        icon$toggle: {
-          color: {
-            normal: themeTokens.colorScheme.primary,
-          },
-        },
-        icon$toggle$selected: {
-          color: {
-            normal: themeTokens.colorScheme.onPrimary,
-          },
-        },
-        stateLayer: {
+        }),
+        ...createTokensVars(StateLayer.theme.tokens, {
           color: {
             hovered: themeTokens.colorScheme.onPrimary,
           },
+        }),
+        ...createTokensVars(tokens, {
+          icon: {
+            color: {
+              normal: themeTokens.colorScheme.onPrimary,
+              disabled: themeTokens.colorScheme.onSurface,
+            },
+          },
+          icon$toggle: {
+            color: {
+              normal: themeTokens.colorScheme.primary,
+            },
+          },
+          icon$toggle$selected: {
+            color: {
+              normal: themeTokens.colorScheme.onPrimary,
+            },
+          },
+        }),
+      },
+      selectors: {
+        [getModifierSelector<IModifier>('toggle')]: {
+          vars: createTokensVars(StateLayer.theme.tokens, {
+            color: {
+              hovered: themeTokens.colorScheme.primary,
+            },
+          }),
         },
-        stateLayer$toggle: {
-          color: {
-            hovered: themeTokens.colorScheme.primary,
+        [getModifierSelector<IModifier>(['toggle', 'selected'])]: {
+          vars: {
+            ...createTokensVars(PaperBase.theme.tokens, {
+              container: {
+                color: {
+                  normal: themeTokens.colorScheme.primary,
+                },
+              },
+            }),
+            ...createTokensVars(StateLayer.theme.tokens, {
+              color: {
+                hovered: themeTokens.colorScheme.onPrimary,
+              },
+            }),
           },
         },
-        stateLayer$toggle$selected: {
-          color: {
-            hovered: themeTokens.colorScheme.onPrimary,
-          },
+        [getModifierSelector<IModifier>(['toggle', '!selected'])]: {
+          vars: createTokensVars(PaperBase.theme.tokens, {
+            container: {
+              color: {
+                normal: themeTokens.colorScheme.surfaceContainerHighest,
+              },
+            },
+          }),
         },
-      }),
+      },
     },
   }),
   filledTonal: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
-        container: {
-          color: {
-            normal: themeTokens.colorScheme.secondaryContainer,
-            disabled: themeTokens.colorScheme.onSurface,
+      vars: {
+        ...createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: {
+              normal: themeTokens.colorScheme.secondaryContainer,
+            },
           },
-        },
-        container$unselected: {
-          color: {
-            normal: themeTokens.colorScheme.surfaceContainerHighest,
-          },
-        },
-        container$selected: {
-          color: {
-            normal: themeTokens.colorScheme.secondaryContainer,
-          },
-        },
-        icon: {
-          color: {
-            normal: themeTokens.colorScheme.onSecondaryContainer,
-            disabled: themeTokens.colorScheme.onSurface,
-          },
-        },
-        icon$toggle: {
-          color: {
-            normal: themeTokens.colorScheme.onSurfaceVariant,
-          },
-        },
-        icon$toggle$selected: {
-          color: {
-            normal: themeTokens.colorScheme.onSecondaryContainer,
-          },
-        },
-        stateLayer: {
+        }),
+        ...createTokensVars(StateLayer.theme.tokens, {
           color: {
             hovered: themeTokens.colorScheme.onSurfaceVariant,
           },
+        }),
+        ...createTokensVars(tokens, {
+          icon: {
+            color: {
+              normal: themeTokens.colorScheme.onSecondaryContainer,
+              disabled: themeTokens.colorScheme.onSurface,
+            },
+          },
+          icon$toggle: {
+            color: {
+              normal: themeTokens.colorScheme.onSurfaceVariant,
+            },
+          },
+          icon$toggle$selected: {
+            color: {
+              normal: themeTokens.colorScheme.onSecondaryContainer,
+            },
+          },
+        }),
+      },
+      selectors: {
+        [getModifierSelector<IModifier>('toggle')]: {
+          vars: createTokensVars(StateLayer.theme.tokens, {
+            color: {
+              hovered: themeTokens.colorScheme.onSecondaryContainer,
+            },
+          }),
         },
-        stateLayer$toggle: {
-          color: {
-            hovered: themeTokens.colorScheme.onSecondaryContainer,
+        [getModifierSelector<IModifier>(['toggle', 'selected'])]: {
+          vars: {
+            ...createTokensVars(PaperBase.theme.tokens, {
+              container: {
+                color: {
+                  normal: themeTokens.colorScheme.secondaryContainer,
+                },
+              },
+            }),
+            ...createTokensVars(StateLayer.theme.tokens, {
+              color: {
+                hovered: themeTokens.colorScheme.onSurfaceVariant,
+              },
+            }),
           },
         },
-        stateLayer$toggle$selected: {
-          color: {
-            hovered: themeTokens.colorScheme.onSurfaceVariant,
-          },
+        [getModifierSelector<IModifier>(['toggle', '!selected'])]: {
+          vars: createTokensVars(PaperBase.theme.tokens, {
+            container: {
+              color: {
+                normal: themeTokens.colorScheme.surfaceContainerHighest,
+              },
+            },
+          }),
         },
-      }),
+      },
     },
   }),
   outlined: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
-        container$selected: {
-          color: {
-            normal: themeTokens.colorScheme.inverseSurface,
-            disabled: 'transparent',
+      vars: {
+        ...createTokensVars(PaperBase.theme.tokens, {
+          outline: {
+            style: 'solid',
+          },
+        }),
+        ...createTokensVars(tokens, {
+          icon: {
+            color: {
+              normal: themeTokens.colorScheme.onSurfaceVariant,
+              disabled: themeTokens.colorScheme.onSurface,
+            },
+          },
+          icon$toggle: {
+            color: {
+              normal: themeTokens.colorScheme.onSurfaceVariant,
+            },
+          },
+          icon$toggle$selected: {
+            color: {
+              normal: themeTokens.colorScheme.inverseOnSurface,
+            },
+          },
+        }),
+      },
+      selectors: {
+        [getModifierSelector<IModifier>('toggle')]: {
+          vars: createTokensVars(StateLayer.theme.tokens, {
+            color: {
+              hovered: themeTokens.colorScheme.onSurfaceVariant,
+            },
+          }),
+        },
+        [getModifierSelector<IModifier>(['toggle', 'selected'])]: {
+          vars: {
+            ...createTokensVars(PaperBase.theme.tokens, {
+              container: {
+                color: {
+                  normal: themeTokens.colorScheme.inverseSurface,
+                  disabled: 'transparent',
+                },
+              },
+              outline: {
+                style: 'unset',
+              },
+            }),
+            ...createTokensVars(StateLayer.theme.tokens, {
+              color: {
+                hovered: themeTokens.colorScheme.inverseOnSurface,
+              },
+            }),
           },
         },
-        icon: {
-          color: {
-            normal: themeTokens.colorScheme.onSurfaceVariant,
-            disabled: themeTokens.colorScheme.onSurface,
-          },
+        [getModifierSelector<IModifier>(['toggle', '!selected'])]: {
+          vars: createTokensVars(PaperBase.theme.tokens, {
+            container: {
+              color: {
+                normal: 'inherit',
+              },
+            },
+          }),
         },
-        icon$toggle: {
-          color: {
-            normal: themeTokens.colorScheme.onSurfaceVariant,
-          },
-        },
-        icon$toggle$selected: {
-          color: {
-            normal: themeTokens.colorScheme.inverseOnSurface,
-          },
-        },
-        stateLayer: {
-          color: {
-            hovered: themeTokens.colorScheme.onSurfaceVariant,
-          },
-        },
-        stateLayer$toggle: {
-          color: {
-            hovered: themeTokens.colorScheme.onSurfaceVariant,
-          },
-        },
-        stateLayer$toggle$selected: {
-          color: {
-            hovered: themeTokens.colorScheme.inverseOnSurface,
-          },
-        },
-        outline: {
-          style: 'solid',
-        },
-      }),
+      },
     },
   }),
-  danger: createStyles({
-    root: {
-      vars: createTokensVars(tokens, {
-        container: {
-          color: {
-            normal: themeTokens.colorScheme.errorContainer,
-            disabled: themeTokens.colorScheme.onSurface,
-          },
-        },
-        container$unselected: {
-          color: {
-            normal: themeTokens.colorScheme.surfaceContainerHighest,
-            disabled: themeTokens.colorScheme.onSurface,
-          },
-        },
-        container$selected: {
-          color: {
-            normal: themeTokens.colorScheme.errorContainer,
-            disabled: themeTokens.colorScheme.onSurface,
-          },
-        },
-        icon: {
-          color: {
-            normal: themeTokens.colorScheme.onErrorContainer,
-            disabled: themeTokens.colorScheme.onSurface,
-          },
-        },
-        icon$toggle: {
-          color: {
-            normal: themeTokens.colorScheme.onErrorContainer,
-          },
-        },
-        icon$toggle$selected: {
-          color: {
-            normal: themeTokens.colorScheme.onErrorContainer,
-          },
-        },
-        stateLayer: {
-          color: {
-            hovered: themeTokens.colorScheme.onErrorContainer,
-          },
-        },
-        stateLayer$toggle: {
-          color: {
-            hovered: themeTokens.colorScheme.onErrorContainer,
-          },
-        },
-        stateLayer$toggle$selected: {
-          color: {
-            hovered: themeTokens.colorScheme.error,
-          },
-        },
-      }),
-    },
-  }),
-  snackbar: createStyles({
-    root: {
-      vars: createTokensVars(tokens, {
-        container: {
-          size: px(32),
-        },
-        icon: {
-          color: {
-            normal: themeTokens.colorScheme.inverseOnSurface,
-            disabled: themeTokens.colorScheme.onSurface,
-          },
-        },
-        icon$toggle: {
-          color: {
-            normal: themeTokens.colorScheme.inverseOnSurface,
-          },
-        },
-        icon$toggle$selected: {
-          color: {
-            normal: themeTokens.colorScheme.inverseOnSurface,
-          },
-        },
-        stateLayer: {
-          color: {
-            hovered: themeTokens.colorScheme.inverseOnSurface,
-          },
-        },
-        stateLayer$toggle: {
-          color: {
-            hovered: themeTokens.colorScheme.inverseOnSurface,
-          },
-        },
-        stateLayer$toggle$selected: {
-          color: {
-            hovered: themeTokens.colorScheme.inverseOnSurface,
-          },
-        },
-      }),
-    },
-  }),
+  // danger: createStyles({
+  //   root: {
+  //     vars: createTokensVars(tokens, {
+  //       container: {
+  //         color: {
+  //           normal: themeTokens.colorScheme.errorContainer,
+  //           disabled: themeTokens.colorScheme.onSurface,
+  //         },
+  //       },
+  //       container$unselected: {
+  //         color: {
+  //           normal: themeTokens.colorScheme.surfaceContainerHighest,
+  //           disabled: themeTokens.colorScheme.onSurface,
+  //         },
+  //       },
+  //       container$selected: {
+  //         color: {
+  //           normal: themeTokens.colorScheme.errorContainer,
+  //           disabled: themeTokens.colorScheme.onSurface,
+  //         },
+  //       },
+  //       icon: {
+  //         color: {
+  //           normal: themeTokens.colorScheme.onErrorContainer,
+  //           disabled: themeTokens.colorScheme.onSurface,
+  //         },
+  //       },
+  //       icon$toggle: {
+  //         color: {
+  //           normal: themeTokens.colorScheme.onErrorContainer,
+  //         },
+  //       },
+  //       icon$toggle$selected: {
+  //         color: {
+  //           normal: themeTokens.colorScheme.onErrorContainer,
+  //         },
+  //       },
+  //       stateLayer: {
+  //         color: {
+  //           hovered: themeTokens.colorScheme.onErrorContainer,
+  //         },
+  //       },
+  //       stateLayer$toggle: {
+  //         color: {
+  //           hovered: themeTokens.colorScheme.onErrorContainer,
+  //         },
+  //       },
+  //       stateLayer$toggle$selected: {
+  //         color: {
+  //           hovered: themeTokens.colorScheme.error,
+  //         },
+  //       },
+  //     }),
+  //   },
+  // }),
+  // snackbar: createStyles({
+  //   root: {
+  //     vars: createTokensVars(tokens, {
+  //       container: {
+  //         size: px(32),
+  //       },
+  //       icon: {
+  //         color: {
+  //           normal: themeTokens.colorScheme.inverseOnSurface,
+  //           disabled: themeTokens.colorScheme.onSurface,
+  //         },
+  //       },
+  //       icon$toggle: {
+  //         color: {
+  //           normal: themeTokens.colorScheme.inverseOnSurface,
+  //         },
+  //       },
+  //       icon$toggle$selected: {
+  //         color: {
+  //           normal: themeTokens.colorScheme.inverseOnSurface,
+  //         },
+  //       },
+  //       stateLayer: {
+  //         color: {
+  //           hovered: themeTokens.colorScheme.inverseOnSurface,
+  //         },
+  //       },
+  //       stateLayer$toggle: {
+  //         color: {
+  //           hovered: themeTokens.colorScheme.inverseOnSurface,
+  //         },
+  //       },
+  //       stateLayer$toggle$selected: {
+  //         color: {
+  //           hovered: themeTokens.colorScheme.inverseOnSurface,
+  //         },
+  //       },
+  //     }),
+  //   },
+  // }),
 };

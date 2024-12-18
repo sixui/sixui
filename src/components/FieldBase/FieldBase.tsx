@@ -1,11 +1,4 @@
-import {
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import type { IFieldBaseThemeFactory } from './FieldBase.css';
 import type { IFieldBaseFactory } from './FieldBase.types';
@@ -19,7 +12,7 @@ import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
 import { extractBoxProps } from '../Box/extractBoxProps';
 import { CircularProgressIndicator } from '../CircularProgressIndicator';
-import { LabeledContext } from '../Labeled/Labeled.context';
+import { useLabeledContext } from '../Labeled/Labeled.context';
 import { Paper } from '../Paper';
 import { StateLayer, useStateLayer } from '../StateLayer';
 import { getLabelKeyframes } from './getLabelKeyframes';
@@ -69,7 +62,7 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
 
     const { boxProps, other: forwardedProps } = extractBoxProps(other);
 
-    const labeledContext = useContext(LabeledContext);
+    const labeledContext = useLabeledContext();
     const loading = loadingProp || labeledContext?.loading;
     const disabledOrReadOnly = disabled || readOnly;
     const hasStartSection = !!leadingIcon || !!start;
