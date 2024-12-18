@@ -105,12 +105,10 @@ export const multiSelectBaseFactory = <
               onBlur: (event) => {
                 userProps?.onBlur?.(event);
                 multiFilterableListBase.handleBlurChip();
-                console.log('__BLUR');
               },
               // Selected items are displayed as chips. The user can navigate
               // between them and remove them using the keyboard.
               onKeyUp: (event) => {
-                console.log('_UP');
                 switch (event.key) {
                   case 'Backspace':
                     isBackspaceKeyFreshlyPressed.current = true;

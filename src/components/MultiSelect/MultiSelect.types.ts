@@ -1,4 +1,5 @@
 import type { IOmit } from '~/helpers/types';
+import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IFilterableListItem } from '../FilterableList';
 import type { IMultiSelectBaseProps } from '../MultiSelectBase';
 
@@ -21,3 +22,8 @@ export type IMultiSelectProps = Omit<
   keyof IMultiSelectOwnProps
 > &
   IMultiSelectOwnProps;
+
+export type IMultiSelectFactory = IComponentFactory<{
+  props: IMultiSelectProps;
+  ref: HTMLDivElement;
+}>;

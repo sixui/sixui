@@ -4,8 +4,8 @@ import { useState } from 'react';
 import type { IMultiSelectProps } from './MultiSelect.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { fruits } from '../FilterableList/fruits';
+import { Flex } from '../Flex';
 import { ListItem } from '../ListItem';
-import { Stack } from '../Stack';
 import { MultiSelect } from './MultiSelect';
 
 const meta = {
@@ -17,10 +17,13 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {
   onChange: (...args) => void sbHandleEvent('change', args),
   items: fruits,
-  matchTargetWidth: true,
+  w: '$128',
+  keepMounted: true,
 } satisfies Partial<IMultiSelectProps>;
 
-const MultiSelectDemo: React.FC<IMultiSelectProps> = (props) => {
+type IMultiSelectDemoProps = IMultiSelectProps;
+
+const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
   const [value, setValue] = useState<Array<string> | undefined>(
     props.value ?? props.defaultValue,
   );
@@ -31,13 +34,13 @@ const MultiSelectDemo: React.FC<IMultiSelectProps> = (props) => {
   };
 
   return (
-    <Stack align="stretch" gap={2}>
+    <Flex direction="column" gap="$2">
       <MultiSelect {...props} onChange={handleChange} />
       <div>
         Values:{' '}
         {value === undefined ? <em>undefined</em> : JSON.stringify(value)}
       </div>
-    </Stack>
+    </Flex>
   );
 };
 
@@ -75,7 +78,7 @@ export const DefaultQuery: IStory = {
   render: (props) => <MultiSelectDemo {...props} />,
   args: {
     ...defaultArgs,
-    defaultQuery: 'king',
+    defaultQuery: 'app',
   },
 };
 
@@ -83,7 +86,7 @@ export const NoResults: IStory = {
   render: (props) => <MultiSelectDemo {...props} />,
   args: {
     ...defaultArgs,
-    defaultQuery: 'My great movie',
+    defaultQuery: 'Papaya',
   },
 };
 

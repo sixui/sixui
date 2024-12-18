@@ -1,20 +1,22 @@
-import { forwardRef } from 'react';
-
 import type { IFilterableListItem } from '../FilterableList';
-import type { IMultiSelectProps } from './MultiSelect.types';
-import {
-  areFilterableListItemsEqual,
-  filterFilterableList,
-  getFilterableListItemLabel,
-  isFilterableListItemDisabled,
-  renderFilterableListItem,
-} from '../FilterableList';
+import type { IMultiSelectFactory } from './MultiSelect.types';
+import { componentFactory } from '~/utils/component/componentFactory';
+import { useProps } from '~/utils/component/useProps';
+import { areFilterableListItemsEqual } from '../FilterableList/utils/areFilterableListItemsEqual';
+import { filterFilterableList } from '../FilterableList/utils/filterFilterableList';
+import { getFilterableListItemLabel } from '../FilterableList/utils/getFilterableListItemLabel';
+import { isFilterableListItemDisabled } from '../FilterableList/utils/isFilterableListItemDisabled';
+import { renderFilterableListItem } from '../FilterableList/utils/renderFilterableListItem';
 import { ListItem } from '../ListItem';
-import { MultiSelectBase } from '../MultiSelectBase';
+import { multiSelectBaseFactory } from '../MultiSelectBase';
 import { useMultiSelect } from './useMultiSelect';
 
-export const MultiSelect = forwardRef<HTMLInputElement, IMultiSelectProps>(
-  function MultiSelect(props, fowardedRef) {
+const COMPONENT_NAME = 'MultiSelect';
+
+const MultiSelectBase = multiSelectBaseFactory<IFilterableListItem>();
+
+export const MultiSelect = componentFactory<IMultiSelectFactory>(
+  (props, forwardedRef) => {
     const {
       getValueFieldProps,
       value,
@@ -22,7 +24,8 @@ export const MultiSelect = forwardRef<HTMLInputElement, IMultiSelectProps>(
       onChange,
       noResultsLabel,
       ...other
-    } = props;
+    } = useProps({ componentName: COMPONENT_NAME, props });
+
     const { defaultItems, selectedItems } = useMultiSelect({
       items: other.items,
       defaultValue,
@@ -30,7 +33,7 @@ export const MultiSelect = forwardRef<HTMLInputElement, IMultiSelectProps>(
     });
 
     return (
-      <MultiSelectBase<IFilterableListItem>
+      <MultiSelectBase
         itemsEqual={areFilterableListItemsEqual}
         listPredicate={filterFilterableList}
         itemDisabled={isFilterableListItemDisabled}
@@ -50,8 +53,10 @@ export const MultiSelect = forwardRef<HTMLInputElement, IMultiSelectProps>(
         defaultItems={defaultItems}
         selectedItems={selectedItems}
         onItemsChange={(items) => onChange?.(items.map((item) => item.value))}
-        ref={fowardedRef}
+        ref={forwardedRef}
       />
     );
   },
 );
+
+MultiSelect.displayName = `@sixui/${COMPONENT_NAME}`;
