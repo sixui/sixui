@@ -40,10 +40,7 @@ export const selectBaseFactory = <
         ...other
       } = useProps({ componentName: COMPONENT_NAME, props });
 
-      const singleFilterableListBase = useSingleFilterableListBase<
-        TItem,
-        HTMLElement
-      >({
+      const singleFilterableListBase = useSingleFilterableListBase({
         items,
         itemRenderer,
         selectedItem,

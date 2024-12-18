@@ -63,6 +63,7 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
       wrapperProps,
       withoutRippleEffect,
       containerProps,
+      managedFocus,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -81,6 +82,9 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
       disabled: disabledOrReadOnly,
       withoutRippleEffect,
       mergeStrategy: interactionsMergeStrategy,
+      events: {
+        focus: !managedFocus,
+      },
     });
 
     const { getStyles } = useComponentTheme<IFieldBaseThemeFactory>({
@@ -105,7 +109,7 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
     });
 
     const [refreshErrorAlert, setRefreshErrorAlert] = useState(false);
-    const labelAnimationRef = useRef<Animation>();
+    const labelAnimationRef = useRef<Animation>(null);
     const floatingLabelRef = useRef<HTMLDivElement>(null);
     const restingLabelRef = useRef<HTMLDivElement>(null);
     const disableTransitionsRef = useRef(false);
@@ -146,22 +150,23 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
         //
         // Re-calculating the animation each time will prevent any visual
         // glitches from appearing.
-        labelAnimationRef.current = floatingLabelRef.current?.animate(
-          getLabelKeyframes(
-            floatingLabelRef,
-            restingLabelRef,
-            focused,
-            populated,
-          ),
-          {
-            duration: 150,
-            easing: EASING_STANDARD,
-            // To avoid any glitch, the target will retain the computed values
-            // set by the last keyframe encountered during execution. See
-            // https://developer.mozilla.org/en-US/docs/Web/CSS/animation-fill-mode#forwards
-            fill: 'both',
-          },
-        );
+        labelAnimationRef.current =
+          floatingLabelRef.current?.animate(
+            getLabelKeyframes(
+              floatingLabelRef,
+              restingLabelRef,
+              focused,
+              populated,
+            ),
+            {
+              duration: 150,
+              easing: EASING_STANDARD,
+              // To avoid any glitch, the target will retain the computed values
+              // set by the last keyframe encountered during execution. See
+              // https://developer.mozilla.org/en-US/docs/Web/CSS/animation-fill-mode#forwards
+              fill: 'both',
+            },
+          ) ?? null;
 
         labelAnimationRef.current?.addEventListener('finish', () => {
           // At the end of the animation, update the visible label.
@@ -201,7 +206,7 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
     ]);
 
     const renderLabel = useCallback(
-      (floating = false): JSX.Element => {
+      (floating = false): React.JSX.Element => {
         const isFloatingVisible =
           wasFocused || focused || populated || animatingRef.current;
         const visible = floating ? isFloatingVisible : !isFloatingVisible;
@@ -235,7 +240,7 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
     );
 
     const renderIndicator = useCallback(
-      (): JSX.Element => (
+      (): React.JSX.Element => (
         <div {...getStyles('activeIndicator')}>
           <div {...getStyles('activeIndicatorBackground')} />
           <div {...getStyles('activeIndicatorFocus')} />
@@ -246,7 +251,7 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
 
     const getCounterText = useCallback(() => {
       const countAsNumber = count ?? -1;
-      const maxLengthAsNumber = Number(maxLength) ?? -1;
+      const maxLengthAsNumber = Number(maxLength) || -1;
       // Counter does not show if count is negative or 0, or max is negative or
       // 0.
       if (countAsNumber <= 0 || maxLengthAsNumber <= 0) {
@@ -256,7 +261,7 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
       return `${countAsNumber} / ${maxLengthAsNumber}`;
     }, [count, maxLength]);
 
-    const renderSupportingText = useCallback((): JSX.Element | null => {
+    const renderSupportingText = useCallback((): React.JSX.Element | null => {
       const counterText = getCounterText();
       if (!supportingOrErrorText && !counterText) {
         return null;
@@ -284,7 +289,7 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
       supportingOrErrorText,
     ]);
 
-    const renderOutline = (): JSX.Element => (
+    const renderOutline = (): React.JSX.Element => (
       <div {...getStyles('outline')}>
         <div
           {...getStyles(['outlineSection$startEnd', 'outlineSection$start'])}

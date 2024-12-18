@@ -5,7 +5,7 @@ import { createPolymorphicComponent } from '~/utils/component/createPolymorphicC
 import { Chip } from './Chip';
 
 export const FilterChip = createPolymorphicComponent<'div', IFilterChipProps>(
-  forwardRef<HTMLDivElement, IFilterChipProps>(
+  forwardRef<HTMLButtonElement, IFilterChipProps>(
     function FilterChip(props, forwardedRef) {
       return <Chip {...props} ref={forwardedRef} variant="filter" />;
     },

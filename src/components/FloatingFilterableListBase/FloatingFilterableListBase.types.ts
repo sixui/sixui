@@ -63,7 +63,7 @@ export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
 
   afterItemsRemove: (
     items: Array<TItem>,
-    event?: React.SyntheticEvent<HTMLElement>,
+    event?: React.SyntheticEvent<Element>,
   ) => void;
 
   /** The current query string. */

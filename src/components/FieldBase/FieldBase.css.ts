@@ -700,6 +700,10 @@ const classNames = createStyles({
     alignItems: 'center',
     height: '100%',
     minWidth: px(30),
+
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    rowGap: px(4),
   },
   outline: ({ root }) => ({
     borderRadius: 'inherit',

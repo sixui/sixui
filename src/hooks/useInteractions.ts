@@ -1,6 +1,6 @@
 import type { DOMAttributes } from '@react-types/shared';
 import type { AriaFocusRingProps } from 'react-aria';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import { accumulate } from '@olivierpascal/helpers';
 import { useFocusRing } from 'react-aria';
 
@@ -76,7 +76,7 @@ export type IUseInteractionsResult<TElement extends HTMLElement = HTMLElement> =
 
 /** Used to handle nested surfaces. */
 const activeTriggers: Array<{
-  event: React.PointerEvent;
+  target: EventTarget;
   onHoverStart: (event: React.PointerEvent) => void;
   onHoverEnd: (event: React.PointerEvent) => void;
 }> = [];
@@ -153,7 +153,7 @@ export const useInteractions = <TElement extends HTMLElement>(
         if (!hoverOptions?.within) {
           activeTriggers[0]?.onHoverEnd(event);
           activeTriggers.unshift({
-            event,
+            target: event.target,
             onHoverStart: handleHoverStart,
             onHoverEnd: handleHoverEnd,
           });
@@ -171,28 +171,20 @@ export const useInteractions = <TElement extends HTMLElement>(
     [hoverOptions, handleHoverStart, handleHoverEnd],
   );
 
-  // Clean up active triggers when the component is disabled.
-  useEffect(() => {
-    if (disabled) {
-      activeTriggers.forEach(({ event, onHoverEnd }) => {
-        onHoverEnd(event);
-      });
-      activeTriggers.splice(0);
-    }
-  }, [disabled]);
-
   const triggerProps = useMemo<DOMAttributes | undefined>(
     () =>
-      mergeProps(
-        !disabled && events?.press ? pressProps : undefined,
-        !disabled && events?.hover ? hoverProps : undefined,
-        events?.focus
-          ? {
-              ...focusProps,
-              tabIndex: 0,
-            }
-          : undefined,
-      ),
+      disabled
+        ? undefined
+        : mergeProps(
+            events?.press ? pressProps : undefined,
+            events?.hover ? hoverProps : undefined,
+            events?.focus
+              ? {
+                  ...focusProps,
+                  tabIndex: 0,
+                }
+              : undefined,
+          ),
     [disabled, events, hoverProps, pressProps, focusProps],
   );
 

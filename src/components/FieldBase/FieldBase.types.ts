@@ -38,6 +38,7 @@ export interface IFieldBaseOwnProps extends IForwardableProps {
   withoutRippleEffect?: boolean;
   interactionsMergeStrategy?: IInteractionsMergeStrategy;
   containerProps?: Partial<IPaperProps>;
+  managedFocus?: boolean;
 }
 
 export interface IFieldBaseProps

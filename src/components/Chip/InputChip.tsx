@@ -5,7 +5,7 @@ import { createPolymorphicComponent } from '~/utils/component/createPolymorphicC
 import { Chip } from './Chip';
 
 export const InputChip = createPolymorphicComponent<'div', IInputChipProps>(
-  forwardRef<HTMLDivElement, IInputChipProps>(
+  forwardRef<HTMLButtonElement, IInputChipProps>(
     function InputChip(props, forwardedRef) {
       return <Chip {...props} ref={forwardedRef} variant="input" />;
     },

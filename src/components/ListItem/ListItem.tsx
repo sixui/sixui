@@ -98,7 +98,7 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
       !!other.onClick ||
       !!other.href;
 
-    const renderItem = (): JSX.Element => (
+    const renderItem = (): React.JSX.Element => (
       <Item
         {...getStyles('item')}
         overline={overline}

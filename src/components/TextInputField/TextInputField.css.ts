@@ -1,14 +1,19 @@
 import { createTheme } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import type { IFieldBaseVariant } from '../FieldBase';
+import { getDensity } from '~/helpers/styles/getDensity';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
+import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { FieldBase } from '../FieldBase';
 import { themeTokens } from '../ThemeProvider';
 
 type IModifier = 'disabled' | 'with-error' | 'no-spinner';
+
+const DENSITY = px(getDensity({ min: -2, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
   caret: {
@@ -41,8 +46,6 @@ const classNames = createStyles({
     fontWeight: 'inherit',
     lineHeight: 'inherit',
     letterSpacing: 'inherit',
-    width: '100%',
-    height: '100%',
     // remove extra height added by horizontal scrollbars
     overflowX: 'hidden',
     textAlign: 'inherit',
@@ -52,6 +55,13 @@ const classNames = createStyles({
     display: 'block',
     caretColor: tokens.caret.color.normal,
     cursor: 'text',
+
+    height: 'auto',
+    minHeight: calc.add(px(32), DENSITY),
+    flexShrink: 1,
+    flexGrow: 1,
+    flexBasis: 0,
+    minWidth: '8rem',
 
     '::placeholder': {
       WebkitTextFillColor: tokens.placeholder.color.normal,

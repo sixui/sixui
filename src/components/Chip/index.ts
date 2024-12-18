@@ -7,4 +7,3 @@ export * from './InputChip';
 export * from './SuggestionChip.types';
 export * from './SuggestionChip';
 export * from './Chip.types';
-export * from './Chip.styles';

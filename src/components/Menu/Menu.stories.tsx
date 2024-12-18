@@ -67,13 +67,12 @@ export const FromButton: IStory = {
     ...defaultArgs,
     trigger: ({ opened, getProps }) => (
       <Button
-        icon={
+        trailingIcon={
           <FontAwesomeIcon
             icon={opened ? faChevronUp : faChevronDown}
             size="xs"
           />
         }
-        trailingIcon
         {...getProps()}
       >
         Open

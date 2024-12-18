@@ -44,6 +44,8 @@ export interface ITextInputFieldOwnProps
    * The icon of the clear icon button.
    */
   clearIcon?: React.ReactNode;
+
+  children?: React.ReactNode;
 }
 
 export interface ITextInputFieldProps

@@ -8,7 +8,7 @@ export const SuggestionChip = createPolymorphicComponent<
   'div',
   ISuggestionChipProps
 >(
-  forwardRef<HTMLDivElement, ISuggestionChipProps>(
+  forwardRef<HTMLButtonElement, ISuggestionChipProps>(
     function SuggestionChip(props, forwardedRef) {
       return <Chip {...props} ref={forwardedRef} variant="suggestion" />;
     },

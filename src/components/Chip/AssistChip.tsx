@@ -5,7 +5,7 @@ import { createPolymorphicComponent } from '~/utils/component/createPolymorphicC
 import { Chip } from './Chip';
 
 export const AssistChip = createPolymorphicComponent<'div', IAssistChipProps>(
-  forwardRef<HTMLDivElement, IAssistChipProps>(
+  forwardRef<HTMLButtonElement, IAssistChipProps>(
     function AssistChip(props, forwardedRef) {
       return <Chip {...props} ref={forwardedRef} variant="assist" />;
     },

@@ -11,14 +11,16 @@ import {
   renderMovieListItem,
   TOP_100_MOVIES,
 } from '../FilterableListBase/movies';
-import { MultiSelectBase } from './MultiSelectBase';
+import { multiSelectBaseFactory } from './MultiSelectBase';
 
 export type IMultiSelectBaseExampleProps = IOmit<
   IMultiSelectBaseProps<IMovie>,
-  'items' | 'itemRenderer' | 'itemLabel'
+  'items' | 'itemLabel' | 'itemRenderer'
 > & {
   canCreate?: boolean;
 };
+
+const MultiSelectBase = multiSelectBaseFactory<IMovie>();
 
 export const MultiSelectBaseExample: React.FC<IMultiSelectBaseExampleProps> = (
   props,
@@ -26,7 +28,7 @@ export const MultiSelectBaseExample: React.FC<IMultiSelectBaseExampleProps> = (
   const { canCreate, ...other } = props;
 
   return (
-    <MultiSelectBase<IMovie>
+    <MultiSelectBase
       items={TOP_100_MOVIES}
       itemRenderer={renderMovieListItem}
       itemLabel={getMovieLabel}

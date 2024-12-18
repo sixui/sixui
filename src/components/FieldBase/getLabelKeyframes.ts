@@ -1,6 +1,6 @@
 export const getLabelKeyframes = (
-  floatingLabelRef: React.RefObject<HTMLDivElement>,
-  restingLabelRef: React.RefObject<HTMLDivElement>,
+  floatingLabelRef: React.RefObject<HTMLDivElement | null>,
+  restingLabelRef: React.RefObject<HTMLDivElement | null>,
   focused?: boolean,
   populated?: boolean,
 ): Array<Keyframe> => {

@@ -1,41 +1,36 @@
-import type { ICompiledStyles, IOmit, IZeroOrMore } from '~/helpers/types';
-import type { IBaseProps } from '../Base';
+import type { IOmit } from '~/helpers/types';
+import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IBoxProps } from '../Box';
 import type { IInputChipProps } from '../Chip';
-import type { IFieldBaseVariant } from '../FieldBase';
-import type { IFilterableListItemRenderer } from '../FilterableListBase';
+import type { IFieldBaseProps } from '../FieldBase';
+import type { IUseMultiFilterableListBaseProps } from '../FilterableListBase';
 import type {
   IFloatingFilterableListBaseProps,
   IFloatingFilterableListBaseTriggerRenderProps,
 } from '../FloatingFilterableListBase';
-import type { ITextFieldBaseStylesKey } from '../TextFieldBase';
-import type { ITextInputFieldProps } from '../TextInputField';
-import type { IMultiSelectBaseStylesKey } from './MultiSelectBase.styles';
+import type { IMenuListProps } from '../MenuList';
 
-export type IMultiSelectBaseProps<TItem> =
-  IBaseProps<IMultiSelectBaseStylesKey> &
-    IOmit<
+export interface IMultiSelectBaseOwnProps<TItem>
+  extends IOmit<
       IFloatingFilterableListBaseProps<TItem, HTMLElement>,
-      | 'styles'
-      | 'onItemSelect'
-      | 'renderer'
-      | 'listRenderer'
-      | 'itemRenderer'
-      | 'children'
-    > &
-    IOmit<ITextInputFieldProps, 'styles'> & {
-      innerStyles?: {
-        textInputField?: IZeroOrMore<ICompiledStyles<ITextFieldBaseStylesKey>>;
-      };
-      selectedItems?: Array<TItem>;
-      defaultItems?: Array<TItem>;
-      onItemsChange?: (value: Array<TItem>) => void;
-      items: Array<TItem>;
-      itemRenderer: IFilterableListItemRenderer<TItem, HTMLElement>;
-      itemLabel: (item: TItem) => React.ReactNode | undefined;
-      getValueFieldProps?: (
-        renderProps: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
-        selectedItem: TItem,
-      ) => IInputChipProps;
-      clearable?: boolean;
-      variant?: IFieldBaseVariant | false;
-    };
+      'onItemSelect' | 'renderer' | 'children'
+    >,
+    IUseMultiFilterableListBaseProps<TItem, HTMLElement>,
+    IOmit<IFieldBaseProps, 'children'> {
+  itemLabel: (item: TItem) => React.ReactNode | undefined;
+  getValueFieldProps?: (
+    renderProps: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
+    selectedItem: TItem,
+  ) => IInputChipProps;
+  clearable?: boolean;
+  menuListProps?: Partial<IMenuListProps>;
+}
+
+export interface IMultiSelectBaseProps<TItem>
+  extends IBoxProps,
+    IMultiSelectBaseOwnProps<TItem> {}
+
+export type IMultiSelectBaseFactory<TItem> = IComponentFactory<{
+  props: IMultiSelectBaseProps<TItem>;
+  ref: HTMLDivElement;
+}>;

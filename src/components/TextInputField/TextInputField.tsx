@@ -35,6 +35,7 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
       maskIcon = <SvgIcon icon={iconEyeSlash} />,
       unmaskIcon = <SvgIcon icon={iconEye} />,
       onChange,
+      children,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -103,10 +104,11 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
       if (!isInput) {
         event.stopPropagation();
         inputRef.current?.focus();
+        inputRef.current?.click();
       }
     };
 
-    const renderEndSection = (): JSX.Element | null =>
+    const renderEndSection = (): React.JSX.Element | null =>
       hasEnd ? (
         <>
           {other.end}
@@ -142,23 +144,29 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
         end={renderEndSection()}
         forwardProps
         withoutRippleEffect
+        managedFocus
       >
         {({ forwardedProps }) => (
-          <input
-            {...forwardedProps}
-            {...focus.focusProps}
-            {...getStyles('input')}
-            placeholder={other.placeholder}
-            type={type === 'password' ? (unmasked ? 'text' : 'password') : type}
-            disabled={other.disabled}
-            readOnly={other.readOnly}
-            value={value}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              setValue(event.target.value);
-              onChange?.(event);
-            }}
-            ref={inputHandleRef}
-          />
+          <>
+            {children}
+            <input
+              {...forwardedProps}
+              {...focus.focusProps}
+              {...getStyles('input')}
+              placeholder={other.placeholder}
+              type={
+                type === 'password' ? (unmasked ? 'text' : 'password') : type
+              }
+              disabled={other.disabled}
+              readOnly={other.readOnly}
+              value={value}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                setValue(event.target.value);
+                onChange?.(event);
+              }}
+              ref={inputHandleRef}
+            />
+          </>
         )}
       </FieldBase>
     );

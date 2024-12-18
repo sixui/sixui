@@ -1,7 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IMultiSelectBaseExampleProps } from './MultiSelectBaseExample';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { TOP_100_MOVIES } from '../FilterableListBase/movies';
 import { ListItem } from '../ListItem';
 import { MultiSelectBaseExample } from './MultiSelectBaseExample';
@@ -13,17 +15,33 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
+  w: '$128',
+  label: 'Movie',
+  keepMounted: true,
   onItemsChange: (...args) => void sbHandleEvent('itemsChange', args),
   matchTargetWidth: true,
 } satisfies Partial<IMultiSelectBaseExampleProps>;
 
+const rows: Array<IComponentPresentation<IMultiSelectBaseExampleProps>> = [
+  { legend: 'Filled' },
+  { legend: 'Outlined', props: { variant: 'outlined' } },
+];
+
+const MultiSelectBaseExampleShowcase = componentShowcaseFactory(
+  MultiSelectBaseExample,
+);
+
 export const Basic: IStory = {
-  render: (props) => <MultiSelectBaseExample {...props} />,
+  render: (props) => (
+    <MultiSelectBaseExampleShowcase props={props} rows={rows} />
+  ),
   args: defaultArgs,
 };
 
 export const DefaultValue: IStory = {
-  render: (props) => <MultiSelectBaseExample {...props} />,
+  render: (props) => (
+    <MultiSelectBaseExampleShowcase props={props} rows={rows} />
+  ),
   args: {
     ...defaultArgs,
     defaultItems: [TOP_100_MOVIES[2], TOP_100_MOVIES[5]],
@@ -31,7 +49,9 @@ export const DefaultValue: IStory = {
 };
 
 export const Clearable: IStory = {
-  render: (props) => <MultiSelectBaseExample {...props} />,
+  render: (props) => (
+    <MultiSelectBaseExampleShowcase props={props} rows={rows} />
+  ),
   args: {
     ...defaultArgs,
     defaultItems: [TOP_100_MOVIES[2], TOP_100_MOVIES[5]],
@@ -40,7 +60,9 @@ export const Clearable: IStory = {
 };
 
 export const DefaultQuery: IStory = {
-  render: (props) => <MultiSelectBaseExample {...props} />,
+  render: (props) => (
+    <MultiSelectBaseExampleShowcase props={props} rows={rows} />
+  ),
   args: {
     ...defaultArgs,
     defaultQuery: 'king',
@@ -48,7 +70,9 @@ export const DefaultQuery: IStory = {
 };
 
 export const CanCreate: IStory = {
-  render: (props) => <MultiSelectBaseExample {...props} />,
+  render: (props) => (
+    <MultiSelectBaseExampleShowcase props={props} rows={rows} />
+  ),
   args: {
     ...defaultArgs,
     canCreate: true,
@@ -57,7 +81,9 @@ export const CanCreate: IStory = {
 };
 
 export const NoResults: IStory = {
-  render: (props) => <MultiSelectBaseExample {...props} />,
+  render: (props) => (
+    <MultiSelectBaseExampleShowcase props={props} rows={rows} />
+  ),
   args: {
     ...defaultArgs,
     defaultQuery: 'My great movie',
@@ -65,7 +91,9 @@ export const NoResults: IStory = {
 };
 
 export const InitialContent: IStory = {
-  render: (props) => <MultiSelectBaseExample {...props} />,
+  render: (props) => (
+    <MultiSelectBaseExampleShowcase props={props} rows={rows} />
+  ),
   args: {
     ...defaultArgs,
     initialContent: (
@@ -75,7 +103,9 @@ export const InitialContent: IStory = {
 };
 
 export const Disabled: IStory = {
-  render: (props) => <MultiSelectBaseExample {...props} />,
+  render: (props) => (
+    <MultiSelectBaseExampleShowcase props={props} rows={rows} />
+  ),
   args: {
     ...defaultArgs,
     disabled: true,
@@ -83,7 +113,9 @@ export const Disabled: IStory = {
 };
 
 export const WithErrorText: IStory = {
-  render: (props) => <MultiSelectBaseExample {...props} />,
+  render: (props) => (
+    <MultiSelectBaseExampleShowcase props={props} rows={rows} />
+  ),
   args: {
     ...defaultArgs,
     hasError: true,
