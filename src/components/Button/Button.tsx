@@ -49,7 +49,9 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
     const hasStartSlot = hasLeadingProp ?? (!!start || !!leadingIcon);
     const hasEndSlot = hasTrailingProp ?? (!!end || !!trailingIcon);
     const hasOverlay =
-      loading && (!!loadingText || (!hasLeadingIcon && !hasTrailingIcon));
+      loading &&
+      (!!loadingText ||
+        (!hasLeadingIcon && !hasTrailingIcon && !hasLeadingProp));
     const iconAnimation =
       (loadingProp || handlingClick || animating) &&
       loadingAnimation !== undefined &&
