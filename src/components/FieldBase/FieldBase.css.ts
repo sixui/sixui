@@ -660,13 +660,14 @@ const classNames = createStyles({
   },
   icon$leading: {
     fontSize: tokens.leadingIcon.size,
-    blockSize: tokens.leadingIcon.size,
-    inlineSize: tokens.leadingIcon.size,
+    height: tokens.leadingIcon.size,
+    minWidth: tokens.leadingIcon.size,
   },
   icon$trailing: {
     fontSize: tokens.trailingIcon.size,
-    blockSize: tokens.trailingIcon.size,
-    inlineSize: tokens.trailingIcon.size,
+    height: tokens.trailingIcon.size,
+    minWidth: tokens.trailingIcon.size,
+    justifySelf: 'end',
   },
   prefix: ({ root }) => ({
     color: tokens.prefix.color,

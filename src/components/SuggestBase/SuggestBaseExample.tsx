@@ -11,14 +11,16 @@ import {
   renderMovieListItem,
   TOP_100_MOVIES,
 } from '../FilterableListBase/movies';
-import { SuggestBase } from './SuggestBase';
+import { suggestBaseFactory } from './SuggestBase';
 
 export type ISuggestBaseExampleProps = IOmit<
   ISuggestBaseProps<IMovie>,
-  'items' | 'itemRenderer' | 'itemLabel'
+  'items' | 'itemLabel' | 'itemRenderer'
 > & {
   canCreate?: boolean;
 };
+
+const SuggestBase = suggestBaseFactory<IMovie>();
 
 export const SuggestBaseExample = (
   props: ISuggestBaseExampleProps,
@@ -26,7 +28,7 @@ export const SuggestBaseExample = (
   const { canCreate, ...other } = props;
 
   return (
-    <SuggestBase<IMovie>
+    <SuggestBase
       items={TOP_100_MOVIES}
       itemRenderer={renderMovieListItem}
       itemLabel={getMovieLabel}
