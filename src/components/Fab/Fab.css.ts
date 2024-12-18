@@ -17,7 +17,12 @@ type IModifier = 'extended' | 'lowered';
 const [tokensClassName, tokens] = createTheme({
   container: {
     size: px(56),
-    shape: px(themeTokens.shape.corner.lg),
+    shape: {
+      topLeft: px(themeTokens.shape.corner.lg),
+      topRight: px(themeTokens.shape.corner.lg),
+      bottomRight: px(themeTokens.shape.corner.lg),
+      bottomLeft: px(themeTokens.shape.corner.lg),
+    },
     color: {
       normal: {
         regular: 'unset',
@@ -63,8 +68,8 @@ const [tokensClassName, tokens] = createTheme({
   },
   stateLayer: {
     color: {
-      hovered: 'unset',
-      pressed: 'unset',
+      hovered: themeTokens.colorScheme.onSurface,
+      pressed: themeTokens.colorScheme.onSurface,
     },
     opacity: {
       hovered: themeTokens.state.stateLayerOpacity.hovered,
@@ -94,19 +99,18 @@ const classNames = createStyles({
     height: tokens.container.size,
 
     vars: createTokensVars(Button.theme.tokens, {
-      leadingSpace: {
-        normal: '0px',
-        withLeadingIcon: '0px',
-        withTrailingIcon: '0px',
-      },
-      trailingSpace: {
-        normal: '0px',
-        withLeadingIcon: '0px',
-        withTrailingIcon: '0px',
-      },
-      gap: px(space(3)),
       container: {
         shape: tokens.container.shape,
+        leadingSpace: {
+          normal: '0',
+          withStartSlot: '0',
+          withEndSlot: '0',
+        },
+        trailingSpace: {
+          normal: '0',
+          withStartSlot: '0',
+          withEndSlot: '0',
+        },
         elevation: {
           normal: tokens.container.elevation.normal.regular,
           focused: tokens.container.elevation.focused.regular,
@@ -133,13 +137,15 @@ const classNames = createStyles({
           minWidth: tokens.container.size,
           width: 'auto',
           ...createTokensVars(Button.theme.tokens, {
-            leadingSpace: {
-              normal: px(space(6)),
-              withLeadingIcon: px(space(4)),
-            },
-            trailingSpace: {
-              normal: px(space(6)),
-              withLeadingIcon: px(space(6)),
+            container: {
+              leadingSpace: {
+                normal: px(space(6)),
+                withStartSlot: px(space(4)),
+              },
+              trailingSpace: {
+                normal: px(space(6)),
+                withStartSlot: px(space(6)),
+              },
             },
           }),
         },

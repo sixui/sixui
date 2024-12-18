@@ -97,9 +97,13 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       (): React.ReactNode =>
         hasStartSlot ? (
           start ? (
-            <div {...getStyles(['slot', 'slot$start'])}>{start}</div>
+            <div {...getStyles(['slot', !!children && 'slot$start'])}>
+              {start}
+            </div>
           ) : (
-            <div {...getStyles(['slot', 'slot$start', 'slot$icon'])}>
+            <div
+              {...getStyles(['slot', !!children && 'slot$start', 'slot$icon'])}
+            >
               {loading ? (
                 <IndeterminateCircularProgressIndicator
                   {...getStyles(['icon', hasOverlay && 'invisible'])}
@@ -125,6 +129,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
         loading,
         leadingIcon,
         handleAnimationIteration,
+        children,
       ],
     );
 
@@ -132,9 +137,11 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       (): React.ReactNode =>
         hasEndSlot ? (
           end ? (
-            <div {...getStyles(['slot', 'slot$end'])}>{end}</div>
+            <div {...getStyles(['slot', !!children && 'slot$end'])}>{end}</div>
           ) : (
-            <div {...getStyles(['slot', 'slot$end', 'slot$icon'])}>
+            <div
+              {...getStyles(['slot', !!children && 'slot$end', 'slot$icon'])}
+            >
               {loading && !leadingIcon ? (
                 <IndeterminateCircularProgressIndicator
                   {...getStyles(['icon', hasOverlay && 'invisible'])}
@@ -161,6 +168,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
         leadingIcon,
         trailingIcon,
         handleAnimationIteration,
+        children,
       ],
     );
 

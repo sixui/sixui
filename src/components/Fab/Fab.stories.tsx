@@ -19,7 +19,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onPress: (...args) => sbHandleEvent('onPsres', args, 1000),
+  onClick: (...args) => sbHandleEvent('onClick', args, 1000),
   icon: <FontAwesomeIcon icon={faPaperPlane} />,
 } satisfies Partial<IFabProps>;
 

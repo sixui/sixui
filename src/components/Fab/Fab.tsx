@@ -17,7 +17,7 @@ export const Fab = polymorphicComponentFactory<IFabFactory>(
       style,
       variant = 'surface',
       lowered,
-      children,
+      icon,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -31,7 +31,7 @@ export const Fab = polymorphicComponentFactory<IFabFactory>(
       themeVariants: fabThemeVariants,
       variant,
       modifiers: {
-        extended: !!children,
+        extended: !!other.children,
         lowered,
       },
     });
@@ -41,11 +41,10 @@ export const Fab = polymorphicComponentFactory<IFabFactory>(
         {...getStyles('root')}
         variant={false}
         classNames={classNames}
+        leadingIcon={icon}
         ref={forwardedRef}
         {...other}
-      >
-        {children}
-      </Button>
+      />
     );
   },
 );

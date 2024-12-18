@@ -12,9 +12,11 @@ export type IFabVariant =
   | 'tertiary'
   | 'branded';
 
-export interface IFabOwnProps extends IOmit<IButtonOwnProps, 'trailingIcon'> {
+export interface IFabOwnProps
+  extends IOmit<IButtonOwnProps, 'leadingIcon' | 'trailingIcon'> {
   lowered?: boolean;
   children?: React.ReactNode;
+  icon?: React.ReactNode;
 }
 
 export interface IFabProps

@@ -22,7 +22,6 @@ const defaultArgs = {
   items: fruits,
   w: '$96',
   keepMounted: true,
-  loading: true,
 } satisfies Partial<ISuggestProps>;
 
 type ISuggestDemoProps = ISuggestProps;
