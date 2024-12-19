@@ -41,11 +41,17 @@ export const Uncontrolled: IStory = {
         {
           legend: 'With checked icon',
           props: {
-            showOnlyCheckedIcon: true,
+            checkedIcon: true,
             defaultChecked: true,
           },
         },
-        { legend: 'With icons', props: { icons: true } },
+        {
+          legend: 'With icons',
+          props: {
+            checkedIcon: true,
+            uncheckedIcon: true,
+          },
+        },
       ]}
     />
   ),
@@ -82,11 +88,17 @@ export const Controlled: IStory = {
         {
           legend: 'With checked icon',
           props: {
-            showOnlyCheckedIcon: true,
+            checkedIcon: true,
             defaultChecked: true,
           },
         },
-        { legend: 'With icons', props: { icons: true } },
+        {
+          legend: 'With icons',
+          props: {
+            checkedIcon: true,
+            uncheckedIcon: true,
+          },
+        },
       ]}
     />
   ),
@@ -100,7 +112,7 @@ export const Configurations: IStory = {
       cols={states}
       rows={[
         { legend: 'Unchecked' },
-        { legend: 'Selected', props: { defaultChecked: true } },
+        { legend: 'Checked', props: { defaultChecked: true } },
       ]}
       groups={[
         {
@@ -108,17 +120,28 @@ export const Configurations: IStory = {
         },
         {
           legend: 'With checked icon',
-          props: { showOnlyCheckedIcon: true },
+          props: { checkedIcon: true },
         },
         {
           legend: 'With icons',
-          props: { icons: true },
+          props: {
+            checkedIcon: true,
+            uncheckedIcon: true,
+          },
         },
         {
           legend: 'With custom icons',
           props: {
-            icon: <FontAwesomeIcon icon={faMinus} />,
+            uncheckedIcon: <FontAwesomeIcon icon={faMinus} />,
             checkedIcon: <FontAwesomeIcon icon={faPlus} />,
+          },
+        },
+        {
+          legend: 'Always on',
+          props: {
+            uncheckedIcon: <FontAwesomeIcon icon={faMinus} />,
+            checkedIcon: <FontAwesomeIcon icon={faPlus} />,
+            alwaysOn: true,
           },
         },
       ]}

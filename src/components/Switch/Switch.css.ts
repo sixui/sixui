@@ -15,6 +15,7 @@ import { themeTokens } from '../ThemeProvider';
 type IModifier =
   | IInteraction
   | 'disabled'
+  | 'on'
   | 'checked'
   | 'with-icon'
   | 'loading';
@@ -28,13 +29,13 @@ const [tokensClassName, tokens] = createTheme({
     width: {
       normal: px(16),
       pressed: px(28),
-      checked: px(24),
+      on: px(24),
       withIcon: px(24),
     },
     height: {
       normal: px(16),
       pressed: px(28),
-      checked: px(24),
+      on: px(24),
       withIcon: px(24),
     },
   },
@@ -94,7 +95,7 @@ const classNames = createStyles({
         cursor: 'default',
         pointerEvents: 'none',
       },
-      [getModifierSelector<IModifier>('checked')]: {
+      [getModifierSelector<IModifier>('on')]: {
         vars: createTokensVars(PaperBase.theme.tokens, {
           container: {
             color: {
@@ -201,9 +202,9 @@ const classNames = createStyles({
         transitionTimingFunction: themeTokens.motion.easing.standard.normal,
         transitionDuration: themeTokens.motion.duration.short.$3,
       },
-      [getModifierSelector<IModifier>('checked', root)]: {
-        width: tokens.handle.width.checked,
-        height: tokens.handle.height.checked,
+      [getModifierSelector<IModifier>('on', root)]: {
+        width: tokens.handle.width.on,
+        height: tokens.handle.height.on,
 
         vars: createTokensVars(PaperBase.theme.tokens, {
           container: {
@@ -221,8 +222,8 @@ const classNames = createStyles({
         }),
       },
       [getModifierSelector<IModifier>(['checked', '!with-icon'], root)]: {
-        width: tokens.handle.width.checked,
-        height: tokens.handle.height.checked,
+        width: tokens.handle.width.on,
+        height: tokens.handle.height.on,
       },
       [getModifierSelector<IModifier>(
         ['checked', 'pressed', '!with-icon'],
@@ -251,7 +252,7 @@ const classNames = createStyles({
     transitionTimingFunction: `linear, linear, ${themeTokens.motion.easing.standard.normal}`,
 
     selectors: {
-      [getModifierSelector<IModifier>('checked', root)]: {
+      [getModifierSelector<IModifier>('on', root)]: {
         fontSize: fallbackVar(tokens.icon$checked.size, tokens.icon.size),
         width: fallbackVar(tokens.icon$checked.size, tokens.icon.size),
         height: fallbackVar(tokens.icon$checked.size, tokens.icon.size),
@@ -263,12 +264,12 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>('loading', root)]: {
         opacity: 1,
       },
-      [getModifierSelector<IModifier>(['checked', 'disabled'], root)]: {
+      [getModifierSelector<IModifier>(['on', 'disabled'], root)]: {
         color: themeTokens.colorScheme.outlineVariant,
       },
     },
   }),
-  icon$on: ({ root }) => ({
+  icon$checked: ({ root }) => ({
     selectors: {
       [getModifierSelector<IModifier>('checked', root)]: {
         transform: 'rotate(0)',
@@ -280,7 +281,7 @@ const classNames = createStyles({
       },
     },
   }),
-  icon$off: ({ root }) => ({
+  icon$unchecked: ({ root }) => ({
     selectors: {
       [getModifierSelector<IModifier>('checked', root)]: {
         transform: 'rotate(180deg)',

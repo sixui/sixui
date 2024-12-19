@@ -17,22 +17,9 @@ export interface ISwitchOwnProps {
   readOnly?: boolean;
   loading?: boolean;
   interactionsMergeStrategy?: IInteractionsMergeStrategy;
-
-  /**
-   * Shows both the selected and deselected icons.
-   */
-  icons?: boolean;
-
-  icon?: React.ReactNode;
-  checkedIcon?: React.ReactNode;
-
-  /**
-   * Shows only the checked icon, and not the unchecked icon. If `true`,
-   * overrides the behavior of the `icons` property.
-   */
-  showOnlyCheckedIcon?: boolean;
-
-  loadingAnimation?: 'progressIndicator' | false;
+  checkedIcon?: React.ReactNode | true;
+  uncheckedIcon?: React.ReactNode | true;
+  alwaysOn?: boolean;
 }
 
 export interface ISwitchProps

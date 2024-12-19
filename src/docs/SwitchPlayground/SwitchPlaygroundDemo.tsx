@@ -20,7 +20,7 @@ export const SwitchPlaygroundDemo: React.FC<ISwitchPlaygroundDemoProps> = (
       <Switch defaultChecked />
     </Labeled>
     <Labeled {...props.switch} {...props.labeled}>
-      <Switch defaultChecked icons />
+      <Switch defaultChecked withIcons />
     </Labeled>
   </Stack>
 );

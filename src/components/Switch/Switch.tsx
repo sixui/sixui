@@ -35,11 +35,9 @@ export const Switch = componentFactory<ISwitchFactory>(
       disabled,
       readOnly: readOnlyProp,
       loading: loadingProp,
-      icons,
-      icon,
       checkedIcon,
-      showOnlyCheckedIcon: showOnlyCheckedIconProp,
-      loadingAnimation = 'progressIndicator',
+      uncheckedIcon,
+      alwaysOn,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -51,16 +49,12 @@ export const Switch = componentFactory<ISwitchFactory>(
       name: COMPONENT_NAME,
     });
 
-    const loading =
-      (loadingProp || handlingChange || labeledContext?.loading) &&
-      loadingAnimation === 'progressIndicator';
+    const loading = loadingProp || handlingChange || labeledContext?.loading;
     const readOnly = readOnlyProp || loading || labeledContext?.readOnly;
     const disabledOrReadOnly = disabled || labeledContext?.disabled || readOnly;
-
-    const hasCustomIcons = !!icon || !!checkedIcon;
-    const hasIcons = icons || hasCustomIcons || loading;
-    const showOnlyCheckedIcon = !loading && showOnlyCheckedIconProp;
-    const shouldShowIcons = hasIcons || showOnlyCheckedIcon;
+    const hasIcon =
+      loading || (checked && !!checkedIcon) || (!checked && !!uncheckedIcon);
+    const isOn = checked || alwaysOn;
 
     const stateLayer = useStateLayer<HTMLDivElement>({
       baseState: interactions,
@@ -80,8 +74,9 @@ export const Switch = componentFactory<ISwitchFactory>(
       modifiers: {
         disabled: disabledOrReadOnly,
         checked,
-        'with-icon': shouldShowIcons,
+        'with-icon': hasIcon,
         loading,
+        on: isOn,
       },
     });
 
@@ -128,31 +123,25 @@ export const Switch = componentFactory<ISwitchFactory>(
           <div {...getStyles('handleContainer')}>
             <StateLayer {...getStyles('stateLayer')} context={stateLayer} />
             <PaperBase {...getStyles('handle')}>
-              {shouldShowIcons && (
-                <>
-                  <div {...getStyles(['icon', 'icon$on'])}>
-                    {loading ? (
-                      <IndeterminateCircularProgressIndicator />
-                    ) : checkedIcon ? (
-                      checkedIcon
-                    ) : !hasCustomIcons ? (
-                      <SvgIcon icon={iconCheckMark} />
-                    ) : null}
-                  </div>
+              <div {...getStyles(['icon', 'icon$checked'])}>
+                {loading ? (
+                  <IndeterminateCircularProgressIndicator />
+                ) : checkedIcon === true ? (
+                  <SvgIcon icon={iconCheckMark} />
+                ) : (
+                  checkedIcon
+                )}
+              </div>
 
-                  {!showOnlyCheckedIcon && (
-                    <div {...getStyles(['icon', 'icon$off'])}>
-                      {loading ? (
-                        <IndeterminateCircularProgressIndicator />
-                      ) : icon ? (
-                        icon
-                      ) : !hasCustomIcons ? (
-                        <SvgIcon icon={iconXMark} />
-                      ) : null}
-                    </div>
-                  )}
-                </>
-              )}
+              <div {...getStyles(['icon', 'icon$unchecked'])}>
+                {loading ? (
+                  <IndeterminateCircularProgressIndicator />
+                ) : uncheckedIcon === true ? (
+                  <SvgIcon icon={iconXMark} />
+                ) : (
+                  uncheckedIcon
+                )}
+              </div>
             </PaperBase>
           </div>
         </div>
