@@ -1,6 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+import {
+  faMinus,
+  faMoon,
+  faPlus,
+  faSun,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { delay } from '@olivierpascal/helpers';
 
@@ -105,6 +110,22 @@ export const Controlled: IStory = {
   args: defaultArgs,
 };
 
+export const Scales: IStory = {
+  render: (props) => (
+    <SwitchShowcase
+      props={props}
+      cols={[
+        { legend: 'Extra small', props: { scale: 'xs' } },
+        { legend: 'Small', props: { scale: 'sm' } },
+        { legend: 'Medium', props: { scale: 'md' } },
+        { legend: 'Large', props: { scale: 'lg' } },
+        { legend: 'Extra large', props: { scale: 'xl' } },
+      ]}
+    />
+  ),
+  args: defaultArgs,
+};
+
 export const Configurations: IStory = {
   render: (props) => (
     <SwitchShowcase
@@ -139,8 +160,8 @@ export const Configurations: IStory = {
         {
           legend: 'Always on',
           props: {
-            uncheckedIcon: <FontAwesomeIcon icon={faMinus} />,
-            checkedIcon: <FontAwesomeIcon icon={faPlus} />,
+            uncheckedIcon: <FontAwesomeIcon icon={faMoon} />,
+            checkedIcon: <FontAwesomeIcon icon={faSun} />,
             alwaysOn: true,
           },
         },

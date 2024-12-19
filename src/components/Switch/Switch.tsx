@@ -8,7 +8,6 @@ import { useControlledValue } from '~/hooks/useControlledValue';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
-import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { FocusRing } from '../FocusRing';
 import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
@@ -102,9 +101,10 @@ export const Switch = componentFactory<ISwitchFactory>(
     return (
       <PaperBase
         {...getStyles('root')}
-        ref={forwardedRef}
         classNames={classNames}
         interactions={stateLayer.interactionsContext.state}
+        ref={forwardedRef}
+        {...other}
       >
         <input
           type="checkbox"
@@ -114,9 +114,9 @@ export const Switch = componentFactory<ISwitchFactory>(
           data-cy="switch"
           id={labeledContext?.id}
           required={labeledContext?.required}
-          {...getStyles('input')}
-          {...mergeProps(stateLayer.interactionsContext.triggerProps, other)}
           ref={handleRef}
+          {...getStyles('input')}
+          {...stateLayer.interactionsContext.triggerProps}
         />
 
         <div {...getStyles('track')}>

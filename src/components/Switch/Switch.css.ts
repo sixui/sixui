@@ -122,8 +122,8 @@ const classNames = createStyles({
   // Input is also touch target
   input: {
     appearance: 'none',
-    width: themeTokens.density.minTargetSize,
-    height: themeTokens.density.minTargetSize,
+    width: px(themeTokens.density.minTargetSize),
+    height: px(themeTokens.density.minTargetSize),
     outline: 'none',
     margin: 0,
     position: 'absolute',
@@ -171,7 +171,7 @@ const classNames = createStyles({
     transitionTimingFunction: themeTokens.motion.easing.standard.normal,
     transitionDuration: themeTokens.motion.duration.medium.$2,
     width: tokens.handle.width.normal,
-    height: tokens.handle.height.normal,
+    height: calc.add(tokens.handle.height.normal, DENSITY),
 
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {
@@ -190,22 +190,25 @@ const classNames = createStyles({
     }),
 
     selectors: {
-      [getModifierSelector<IModifier>('with-icon', root)]: {
-        width: tokens.handle.width.withIcon,
-        height: tokens.handle.height.withIcon,
-      },
-      [getModifierSelector<IModifier>(['pressed', '!with-icon'], root)]: {
-        width: tokens.handle.width.pressed,
-        height: tokens.handle.height.pressed,
-      },
       [getModifierSelector<IModifier>('pressed', root)]: {
+        width: tokens.handle.width.pressed,
+        height: calc.add(tokens.handle.height.pressed, DENSITY),
         transitionTimingFunction: themeTokens.motion.easing.standard.normal,
         transitionDuration: themeTokens.motion.duration.short.$3,
       },
-      [getModifierSelector<IModifier>('on', root)]: {
+      [getModifierSelector<IModifier>(['!pressed', 'with-icon'], root)]: {
+        width: tokens.handle.width.withIcon,
+        height: calc.add(tokens.handle.height.withIcon, DENSITY),
+      },
+      [getModifierSelector<IModifier>(['pressed', 'on'], root)]: {
+        width: tokens.handle.width.pressed,
+        height: calc.add(tokens.handle.height.pressed, DENSITY),
+      },
+      [getModifierSelector<IModifier>(['!pressed', 'on'], root)]: {
         width: tokens.handle.width.on,
-        height: tokens.handle.height.on,
-
+        height: calc.add(tokens.handle.height.on, DENSITY),
+      },
+      [getModifierSelector<IModifier>('on', root)]: {
         vars: createTokensVars(PaperBase.theme.tokens, {
           container: {
             color: {
@@ -220,17 +223,6 @@ const classNames = createStyles({
             },
           },
         }),
-      },
-      [getModifierSelector<IModifier>(['checked', '!with-icon'], root)]: {
-        width: tokens.handle.width.on,
-        height: tokens.handle.height.on,
-      },
-      [getModifierSelector<IModifier>(
-        ['checked', 'pressed', '!with-icon'],
-        root,
-      )]: {
-        width: tokens.handle.width.pressed,
-        height: tokens.handle.height.pressed,
       },
     },
   }),
