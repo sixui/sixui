@@ -118,6 +118,7 @@ const classNames = createStyles({
           container: {
             color: {
               normal: themeTokens.colorScheme.primary,
+              disabled: themeTokens.colorScheme.onSurface,
             },
           },
           outline: {
@@ -229,6 +230,9 @@ const classNames = createStyles({
               focused: themeTokens.colorScheme.primaryContainer,
               pressed: themeTokens.colorScheme.primaryContainer,
               disabled: themeTokens.colorScheme.surface,
+            },
+            opacity: {
+              disabled: '1',
             },
           },
         }),

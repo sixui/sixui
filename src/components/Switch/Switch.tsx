@@ -100,8 +100,6 @@ export const Switch = componentFactory<ISwitchFactory>(
         [handlingChange, onChange, setChecked],
       );
 
-    console.log('__X', stateLayer.interactionsContext.state);
-
     return (
       <PaperBase
         {...getStyles('root')}
