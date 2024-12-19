@@ -2,6 +2,7 @@ import type { IFabThemeFactory } from './Fab.css';
 import type { IFabFactory } from './Fab.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
+import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Button } from '../Button';
 import { fabTheme, fabThemeVariants } from './Fab.css';
@@ -40,7 +41,9 @@ export const Fab = polymorphicComponentFactory<IFabFactory>(
       <Button
         {...getStyles('root')}
         variant={false}
-        classNames={classNames}
+        classNames={mergeClassNames(classNames, {
+          stateLayer: getStyles('stateLayer').className,
+        })}
         leadingIcon={icon}
         ref={forwardedRef}
         {...other}

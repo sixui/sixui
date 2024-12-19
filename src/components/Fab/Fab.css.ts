@@ -1,4 +1,4 @@
-import { createTheme, fallbackVar } from '@vanilla-extract/css';
+import { createTheme } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import type { IFabVariant } from './Fab.types';
@@ -9,6 +9,8 @@ import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { Button } from '../Button';
+import { PaperBase } from '../PaperBase';
+import { StateLayer } from '../StateLayer';
 import { themeTokens } from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
@@ -17,36 +19,6 @@ type IModifier = 'extended' | 'lowered';
 const [tokensClassName, tokens] = createTheme({
   container: {
     size: px(56),
-    shape: px(themeTokens.shape.corner.lg),
-    color: {
-      normal: {
-        regular: 'unset',
-        lowered: 'unset',
-      },
-      disabled: themeTokens.colorScheme.onSurface,
-    },
-    opacity: {
-      disabled: themeTokens.state.containerOpacity.disabled,
-    },
-    elevation: {
-      normal: {
-        regular: elevationLevelPreset[3],
-        lowered: elevationLevelPreset[1],
-      },
-      focused: {
-        regular: elevationLevelPreset[3],
-        lowered: elevationLevelPreset[1],
-      },
-      hovered: {
-        regular: elevationLevelPreset[4],
-        lowered: elevationLevelPreset[2],
-      },
-      pressed: {
-        regular: elevationLevelPreset[3],
-        lowered: elevationLevelPreset[1],
-      },
-      disabled: elevationLevelPreset[0],
-    },
   },
   icon: {
     size: px(24),
@@ -59,16 +31,6 @@ const [tokensClassName, tokens] = createTheme({
     },
     opacity: {
       disabled: themeTokens.state.opacity.disabled,
-    },
-  },
-  stateLayer: {
-    color: {
-      hovered: themeTokens.colorScheme.onSurface,
-      pressed: themeTokens.colorScheme.onSurface,
-    },
-    opacity: {
-      hovered: themeTokens.state.stateLayerOpacity.hovered,
-      pressed: themeTokens.state.stateLayerOpacity.pressed,
     },
   },
   label: {
@@ -93,9 +55,19 @@ const classNames = createStyles({
     width: tokens.container.size,
     height: tokens.container.size,
 
-    vars: createTokensVars(Button.theme.tokens, {
-      container: {
-        shape: tokens.container.shape,
+    vars: {
+      ...createTokensVars(PaperBase.theme.tokens, {
+        container: {
+          color: {
+            normal: 'unset',
+          },
+          shape: px(themeTokens.shape.corner.lg),
+          elevation: {
+            normal: elevationLevelPreset[3],
+          },
+        },
+      }),
+      ...createTokensVars(Button.theme.tokens, {
         leadingSpace: {
           normal: '0',
           withStartSlot: '0',
@@ -106,79 +78,55 @@ const classNames = createStyles({
           withStartSlot: '0',
           withEndSlot: '0',
         },
-        elevation: {
-          normal: tokens.container.elevation.normal.regular,
-          focused: tokens.container.elevation.focused.regular,
-          hovered: tokens.container.elevation.hovered.regular,
-          pressed: tokens.container.elevation.pressed.regular,
-          disabled: tokens.container.elevation.disabled,
-        },
-        color: {
-          normal: tokens.container.color.normal.regular,
-          disabled: tokens.container.color.disabled,
-        },
-        opacity: {
-          disabled: tokens.container.opacity.disabled,
-        },
-      },
-      icon: tokens.icon,
-      stateLayer: tokens.stateLayer,
-      label: tokens.label,
-    }),
-
+        icon: tokens.icon,
+        label: tokens.label,
+      }),
+    },
     selectors: {
       [getModifierSelector<IModifier>('extended')]: {
         vars: {
           minWidth: tokens.container.size,
           width: 'auto',
           ...createTokensVars(Button.theme.tokens, {
-            container: {
-              leadingSpace: {
-                normal: px(space(6)),
-                withStartSlot: px(space(4)),
-              },
-              trailingSpace: {
-                normal: px(space(6)),
-                withStartSlot: px(space(6)),
-              },
+            leadingSpace: {
+              normal: px(space(6)),
+              withStartSlot: px(space(4)),
+            },
+            trailingSpace: {
+              normal: px(space(6)),
+              withStartSlot: px(space(6)),
             },
           }),
         },
       },
       [getModifierSelector<IModifier>('lowered')]: {
-        vars: createTokensVars(Button.theme.tokens, {
+        vars: createTokensVars(PaperBase.theme.tokens, {
           container: {
-            elevation: {
-              normal: fallbackVar(
-                tokens.container.elevation.normal.lowered,
-                tokens.container.elevation.normal.regular,
-              ),
-              focused: fallbackVar(
-                tokens.container.elevation.focused.lowered,
-                tokens.container.elevation.normal.lowered,
-                tokens.container.elevation.focused.regular,
-              ),
-              hovered: fallbackVar(
-                tokens.container.elevation.hovered.lowered,
-                tokens.container.elevation.normal.lowered,
-                tokens.container.elevation.hovered.regular,
-              ),
-              pressed: fallbackVar(
-                tokens.container.elevation.pressed.lowered,
-                tokens.container.elevation.normal.lowered,
-                tokens.container.elevation.pressed.regular,
-              ),
-            },
             color: {
-              normal: fallbackVar(
-                tokens.container.color.normal.lowered,
-                tokens.container.color.normal.regular,
-              ),
+              normal: 'unset',
+            },
+            elevation: {
+              normal: elevationLevelPreset[1],
+              focused: elevationLevelPreset[1],
+              hovered: elevationLevelPreset[2],
+              pressed: elevationLevelPreset[1],
             },
           },
         }),
       },
     },
+  },
+  stateLayer: {
+    vars: createTokensVars(StateLayer.theme.tokens, {
+      color: {
+        hovered: themeTokens.colorScheme.onSurface,
+        pressed: themeTokens.colorScheme.onSurface,
+      },
+      opacity: {
+        hovered: themeTokens.state.stateLayerOpacity.hovered,
+        pressed: themeTokens.state.stateLayerOpacity.pressed,
+      },
+    }),
   },
 });
 
@@ -198,97 +146,127 @@ export const fabTheme = componentThemeFactory<IFabThemeFactory>({
 export const fabThemeVariants = {
   surface: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
-        container: {
-          color: {
-            normal: {
-              regular: themeTokens.colorScheme.surfaceContainerHigh,
-              lowered: themeTokens.colorScheme.surfaceContainerLow,
+      vars: {
+        ...createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: {
+              normal: themeTokens.colorScheme.surfaceContainerHigh,
             },
           },
-        },
-        label: {
-          color: {
-            normal: themeTokens.colorScheme.primary,
+        }),
+        ...createTokensVars(tokens, {
+          label: {
+            color: {
+              normal: themeTokens.colorScheme.primary,
+            },
           },
+        }),
+      },
+      selectors: {
+        [getModifierSelector<IModifier>('lowered')]: {
+          vars: createTokensVars(PaperBase.theme.tokens, {
+            container: {
+              color: {
+                normal: themeTokens.colorScheme.surfaceContainerLow,
+              },
+            },
+          }),
         },
-      }),
+      },
     },
   }),
   primary: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
-        container: {
-          color: {
-            normal: {
-              regular: themeTokens.colorScheme.primaryContainer,
+      vars: {
+        ...createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: {
+              normal: themeTokens.colorScheme.primaryContainer,
             },
           },
-        },
-        label: {
-          color: {
-            normal: themeTokens.colorScheme.onPrimaryContainer,
+        }),
+        ...createTokensVars(tokens, {
+          label: {
+            color: {
+              normal: themeTokens.colorScheme.onPrimaryContainer,
+            },
           },
-        },
-      }),
+        }),
+      },
     },
   }),
   secondary: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
-        container: {
-          color: {
-            normal: {
-              regular: themeTokens.colorScheme.secondaryContainer,
+      vars: {
+        ...createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: {
+              normal: themeTokens.colorScheme.secondaryContainer,
             },
           },
-        },
-        label: {
-          color: {
-            normal: themeTokens.colorScheme.onSecondaryContainer,
+        }),
+        ...createTokensVars(tokens, {
+          label: {
+            color: {
+              normal: themeTokens.colorScheme.onSecondaryContainer,
+            },
           },
-        },
-      }),
+        }),
+      },
     },
   }),
   tertiary: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
-        container: {
-          color: {
-            normal: {
-              regular: themeTokens.colorScheme.tertiaryContainer,
+      vars: {
+        ...createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: {
+              normal: themeTokens.colorScheme.tertiaryContainer,
             },
           },
-        },
-        label: {
-          color: {
-            normal: themeTokens.colorScheme.onTertiaryContainer,
+        }),
+        ...createTokensVars(tokens, {
+          label: {
+            color: {
+              normal: themeTokens.colorScheme.onTertiaryContainer,
+            },
           },
-        },
-      }),
+        }),
+      },
     },
   }),
   branded: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
-        container: {
-          color: {
-            normal: {
-              regular: themeTokens.colorScheme.surfaceContainerHigh,
-              lowered: themeTokens.colorScheme.surfaceContainerLow,
+      vars: {
+        ...createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: {
+              normal: themeTokens.colorScheme.surfaceContainerHigh,
             },
           },
-        },
-        label: {
-          color: {
-            normal: themeTokens.colorScheme.primary,
+        }),
+        ...createTokensVars(tokens, {
+          label: {
+            color: {
+              normal: themeTokens.colorScheme.primary,
+            },
           },
+          icon: {
+            size: px(36),
+          },
+        }),
+      },
+      selectors: {
+        [getModifierSelector<IModifier>('lowered')]: {
+          vars: createTokensVars(PaperBase.theme.tokens, {
+            container: {
+              color: {
+                normal: themeTokens.colorScheme.surfaceContainerLow,
+              },
+            },
+          }),
         },
-        icon: {
-          size: px(36),
-        },
-      }),
+      },
     },
   }),
 };

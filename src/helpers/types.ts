@@ -27,20 +27,20 @@ export type IPoint = {
   y: number;
 };
 
-export type IStaticStyles<TKey extends string> = {
-  [key in TKey]?: UserAuthoredStyles;
-};
+export type IStaticStyles<TKey extends string> = Partial<
+  Record<TKey, UserAuthoredStyles>
+>;
 
 /**
- * @deprectated - delete
+ * @deprecated - delete
  */
-export type IStyles<TKey extends string> = {
-  [key in TKey]?: UserAuthoredStyles | ((...props: IAny) => UserAuthoredStyles);
-};
+export type IStyles<TKey extends string> = Partial<
+  Record<TKey, UserAuthoredStyles | ((...props: IAny) => UserAuthoredStyles)>
+>;
 
-export type ICompiledStyles<TKey extends string> = {
-  [key in TKey]?: CompiledStyles;
-};
+export type ICompiledStyles<TKey extends string> = Partial<
+  Record<TKey, CompiledStyles>
+>;
 
 export type IZeroOrMore<T> = undefined | T | Array<T | undefined>;
 
