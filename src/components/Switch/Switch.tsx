@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 
 import type { ISwitchThemeFactory } from './Switch.css';
 import type { ISwitchFactory } from './Switch.types';
+import { iconCheckMark, iconXMark } from '~/assets/icons';
 import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
@@ -10,9 +11,11 @@ import { useProps } from '~/utils/component/useProps';
 import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { FocusRing } from '../FocusRing';
+import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
 import { useLabeledContext } from '../Labeled';
 import { PaperBase } from '../PaperBase';
 import { StateLayer, useStateLayer } from '../StateLayer';
+import { SvgIcon } from '../SvgIcon';
 import { basicTemplateTheme } from './Switch.css';
 
 const COMPONENT_NAME = 'Switch';
@@ -77,7 +80,8 @@ export const Switch = componentFactory<ISwitchFactory>(
       modifiers: {
         disabled: disabledOrReadOnly,
         checked,
-        'with-icon': showOnlyCheckedIcon ? checked : hasIcons,
+        'with-icon': shouldShowIcons,
+        loading,
       },
     });
 
@@ -106,7 +110,6 @@ export const Switch = componentFactory<ISwitchFactory>(
         ref={forwardedRef}
         classNames={classNames}
         interactions={stateLayer.interactionsContext.state}
-        {...mergeProps(stateLayer.interactionsContext.triggerProps, other)}
       >
         <input
           type="checkbox"
@@ -116,15 +119,41 @@ export const Switch = componentFactory<ISwitchFactory>(
           data-cy="switch"
           id={labeledContext?.id}
           required={labeledContext?.required}
-          {...other}
           {...getStyles('input')}
+          {...mergeProps(stateLayer.interactionsContext.triggerProps, other)}
           ref={handleRef}
         />
 
         <div {...getStyles('track')}>
           <div {...getStyles('handleContainer')}>
             <StateLayer {...getStyles('stateLayer')} context={stateLayer} />
-            <PaperBase {...getStyles('handle')} />
+            <PaperBase {...getStyles('handle')}>
+              {shouldShowIcons && (
+                <>
+                  <div {...getStyles(['icon', 'icon$on'])}>
+                    {loading ? (
+                      <IndeterminateCircularProgressIndicator />
+                    ) : checkedIcon ? (
+                      checkedIcon
+                    ) : !hasCustomIcons ? (
+                      <SvgIcon icon={iconCheckMark} />
+                    ) : null}
+                  </div>
+
+                  {!showOnlyCheckedIcon && (
+                    <div {...getStyles(['icon', 'icon$off'])}>
+                      {loading ? (
+                        <IndeterminateCircularProgressIndicator />
+                      ) : icon ? (
+                        icon
+                      ) : !hasCustomIcons ? (
+                        <SvgIcon icon={iconXMark} />
+                      ) : null}
+                    </div>
+                  )}
+                </>
+              )}
+            </PaperBase>
           </div>
         </div>
 

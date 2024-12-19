@@ -5,16 +5,19 @@ import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactor
 import { getDensity } from '~/helpers/styles/getDensity';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
 import { IInteraction } from '~/hooks/useInteractions';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { PaperBase } from '../PaperBase';
-import { StateLayer } from '../StateLayer';
 import { themeTokens } from '../ThemeProvider';
 
-type IModifier = IInteraction | 'disabled' | 'checked' | 'with-icon';
+type IModifier =
+  | IInteraction
+  | 'disabled'
+  | 'checked'
+  | 'with-icon'
+  | 'loading';
 
 const DENSITY = px(getDensity({ min: -2, max: 0 }));
 
@@ -38,10 +41,10 @@ const [tokensClassName, tokens] = createTheme({
   icon: {
     color: {
       normal: themeTokens.colorScheme.surfaceContainerHighest,
-      disabled: themeTokens.colorScheme.surface,
       focused: 'inherit',
       hovered: 'inherit',
       pressed: 'inherit',
+      disabled: themeTokens.colorScheme.surface,
     },
     opacity: {
       disabled: '0.76',
@@ -51,37 +54,15 @@ const [tokensClassName, tokens] = createTheme({
   icon$checked: {
     color: {
       normal: themeTokens.colorScheme.onPrimaryContainer,
-      disabled: themeTokens.colorScheme.onSurface,
       focused: 'inherit',
       hovered: 'inherit',
       pressed: 'inherit',
+      disabled: themeTokens.colorScheme.surface,
     },
     opacity: {
       disabled: themeTokens.state.opacity.disabled,
     },
-    size: px(16),
-  },
-  stateLayer: {
-    shape: px(themeTokens.shape.corner.full),
-    size: px(themeTokens.density.minTargetSize),
-    color: {
-      hovered: themeTokens.colorScheme.onSurface,
-      pressed: themeTokens.colorScheme.onSurface,
-    },
-    opacity: {
-      hovered: themeTokens.state.stateLayerOpacity.hovered,
-      pressed: themeTokens.state.stateLayerOpacity.pressed,
-    },
-  },
-  stateLayer$checked: {
-    color: {
-      hovered: themeTokens.colorScheme.primary,
-      pressed: themeTokens.colorScheme.primary,
-    },
-    opacity: {
-      hovered: themeTokens.state.stateLayerOpacity.hovered,
-      pressed: themeTokens.state.stateLayerOpacity.pressed,
-    },
+    size: 'inherit',
   },
 });
 
@@ -168,7 +149,7 @@ const classNames = createStyles({
     // This easing is custom to perform the "overshoot" animation.
     transitionProperty: 'margin',
     transitionTimingFunction: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-    transitionDuration: '300ms',
+    transitionDuration: themeTokens.motion.duration.medium.$2,
 
     marginInlineEnd: `calc(${tokens.width} - ${tokens.height})`,
     marginInlineStart: 0,
@@ -212,9 +193,11 @@ const classNames = createStyles({
         width: tokens.handle.width.withIcon,
         height: tokens.handle.height.withIcon,
       },
-      [getModifierSelector<IModifier>('pressed', root)]: {
+      [getModifierSelector<IModifier>(['pressed', '!with-icon'], root)]: {
         width: tokens.handle.width.pressed,
         height: tokens.handle.height.pressed,
+      },
+      [getModifierSelector<IModifier>('pressed', root)]: {
         transitionTimingFunction: themeTokens.motion.easing.standard.normal,
         transitionDuration: themeTokens.motion.duration.short.$3,
       },
@@ -237,9 +220,75 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>(['checked', 'pressed'], root)]: {
+      [getModifierSelector<IModifier>(['checked', '!with-icon'], root)]: {
+        width: tokens.handle.width.checked,
+        height: tokens.handle.height.checked,
+      },
+      [getModifierSelector<IModifier>(
+        ['checked', 'pressed', '!with-icon'],
+        root,
+      )]: {
         width: tokens.handle.width.pressed,
         height: tokens.handle.height.pressed,
+      },
+    },
+  }),
+  icon: ({ root }) => ({
+    position: 'absolute',
+    inset: 0,
+    margin: 'auto',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fill: 'currentColor',
+    opacity: 0,
+    color: tokens.icon.color.normal,
+    fontSize: tokens.icon.size,
+    width: tokens.icon.size,
+    height: tokens.icon.size,
+    transitionProperty: 'fill, opacity, transform',
+    transitionDuration: '67ms, 67ms, 167ms',
+    transitionTimingFunction: `linear, linear, ${themeTokens.motion.easing.standard.normal}`,
+
+    selectors: {
+      [getModifierSelector<IModifier>('checked', root)]: {
+        fontSize: fallbackVar(tokens.icon$checked.size, tokens.icon.size),
+        width: fallbackVar(tokens.icon$checked.size, tokens.icon.size),
+        height: fallbackVar(tokens.icon$checked.size, tokens.icon.size),
+        color: fallbackVar(
+          tokens.icon$checked.color.normal,
+          tokens.icon.color.normal,
+        ),
+      },
+      [getModifierSelector<IModifier>('loading', root)]: {
+        opacity: 1,
+      },
+      [getModifierSelector<IModifier>(['checked', 'disabled'], root)]: {
+        color: themeTokens.colorScheme.outlineVariant,
+      },
+    },
+  }),
+  icon$on: ({ root }) => ({
+    selectors: {
+      [getModifierSelector<IModifier>('checked', root)]: {
+        transform: 'rotate(0)',
+        opacity: 1,
+      },
+      [getModifierSelector<IModifier>('!checked', root)]: {
+        transform: 'rotate(-180deg)',
+        opacity: 0,
+      },
+    },
+  }),
+  icon$off: ({ root }) => ({
+    selectors: {
+      [getModifierSelector<IModifier>('checked', root)]: {
+        transform: 'rotate(180deg)',
+        opacity: 0,
+      },
+      [getModifierSelector<IModifier>('!checked', root)]: {
+        transform: 'rotate(0)',
+        opacity: 1,
       },
     },
   }),

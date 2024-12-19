@@ -18,7 +18,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onChange: (...args) => sbHandleEvent('onChange', args, 300),
+  onChange: (...args) => sbHandleEvent('onChange', args, 1000),
 } satisfies Partial<ISwitchProps>;
 
 const states: Array<IComponentPresentation<ISwitchProps>> = [
@@ -107,7 +107,7 @@ export const Configurations: IStory = {
           legend: 'Basic',
         },
         {
-          legend: 'With checked icons',
+          legend: 'With checked icon',
           props: { showOnlyCheckedIcon: true },
         },
         {
