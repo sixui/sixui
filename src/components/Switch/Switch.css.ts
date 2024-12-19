@@ -11,60 +11,17 @@ import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { PaperBase } from '../PaperBase';
+import { StateLayer } from '../StateLayer';
 import { themeTokens } from '../ThemeProvider';
 
-type IModifier = IInteraction | 'disabled' | 'checked';
+type IModifier = IInteraction | 'disabled' | 'checked' | 'with-icon';
 
 const DENSITY = px(getDensity({ min: -2, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
   width: px(52),
   height: px(32),
-  container: {
-    color: {
-      normal: themeTokens.colorScheme.surfaceContainerHighest,
-      focused: 'inherit',
-      hovered: 'inherit',
-      pressed: 'inherit',
-      disabled: 'inherit',
-    },
-    opacity: {
-      disabled: themeTokens.state.containerOpacity.disabled,
-    },
-    shape: px(themeTokens.shape.corner.full),
-  },
-  container$checked: {
-    color: {
-      normal: themeTokens.colorScheme.primary,
-      disabled: themeTokens.colorScheme.onSurface,
-      focused: 'inherit',
-      hovered: 'inherit',
-      pressed: 'inherit',
-    },
-  },
-  outline: {
-    style: 'solid',
-    color: {
-      normal: themeTokens.colorScheme.outline,
-      disabled: themeTokens.colorScheme.onSurface,
-      focused: 'inherit',
-      hovered: 'inherit',
-      pressed: 'inherit',
-    },
-    width: px(themeTokens.outline.width.sm),
-  },
   handle: {
-    shape: px(themeTokens.shape.corner.full),
-    color: {
-      normal: themeTokens.colorScheme.outline,
-      disabled: themeTokens.colorScheme.onSurfaceVariant,
-      hovered: themeTokens.colorScheme.onSurfaceVariant,
-      focused: themeTokens.colorScheme.onSurfaceVariant,
-      pressed: themeTokens.colorScheme.onSurfaceVariant,
-    },
-    opacity: {
-      disabled: themeTokens.state.opacity.disabled,
-    },
     width: {
       normal: px(16),
       withIcon: px(24),
@@ -143,15 +100,24 @@ const [tokensClassName, tokens] = createTheme({
 const classNames = createStyles({
   root: {
     display: 'inline-flex',
-    outline: 'none',
     verticalAlign: 'top',
     cursor: 'pointer',
     width: tokens.width,
-    height: tokens.height,
+    height: calc.add(tokens.height, DENSITY),
 
     vars: createTokensVars(PaperBase.theme.tokens, {
-      container: tokens.container,
-      outline: tokens.outline,
+      container: {
+        color: {
+          normal: themeTokens.colorScheme.surfaceContainerHighest,
+          disabled: themeTokens.colorScheme.surfaceContainerHighest,
+        },
+        shape: px(themeTokens.shape.corner.full),
+      },
+      outline: {
+        width: {
+          normal: px(themeTokens.outline.width.sm),
+        },
+      },
     }),
 
     selectors: {
@@ -159,22 +125,97 @@ const classNames = createStyles({
         cursor: 'default',
         pointerEvents: 'none',
       },
+      [getModifierSelector<IModifier>('checked')]: {
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: {
+              normal: themeTokens.colorScheme.primary,
+            },
+          },
+          outline: {
+            width: {
+              normal: px(themeTokens.outline.width.none),
+            },
+          },
+        }),
+      },
     },
   },
-  // switch: {
-  //   alignItems: 'center',
-  //   display: 'inline-flex',
-  //   flexShrink: 0, // Stop from collapsing in flex containers
-  //   position: 'relative',
-  //   width: tokens.track.width,
-  //   height: calc.add(tokens.track.height, DENSITY),
-  //   borderRadius: tokens.track.shape.topLeft,
+  stateLayer: {
+    borderRadius: themeTokens.shape.corner.full,
+    width: themeTokens.density.minTargetSize,
+    height: themeTokens.density.minTargetSize,
+    inset: 'unset',
+  },
+  // Input is also touch target
+  input: {
+    appearance: 'none',
+    width: themeTokens.density.minTargetSize,
+    height: themeTokens.density.minTargetSize,
+    outline: 'none',
+    margin: 0,
+    position: 'absolute',
+    zIndex: '1',
+    cursor: 'inherit',
+  },
+  handleContainer: ({ root }) => ({
+    display: 'flex',
+    placeContent: 'center',
+    placeItems: 'center',
+    position: 'relative',
+    // This easing is custom to perform the "overshoot" animation.
+    transitionProperty: 'margin',
+    transitionTimingFunction: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+    transitionDuration: '300ms',
 
-  //   [switchStateTokens.stateLayerColor$hover]:
-  //     switchTokens.stateLayerColor$hover,
-  //   [switchStateTokens.stateLayerOpacity$hover]:
-  //     switchTokens.stateLayerOpacity$hover,
-  // },
+    marginInlineEnd: `calc(${tokens.width} - ${tokens.height})`,
+    marginInlineStart: 0,
+
+    selectors: {
+      [getModifierSelector<IModifier>('checked', root)]: {
+        marginInlineEnd: 0,
+        marginInlineStart: `calc(${tokens.height} - ${tokens.width})`,
+      },
+      [getModifierSelector<IModifier>('disabled', root)]: {
+        transitionProperty: 'none',
+      },
+    },
+  }),
+  handle: ({ root }) => ({
+    transformOrigin: 'center',
+    transitionProperty: 'width, height',
+    transitionTimingFunction: themeTokens.motion.easing.standard.normal,
+    transitionDuration: themeTokens.motion.duration.medium.$1,
+    width: tokens.handle.width.normal,
+    height: tokens.handle.height.normal,
+
+    vars: createTokensVars(PaperBase.theme.tokens, {
+      container: {
+        shape: px(themeTokens.shape.corner.full),
+        color: {
+          normal: themeTokens.colorScheme.outline,
+          hovered: themeTokens.colorScheme.onSurfaceVariant,
+          focused: themeTokens.colorScheme.onSurfaceVariant,
+          pressed: themeTokens.colorScheme.onSurfaceVariant,
+          disabled: themeTokens.colorScheme.onSurfaceVariant,
+        },
+        opacity: {
+          disabled: themeTokens.state.opacity.disabled,
+        },
+      },
+    }),
+
+    selectors: {
+      [getModifierSelector<IModifier>('with-icon', root)]: {
+        width: tokens.handle.width.withIcon,
+      },
+      [getModifierSelector<IModifier>('pressed', root)]: {
+        width: tokens.handle.width.pressed,
+        transitionTimingFunction: 'linear',
+        transitionDuration: themeTokens.motion.duration.short.$1,
+      },
+    },
+  }),
 });
 
 export type ISwitchThemeFactory = IComponentThemeFactory<{

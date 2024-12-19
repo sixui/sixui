@@ -41,7 +41,7 @@ export const [tokensClassName, tokens] = createTheme({
     },
   },
   outline: {
-    style: 'unset',
+    style: 'solid',
     color: {
       normal: themeTokens.colorScheme.outline,
       focused: 'inherit',

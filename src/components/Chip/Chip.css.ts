@@ -129,9 +129,8 @@ const classNames = createStyles({
       })]: {
         vars: createTokensVars(PaperBase.theme.tokens, {
           outline: {
-            style: 'solid',
             width: {
-              normal: themeTokens.outline.width.xs,
+              normal: px(themeTokens.outline.width.xs),
             },
           },
         }),

@@ -62,9 +62,6 @@ const classNames = createStyles({
             disabled: 'transparent',
           },
         },
-        outline: {
-          style: 'none',
-        },
       }),
       ...createTokensVars(Button.theme.tokens, {
         leadingSpace: {
@@ -269,7 +266,7 @@ export const iconButtonThemeVariants = {
           outline: {
             style: 'solid',
             width: {
-              normal: themeTokens.outline.width.xs,
+              normal: px(themeTokens.outline.width.xs),
             },
           },
         }),
@@ -306,7 +303,9 @@ export const iconButtonThemeVariants = {
         [getModifierSelector<IModifier>(['toggle', 'selected', '!disabled'])]: {
           vars: createTokensVars(PaperBase.theme.tokens, {
             outline: {
-              style: 'none',
+              width: {
+                normal: px(themeTokens.outline.width.none),
+              },
             },
           }),
         },

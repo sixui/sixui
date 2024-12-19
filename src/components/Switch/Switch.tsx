@@ -7,11 +7,12 @@ import { useControlledValue } from '~/hooks/useControlledValue';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
+import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { FocusRing } from '../FocusRing';
 import { useLabeledContext } from '../Labeled';
 import { PaperBase } from '../PaperBase';
-import { useStateLayer } from '../StateLayer';
+import { StateLayer, useStateLayer } from '../StateLayer';
 import { basicTemplateTheme } from './Switch.css';
 
 const COMPONENT_NAME = 'Switch';
@@ -29,12 +30,12 @@ export const Switch = componentFactory<ISwitchFactory>(
       defaultChecked,
       onChange,
       disabled,
-      readOnly,
-      loading,
+      readOnly: readOnlyProp,
+      loading: loadingProp,
       icons,
       icon,
       checkedIcon,
-      showOnlySelectedIcon,
+      showOnlyCheckedIcon: showOnlyCheckedIconProp,
       loadingAnimation = 'progressIndicator',
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
@@ -47,7 +48,16 @@ export const Switch = componentFactory<ISwitchFactory>(
       name: COMPONENT_NAME,
     });
 
+    const loading =
+      (loadingProp || handlingChange || labeledContext?.loading) &&
+      loadingAnimation === 'progressIndicator';
+    const readOnly = readOnlyProp || loading || labeledContext?.readOnly;
     const disabledOrReadOnly = disabled || labeledContext?.disabled || readOnly;
+
+    const hasCustomIcons = !!icon || !!checkedIcon;
+    const hasIcons = icons || hasCustomIcons || loading;
+    const showOnlyCheckedIcon = !loading && showOnlyCheckedIconProp;
+    const shouldShowIcons = hasIcons || showOnlyCheckedIcon;
 
     const stateLayer = useStateLayer<HTMLDivElement>({
       baseState: interactions,
@@ -66,6 +76,7 @@ export const Switch = componentFactory<ISwitchFactory>(
       modifiers: {
         disabled: disabledOrReadOnly,
         checked,
+        'with-icon': showOnlyCheckedIcon ? checked : hasIcons,
       },
     });
 
@@ -93,7 +104,7 @@ export const Switch = componentFactory<ISwitchFactory>(
         {...getStyles('root')}
         ref={forwardedRef}
         interactions={stateLayer.interactionsContext.state}
-        {...other}
+        {...mergeProps(stateLayer.interactionsContext.triggerProps, other)}
       >
         <input
           type="checkbox"
@@ -107,6 +118,10 @@ export const Switch = componentFactory<ISwitchFactory>(
           {...getStyles('input')}
           ref={handleRef}
         />
+        <div {...getStyles('handleContainer')}>
+          <StateLayer {...getStyles('stateLayer')} context={stateLayer} />
+          <PaperBase {...getStyles('handle')} />
+        </div>
         {!disabled && (
           <FocusRing
             {...getStyles('focusRing')}
