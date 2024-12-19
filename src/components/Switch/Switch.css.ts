@@ -24,28 +24,16 @@ const [tokensClassName, tokens] = createTheme({
   handle: {
     width: {
       normal: px(16),
-      withIcon: px(24),
       pressed: px(28),
+      checked: px(24),
+      withIcon: px(24),
     },
     height: {
       normal: px(16),
-      withIcon: px(24),
       pressed: px(28),
+      checked: px(24),
+      withIcon: px(24),
     },
-  },
-  handle$checked: {
-    color: {
-      normal: themeTokens.colorScheme.primary,
-      disabled: themeTokens.colorScheme.surface,
-      focused: themeTokens.colorScheme.primaryContainer,
-      hovered: themeTokens.colorScheme.primaryContainer,
-      pressed: themeTokens.colorScheme.primaryContainer,
-    },
-    opacity: {
-      disabled: '1',
-    },
-    width: px(24),
-    height: px(24),
   },
   icon: {
     color: {
@@ -147,6 +135,7 @@ const classNames = createStyles({
     height: themeTokens.density.minTargetSize,
     inset: 'unset',
   },
+  focusRing: {},
   // Input is also touch target
   input: {
     appearance: 'none',
@@ -157,6 +146,18 @@ const classNames = createStyles({
     position: 'absolute',
     zIndex: '1',
     cursor: 'inherit',
+  },
+  track: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+
+    borderRadius: 'inherit',
+
+    // Center content
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   handleContainer: ({ root }) => ({
     display: 'flex',
@@ -173,8 +174,8 @@ const classNames = createStyles({
 
     selectors: {
       [getModifierSelector<IModifier>('checked', root)]: {
+        marginInlineStart: `calc(${tokens.width} - ${tokens.height})`,
         marginInlineEnd: 0,
-        marginInlineStart: `calc(${tokens.height} - ${tokens.width})`,
       },
       [getModifierSelector<IModifier>('disabled', root)]: {
         transitionProperty: 'none',
@@ -185,7 +186,7 @@ const classNames = createStyles({
     transformOrigin: 'center',
     transitionProperty: 'width, height',
     transitionTimingFunction: themeTokens.motion.easing.standard.normal,
-    transitionDuration: themeTokens.motion.duration.medium.$1,
+    transitionDuration: themeTokens.motion.duration.medium.$2,
     width: tokens.handle.width.normal,
     height: tokens.handle.height.normal,
 
@@ -208,11 +209,33 @@ const classNames = createStyles({
     selectors: {
       [getModifierSelector<IModifier>('with-icon', root)]: {
         width: tokens.handle.width.withIcon,
+        height: tokens.handle.height.withIcon,
       },
       [getModifierSelector<IModifier>('pressed', root)]: {
         width: tokens.handle.width.pressed,
-        transitionTimingFunction: 'linear',
-        transitionDuration: themeTokens.motion.duration.short.$1,
+        height: tokens.handle.height.pressed,
+        transitionTimingFunction: themeTokens.motion.easing.standard.normal,
+        transitionDuration: themeTokens.motion.duration.short.$3,
+      },
+      [getModifierSelector<IModifier>('checked', root)]: {
+        width: tokens.handle.width.checked,
+        height: tokens.handle.height.checked,
+
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: {
+              normal: themeTokens.colorScheme.onPrimary,
+              hovered: themeTokens.colorScheme.primaryContainer,
+              focused: themeTokens.colorScheme.primaryContainer,
+              pressed: themeTokens.colorScheme.primaryContainer,
+              disabled: themeTokens.colorScheme.surface,
+            },
+          },
+        }),
+      },
+      [getModifierSelector<IModifier>(['checked', 'pressed'], root)]: {
+        width: tokens.handle.width.pressed,
+        height: tokens.handle.height.pressed,
       },
     },
   }),

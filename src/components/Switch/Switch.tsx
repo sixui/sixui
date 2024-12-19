@@ -63,6 +63,7 @@ export const Switch = componentFactory<ISwitchFactory>(
       baseState: interactions,
       mergeStrategy: interactionsMergeStrategy,
       disabled: disabledOrReadOnly,
+      withoutRippleEffect: true,
     });
     const handleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
 
@@ -99,10 +100,13 @@ export const Switch = componentFactory<ISwitchFactory>(
         [handlingChange, onChange, setChecked],
       );
 
+    console.log('__X', stateLayer.interactionsContext.state);
+
     return (
       <PaperBase
         {...getStyles('root')}
         ref={forwardedRef}
+        classNames={classNames}
         interactions={stateLayer.interactionsContext.state}
         {...mergeProps(stateLayer.interactionsContext.triggerProps, other)}
       >
@@ -118,10 +122,14 @@ export const Switch = componentFactory<ISwitchFactory>(
           {...getStyles('input')}
           ref={handleRef}
         />
-        <div {...getStyles('handleContainer')}>
-          <StateLayer {...getStyles('stateLayer')} context={stateLayer} />
-          <PaperBase {...getStyles('handle')} />
+
+        <div {...getStyles('track')}>
+          <div {...getStyles('handleContainer')}>
+            <StateLayer {...getStyles('stateLayer')} context={stateLayer} />
+            <PaperBase {...getStyles('handle')} />
+          </div>
         </div>
+
         {!disabled && (
           <FocusRing
             {...getStyles('focusRing')}
