@@ -71,7 +71,6 @@ const classNames = createStyles({
   root: {
     display: 'inline-flex',
     verticalAlign: 'top',
-    cursor: 'pointer',
     width: tokens.width,
     height: calc.add(tokens.height, DENSITY),
 
@@ -91,10 +90,6 @@ const classNames = createStyles({
     }),
 
     selectors: {
-      [getModifierSelector<IModifier>('disabled')]: {
-        cursor: 'default',
-        pointerEvents: 'none',
-      },
       [getModifierSelector<IModifier>('on')]: {
         vars: createTokensVars(PaperBase.theme.tokens, {
           container: {
@@ -119,17 +114,37 @@ const classNames = createStyles({
     inset: 'unset',
   },
   focusRing: {},
-  // Input is also touch target
-  input: {
+  input: ({ root }) => ({
+    // Input is also touch target
     appearance: 'none',
-    width: px(themeTokens.density.minTargetSize),
-    height: px(themeTokens.density.minTargetSize),
+    width: px(
+      calc.add(
+        themeTokens.density.minTargetSize,
+        calc.multiply(2, themeTokens.outline.width.sm),
+      ),
+    ),
+    height: px(
+      calc.add(
+        themeTokens.density.minTargetSize,
+        calc.multiply(2, themeTokens.outline.width.sm),
+      ),
+    ),
     outline: 'none',
     margin: 0,
     position: 'absolute',
     zIndex: '1',
-    cursor: 'inherit',
-  },
+    cursor: 'pointer',
+    top: '50%',
+    transform: 'translate(-50%, -50%)',
+    left: '50%',
+
+    selectors: {
+      [getModifierSelector<IModifier>('disabled', root)]: {
+        cursor: 'default',
+        pointerEvents: 'none',
+      },
+    },
+  }),
   track: {
     position: 'absolute',
     width: '100%',
@@ -166,6 +181,7 @@ const classNames = createStyles({
     },
   }),
   handle: ({ root }) => ({
+    position: 'relative',
     transformOrigin: 'center',
     transitionProperty: 'width, height',
     transitionTimingFunction: themeTokens.motion.easing.standard.normal,

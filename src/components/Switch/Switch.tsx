@@ -37,6 +37,7 @@ export const Switch = componentFactory<ISwitchFactory>(
       checkedIcon,
       uncheckedIcon,
       alwaysOn,
+      id: idProp,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -51,6 +52,7 @@ export const Switch = componentFactory<ISwitchFactory>(
     const loading = loadingProp || handlingChange || labeledContext?.loading;
     const readOnly = readOnlyProp || loading || labeledContext?.readOnly;
     const disabledOrReadOnly = disabled || labeledContext?.disabled || readOnly;
+    const id = idProp ?? labeledContext?.id;
     const hasIcon =
       loading || (checked && !!checkedIcon) || (!checked && !!uncheckedIcon);
     const isOn = checked || alwaysOn;
@@ -112,7 +114,7 @@ export const Switch = componentFactory<ISwitchFactory>(
           checked={checked}
           onChange={handleChange}
           data-cy="switch"
-          id={labeledContext?.id}
+          id={id}
           required={labeledContext?.required}
           ref={handleRef}
           {...getStyles('input')}

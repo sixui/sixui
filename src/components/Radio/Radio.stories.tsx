@@ -11,9 +11,7 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {
-  children: 'Radio',
-} satisfies Partial<IRadioProps>;
+const defaultArgs = {} satisfies Partial<IRadioProps>;
 
 const variants: Array<IComponentPresentation<IRadioProps>> = [
   { legend: 'None', props: { variant: false } },

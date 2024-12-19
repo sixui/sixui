@@ -28,6 +28,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       loading: loadingProp,
       loadingAnimation = 'progressIndicator',
       loadingText,
+      disabled,
       readOnly: readOnlyProp,
       hasLeading: hasLeadingProp,
       hasTrailing: hasTrailingProp,
@@ -42,7 +43,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       (loadingProp || handlingClick) &&
       loadingAnimation === 'progressIndicator';
     const readOnly = readOnlyProp || loading;
-    const disabledOrReadOnly = other.disabled || readOnly;
+    const disabledOrReadOnly = disabled || readOnly;
 
     const hasLeadingIcon = !!leadingIcon;
     const hasTrailingIcon = !!trailingIcon;
@@ -203,6 +204,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
         classNames={mergeClassNames(classNames, {
           stateLayer: getStyles('stateLayer').className,
         })}
+        disabled={disabled}
         readOnly={readOnly}
         ref={forwardedRef}
         {...other}

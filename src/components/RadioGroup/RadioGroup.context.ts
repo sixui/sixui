@@ -1,6 +1,5 @@
-import { createContext } from 'react';
-
 import type { IAny, IMaybeAsync } from '~/helpers/types';
+import { createOptionalContext } from '~/helpers/createOptionalContext';
 
 export type IRadioGroupContextValue = {
   name?: string;
@@ -11,6 +10,5 @@ export type IRadioGroupContextValue = {
   value?: string;
 };
 
-export const RadioGroupContext = createContext<
-  IRadioGroupContextValue | undefined
->(undefined);
+export const [RadioGroupContextProvider, useRadioGroupContext] =
+  createOptionalContext<IRadioGroupContextValue>();

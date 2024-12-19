@@ -6,7 +6,7 @@ import type { IBoxProps } from '../Box';
 import type { IPaperBaseOwnProps } from '../PaperBase';
 import type { basicTemplateTheme, ISwitchThemeFactory } from './Switch.css';
 
-export interface ISwitchOwnProps {
+export interface ISwitchOwnProps extends IPaperBaseOwnProps {
   checked?: boolean;
   defaultChecked?: boolean;
   onChange?: (
@@ -20,11 +20,11 @@ export interface ISwitchOwnProps {
   checkedIcon?: React.ReactNode | true;
   uncheckedIcon?: React.ReactNode | true;
   alwaysOn?: boolean;
+  id?: string;
 }
 
 export interface ISwitchProps
   extends IBoxProps,
-    IPaperBaseOwnProps,
     IComponentThemeProps<ISwitchThemeFactory>,
     ISwitchOwnProps {}
 
