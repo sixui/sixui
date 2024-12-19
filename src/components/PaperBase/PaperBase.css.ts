@@ -53,7 +53,7 @@ export const [tokensClassName, tokens] = createTheme({
       disabled: themeTokens.state.outlineOpacity.disabled,
     },
     width: {
-      normal: px(themeTokens.outline.width.xs),
+      normal: px(0),
       focused: 'inherit',
       hovered: 'inherit',
       pressed: 'inherit',
@@ -142,7 +142,7 @@ const classNames = createStyles({
     // Separate node to support opacity changes.
     backgroundColor: tokens.container.color.normal,
     borderRadius: 'inherit',
-    inset: px(tokens.outline.width.normal),
+    inset: `round(up, ${tokens.outline.width.normal}, 1px)`,
     position: 'absolute',
     zIndex: -1,
     opacity: tokens.container.opacity.normal,
@@ -197,7 +197,7 @@ const classNames = createStyles({
     inset: 0,
     pointerEvents: 'none',
     borderStyle: tokens.outline.style,
-    borderWidth: `max(${px(tokens.outline.width.normal)}, 1px)`,
+    borderWidth: `round(up, ${px(tokens.outline.width.normal)}, 1px)`,
     borderColor: tokens.outline.color.normal,
     borderRadius: 'inherit',
 
@@ -207,7 +207,7 @@ const classNames = createStyles({
           tokens.outline.color.focused,
           tokens.outline.color.normal,
         ),
-        borderWidth: `max(${px(
+        borderWidth: `round(up, ${px(
           fallbackVar(
             tokens.outline.width.focused,
             tokens.outline.width.normal,
@@ -219,7 +219,7 @@ const classNames = createStyles({
           tokens.outline.color.hovered,
           tokens.outline.color.normal,
         ),
-        borderWidth: `max(${px(
+        borderWidth: `round(up, ${px(
           fallbackVar(
             tokens.outline.width.hovered,
             tokens.outline.width.normal,
@@ -231,7 +231,7 @@ const classNames = createStyles({
           tokens.outline.color.pressed,
           tokens.outline.color.normal,
         ),
-        borderWidth: `max(${px(
+        borderWidth: `round(up, ${px(
           fallbackVar(
             tokens.outline.width.pressed,
             tokens.outline.width.normal,
@@ -243,7 +243,7 @@ const classNames = createStyles({
           tokens.outline.color.disabled,
           tokens.outline.color.normal,
         ),
-        borderWidth: `max(${px(
+        borderWidth: `round(up, ${px(
           fallbackVar(
             tokens.outline.width.disabled,
             tokens.outline.width.normal,

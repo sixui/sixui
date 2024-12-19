@@ -2,6 +2,7 @@ import type { IIconButtonThemeFactory } from './IconButton.css';
 import type { IIconButtonFactory } from './IconButton.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
+import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Button } from '../Button';
 import { iconButtonTheme, iconButtonThemeVariants } from './IconButton.css';
@@ -42,7 +43,9 @@ export const IconButton = polymorphicComponentFactory<IIconButtonFactory>(
       <Button
         {...getStyles('root')}
         variant={false}
-        classNames={classNames}
+        classNames={mergeClassNames(classNames, {
+          stateLayer: getStyles('stateLayer').className,
+        })}
         leadingIcon={selected ? (selectedIcon ?? icon) : icon}
         ref={forwardedRef}
         {...other}

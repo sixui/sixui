@@ -39,37 +39,6 @@ const [tokensClassName, tokens] = createTheme({
     withEndSlot: px(space(2)),
   },
   height: px(32),
-  container: {
-    color: {
-      normal: themeTokens.colorScheme.surfaceContainerLow,
-    },
-    shape: px(themeTokens.shape.corner.sm),
-  },
-  container$elevated: {
-    elevation: {
-      normal: elevationLevelPreset[1],
-      focused: elevationLevelPreset[1],
-      hovered: elevationLevelPreset[2],
-      pressed: elevationLevelPreset[1],
-      disabled: elevationLevelPreset[0],
-    },
-    color: {
-      normal: themeTokens.colorScheme.surfaceContainerLow,
-      disabled: themeTokens.colorScheme.onSurface,
-    },
-  },
-  container$selected: {
-    color: {
-      normal: themeTokens.colorScheme.secondaryContainer,
-      disabled: themeTokens.colorScheme.onSurface,
-    },
-  },
-  container$avatar: {
-    leadingSpace: {
-      withStartSlot: px(space(1)),
-    },
-    shape: px(themeTokens.shape.corner.full),
-  },
   icon: {
     size: px(18),
     color: {
@@ -125,7 +94,12 @@ const classNames = createStyles({
   root: {
     vars: {
       ...createTokensVars(PaperBase.theme.tokens, {
-        container: tokens.container,
+        container: {
+          color: {
+            normal: themeTokens.colorScheme.surfaceContainerLow,
+          },
+          shape: px(themeTokens.shape.corner.sm),
+        },
       }),
       ...createTokensVars(Button.theme.tokens, {
         leadingSpace: tokens.leadingSpace,
@@ -151,10 +125,34 @@ const classNames = createStyles({
         }),
       },
       [getModifierSelector<IModifier>({
+        elevated: false,
+      })]: {
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          outline: {
+            style: 'solid',
+            width: {
+              normal: themeTokens.outline.width.xs,
+            },
+          },
+        }),
+      },
+      [getModifierSelector<IModifier>({
         elevated: true,
       })]: {
         vars: createTokensVars(PaperBase.theme.tokens, {
-          container: tokens.container$elevated,
+          container: {
+            elevation: {
+              normal: elevationLevelPreset[1],
+              focused: elevationLevelPreset[1],
+              hovered: elevationLevelPreset[2],
+              pressed: elevationLevelPreset[1],
+              disabled: elevationLevelPreset[0],
+            },
+            color: {
+              normal: themeTokens.colorScheme.surfaceContainerLow,
+              disabled: themeTokens.colorScheme.onSurface,
+            },
+          },
         }),
       },
       [getModifierSelector<IModifier>({
@@ -162,7 +160,12 @@ const classNames = createStyles({
       })]: {
         vars: {
           ...createTokensVars(PaperBase.theme.tokens, {
-            container: tokens.container$selected,
+            container: {
+              color: {
+                normal: themeTokens.colorScheme.secondaryContainer,
+                disabled: themeTokens.colorScheme.onSurface,
+              },
+            },
           }),
           ...createTokensVars(Button.theme.tokens, {
             icon: tokens.icon$selected,
@@ -198,9 +201,14 @@ const classNames = createStyles({
       })]: {
         vars: {
           ...createTokensVars(PaperBase.theme.tokens, {
-            container: tokens.container$avatar,
+            container: {
+              shape: px(themeTokens.shape.corner.full),
+            },
           }),
           ...createTokensVars(Button.theme.tokens, {
+            leadingSpace: {
+              withStartSlot: px(space(1)),
+            },
             icon: tokens.icon$avatar,
           }),
         },

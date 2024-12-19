@@ -83,7 +83,6 @@ const classNames = createStyles({
     }),
 
     display: 'inline-flex',
-    outline: 'none',
     justifyContent: 'center',
     alignItems: 'center',
     justifyItems: 'center',
@@ -400,6 +399,9 @@ export const buttonThemeVariants = {
         ...createTokensVars(PaperBase.theme.tokens, {
           outline: {
             style: 'solid',
+            width: {
+              normal: themeTokens.outline.width.xs,
+            },
           },
         }),
         ...createTokensVars(tokens, {
