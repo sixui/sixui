@@ -2,7 +2,6 @@ import { keyframes } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
@@ -111,7 +110,7 @@ const classNames = createStyles({
     animationFillMode: 'both',
     animationDuration: `${arcDuration}, ${cycleDuration}`,
     animationTimingFunction: indeterminateEasing,
-    borderWidth: `round(up, ${px(parentStyles.tokens.strokeWidth)}, ${px(1)})`,
+    borderWidth: parentStyles.tokens.strokeWidth,
     selectors: {
       [getModifierSelector<IModifier>('disabled', root)]: {
         borderTopColor: parentStyles.tokens.color.disabled,

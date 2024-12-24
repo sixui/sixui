@@ -29,12 +29,18 @@ const [tokensClassName, tokens] = createTheme({
   },
 });
 
+const ANTIALIASING_EPSILON = '0.5px';
+const MASK_RADIUS = calc.subtract(
+  calc.divide(parentStyles.tokens.size, 2),
+  parentStyles.tokens.strokeWidth,
+);
+
 const classNames = createStyles({
   root: {
     borderRadius: themeTokens.shape.corner.circle,
   },
   ring: ({ root }) => ({
-    mask: `radial-gradient(transparent ${calc.subtract(calc.divide(parentStyles.tokens.size, 2), parentStyles.tokens.strokeWidth)}, black ${calc.subtract(calc.divide(parentStyles.tokens.size, 2), parentStyles.tokens.strokeWidth)})`,
+    mask: `radial-gradient(transparent ${calc.subtract(MASK_RADIUS, ANTIALIASING_EPSILON)}, black ${calc.add(MASK_RADIUS, ANTIALIASING_EPSILON)})`,
 
     selectors: {
       [getModifierSelector<IModifier>('disabled', root)]: {

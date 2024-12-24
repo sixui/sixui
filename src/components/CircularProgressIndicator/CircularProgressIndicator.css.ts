@@ -18,7 +18,7 @@ const [tokensClassName, tokens] = createTheme({
   },
   size: calc.multiply('1em', themeTokens.scale),
   containerPadding: px(0),
-  strokeWidth: px(2),
+  strokeWidth: `round(up, ${px(2)}, ${px(1)})`,
 });
 
 const classNames = createStyles({
