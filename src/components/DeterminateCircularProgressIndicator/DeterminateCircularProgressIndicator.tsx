@@ -41,9 +41,12 @@ export const DeterminateCircularProgressIndicator =
         });
 
       const value0 = zeroBased ? 0 : min;
-      const pct = Math.min((value - value0) / (max - value0), 1);
-      const dashOffset = (1 - pct) * 100;
+      const progress = Math.min((value - value0) / (max - value0), 1);
       const hasContent = withLabel || !!children;
+      const rotationDegrees = progress * 360;
+      const formattedValue = labelFormatter
+        ? labelFormatter(value)
+        : `${Math.round(progress * 100)}%`;
 
       return (
         <Box
@@ -52,49 +55,18 @@ export const DeterminateCircularProgressIndicator =
           role="progressbar"
           {...other}
         >
-          XXX
-        </Box>
-      );
-
-      return (
-        <Box
-          {...getStyles('root')}
-          ref={forwardedRef}
-          role="progressbar"
-          {...other}
-        >
-          <div {...getStyles('inner')}>
-            <div
-              {...getStyles(['layer', 'progress'])}
-              role="progressbar"
-              aria-valuemin={min}
-              aria-valuemax={max}
-              aria-valuenow={value}
-            >
-              {/* Note: dash-array/offset are relative to Setting `pathLength`
-            but Chrome seems to render this inaccurately and using a large
-            viewbox helps. */}
-              <svg viewBox="0 0 4800 4800" {...getStyles(['layer', 'svg'])}>
-                <circle
-                  {...getStyles(['layer', 'svgCircle', 'track'])}
-                  pathLength="100"
-                />
-                <circle
-                  {...getStyles(['layer', 'svgCircle', 'activeTrack'])}
-                  pathLength="100"
-                  strokeDashoffset={dashOffset}
-                />
-              </svg>
-              {hasContent ? (
-                <div {...getStyles(['layer', 'label'])}>
-                  {children ??
-                    (labelFormatter
-                      ? labelFormatter(value)
-                      : `${Math.round(pct * 100)}%`)}
-                </div>
-              ) : null}
+          <div
+            {...getStyles(['ring', 'ring$progress'], {
+              style: {
+                background: `conic-gradient(currentColor ${rotationDegrees}deg, transparent ${rotationDegrees}deg 360deg)`,
+              },
+            })}
+          />
+          {hasContent && (
+            <div {...getStyles(['layer', 'label'])}>
+              {children ?? formattedValue}
             </div>
-          </div>
+          )}
         </Box>
       );
     },

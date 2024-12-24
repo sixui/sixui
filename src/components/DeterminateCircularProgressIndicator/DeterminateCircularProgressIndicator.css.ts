@@ -6,7 +6,6 @@ import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactor
 import { deepMerge } from '~/helpers/deepMerge';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
-import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
@@ -32,59 +31,24 @@ const [tokensClassName, tokens] = createTheme({
 
 const classNames = createStyles({
   root: {
-    width:
+    borderRadius: themeTokens.shape.corner.circle,
   },
-  inner: {
-    position: 'absolute',
-    width: px(
-      calc.add(
-        calc.multiply(parentStyles.tokens.size, 1.1),
-        calc.divide(parentStyles.tokens.strokeWidth, 2),
-      ),
-    ),
-    height: px(
-      calc.add(
-        calc.multiply(parentStyles.tokens.size, 1.1),
-        calc.divide(parentStyles.tokens.strokeWidth, 2),
-      ),
-    ),
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-  },
-  svg: {
-    transform: 'rotate(-90deg)',
-  },
-  svgCircle: {
-    // Hack to use svg attributes without TS error.
-    ...{
-      cx: '50%',
-      cy: '50%',
-      // Note, pathLength is set so this can be normalized.
-      strokeDasharray: '100',
-      fill: 'transparent',
-      r: '45%',
-      strokeWidth: parentStyles.tokens.strokeWidth,
-      strokeLinecap: 'round',
-      vectorEffect: 'non-scaling-stroke',
-    },
-  },
-  track: {
-    stroke: 'transparent',
-  },
-  activeTrack: ({ root }) => ({
-    transitionProperty: 'stroke-dashoffset',
-    transitionDuration: themeTokens.motion.duration.long.$2,
-    transitionTimingFunction: 'cubic-bezier(0, 0, 0.2, 1)',
-    stroke: parentStyles.tokens.color.normal,
+  ring: ({ root }) => ({
+    mask: `radial-gradient(transparent ${calc.subtract(calc.divide(parentStyles.tokens.size, 2), parentStyles.tokens.strokeWidth)}, black ${calc.subtract(calc.divide(parentStyles.tokens.size, 2), parentStyles.tokens.strokeWidth)})`,
 
     selectors: {
       [getModifierSelector<IModifier>('disabled', root)]: {
-        stroke: parentStyles.tokens.color.disabled,
-        opacity: parentStyles.tokens.opacity.disabled,
+        color: tokens.label.color.disabled,
+        opacity: themeTokens.state.opacity.disabled,
       },
     },
   }),
+  ring$progress: {
+    position: 'absolute',
+    inset: 0,
+    borderRadius: 'inherit',
+    overflow: 'hidden',
+  },
   label: ({ root }) => ({
     display: 'flex',
     alignItems: 'center',
