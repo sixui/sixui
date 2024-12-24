@@ -14,7 +14,7 @@ import { themeTokens } from '../ThemeProvider';
 
 type IModifier = IInteraction | 'disabled' | 'loading' | 'checked';
 
-const DENSITY = px(getDensity({ min: -2, max: 0 }));
+const DENSITY = px(getDensity({ min: -1, max: 0 }));
 
 const innerCircleGrowKeyframes = keyframes({
   '0%': { transform: 'scale(0)' },
