@@ -87,6 +87,7 @@ const UnboundedDemo: React.FC<IDemoProps> = (props) => {
         surface="$transparent"
         corner="$sm"
         outline="$xs"
+        outlineStyle="solid"
         context={stateLayer}
       />
       <FocusRing visible={stateLayer.interactionsContext.state.focused} />

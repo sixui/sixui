@@ -177,7 +177,6 @@ export const useInteractions = <TElement extends HTMLElement>(
         onHoverEnd({} as React.PointerEvent),
       );
       activeTriggers.length = 0;
-      setHovered(false);
     }
   }, [disabled]);
 
