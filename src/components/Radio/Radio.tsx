@@ -41,8 +41,15 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
   const radioGroupContext = useRadioGroupContext();
   const [handlingChange, setHandlingChange] = useState(false);
 
-  const loading = loadingProp || handlingChange || labeledContext?.loading;
-  const readOnly = (readOnlyProp ?? labeledContext?.readOnly) || loading;
+  const loading =
+    loadingProp ||
+    handlingChange ||
+    labeledContext?.loading ||
+    (radioGroupContext?.loading && radioGroupContext.nextValue === value);
+  const readOnly =
+    (readOnlyProp ?? labeledContext?.readOnly) ||
+    labeledContext?.loading ||
+    loading;
   const disabledOrReadOnly = disabled || labeledContext?.disabled || readOnly;
   const required = requiredProp ?? labeledContext?.required;
   const id = idProp ?? labeledContext?.id;

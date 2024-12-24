@@ -1,84 +1,108 @@
-import { forwardRef, useImperativeHandle, useMemo, useRef } from 'react';
-import { useMergeRefs } from '@floating-ui/react';
+import {
+  useCallback,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import type { IRadioGroupContextValue } from './RadioGroup.context';
-import type { IRadioGroupProps } from './RadioGroup.types';
+import type { IRadioGroupFactory } from './RadioGroup.types';
+import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useId } from '~/hooks/useId';
-import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
-import { Base } from '../Base';
-import { RadioGroupContext } from './RadioGroup.context';
+import { useMergeRefs } from '~/hooks/useMergeRefs';
+import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import { useProps } from '~/utils/component/useProps';
+import { Box } from '../Box';
+import { RadioGroupContextProvider } from './RadioGroup.context';
 
-// https://github.com/mui/material-ui/blob/master/packages/mui-material/src/RadioGroup/RadioGroup.js
-// https://github.com/mui/material-ui/blob/master/packages/mui-material/src/RadioGroup/RadioGroup.d.ts
+const COMPONENT_NAME = 'RadioGroup';
 
-export const RadioGroup = createPolymorphicComponent<'div', IRadioGroupProps>(
-  forwardRef<HTMLDivElement, IRadioGroupProps>(
-    function RadioGroup(props, forwardedRef) {
-      const {
-        sx,
-        children,
-        onChange,
-        value: valueProp,
-        defaultValue,
-        name: nameProp,
-        ...other
-      } = props;
+export const RadioGroup = polymorphicComponentFactory<IRadioGroupFactory>(
+  (props, forwardedRef) => {
+    const {
+      children,
+      onChange,
+      value: valueProp,
+      defaultValue,
+      name: nameProp,
+      ...other
+    } = useProps({ componentName: COMPONENT_NAME, props });
 
-      const hostRef = useRef<HTMLInputElement>(null);
-      const [value, setValue] = useControlledValue({
-        controlled: valueProp,
-        default: defaultValue,
-        name: 'RadioGroup',
-      });
+    const hostRef = useRef<HTMLInputElement>(null);
+    const [handlingChange, setHandlingChange] = useState(false);
+    const [value, setValue] = useControlledValue({
+      controlled: valueProp,
+      default: defaultValue,
+      name: COMPONENT_NAME,
+    });
+    const [nextValue, setNextValue] = useState(value);
+    const name = useId(nameProp);
+    const handleRef = useMergeRefs(hostRef, forwardedRef);
 
-      useImperativeHandle(
-        forwardedRef,
-        () =>
-          ({
-            focus: () => {
-              const input =
-                hostRef.current?.querySelector(
-                  'input:not(:disabled):checked',
-                ) ??
-                hostRef.current?.querySelector('input:not(:disabled)') ??
-                undefined;
+    useImperativeHandle(
+      forwardedRef,
+      () =>
+        ({
+          focus: () => {
+            const input =
+              hostRef.current?.querySelector('input:not(:disabled):checked') ??
+              hostRef.current?.querySelector('input:not(:disabled)') ??
+              undefined;
 
-              if (input) {
-                (input as HTMLInputElement).focus();
-              }
-            },
-          }) as HTMLDivElement,
-        [],
-      );
-
-      const handleRef = useMergeRefs([forwardedRef, hostRef]);
-      const name = useId(nameProp);
-
-      const contextValue = useMemo(() => {
-        return {
-          name,
-          onChange: (event, value) => {
-            setValue(value);
-            onChange?.(event, value);
+            if (input) {
+              (input as HTMLInputElement).focus();
+            }
           },
-          value,
-        } satisfies IRadioGroupContextValue;
-      }, [name, onChange, value, setValue]);
+        }) as HTMLDivElement,
+      [],
+    );
 
-      return (
-        <RadioGroupContext.Provider value={contextValue}>
-          <Base
-            sx={sx}
-            role="radiogroup"
-            data-cy="radioGroup"
-            {...other}
-            ref={handleRef}
-          >
-            {children}
-          </Base>
-        </RadioGroupContext.Provider>
-      );
-    },
-  ),
+    const handleChange = useCallback(
+      (
+        event: React.ChangeEvent<HTMLInputElement>,
+        nextValue: React.InputHTMLAttributes<HTMLInputElement>['value'],
+      ) => {
+        if (handlingChange) {
+          return;
+        }
+
+        setHandlingChange(true);
+        setNextValue(nextValue);
+
+        void executeLazyPromise(
+          () => onChange?.(event, nextValue) as Promise<void>,
+          setHandlingChange,
+        ).finally(() => {
+          {
+            setValue(nextValue);
+            setNextValue(undefined);
+            setHandlingChange(false);
+          }
+        });
+      },
+      [handlingChange, onChange, setValue],
+    );
+
+    const contextValue = useMemo(() => {
+      return {
+        name,
+        loading: handlingChange,
+        onChange: handleChange,
+        value,
+        nextValue,
+      } satisfies IRadioGroupContextValue;
+    }, [name, handleChange, value, nextValue, handlingChange]);
+
+    return (
+      <RadioGroupContextProvider value={contextValue}>
+        <Box role="radiogroup" ref={handleRef} {...other}>
+          {children}
+        </Box>
+      </RadioGroupContextProvider>
+    );
+  },
 );
+
+RadioGroup.displayName = `@sixui/${COMPONENT_NAME}`;

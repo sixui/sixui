@@ -1,14 +1,16 @@
 import type { IAny, IMaybeAsync } from '~/helpers/types';
 import { createOptionalContext } from '~/helpers/createOptionalContext';
 
-export type IRadioGroupContextValue = {
+export interface IRadioGroupContextValue {
   name?: string;
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement>,
-    value: string | undefined,
+    value: React.InputHTMLAttributes<HTMLInputElement>['value'],
   ) => IMaybeAsync<IAny>;
-  value?: string;
-};
+  value?: React.InputHTMLAttributes<HTMLInputElement>['value'];
+  nextValue?: React.InputHTMLAttributes<HTMLInputElement>['value'];
+  loading?: boolean;
+}
 
 export const [RadioGroupContextProvider, useRadioGroupContext] =
   createOptionalContext<IRadioGroupContextValue>();

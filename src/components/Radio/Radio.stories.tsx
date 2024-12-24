@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { useId, useState } from 'react';
+import { useCallback, useId, useState } from 'react';
 
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IRadioProps } from './Radio.types';
@@ -105,18 +105,21 @@ const ControlledRadioDemo: React.FC<IRadioProps> = (props) => {
   const name = useId();
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (
-    ...args: [
-      event: React.ChangeEvent<HTMLInputElement>,
-      value: React.InputHTMLAttributes<HTMLInputElement>['value'],
-    ]
-  ): Promise<void> => {
-    setLoading(true);
+  const handleChange = useCallback(
+    (
+      ...args: [
+        event: React.ChangeEvent<HTMLInputElement>,
+        value: React.InputHTMLAttributes<HTMLInputElement>['value'],
+      ]
+    ): Promise<void> => {
+      setLoading(true);
 
-    return sbHandleEvent('onChange', args, 1000)
-      .then(() => setValue(args[1]))
-      .finally(() => setLoading(false));
-  };
+      return sbHandleEvent('onChange', args, 1000)
+        .then(() => setValue(args[1]))
+        .finally(() => setLoading(false));
+    },
+    [],
+  );
 
   return (
     <Flex direction="row" gap="$8">
