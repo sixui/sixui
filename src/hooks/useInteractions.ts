@@ -184,7 +184,10 @@ export const useInteractions = <TElement extends HTMLElement>(
   const triggerProps = useMemo<DOMAttributes | undefined>(
     () =>
       disabled
-        ? undefined
+        ? {
+            onPointerLeave: hoverProps?.onPointerLeave,
+            onBlur: focusProps.onBlur,
+          }
         : mergeProps(
             events?.press ? pressProps : undefined,
             events?.hover ? hoverProps : undefined,
