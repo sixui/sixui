@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import type { IAvatarThemeFactory } from './Avatar.css';
 import type { IAvatarFactory } from './Avatar.types';
@@ -10,6 +11,7 @@ import { useProps } from '~/utils/component/useProps';
 import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Paper } from '../Paper';
+import { paperBaseTheme } from '../PaperBase/PaperBase.css';
 import { avatarTheme } from './Avatar.css';
 
 const COMPONENT_NAME = 'Avatar';
@@ -68,7 +70,10 @@ export const Avatar = polymorphicComponentFactory<IAvatarFactory>(
         {...getStyles('root', {
           style: randomColorHsl
             ? {
-                backgroundColor: getHslColor(randomColorHsl),
+                ...assignInlineVars({
+                  [paperBaseTheme.tokens.container.color.normal]:
+                    getHslColor(randomColorHsl),
+                }),
                 color: '#000',
               }
             : undefined,
