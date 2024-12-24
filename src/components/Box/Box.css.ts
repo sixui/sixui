@@ -60,6 +60,8 @@ const sprinklesProps = defineProperties({
     height: spacingValues,
     minHeight: spacingValues,
     maxHeight: spacingValues,
+    alignItems: true,
+    justifyContent: true,
     textTransform: true,
     textDecoration: true,
     textAlign: true,

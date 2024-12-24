@@ -23,6 +23,7 @@ const defaultArgs = {
       </Box>
     </>
   ),
+  onClick: () => {},
 } satisfies Partial<IButtonBaseProps>;
 
 const rows: Array<IComponentPresentation<IButtonBaseProps>> = [
@@ -67,6 +68,8 @@ export const Styled: IStory = {
   ),
   args: {
     ...defaultArgs,
+    display: 'flex',
+    alignItems: 'center',
     elevation: '$1',
     px: '$3',
     h: '$10',

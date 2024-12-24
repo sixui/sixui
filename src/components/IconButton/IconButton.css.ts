@@ -1,7 +1,9 @@
 import { createTheme } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import type { IIconButtonVariant } from './IconButton.types';
+import { getDensity } from '~/helpers/styles/getDensity';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
@@ -13,6 +15,8 @@ import { StateLayer } from '../StateLayer';
 import { themeTokens } from '../ThemeProvider';
 
 type IModifier = 'toggle' | 'selected' | 'disabled';
+
+const DENSITY = px(getDensity({ min: -4, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
   size: px(40),
@@ -50,7 +54,8 @@ const [tokensClassName, tokens] = createTheme({
 
 const classNames = createStyles({
   root: {
-    width: tokens.size,
+    minWidth: 'unset',
+    width: calc.add(tokens.size, DENSITY),
     flexShrink: 0,
 
     vars: {

@@ -25,4 +25,23 @@ export const Variants: IStory = {
   args: defaultArgs,
 };
 
+export const Scales: IStory = {
+  render: (props) => (
+    <IndicatorShowcase
+      props={props}
+      cols={[
+        { legend: 'Extra small', props: { scale: 'xs' } },
+        { legend: 'Small', props: { scale: 'sm' } },
+        { legend: 'Medium', props: { scale: 'md' } },
+        { legend: 'Large', props: { scale: 'lg' } },
+        { legend: 'Extra large', props: { scale: 'xl' } },
+      ]}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    processing: true,
+  },
+};
+
 export default meta;
