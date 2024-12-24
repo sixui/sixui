@@ -1,13 +1,14 @@
 import { keyframes } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { ICircularProgressIndicatorModifier } from '../CircularProgressIndicator/CircularProgressIndicator.css';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { circularProgressIndicatorTheme } from '../CircularProgressIndicator/CircularProgressIndicator.css';
 
-type IModifier = 'disabled';
+type IModifier = ICircularProgressIndicatorModifier;
 
 const parentStyles = circularProgressIndicatorTheme;
 

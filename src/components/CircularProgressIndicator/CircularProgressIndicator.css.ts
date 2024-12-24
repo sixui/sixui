@@ -8,9 +8,12 @@ import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { themeTokens } from '../ThemeProvider';
 
+export type ICircularProgressIndicatorModifier = 'disabled' | 'negative';
+
 const [tokensClassName, tokens] = createTheme({
   color: {
     normal: 'currentColor',
+    negative: themeTokens.colorScheme.error,
     disabled: themeTokens.colorScheme.onSurface,
   },
   opacity: {
@@ -35,17 +38,8 @@ const classNames = createStyles({
     height: tokens.size,
 
     selectors: {
-      [getModifierSelector({ size: 'xs' })]: {
-        fontSize: '0.6em',
-      },
-      [getModifierSelector({ size: 'sm' })]: {
-        fontSize: '0.8em',
-      },
-      [getModifierSelector({ size: 'lg' })]: {
-        fontSize: '1.2em',
-      },
-      [getModifierSelector({ size: 'xl' })]: {
-        fontSize: '1.4em',
+      [getModifierSelector<ICircularProgressIndicatorModifier>('negative')]: {
+        color: tokens.color.negative,
       },
     },
   },
@@ -53,6 +47,8 @@ const classNames = createStyles({
     position: 'absolute',
     inset: 0,
     borderColor: 'inherit',
+    borderRadius: 'inherit',
+    overflow: 'hidden',
   },
   progress: {
     flexGrow: 1,

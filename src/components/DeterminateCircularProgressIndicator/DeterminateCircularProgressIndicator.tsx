@@ -28,6 +28,21 @@ export const DeterminateCircularProgressIndicator =
         ...other
       } = useProps({ componentName: COMPONENT_NAME, props });
 
+      const value0 = zeroBased ? 0 : min;
+      const progress = (value - value0) / (max - value0);
+      const normalizedProgress = Math.min(
+        1,
+        Math.max(zeroBased ? -1 : 0, progress),
+      );
+      const isNegative = normalizedProgress < 0;
+      const absoluteProgress = Math.abs(normalizedProgress);
+      const rotationDegrees = absoluteProgress * 360;
+
+      const hasContent = withLabel || !!children;
+      const formattedValue = labelFormatter
+        ? labelFormatter(value)
+        : `${Math.round(normalizedProgress * 100)}%`;
+
       const { getStyles } =
         useComponentTheme<IDeterminateCircularProgressIndicatorThemeFactory>({
           componentName: COMPONENT_NAME,
@@ -37,16 +52,11 @@ export const DeterminateCircularProgressIndicator =
           style,
           theme: determinateCircularProgressIndicatorTheme,
           variant,
-          modifiers: { disabled },
+          modifiers: {
+            disabled,
+            negative: isNegative,
+          },
         });
-
-      const value0 = zeroBased ? 0 : min;
-      const progress = Math.min((value - value0) / (max - value0), 1);
-      const hasContent = withLabel || !!children;
-      const rotationDegrees = progress * 360;
-      const formattedValue = labelFormatter
-        ? labelFormatter(value)
-        : `${Math.round(progress * 100)}%`;
 
       return (
         <Box
@@ -55,18 +65,26 @@ export const DeterminateCircularProgressIndicator =
           role="progressbar"
           {...other}
         >
-          <div
-            {...getStyles(['ring', 'ring$progress'], {
-              style: {
-                background: `conic-gradient(currentColor ${rotationDegrees}deg, transparent ${rotationDegrees}deg 360deg)`,
-              },
-            })}
-          />
-          {hasContent && (
-            <div {...getStyles(['layer', 'label'])}>
-              {children ?? formattedValue}
-            </div>
-          )}
+          <div {...getStyles(['layer', 'progress'])}>
+            <div
+              {...getStyles(['layer', 'ring'], {
+                style: {
+                  background: isNegative
+                    ? `conic-gradient(transparent
+                ${360 - rotationDegrees}deg, currentColor 0
+                360deg)`
+                    : `conic-gradient(currentColor
+                ${rotationDegrees}deg, transparent ${rotationDegrees}deg
+                360deg)`,
+                },
+              })}
+            />
+            {hasContent && (
+              <div {...getStyles(['layer', 'label'])}>
+                {children ?? formattedValue}
+              </div>
+            )}
+          </div>
         </Box>
       );
     },

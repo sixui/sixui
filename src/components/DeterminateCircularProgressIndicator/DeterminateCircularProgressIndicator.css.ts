@@ -3,6 +3,7 @@ import { calc } from '@vanilla-extract/css-utils';
 import cx from 'clsx';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { ICircularProgressIndicatorModifier } from '../CircularProgressIndicator/CircularProgressIndicator.css';
 import { deepMerge } from '~/helpers/deepMerge';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
@@ -12,7 +13,7 @@ import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { themeTokens } from '../ThemeProvider';
 import { circularProgressIndicatorTheme } from '../CircularProgressIndicator/CircularProgressIndicator.css';
 
-type IModifier = 'disabled';
+type IModifier = ICircularProgressIndicatorModifier;
 
 const parentStyles = circularProgressIndicatorTheme;
 
@@ -33,6 +34,7 @@ const ANTIALIASING_EPSILON = '0.5px';
 const MASK_RADIUS = calc.subtract(
   calc.divide(parentStyles.tokens.size, 2),
   parentStyles.tokens.strokeWidth,
+  parentStyles.tokens.containerPadding,
 );
 
 const classNames = createStyles({
@@ -49,12 +51,6 @@ const classNames = createStyles({
       },
     },
   }),
-  ring$progress: {
-    position: 'absolute',
-    inset: 0,
-    borderRadius: 'inherit',
-    overflow: 'hidden',
-  },
   label: ({ root }) => ({
     display: 'flex',
     alignItems: 'center',

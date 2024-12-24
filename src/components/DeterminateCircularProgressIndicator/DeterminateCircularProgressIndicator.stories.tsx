@@ -149,9 +149,11 @@ export const ZeroBased: IStory = {
       props={props}
       cols={[
         { props: { value: -100 } },
-        { props: { value: -50 } },
+        { props: { value: -67 } },
+        { props: { value: -33 } },
         { props: { value: 0 } },
-        { props: { value: 50 } },
+        { props: { value: 33 } },
+        { props: { value: 67 } },
         { props: { value: 100 } },
       ]}
       rows={rows}
