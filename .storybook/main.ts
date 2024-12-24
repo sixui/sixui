@@ -8,12 +8,12 @@ const config: StorybookConfig = {
     options: {},
   },
   typescript: {
-    reactDocgen: 'react-docgen-typescript',
+    // reactDocgen: 'react-docgen-typescript',
+    reactDocgen: false,
   },
   core: {
     disableTelemetry: true, // 👈 Disables telemetry
   },
 };
 
-// eslint-disable-next-line import/no-default-export
 export default config;

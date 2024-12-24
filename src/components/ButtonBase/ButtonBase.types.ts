@@ -19,7 +19,8 @@ export interface IButtonBaseOwnProps {
   target?: React.AnchorHTMLAttributes<HTMLAnchorElement>['target'];
   rel?: string;
   disabled?: boolean;
-  onClick?: (event: React.MouseEvent<Element>) => IMaybeAsync<IAny>;
+  onClick?: ((event: React.MouseEvent<Element>) => IMaybeAsync<IAny>) | null;
+  touchTargetRenderer?: () => React.ReactNode;
 
   /**
    * If `true`, the component will be rendered in a disabled state, but will

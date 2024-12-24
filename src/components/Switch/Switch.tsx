@@ -31,6 +31,7 @@ export const Switch = componentFactory<ISwitchFactory>(
       checked: checkedProp,
       defaultChecked,
       onChange,
+      required: requiredProp,
       disabled,
       readOnly: readOnlyProp,
       loading: loadingProp,
@@ -52,6 +53,7 @@ export const Switch = componentFactory<ISwitchFactory>(
     const loading = loadingProp || handlingChange || labeledContext?.loading;
     const readOnly = readOnlyProp || loading || labeledContext?.readOnly;
     const disabledOrReadOnly = disabled || labeledContext?.disabled || readOnly;
+    const required = requiredProp ?? labeledContext?.required;
     const id = idProp ?? labeledContext?.id;
     const hasIcon =
       loading || (checked && !!checkedIcon) || (!checked && !!uncheckedIcon);
@@ -61,7 +63,6 @@ export const Switch = componentFactory<ISwitchFactory>(
       baseState: interactions,
       mergeStrategy: interactionsMergeStrategy,
       disabled: disabledOrReadOnly,
-      withoutRippleEffect: true,
     });
     const handleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
 
@@ -108,14 +109,22 @@ export const Switch = componentFactory<ISwitchFactory>(
         ref={forwardedRef}
         {...other}
       >
+        {!disabledOrReadOnly && (
+          <FocusRing
+            {...getStyles('focusRing')}
+            interactions={stateLayer.interactionsContext.state}
+          />
+        )}
+
         <input
           type="checkbox"
           role="switch"
           checked={checked}
           onChange={handleChange}
-          data-cy="switch"
           id={id}
-          required={labeledContext?.required}
+          required={required}
+          disabled={disabled}
+          readOnly={readOnly}
           ref={handleRef}
           {...getStyles('input')}
           {...stateLayer.interactionsContext.triggerProps}
@@ -147,13 +156,6 @@ export const Switch = componentFactory<ISwitchFactory>(
             </PaperBase>
           </div>
         </div>
-
-        {!disabled && (
-          <FocusRing
-            {...getStyles('focusRing')}
-            interactions={stateLayer.interactionsContext.state}
-          />
-        )}
       </PaperBase>
     );
   },

@@ -1,6 +1,9 @@
-import { createTheme } from '@vanilla-extract/css';
+import { createTheme, keyframes } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
+import type { IInteraction } from '~/hooks/useInteractions';
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { getDensity } from '~/helpers/styles/getDensity';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
@@ -9,7 +12,14 @@ import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { PaperBase } from '../PaperBase';
 import { themeTokens } from '../ThemeProvider';
 
-type IModifier = 'disabled';
+type IModifier = IInteraction | 'disabled' | 'loading' | 'checked';
+
+const DENSITY = px(getDensity({ min: -2, max: 0 }));
+
+const innerCircleGrowKeyframes = keyframes({
+  '0%': { transform: 'scale(0)' },
+  '100%': { transform: 'scale(1)' },
+});
 
 const [tokensClassName, tokens] = createTheme({
   icon: {
@@ -25,7 +35,7 @@ const [tokensClassName, tokens] = createTheme({
       disabled: themeTokens.state.opacity.disabled,
     },
   },
-  icon$selected: {
+  icon$checked: {
     color: {
       normal: themeTokens.colorScheme.primary,
       focused: themeTokens.colorScheme.primary,
@@ -41,8 +51,8 @@ const [tokensClassName, tokens] = createTheme({
 
 const classNames = createStyles({
   root: {
-    width: tokens.icon.size,
-    height: tokens.icon.size,
+    width: calc.add(tokens.icon.size, DENSITY),
+    height: calc.add(tokens.icon.size, DENSITY),
     display: 'flex',
     placeContent: 'center',
     placeItems: 'center',
@@ -61,10 +71,27 @@ const classNames = createStyles({
         },
         width: {
           normal: px(themeTokens.outline.width.sm),
-          disabled: px(themeTokens.outline.width.none),
+        },
+        opacity: {
+          disabled: themeTokens.state.opacity.disabled,
         },
       },
     }),
+
+    selectors: {
+      [getModifierSelector<IModifier>('loading')]: {
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          outline: {
+            width: {
+              normal: px(themeTokens.outline.width.none),
+            },
+          },
+        }),
+      },
+      [getModifierSelector<IModifier>('hovered')]: {
+        zIndex: 1,
+      },
+    },
   },
   stateLayer: {
     width: px(themeTokens.density.minTargetSize),
@@ -80,13 +107,147 @@ const classNames = createStyles({
     left: '50%',
     transform: 'translate(-50%, -50%)',
   },
-  input: {
-    display: 'none',
-  },
+  input: ({ root }) => ({
+    // Input is also touch target
+    appearance: 'none',
+    width: px(
+      calc.add(
+        themeTokens.density.minTargetSize,
+        calc.multiply(2, themeTokens.outline.width.sm),
+      ),
+    ),
+    height: px(
+      calc.add(
+        themeTokens.density.minTargetSize,
+        calc.multiply(2, themeTokens.outline.width.sm),
+      ),
+    ),
+    outline: 'none',
+    margin: 0,
+    position: 'absolute',
+    zIndex: 1,
+    cursor: 'pointer',
+    top: '50%',
+    transform: 'translate(-50%, -50%)',
+    left: '50%',
+
+    selectors: {
+      [getModifierSelector<IModifier>('disabled', root)]: {
+        cursor: 'default',
+        pointerEvents: 'none',
+      },
+    },
+  }),
   progressIndicator: {
     width: px(tokens.icon.size),
     height: px(tokens.icon.size),
   },
+  icon: ({ root }) => ({
+    inset: 0,
+    position: 'absolute',
+
+    selectors: {
+      [getModifierSelector<IModifier>({ checked: false }, root)]: {
+        fill: tokens.icon.color.normal,
+      },
+      [getModifierSelector<IModifier>(
+        {
+          checked: false,
+          focused: true,
+        },
+        root,
+      )]: {
+        fill: tokens.icon.color.focused,
+      },
+      [getModifierSelector<IModifier>(
+        {
+          checked: false,
+          hovered: true,
+        },
+        root,
+      )]: {
+        fill: tokens.icon.color.hovered,
+      },
+      [getModifierSelector<IModifier>(
+        {
+          checked: false,
+          pressed: true,
+        },
+        root,
+      )]: {
+        fill: tokens.icon.color.pressed,
+      },
+      [getModifierSelector<IModifier>(
+        {
+          checked: false,
+          disabled: true,
+        },
+        root,
+      )]: {
+        fill: tokens.icon.color.disabled,
+        opacity: tokens.icon.opacity.disabled,
+      },
+      [getModifierSelector<IModifier>({ checked: true }, root)]: {
+        fill: tokens.icon$checked.color.normal,
+      },
+      [getModifierSelector<IModifier>(
+        {
+          checked: true,
+          focused: true,
+        },
+        root,
+      )]: {
+        fill: tokens.icon$checked.color.focused,
+      },
+      [getModifierSelector<IModifier>(
+        {
+          checked: true,
+          hovered: true,
+        },
+        root,
+      )]: {
+        fill: tokens.icon$checked.color.hovered,
+      },
+      [getModifierSelector<IModifier>(
+        {
+          checked: true,
+          pressed: true,
+        },
+        root,
+      )]: {
+        fill: tokens.icon$checked.color.pressed,
+      },
+      [getModifierSelector<IModifier>(
+        {
+          checked: true,
+          disabled: true,
+        },
+        root,
+      )]: {
+        fill: tokens.icon$checked.color.disabled,
+        opacity: tokens.icon$checked.opacity.disabled,
+      },
+    },
+  }),
+  circle: {
+    transitionDuration: themeTokens.motion.duration.short.$1,
+    transitionTimingFunction: 'linear',
+  },
+  circle$inner: ({ root }) => ({
+    opacity: 0,
+    transformOrigin: 'center',
+    transitionProperty: 'opacity',
+
+    selectors: {
+      [getModifierSelector<IModifier>({ checked: true }, root)]: {
+        animationName: innerCircleGrowKeyframes,
+        animationDuration: themeTokens.motion.duration.medium.$2,
+        animationTimingFunction:
+          themeTokens.motion.easing.emphasized.decelerate,
+        opacity: 1,
+      },
+    },
+  }),
 });
 
 export type IRadioThemeFactory = IComponentThemeFactory<{

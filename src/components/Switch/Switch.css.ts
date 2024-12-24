@@ -86,6 +86,9 @@ const classNames = createStyles({
         width: {
           normal: px(themeTokens.outline.width.sm),
         },
+        opacity: {
+          disabled: themeTokens.state.opacity.disabled,
+        },
       },
     }),
 
@@ -104,6 +107,9 @@ const classNames = createStyles({
             },
           },
         }),
+      },
+      [getModifierSelector<IModifier>('hovered')]: {
+        zIndex: 1,
       },
     },
   },

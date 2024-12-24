@@ -1,3 +1,5 @@
+import { useCallback } from 'react';
+
 import type { IButtonBaseThemeFactory } from './ButtonBase.css';
 import type { IButtonBaseFactory } from './ButtonBase.types';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
@@ -35,6 +37,7 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
       href,
       target,
       rel,
+      touchTargetRenderer,
       ...other
     } = useProps({
       componentName: COMPONENT_NAME,
@@ -43,7 +46,8 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
 
     const sixuiContext = useSixuiContext();
     const disabledOrReadOnly = disabled || readOnly;
-    const isInteractive = !!href || !!other.onClick || as === 'input';
+    const isInteractive =
+      !!href || other.onClick !== undefined || as === 'input';
 
     const { getStyles } = useComponentTheme<IButtonBaseThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -94,6 +98,24 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
 
     const handleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
 
+    const renderTouchTarget = useCallback(
+      () =>
+        touchTargetRenderer !== undefined
+          ? touchTargetRenderer()
+          : !disabledOrReadOnly && (
+              <TouchTarget
+                {...getStyles('touchTarget')}
+                interactions={stateLayer.interactionsContext.state}
+              />
+            ),
+      [
+        disabledOrReadOnly,
+        getStyles,
+        stateLayer.interactionsContext.state,
+        touchTargetRenderer,
+      ],
+    );
+
     return (
       <Paper
         {...getStyles('root')}
@@ -105,14 +127,9 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
         interactions={stateLayer.interactionsContext.state}
         {...mergeProps(stateLayer.interactionsContext.triggerProps, other)}
       >
-        {!disabledOrReadOnly && (
-          <TouchTarget
-            {...getStyles('touchTarget')}
-            interactions={stateLayer.interactionsContext.state}
-          />
-        )}
+        {renderTouchTarget()}
         <StateLayer {...getStyles('stateLayer')} context={stateLayer} />
-        {!disabled && focusRing !== false && (
+        {!disabledOrReadOnly && focusRing !== false && (
           <FocusRing
             {...getStyles('focusRing')}
             interactions={stateLayer.interactionsContext.state}
