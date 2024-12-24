@@ -126,6 +126,20 @@ export const Scales: IStory = {
   args: defaultArgs,
 };
 
+export const Densities: IStory = {
+  render: (props) => (
+    <SwitchShowcase
+      props={props}
+      cols={[
+        { legend: '-2', props: { density: -2 } },
+        { legend: '-1', props: { density: -1 } },
+        { legend: '0', props: { density: 0 } },
+      ]}
+    />
+  ),
+  args: defaultArgs,
+};
+
 export const Configurations: IStory = {
   render: (props) => (
     <SwitchShowcase

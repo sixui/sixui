@@ -187,7 +187,7 @@ const classNames = createStyles({
     transitionTimingFunction: themeTokens.motion.easing.standard.normal,
     transitionDuration: themeTokens.motion.duration.medium.$2,
     width: tokens.handle.width.normal,
-    height: calc.add(tokens.handle.height.normal, DENSITY),
+    height: tokens.handle.height.normal,
 
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {
