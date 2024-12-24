@@ -131,4 +131,49 @@ export const Lengths: IStory = {
   args: defaultArgs,
 };
 
+export const Scales: IStory = {
+  render: (props) => (
+    <ItemShowcase
+      props={props}
+      rows={[
+        { legend: 'Extra small', props: { scale: 'xs' } },
+        { legend: 'Small', props: { scale: 'sm' } },
+        { legend: 'Medium', props: { scale: 'md' } },
+        { legend: 'Large', props: { scale: 'lg' } },
+        { legend: 'Extra large', props: { scale: 'xl' } },
+      ]}
+      horizontalAlign="start"
+    />
+  ),
+  args: {
+    start: <SlotDemo label="Start" />,
+    overline: <SlotDemo label="Overline" />,
+    children: <SlotDemo label="Headline" primary />,
+    supportingText: <SlotDemo label="Supporting Text" />,
+    trailingSupportingText: <SlotDemo label="Trailing Supporting Text" />,
+    end: <SlotDemo label="End" />,
+  },
+};
+
+export const Densities: IStory = {
+  render: (props) => (
+    <ItemShowcase
+      props={props}
+      rows={[
+        { legend: '-1', props: { density: -1 } },
+        { legend: '0', props: { density: 0 } },
+      ]}
+      horizontalAlign="start"
+    />
+  ),
+  args: {
+    start: <SlotDemo label="Start" />,
+    overline: <SlotDemo label="Overline" />,
+    children: <SlotDemo label="Headline" primary />,
+    supportingText: <SlotDemo label="Supporting Text" />,
+    trailingSupportingText: <SlotDemo label="Trailing Supporting Text" />,
+    end: <SlotDemo label="End" />,
+  },
+};
+
 export default meta;

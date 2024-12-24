@@ -51,7 +51,7 @@ export const AppLayoutNavigationDrawer = forwardRef<
 
   const renderContent = (
     props?: Partial<React.ComponentPropsWithRef<typeof SideSheetContent>>,
-  ): JSX.Element => (
+  ): React.JSX.Element => (
     <NavigationDrawerContent
       anchor={anchor}
       innerStyles={{

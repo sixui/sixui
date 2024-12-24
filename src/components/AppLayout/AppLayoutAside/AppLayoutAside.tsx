@@ -42,7 +42,7 @@ export const AppLayoutAside = forwardRef<HTMLDivElement, IAppLayoutAsideProps>(
 
     const renderContent = (
       props?: Partial<React.ComponentPropsWithRef<typeof SideSheetContent>>,
-    ): JSX.Element => (
+    ): React.JSX.Element => (
       <SideSheetContent
         anchor={anchor}
         {...other}

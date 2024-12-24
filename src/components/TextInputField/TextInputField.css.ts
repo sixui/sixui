@@ -1,19 +1,14 @@
 import { createTheme } from '@vanilla-extract/css';
-import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import type { IFieldBaseVariant } from '../FieldBase';
-import { getDensity } from '~/helpers/styles/getDensity';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { FieldBase } from '../FieldBase';
 import { themeTokens } from '../ThemeProvider';
 
 type IModifier = 'disabled' | 'with-error' | 'no-spinner';
-
-const DENSITY = px(getDensity({ min: -2, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
   caret: {
@@ -57,7 +52,6 @@ const classNames = createStyles({
     cursor: 'text',
 
     height: 'auto',
-    minHeight: calc.add(px(32), DENSITY),
     flexShrink: 1,
     flexGrow: 1,
     flexBasis: 0,

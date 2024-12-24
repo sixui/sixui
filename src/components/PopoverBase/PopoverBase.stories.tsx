@@ -30,7 +30,7 @@ const contentRenderer = ({
   parentProps,
   renderCursor,
   close,
-}: IPopoverBaseContentRendererProps): JSX.Element => (
+}: IPopoverBaseContentRendererProps): React.JSX.Element => (
   <Placeholder
     surface="$inverseSurface"
     c="$inverseOnSurface"

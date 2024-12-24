@@ -40,7 +40,7 @@ export const PlaygroundSections = fixedForwardRef(function PlaygroundSections<
   const renderSection = (
     section: IPlaygroundSections<TSectionsProps>[keyof TSectionsProps],
     sectionKey: keyof TSectionsProps,
-  ): JSX.Element => (
+  ): React.JSX.Element => (
     <Stack gap={4}>
       {section.options.map((option, optionIndex) => (
         <PlaygroundOption<TSectionsProps>

@@ -22,7 +22,7 @@ import { colorInputFieldStyles } from './ColorInputField.styles';
 
 const defaultColorPickerRenderer = (
   props: IColorInputFieldColorPickerRendererProps,
-): JSX.Element => <HslColorPickerContent {...props} />;
+): React.JSX.Element => <HslColorPickerContent {...props} />;
 
 export const ColorInputField = forwardRef<
   HTMLInputElement,

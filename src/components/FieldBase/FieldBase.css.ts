@@ -44,6 +44,7 @@ const ENTER_DELAY = calc.subtract(
 const DENSITY = px(getDensity({ min: -2, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
+  minHeight: px(56),
   leadingSpace: px(space(4)),
   trailingSpace: px(space(4)),
   topSpace: {
@@ -53,23 +54,6 @@ const [tokensClassName, tokens] = createTheme({
   bottomSpace: {
     normal: px(space(3)),
     withLabel: px(space(2)),
-  },
-  container: {
-    minHeight: calc.add(px(56), DENSITY),
-    shape: px(themeTokens.shape.corner.xs),
-    shapes: {
-      topLeft: 'inherit',
-      topRight: 'inherit',
-      bottomRight: px(themeTokens.shape.corner.none),
-      bottomLeft: px(themeTokens.shape.corner.none),
-    },
-    color: {
-      normal: 'inherit',
-      disabled: themeTokens.colorScheme.onSurface,
-    },
-    opacity: {
-      disabled: themeTokens.state.containerOpacity.disabled,
-    },
   },
   stateLayer: {
     color: {
@@ -313,29 +297,21 @@ const classNames = createStyles({
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {
         color: {
-          normal: tokens.container.color.normal,
-          disabled: tokens.container.color.disabled,
+          normal: 'inherit',
+          disabled: themeTokens.colorScheme.onSurface,
         },
-        shape: tokens.container.shape,
-        shapes: tokens.container.shapes,
+        opacity: {
+          disabled: themeTokens.state.containerOpacity.disabled,
+        },
+        shape: 'unset',
+        shapes: {
+          topLeft: px(themeTokens.shape.corner.xs),
+          topRight: px(themeTokens.shape.corner.xs),
+          bottomRight: px(themeTokens.shape.corner.none),
+          bottomLeft: px(themeTokens.shape.corner.none),
+        },
       },
     }),
-
-    selectors: {
-      [getModifierSelector<IModifier>('disabled')]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
-          container: {
-            color: {
-              normal: tokens.container.color.disabled,
-              disabled: tokens.container.color.disabled,
-            },
-            opacity: {
-              disabled: tokens.container.opacity.disabled,
-            },
-          },
-        }),
-      },
-    },
   },
   inner: ({ root }) => ({
     alignItems: 'center',
@@ -344,7 +320,7 @@ const classNames = createStyles({
     flexGrow: 1,
     flexShrink: 1,
     flexBasis: '0%',
-    minHeight: tokens.container.minHeight,
+    minHeight: calc.add(tokens.minHeight, DENSITY),
     maxHeight: '100%',
     minWidth: 'min-content',
     position: 'relative',
@@ -984,7 +960,7 @@ export const fieldBaseTheme = componentThemeFactory<IFieldBaseThemeFactory>({
 export const fieldBaseThemeVariants = {
   filled: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
+      vars: createTokensVars(PaperBase.theme.tokens, {
         container: {
           color: {
             normal: themeTokens.colorScheme.surfaceContainerHighest,
@@ -1127,7 +1103,7 @@ export const fieldBaseThemeVariants = {
   }),
   outlined: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
+      vars: createTokensVars(PaperBase.theme.tokens, {
         container: {
           shape: px(themeTokens.shape.corner.xs),
           color: {

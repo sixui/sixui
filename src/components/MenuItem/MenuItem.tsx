@@ -28,7 +28,7 @@ export const MenuItem = polymorphicComponentFactory<IMenuItemFactory>(
       menuItemContext !== undefined &&
       item.index === menuItemContext.activeIndex;
 
-    const renderListItem = (): JSX.Element => (
+    const renderListItem = (): React.JSX.Element => (
       <ListItem
         role="menuitem"
         tabIndex={isActive ? 0 : -1}
@@ -49,7 +49,7 @@ export const MenuItem = polymorphicComponentFactory<IMenuItemFactory>(
       </ListItem>
     );
 
-    const renderNestedMenuItem = (): JSX.Element => (
+    const renderNestedMenuItem = (): React.JSX.Element => (
       <Menu
         trigger={(renderProps) => (
           <MenuItem

@@ -98,7 +98,7 @@ export const TextAreaField = componentFactory<ITextAreaFieldFactory>(
       }
     };
 
-    const renderEndSection = (): JSX.Element | null =>
+    const renderEndSection = (): React.JSX.Element | null =>
       hasEnd ? (
         <>
           {other.end}

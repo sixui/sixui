@@ -1,7 +1,9 @@
 import { createTheme } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import type { IFabVariant } from './Fab.types';
+import { getDensity } from '~/helpers/styles/getDensity';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
@@ -15,6 +17,8 @@ import { themeTokens } from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
 type IModifier = 'extended' | 'lowered';
+
+const DENSITY = px(getDensity({ min: -4, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
   container: {
@@ -52,8 +56,8 @@ const classNames = createStyles({
   root: {
     zIndex: themeTokens.zIndex.overlay,
     minWidth: 'unset',
-    width: tokens.container.size,
-    height: tokens.container.size,
+    width: calc.add(tokens.container.size, DENSITY),
+    height: calc.add(tokens.container.size, DENSITY),
 
     vars: {
       ...createTokensVars(PaperBase.theme.tokens, {

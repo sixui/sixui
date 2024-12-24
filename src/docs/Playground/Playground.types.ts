@@ -54,7 +54,7 @@ export type IPlaygroundSections<TSectionsProps extends Record<string, object>> =
 export type IPlaygroundProps<TSectionsProps extends Record<string, object>> =
   IBaseProps<IPlaygroundStylesKey> & {
     defaultSections: IPlaygroundSections<TSectionsProps>;
-    componentRenderer: (sectionsProps: TSectionsProps) => JSX.Element;
+    componentRenderer: (sectionsProps: TSectionsProps) => React.JSX.Element;
     initialProps?: {
       [key in keyof TSectionsProps]?: Partial<TSectionsProps[key]>;
     };

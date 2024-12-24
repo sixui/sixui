@@ -7,7 +7,7 @@ export type ICreateSafeContextResult<TContextValue> = [
   }: {
     value: TContextValue;
     children: React.ReactNode;
-  }) => JSX.Element,
+  }) => React.JSX.Element,
   () => TContextValue,
 ];
 
@@ -32,7 +32,7 @@ export const createSafeContext = <TContextValue,>(
   }: {
     value: TContextValue;
     children: React.ReactNode;
-  }): JSX.Element => (
+  }): React.JSX.Element => (
     <Context.Provider value={value}>{children}</Context.Provider>
   );
 
