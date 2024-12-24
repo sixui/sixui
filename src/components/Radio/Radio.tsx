@@ -49,6 +49,7 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
   const readOnly =
     (readOnlyProp ?? labeledContext?.readOnly) ||
     labeledContext?.loading ||
+    radioGroupContext?.loading ||
     loading;
   const disabledOrReadOnly = disabled || labeledContext?.disabled || readOnly;
   const required = requiredProp ?? labeledContext?.required;
