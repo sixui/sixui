@@ -95,8 +95,7 @@ const classNames = createStyles({
 
     paddingInlineStart: tokens.leadingSpace.normal,
     paddingInlineEnd: tokens.trailingSpace.normal,
-    // min-height instead of height so that label can wrap and expand height
-    minHeight: calc.add(tokens.height, DENSITY),
+    height: calc.add(tokens.height, DENSITY),
     // Add extra space between label and the edge for if the label text wraps.
     // The padding added should be relative to the height of the container and
     // the height of its content on a single line (label or icon, whichever is

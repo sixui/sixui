@@ -13,22 +13,28 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {} satisfies Partial<IRadioProps>;
 
-const variants: Array<IComponentPresentation<IRadioProps>> = [
-  { legend: 'None', props: { variant: false } },
-  { legend: 'Primary', props: { variant: 'primary' } },
-];
-
 const states: Array<IComponentPresentation<IRadioProps>> = [
-  { legend: 'Normal' },
+  { legend: 'Enabled' },
+  {
+    legend: 'Focused',
+    props: { interactions: { focused: true } },
+  },
+  {
+    legend: 'Hovered',
+    props: { interactions: { hovered: true } },
+  },
+  {
+    legend: 'Pressed',
+    props: { interactions: { pressed: true } },
+  },
+  { legend: 'Loading', props: { loading: true } },
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
 const RadioShowcase = componentShowcaseFactory(Radio);
 
 export const Basic: IStory = {
-  render: (props) => (
-    <RadioShowcase props={props} cols={states} rows={variants} />
-  ),
+  render: (props) => <RadioShowcase props={props} cols={states} />,
   args: defaultArgs,
 };
 

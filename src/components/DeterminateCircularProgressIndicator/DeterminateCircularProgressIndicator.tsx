@@ -52,35 +52,48 @@ export const DeterminateCircularProgressIndicator =
           role="progressbar"
           {...other}
         >
-          <div
-            {...getStyles(['layer', 'progress'])}
-            role="progressbar"
-            aria-valuemin={min}
-            aria-valuemax={max}
-            aria-valuenow={value}
-          >
-            {/* Note: dash-array/offset are relative to Setting `pathLength`
+          XXX
+        </Box>
+      );
+
+      return (
+        <Box
+          {...getStyles('root')}
+          ref={forwardedRef}
+          role="progressbar"
+          {...other}
+        >
+          <div {...getStyles('inner')}>
+            <div
+              {...getStyles(['layer', 'progress'])}
+              role="progressbar"
+              aria-valuemin={min}
+              aria-valuemax={max}
+              aria-valuenow={value}
+            >
+              {/* Note: dash-array/offset are relative to Setting `pathLength`
             but Chrome seems to render this inaccurately and using a large
             viewbox helps. */}
-            <svg viewBox="0 0 4800 4800" {...getStyles(['layer', 'svg'])}>
-              <circle
-                {...getStyles(['layer', 'svgCircle', 'track'])}
-                pathLength="100"
-              />
-              <circle
-                {...getStyles(['layer', 'svgCircle', 'activeTrack'])}
-                pathLength="100"
-                strokeDashoffset={dashOffset}
-              />
-            </svg>
-            {hasContent ? (
-              <div {...getStyles(['layer', 'label'])}>
-                {children ??
-                  (labelFormatter
-                    ? labelFormatter(value)
-                    : `${Math.round(pct * 100)}%`)}
-              </div>
-            ) : null}
+              <svg viewBox="0 0 4800 4800" {...getStyles(['layer', 'svg'])}>
+                <circle
+                  {...getStyles(['layer', 'svgCircle', 'track'])}
+                  pathLength="100"
+                />
+                <circle
+                  {...getStyles(['layer', 'svgCircle', 'activeTrack'])}
+                  pathLength="100"
+                  strokeDashoffset={dashOffset}
+                />
+              </svg>
+              {hasContent ? (
+                <div {...getStyles(['layer', 'label'])}>
+                  {children ??
+                    (labelFormatter
+                      ? labelFormatter(value)
+                      : `${Math.round(pct * 100)}%`)}
+                </div>
+              ) : null}
+            </div>
           </div>
         </Box>
       );

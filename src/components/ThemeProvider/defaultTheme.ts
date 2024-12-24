@@ -313,6 +313,7 @@ const shape: IThemeShapeValues = {
     lg: '16px',
     xl: '28px',
     full: '999px',
+    circle: '999px',
   },
 };
 

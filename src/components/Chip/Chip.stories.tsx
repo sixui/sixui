@@ -133,6 +133,25 @@ export const Scales: IStory = {
   },
 };
 
+export const Densities: IStory = {
+  render: (props) => (
+    <ChipShowcase
+      props={props}
+      cols={[
+        { legend: '-2', props: { density: -2 } },
+        { legend: '-1', props: { density: -1 } },
+        { legend: '0', props: { density: 0 } },
+      ]}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    variant: 'assist',
+    children: 'Assist',
+    icon: <FontAwesomeIcon icon={faCalendarDays} />,
+  },
+};
+
 export const Assist: IStory = {
   render: (props) => (
     <ChipShowcase

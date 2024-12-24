@@ -34,7 +34,7 @@ const classNames = createStyles({
           color: {
             normal: themeTokens.colorScheme.primaryContainer,
           },
-          shape: px(themeTokens.shape.corner.full),
+          shape: px(themeTokens.shape.corner.circle),
         },
       }),
     },

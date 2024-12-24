@@ -7,7 +7,6 @@ import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { PaperBase } from '../PaperBase';
-import { StateLayer } from '../StateLayer';
 import { themeTokens } from '../ThemeProvider';
 
 type IModifier = 'disabled';
@@ -44,10 +43,17 @@ const classNames = createStyles({
   root: {
     width: tokens.icon.size,
     height: tokens.icon.size,
+    display: 'flex',
+    placeContent: 'center',
+    placeItems: 'center',
+    color: themeTokens.colorScheme.onSurfaceVariant,
 
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {
-        shape: px(themeTokens.shape.corner.full),
+        shape: px(themeTokens.shape.corner.circle),
+        color: {
+          disabled: 'transparent',
+        },
       },
       outline: {
         color: {
@@ -55,14 +61,10 @@ const classNames = createStyles({
         },
         width: {
           normal: px(themeTokens.outline.width.sm),
+          disabled: px(themeTokens.outline.width.none),
         },
       },
     }),
-    selectors: {
-      [getModifierSelector<IModifier>('disabled')]: {
-        //
-      },
-    },
   },
   stateLayer: {
     width: px(themeTokens.density.minTargetSize),
@@ -70,10 +72,6 @@ const classNames = createStyles({
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-
-    vars: createTokensVars(StateLayer.theme.tokens, {
-      //
-    }),
   },
   focusRing: {
     width: px(themeTokens.density.minTargetSize),
@@ -84,6 +82,10 @@ const classNames = createStyles({
   },
   input: {
     display: 'none',
+  },
+  progressIndicator: {
+    width: px(tokens.icon.size),
+    height: px(tokens.icon.size),
   },
 });
 

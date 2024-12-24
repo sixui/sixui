@@ -6,6 +6,7 @@ import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactor
 import { deepMerge } from '~/helpers/deepMerge';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
+import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
@@ -30,6 +31,27 @@ const [tokensClassName, tokens] = createTheme({
 });
 
 const classNames = createStyles({
+  root: {
+    width:
+  },
+  inner: {
+    position: 'absolute',
+    width: px(
+      calc.add(
+        calc.multiply(parentStyles.tokens.size, 1.1),
+        calc.divide(parentStyles.tokens.strokeWidth, 2),
+      ),
+    ),
+    height: px(
+      calc.add(
+        calc.multiply(parentStyles.tokens.size, 1.1),
+        calc.divide(parentStyles.tokens.strokeWidth, 2),
+      ),
+    ),
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+  },
   svg: {
     transform: 'rotate(-90deg)',
   },
@@ -41,11 +63,10 @@ const classNames = createStyles({
       // Note, pathLength is set so this can be normalized.
       strokeDasharray: '100',
       fill: 'transparent',
-      r: calc.subtract(
-        '50%',
-        calc.divide(calc.multiply(parentStyles.tokens.strokePct, '1%'), 2),
-      ),
-      strokeWidth: calc.multiply(parentStyles.tokens.strokePct, '1%'),
+      r: '45%',
+      strokeWidth: parentStyles.tokens.strokeWidth,
+      strokeLinecap: 'round',
+      vectorEffect: 'non-scaling-stroke',
     },
   },
   track: {

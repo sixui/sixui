@@ -134,6 +134,25 @@ export const Scales: IStory = {
   },
 };
 
+export const Densities: IStory = {
+  render: (props) => (
+    <ButtonShowcase
+      props={props}
+      cols={[
+        { legend: '-4', props: { density: -4 } },
+        { legend: '-3', props: { density: -3 } },
+        { legend: '-2', props: { density: -2 } },
+        { legend: '-1', props: { density: -1 } },
+        { legend: '0', props: { density: 0 } },
+      ]}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    variant: 'filled',
+  },
+};
+
 export const Elevated: IStory = {
   render: (props) => <ButtonShowcase props={props} cols={states} rows={rows} />,
   args: {

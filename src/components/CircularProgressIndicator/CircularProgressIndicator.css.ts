@@ -1,7 +1,9 @@
 import { createTheme } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
+import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { themeTokens } from '../ThemeProvider';
@@ -14,9 +16,9 @@ const [tokensClassName, tokens] = createTheme({
   opacity: {
     disabled: themeTokens.state.opacity.disabled,
   },
-  size: '1em',
-  containerPadding: '0px',
-  strokePct: '12',
+  size: calc.multiply('1em', themeTokens.scale),
+  containerPadding: px(0),
+  strokeWidth: px(2),
 });
 
 const classNames = createStyles({
@@ -28,13 +30,6 @@ const classNames = createStyles({
     justifyContent: 'center',
     color: tokens.color.normal,
     borderColor: 'currentColor',
-
-    // `contain` and `content-visibility` are performance optimizations
-    // important here because progress indicators are often used when a cpu
-    // intensive task is underway so it's especially important to minimize their
-    // cpu consumption.
-    contain: 'strict',
-    contentVisibility: 'auto',
 
     width: tokens.size,
     height: tokens.size,

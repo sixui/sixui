@@ -224,7 +224,8 @@ export type IThemeShapeCornerSize =
   | 'md'
   | 'lg'
   | 'xl'
-  | 'full';
+  | 'full'
+  | 'circle';
 
 export type IThemeShapeValues = {
   /**

@@ -13,7 +13,7 @@ const [tokensClassName, tokens] = createTheme({
   container: {
     color: themeTokens.colorScheme.primary,
     size: '10px',
-    shape: themeTokens.shape.corner.full,
+    shape: themeTokens.shape.corner.circle,
     zIndex: '200',
   },
 });

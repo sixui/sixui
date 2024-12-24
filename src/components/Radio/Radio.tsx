@@ -8,6 +8,7 @@ import { useProps } from '~/utils/component/useProps';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { ButtonBase } from '../ButtonBase';
+import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
 import { useLabeledContext } from '../Labeled';
 import { useRadioGroupContext } from '../RadioGroup';
 import { RadioTheme } from './Radio.css';
@@ -90,6 +91,11 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
       ref={forwardedRef}
       {...other}
     >
+      {loading && (
+        <IndeterminateCircularProgressIndicator
+          {...getStyles('progressIndicator')}
+        />
+      )}
       <input
         name={name}
         type="radio"
