@@ -5,10 +5,12 @@ import type { ICheckboxFactory } from './Checkbox.types';
 import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
+import { usePrevious } from '~/hooks/usePrevious';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { FocusRing } from '../FocusRing';
+import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
 import { useLabeledContext } from '../Labeled';
 import { PaperBase } from '../PaperBase';
 import { useStateLayer } from '../StateLayer';
@@ -76,9 +78,24 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
       modifiers: {
         disabled: disabledOrReadOnly,
         checked,
+        indeterminate,
         loading,
       },
     });
+
+    const checkedDeterminate = checked && !indeterminate;
+    const checkedOrIndeterminate = checked || indeterminate;
+    const uncheckedDeterminate = !checked && !indeterminate;
+
+    const wasCheckedDeterminate = usePrevious(checkedDeterminate) ?? false;
+    const wasIndeterminate = usePrevious(indeterminate) ?? false;
+    const wasDisabledOrReadOnly = usePrevious(!!disabledOrReadOnly) ?? false;
+
+    const prevNone = !wasCheckedDeterminate && !wasIndeterminate;
+    const prevUncheckedDeterminate = prevNone;
+    const prevCheckedDeterminate = wasCheckedDeterminate && !wasIndeterminate;
+    const prevIndeterminate = wasIndeterminate;
+    const prevDisabledOrReadOnly = wasDisabledOrReadOnly;
 
     const handleChange: React.ChangeEventHandler<HTMLInputElement> =
       useCallback(
@@ -113,6 +130,7 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
             interactions={stateLayer.interactionsContext.state}
           />
         )}
+
         <input
           type="checkbox"
           role="switch"
@@ -128,7 +146,112 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
           {...getStyles('input')}
           {...stateLayer.interactionsContext.triggerProps}
         />
-        XX
+
+        {loading ? (
+          <IndeterminateCircularProgressIndicator
+            {...getStyles('progressIndicator')}
+            disabled={disabledOrReadOnly}
+          />
+        ) : (
+          <>
+            <div
+              {...getStyles([
+                'overlay',
+                'outline',
+                disabledOrReadOnly &&
+                  (checkedOrIndeterminate
+                    ? 'outline$disabled$selected'
+                    : 'outline$disabled'),
+              ])}
+            />
+            <div
+              {...getStyles([
+                'overlay',
+                'background',
+                'backgroundAndIcon',
+                checkedOrIndeterminate && 'backgroundAndIcon$selected',
+                disabledOrReadOnly &&
+                  (checkedOrIndeterminate
+                    ? 'background$disabled$selected'
+                    : 'background$disabled'),
+                prevDisabledOrReadOnly && 'background$prevDisabled',
+              ])}
+            />
+
+            {/* <StateLayer
+              for={actionRef}
+              styles={[
+                checkboxStateLayerStyles,
+                ...asArray(innerStyles?.stateLayer),
+              ]}
+              disabled={disabledOrReadOnly}
+              interactionState={visualState}
+            />
+            {disabledOrReadOnly ? null : (
+              <FocusRing
+                for={actionRef}
+                styles={[
+                  checkboxFocusRingStyles,
+                  ...asArray(innerStyles?.focusRing),
+                ]}
+                visualState={visualState}
+              />
+            )} */}
+
+            <svg
+              {...getStyles([
+                'overlay',
+                'icon',
+                disabledOrReadOnly && 'icon$disabled',
+                prevDisabledOrReadOnly && 'icon$prevDisabled',
+                'backgroundAndIcon',
+                checkedOrIndeterminate && 'backgroundAndIcon$selected',
+              ])}
+              viewBox="0 0 18 18"
+              aria-hidden
+            >
+              <rect
+                {...getStyles([
+                  'mark',
+                  'mark$short',
+                  checkedOrIndeterminate && 'mark$selected',
+                  disabledOrReadOnly && 'mark$disabled',
+                  prevDisabledOrReadOnly && 'mark$prevDisabled',
+                  prevUncheckedDeterminate && 'mark$prevUnselected',
+                  (checked ||
+                    (prevCheckedDeterminate && uncheckedDeterminate)) && [
+                    'checkMark',
+                    'checkMark$short',
+                  ],
+                  (indeterminate ||
+                    (prevIndeterminate && uncheckedDeterminate)) &&
+                    'indeterminate',
+                ])}
+              />
+              <rect
+                {...getStyles([
+                  'mark',
+                  'mark$long',
+                  checkedOrIndeterminate && 'mark$selected',
+                  disabledOrReadOnly && 'mark$disabled',
+                  prevDisabledOrReadOnly && 'mark$prevDisabled',
+                  prevUncheckedDeterminate && 'mark$prevUnselected',
+                  (checked ||
+                    (prevCheckedDeterminate && uncheckedDeterminate)) && [
+                    'checkMark',
+                    'checkMark$long',
+                  ],
+                  (indeterminate ||
+                    (prevIndeterminate && uncheckedDeterminate)) &&
+                    'indeterminate',
+                  prevUncheckedDeterminate &&
+                    checked &&
+                    'mark$long$prevUnselected$checked',
+                ])}
+              />
+            </svg>
+          </>
+        )}
       </PaperBase>
     );
   },

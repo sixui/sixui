@@ -7,7 +7,12 @@ import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 
-type IModifier = IInteraction | 'disabled' | 'checked' | 'loading';
+type IModifier =
+  | IInteraction
+  | 'disabled'
+  | 'checked'
+  | 'indeterminate'
+  | 'loading';
 
 const DENSITY = px(getDensity({ min: -2, max: 0 }));
 
