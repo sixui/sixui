@@ -10,6 +10,7 @@ import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { PaperBase } from '../PaperBase';
+import { StateLayer } from '../StateLayer';
 import { themeTokens } from '../ThemeProvider';
 
 type IModifier =
@@ -76,6 +77,12 @@ const classNames = createStyles({
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
+
+    vars: createTokensVars(StateLayer.theme.tokens, {
+      color: {
+        pressed: themeTokens.colorScheme.primary,
+      },
+    }),
   },
   focusRing: {
     width: px(themeTokens.density.minTargetSize),
