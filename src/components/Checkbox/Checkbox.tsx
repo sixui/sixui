@@ -13,7 +13,7 @@ import { FocusRing } from '../FocusRing';
 import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
 import { useLabeledContext } from '../Labeled';
 import { PaperBase } from '../PaperBase';
-import { useStateLayer } from '../StateLayer';
+import { StateLayer, useStateLayer } from '../StateLayer';
 import { checkboxTheme } from './Checkbox.css';
 
 const COMPONENT_NAME = 'Checkbox';
@@ -124,6 +124,8 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
         ref={rootRef}
         {...other}
       >
+        <StateLayer {...getStyles('stateLayer')} context={stateLayer} />
+
         {!disabledOrReadOnly && (
           <FocusRing
             {...getStyles('focusRing')}
@@ -177,26 +179,6 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
                 prevDisabledOrReadOnly && 'background$prevDisabled',
               ])}
             />
-
-            {/* <StateLayer
-              for={actionRef}
-              styles={[
-                checkboxStateLayerStyles,
-                ...asArray(innerStyles?.stateLayer),
-              ]}
-              disabled={disabledOrReadOnly}
-              interactionState={visualState}
-            />
-            {disabledOrReadOnly ? null : (
-              <FocusRing
-                for={actionRef}
-                styles={[
-                  checkboxFocusRingStyles,
-                  ...asArray(innerStyles?.focusRing),
-                ]}
-                visualState={visualState}
-              />
-            )} */}
 
             <svg
               {...getStyles([
