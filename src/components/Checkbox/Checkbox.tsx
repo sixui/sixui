@@ -91,7 +91,9 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
       theme: checkboxTheme,
       modifiers: {
         disabled: disabledOrReadOnly,
+        'was-disabled': prevDisabledOrReadOnly,
         checked: checkedOrIndeterminate,
+        'was-unchecked': prevUncheckedDeterminate,
         indeterminate,
         loading,
       },
@@ -111,9 +113,12 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
                 event.target.checked ? event.target.value : undefined,
               ) as void,
             setHandlingChange,
-          ).finally(() => setChecked(!event.target.checked));
+          ).finally(() => {
+            setChecked(!event.target.checked);
+            setIndeterminate(false);
+          });
         },
-        [handlingChange, onChange, setChecked],
+        [handlingChange, onChange, setChecked, setIndeterminate],
       );
 
     return (
@@ -133,6 +138,51 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
           />
         )}
 
+        {loading ? (
+          <IndeterminateCircularProgressIndicator
+            {...getStyles('progressIndicator')}
+            disabled={disabledOrReadOnly}
+          />
+        ) : (
+          <>
+            <div {...getStyles(['overlay', 'background'])} />
+            <svg
+              {...getStyles(['overlay', 'icon'])}
+              viewBox="0 0 18 18"
+              aria-hidden
+            >
+              <rect
+                {...getStyles([
+                  'mark',
+                  'mark$short',
+                  (checkedDeterminate ||
+                    (prevCheckedDeterminate && uncheckedDeterminate)) && [
+                    'checkMark',
+                    'checkMark$short',
+                  ],
+                  (indeterminate ||
+                    (prevIndeterminate && uncheckedDeterminate)) &&
+                    'indeterminate',
+                ])}
+              />
+              <rect
+                {...getStyles([
+                  'mark',
+                  'mark$long',
+                  (checkedDeterminate ||
+                    (prevCheckedDeterminate && uncheckedDeterminate)) && [
+                    'checkMark',
+                    'checkMark$long',
+                  ],
+                  (indeterminate ||
+                    (prevIndeterminate && uncheckedDeterminate)) &&
+                    'indeterminate',
+                ])}
+              />
+            </svg>
+          </>
+        )}
+
         <input
           type="checkbox"
           role="switch"
@@ -148,82 +198,6 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
           {...getStyles('input')}
           {...stateLayer.interactionsContext.triggerProps}
         />
-
-        {loading ? (
-          <IndeterminateCircularProgressIndicator
-            {...getStyles('progressIndicator')}
-            disabled={disabledOrReadOnly}
-          />
-        ) : (
-          <>
-            <div
-              {...getStyles([
-                'overlay',
-                'background',
-                'backgroundAndIcon',
-                checkedOrIndeterminate && 'backgroundAndIcon$selected',
-                disabledOrReadOnly &&
-                  (checkedOrIndeterminate
-                    ? 'background$disabled$selected'
-                    : 'background$disabled'),
-                prevDisabledOrReadOnly && 'background$prevDisabled',
-              ])}
-            />
-
-            <svg
-              {...getStyles([
-                'overlay',
-                'icon',
-                disabledOrReadOnly && 'icon$disabled',
-                prevDisabledOrReadOnly && 'icon$prevDisabled',
-                'backgroundAndIcon',
-                checkedOrIndeterminate && 'backgroundAndIcon$selected',
-              ])}
-              viewBox="0 0 18 18"
-              aria-hidden
-            >
-              <rect
-                {...getStyles([
-                  'mark',
-                  'mark$short',
-                  checkedOrIndeterminate && 'mark$selected',
-                  disabledOrReadOnly && 'mark$disabled',
-                  prevDisabledOrReadOnly && 'mark$prevDisabled',
-                  prevUncheckedDeterminate && 'mark$prevUnselected',
-                  (checked ||
-                    (prevCheckedDeterminate && uncheckedDeterminate)) && [
-                    'checkMark',
-                    'checkMark$short',
-                  ],
-                  (indeterminate ||
-                    (prevIndeterminate && uncheckedDeterminate)) &&
-                    'indeterminate',
-                ])}
-              />
-              <rect
-                {...getStyles([
-                  'mark',
-                  'mark$long',
-                  checkedOrIndeterminate && 'mark$selected',
-                  disabledOrReadOnly && 'mark$disabled',
-                  prevDisabledOrReadOnly && 'mark$prevDisabled',
-                  prevUncheckedDeterminate && 'mark$prevUnselected',
-                  (checked ||
-                    (prevCheckedDeterminate && uncheckedDeterminate)) && [
-                    'checkMark',
-                    'checkMark$long',
-                  ],
-                  (indeterminate ||
-                    (prevIndeterminate && uncheckedDeterminate)) &&
-                    'indeterminate',
-                  prevUncheckedDeterminate &&
-                    checked &&
-                    'mark$long$prevUnselected$checked',
-                ])}
-              />
-            </svg>
-          </>
-        )}
       </PaperBase>
     );
   },

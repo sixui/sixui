@@ -123,21 +123,6 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
         />
       )}
 
-      <input
-        name={name}
-        type="radio"
-        checked={checked}
-        onChange={handleChange}
-        value={value}
-        id={id}
-        required={required}
-        disabled={disabled}
-        readOnly={readOnly}
-        ref={inputHandleRef}
-        {...getStyles('input')}
-        {...stateLayer.interactionsContext.triggerProps}
-      />
-
       {loading && (
         <IndeterminateCircularProgressIndicator
           {...getStyles('progressIndicator')}
@@ -153,6 +138,21 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
           r="5"
         />
       </svg>
+
+      <input
+        name={name}
+        type="radio"
+        checked={checked}
+        onChange={handleChange}
+        value={value}
+        id={id}
+        required={required}
+        disabled={disabled}
+        readOnly={readOnly}
+        ref={inputHandleRef}
+        {...getStyles('input')}
+        {...stateLayer.interactionsContext.triggerProps}
+      />
     </PaperBase>
   );
 });

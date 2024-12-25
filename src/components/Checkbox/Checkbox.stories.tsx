@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { delay } from '@olivierpascal/helpers';
 
 import type { IOmit } from '~/helpers/types';
 import type { IComponentPresentation } from '../ComponentShowcase';
@@ -16,7 +15,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onChange: (...args) => sbHandleEvent('onChange', args, 1000),
+  onChange: (...args) => sbHandleEvent('onChange', args),
 } satisfies Partial<ICheckboxProps>;
 
 const states: Array<IComponentPresentation<ICheckboxProps>> = [
@@ -26,6 +25,21 @@ const states: Array<IComponentPresentation<ICheckboxProps>> = [
   { legend: 'Pressed', props: { interactions: { pressed: true } } },
   { legend: 'Loading', props: { loading: true } },
   { legend: 'Disabled', props: { disabled: true } },
+];
+
+const changeActions: Array<IComponentPresentation<ICheckboxProps>> = [
+  {
+    legend: 'Immediate',
+    props: {
+      onChange: (...args) => sbHandleEvent('onChange', args),
+    },
+  },
+  {
+    legend: 'Delayed',
+    props: {
+      onChange: (...args) => sbHandleEvent('onChange', args, 1000),
+    },
+  },
 ];
 
 const CheckboxShowcase = componentShowcaseFactory(Checkbox);
@@ -39,6 +53,7 @@ export const Uncontrolled: IStory = {
         { props: { defaultIndeterminate: true } },
         { props: { defaultChecked: true } },
       ]}
+      rows={changeActions}
     />
   ),
   args: defaultArgs,
@@ -49,7 +64,7 @@ const ControlledCheckbox: React.FC<IOmit<ICheckboxProps, 'checked'>> = (
 ) => {
   const [checked, setChecked] = useState(props.defaultChecked ?? false);
   const [indeterminate, setIndeterminate] = useState(
-    props.indeterminate ?? false,
+    props.defaultIndeterminate ?? false,
   );
 
   return (
@@ -59,10 +74,9 @@ const ControlledCheckbox: React.FC<IOmit<ICheckboxProps, 'checked'>> = (
       onChange={(event, value) => {
         const checked = value !== undefined;
 
-        return delay(300).then(() => {
+        return Promise.resolve(props.onChange?.(event, value)).then(() => {
           setIndeterminate(false);
           setChecked(checked);
-          props.onChange?.(event, value);
         });
       }}
       indeterminate={indeterminate}
@@ -81,6 +95,7 @@ export const Controlled: IStory = {
         { props: { defaultIndeterminate: true } },
         { props: { defaultChecked: true } },
       ]}
+      rows={changeActions}
     />
   ),
   args: defaultArgs,

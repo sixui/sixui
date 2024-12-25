@@ -118,21 +118,6 @@ export const Switch = componentFactory<ISwitchFactory>(
           />
         )}
 
-        <input
-          type="checkbox"
-          role="switch"
-          checked={checked}
-          onChange={handleChange}
-          id={id}
-          required={required}
-          disabled={disabled}
-          readOnly={readOnly}
-          value={value}
-          ref={inputHandleRef}
-          {...getStyles('input')}
-          {...stateLayer.interactionsContext.triggerProps}
-        />
-
         <div {...getStyles('track')}>
           <div {...getStyles('handleContainer')}>
             <StateLayer {...getStyles('stateLayer')} context={stateLayer} />
@@ -159,6 +144,21 @@ export const Switch = componentFactory<ISwitchFactory>(
             </PaperBase>
           </div>
         </div>
+
+        <input
+          type="checkbox"
+          role="switch"
+          checked={checked}
+          onChange={handleChange}
+          id={id}
+          required={required}
+          disabled={disabled}
+          readOnly={readOnly}
+          value={value}
+          ref={inputHandleRef}
+          {...getStyles('input')}
+          {...stateLayer.interactionsContext.triggerProps}
+        />
       </PaperBase>
     );
   },
