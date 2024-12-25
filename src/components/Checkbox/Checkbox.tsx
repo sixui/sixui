@@ -68,21 +68,6 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
     });
     const inputHandleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
 
-    const { getStyles } = useComponentTheme<ICheckboxThemeFactory>({
-      componentName: COMPONENT_NAME,
-      classNames,
-      className,
-      styles,
-      style,
-      theme: checkboxTheme,
-      modifiers: {
-        disabled: disabledOrReadOnly,
-        checked,
-        indeterminate,
-        loading,
-      },
-    });
-
     const checkedDeterminate = checked && !indeterminate;
     const checkedOrIndeterminate = checked || indeterminate;
     const uncheckedDeterminate = !checked && !indeterminate;
@@ -96,6 +81,21 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
     const prevCheckedDeterminate = wasCheckedDeterminate && !wasIndeterminate;
     const prevIndeterminate = wasIndeterminate;
     const prevDisabledOrReadOnly = wasDisabledOrReadOnly;
+
+    const { getStyles } = useComponentTheme<ICheckboxThemeFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
+      className,
+      styles,
+      style,
+      theme: checkboxTheme,
+      modifiers: {
+        disabled: disabledOrReadOnly,
+        checked: checkedOrIndeterminate,
+        indeterminate,
+        loading,
+      },
+    });
 
     const handleChange: React.ChangeEventHandler<HTMLInputElement> =
       useCallback(
@@ -156,16 +156,6 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
           />
         ) : (
           <>
-            <div
-              {...getStyles([
-                'overlay',
-                'outline',
-                disabledOrReadOnly &&
-                  (checkedOrIndeterminate
-                    ? 'outline$disabled$selected'
-                    : 'outline$disabled'),
-              ])}
-            />
             <div
               {...getStyles([
                 'overlay',

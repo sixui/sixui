@@ -1,4 +1,5 @@
 import { createTheme, fallbackVar } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import type { IInteraction } from '~/hooks/useInteractions';
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
@@ -141,8 +142,26 @@ const classNames = createStyles({
   background: ({ root }) => ({
     // Separate node to support opacity changes.
     backgroundColor: tokens.container.color.normal,
-    borderRadius: 'inherit',
-    inset: `round(up, ${tokens.outline.width.normal}, 1px)`,
+    borderTopLeftRadius: calc.subtract(
+      fallbackVar(tokens.container.shape, tokens.container.shapes.topLeft),
+      tokens.outline.width.normal,
+    ),
+    borderTopRightRadius: calc.subtract(
+      fallbackVar(tokens.container.shape, tokens.container.shapes.topRight),
+      tokens.outline.width.normal,
+    ),
+    borderBottomRightRadius: calc.subtract(
+      fallbackVar(tokens.container.shape, tokens.container.shapes.bottomRight),
+      tokens.outline.width.normal,
+    ),
+    borderBottomLeftRadius: calc.subtract(
+      fallbackVar(tokens.container.shape, tokens.container.shapes.bottomLeft),
+      tokens.outline.width.normal,
+    ),
+    inset: calc.subtract(
+      `round(down, ${tokens.outline.width.normal}, 1px)`,
+      '0.5px',
+    ),
     position: 'absolute',
     zIndex: -1,
     opacity: tokens.container.opacity.normal,
@@ -153,9 +172,12 @@ const classNames = createStyles({
           tokens.container.color.focused,
           tokens.container.color.normal,
         ),
-        inset: fallbackVar(
-          tokens.outline.width.focused,
-          tokens.outline.width.normal,
+        inset: calc.subtract(
+          `round(up, ${fallbackVar(
+            tokens.outline.width.focused,
+            tokens.outline.width.normal,
+          )}, 1px)`,
+          '0.5px',
         ),
       },
       [getModifierSelector<IModifier>('hovered', root)]: {
@@ -163,9 +185,12 @@ const classNames = createStyles({
           tokens.container.color.hovered,
           tokens.container.color.normal,
         ),
-        inset: fallbackVar(
-          tokens.outline.width.hovered,
-          tokens.outline.width.normal,
+        inset: calc.subtract(
+          `round(up, ${fallbackVar(
+            tokens.outline.width.hovered,
+            tokens.outline.width.normal,
+          )}, 1px)`,
+          '0.5px',
         ),
       },
       [getModifierSelector<IModifier>('pressed', root)]: {
@@ -173,9 +198,12 @@ const classNames = createStyles({
           tokens.container.color.pressed,
           tokens.container.color.normal,
         ),
-        inset: fallbackVar(
-          tokens.outline.width.pressed,
-          tokens.outline.width.normal,
+        inset: calc.subtract(
+          `round(up, ${fallbackVar(
+            tokens.outline.width.pressed,
+            tokens.outline.width.normal,
+          )}, 1px)`,
+          '0.5px',
         ),
       },
       [getModifierSelector<IModifier>('disabled', root)]: {
@@ -183,9 +211,12 @@ const classNames = createStyles({
           tokens.container.color.disabled,
           tokens.container.color.normal,
         ),
-        inset: fallbackVar(
-          tokens.outline.width.disabled,
-          tokens.outline.width.normal,
+        inset: calc.subtract(
+          `round(up, ${fallbackVar(
+            tokens.outline.width.disabled,
+            tokens.outline.width.normal,
+          )}, 1px)`,
+          '0.5px',
         ),
         opacity: tokens.container.opacity.disabled,
       },

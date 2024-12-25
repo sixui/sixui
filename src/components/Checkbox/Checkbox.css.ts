@@ -56,7 +56,7 @@ const classNames = createStyles({
     }),
 
     selectors: {
-      [getModifierSelector<IModifier>('loading')]: {
+      [getModifierSelector<IModifier>({ loading: true })]: {
         vars: createTokensVars(PaperBase.theme.tokens, {
           outline: {
             width: {
@@ -65,8 +65,26 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>('hovered')]: {
+      [getModifierSelector<IModifier>({ hovered: true })]: {
         zIndex: 1,
+      },
+      [getModifierSelector<IModifier>({ checked: true, loading: false })]: {
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: {
+              normal: themeTokens.colorScheme.primary,
+              disabled: themeTokens.colorScheme.onSurface,
+            },
+            opacity: {
+              disabled: themeTokens.state.opacity.disabled,
+            },
+          },
+          outline: {
+            width: {
+              normal: px(themeTokens.outline.width.none),
+            },
+          },
+        }),
       },
     },
   },
@@ -126,6 +144,10 @@ const classNames = createStyles({
   progressIndicator: {
     width: tokens.size,
     height: tokens.size,
+  },
+  overlay: {
+    inset: 0,
+    position: 'absolute',
   },
 });
 
