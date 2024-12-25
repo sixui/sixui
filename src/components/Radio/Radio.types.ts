@@ -19,6 +19,7 @@ export interface IRadioOwnProps extends IPaperBaseOwnProps {
   name?: string;
   value?: string;
   id?: string;
+  rootRef?: React.Ref<HTMLDivElement>;
 }
 
 export interface IRadioProps
@@ -28,6 +29,6 @@ export interface IRadioProps
 
 export type IRadioFactory = IComponentFactory<{
   props: IRadioProps;
-  ref: HTMLDivElement;
+  ref: HTMLInputElement;
   theme: typeof RadioTheme;
 }>;

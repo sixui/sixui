@@ -1,41 +1,36 @@
-import type {
-  IAny,
-  ICompiledStyles,
-  IMaybeAsync,
-  IOmit,
-  IZeroOrMore,
-} from '~/helpers/types';
-import type { IBaseProps } from '../Base';
-import type { ICircularProgressIndicatorStylesKey } from '../CircularProgressIndicator';
-import type { IFocusRingStylesKey } from '../FocusRing';
-import type { IStateLayerStylesKey } from '../StateLayer';
-import type { IVisualState } from '../VisualState';
-import type { ICheckboxStylesKey } from './Checkbox.styles';
+import type { IAny, IMaybeAsync } from '~/helpers/types';
+import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+import type { IBoxProps } from '../Box';
+import type { IPaperBaseOwnProps } from '../PaperBase';
+import type { checkboxTheme, ICheckboxThemeFactory } from './Checkbox.css';
+import { IInteractionsMergeStrategy } from '~/hooks/useInteractions';
 
-export type ICheckboxProps = IBaseProps<ICheckboxStylesKey> &
-  IOmit<
-    React.ComponentPropsWithoutRef<'input'>,
-    'defaultValue' | 'onChange'
-  > & {
-    innerStyles?: {
-      stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStylesKey>>;
-      focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStylesKey>>;
-      circularProgressIndicator?: IZeroOrMore<
-        ICompiledStyles<ICircularProgressIndicatorStylesKey>
-      >;
-    };
-    visualState?: IVisualState;
-    indeterminate?: boolean;
-    defaultIndeterminate?: boolean;
-    onChange?: (
-      event: React.ChangeEvent<HTMLInputElement>,
-      value: React.InputHTMLAttributes<HTMLInputElement>['value'],
-    ) => IMaybeAsync<IAny>;
-    loading?: boolean;
+export interface ICheckboxOwnProps extends IPaperBaseOwnProps {
+  checked?: boolean;
+  defaultChecked?: boolean;
+  indeterminate?: boolean;
+  defaultIndeterminate?: boolean;
+  value?: React.InputHTMLAttributes<HTMLInputElement>['value'];
+  onChange?: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    value: React.InputHTMLAttributes<HTMLInputElement>['value'],
+  ) => IMaybeAsync<IAny>;
+  required?: boolean;
+  readOnly?: boolean;
+  loading?: boolean;
+  interactionsMergeStrategy?: IInteractionsMergeStrategy;
+  id?: string;
+  rootRef?: React.Ref<HTMLDivElement>;
+}
 
-    /**
-     * If `true`, the component will be rendered in a disabled state, but will
-     * still be focusable.
-     */
-    readOnly?: boolean;
-  };
+export interface ICheckboxProps
+  extends IBoxProps,
+    IComponentThemeProps<ICheckboxThemeFactory>,
+    ICheckboxOwnProps {}
+
+export type ICheckboxFactory = IComponentFactory<{
+  props: ICheckboxProps;
+  ref: HTMLInputElement;
+  theme: typeof checkboxTheme;
+}>;

@@ -34,6 +34,7 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
     name: nameProp,
     value,
     id: idProp,
+    rootRef,
     ...other
   } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -60,12 +61,12 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
     ? radioGroupContext.value !== undefined && radioGroupContext.value === value
     : checkedProp;
 
-  const stateLayer = useStateLayer<HTMLDivElement>({
+  const stateLayer = useStateLayer<HTMLInputElement>({
     baseState: interactions,
     mergeStrategy: interactionsMergeStrategy,
     disabled: disabledOrReadOnly,
   });
-  const handleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
+  const inputHandleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
 
   const { getStyles } = useComponentTheme<IRadioThemeFactory>({
     componentName: COMPONENT_NAME,
@@ -110,7 +111,7 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
       {...getStyles('root')}
       classNames={classNames}
       interactions={stateLayer.interactionsContext.state}
-      ref={forwardedRef}
+      ref={rootRef}
       {...other}
     >
       <StateLayer {...getStyles('stateLayer')} context={stateLayer} />
@@ -132,7 +133,7 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
         required={required}
         disabled={disabled}
         readOnly={readOnly}
-        ref={handleRef}
+        ref={inputHandleRef}
         {...getStyles('input')}
         {...stateLayer.interactionsContext.triggerProps}
       />

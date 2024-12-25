@@ -1,93 +1,84 @@
-import { forwardRef, useCallback, useContext, useRef, useState } from 'react';
-import { useMergeRefs } from '@floating-ui/react';
-import { asArray } from '@olivierpascal/helpers';
+import { useCallback, useState } from 'react';
 
-import type { ICheckboxProps } from './Checkbox.types';
+import type { ICheckboxThemeFactory } from './Checkbox.css';
+import type { ICheckboxFactory } from './Checkbox.types';
 import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 import { useControlledValue } from '~/hooks/useControlledValue';
-import { usePrevious } from '~/hooks/usePrevious';
-import { useStyles } from '~/hooks/useStyles';
-import { Base } from '../Base';
+import { useMergeRefs } from '~/hooks/useMergeRefs';
+import { componentFactory } from '~/utils/component/componentFactory';
+import { useProps } from '~/utils/component/useProps';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { FocusRing } from '../FocusRing';
-import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
-import { LabeledContext } from '../Labeled';
-import { StateLayer } from '../StateLayer';
-import { useVisualState } from '../VisualState';
-import {
-  checkboxFocusRingStyles,
-  checkboxStateLayerStyles,
-  checkboxStyles,
-} from './Checkbox.styles';
-import { checkboxTheme } from './Checkbox.stylex';
+import { useLabeledContext } from '../Labeled';
+import { PaperBase } from '../PaperBase';
+import { useStateLayer } from '../StateLayer';
+import { checkboxTheme } from './Checkbox.css';
 
-// https://github.com/material-components/material-web/blob/main/checkbox/internal/checkbox.ts
+const COMPONENT_NAME = 'Checkbox';
 
-export const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(
-  function Checkbox(props, forwardedRef) {
+export const Checkbox = componentFactory<ICheckboxFactory>(
+  (props, forwardedRef) => {
     const {
+      classNames,
+      className,
       styles,
-      sx,
-      innerStyles,
-      visualState: visualStateProp,
-      onChange,
-      indeterminate: indeterminateProp,
-      defaultIndeterminate,
+      style,
+      interactions,
+      interactionsMergeStrategy,
       checked: checkedProp,
       defaultChecked,
-      loading: loadingProp,
+      indeterminate: indeterminateProp,
+      defaultIndeterminate,
+      onChange,
+      required: requiredProp,
+      disabled,
       readOnly: readOnlyProp,
+      loading: loadingProp,
+      id: idProp,
+      value,
+      rootRef,
       ...other
-    } = props;
+    } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const labeledContext = useContext(LabeledContext);
-    const actionRef = useRef<HTMLInputElement>(null);
+    const labeledContext = useLabeledContext();
     const [handlingChange, setHandlingChange] = useState(false);
-    const loading = loadingProp || handlingChange || labeledContext?.loading;
-    const readOnly = readOnlyProp || loading || labeledContext?.readOnly;
-    const visuallyDisabled =
-      other.disabled || labeledContext?.disabled || readOnly;
-
-    const { visualState, setRef: setVisualStateRef } = useVisualState(
-      visualStateProp,
-      { disabled: visuallyDisabled },
-    );
-    const handleRef = useMergeRefs([
-      forwardedRef,
-      setVisualStateRef,
-      actionRef,
-    ]);
-
-    const { combineStyles, getStyles, globalStyles } = useStyles({
-      componentName: 'Checkbox',
-      styles: [checkboxStyles, styles],
-    });
-
-    const [checkedValue, setCheckedValue] = useControlledValue({
+    const [checked, setChecked] = useControlledValue({
       controlled: checkedProp,
       default: !!defaultChecked,
-      name: 'Checkbox',
-      state: 'checked',
+      name: COMPONENT_NAME,
     });
     const [indeterminate, setIndeterminate] = useControlledValue({
       controlled: indeterminateProp,
       default: !!defaultIndeterminate,
-      name: 'Checkbox',
-      state: 'indeterminate',
+      name: COMPONENT_NAME,
     });
 
-    const checked = checkedValue && !indeterminate;
-    const selected = checked || indeterminate;
-    const unselected = !selected;
+    const loading = loadingProp || handlingChange || labeledContext?.loading;
+    const readOnly = readOnlyProp || loading || labeledContext?.readOnly;
+    const disabledOrReadOnly = disabled || labeledContext?.disabled || readOnly;
+    const required = requiredProp ?? labeledContext?.required;
+    const id = idProp ?? labeledContext?.id;
 
-    const wasChecked = usePrevious(checked) ?? false;
-    const wasIndeterminate = usePrevious(indeterminate) ?? false;
-    const wasVisuallyDisabled = usePrevious(!!visuallyDisabled);
+    const stateLayer = useStateLayer<HTMLInputElement>({
+      baseState: interactions,
+      mergeStrategy: interactionsMergeStrategy,
+      disabled: disabledOrReadOnly,
+    });
+    const inputHandleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
 
-    const prevNone = !wasChecked && !wasIndeterminate;
-    const prevUnselected = prevNone;
-    const prevChecked = wasChecked && !wasIndeterminate;
-    const prevIndeterminate = wasIndeterminate;
-    const prevDisabled = wasVisuallyDisabled;
+    const { getStyles } = useComponentTheme<ICheckboxThemeFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
+      className,
+      styles,
+      style,
+      theme: checkboxTheme,
+      modifiers: {
+        disabled: disabledOrReadOnly,
+        checked,
+        loading,
+      },
+    });
 
     const handleChange: React.ChangeEventHandler<HTMLInputElement> =
       useCallback(
@@ -103,144 +94,45 @@ export const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(
                 event.target.checked ? event.target.value : undefined,
               ) as void,
             setHandlingChange,
-          ).finally(() => {
-            setCheckedValue(!event.target.checked);
-            setIndeterminate(false);
-          });
+          ).finally(() => setChecked(!event.target.checked));
         },
-        [handlingChange, onChange, setCheckedValue, setIndeterminate],
+        [handlingChange, onChange, setChecked],
       );
 
     return (
-      <Base
-        visualState={visualState}
-        sx={[
-          checkboxTheme,
-          globalStyles,
-          combineStyles(
-            'host',
-            selected && 'host$selected',
-            visuallyDisabled && 'host$disabled',
-          ),
-          sx,
-        ]}
+      <PaperBase
+        {...getStyles('root')}
+        classNames={classNames}
+        interactions={stateLayer.interactionsContext.state}
+        ref={rootRef}
+        {...other}
       >
-        <Base
-          as="input"
-          data-cy="checkbox"
-          type="checkbox"
-          aria-checked={indeterminate ? 'mixed' : undefined}
-          checked={checkedValue}
-          onChange={handleChange}
-          id={labeledContext?.id}
-          required={labeledContext?.required}
-          {...other}
-          visualState={visualState}
-          sx={combineStyles('input')}
-          ref={handleRef}
-        />
-
-        {loading ? (
-          <IndeterminateCircularProgressIndicator
-            sx={combineStyles('loading')}
-            styles={innerStyles?.circularProgressIndicator}
-            disabled
+        {!disabledOrReadOnly && (
+          <FocusRing
+            {...getStyles('focusRing')}
+            interactions={stateLayer.interactionsContext.state}
           />
-        ) : (
-          <>
-            <div
-              {...getStyles(
-                'overlay',
-                'outline',
-                visuallyDisabled &&
-                  (selected ? 'outline$disabled$selected' : 'outline$disabled'),
-              )}
-            />
-            <div
-              {...getStyles(
-                'overlay',
-                'background',
-                'backgroundAndIcon',
-                selected && 'backgroundAndIcon$selected',
-                visuallyDisabled &&
-                  (selected
-                    ? 'background$disabled$selected'
-                    : 'background$disabled'),
-                prevDisabled && 'background$prevDisabled',
-              )}
-            />
-
-            <StateLayer
-              for={actionRef}
-              styles={[
-                checkboxStateLayerStyles,
-                ...asArray(innerStyles?.stateLayer),
-              ]}
-              disabled={visuallyDisabled}
-              interactionState={visualState}
-            />
-            {visuallyDisabled ? null : (
-              <FocusRing
-                for={actionRef}
-                styles={[
-                  checkboxFocusRingStyles,
-                  ...asArray(innerStyles?.focusRing),
-                ]}
-                visualState={visualState}
-              />
-            )}
-
-            <svg
-              {...getStyles(
-                'overlay',
-                'icon',
-                visuallyDisabled && 'icon$disabled',
-                prevDisabled && 'icon$prevDisabled',
-                'backgroundAndIcon',
-                selected && 'backgroundAndIcon$selected',
-              )}
-              viewBox="0 0 18 18"
-              aria-hidden
-            >
-              <rect
-                {...getStyles(
-                  'mark',
-                  'mark$short',
-                  selected && 'mark$selected',
-                  visuallyDisabled && 'mark$disabled',
-                  prevDisabled && 'mark$prevDisabled',
-                  prevUnselected && 'mark$prevUnselected',
-                  (checked || (prevChecked && unselected)) && [
-                    'checkMark',
-                    'checkMark$short',
-                  ],
-                  (indeterminate || (prevIndeterminate && unselected)) &&
-                    'indeterminate',
-                )}
-              />
-              <rect
-                {...getStyles(
-                  'mark',
-                  'mark$long',
-                  selected && 'mark$selected',
-                  visuallyDisabled && 'mark$disabled',
-                  prevDisabled && 'mark$prevDisabled',
-                  prevUnselected && 'mark$prevUnselected',
-                  (checked || (prevChecked && unselected)) && [
-                    'checkMark',
-                    'checkMark$long',
-                  ],
-                  (indeterminate || (prevIndeterminate && unselected)) &&
-                    'indeterminate',
-                  prevUnselected &&
-                    checked &&
-                    'mark$long$prevUnselected$checked',
-                )}
-              />
-            </svg>
-          </>
         )}
-      </Base>
+        <input
+          type="checkbox"
+          role="switch"
+          checked={checked}
+          onChange={handleChange}
+          id={id}
+          required={required}
+          disabled={disabled}
+          readOnly={readOnly}
+          value={value}
+          ref={inputHandleRef}
+          aria-checked={indeterminate ? 'mixed' : undefined}
+          {...getStyles('input')}
+          {...stateLayer.interactionsContext.triggerProps}
+        />
+        XX
+      </PaperBase>
     );
   },
 );
+
+Checkbox.theme = checkboxTheme;
+Checkbox.displayName = `@sixui/${COMPONENT_NAME}`;

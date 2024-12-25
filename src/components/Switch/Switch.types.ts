@@ -9,6 +9,7 @@ import type { basicTemplateTheme, ISwitchThemeFactory } from './Switch.css';
 export interface ISwitchOwnProps extends IPaperBaseOwnProps {
   checked?: boolean;
   defaultChecked?: boolean;
+  value?: React.InputHTMLAttributes<HTMLInputElement>['value'];
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement>,
     value: React.InputHTMLAttributes<HTMLInputElement>['value'],
@@ -21,6 +22,7 @@ export interface ISwitchOwnProps extends IPaperBaseOwnProps {
   uncheckedIcon?: React.ReactNode | true;
   alwaysOn?: boolean;
   id?: string;
+  rootRef?: React.Ref<HTMLDivElement>;
 }
 
 export interface ISwitchProps
@@ -30,6 +32,6 @@ export interface ISwitchProps
 
 export type ISwitchFactory = IComponentFactory<{
   props: ISwitchProps;
-  ref: HTMLDivElement;
+  ref: HTMLInputElement;
   theme: typeof basicTemplateTheme;
 }>;

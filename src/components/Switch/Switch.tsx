@@ -39,6 +39,8 @@ export const Switch = componentFactory<ISwitchFactory>(
       uncheckedIcon,
       alwaysOn,
       id: idProp,
+      value,
+      rootRef,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -59,12 +61,12 @@ export const Switch = componentFactory<ISwitchFactory>(
       loading || (checked && !!checkedIcon) || (!checked && !!uncheckedIcon);
     const isOn = checked || alwaysOn;
 
-    const stateLayer = useStateLayer<HTMLDivElement>({
+    const stateLayer = useStateLayer<HTMLInputElement>({
       baseState: interactions,
       mergeStrategy: interactionsMergeStrategy,
       disabled: disabledOrReadOnly,
     });
-    const handleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
+    const inputHandleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
 
     const { getStyles } = useComponentTheme<ISwitchThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -106,7 +108,7 @@ export const Switch = componentFactory<ISwitchFactory>(
         {...getStyles('root')}
         classNames={classNames}
         interactions={stateLayer.interactionsContext.state}
-        ref={forwardedRef}
+        ref={rootRef}
         {...other}
       >
         {!disabledOrReadOnly && (
@@ -125,7 +127,8 @@ export const Switch = componentFactory<ISwitchFactory>(
           required={required}
           disabled={disabled}
           readOnly={readOnly}
-          ref={handleRef}
+          value={value}
+          ref={inputHandleRef}
           {...getStyles('input')}
           {...stateLayer.interactionsContext.triggerProps}
         />
