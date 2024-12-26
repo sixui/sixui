@@ -16,8 +16,8 @@ import { themeTokens } from '../ThemeProvider';
 // The coordinates in an 18px viewBox of the bottom left corner of the
 // indeterminate icon. Y is negative to fix an issue in Safari (see below).
 const indeterminateBottomLeft = '4px, -10px';
-// The coordinates in an 18px viewBox of the bottom left corner of the
-// checkmark icon. Y is negative to fix an issue in Safari (see below).
+// The coordinates in an 18px viewBox of the bottom left corner of the checkmark
+// icon. Y is negative to fix an issue in Safari (see below).
 const checkMarkBottomLeft = '7px, -14px';
 
 const prevUnselectedToCheckedKeyframes = keyframes({
@@ -39,9 +39,8 @@ const DENSITY = px(getDensity({ min: -2, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
   size: px(18),
-  iconSize: px(18),
   mark: {
-    stroke: px(2),
+    stroke: '2px',
   },
   background: {
     color: {
@@ -68,6 +67,7 @@ const [tokensClassName, tokens] = createTheme({
     },
   },
   icon: {
+    size: px(18),
     color: {
       normal: themeTokens.colorScheme.onPrimary,
       focused: 'inherit',
@@ -135,8 +135,8 @@ const classNames = createStyles({
     },
   },
   stateLayer: {
-    width: px(themeTokens.density.minTargetSize),
-    height: px(themeTokens.density.minTargetSize),
+    width: `max(${themeTokens.density.minTargetSize}, 100%)`,
+    height: `max(${themeTokens.density.minTargetSize}, 100%)`,
     borderRadius: px(themeTokens.shape.corner.circle),
     top: '50%',
     left: '50%',
@@ -149,8 +149,8 @@ const classNames = createStyles({
     }),
   },
   focusRing: {
-    width: px(themeTokens.density.minTargetSize),
-    height: px(themeTokens.density.minTargetSize),
+    width: `max(${themeTokens.density.minTargetSize}, 100%)`,
+    height: `max(${themeTokens.density.minTargetSize}, 100%)`,
     borderRadius: px(themeTokens.shape.corner.circle),
     top: '50%',
     left: '50%',
@@ -159,18 +159,8 @@ const classNames = createStyles({
   input: ({ root }) => ({
     // Input is also touch target
     appearance: 'none',
-    width: px(
-      calc.add(
-        themeTokens.density.minTargetSize,
-        calc.multiply(2, themeTokens.outline.width.sm),
-      ),
-    ),
-    height: px(
-      calc.add(
-        themeTokens.density.minTargetSize,
-        calc.multiply(2, themeTokens.outline.width.sm),
-      ),
-    ),
+    width: `max(${themeTokens.density.minTargetSize}, 100%)`,
+    height: `max(${themeTokens.density.minTargetSize}, 100%)`,
     outline: 'none',
     margin: 0,
     position: 'absolute',
@@ -289,8 +279,8 @@ const classNames = createStyles({
     // 2. Long end
     //   - the larger trailing part of the checkmark
     //   - the entirety of the indeterminate mark
-    width: tokens.iconSize,
-    height: tokens.iconSize,
+    width: tokens.icon.size,
+    height: tokens.icon.size,
     fill: tokens.icon.color.normal,
     transitionProperty: 'transform, opacity',
     transitionDuration: `${themeTokens.motion.duration.short.$3}, ${themeTokens.motion.duration.short.$1}`,

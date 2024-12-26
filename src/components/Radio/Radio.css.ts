@@ -95,8 +95,8 @@ const classNames = createStyles({
     },
   },
   stateLayer: {
-    width: px(themeTokens.density.minTargetSize),
-    height: px(themeTokens.density.minTargetSize),
+    width: `max(${themeTokens.density.minTargetSize}, 100%)`,
+    height: `max(${themeTokens.density.minTargetSize}, 100%)`,
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
@@ -108,8 +108,8 @@ const classNames = createStyles({
     }),
   },
   focusRing: {
-    width: px(themeTokens.density.minTargetSize),
-    height: px(themeTokens.density.minTargetSize),
+    width: `max(${themeTokens.density.minTargetSize}, 100%)`,
+    height: `max(${themeTokens.density.minTargetSize}, 100%)`,
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
@@ -117,18 +117,8 @@ const classNames = createStyles({
   input: ({ root }) => ({
     // Input is also touch target
     appearance: 'none',
-    width: px(
-      calc.add(
-        themeTokens.density.minTargetSize,
-        calc.multiply(2, themeTokens.outline.width.sm),
-      ),
-    ),
-    height: px(
-      calc.add(
-        themeTokens.density.minTargetSize,
-        calc.multiply(2, themeTokens.outline.width.sm),
-      ),
-    ),
+    width: `max(${themeTokens.density.minTargetSize}, 100%)`,
+    height: `max(${themeTokens.density.minTargetSize}, 100%)`,
     outline: 'none',
     margin: 0,
     position: 'absolute',

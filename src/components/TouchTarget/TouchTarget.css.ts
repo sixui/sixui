@@ -1,7 +1,6 @@
 import type { IInteraction } from '~/hooks/useInteractions';
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { themeTokens } from '../ThemeProvider';
@@ -13,8 +12,8 @@ const classNames = createStyles({
     position: 'absolute',
     top: '50%',
     left: '50%',
-    width: `max(${px(themeTokens.density.minTargetSize)}, 100%)`,
-    height: `max(${px(themeTokens.density.minTargetSize)}, 100%)`,
+    width: `max(${themeTokens.density.minTargetSize}, 100%)`,
+    height: `max(${themeTokens.density.minTargetSize}, 100%)`,
     transform: 'translate(-50%, -50%)',
     zIndex: 1,
 

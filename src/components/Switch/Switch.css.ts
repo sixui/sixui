@@ -115,26 +115,16 @@ const classNames = createStyles({
   },
   stateLayer: {
     borderRadius: themeTokens.shape.corner.full,
-    width: themeTokens.density.minTargetSize,
-    height: themeTokens.density.minTargetSize,
+    width: `max(${themeTokens.density.minTargetSize}, 100%)`,
+    height: `max(${themeTokens.density.minTargetSize}, 100%)`,
     inset: 'unset',
   },
   focusRing: {},
   input: ({ root }) => ({
     // Input is also touch target
     appearance: 'none',
-    width: px(
-      calc.add(
-        themeTokens.density.minTargetSize,
-        calc.multiply(2, themeTokens.outline.width.sm),
-      ),
-    ),
-    height: px(
-      calc.add(
-        themeTokens.density.minTargetSize,
-        calc.multiply(2, themeTokens.outline.width.sm),
-      ),
-    ),
+    width: `max(${themeTokens.density.minTargetSize}, 100%)`,
+    height: `max(${themeTokens.density.minTargetSize}, 100%)`,
     outline: 'none',
     margin: 0,
     position: 'absolute',

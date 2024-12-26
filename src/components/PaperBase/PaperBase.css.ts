@@ -228,7 +228,7 @@ const classNames = createStyles({
     inset: 0,
     pointerEvents: 'none',
     borderStyle: tokens.outline.style,
-    borderWidth: `round(up, ${px(tokens.outline.width.normal)}, 1px)`,
+    borderWidth: `round(up, ${tokens.outline.width.normal}, 1px)`,
     borderColor: tokens.outline.color.normal,
     borderRadius: 'inherit',
 
@@ -238,11 +238,9 @@ const classNames = createStyles({
           tokens.outline.color.focused,
           tokens.outline.color.normal,
         ),
-        borderWidth: `round(up, ${px(
-          fallbackVar(
-            tokens.outline.width.focused,
-            tokens.outline.width.normal,
-          ),
+        borderWidth: `round(up, ${fallbackVar(
+          tokens.outline.width.focused,
+          tokens.outline.width.normal,
         )}, 1px)`,
       },
       [getModifierSelector<IModifier>('hovered', root)]: {
@@ -250,11 +248,9 @@ const classNames = createStyles({
           tokens.outline.color.hovered,
           tokens.outline.color.normal,
         ),
-        borderWidth: `round(up, ${px(
-          fallbackVar(
-            tokens.outline.width.hovered,
-            tokens.outline.width.normal,
-          ),
+        borderWidth: `round(up, ${fallbackVar(
+          tokens.outline.width.hovered,
+          tokens.outline.width.normal,
         )}, 1px)`,
       },
       [getModifierSelector<IModifier>('pressed', root)]: {
@@ -262,11 +258,9 @@ const classNames = createStyles({
           tokens.outline.color.pressed,
           tokens.outline.color.normal,
         ),
-        borderWidth: `round(up, ${px(
-          fallbackVar(
-            tokens.outline.width.pressed,
-            tokens.outline.width.normal,
-          ),
+        borderWidth: `round(up, ${fallbackVar(
+          tokens.outline.width.pressed,
+          tokens.outline.width.normal,
         )}, 1px)`,
       },
       [getModifierSelector<IModifier>('disabled', root)]: {
@@ -274,11 +268,9 @@ const classNames = createStyles({
           tokens.outline.color.disabled,
           tokens.outline.color.normal,
         ),
-        borderWidth: `round(up, ${px(
-          fallbackVar(
-            tokens.outline.width.disabled,
-            tokens.outline.width.normal,
-          ),
+        borderWidth: `round(up, ${fallbackVar(
+          tokens.outline.width.disabled,
+          tokens.outline.width.normal,
         )}, 1px)`,
         opacity: tokens.outline.opacity.disabled,
       },
