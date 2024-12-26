@@ -29,10 +29,10 @@ const prevUnselectedToCheckedKeyframes = keyframes({
 type IModifier =
   | IInteraction
   | 'disabled'
-  | 'was-disabled'
+  | 'on'
   | 'checked'
-  | 'was-unchecked'
   | 'indeterminate'
+  | 'was-unchecked'
   | 'loading';
 
 const DENSITY = px(getDensity({ min: -2, max: 0 }));
@@ -67,18 +67,6 @@ const [tokensClassName, tokens] = createTheme({
       disabled: themeTokens.state.opacity.disabled,
     },
   },
-  background$error: {
-    color: {
-      normal: themeTokens.colorScheme.error,
-      focused: 'inherit',
-      hovered: 'inherit',
-      pressed: 'inherit',
-      disabled: themeTokens.colorScheme.onSurface,
-    },
-    opacity: {
-      disabled: themeTokens.state.opacity.disabled,
-    },
-  },
   icon: {
     color: {
       normal: themeTokens.colorScheme.onPrimary,
@@ -89,19 +77,6 @@ const [tokensClassName, tokens] = createTheme({
     },
     opacity: {
       disabled: '1',
-    },
-  },
-  // FIXME: error
-  icon$error: {
-    color: {
-      normal: themeTokens.colorScheme.onError,
-      focused: 'inherit',
-      hovered: 'inherit',
-      pressed: 'inherit',
-      disabled: themeTokens.colorScheme.surface,
-    },
-    opacity: {
-      disabled: themeTokens.state.opacity.disabled,
     },
   },
 });
@@ -148,7 +123,7 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>({ hovered: true })]: {
         zIndex: 1,
       },
-      [getModifierSelector<IModifier>({ checked: true })]: {
+      [getModifierSelector<IModifier>({ on: true })]: {
         vars: createTokensVars(PaperBase.theme.tokens, {
           outline: {
             width: {
@@ -234,7 +209,7 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>('disabled', root)]: {
         // Don't animate to/from disabled states because the outline is hidden
         // when selected. Without this, there'd be a FOUC if the checkbox state
-        // is programmatically  changed while disabled.
+        // is programmatically changed while disabled.
         animationDuration: '0s',
         transitionDuration: '0s',
       },
@@ -263,14 +238,7 @@ const classNames = createStyles({
         ),
         opacity: tokens.background.opacity.disabled,
       },
-      [getModifierSelector<IModifier>('was-disabled', root)]: {
-        // Don't animate to/from disabled states because the outline is hidden
-        // when selected. Without this, there'd be a FOUC if the checkbox state
-        // is programmatically  changed while disabled.
-        animationDuration: '0s',
-        transitionDuration: '0s',
-      },
-      [getModifierSelector<IModifier>(['checked'], root)]: {
+      [getModifierSelector<IModifier>('on', root)]: {
         transitionDuration: `${themeTokens.motion.duration.medium.$3}, ${themeTokens.motion.duration.short.$1}`,
         transitionTimingFunction: `${themeTokens.motion.easing.emphasized.decelerate}, linear`,
         transform: 'scale(1)',
@@ -280,25 +248,27 @@ const classNames = createStyles({
           tokens.background.color.normal,
         ),
       },
-      [getModifierSelector<IModifier>(['checked', 'focused'], root)]: {
+      [getModifierSelector<IModifier>(['on', 'focused'], root)]: {
         backgroundColor: fallbackVar(
           tokens.background$checked.color.focused,
           tokens.background$checked.color.normal,
         ),
       },
-      [getModifierSelector<IModifier>(['checked', 'hovered'], root)]: {
+      [getModifierSelector<IModifier>(['on', 'hovered'], root)]: {
         backgroundColor: fallbackVar(
           tokens.background$checked.color.hovered,
           tokens.background$checked.color.normal,
         ),
       },
-      [getModifierSelector<IModifier>(['checked', 'pressed'], root)]: {
+      [getModifierSelector<IModifier>(['on', 'pressed'], root)]: {
         backgroundColor: fallbackVar(
           tokens.background$checked.color.pressed,
           tokens.background$checked.color.normal,
         ),
       },
-      [getModifierSelector<IModifier>(['checked', 'disabled'], root)]: {
+      [getModifierSelector<IModifier>(['on', 'disabled'], root)]: {
+        animationDuration: '0s',
+        transitionDuration: '0s',
         // Set disabled opacity only when selected since opacity is used to show
         // or hide the container background.
         backgroundColor: fallbackVar(
@@ -329,7 +299,7 @@ const classNames = createStyles({
     opacity: 0,
 
     selectors: {
-      [getModifierSelector<IModifier>('checked', root)]: {
+      [getModifierSelector<IModifier>('on', root)]: {
         transitionDuration: `${themeTokens.motion.duration.medium.$3}, ${themeTokens.motion.duration.short.$1}`,
         transitionTimingFunction: `${themeTokens.motion.easing.emphasized.decelerate}, linear`,
         transform: 'scale(1)',
@@ -347,19 +317,12 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>('disabled', root)]: {
         // Don't animate to/from disabled states because the outline is hidden
         // when selected. Without this, there'd be a FOUC if the checkbox state
-        // is programmatically  changed while disabled.
+        // is programmatically changed while disabled.
         animationDuration: '0s',
         transitionDuration: '0s',
 
         fill: fallbackVar(tokens.icon.color.disabled, tokens.icon.color.normal),
         opacity: tokens.icon.opacity.disabled,
-      },
-      [getModifierSelector<IModifier>('was-disabled', root)]: {
-        // Don't animate to/from disabled states because the outline is hidden
-        // when selected. Without this, there'd be a FOUC if the checkbox state
-        // is programmatically  changed while disabled.
-        animationDuration: '0s',
-        transitionDuration: '0s',
       },
     },
   }),
@@ -370,23 +333,26 @@ const classNames = createStyles({
     transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
 
     selectors: {
-      [getModifierSelector<IModifier>('checked', root)]: {
+      [getModifierSelector<IModifier>('on', root)]: {
         // Enter duration and easing.
         animationDuration: themeTokens.motion.duration.medium.$3,
         animationTimingFunction:
           themeTokens.motion.easing.emphasized.decelerate,
       },
+      [getModifierSelector<IModifier>('checked', root)]: {
+        // Transform from the bottom left of the rectangles, which turn into the
+        // bottom-most point of the checkmark. Fix Safari's transform-origin bug
+        // from "top left" to "bottom left" Move the "bottom left" corner to the
+        // checkmark location. Rotate the checkmark.
+        transform: `scaleY(-1) translate(${checkMarkBottomLeft}) rotate(45deg)`,
+      },
+      [getModifierSelector<IModifier>('indeterminate', root)]: {
+        transform: `scaleY(-1) translate(${indeterminateBottomLeft}) rotate(0deg)`,
+      },
       [getModifierSelector<IModifier>('disabled', root)]: {
         // Don't animate to/from disabled states because the outline is hidden
         // when selected. Without this, there'd be a FOUC if the checkbox state
-        // is programmatically  changed while disabled.
-        animationDuration: '0s',
-        transitionDuration: '0s',
-      },
-      [getModifierSelector<IModifier>('was-disabled', root)]: {
-        // Don't animate to/from disabled states because the outline is hidden
-        // when selected. Without this, there'd be a FOUC if the checkbox state
-        // is programmatically  changed while disabled.
+        // is programmatically changed while disabled.
         animationDuration: '0s',
         transitionDuration: '0s',
       },
@@ -398,47 +364,40 @@ const classNames = createStyles({
       },
     },
   }),
-  mark$short: {
+  mark$short: ({ root }) => ({
     // The short end of the checkmark. Initially hidden underneath the
     // indeterminate mark.
     width: tokens.mark.stroke,
     height: tokens.mark.stroke,
     transitionProperty: 'transform, height',
-  },
+
+    selectors: {
+      [getModifierSelector<IModifier>('checked', root)]: {
+        // The right triangle that forms the short end has an X, Y length of 4dp,
+        // 4dp. The hypoteneuse is √(4*4 + 4*4), which is the length of the short
+        // end when checked.
+        height: Math.sqrt(32),
+      },
+    },
+  }),
   mark$long: ({ root }) => ({
-    // FIXME: The long end of the checkmark. Initially the indeterminate mark.
-    width: px(10),
+    // The long end of the checkmark. Initially the indeterminate mark.
+    width: 10,
     height: tokens.mark.stroke,
     transitionProperty: 'transform, width',
 
     selectors: {
-      [getModifierSelector<IModifier>(['was-unchecked', 'checked'], root)]: {
+      [getModifierSelector<IModifier>('checked', root)]: {
+        // The right triangle that forms the long end has an X, Y length of 8dp,
+        // 8dp. The hypoteneuse is √(8*8 + 8*8), which is the length of the long end
+        // when checked.
+        width: Math.sqrt(128),
+      },
+      [getModifierSelector<IModifier>(['was-unchecked', 'on'], root)]: {
         animationName: prevUnselectedToCheckedKeyframes,
       },
     },
   }),
-  checkMark: {
-    // Transform from the bottom left of the rectangles, which turn into the
-    // bottom-most point of the checkmark. Fix Safari's transform-origin bug
-    // from "top left" to "bottom left" Move the "bottom left" corner to the
-    // checkmark location. Rotate the checkmark.
-    transform: `scaleY(-1) translate(${checkMarkBottomLeft}) rotate(45deg)`,
-  },
-  checkMark$short: {
-    // The right triangle that forms the short end has an X, Y length of 4dp,
-    // 4dp. The hypoteneuse is √(4*4 + 4*4), which is the length of the short
-    // end when checked.
-    height: Math.sqrt(32),
-  },
-  checkMark$long: {
-    // The right triangle that forms the long end has an X, Y length of 8dp,
-    // 8dp. The hypoteneuse is √(8*8 + 8*8), which is the length of the long end
-    // when checked.
-    width: Math.sqrt(128),
-  },
-  indeterminate: {
-    transform: `scaleY(-1) translate(${indeterminateBottomLeft}) rotate(0deg)`,
-  },
 });
 
 export type ICheckboxThemeFactory = IComponentThemeFactory<{

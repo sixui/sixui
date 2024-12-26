@@ -44,7 +44,7 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
 
     const labeledContext = useLabeledContext();
     const [handlingChange, setHandlingChange] = useState(false);
-    const [checked, setChecked] = useControlledValue({
+    const [checkedValue, setCheckedValue] = useControlledValue({
       controlled: checkedProp,
       default: !!defaultChecked,
       name: COMPONENT_NAME,
@@ -68,19 +68,11 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
     });
     const inputHandleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
 
-    const checkedDeterminate = checked && !indeterminate;
-    const checkedOrIndeterminate = checked || indeterminate;
-    const uncheckedDeterminate = !checked && !indeterminate;
+    const checked = checkedValue && !indeterminate;
+    const unchecked = !checkedValue && !indeterminate;
+    const on = checkedValue || indeterminate;
 
-    const wasCheckedDeterminate = usePrevious(checkedDeterminate) ?? false;
-    const wasIndeterminate = usePrevious(indeterminate) ?? false;
-    const wasDisabledOrReadOnly = usePrevious(!!disabledOrReadOnly) ?? false;
-
-    const prevNone = !wasCheckedDeterminate && !wasIndeterminate;
-    const prevUncheckedDeterminate = prevNone;
-    const prevCheckedDeterminate = wasCheckedDeterminate && !wasIndeterminate;
-    const prevIndeterminate = wasIndeterminate;
-    const prevDisabledOrReadOnly = wasDisabledOrReadOnly;
+    const wasUnchecked = usePrevious(unchecked) ?? false;
 
     const { getStyles } = useComponentTheme<ICheckboxThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -90,12 +82,12 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
       style,
       theme: checkboxTheme,
       modifiers: {
-        disabled: disabledOrReadOnly,
-        'was-disabled': prevDisabledOrReadOnly,
-        checked: checkedOrIndeterminate,
-        'was-unchecked': prevUncheckedDeterminate,
+        on,
+        checked,
         indeterminate,
+        'was-unchecked': wasUnchecked,
         loading,
+        disabled: disabledOrReadOnly,
       },
     });
 
@@ -114,11 +106,11 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
               ) as void,
             setHandlingChange,
           ).finally(() => {
-            setChecked(!event.target.checked);
+            setCheckedValue(!event.target.checked);
             setIndeterminate(false);
           });
         },
-        [handlingChange, onChange, setChecked, setIndeterminate],
+        [handlingChange, onChange, setCheckedValue, setIndeterminate],
       );
 
     return (
@@ -151,34 +143,8 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
               viewBox="0 0 18 18"
               aria-hidden
             >
-              <rect
-                {...getStyles([
-                  'mark',
-                  'mark$short',
-                  (checkedDeterminate ||
-                    (prevCheckedDeterminate && uncheckedDeterminate)) && [
-                    'checkMark',
-                    'checkMark$short',
-                  ],
-                  (indeterminate ||
-                    (prevIndeterminate && uncheckedDeterminate)) &&
-                    'indeterminate',
-                ])}
-              />
-              <rect
-                {...getStyles([
-                  'mark',
-                  'mark$long',
-                  (checkedDeterminate ||
-                    (prevCheckedDeterminate && uncheckedDeterminate)) && [
-                    'checkMark',
-                    'checkMark$long',
-                  ],
-                  (indeterminate ||
-                    (prevIndeterminate && uncheckedDeterminate)) &&
-                    'indeterminate',
-                ])}
-              />
+              <rect {...getStyles(['mark', 'mark$short'])} />
+              <rect {...getStyles(['mark', 'mark$long'])} />
             </svg>
           </>
         )}
@@ -186,7 +152,7 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
         <input
           type="checkbox"
           role="switch"
-          checked={checked}
+          checked={checkedValue}
           onChange={handleChange}
           id={id}
           required={required}
