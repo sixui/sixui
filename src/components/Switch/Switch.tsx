@@ -124,7 +124,9 @@ export const Switch = componentFactory<ISwitchFactory>(
             <PaperBase {...getStyles('handle')}>
               <div {...getStyles(['icon', 'icon$checked'])}>
                 {loading ? (
-                  <IndeterminateCircularProgressIndicator />
+                  <IndeterminateCircularProgressIndicator
+                    {...getStyles('progressIndicator')}
+                  />
                 ) : checkedIcon === true ? (
                   <SvgIcon icon={iconCheckMark} />
                 ) : (
@@ -134,7 +136,9 @@ export const Switch = componentFactory<ISwitchFactory>(
 
               <div {...getStyles(['icon', 'icon$unchecked'])}>
                 {loading ? (
-                  <IndeterminateCircularProgressIndicator />
+                  <IndeterminateCircularProgressIndicator
+                    {...getStyles('progressIndicator')}
+                  />
                 ) : uncheckedIcon === true ? (
                   <SvgIcon icon={iconXMark} />
                 ) : (

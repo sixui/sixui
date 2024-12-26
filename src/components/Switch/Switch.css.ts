@@ -297,6 +297,10 @@ const classNames = createStyles({
       },
     },
   }),
+  progressIndicator: {
+    width: tokens.icon.size,
+    height: tokens.icon.size,
+  },
 });
 
 export type ISwitchThemeFactory = IComponentThemeFactory<{
