@@ -79,7 +79,7 @@ const [tokensClassName, tokens] = createTheme({
       disabled: themeTokens.state.opacity.disabled,
     },
   },
-  icon$checked: {
+  icon: {
     color: {
       normal: themeTokens.colorScheme.onPrimary,
       focused: 'inherit',
@@ -147,6 +147,15 @@ const classNames = createStyles({
       },
       [getModifierSelector<IModifier>({ hovered: true })]: {
         zIndex: 1,
+      },
+      [getModifierSelector<IModifier>({ checked: true })]: {
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          outline: {
+            width: {
+              disabled: px(themeTokens.outline.width.none),
+            },
+          },
+        }),
       },
     },
   },
@@ -312,7 +321,7 @@ const classNames = createStyles({
     //   - the entirety of the indeterminate mark
     width: tokens.iconSize,
     height: tokens.iconSize,
-    fill: tokens.icon$checked.color.normal,
+    fill: tokens.icon.color.normal,
     transitionProperty: 'transform, opacity',
     transitionDuration: `${themeTokens.motion.duration.short.$3}, ${themeTokens.motion.duration.short.$1}`,
     transitionTimingFunction: `${themeTokens.motion.easing.emphasized.accelerate}, linear`,
@@ -327,22 +336,13 @@ const classNames = createStyles({
         opacity: 1,
       },
       [getModifierSelector<IModifier>('focused', root)]: {
-        fill: fallbackVar(
-          tokens.icon$checked.color.focused,
-          tokens.icon$checked.color.normal,
-        ),
+        fill: fallbackVar(tokens.icon.color.focused, tokens.icon.color.normal),
       },
       [getModifierSelector<IModifier>('hovered', root)]: {
-        fill: fallbackVar(
-          tokens.icon$checked.color.hovered,
-          tokens.icon$checked.color.normal,
-        ),
+        fill: fallbackVar(tokens.icon.color.hovered, tokens.icon.color.normal),
       },
       [getModifierSelector<IModifier>('pressed', root)]: {
-        fill: fallbackVar(
-          tokens.icon$checked.color.pressed,
-          tokens.icon$checked.color.normal,
-        ),
+        fill: fallbackVar(tokens.icon.color.pressed, tokens.icon.color.normal),
       },
       [getModifierSelector<IModifier>('disabled', root)]: {
         // Don't animate to/from disabled states because the outline is hidden
@@ -351,11 +351,8 @@ const classNames = createStyles({
         animationDuration: '0s',
         transitionDuration: '0s',
 
-        fill: fallbackVar(
-          tokens.icon$checked.color.disabled,
-          tokens.icon$checked.color.normal,
-        ),
-        opacity: tokens.icon$checked.opacity.disabled,
+        fill: fallbackVar(tokens.icon.color.disabled, tokens.icon.color.normal),
+        opacity: tokens.icon.opacity.disabled,
       },
       [getModifierSelector<IModifier>('was-disabled', root)]: {
         // Don't animate to/from disabled states because the outline is hidden
