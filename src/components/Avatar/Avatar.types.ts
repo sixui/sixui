@@ -1,10 +1,9 @@
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
-import type { IBoxProps } from '../Box';
 import type { IPaperOwnProps } from '../Paper';
 import type { avatarTheme, IAvatarThemeFactory } from './Avatar.css';
 
-export interface IAvatarOwnProps extends IPaperOwnProps {
+export interface IAvatarOwnProps {
   src?: string;
   alt?: string;
   imgProps?: React.ComponentPropsWithoutRef<'img'>;
@@ -20,7 +19,7 @@ export interface IAvatarOwnProps extends IPaperOwnProps {
 }
 
 export interface IAvatarProps
-  extends IBoxProps,
+  extends IPaperOwnProps,
     IComponentThemeProps<IAvatarThemeFactory>,
     IAvatarOwnProps {}
 

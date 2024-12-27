@@ -63,41 +63,41 @@ const classNames = createStyles({
       transitionTimingFunction: 'linear',
     },
     selectors: {
-      [`${getModifierSelector('hovered')}::before`]: {
+      [`${getModifierSelector<IModifier>('hovered')}::before`]: {
         backgroundColor: tokens.color.hovered,
         opacity: tokens.opacity.hovered,
       },
-      [`${getModifierSelector('animating')}::before`]: {
+      [`${getModifierSelector<IModifier>('animating')}::before`]: {
         backgroundColor: tokens.color.hovered,
         opacity: tokens.opacity.hovered,
       },
-      [`${getModifierSelector('animating')}::after`]: {
+      [`${getModifierSelector<IModifier>('animating')}::after`]: {
         opacity: tokens.opacity.pressed,
         transitionDuration: '105ms',
       },
-      [`${getModifierSelector('static-pressed')}::before`]: {
+      [`${getModifierSelector<IModifier>('static-pressed')}::before`]: {
         backgroundColor: tokens.color.hovered,
         opacity: tokens.opacity.hovered,
       },
-      [`${getModifierSelector('static-pressed')}::after`]: {
+      [`${getModifierSelector<IModifier>('static-pressed')}::after`]: {
         backgroundColor: fallbackVar(
           tokens.color.pressed,
           tokens.color.hovered,
         ),
         opacity: tokens.opacity.pressed,
       },
-      [`${getModifierSelector('no-ripple-effect')}::after`]: {
+      [`${getModifierSelector<IModifier>('no-ripple-effect')}::after`]: {
         backgroundImage: 'none',
         transition: 'none',
       },
-      [`${getModifierSelector('dragged')}::before`]: {
+      [`${getModifierSelector<IModifier>('dragged')}::before`]: {
         backgroundColor: fallbackVar(
           tokens.color.dragged,
           tokens.color.hovered,
         ),
         opacity: tokens.opacity.dragged,
       },
-      [`${getModifierSelector('dragged')}::after`]: {
+      [`${getModifierSelector<IModifier>('dragged')}::after`]: {
         display: 'none',
       },
     },
