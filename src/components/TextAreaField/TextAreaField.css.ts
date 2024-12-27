@@ -6,11 +6,12 @@ import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { FieldBase } from '../FieldBase';
-import { themeTokens } from '../ThemeProvider';
+import { cssLayers, themeTokens } from '../ThemeProvider';
 
 type IModifier = 'disabled' | 'with-error';
 
 const [tokensClassName, tokens] = createTheme({
+  '@layer': cssLayers.theme,
   caret: {
     color: {
       normal: themeTokens.colorScheme.primary,

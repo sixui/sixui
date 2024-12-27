@@ -14,7 +14,7 @@ import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { Avatar } from '../Avatar';
 import { Button } from '../Button';
 import { PaperBase } from '../PaperBase';
-import { themeTokens } from '../ThemeProvider';
+import { cssLayers, themeTokens } from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
 type IModifier =
@@ -28,6 +28,7 @@ type IModifier =
 const DENSITY = px(getDensity({ min: -2, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
+  '@layer': cssLayers.theme,
   leadingSpace: {
     normal: px(space(4)),
     withStartSlot: px(space(2)),

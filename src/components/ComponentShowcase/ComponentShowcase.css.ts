@@ -6,9 +6,10 @@ import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { themeTokens } from '../ThemeProvider';
+import { cssLayers, themeTokens } from '../ThemeProvider';
 
 const [tokensClassName, tokens] = createTheme({
+  '@layer': cssLayers.theme,
   legendText: {
     color: themeTokens.colorScheme.onSurfaceVariant,
     typography: themeTokens.typeScale.label.md,

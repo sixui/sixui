@@ -11,7 +11,7 @@ import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { PaperBase } from '../PaperBase';
 import { StateLayer } from '../StateLayer';
-import { themeTokens } from '../ThemeProvider';
+import { cssLayers, themeTokens } from '../ThemeProvider';
 
 type IModifier = IInteraction | 'disabled' | 'loading' | 'checked';
 
@@ -23,6 +23,7 @@ const innerCircleGrowKeyframes = keyframes({
 });
 
 const [tokensClassName, tokens] = createTheme({
+  '@layer': cssLayers.theme,
   size: px(18),
   icon: {
     color: {

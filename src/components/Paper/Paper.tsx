@@ -1,19 +1,38 @@
+import { assignInlineVars } from '@vanilla-extract/dynamic';
+
 import type { IPaperThemeFactory } from './Paper.css';
 import type { IPaperFactory } from './Paper.types';
+import { px } from '~/helpers/styles/px';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
-import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { PaperBase } from '../PaperBase';
-import {
-  paperBackgroundSprinkles,
-  paperElevationSprinkles,
-  paperOutlineSprinkles,
-  paperSprinkles,
-  paperTheme,
-} from './Paper.css';
+import { themeTokens } from '../ThemeProvider';
+import { elevationLevelPreset } from '../Elevation/Elevation.css';
+import { paperBaseTheme } from '../PaperBase/PaperBase.css';
+import { paperTheme } from './Paper.css';
 
 const COMPONENT_NAME = 'Paper';
+
+const getValue = <TValue extends string>(
+  value: `$${TValue}`,
+  map: Record<TValue, string>,
+  transformer?: (value: string) => string,
+): string => {
+  const mappedValue = value.startsWith('$')
+    ? map[value.slice(1) as TValue]
+    : value;
+
+  return transformer?.(mappedValue) ?? mappedValue;
+};
+
+const createSprinkle = <TKey extends string>(
+  cssVar: string,
+  key: `$${TKey}` | undefined,
+  mappedValues: Record<TKey, string>,
+  transformer?: (value: string) => string,
+): Record<string, string> | undefined =>
+  key ? { [cssVar]: getValue(key, mappedValues, transformer) } : undefined;
 
 export const Paper = polymorphicComponentFactory<IPaperFactory>(
   (props, forwardedRef) => {
@@ -23,21 +42,15 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
       styles,
       style,
       variant,
-      ...otherWithSprinkles
+      surface,
+      shape,
+      outline,
+      elevation,
+      ...other
     } = useProps({
       componentName: COMPONENT_NAME,
       props,
     });
-
-    const sprinkles = paperSprinkles(otherWithSprinkles);
-    const backgroundSprinkles = paperBackgroundSprinkles(sprinkles.otherProps);
-    const elevationSprinkles = paperElevationSprinkles(
-      backgroundSprinkles.otherProps,
-    );
-    const outlineSprinkles = paperOutlineSprinkles(
-      elevationSprinkles.otherProps,
-    );
-    const other = outlineSprinkles.otherProps;
 
     const { getStyles } = useComponentTheme<IPaperThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -52,19 +65,35 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
     return (
       <PaperBase
         {...getStyles('root', {
-          className: sprinkles.className,
-          style: sprinkles.style,
+          style: assignInlineVars({
+            ...createSprinkle(
+              paperBaseTheme.tokens.container.color.normal,
+              surface,
+              {
+                ...themeTokens.colorScheme,
+                transparent: 'transparent',
+              },
+            ),
+            ...createSprinkle(
+              paperBaseTheme.tokens.container.elevation.normal,
+              elevation,
+              elevationLevelPreset,
+            ),
+            ...createSprinkle(
+              paperBaseTheme.tokens.container.shape,
+              shape,
+              themeTokens.shape.corner,
+              px,
+            ),
+            ...createSprinkle(
+              paperBaseTheme.tokens.outline.width.normal,
+              outline,
+              themeTokens.outline.width,
+              px,
+            ),
+          }),
         })}
-        classNames={mergeClassNames(classNames, {
-          background: backgroundSprinkles.className,
-          elevation: elevationSprinkles.className,
-          outline: outlineSprinkles.className,
-        })}
-        styles={{
-          background: backgroundSprinkles.style,
-          elevation: elevationSprinkles.style,
-          outline: outlineSprinkles.style,
-        }}
+        classNames={classNames}
         ref={forwardedRef}
         {...other}
       />

@@ -8,11 +8,12 @@ import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { themeTokens } from '../../ThemeProvider';
+import { cssLayers, themeTokens } from '../../ThemeProvider';
 
 type IModifier = 'disabled';
 
 const [tokensClassName, tokens] = createTheme({
+  '@layer': cssLayers.theme,
   container: {
     color: {
       normal: 'unset',

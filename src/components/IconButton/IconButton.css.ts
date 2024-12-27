@@ -12,13 +12,14 @@ import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { Button } from '../Button';
 import { PaperBase } from '../PaperBase';
 import { StateLayer } from '../StateLayer';
-import { themeTokens } from '../ThemeProvider';
+import { cssLayers, themeTokens } from '../ThemeProvider';
 
 type IModifier = 'toggle' | 'selected' | 'disabled';
 
 const DENSITY = px(getDensity({ min: -4, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
+  '@layer': cssLayers.theme,
   size: px(40),
   icon: {
     labelSpace: px(0),

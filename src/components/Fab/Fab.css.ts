@@ -13,7 +13,7 @@ import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { Button } from '../Button';
 import { PaperBase } from '../PaperBase';
 import { StateLayer } from '../StateLayer';
-import { themeTokens } from '../ThemeProvider';
+import { cssLayers, themeTokens } from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
 type IModifier = 'extended' | 'lowered';
@@ -21,6 +21,7 @@ type IModifier = 'extended' | 'lowered';
 const DENSITY = px(getDensity({ min: -4, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
+  '@layer': cssLayers.theme,
   container: {
     size: px(56),
   },

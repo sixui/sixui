@@ -14,7 +14,7 @@ import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { PaperBase } from '../PaperBase';
 import { StateLayer } from '../StateLayer';
-import { themeTokens } from '../ThemeProvider';
+import { cssLayers, themeTokens } from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
 type IModifier =
@@ -28,6 +28,7 @@ type IModifier =
 const DENSITY = px(getDensity({ min: -4, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
+  '@layer': cssLayers.theme,
   leadingSpace: {
     normal: px(space(6)),
     withStartSlot: px(space(4)),
@@ -336,7 +337,7 @@ export const buttonThemeVariants = {
               disabled: themeTokens.colorScheme.onSurface,
             },
             elevation: {
-              hovered: elevationLevelPreset[1],
+              // hovered: elevationLevelPreset[1],
             },
           },
         }),

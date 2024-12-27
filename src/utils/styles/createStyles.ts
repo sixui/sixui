@@ -1,6 +1,7 @@
 import type { ComplexStyleRule } from '@vanilla-extract/css';
 import { style } from '@vanilla-extract/css';
 
+import { cssLayers } from '~/components/ThemeProvider';
 import { isFunction } from '~/helpers/isFunction';
 
 export const createStyles = <TClassName extends string>(
@@ -18,7 +19,11 @@ export const createStyles = <TClassName extends string>(
     );
   }
 
-  const root = style(stylesObject.root ?? {});
+  const root = style(
+    (stylesObject.root
+      ? { '@layer': { [cssLayers.components]: stylesObject.root } }
+      : {}) as ComplexStyleRule,
+  );
 
   return Object.keys(stylesObject).reduce(
     (acc, key: string) => {
@@ -34,13 +39,21 @@ export const createStyles = <TClassName extends string>(
       if (isFunction(styles)) {
         return {
           ...acc,
-          [key]: style(styles(acc)),
+          [key]: style({
+            '@layer': {
+              [cssLayers.components]: styles(acc),
+            },
+          } as ComplexStyleRule),
         };
       }
 
       return {
         ...acc,
-        [key]: style(styles),
+        [key]: style({
+          '@layer': {
+            [cssLayers.components]: styles,
+          },
+        } as ComplexStyleRule),
       };
     },
     { root } as Record<'root' | TClassName, string>,

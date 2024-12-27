@@ -33,7 +33,7 @@ const BoxDemo: React.FC<IBoxProps> = (props) => (
 );
 
 const ListDemo: React.FC<IDividerProps> = (props) => (
-  <Paper outline="$xs" outlineStyle="solid" corner="$xs">
+  <Paper outline="$xs" outlineStyle="solid" shape="$xs">
     <Flex
       direction={props.orientation === 'horizontal' ? 'column' : 'row'}
       divider={<Divider {...props} />}

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IPaperProps } from './Paper.types';
 import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Paper } from './Paper';
@@ -20,18 +21,24 @@ const defaultArgs = {
   className: classNames.root,
 } satisfies Partial<IPaperProps>;
 
+const states: Array<IComponentPresentation<IPaperProps>> = [
+  { legend: 'Enabled' },
+  { legend: 'Disabled', props: { disabled: true } },
+];
+
 const PaperDemo: React.FC<IPaperProps> = ({ children, ...props }) => (
-  <Paper {...props} corner="$md">
+  <Paper {...props}>
     <div className={classNames.inner}>{children}</div>
   </Paper>
 );
 
 const PaperShowcase = componentShowcaseFactory(PaperDemo);
 
-export const Elevations: IStory = {
+export const Elevation: IStory = {
   render: (props) => (
     <PaperShowcase
       props={props}
+      cols={states}
       rows={(
         ['$0', '$1', '$2', '$3', '$4', '$5'] as Array<IPaperProps['elevation']>
       ).map((elevation) => ({
@@ -45,28 +52,28 @@ export const Elevations: IStory = {
   args: {
     ...defaultArgs,
     surface: '$surfaceContainer',
-    corner: '$md',
   },
 };
-
-const surfaces: Array<IPaperProps['surface']> = [
-  '$surfaceContainerLowest',
-  '$surfaceContainerLow',
-  '$surfaceContainer',
-  '$surfaceContainerHigh',
-  '$surfaceContainerHighest',
-  '$inverseSurface',
-  '$primaryContainer',
-  '$secondaryContainer',
-  '$tertiaryContainer',
-  '$errorContainer',
-];
 
 export const Surface: IStory = {
   render: (props) => (
     <PaperShowcase
       props={props}
-      rows={surfaces.map((surface) => ({
+      cols={states}
+      rows={(
+        [
+          '$surfaceContainerLowest',
+          '$surfaceContainerLow',
+          '$surfaceContainer',
+          '$surfaceContainerHigh',
+          '$surfaceContainerHighest',
+          '$inverseSurface',
+          '$primaryContainer',
+          '$secondaryContainer',
+          '$tertiaryContainer',
+          '$errorContainer',
+        ] as Array<IPaperProps['surface']>
+      ).map((surface) => ({
         legend: `Surface (${String(surface)})`,
         props: {
           surface,
@@ -74,9 +81,59 @@ export const Surface: IStory = {
       }))}
     />
   ),
+  args: defaultArgs,
+};
+
+export const Shape: IStory = {
+  render: (props) => (
+    <PaperShowcase
+      props={props}
+      cols={states}
+      rows={(
+        [
+          '$none',
+          '$xs',
+          '$sm',
+          '$md',
+          '$lg',
+          '$xl',
+          '$full',
+          '$circle',
+        ] as Array<IPaperProps['shape']>
+      ).map((shape) => ({
+        legend: `Shape (${shape})`,
+        props: {
+          shape,
+        },
+      }))}
+    />
+  ),
   args: {
     ...defaultArgs,
-    corner: '$md',
+    surface: '$surfaceContainer',
+  },
+};
+
+export const Outline: IStory = {
+  render: (props) => (
+    <PaperShowcase
+      props={props}
+      cols={states}
+      rows={(
+        ['$none', '$xs', '$sm', '$md', '$lg', '$xl'] as Array<
+          IPaperProps['outline']
+        >
+      ).map((outline) => ({
+        legend: `Outline (${outline})`,
+        props: {
+          outline,
+        },
+      }))}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    surface: '$surfaceContainer',
   },
 };
 

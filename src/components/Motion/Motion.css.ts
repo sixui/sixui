@@ -4,11 +4,12 @@ import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactor
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { themeTokens } from '../ThemeProvider';
+import { cssLayers, themeTokens } from '../ThemeProvider';
 
 type IModifier = 'status' | 'orientation' | 'pattern' | 'side' | 'alignment';
 
 const [tokensClassName, tokens] = createTheme({
+  '@layer': cssLayers.theme,
   transformOrigin: 'unset',
 });
 

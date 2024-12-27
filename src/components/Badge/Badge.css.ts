@@ -8,9 +8,10 @@ import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { PaperBase } from '../PaperBase';
-import { themeTokens } from '../ThemeProvider';
+import { cssLayers, themeTokens } from '../ThemeProvider';
 
 const [tokensClassName, tokens] = createTheme({
+  '@layer': cssLayers.theme,
   minSize: px(16),
   dotScale: '0.5', // 8px
   label: {

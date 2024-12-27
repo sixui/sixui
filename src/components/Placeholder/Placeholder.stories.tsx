@@ -11,8 +11,8 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  width: '$24',
-  height: '$24',
+  w: '$24',
+  h: '$24',
 } satisfies Partial<IPlaceholderProps>;
 
 const PlaceholderShowcase = componentShowcaseFactory(Placeholder);
@@ -21,7 +21,7 @@ export const Basic: IStory = {
   render: (props) => (
     <PlaceholderShowcase
       props={props}
-      cols={[{}, { props: { corner: '$lg' } }, { props: { corner: '$full' } }]}
+      cols={[{}, { props: { shape: '$lg' } }, { props: { shape: '$full' } }]}
       rows={[
         { legend: 'Normal' },
         { legend: 'Disabled', props: { disabled: true } },

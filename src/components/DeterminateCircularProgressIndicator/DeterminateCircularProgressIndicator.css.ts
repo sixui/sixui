@@ -10,7 +10,7 @@ import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
-import { themeTokens } from '../ThemeProvider';
+import { cssLayers, themeTokens } from '../ThemeProvider';
 import { circularProgressIndicatorTheme } from '../CircularProgressIndicator/CircularProgressIndicator.css';
 
 type IModifier = ICircularProgressIndicatorModifier;
@@ -18,6 +18,7 @@ type IModifier = ICircularProgressIndicatorModifier;
 const parentStyles = circularProgressIndicatorTheme;
 
 const [tokensClassName, tokens] = createTheme({
+  '@layer': cssLayers.theme,
   label: {
     color: {
       normal: themeTokens.colorScheme.onSurface,

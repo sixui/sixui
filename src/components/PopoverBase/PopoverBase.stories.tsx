@@ -37,7 +37,7 @@ const contentRenderer = ({
     h={parentProps.matchTargetWidth ? undefined : '$24'}
     w={parentProps.matchTargetWidth ? undefined : '$24'}
     p="$2"
-    corner="$sm"
+    shape="$sm"
   >
     {renderCursor && (
       <div style={{ fill: themeTokens.colorScheme.inverseSurface }}>

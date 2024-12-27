@@ -38,7 +38,7 @@ const MotionDemo: React.FC<IMotionDemoProps> = (props) => {
             w="$24"
             h="$24"
             p="$2"
-            corner="$sm"
+            shape="$sm"
             label="Hi!"
           />
         </Motion>

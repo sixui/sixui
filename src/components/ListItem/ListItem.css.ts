@@ -14,7 +14,7 @@ import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { Item } from '../Item';
 import { PaperBase } from '../PaperBase';
 import { StateLayer } from '../StateLayer';
-import { themeTokens } from '../ThemeProvider';
+import { cssLayers, themeTokens } from '../ThemeProvider';
 
 type IModifier =
   | IInteraction
@@ -51,6 +51,7 @@ const slotTokens = {
 };
 
 const [tokensClassName, tokens] = createTheme({
+  '@layer': cssLayers.theme,
   leadingSpace: px(space(4)),
   trailingSpace: px(space(4)),
   topSpace: calc.add(px(space(2)), DENSITY),

@@ -73,7 +73,7 @@ export const Styled: IStory = {
     elevation: '$1',
     px: '$3',
     h: '$10',
-    corner: '$sm',
+    shape: '$sm',
     surface: '$primaryContainer',
     c: '$onPrimaryContainer',
   },

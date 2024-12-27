@@ -3,30 +3,34 @@ import { createRainbowSprinkles, defineProperties } from 'rainbow-sprinkles';
 
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { getSpacingValues } from '~/helpers/styles/getSpacingValues';
-import { themeTokens } from '../ThemeProvider';
+import { cssLayers, themeTokens } from '../ThemeProvider';
 
 type IModifier = 'scale';
 
 export const boxRootClassName = style({
-  selectors: {
-    [getModifierSelector<IModifier>({ scale: 'xs' })]: {
-      vars: {
-        [themeTokens.scale]: '0.6',
-      },
-    },
-    [getModifierSelector<IModifier>({ scale: 'sm' })]: {
-      vars: {
-        [themeTokens.scale]: '0.8',
-      },
-    },
-    [getModifierSelector<IModifier>({ scale: 'lg' })]: {
-      vars: {
-        [themeTokens.scale]: '1.2',
-      },
-    },
-    [getModifierSelector<IModifier>({ scale: 'xl' })]: {
-      vars: {
-        [themeTokens.scale]: '1.4',
+  '@layer': {
+    [cssLayers.components]: {
+      selectors: {
+        [getModifierSelector<IModifier>({ scale: 'xs' })]: {
+          vars: {
+            [themeTokens.scale]: '0.6',
+          },
+        },
+        [getModifierSelector<IModifier>({ scale: 'sm' })]: {
+          vars: {
+            [themeTokens.scale]: '0.8',
+          },
+        },
+        [getModifierSelector<IModifier>({ scale: 'lg' })]: {
+          vars: {
+            [themeTokens.scale]: '1.2',
+          },
+        },
+        [getModifierSelector<IModifier>({ scale: 'xl' })]: {
+          vars: {
+            [themeTokens.scale]: '1.4',
+          },
+        },
       },
     },
   },
@@ -35,6 +39,7 @@ export const boxRootClassName = style({
 const spacingValues = getSpacingValues();
 
 const sprinklesProps = defineProperties({
+  '@layer': cssLayers.sprinkles,
   dynamicProperties: {
     margin: spacingValues,
     marginTop: spacingValues,

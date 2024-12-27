@@ -6,11 +6,12 @@ import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { themeTokens } from '../ThemeProvider';
+import { cssLayers, themeTokens } from '../ThemeProvider';
 
 export type ICircularProgressIndicatorModifier = 'disabled' | 'negative';
 
 const [tokensClassName, tokens] = createTheme({
+  '@layer': cssLayers.theme,
   color: {
     normal: 'currentColor',
     negative: themeTokens.colorScheme.error,

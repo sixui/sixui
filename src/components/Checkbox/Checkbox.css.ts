@@ -11,7 +11,7 @@ import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { PaperBase } from '../PaperBase';
 import { StateLayer } from '../StateLayer';
-import { themeTokens } from '../ThemeProvider';
+import { cssLayers, themeTokens } from '../ThemeProvider';
 
 // The coordinates in an 18px viewBox of the bottom left corner of the
 // indeterminate icon. Y is negative to fix an issue in Safari (see below).
@@ -38,6 +38,7 @@ type IModifier =
 const DENSITY = px(getDensity({ min: -2, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
+  '@layer': cssLayers.theme,
   size: px(18),
   mark: {
     stroke: '2px',

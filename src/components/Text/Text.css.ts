@@ -8,7 +8,7 @@ import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { themeTokens } from '../ThemeProvider';
+import { cssLayers, themeTokens } from '../ThemeProvider';
 
 type IModifier =
   | 'variant'
@@ -19,6 +19,7 @@ type IModifier =
   | 'gutter-bottom';
 
 const [tokensClassName, tokens] = createTheme({
+  '@layer': cssLayers.theme,
   lineClamp: 'unset',
 });
 

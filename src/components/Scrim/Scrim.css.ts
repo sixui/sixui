@@ -6,11 +6,12 @@ import { px } from '~/helpers/styles/px';
 import { shapeTokens } from '~/themes/base/shape.stylex';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { themeTokens } from '../ThemeProvider';
+import { cssLayers, themeTokens } from '../ThemeProvider';
 
 type IModifier = 'fixed' | 'center' | 'blurred';
 
 const [tokensClassName, tokens] = createTheme({
+  '@layer': cssLayers.theme,
   container: {
     shape: px(shapeTokens.corner$none),
     filter: 'none',

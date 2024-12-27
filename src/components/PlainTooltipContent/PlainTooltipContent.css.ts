@@ -8,10 +8,11 @@ import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { PaperBase } from '../PaperBase';
-import { themeTokens } from '../ThemeProvider';
+import { cssLayers, themeTokens } from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
 const [tokensClassName, tokens] = createTheme({
+  '@layer': cssLayers.theme,
   container: {
     color: themeTokens.colorScheme.inverseSurface,
     shape: px(themeTokens.shape.corner.xs),

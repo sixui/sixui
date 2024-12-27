@@ -10,12 +10,13 @@ import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { PaperBase } from '../PaperBase';
-import { themeTokens } from '../ThemeProvider';
+import { cssLayers, themeTokens } from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
 type IModifier = 'with-actions';
 
 const [tokensClassName, tokens] = createTheme({
+  '@layer': cssLayers.theme,
   container: {
     color: themeTokens.colorScheme.surfaceContainer,
     shape: themeTokens.shape.corner.md,

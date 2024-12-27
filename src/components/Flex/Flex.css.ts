@@ -6,6 +6,7 @@ import { getSpacingValues } from '~/helpers/styles/getSpacingValues';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
+import { cssLayers } from '../ThemeProvider';
 
 const DENSITY = px(getDensity({ min: -9, max: 0 }));
 
@@ -19,6 +20,7 @@ const spacingValues = getSpacingValues();
 const spacingValuesWithDensity = getSpacingValues(DENSITY);
 
 const sprinklesProps = defineProperties({
+  '@layer': cssLayers.sprinkles,
   dynamicProperties: {
     alignItems: true,
     flexDirection: true,

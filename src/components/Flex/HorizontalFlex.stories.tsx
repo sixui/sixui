@@ -15,7 +15,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const BoxDemo: React.FC<IPlaceholderProps> = (props) => (
-  <Placeholder miw="$16" corner="$xs" {...props} />
+  <Placeholder miw="$16" shape="$xs" {...props} />
 );
 
 const defaultArgs = {
@@ -34,7 +34,7 @@ const defaultArgs = {
 } satisfies Partial<IFlexProps>;
 
 const FlexShowcase = componentShowcaseFactory((props: IFlexProps) => (
-  <Paper outline="$xs" outlineStyle="solid" p="$2" corner="$xs">
+  <Paper outline="$xs" outlineStyle="solid" p="$2" shape="$xs">
     <Flex {...props} />
   </Paper>
 ));

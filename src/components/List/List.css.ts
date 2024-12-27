@@ -6,10 +6,12 @@ import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
+import { cssLayers } from '../ThemeProvider';
 
 type IModifier = 'grid' | 'empty';
 
 const [tokensClassName, tokens] = createTheme({
+  '@layer': cssLayers.theme,
   topSpace: px(space(2)),
   bottomSpace: px(space(2)),
   gap: px(space(0)),

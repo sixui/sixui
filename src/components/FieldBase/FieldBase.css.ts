@@ -14,7 +14,7 @@ import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { PaperBase } from '../PaperBase';
 import { StateLayer } from '../StateLayer';
-import { themeTokens } from '../ThemeProvider';
+import { cssLayers, themeTokens } from '../ThemeProvider';
 
 type IModifier =
   | IInteraction
@@ -44,6 +44,7 @@ const ENTER_DELAY = calc.subtract(
 const DENSITY = px(getDensity({ min: -2, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
+  '@layer': cssLayers.theme,
   minHeight: px(56),
   leadingSpace: px(space(4)),
   trailingSpace: px(space(4)),

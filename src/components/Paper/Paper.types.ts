@@ -3,20 +3,19 @@ import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { IPaperBaseOwnProps } from '../PaperBase';
 import type {
-  IPaperBackgroundSprinkles,
-  IPaperElevationSprinkles,
-  IPaperOutlineSprinkles,
-  IPaperSprinkles,
-  IPaperThemeFactory,
-  paperTheme,
-} from './Paper.css';
+  IThemeColorScheme,
+  IThemeElevationLevel,
+  IThemeOutlineSize,
+  IThemeShapeCornerSize,
+} from '../ThemeProvider';
+import type { IPaperThemeFactory, paperTheme } from './Paper.css';
 
-export interface IPaperOwnProps
-  extends IPaperBaseOwnProps,
-    IPaperSprinkles,
-    IPaperBackgroundSprinkles,
-    IPaperElevationSprinkles,
-    IPaperOutlineSprinkles {}
+export interface IPaperOwnProps extends IPaperBaseOwnProps {
+  shape?: `$${IThemeShapeCornerSize}`;
+  outline?: `$${IThemeOutlineSize}`;
+  elevation?: `$${IThemeElevationLevel}`;
+  surface?: `$${keyof IThemeColorScheme | 'transparent'}`;
+}
 
 export interface IPaperProps
   extends IBoxProps,

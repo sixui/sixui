@@ -30,8 +30,8 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  header: <Placeholder corner="$none" label="Header" />,
-  footer: <Placeholder corner="$none" label="Footer" />,
+  header: <Placeholder shape="$none" label="Header" />,
+  footer: <Placeholder shape="$none" label="Footer" />,
 } satisfies Partial<IListProps>;
 
 const ListDemo: React.FC<IListProps> = (props) => (
