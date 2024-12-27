@@ -11,14 +11,12 @@ export const AnchoredPlaygroundDemo: React.FC<IAnchoredPlaygroundDemoProps> = (
 ) => (
   <Anchored
     {...props.anchored}
-    content={
-      <Placeholder width={16} height={16} corner="full" surface="primary" />
-    }
+    content={<Placeholder w={16} h={16} shape="$full" surface="$primary" />}
   >
     <Placeholder
-      width={56}
-      height={56}
-      corner={props.anchored.overlap == 'circular' ? 'full' : 'sm'}
+      w={56}
+      h={56}
+      shape={props.anchored.overlap == 'circular' ? '$full' : '$sm'}
     />
   </Anchored>
 );

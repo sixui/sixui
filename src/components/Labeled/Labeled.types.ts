@@ -1,29 +1,23 @@
-import type { IOmit } from '~/helpers/types';
-import type { IBaseProps } from '../Base';
-import type { IStackProps } from '../Stack';
-import type { ILabeledContextValue } from './Labeled.context';
-import type { ILabeledStylesKey } from './Labeled.styles';
+import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+import type { IBoxProps } from '../Box';
+import type { ILabeledThemeFactory, labeledTheme } from './Labeled.css';
 
-export type ILabeledRenderProps = {
-  id: string;
-  required?: boolean;
+export type ILabeledVariant = 'primary';
+
+export interface ILabeledOwnProps {
+  children?: React.ReactNode;
   disabled?: boolean;
-  readOnly?: boolean;
-  hasError?: boolean;
-  loading?: boolean;
-};
+}
 
-export type ILabeledProps = IBaseProps<ILabeledStylesKey> &
-  IOmit<IStackProps, 'styles' | 'children'> &
-  ILabeledContextValue & {
-    label: React.ReactNode;
-    trailingAction?: React.ReactNode;
-    supportingText?: React.ReactNode;
-    children?:
-      | React.ReactNode
-      | ((props: ILabeledRenderProps) => React.ReactNode);
-    labelPosition?: 'top' | 'bottom' | 'left' | 'right';
-    supportingTextPosition?: 'start' | 'end';
-    errorTextPosition?: 'start' | 'end';
-    requiredSign?: React.ReactNode;
-  };
+export interface ILabeledProps
+  extends IBoxProps,
+    IComponentThemeProps<ILabeledThemeFactory>,
+    ILabeledOwnProps {}
+
+export type ILabeledFactory = IComponentFactory<{
+  props: ILabeledProps;
+  ref: HTMLDivElement;
+  theme: typeof labeledTheme;
+  variant: ILabeledVariant | false;
+}>;
