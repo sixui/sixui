@@ -26,7 +26,7 @@ const getValue = <TValue extends string>(
   return transformer?.(mappedValue) ?? mappedValue;
 };
 
-const createSprinkle = <TKey extends string>(
+const createThemeSprinkle = <TKey extends string>(
   cssVar: string,
   key: `$${TKey}` | undefined,
   mappedValues: Record<TKey, string>,
@@ -66,7 +66,7 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
       <PaperBase
         {...getStyles('root', {
           style: assignInlineVars({
-            ...createSprinkle(
+            ...createThemeSprinkle(
               paperBaseTheme.tokens.container.color.normal,
               surface,
               {
@@ -74,18 +74,18 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
                 transparent: 'transparent',
               },
             ),
-            ...createSprinkle(
+            ...createThemeSprinkle(
               paperBaseTheme.tokens.container.elevation.normal,
               elevation,
               elevationLevelPreset,
             ),
-            ...createSprinkle(
+            ...createThemeSprinkle(
               paperBaseTheme.tokens.container.shape,
               shape,
               themeTokens.shape.corner,
               px,
             ),
-            ...createSprinkle(
+            ...createThemeSprinkle(
               paperBaseTheme.tokens.outline.width.normal,
               outline,
               themeTokens.outline.width,

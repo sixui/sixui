@@ -4,12 +4,9 @@ import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IPaperProps } from './Paper.types';
 import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Paper } from './Paper';
-import { paperStoriesStyles } from './Paper.stories.css';
 
 // https://material.io/blog/tone-based-surface-color-m3
 // https://m3.material.io/styles/elevation/overview
-
-const { classNames } = paperStoriesStyles;
 
 const meta: Meta<typeof Paper> = {
   component: Paper,
@@ -18,7 +15,8 @@ const meta: Meta<typeof Paper> = {
 type IStory = StoryObj<IPaperProps>;
 
 const defaultArgs = {
-  className: classNames.root,
+  w: '$24',
+  h: '$24',
 } satisfies Partial<IPaperProps>;
 
 const states: Array<IComponentPresentation<IPaperProps>> = [
@@ -26,11 +24,7 @@ const states: Array<IComponentPresentation<IPaperProps>> = [
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const PaperDemo: React.FC<IPaperProps> = ({ children, ...props }) => (
-  <Paper {...props}>
-    <div className={classNames.inner}>{children}</div>
-  </Paper>
-);
+const PaperDemo: React.FC<IPaperProps> = (props) => <Paper {...props} />;
 
 const PaperShowcase = componentShowcaseFactory(PaperDemo);
 
