@@ -13,6 +13,7 @@ import type { IPaperThemeFactory, paperTheme } from './Paper.css';
 export interface IPaperOwnProps extends IPaperBaseOwnProps {
   shape?: `$${IThemeShapeCornerSize}`;
   outline?: `$${IThemeOutlineSize}`;
+  outlineStyle?: 'solid' | 'dashed' | 'dotted';
   elevation?: `$${IThemeElevationLevel}`;
   surface?: `$${keyof IThemeColorScheme | 'transparent'}`;
 }

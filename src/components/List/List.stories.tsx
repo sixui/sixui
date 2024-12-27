@@ -12,6 +12,7 @@ import type { IListProps } from './List.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { px } from '~/helpers/styles/px';
 import { Avatar } from '../Avatar';
+import { Checkbox } from '../Checkbox';
 import { componentShowcaseFactory } from '../ComponentShowcase';
 import { ListItem } from '../ListItem';
 import { Paper } from '../Paper';
@@ -193,9 +194,9 @@ export const Configurations: IStory = {
           props: {
             children: (
               <>
-                {/* FIXME: <ListItem trailing={<Checkbox checked />}>
+                <ListItem trailing={<Checkbox defaultChecked />}>
                   Item with trailing element
-                </ListItem> */}
+                </ListItem>
                 <ListItem overline="Overline">Item with overline</ListItem>
                 <ListItem supportingText="Supporting text">
                   Item with supporting text
