@@ -53,6 +53,12 @@ export const useStateLayer = <TElement extends HTMLElement>(
     disabled: withoutRippleEffect || disabled || isStaticState,
   });
 
+  // In the case of a remote trigger (ie. via a <label /> element), we don't
+  // want to show the ripple effect.
+  const animating =
+    (interactionsContext.state.hovered || interactionsContext.state.focused) &&
+    ripple.animating;
+
   return {
     triggerRef,
     interactionsContext: {
@@ -63,7 +69,7 @@ export const useStateLayer = <TElement extends HTMLElement>(
       ),
     },
     surfaceRef,
-    animating: ripple.animating,
+    animating,
     withoutRippleEffect,
   };
 };
