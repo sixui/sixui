@@ -55,6 +55,7 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
   const disabledOrReadOnly = disabled || labeledContext?.disabled || readOnly;
   const required = requiredProp ?? labeledContext?.required;
   const id = idProp ?? labeledContext?.id;
+  const isInteractive = !!onChange;
 
   const name = radioGroupContext?.name ?? nameProp;
   const checked = radioGroupContext
@@ -64,7 +65,7 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
   const stateLayer = useStateLayer<HTMLInputElement>({
     baseState: interactions,
     mergeStrategy: interactionsMergeStrategy,
-    disabled: disabledOrReadOnly,
+    disabled: disabledOrReadOnly || !isInteractive,
   });
   const inputHandleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
 
@@ -139,20 +140,22 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
         />
       </svg>
 
-      <input
-        name={name}
-        type="radio"
-        checked={checked}
-        onChange={handleChange}
-        value={value}
-        id={id}
-        required={required}
-        disabled={disabled}
-        readOnly={readOnly}
-        ref={inputHandleRef}
-        {...getStyles('input')}
-        {...stateLayer.interactionsContext.triggerProps}
-      />
+      {isInteractive && (
+        <input
+          name={name}
+          type="radio"
+          checked={checked}
+          onChange={handleChange}
+          value={value}
+          id={id}
+          required={required}
+          disabled={disabled}
+          readOnly={readOnly}
+          ref={inputHandleRef}
+          {...getStyles('input')}
+          {...stateLayer.interactionsContext.triggerProps}
+        />
+      )}
     </PaperBase>
   );
 });

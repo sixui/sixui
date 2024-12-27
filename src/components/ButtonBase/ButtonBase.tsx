@@ -46,8 +46,7 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
 
     const sixuiContext = useSixuiContext();
     const disabledOrReadOnly = disabled || readOnly;
-    const isInteractive =
-      !!href || other.onClick !== undefined || as === 'input';
+    const isInteractive = !!href || !!other.onClick || as === 'input';
 
     const { getStyles } = useComponentTheme<IButtonBaseThemeFactory>({
       componentName: COMPONENT_NAME,

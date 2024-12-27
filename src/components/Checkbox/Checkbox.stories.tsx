@@ -19,6 +19,7 @@ const defaultArgs = {
 } satisfies Partial<ICheckboxProps>;
 
 const states: Array<IComponentPresentation<ICheckboxProps>> = [
+  { legend: 'Static', props: { onChange: undefined } },
   { legend: 'Normal' },
   { legend: 'Focused', props: { interactions: { focused: true } } },
   { legend: 'Hovered', props: { interactions: { hovered: true } } },
@@ -62,23 +63,28 @@ export const Uncontrolled: IStory = {
 const ControlledCheckbox: React.FC<IOmit<ICheckboxProps, 'checked'>> = (
   props,
 ) => {
+  const { onChange, ...other } = props;
   const [checked, setChecked] = useState(props.defaultChecked ?? false);
   const [indeterminate, setIndeterminate] = useState(
     props.defaultIndeterminate ?? false,
   );
 
-  return (
-    <Checkbox
-      {...props}
-      checked={checked}
-      onChange={(event, value) => {
+  const handleChange: ICheckboxProps['onChange'] = onChange
+    ? (event, value) => {
         const checked = value !== undefined;
 
-        return Promise.resolve(props.onChange?.(event, value)).then(() => {
+        return Promise.resolve(onChange?.(event, value)).then(() => {
           setIndeterminate(false);
           setChecked(checked);
         });
-      }}
+      }
+    : undefined;
+
+  return (
+    <Checkbox
+      {...other}
+      checked={checked}
+      onChange={handleChange}
       indeterminate={indeterminate}
     />
   );

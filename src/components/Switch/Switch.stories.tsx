@@ -27,12 +27,28 @@ const defaultArgs = {
 } satisfies Partial<ISwitchProps>;
 
 const states: Array<IComponentPresentation<ISwitchProps>> = [
+  { legend: 'Static', props: { onChange: undefined } },
   { legend: 'Normal' },
   { legend: 'Focused', props: { interactions: { focused: true } } },
   { legend: 'Hovered', props: { interactions: { hovered: true } } },
   { legend: 'Pressed', props: { interactions: { pressed: true } } },
   { legend: 'Loading', props: { loading: true } },
   { legend: 'Disabled', props: { disabled: true } },
+];
+
+const changeActions: Array<IComponentPresentation<ISwitchProps>> = [
+  {
+    legend: 'Immediate',
+    props: {
+      onChange: (...args) => sbHandleEvent('onChange', args),
+    },
+  },
+  {
+    legend: 'Delayed',
+    props: {
+      onChange: (...args) => sbHandleEvent('onChange', args, 1000),
+    },
+  },
 ];
 
 const SwitchShowcase = componentShowcaseFactory(Switch);
@@ -58,6 +74,7 @@ export const Uncontrolled: IStory = {
           },
         },
       ]}
+      rows={changeActions}
     />
   ),
   args: defaultArgs,
@@ -105,6 +122,7 @@ export const Controlled: IStory = {
           },
         },
       ]}
+      rows={changeActions}
     />
   ),
   args: defaultArgs,

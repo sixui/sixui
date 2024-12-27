@@ -60,11 +60,12 @@ export const Switch = componentFactory<ISwitchFactory>(
     const hasIcon =
       loading || (checked && !!checkedIcon) || (!checked && !!uncheckedIcon);
     const isOn = checked || alwaysOn;
+    const isInteractive = !!onChange;
 
     const stateLayer = useStateLayer<HTMLInputElement>({
       baseState: interactions,
       mergeStrategy: interactionsMergeStrategy,
-      disabled: disabledOrReadOnly,
+      disabled: disabledOrReadOnly || !isInteractive,
     });
     const inputHandleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
 
@@ -149,20 +150,22 @@ export const Switch = componentFactory<ISwitchFactory>(
           </div>
         </div>
 
-        <input
-          type="checkbox"
-          role="switch"
-          checked={checked}
-          onChange={handleChange}
-          id={id}
-          required={required}
-          disabled={disabled}
-          readOnly={readOnly}
-          value={value}
-          ref={inputHandleRef}
-          {...getStyles('input')}
-          {...stateLayer.interactionsContext.triggerProps}
-        />
+        {isInteractive && (
+          <input
+            type="checkbox"
+            role="switch"
+            checked={checked}
+            onChange={handleChange}
+            id={id}
+            required={required}
+            disabled={disabled}
+            readOnly={readOnly}
+            value={value}
+            ref={inputHandleRef}
+            {...getStyles('input')}
+            {...stateLayer.interactionsContext.triggerProps}
+          />
+        )}
       </PaperBase>
     );
   },

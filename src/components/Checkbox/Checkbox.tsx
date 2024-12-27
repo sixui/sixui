@@ -60,11 +60,12 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
     const disabledOrReadOnly = disabled || labeledContext?.disabled || readOnly;
     const required = requiredProp ?? labeledContext?.required;
     const id = idProp ?? labeledContext?.id;
+    const isInteractive = !!onChange;
 
     const stateLayer = useStateLayer<HTMLInputElement>({
       baseState: interactions,
       mergeStrategy: interactionsMergeStrategy,
-      disabled: disabledOrReadOnly,
+      disabled: disabledOrReadOnly || !isInteractive,
     });
     const inputHandleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
 
@@ -149,21 +150,23 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
           </>
         )}
 
-        <input
-          type="checkbox"
-          role="switch"
-          checked={checkedValue}
-          onChange={handleChange}
-          id={id}
-          required={required}
-          disabled={disabled}
-          readOnly={readOnly}
-          value={value}
-          ref={inputHandleRef}
-          aria-checked={indeterminate ? 'mixed' : undefined}
-          {...getStyles('input')}
-          {...stateLayer.interactionsContext.triggerProps}
-        />
+        {isInteractive && (
+          <input
+            type="checkbox"
+            role="switch"
+            checked={checkedValue}
+            onChange={handleChange}
+            id={id}
+            required={required}
+            disabled={disabled}
+            readOnly={readOnly}
+            value={value}
+            ref={inputHandleRef}
+            aria-checked={indeterminate ? 'mixed' : undefined}
+            {...getStyles('input')}
+            {...stateLayer.interactionsContext.triggerProps}
+          />
+        )}
       </PaperBase>
     );
   },
