@@ -1,70 +1,46 @@
-import { forwardRef, useRef } from 'react';
-import stylex from '@stylexjs/stylex';
+import type { ISkeletonThemeFactory } from './Skeleton.css';
+import type { ISkeletonFactory } from './Skeleton.types';
+import { componentFactory } from '~/utils/component/componentFactory';
+import { useProps } from '~/utils/component/useProps';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { Box } from '../Box';
+import { skeletonTheme } from './Skeleton.css';
 
-import type { ISkeletonProps } from './Skeleton.types';
-import { random } from '~/helpers/random';
-import { useStyles } from '~/hooks/useStyles';
-import { Base } from '../Base';
-import { skeletonStyles } from './Skeleton.styles';
-import { skeletonTheme } from './Skeleton.stylex';
+const COMPONENT_NAME = 'Skeleton';
 
-const staticStyles = stylex.create({
-  length: (length?: number) => ({
-    width: length !== undefined ? `${length}ch` : '100%',
-  }),
-});
-
-export const Skeleton = forwardRef<HTMLDivElement, ISkeletonProps>(
-  function Skeleton(props, forwardedRef) {
+export const Skeleton = componentFactory<ISkeletonFactory>(
+  (props, forwardedRef) => {
     const {
+      classNames,
+      className,
       styles,
-      sx,
+      style,
+      variant,
       children,
-      loaded,
-      variant = 'rectangular',
-      animation: animationProp = 'pulse',
-      length: lengthProp,
-      hasError,
+      disabled,
       ...other
-    } = props;
+    } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const { combineStyles, getStyles, globalStyles } = useStyles({
-      componentName: 'Skeleton',
-      styles: [skeletonStyles, styles],
+    const { getStyles } = useComponentTheme<ISkeletonThemeFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
+      className,
+      styles,
+      style,
+      variant,
+      theme: skeletonTheme,
+      modifiers: {
+        disabled,
+      },
     });
 
-    const animation = hasError ? undefined : animationProp;
-    const lengthRef = useRef(
-      typeof lengthProp === 'object' ? random(lengthProp) : lengthProp,
-    );
-
-    return loaded ? (
-      children
-    ) : (
-      <Base
-        {...other}
-        sx={[
-          skeletonTheme,
-          globalStyles,
-          variant === 'rectangular'
-            ? lengthRef.current !== undefined
-              ? staticStyles.length(lengthRef.current)
-              : !children
-                ? staticStyles.length()
-                : undefined
-            : undefined,
-          combineStyles(
-            'host',
-            hasError ? 'host$error' : null,
-            `host$${variant}`,
-            !!animation && `animation$${animation}`,
-          ),
-          sx,
-        ]}
-        ref={forwardedRef}
-      >
-        <div {...getStyles('hidden')}>{children ?? '%'}</div>
-      </Base>
+    return (
+      <Box {...getStyles('root')} ref={forwardedRef} {...other}>
+        {children}
+      </Box>
     );
   },
 );
+
+Skeleton.theme = skeletonTheme;
+Skeleton.displayName = `@sixui/${COMPONENT_NAME}`;

@@ -1,12 +1,20 @@
-import type { IRange } from '~/helpers/types';
-import type { IBaseProps } from '../Base';
-import type { ISkeletonStylesKey } from './Skeleton.styles';
+import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+import type { IBoxProps } from '../Box';
+import type { ISkeletonThemeFactory, skeletonTheme } from './Skeleton.css';
 
-export type ISkeletonProps = IBaseProps<ISkeletonStylesKey> & {
+export interface ISkeletonOwnProps {
   children?: React.ReactNode;
-  loaded?: boolean;
-  variant?: 'rectangular' | 'circular' | 'overlay';
-  animation?: 'pulse' | 'wave' | false;
-  length?: number | IRange;
-  hasError?: boolean;
-};
+  disabled?: boolean;
+}
+
+export interface ISkeletonProps
+  extends IBoxProps,
+    IComponentThemeProps<ISkeletonThemeFactory>,
+    ISkeletonOwnProps {}
+
+export type ISkeletonFactory = IComponentFactory<{
+  props: ISkeletonProps;
+  ref: HTMLDivElement;
+  theme: typeof skeletonTheme;
+}>;
