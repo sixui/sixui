@@ -115,13 +115,14 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
       ref={rootRef}
       {...other}
     >
-      <StateLayer {...getStyles('stateLayer')} context={stateLayer} />
-
-      {!disabledOrReadOnly && (
-        <FocusRing
-          {...getStyles('focusRing')}
-          interactions={stateLayer.interactionsContext.state}
-        />
+      {isInteractive && !disabledOrReadOnly && (
+        <>
+          <FocusRing
+            {...getStyles('focusRing')}
+            interactions={stateLayer.interactionsContext.state}
+          />
+          <StateLayer {...getStyles('stateLayer')} context={stateLayer} />
+        </>
       )}
 
       {loading && (

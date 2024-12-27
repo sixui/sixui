@@ -126,16 +126,22 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
         interactions={stateLayer.interactionsContext.state}
         {...mergeProps(stateLayer.interactionsContext.triggerProps, other)}
       >
-        {renderTouchTarget()}
-        <StateLayer {...getStyles('stateLayer')} context={stateLayer} />
-        {!disabledOrReadOnly && focusRing !== false && (
-          <FocusRing
-            {...getStyles('focusRing')}
-            interactions={stateLayer.interactionsContext.state}
-            variant={focusRing}
-          />
+        {isInteractive && !disabledOrReadOnly && (
+          <>
+            {focusRing !== false && (
+              <FocusRing
+                {...getStyles('focusRing')}
+                interactions={stateLayer.interactionsContext.state}
+                variant={focusRing}
+              />
+            )}
+            <StateLayer {...getStyles('stateLayer')} context={stateLayer} />
+          </>
         )}
+
         {children}
+
+        {isInteractive && renderTouchTarget()}
       </Paper>
     );
   },
