@@ -142,8 +142,8 @@ export const MenuLeaf = componentFactory<IMenuFactory>(
       className,
       styles,
       style,
-      theme: menuLeafTheme,
       variant,
+      theme: menuLeafTheme,
     });
 
     // Event emitter allows you to communicate across tree components.

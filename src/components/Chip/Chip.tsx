@@ -63,8 +63,8 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
       className,
       styles,
       style,
-      theme: chipTheme,
       variant,
+      theme: chipTheme,
       modifiers: {
         elevated,
         avatar: isAvatar,

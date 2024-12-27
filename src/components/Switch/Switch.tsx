@@ -26,6 +26,7 @@ export const Switch = componentFactory<ISwitchFactory>(
       className,
       styles,
       style,
+      variant,
       interactions,
       interactionsMergeStrategy,
       checked: checkedProp,
@@ -75,6 +76,7 @@ export const Switch = componentFactory<ISwitchFactory>(
       className,
       styles,
       style,
+      variant,
       theme: basicTemplateTheme,
       modifiers: {
         disabled: disabledOrReadOnly,

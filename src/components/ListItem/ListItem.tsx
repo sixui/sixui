@@ -53,9 +53,9 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
       className,
       styles,
       style,
+      variant,
       theme: listItemTheme,
       themeVariants: listItemVariants,
-      variant,
       modifiers: {
         selected,
         disabled,

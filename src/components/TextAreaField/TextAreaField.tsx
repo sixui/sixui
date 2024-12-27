@@ -8,10 +8,12 @@ import { useControlledValue } from '~/hooks/useControlledValue';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
+import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { triggerChangeEvent } from '~/utils/triggerChangeEvent';
 import { FieldBase } from '../FieldBase';
 import { IconButton } from '../IconButton';
+import { useLabeledContext } from '../Labeled';
 import { SvgIcon } from '../SvgIcon';
 import { textAreaFieldTheme } from './TextAreaField.css';
 
@@ -30,8 +32,16 @@ export const TextAreaField = componentFactory<ITextAreaFieldFactory>(
       clearable: clearableProp,
       clearIcon = <SvgIcon icon={iconXMark} />,
       onChange,
+      children,
+      loading,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
+
+    const labeledContext = useLabeledContext();
+    const id = other.id ?? labeledContext?.id;
+    const disabled = other.disabled ?? labeledContext?.disabled;
+    const readOnly = other.readOnly ?? labeledContext?.readOnly;
+    const required = other.required ?? labeledContext?.required;
 
     const disabledOrReadOnly = other.disabled || other.readOnly;
 
@@ -41,8 +51,8 @@ export const TextAreaField = componentFactory<ITextAreaFieldFactory>(
       className,
       styles,
       style,
-      theme: textAreaFieldTheme,
       variant,
+      theme: textAreaFieldTheme,
       modifiers: {
         disabled: disabledOrReadOnly,
         'with-error': !!other.hasError,
@@ -123,24 +133,31 @@ export const TextAreaField = componentFactory<ITextAreaFieldFactory>(
         variant={variant}
         end={renderEndSection()}
         forwardProps
-        multiline
         withoutRippleEffect
+        managedFocus
+        loading={loading}
+        multiline
       >
         {({ forwardedProps }) => (
-          <textarea
-            {...forwardedProps}
-            {...focus.focusProps}
-            {...getStyles('textarea')}
-            placeholder={other.placeholder}
-            disabled={other.disabled}
-            readOnly={other.readOnly}
-            value={value}
-            onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => {
-              setValue(event.target.value);
-              onChange?.(event);
-            }}
-            ref={textAreaHandleRef}
-          />
+          <>
+            {children}
+
+            <textarea
+              {...mergeProps(focus.focusProps, forwardedProps)}
+              {...getStyles('textarea')}
+              placeholder={other.placeholder}
+              id={id}
+              disabled={disabled}
+              readOnly={readOnly}
+              required={required}
+              value={value}
+              onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => {
+                setValue(event.target.value);
+                onChange?.(event);
+              }}
+              ref={textAreaHandleRef}
+            />
+          </>
         )}
       </FieldBase>
     );

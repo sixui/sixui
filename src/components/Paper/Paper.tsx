@@ -58,8 +58,8 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
       className,
       styles,
       style,
-      theme: paperTheme,
       variant,
+      theme: paperTheme,
     });
 
     return (

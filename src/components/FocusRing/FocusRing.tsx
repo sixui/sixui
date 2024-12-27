@@ -30,8 +30,8 @@ export const FocusRing = componentFactory<IFocusRingFactory>(
       className,
       styles,
       style,
-      theme: focusRingTheme,
       variant,
+      theme: focusRingTheme,
       modifiers: {
         visible: visible ?? interactions?.focused,
       },

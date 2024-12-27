@@ -26,8 +26,8 @@ export const MenuList = polymorphicComponentFactory<IMenuListFactory>(
       className,
       styles,
       style,
-      theme: menuListTheme,
       variant,
+      theme: menuListTheme,
     });
 
     return (

@@ -39,8 +39,8 @@ export const Avatar = polymorphicComponentFactory<IAvatarFactory>(
       className,
       styles,
       style,
-      theme: avatarTheme,
       variant,
+      theme: avatarTheme,
     });
 
     // Use a hook instead of onError on the img element to support server-side

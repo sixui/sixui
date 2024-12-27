@@ -23,6 +23,7 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
     className,
     styles,
     style,
+    variant,
     required: requiredProp,
     disabled,
     interactions,
@@ -75,6 +76,7 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
     className,
     styles,
     style,
+    variant,
     theme: RadioTheme,
     modifiers: {
       disabled: disabledOrReadOnly,

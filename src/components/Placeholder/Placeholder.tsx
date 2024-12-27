@@ -30,8 +30,8 @@ export const Placeholder = polymorphicComponentFactory<IPlaceholderFactory>(
       className,
       styles,
       style,
-      theme: placeholderTheme,
       variant,
+      theme: placeholderTheme,
       modifiers: {
         disabled,
       },

@@ -54,8 +54,8 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
       className,
       styles,
       style,
-      theme: buttonBaseTheme,
       variant,
+      theme: buttonBaseTheme,
       modifiers: {
         disabled: disabledOrReadOnly,
         interactive: isInteractive,

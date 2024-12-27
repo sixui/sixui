@@ -51,6 +51,7 @@ const rows: Array<IComponentPresentation<ITextAreaFieldProps>> = [
   },
   { legend: 'Clearable', props: { clearable: true } },
   { legend: 'Error', props: { defaultValue: 'Value', hasError: true } },
+  { legend: 'Loading', props: { loading: true } },
 ];
 
 const TextAreaFieldShowcase = componentShowcaseFactory(TextAreaField);

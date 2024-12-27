@@ -13,6 +13,7 @@ import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { triggerChangeEvent } from '~/utils/triggerChangeEvent';
 import { FieldBase } from '../FieldBase';
 import { IconButton } from '../IconButton';
+import { useLabeledContext } from '../Labeled';
 import { SvgIcon } from '../SvgIcon';
 import { textInputFieldTheme } from './TextInputField.css';
 
@@ -26,7 +27,7 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
       styles,
       style,
       variant,
-      type = 'text',
+      type: typeProp = 'text',
       defaultValue,
       value: valueProp,
       noSpinner,
@@ -41,6 +42,12 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
+    const labeledContext = useLabeledContext();
+    const id = other.id ?? labeledContext?.id;
+    const disabled = other.disabled ?? labeledContext?.disabled;
+    const readOnly = other.readOnly ?? labeledContext?.readOnly;
+    const required = other.required ?? labeledContext?.required;
+
     const disabledOrReadOnly = other.disabled || other.readOnly;
 
     const { getStyles } = useComponentTheme<ITextInputFieldThemeFactory>({
@@ -49,8 +56,8 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
       className,
       styles,
       style,
-      theme: textInputFieldTheme,
       variant,
+      theme: textInputFieldTheme,
       modifiers: {
         disabled: disabledOrReadOnly,
         'with-error': !!other.hasError,
@@ -66,8 +73,10 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
 
     const populated = other.populated ?? !!value;
     const clearable = clearableProp && !disabledOrReadOnly && populated;
-    const unmaskable = type === 'password' && unmaskableProp;
+    const unmaskable = typeProp === 'password' && unmaskableProp;
     const [unmasked, setUnmasked] = useState(false);
+    const type =
+      typeProp === 'password' ? (unmasked ? 'text' : 'password') : typeProp;
     const inputRef = useRef<HTMLInputElement>(null);
     const inputHandleRef = useMergeRefs(inputRef, forwardedRef);
     const hasEnd = !!other.end || clearable || unmaskable;
@@ -143,24 +152,25 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
         interactions={{ focused, ...other.interactions }}
         populated={populated}
         variant={variant}
-        loading={loading}
         end={renderEndSection()}
         forwardProps
         withoutRippleEffect
         managedFocus
+        loading={loading}
       >
         {({ forwardedProps }) => (
           <>
             {children}
+
             <input
               {...mergeProps(focus.focusProps, forwardedProps)}
               {...getStyles('input')}
               placeholder={other.placeholder}
-              type={
-                type === 'password' ? (unmasked ? 'text' : 'password') : type
-              }
-              disabled={other.disabled}
-              readOnly={other.readOnly}
+              type={type}
+              id={id}
+              disabled={disabled}
+              readOnly={readOnly}
+              required={required}
               value={value}
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 setValue(event.target.value);

@@ -34,8 +34,8 @@ export const Item = polymorphicComponentFactory<IItemFactory>(
       className,
       styles,
       style,
-      theme: itemTheme,
       variant,
+      theme: itemTheme,
       modifiers: {
         'line-clamp': lineClamp,
       },

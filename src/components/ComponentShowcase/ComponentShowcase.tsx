@@ -44,8 +44,8 @@ export const componentShowcaseFactory = <TComponentProps extends object>(
       className,
       styles,
       style,
-      theme: componentShowcaseTheme,
       variant,
+      theme: componentShowcaseTheme,
     });
 
     const shouldShowRowLegends = rows?.some(({ legend }) => !!legend);

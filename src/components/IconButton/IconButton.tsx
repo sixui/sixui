@@ -30,9 +30,9 @@ export const IconButton = polymorphicComponentFactory<IIconButtonFactory>(
       className,
       styles,
       style,
+      variant,
       theme: iconButtonTheme,
       themeVariants: iconButtonThemeVariants,
-      variant,
       modifiers: {
         toggle,
         selected,

@@ -31,8 +31,8 @@ export const PlainTooltip = componentFactory<IPlainTooltipFactory>(
       className,
       styles,
       style,
-      theme: plainTooltipTheme,
       variant,
+      theme: plainTooltipTheme,
     });
 
     return (

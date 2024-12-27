@@ -25,6 +25,7 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
       className,
       styles,
       style,
+      variant,
       interactions,
       interactionsMergeStrategy,
       checked: checkedProp,
@@ -81,6 +82,7 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
       className,
       styles,
       style,
+      variant,
       theme: checkboxTheme,
       modifiers: {
         on,

@@ -44,8 +44,8 @@ export const Flex = polymorphicComponentFactory<IFlexFactory>(
       className,
       styles,
       style,
-      theme: flexTheme,
       variant,
+      theme: flexTheme,
     });
 
     const filteredChildren = filterFalsyChildren(children);

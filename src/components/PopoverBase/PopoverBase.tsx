@@ -126,8 +126,8 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       className,
       styles,
       style,
-      theme: popoverBaseTheme,
       variant,
+      theme: popoverBaseTheme,
       modifiers: {
         shake: isShaking,
       },

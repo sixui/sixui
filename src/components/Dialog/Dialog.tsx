@@ -29,8 +29,8 @@ export const Dialog = polymorphicComponentFactory<IDialogFactory>(
       className,
       styles,
       style,
-      theme: dialogTheme,
       variant,
+      theme: dialogTheme,
     });
 
     return (

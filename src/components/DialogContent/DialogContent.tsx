@@ -38,8 +38,8 @@ export const DialogContent = polymorphicComponentFactory<IDialogContentFactory>(
       className,
       styles,
       style,
-      theme: dialogContentTheme,
       variant,
+      theme: dialogContentTheme,
       modifiers: {
         size,
         scrollable,

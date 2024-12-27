@@ -27,8 +27,8 @@ export const Indicator = componentFactory<IIndicatorFactory>(
       className,
       styles,
       style,
-      theme: indicatorTheme,
       variant,
+      theme: indicatorTheme,
       modifiers: {
         processing,
       },

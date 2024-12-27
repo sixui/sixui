@@ -32,8 +32,8 @@ export const PaperBase = polymorphicComponentFactory<IPaperBaseFactory>(
       className,
       styles,
       style,
-      theme: paperBaseTheme,
       variant,
+      theme: paperBaseTheme,
       modifiers: {
         expanded,
         disabled,

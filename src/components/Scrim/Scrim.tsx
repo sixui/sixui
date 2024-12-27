@@ -30,8 +30,8 @@ export const Scrim = polymorphicComponentFactory<IScrimFactory>(
       className,
       styles,
       style,
-      theme: scrimTheme,
       variant,
+      theme: scrimTheme,
       modifiers: {
         fixed,
         center,

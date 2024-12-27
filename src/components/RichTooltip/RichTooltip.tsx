@@ -32,8 +32,8 @@ export const RichTooltip = componentFactory<IRichTooltipFactory>(
       className,
       styles,
       style,
-      theme: richTooltipTheme,
       variant,
+      theme: richTooltipTheme,
     });
 
     return (

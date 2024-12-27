@@ -27,8 +27,8 @@ export const PlainTooltipContent =
       className,
       styles,
       style,
-      theme: plainTooltipContentTheme,
       variant,
+      theme: plainTooltipContentTheme,
     });
 
     return (

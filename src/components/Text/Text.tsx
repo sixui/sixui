@@ -64,8 +64,8 @@ export const Text = polymorphicComponentFactory<ITextFactory>(
       className,
       styles,
       style,
-      theme: textTheme,
       variant,
+      theme: textTheme,
       modifiers: {
         dimmed,
         truncate,

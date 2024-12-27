@@ -50,8 +50,8 @@ export const Motion = polymorphicComponentFactory<IMotionFactory>(
       className,
       styles,
       style,
-      theme: motionTheme,
       variant,
+      theme: motionTheme,
       modifiers: {
         status: resolvedStatus,
         side,

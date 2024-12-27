@@ -37,8 +37,8 @@ export const Anchored = componentFactory<IAnchoredFactory>(
       className,
       styles,
       style,
-      theme: anchoredTheme,
       variant,
+      theme: anchoredTheme,
       modifiers: {
         position,
         invisible,

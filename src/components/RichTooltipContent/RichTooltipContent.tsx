@@ -32,8 +32,8 @@ export const RichTooltipContent = componentFactory<IRichTooltipContentFactory>(
       className,
       styles,
       style,
-      theme: richTooltipContentTheme,
       variant,
+      theme: richTooltipContentTheme,
       modifiers: {
         'with-actions': !!actions,
       },

@@ -30,9 +30,9 @@ export const BasicTemplate = componentFactory<IBasicTemplateFactory>(
       className,
       styles,
       style,
+      variant,
       theme: basicTemplateTheme,
       themeVariants: basicTemplateThemeVariants,
-      variant,
       modifiers: {
         disabled,
       },

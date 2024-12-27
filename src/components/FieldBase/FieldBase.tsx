@@ -35,9 +35,9 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
       end,
       leadingIcon,
       trailingIcon,
-      readOnly,
+      readOnly: readOnlyProp,
       label,
-      required,
+      required: requiredProp,
       populated: populatedProp,
       resizable,
       supportingText,
@@ -48,7 +48,7 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
       multiline,
       loading: loadingProp,
       containerRef,
-      disabled,
+      disabled: disabledProp,
       interactions: interactionsProp,
       interactionsMergeStrategy,
       prefixText,
@@ -62,8 +62,13 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
 
     const { boxProps, other: forwardedProps } = extractBoxProps(other);
 
+    // fw: disabled, readOnly, id, required
     const labeledContext = useLabeledContext();
-    const loading = loadingProp || labeledContext?.loading;
+    const disabled = disabledProp ?? labeledContext?.disabled;
+    const readOnly = readOnlyProp ?? labeledContext?.readOnly;
+    const required = requiredProp ?? labeledContext?.required;
+    const loading = loadingProp ?? labeledContext?.loading;
+
     const disabledOrReadOnly = disabled || readOnly;
     const hasStartSection = !!leadingIcon || !!start;
     const hasEndSection = !!loading || !!trailingIcon || !!end;
@@ -86,8 +91,8 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
       className,
       styles,
       style,
-      theme: fieldBaseTheme,
       variant,
+      theme: fieldBaseTheme,
       themeVariants: fieldBaseThemeVariants,
       modifiers: {
         resizable,

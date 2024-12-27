@@ -65,6 +65,7 @@ const rows: Array<IComponentPresentation<ITextInputFieldProps>> = [
     props: { type: 'color', defaultValue: '#0000ff' },
   },
   { legend: 'Error', props: { defaultValue: 'Value', hasError: true } },
+  { legend: 'Loading', props: { loading: true } },
 ];
 
 const TextInputFieldShowcase = componentShowcaseFactory(TextInputField);

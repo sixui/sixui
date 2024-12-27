@@ -18,8 +18,8 @@ export const SvgIcon = componentFactory<ISvgIconFactory>(
       className,
       styles,
       style,
-      theme: svgIconTheme,
       variant,
+      theme: svgIconTheme,
     });
 
     return (

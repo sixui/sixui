@@ -28,9 +28,9 @@ export const Fab = polymorphicComponentFactory<IFabFactory>(
       className,
       styles,
       style,
+      variant,
       theme: fabTheme,
       themeVariants: fabThemeVariants,
-      variant,
       modifiers: {
         extended: !!other.children,
         lowered,

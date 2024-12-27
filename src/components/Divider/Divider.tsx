@@ -33,8 +33,8 @@ export const Divider = componentFactory<IDividerFactory>(
       className,
       styles,
       style,
-      theme: dividerTheme,
       variant,
+      theme: dividerTheme,
       modifiers: {
         orientation,
         'inset-start': hasInsetStart,

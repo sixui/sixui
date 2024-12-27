@@ -30,8 +30,8 @@ export const Elevation = componentFactory<IElevationFactory>(
       className,
       styles,
       style,
-      theme: elevationTheme,
       variant,
+      theme: elevationTheme,
       modifiers: { level, disabled },
     });
 

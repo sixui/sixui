@@ -22,8 +22,8 @@ export const TouchTarget = componentFactory<ITouchTargetFactory>(
       className,
       styles,
       style,
-      theme: touchTargetTheme,
       variant,
+      theme: touchTargetTheme,
     });
 
     return <Box {...getStyles('root')} ref={forwardedRef} {...other} />;
