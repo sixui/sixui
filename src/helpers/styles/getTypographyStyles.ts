@@ -19,9 +19,9 @@ export const getTypographyStyles = (
         fontWeight: typography.weight,
       }
     : {
-        fontFamily: 'unset',
-        lineHeight: 'unset',
-        fontSize: 'unset',
-        letterSpacing: 'unset',
-        fontWeight: 'unset',
+        fontFamily: 'inherit',
+        lineHeight: 'inherit',
+        fontSize: 'inherit',
+        letterSpacing: 'inherit',
+        fontWeight: 'inherit',
       };

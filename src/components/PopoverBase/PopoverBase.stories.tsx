@@ -64,6 +64,7 @@ const defaultArgs = {
       selectedIcon={<FontAwesomeIcon icon={faStarSolid} />}
       toggle
       selected={opened}
+      onClick={() => {}}
     />
   ),
   positioned: true,
@@ -204,11 +205,9 @@ export const ModalStyle: IStory = {
       placeItems: 'center',
       overflow: 'auto',
     },
-    slotProps: {
-      floatingMotion: {
-        origin: 'edge',
-        pattern: 'enterExitOffScreen',
-      },
+    floatingMotionProps: {
+      origin: 'edge',
+      pattern: 'enterExitOffScreen',
     },
     positioned: false,
     withScrim: true,

@@ -1,22 +1,25 @@
-import type { ICompiledStyles, IOmit, IZeroOrMore } from '~/helpers/types';
-import type { IBaseProps } from '../Base';
-import type { IFluidButtonProps, IFluidButtonStylesKey } from '../FluidButton';
-import type { ICopyableTextStylesKey } from './CopyableText.styles';
+import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+import type { IBoxProps } from '../Box';
+import type { IButtonOwnProps } from '../Button';
+import type {
+  copyableTextTheme,
+  ICopyableTextThemeFactory,
+} from './CopyableText.css';
 
-export type ICopyableTextTriggerRenderProps = {
-  copy: () => Promise<void>;
-  disabled?: boolean;
-};
+export interface ICopyableTextOwnProps extends IButtonOwnProps {
+  text?: string;
+  copySupportingText?: string;
+  copiedSupportingText?: string;
+}
 
-export type ICopyableTextProps = IBaseProps<ICopyableTextStylesKey> &
-  IOmit<IFluidButtonProps, 'styles'> & {
-    innerStyles?: {
-      fluidButton?: IZeroOrMore<ICompiledStyles<IFluidButtonStylesKey>>;
-    };
-    children?: React.ReactNode;
-    text?: string;
-    disabled?: boolean;
-    copySupportingText?: string;
-    copiedSupportingText?: string;
-    icon?: React.ReactNode;
-  };
+export interface ICopyableTextProps
+  extends IBoxProps,
+    IComponentThemeProps<ICopyableTextThemeFactory>,
+    ICopyableTextOwnProps {}
+
+export type ICopyableTextFactory = IComponentFactory<{
+  props: ICopyableTextProps;
+  ref: HTMLButtonElement;
+  theme: typeof copyableTextTheme;
+}>;

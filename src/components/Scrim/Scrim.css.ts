@@ -3,7 +3,6 @@ import { createTheme } from '@vanilla-extract/css';
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
-import { shapeTokens } from '~/themes/base/shape.stylex';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { cssLayers, themeTokens } from '../ThemeProvider';
@@ -13,7 +12,7 @@ type IModifier = 'fixed' | 'center' | 'blurred';
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   container: {
-    shape: px(shapeTokens.corner$none),
+    shape: px(themeTokens.shape.corner.none),
     filter: 'none',
     blurredFilter: 'blur(2px)',
     color: `color-mix(in srgb, ${themeTokens.colorScheme.scrim} 50%, transparent)`,

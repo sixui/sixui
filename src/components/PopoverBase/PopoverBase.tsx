@@ -119,7 +119,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
     const transitionOrigin = cursorType ? 'custom' : 'corner';
 
     const [isShaking, setIsShaking] = useState(false);
-    const shakingTimeout = useRef<NodeJS.Timeout>();
+    const shakingTimeout = useRef<NodeJS.Timeout>(undefined);
     const { getStyles } = useComponentTheme<IPopoverBaseThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
