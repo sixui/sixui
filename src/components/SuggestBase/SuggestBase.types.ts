@@ -7,7 +7,7 @@ import type {
   IFloatingFilterableListBaseTriggerRenderProps,
 } from '../FloatingFilterableListBase';
 import type { IMenuListProps } from '../MenuList';
-import { ITextInputFieldProps } from '../TextInputField';
+import type { ITextInputFieldProps } from '../TextInputField';
 
 export interface ISuggestBaseOwnProps<TItem>
   extends IOmit<

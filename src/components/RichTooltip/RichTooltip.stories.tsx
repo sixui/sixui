@@ -59,6 +59,8 @@ export const Standard: IStory = {
   args: defaultArgs as IRichTooltipProps,
 };
 
+// FIXME: Persistent - remove static views?
+
 export const Persistent: IStory = {
   render: (props) => (
     <RichTooltip {...props}>

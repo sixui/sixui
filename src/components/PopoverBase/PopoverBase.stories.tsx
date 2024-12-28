@@ -52,6 +52,8 @@ const contentRenderer = ({
   </Placeholder>
 );
 
+// FIXME: OpenOnClick - remove static views?
+
 const defaultArgs = {
   onOpen: (...args) => void sbHandleEvent('onOpen', args),
   onClose: (...args) => void sbHandleEvent('onClose', args),
@@ -64,7 +66,6 @@ const defaultArgs = {
       selectedIcon={<FontAwesomeIcon icon={faStarSolid} />}
       toggle
       selected={opened}
-      onClick={() => {}}
     />
   ),
   positioned: true,

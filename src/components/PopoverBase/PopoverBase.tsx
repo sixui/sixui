@@ -25,7 +25,6 @@ import type {
   IPopoverOpenEvents,
 } from './PopoverBase.types';
 import { isFunction } from '~/helpers/isFunction';
-import { px } from '~/helpers/styles/px';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { usePopoverCursor } from '~/hooks/usePopoverCursor';
@@ -249,10 +248,6 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
         {...userProps}
         ref={arrowRef}
         context={floating.context}
-        style={{
-          width: px(cursor.size.width),
-          height: px(cursor.size.height),
-        }}
         width={cursor.size.width}
         height={cursor.size.height}
         d={cursor.svgPath}

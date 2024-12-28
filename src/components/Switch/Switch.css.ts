@@ -1,11 +1,11 @@
 import { createTheme, fallbackVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
+import type { IInteraction } from '~/hooks/useInteractions';
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getDensity } from '~/helpers/styles/getDensity';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
-import { IInteraction } from '~/hooks/useInteractions';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
