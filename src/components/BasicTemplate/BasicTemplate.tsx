@@ -3,7 +3,7 @@ import type { IBasicTemplateFactory } from './BasicTemplate.types';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../../Box';
+import { Box } from '../Box';
 import {
   basicTemplateTheme,
   basicTemplateThemeVariants,

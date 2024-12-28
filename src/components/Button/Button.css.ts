@@ -23,6 +23,7 @@ type IModifier =
   | 'loading'
   | 'with-leading-slot'
   | 'with-trailing-slot'
+  | 'with-children'
   | 'icon-animation';
 
 const DENSITY = px(getDensity({ min: -4, max: 0 }));
@@ -115,14 +116,16 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>('disabled')]: {
         cursor: 'default',
       },
-      [getModifierSelector<IModifier>('with-leading-slot')]: {
-        paddingInlineStart: tokens.leadingSpace.withStartSlot,
-        paddingInlineEnd: tokens.trailingSpace.withStartSlot,
-      },
-      [getModifierSelector<IModifier>('with-trailing-slot')]: {
-        paddingInlineStart: tokens.leadingSpace.withEndSlot,
-        paddingInlineEnd: tokens.trailingSpace.withEndSlot,
-      },
+      [getModifierSelector<IModifier>(['with-leading-slot', 'with-children'])]:
+        {
+          paddingInlineStart: tokens.leadingSpace.withStartSlot,
+          paddingInlineEnd: tokens.trailingSpace.withStartSlot,
+        },
+      [getModifierSelector<IModifier>(['with-trailing-slot', 'with-children'])]:
+        {
+          paddingInlineStart: tokens.leadingSpace.withEndSlot,
+          paddingInlineEnd: tokens.trailingSpace.withEndSlot,
+        },
       [getModifierSelector<IModifier>([
         'with-leading-slot',
         'with-trailing-slot',
@@ -250,10 +253,19 @@ const classNames = createStyles({
     marginInlineEnd: 0,
     width: 0,
     opacity: 0,
+    color: 'transparent',
 
     transitionProperty: 'opacity, width',
     transitionDuration: themeTokens.motion.duration.short.$2,
     transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
+
+    selectors: {
+      '&::before': {
+        // Important for correct alignment when root `vertical-align` is
+        // `baseline`.
+        content: 'x',
+      },
+    },
   },
   overlay: {
     display: 'flex',
@@ -274,6 +286,8 @@ const classNames = createStyles({
     visibility: 'hidden',
   },
   stateLayer: {},
+  touchTarget: {},
+  focusRing: {},
 });
 
 export type IButtonThemeFactory = IComponentThemeFactory<{
@@ -525,6 +539,61 @@ export const buttonThemeVariants = {
           pressed: themeTokens.colorScheme.inversePrimary,
         },
       }),
+    },
+  }),
+  fluid: createStyles({
+    root: {
+      verticalAlign: 'baseline',
+      ...getTypographyStyles(null),
+
+      vars: {
+        ...createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: {
+              normal: 'unset',
+              disabled: 'unset',
+            },
+          },
+        }),
+        ...createTokensVars(tokens, {
+          height: '1em',
+          minWidth: '1em',
+          leadingSpace: {
+            normal: '0',
+            withStartSlot: '0',
+            withEndSlot: '0',
+          },
+          trailingSpace: {
+            normal: '0',
+            withStartSlot: '0',
+            withEndSlot: '0',
+          },
+          icon: {
+            size: '1em',
+            labelSpace: '0.25em',
+          },
+          label: {
+            color: {
+              normal: themeTokens.colorScheme.primary,
+            },
+          },
+        }),
+      },
+    },
+    label: ({ root }) => ({
+      textDecoration: 'underline',
+
+      selectors: {
+        [getModifierSelector<IModifier>('disabled', root)]: {
+          textDecoration: 'none',
+        },
+      },
+    }),
+    stateLayer: {
+      inset: 'calc(-0.5 * max(1em, 16px))',
+    },
+    focusRing: {
+      inset: 'calc(-0.5 * max(1em, 16px) - 3px)',
     },
   }),
 };

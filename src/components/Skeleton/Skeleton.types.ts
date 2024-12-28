@@ -3,10 +3,11 @@ import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IPaperOwnProps } from '../Paper';
 import type { ISkeletonThemeFactory, skeletonTheme } from './Skeleton.css';
+import { IBoxProps } from '../Box';
 
 export type ISkeletonVariant = 'rectangular' | 'circular' | 'overlay';
 
-export interface ISkeletonOwnProps {
+export interface ISkeletonOwnProps extends IPaperOwnProps {
   children?: React.ReactNode;
   loaded?: boolean;
   animation?: 'pulse' | 'wave' | false;
@@ -14,7 +15,7 @@ export interface ISkeletonOwnProps {
 }
 
 export interface ISkeletonProps
-  extends IPaperOwnProps,
+  extends IBoxProps,
     IComponentThemeProps<ISkeletonThemeFactory>,
     ISkeletonOwnProps {}
 

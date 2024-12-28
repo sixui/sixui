@@ -75,6 +75,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
         loading,
         'with-leading-slot': !!hasStartSlot,
         'with-trailing-slot': !!hasEndSlot,
+        'with-children': !!children,
         'icon-animation': iconAnimation,
       },
     });
@@ -203,6 +204,8 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
         onClick={onClick ? handleClick : undefined}
         classNames={mergeClassNames(classNames, {
           stateLayer: getStyles('stateLayer').className,
+          touchTarget: getStyles('touchTarget').className,
+          focusRing: getStyles('focusRing').className,
         })}
         disabled={disabled}
         readOnly={readOnly}

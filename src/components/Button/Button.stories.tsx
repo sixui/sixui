@@ -1,5 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import {
+  faArrowUpRightFromSquare,
+  faPlus,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
@@ -8,6 +11,7 @@ import type { IButtonProps, IButtonVariant } from './Button.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { Badge } from '../Badge';
 import { componentShowcaseFactory } from '../ComponentShowcase';
+import { Text as SixuiText } from '../Text';
 import { Button } from './Button';
 
 // https://m3.material.io/components/buttons/overview
@@ -27,7 +31,10 @@ const defaultArgs = {
 
 const states: Array<IComponentPresentation<IButtonProps>> = [
   { legend: 'Static', props: { onClick: undefined } },
-  { legend: 'Normal', props: { children: 'Normal' } },
+  {
+    legend: 'Normal',
+    props: { children: 'Normal' },
+  },
   {
     legend: 'Focused',
     props: { children: 'Focused', interactions: { focused: true } },
@@ -104,6 +111,7 @@ export const Variants: IStory = {
           'text',
           'danger',
           'snackbar',
+          'fluid',
         ] as Array<IButtonVariant>
       ).map((variant) => ({
         props: {
@@ -207,6 +215,73 @@ export const Snackbar: IStory = {
   args: {
     ...defaultArgs,
     variant: 'snackbar',
+  },
+};
+
+export const Fluid: IStory = {
+  render: (props) => <ButtonShowcase props={props} cols={states} rows={rows} />,
+  args: {
+    ...defaultArgs,
+    variant: 'fluid',
+  },
+};
+
+const InlineButton: React.FC<IButtonProps> = (props) => (
+  <>
+    Lorem ipsum dolor sit amet <Button {...props} />, consectetur adipiscing
+    elit
+  </>
+);
+
+export const FluidInline: IStory = {
+  render: (props) => (
+    <ButtonShowcase
+      horizontalAlign="start"
+      props={props}
+      rows={[
+        {
+          component: (props) => (
+            <SixuiText variant="display">
+              <InlineButton {...props} />
+            </SixuiText>
+          ),
+        },
+        {
+          component: (props) => (
+            <SixuiText variant="headline">
+              <InlineButton {...props} />
+            </SixuiText>
+          ),
+        },
+        {
+          component: (props) => (
+            <SixuiText variant="title">
+              <InlineButton {...props} />
+            </SixuiText>
+          ),
+        },
+        {
+          component: (props) => (
+            <SixuiText variant="body">
+              <InlineButton {...props} />
+            </SixuiText>
+          ),
+        },
+        {
+          component: (props) => (
+            <SixuiText variant="label">
+              <InlineButton {...props} />
+            </SixuiText>
+          ),
+        },
+      ]}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    variant: 'fluid',
+    children: 'click me',
+    trailingIcon: <FontAwesomeIcon icon={faArrowUpRightFromSquare} />,
   },
 };
 

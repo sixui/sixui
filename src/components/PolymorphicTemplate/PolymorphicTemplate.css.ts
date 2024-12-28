@@ -8,7 +8,7 @@ import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { cssLayers, themeTokens } from '../../ThemeProvider';
+import { cssLayers, themeTokens } from '../ThemeProvider';
 
 type IModifier = 'disabled';
 

@@ -3,7 +3,7 @@ import type { IPolymorphicTemplateFactory } from './PolymorphicTemplate.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../../Box';
+import { Box } from '../Box';
 import {
   polymorphicTemplateTheme,
   polymorphicTemplateThemeVariants,
