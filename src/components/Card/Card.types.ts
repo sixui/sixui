@@ -1,28 +1,23 @@
-import type {
-  IAny,
-  ICompiledStyles,
-  IMaybeAsync,
-  IZeroOrMore,
-} from '~/helpers/types';
-import type { IBaseProps } from '../Base';
-import type { IElevationStylesKey } from '../Elevation';
-import type { IFocusRingStylesKey } from '../FocusRing';
-import type { IStateLayerStylesKey } from '../StateLayer';
-import type { IVisualState } from '../VisualState';
-import type { ICardStylesKey } from './Card.styles';
+import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+import type { IBoxProps } from '../Box';
+import type { cardTheme, ICardThemeFactory } from './Card.css';
 
-export type ICardVariant = 'elevated' | 'filled' | 'outlined';
+export type ICardVariant = 'primary';
 
-export type ICardProps = IBaseProps<ICardStylesKey> & {
-  innerStyles?: {
-    elevation?: IZeroOrMore<ICompiledStyles<IElevationStylesKey>>;
-    stateLayer?: IZeroOrMore<ICompiledStyles<IStateLayerStylesKey>>;
-    focusRing?: IZeroOrMore<ICompiledStyles<IFocusRingStylesKey>>;
-  };
-  visualState?: IVisualState;
-  variant?: ICardVariant | false;
-  children: React.ReactNode;
-  onClick?: (event?: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
-  href?: string;
+export interface ICardOwnProps {
+  children?: React.ReactNode;
   disabled?: boolean;
-};
+}
+
+export interface ICardProps
+  extends IBoxProps,
+    IComponentThemeProps<ICardThemeFactory>,
+    ICardOwnProps {}
+
+export type ICardFactory = IComponentFactory<{
+  props: ICardProps;
+  ref: HTMLDivElement;
+  theme: typeof cardTheme;
+  variant: ICardVariant | false;
+}>;
