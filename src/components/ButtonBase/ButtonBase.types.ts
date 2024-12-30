@@ -21,6 +21,7 @@ export interface IButtonBaseOwnProps {
   disabled?: boolean;
   onClick?: (event: React.MouseEvent<Element>) => IMaybeAsync<IAny>;
   touchTargetRenderer?: () => React.ReactNode;
+  nonInteractive?: boolean;
 
   /**
    * If `true`, the component will be rendered in a disabled state, but will

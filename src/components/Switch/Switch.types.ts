@@ -23,6 +23,7 @@ export interface ISwitchOwnProps extends IPaperBaseOwnProps {
   alwaysOn?: boolean;
   id?: string;
   rootRef?: React.Ref<HTMLDivElement>;
+  nonInteractive?: boolean;
 }
 
 export interface ISwitchProps

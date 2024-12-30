@@ -20,6 +20,7 @@ export interface IRadioOwnProps extends IPaperBaseOwnProps {
   value?: string;
   id?: string;
   rootRef?: React.Ref<HTMLDivElement>;
+  nonInteractive?: boolean;
 }
 
 export interface IRadioProps

@@ -23,7 +23,6 @@ const defaultArgs = {
       </Box>
     </>
   ),
-  onClick: () => {},
 } satisfies Partial<IButtonBaseProps>;
 
 const rows: Array<IComponentPresentation<IButtonBaseProps>> = [

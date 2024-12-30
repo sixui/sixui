@@ -87,7 +87,10 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
           return;
         }
 
-        void executeLazyPromise(() => onClick(event) as void, setHandlingClick);
+        void executeLazyPromise(
+          () => onClick?.(event) as void,
+          setHandlingClick,
+        );
       },
       [handlingClick, onClick],
     );
@@ -197,7 +200,7 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
         variant={false}
         classNames={classNames}
         leadingIcon={leadingIcon}
-        onClick={onClick ? handleClick : undefined}
+        onClick={handleClick}
         loading={loading}
         ref={primaryHandleRef}
         hasLeading={hasLeading}

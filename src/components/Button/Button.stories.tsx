@@ -30,7 +30,7 @@ const defaultArgs = {
 } satisfies Partial<IButtonProps>;
 
 const states: Array<IComponentPresentation<IButtonProps>> = [
-  { legend: 'Static', props: { onClick: undefined } },
+  { legend: 'Non-interactive', props: { nonInteractive: true } },
   {
     legend: 'Normal',
     props: { children: 'Normal' },

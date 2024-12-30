@@ -19,7 +19,7 @@ const defaultArgs = {
 } satisfies Partial<IRadioProps>;
 
 const states: Array<IComponentPresentation<IRadioProps>> = [
-  { legend: 'Static', props: { onChange: undefined } },
+  { legend: 'Non-interactive', props: { nonInteractive: true } },
   { legend: 'Normal' },
   {
     legend: 'Focused',

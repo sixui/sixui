@@ -40,6 +40,7 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
       id: idProp,
       value,
       rootRef,
+      nonInteractive,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -61,12 +62,11 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
     const disabledOrReadOnly = disabled || labeledContext?.disabled || readOnly;
     const required = requiredProp ?? labeledContext?.required;
     const id = idProp ?? labeledContext?.id;
-    const isInteractive = !!onChange;
 
     const stateLayer = useStateLayer<HTMLInputElement>({
       baseState: interactions,
       mergeStrategy: interactionsMergeStrategy,
-      disabled: disabledOrReadOnly || !isInteractive,
+      disabled: disabledOrReadOnly || nonInteractive,
     });
     const inputHandleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
 
@@ -124,7 +124,7 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
         ref={rootRef}
         {...other}
       >
-        {isInteractive && !disabledOrReadOnly && (
+        {!nonInteractive && !disabledOrReadOnly && (
           <>
             <FocusRing
               {...getStyles('focusRing')}
@@ -153,7 +153,7 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
           </>
         )}
 
-        {isInteractive && (
+        {!nonInteractive && (
           <input
             type="checkbox"
             role="switch"

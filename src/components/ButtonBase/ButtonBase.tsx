@@ -35,9 +35,11 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
       interactions,
       interactionsMergeStrategy,
       href,
+      onClick,
       target,
       rel,
       touchTargetRenderer,
+      nonInteractive,
       ...other
     } = useProps({
       componentName: COMPONENT_NAME,
@@ -46,7 +48,6 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
 
     const sixuiContext = useSixuiContext();
     const disabledOrReadOnly = disabled || readOnly;
-    const isInteractive = !!href || !!other.onClick || as === 'input';
 
     const { getStyles } = useComponentTheme<IButtonBaseThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -58,26 +59,30 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
       theme: buttonBaseTheme,
       modifiers: {
         disabled: disabledOrReadOnly,
-        interactive: isInteractive,
+        'non-interactive': nonInteractive,
       },
     });
 
     const ownStateLayer = useStateLayer<HTMLDivElement>({
       baseState: interactions,
       mergeStrategy: interactionsMergeStrategy,
-      disabled: !isInteractive || !!stateLayerProp || disabledOrReadOnly,
+      disabled: !!stateLayerProp || disabledOrReadOnly || nonInteractive,
+      clickThrough: !onClick && !nonInteractive,
     });
     const stateLayer = stateLayerProp ?? ownStateLayer;
     const rootElement =
       as ??
-      (isInteractive
-        ? href
+      (nonInteractive
+        ? 'div'
+        : href
           ? (sixuiContext.settings?.linkAs ?? 'a')
-          : 'button'
-        : 'div');
+          : 'button');
 
-    const attributes = isInteractive
-      ? rootElement === 'button'
+    const attributes = nonInteractive
+      ? {
+          'aria-disabled': disabledOrReadOnly || undefined,
+        }
+      : rootElement === 'button'
         ? {
             type,
             disabled,
@@ -90,10 +95,7 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
             disabled: rootElement === 'input' ? disabled : undefined,
             'aria-disabled': disabledOrReadOnly || undefined,
             rel: rootElement === 'a' ? rel : undefined,
-          }
-      : {
-          'aria-disabled': disabledOrReadOnly || undefined,
-        };
+          };
 
     const handleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
 
@@ -122,11 +124,15 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
         ref={handleRef}
         as={rootElement}
         classNames={classNames}
-        tabIndex={isInteractive ? (disabledOrReadOnly ? -1 : 0) : undefined}
+        tabIndex={nonInteractive ? undefined : disabledOrReadOnly ? -1 : 0}
         interactions={stateLayer.interactionsContext.state}
-        {...mergeProps(stateLayer.interactionsContext.triggerProps, other)}
+        {...mergeProps(
+          stateLayer.interactionsContext.triggerProps,
+          { onClick: nonInteractive ? undefined : onClick },
+          other,
+        )}
       >
-        {isInteractive && !disabledOrReadOnly && (
+        {!nonInteractive && !disabledOrReadOnly && (
           <>
             {focusRing !== false && (
               <FocusRing
@@ -141,7 +147,7 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
 
         {children}
 
-        {isInteractive && renderTouchTarget()}
+        {!nonInteractive && renderTouchTarget()}
       </Paper>
     );
   },

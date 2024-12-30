@@ -19,7 +19,7 @@ const defaultArgs = {
 } satisfies Partial<ICheckboxProps>;
 
 const states: Array<IComponentPresentation<ICheckboxProps>> = [
-  { legend: 'Static', props: { onChange: undefined } },
+  { legend: 'Non-interactive', props: { nonInteractive: true } },
   { legend: 'Normal' },
   { legend: 'Focused', props: { interactions: { focused: true } } },
   { legend: 'Hovered', props: { interactions: { hovered: true } } },

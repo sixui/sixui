@@ -19,10 +19,10 @@ import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
 type IModifier =
   | IInteraction
+  | 'non-interactive'
   | 'elevated'
   | 'selected'
   | 'loading'
-  | 'interactive'
   | 'avatar';
 
 const DENSITY = px(getDensity({ min: -2, max: 0 }));
@@ -93,6 +93,12 @@ const [tokensClassName, tokens] = createTheme({
 
 const classNames = createStyles({
   root: {
+    minWidth: 'unset',
+    height: calc.add(tokens.height, DENSITY),
+    transitionProperty: 'border-radius',
+    transitionDuration: themeTokens.motion.duration.medium.$4,
+    transitionTimingFunction: themeTokens.motion.easing.emphasized.decelerate,
+
     vars: {
       ...createTokensVars(PaperBase.theme.tokens, {
         container: {
@@ -111,15 +117,9 @@ const classNames = createStyles({
       }),
     },
 
-    minWidth: 'unset',
-    height: calc.add(tokens.height, DENSITY),
-    transitionProperty: 'border-radius',
-    transitionDuration: themeTokens.motion.duration.medium.$4,
-    transitionTimingFunction: themeTokens.motion.easing.emphasized.decelerate,
-
     selectors: {
       [getModifierSelector<IModifier>({
-        interactive: true,
+        'non-interactive': false,
       })]: {
         vars: createTokensVars(Button.theme.tokens, {
           icon: tokens.icon$interactive,

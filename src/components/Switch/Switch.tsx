@@ -42,6 +42,7 @@ export const Switch = componentFactory<ISwitchFactory>(
       id: idProp,
       value,
       rootRef,
+      nonInteractive,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -61,12 +62,11 @@ export const Switch = componentFactory<ISwitchFactory>(
     const hasIcon =
       loading || (checked && !!checkedIcon) || (!checked && !!uncheckedIcon);
     const isOn = checked || alwaysOn;
-    const isInteractive = !!onChange;
 
     const stateLayer = useStateLayer<HTMLInputElement>({
       baseState: interactions,
       mergeStrategy: interactionsMergeStrategy,
-      disabled: disabledOrReadOnly || !isInteractive,
+      disabled: disabledOrReadOnly || nonInteractive,
     });
     const inputHandleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
 
@@ -152,7 +152,7 @@ export const Switch = componentFactory<ISwitchFactory>(
           </div>
         </div>
 
-        {isInteractive && (
+        {!nonInteractive && (
           <input
             type="checkbox"
             role="switch"

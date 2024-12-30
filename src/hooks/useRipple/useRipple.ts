@@ -64,6 +64,7 @@ export type IUseRippleProps<TElement extends HTMLElement> = {
   surfaceRef: React.RefObject<HTMLDivElement | null>;
   disabled?: boolean;
   options?: IUSeRippleOptions;
+  clickThrough?: boolean;
 };
 
 export type IUseRippleResult = {
@@ -132,7 +133,13 @@ const isTouch = ({ pointerType }: React.PointerEvent): boolean =>
 export const useRipple = <TElement extends HTMLElement>(
   props: IUseRippleProps<TElement>,
 ): IUseRippleResult => {
-  const { triggerRef, surfaceRef, options: optionsProp, disabled } = props;
+  const {
+    triggerRef,
+    surfaceRef,
+    options: optionsProp,
+    disabled,
+    clickThrough,
+  } = props;
   const options = { ...DEFAULT_OPTIONS, ...optionsProp };
 
   const [animating, setAnimating] = useState(false);
@@ -297,7 +304,9 @@ export const useRipple = <TElement extends HTMLElement>(
         return;
       }
 
-      event.stopPropagation();
+      if (!clickThrough) {
+        event.stopPropagation();
+      }
 
       rippleStartEventRef.current = event;
       if (!isTouch(event)) {
@@ -331,7 +340,13 @@ export const useRipple = <TElement extends HTMLElement>(
         startPressAnimation(event);
       });
     },
-    [shouldReactToEvent, triggerRef, startPressAnimation, options.touchDelayMs],
+    [
+      shouldReactToEvent,
+      triggerRef,
+      startPressAnimation,
+      options.touchDelayMs,
+      clickThrough,
+    ],
   );
 
   const handlePointerUp: React.PointerEventHandler = useCallback(
@@ -340,7 +355,9 @@ export const useRipple = <TElement extends HTMLElement>(
         return;
       }
 
-      event.stopPropagation();
+      if (!clickThrough) {
+        event.stopPropagation();
+      }
 
       if (stateRef.current === IState.Holding) {
         stateRef.current = IState.WaitingForClick;
@@ -357,7 +374,7 @@ export const useRipple = <TElement extends HTMLElement>(
         return;
       }
     },
-    [shouldReactToEvent, startPressAnimation],
+    [shouldReactToEvent, startPressAnimation, clickThrough],
   );
 
   const handlePointerLeave: React.PointerEventHandler = useCallback(
@@ -393,7 +410,9 @@ export const useRipple = <TElement extends HTMLElement>(
         return;
       }
 
-      event.stopPropagation();
+      if (!clickThrough) {
+        event.stopPropagation();
+      }
 
       if (stateRef.current === IState.WaitingForClick) {
         void endPressAnimation();
@@ -407,7 +426,7 @@ export const useRipple = <TElement extends HTMLElement>(
         void endPressAnimation();
       }
     },
-    [disabled, startPressAnimation, endPressAnimation],
+    [disabled, startPressAnimation, endPressAnimation, clickThrough],
   );
 
   const handleContextMenu = useCallback(() => {

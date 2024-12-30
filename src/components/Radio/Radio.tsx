@@ -36,6 +36,7 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
     value,
     id: idProp,
     rootRef,
+    nonInteractive,
     ...other
   } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -56,7 +57,6 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
   const disabledOrReadOnly = disabled || labeledContext?.disabled || readOnly;
   const required = requiredProp ?? labeledContext?.required;
   const id = idProp ?? labeledContext?.id;
-  const isInteractive = !!onChange;
 
   const name = radioGroupContext?.name ?? nameProp;
   const checked = radioGroupContext
@@ -66,7 +66,7 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
   const stateLayer = useStateLayer<HTMLInputElement>({
     baseState: interactions,
     mergeStrategy: interactionsMergeStrategy,
-    disabled: disabledOrReadOnly || !isInteractive,
+    disabled: disabledOrReadOnly || nonInteractive,
   });
   const inputHandleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
 
@@ -117,7 +117,7 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
       ref={rootRef}
       {...other}
     >
-      {isInteractive && !disabledOrReadOnly && (
+      {!nonInteractive && !disabledOrReadOnly && (
         <>
           <FocusRing
             {...getStyles('focusRing')}
@@ -143,7 +143,7 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
         />
       </svg>
 
-      {isInteractive && (
+      {!nonInteractive && (
         <input
           name={name}
           type="radio"

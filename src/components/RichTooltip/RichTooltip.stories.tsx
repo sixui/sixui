@@ -22,9 +22,7 @@ const defaultArgs = {
     'Grant value is calculated using the closing stock price from the day before the grant date. Amounts do not reflect tax withholding.',
   actions: ({ onClose }) => (
     <>
-      <Button variant="text" onClick={() => {}}>
-        Action
-      </Button>
+      <Button variant="text">Action</Button>
       <Button variant="text" onClick={onClose}>
         Dismiss
       </Button>
@@ -58,8 +56,6 @@ export const Standard: IStory = {
   render: (props) => <RichTooltipShowcase props={props} cols={cols} />,
   args: defaultArgs as IRichTooltipProps,
 };
-
-// FIXME: Persistent - remove static views?
 
 export const Persistent: IStory = {
   render: (props) => (

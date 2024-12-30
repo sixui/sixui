@@ -57,6 +57,8 @@ export type IUseInteractionsProps = {
 
   /** Wether the element is disabled. */
   disabled?: boolean;
+
+  clickThrough?: boolean;
 };
 
 export type IUseInteractionsResult<TElement extends HTMLElement = HTMLElement> =
@@ -89,6 +91,7 @@ export const useInteractions = <TElement extends HTMLElement>(
     baseState,
     mergeStrategy = 'accumulate',
     disabled,
+    clickThrough,
     dragged,
   } = props ?? {};
 
@@ -106,11 +109,17 @@ export const useInteractions = <TElement extends HTMLElement>(
   const pressProps = useMemo<DOMAttributes | undefined>(
     () => ({
       onPointerDown: (event) => {
-        event.stopPropagation();
+        if (!clickThrough) {
+          event.stopPropagation();
+        }
+
         setPressed(true);
       },
       onPointerUp: (event) => {
-        event.stopPropagation();
+        if (!clickThrough) {
+          event.stopPropagation();
+        }
+
         setPressed(false);
       },
       onPointerLeave: () => setPressed(false),
@@ -127,7 +136,7 @@ export const useInteractions = <TElement extends HTMLElement>(
       },
       onKeyUp: () => setPressed(false),
     }),
-    [],
+    [clickThrough],
   );
 
   const [hovered, setHovered] = useState(false);

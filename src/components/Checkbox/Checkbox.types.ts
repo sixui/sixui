@@ -22,6 +22,7 @@ export interface ICheckboxOwnProps extends IPaperBaseOwnProps {
   interactionsMergeStrategy?: IInteractionsMergeStrategy;
   id?: string;
   rootRef?: React.Ref<HTMLDivElement>;
+  nonInteractive?: boolean;
 }
 
 export interface ICheckboxProps

@@ -27,10 +27,10 @@ const defaultArgs = {
 
 const states: Array<IComponentPresentation<IChipProps>> = [
   {
-    legend: 'Static',
+    legend: 'Non-interactive',
     props: {
-      children: 'Static',
-      onClick: undefined,
+      children: 'Non-interactive',
+      nonInteractive: true,
     },
   },
   {

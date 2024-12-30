@@ -30,6 +30,7 @@ export const useStateLayer = <TElement extends HTMLElement>(
     dragged,
     disabled,
     withoutRippleEffect,
+    clickThrough,
   } = props;
   const surfaceRef = useRef<HTMLDivElement>(null);
   const isStaticState = baseState && mergeStrategy === 'replace';
@@ -44,6 +45,7 @@ export const useStateLayer = <TElement extends HTMLElement>(
     mergeStrategy,
     dragged,
     disabled,
+    clickThrough,
   });
 
   const triggerRef = useRef<TElement>(null);
@@ -51,6 +53,7 @@ export const useStateLayer = <TElement extends HTMLElement>(
     triggerRef,
     surfaceRef,
     disabled: withoutRippleEffect || disabled || isStaticState,
+    clickThrough,
   });
 
   // In the case of a remote trigger (ie. via a <label /> element), we don't
