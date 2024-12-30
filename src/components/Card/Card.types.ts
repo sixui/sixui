@@ -1,11 +1,12 @@
-import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
+import type { IButtonBaseOwnProps } from '../ButtonBase';
 import type { cardTheme, ICardThemeFactory } from './Card.css';
 
-export type ICardVariant = 'primary';
+export type ICardVariant = 'filled' | 'elevated' | 'outlined';
 
-export interface ICardOwnProps {
+export interface ICardOwnProps extends IButtonBaseOwnProps {
   children?: React.ReactNode;
   disabled?: boolean;
 }
@@ -15,9 +16,10 @@ export interface ICardProps
     IComponentThemeProps<ICardThemeFactory>,
     ICardOwnProps {}
 
-export type ICardFactory = IComponentFactory<{
+export type ICardFactory = IPolymorphicComponentFactory<{
   props: ICardProps;
-  ref: HTMLDivElement;
+  defaultRef: HTMLButtonElement;
+  defaultRoot: 'button';
   theme: typeof cardTheme;
   variant: ICardVariant | false;
 }>;

@@ -1,75 +1,109 @@
-import { createTheme } from '@vanilla-extract/css';
-
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import type { ICardVariant } from './Card.types';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { cssLayers, themeTokens } from '../ThemeProvider';
+import { PaperBase } from '../PaperBase';
+import { themeTokens } from '../ThemeProvider';
+import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
 type IModifier = 'disabled';
 
-const [tokensClassName, tokens] = createTheme({
-  '@layer': cssLayers.theme,
-  container: {
-    color: {
-      normal: 'unset',
-      disabled: 'unset',
-    },
-  },
-  label: {
-    color: {
-      normal: 'unset',
-      disabled: 'unset',
-    },
-  },
-});
-
 const classNames = createStyles({
   root: {
-    backgroundColor: tokens.container.color.normal,
-    color: tokens.label.color.normal,
-    padding: px(space(2)),
-
-    selectors: {
-      [getModifierSelector<IModifier>('disabled')]: {
-        backgroundColor: tokens.container.color.disabled,
-        color: tokens.label.color.disabled,
+    vars: createTokensVars(PaperBase.theme.tokens, {
+      container: {
+        color: {
+          normal: themeTokens.colorScheme.surfaceContainerHighest,
+        },
+        elevation: {
+          normal: elevationLevelPreset[0],
+          focused: elevationLevelPreset[0],
+          hovered: elevationLevelPreset[1],
+          pressed: elevationLevelPreset[0],
+        },
+        shape: themeTokens.shape.corner.md,
       },
-    },
+    }),
   },
 });
 
 export type ICardThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
-  tokens: typeof tokens;
   modifier: IModifier;
   variant: ICardVariant;
 }>;
 
 export const cardTheme = componentThemeFactory<ICardThemeFactory>({
   classNames,
-  tokensClassName,
-  tokens,
+  tokens: undefined,
 });
 
 export const cardThemeVariants = {
-  primary: createStyles({
+  filled: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
+      vars: createTokensVars(PaperBase.theme.tokens, {
         container: {
           color: {
-            normal: themeTokens.colorScheme.primary,
-            disabled: themeTokens.colorScheme.surfaceContainerHighest,
+            normal: themeTokens.colorScheme.surfaceContainerHighest,
+          },
+          elevation: {
+            normal: elevationLevelPreset[0],
+            focused: elevationLevelPreset[0],
+            hovered: elevationLevelPreset[1],
+            pressed: elevationLevelPreset[0],
+            dragged: elevationLevelPreset[4],
+            disabled: elevationLevelPreset[0],
+          },
+          opacity: {},
+        },
+      }),
+    },
+  }),
+  elevated: createStyles({
+    root: {
+      vars: createTokensVars(PaperBase.theme.tokens, {
+        container: {
+          color: {
+            normal: themeTokens.colorScheme.surfaceContainerLow,
+            disabled: themeTokens.colorScheme.surface,
+          },
+          elevation: {
+            normal: elevationLevelPreset[1],
+            focused: elevationLevelPreset[0],
+            hovered: elevationLevelPreset[2],
+            pressed: elevationLevelPreset[1],
+            dragged: elevationLevelPreset[4],
+            disabled: elevationLevelPreset[1],
           },
         },
-        label: {
+      }),
+    },
+  }),
+  outlined: createStyles({
+    root: {
+      vars: createTokensVars(PaperBase.theme.tokens, {
+        container: {
           color: {
-            normal: themeTokens.colorScheme.onPrimary,
-            disabled: themeTokens.colorScheme.onSurface,
+            normal: themeTokens.colorScheme.surface,
+            disabled: themeTokens.colorScheme.surfaceContainerHighest,
+          },
+          elevation: {
+            normal: elevationLevelPreset[0],
+            focused: elevationLevelPreset[0],
+            hovered: elevationLevelPreset[0],
+            pressed: elevationLevelPreset[0],
+            dragged: elevationLevelPreset[3],
+            disabled: elevationLevelPreset[0],
+          },
+        },
+        outline: {
+          color: {
+            normal: themeTokens.colorScheme.outlineVariant,
+            disabled: themeTokens.colorScheme.outline,
+          },
+          width: {
+            normal: themeTokens.outline.width.xs,
           },
         },
       }),

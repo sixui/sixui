@@ -31,6 +31,7 @@ export const [tokensClassName, tokens] = createTheme({
       focused: 'inherit',
       hovered: 'inherit',
       pressed: 'inherit',
+      dragged: 'inherit',
       disabled: elevationLevelPreset[0],
     },
     shape: themeTokens.shape.corner.none,

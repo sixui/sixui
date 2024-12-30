@@ -1,8 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
-import type { IComponentPresentation } from '../ComponentShowcase';
-import type { ICardProps } from './Card.types';
-import { componentShowcaseFactory } from '../ComponentShowcase';
+import type { ICardProps, ICardVariant } from './Card.types';
+import {
+  componentShowcaseFactory,
+  IComponentPresentation,
+} from '../ComponentShowcase';
+import { Text } from '../Text';
 import { Card } from './Card';
 
 const meta = {
@@ -15,23 +19,74 @@ const defaultArgs = {
   children: 'Card',
 } satisfies Partial<ICardProps>;
 
-const variants: Array<IComponentPresentation<ICardProps>> = [
-  { legend: 'None', props: { variant: false } },
-  { legend: 'Primary', props: { variant: 'primary' } },
-];
-
 const states: Array<IComponentPresentation<ICardProps>> = [
-  { legend: 'Normal' },
-  { legend: 'Disabled', props: { disabled: true } },
+  { legend: 'Non-interactive', props: { nonInteractive: true } },
+  {
+    legend: 'Normal',
+    props: { children: 'Normal' },
+  },
+  {
+    legend: 'Focused',
+    props: { children: 'Focused', interactions: { focused: true } },
+  },
+  {
+    legend: 'Hovered',
+    props: { children: 'Hovered', interactions: { hovered: true } },
+  },
+  {
+    legend: 'Pressed',
+    props: { children: 'Pressed', interactions: { pressed: true } },
+  },
+  { legend: 'Disabled', props: { children: 'Disabled', disabled: true } },
 ];
 
-const CardShowcase = componentShowcaseFactory(Card);
+const CardDemo: React.FC<ICardProps> = ({ children, ...props }) => (
+  <Card w="$32" h="$24" {...props}>
+    <Text>{children}</Text>
+  </Card>
+);
 
-export const Basic: IStory = {
+const CardDemoShowcase = componentShowcaseFactory(CardDemo);
+
+export const Variants: IStory = {
   render: (props) => (
-    <CardShowcase props={props} cols={states} rows={variants} />
+    <CardDemoShowcase
+      props={props}
+      cols={(['filled', 'elevated', 'outlined'] as Array<ICardVariant>).map(
+        (variant) => ({
+          props: {
+            variant,
+            children: capitalizeFirstLetter(variant),
+          },
+        }),
+      )}
+    />
   ),
   args: defaultArgs,
+};
+
+export const Filled: IStory = {
+  render: (props) => <CardDemoShowcase props={props} cols={states} />,
+  args: {
+    ...defaultArgs,
+    variant: 'filled',
+  },
+};
+
+export const Elevated: IStory = {
+  render: (props) => <CardDemoShowcase props={props} cols={states} />,
+  args: {
+    ...defaultArgs,
+    variant: 'elevated',
+  },
+};
+
+export const Outlined: IStory = {
+  render: (props) => <CardDemoShowcase props={props} cols={states} />,
+  args: {
+    ...defaultArgs,
+    variant: 'outlined',
+  },
 };
 
 export default meta;

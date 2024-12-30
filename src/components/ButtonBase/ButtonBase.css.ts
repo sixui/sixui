@@ -15,6 +15,12 @@ export const classNames = createStyles({
         cursor: 'default',
         pointerEvents: 'none',
       },
+      [getModifierSelector<IModifier>('non-interactive')]: {
+        // Simulate button style.
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
       [getModifierSelector<IModifier>('!non-interactive')]: {
         cursor: 'pointer',
         userSelect: 'none',
