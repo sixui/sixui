@@ -1,38 +1,51 @@
-import { forwardRef } from 'react';
+import type { ICardTitleThemeFactory } from './CardTitle.css';
+import type { ICardTitleFactory } from './CardTitle.types';
+import { componentFactory } from '~/utils/component/componentFactory';
+import { useProps } from '~/utils/component/useProps';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { Box } from '../Box';
+import { cardTitleTheme } from './CardTitle.css';
 
-import type { ICardTitleProps } from './CardTitle.types';
-import { useStyles } from '~/hooks/useStyles';
-import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
-import { Stack } from '../Stack';
-import { cardTitleStyles } from './CardTitle.styles';
-import { cardTitleTheme } from './CardTitle.stylex';
+const COMPONENT_NAME = 'CardTitle';
 
-export const CardTitle = createPolymorphicComponent<'div', ICardTitleProps>(
-  forwardRef<HTMLDivElement, ICardTitleProps>(
-    function CardTitle(props, forwardedRef) {
-      const { styles, sx, headline, subhead, supportingText, ...other } = props;
+export const CardTitle = componentFactory<ICardTitleFactory>(
+  (props, forwardedRef) => {
+    const {
+      classNames,
+      className,
+      styles,
+      style,
+      variant,
+      headline,
+      subhead,
+      supportingText,
+      ...other
+    } = useProps({ componentName: COMPONENT_NAME, props });
 
-      const { getStyles, globalStyles } = useStyles({
-        componentName: 'CardTitle',
-        styles: [cardTitleStyles, styles],
-      });
+    const { getStyles } = useComponentTheme<ICardTitleThemeFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
+      className,
+      styles,
+      style,
+      variant,
+      theme: cardTitleTheme,
+    });
 
-      return (
-        <Stack
-          gap={2}
-          {...other}
-          sx={[cardTitleTheme, globalStyles, sx]}
-          ref={forwardedRef}
-        >
-          <div {...getStyles('header')}>
-            {headline ? <div {...getStyles('headline')}>{headline}</div> : null}
-            {subhead ? <div {...getStyles('subhead')}>{subhead}</div> : null}
-          </div>
-          {supportingText ? (
-            <div {...getStyles('supportingText')}>{supportingText}</div>
-          ) : null}
-        </Stack>
-      );
-    },
-  ),
+    return (
+      <Box {...getStyles('root')} ref={forwardedRef} {...other}>
+        <div {...getStyles('header')}>
+          {headline && <div {...getStyles('headline')}>{headline}</div>}
+          {subhead && <div {...getStyles('subhead')}>{subhead}</div>}
+        </div>
+
+        {supportingText ? (
+          <div {...getStyles('supportingText')}>{supportingText}</div>
+        ) : null}
+      </Box>
+    );
+  },
 );
+
+CardTitle.theme = cardTitleTheme;
+CardTitle.displayName = `@sixui/${COMPONENT_NAME}`;
