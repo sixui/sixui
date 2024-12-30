@@ -118,6 +118,7 @@ const sprinklesProps = defineProperties({
     td: ['textDecoration'],
     z: ['zIndex'],
     o: ['opacity'],
+    pos: ['position'],
   },
 });
 
@@ -154,4 +155,5 @@ export type IBoxSprinkles = Pick<
   | 'td'
   | 'z'
   | 'o'
+  | 'pos'
 >;

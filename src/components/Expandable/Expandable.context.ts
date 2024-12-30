@@ -1,6 +1,5 @@
-import { createContext } from 'react';
-
 import type { IOrientation } from '~/helpers/types';
+import { createSafeContext } from '~/helpers/createSafeContext';
 
 export type IExpandableContextValue = {
   expand: (expanded: boolean) => void;
@@ -11,6 +10,7 @@ export type IExpandableContextValue = {
   orientation?: IOrientation;
 };
 
-export const ExpandableContext = createContext<
-  IExpandableContextValue | undefined
->(undefined);
+export const [ExpandableContextProvider, useExpandableContext] =
+  createSafeContext<IExpandableContextValue>(
+    'You forgot to wrap your component in <ExpandableContextProvider />.',
+  );

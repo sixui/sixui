@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import type { IOrientation, ISize } from '~/helpers/types';
 
 export type IUseElementSizeProps = {
-  ref: React.RefObject<HTMLElement>;
+  ref: React.RefObject<HTMLElement | null>;
   observe?: boolean;
   orientation?: IOrientation;
 };
@@ -55,7 +55,7 @@ export const useElementSize = (
         const size = getElementSize(element, orientation);
         setSize(size);
       });
-      resizeObserver.observe(elementRef.current);
+      resizeObserver.observe(element);
 
       return () => resizeObserver.disconnect();
     }

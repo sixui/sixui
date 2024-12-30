@@ -1,103 +1,57 @@
-import { forwardRef, useRef } from 'react';
-import { useMergeRefs } from '@floating-ui/react';
-import stylex from '@stylexjs/stylex';
+import { useRef } from 'react';
+import { assignInlineVars } from '@vanilla-extract/dynamic';
 import { CSSTransition } from 'react-transition-group';
 
-import type { ICssSizeValue, ISize } from '~/helpers/types';
+import type { ISize } from '~/helpers/types';
 import type { IExpandableContextValue } from './Expandable.context';
-import type { IExpandableProps } from './Expandable.types';
+import type { IExpandableThemeFactory } from './Expandable.css';
+import type { IExpandableFactory } from './Expandable.types';
 import { isFunction } from '~/helpers/isFunction';
+import { px } from '~/helpers/styles/px';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useElementSize } from '~/hooks/useElementSize';
-import { useStyles } from '~/hooks/useStyles';
-import { motionTokens } from '~/themes/base/motion.stylex';
-import { Base } from '../Base';
-import { ExpandableContext } from './Expandable.context';
-import { expandableStyles } from './Expandable.styles';
+import { useMergeRefs } from '~/hooks/useMergeRefs';
+import { componentFactory } from '~/utils/component/componentFactory';
+import { useProps } from '~/utils/component/useProps';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { Box } from '../Box';
+import { ExpandableContextProvider } from './Expandable.context';
+import { expandableTheme } from './Expandable.css';
 
-const localStyles = stylex.create({
-  content: (expandedSize: Partial<ISize<ICssSizeValue>>) => ({
-    overflow: 'hidden',
-    width: expandedSize.width,
-    height: expandedSize.height,
-  }),
-  content$expanded: {
-    overflow: 'visible',
-  },
-  animation$entering: (
-    expandedSize: Partial<ISize<ICssSizeValue>>,
-    transitionProperty: string,
-  ) => ({
-    width: expandedSize.width,
-    height: expandedSize.height,
-    transitionProperty,
-    transitionDuration: motionTokens.duration$long3,
-    transitionTimingFunction: motionTokens.easing$emphasizedDecelerate,
-  }),
-  animation$entered: (expandedSize: Partial<ISize<ICssSizeValue>>) => ({
-    width: expandedSize.width,
-    height: expandedSize.height,
-  }),
-  animation$exiting: (
-    collapsedSize: Partial<ISize<ICssSizeValue>>,
-    transitionProperty: string,
-  ) => ({
-    width: collapsedSize.width,
-    height: collapsedSize.height,
-    transitionProperty,
-    transitionDuration: motionTokens.duration$short3,
-    transitionTimingFunction: motionTokens.easing$emphasizedAccelerate,
-  }),
-  animation$exited: (
-    size: Partial<ISize<ICssSizeValue>>,
-    visibility: string,
-  ) => ({
-    width: size.width,
-    height: size.height,
-    visibility,
-  }),
-  width: (width: number | string) => ({
-    width,
-  }),
-  height: (height: number | string) => ({
-    height,
-  }),
-});
+const COMPONENT_NAME = 'Expandable';
 
-export const Expandable = forwardRef<HTMLDivElement, IExpandableProps>(
-  function Expandable(props, forwardedRef) {
+export const Expandable = componentFactory<IExpandableFactory>(
+  (props, forwardedRef) => {
     const {
+      classNames,
+      className,
       styles,
-      sx,
-      trigger,
+      style,
+      variant,
       children,
-      onChange,
       disabled,
       expanded: expandedProp,
       defaultExpanded: defaultExpandedProp,
       initiallyExpanded: initiallyExpandedProp,
       orientation = 'vertical',
+      trigger,
+      onChange,
       collapsedSize: collapsedSizeProp = 0,
       ...other
-    } = props;
-
-    const { combineStyles, globalStyles } = useStyles({
-      componentName: 'Expandable',
-      styles: [expandableStyles, styles],
-    });
+    } = useProps({ componentName: COMPONENT_NAME, props });
 
     const initiallyExpandedRef = useRef(initiallyExpandedProp);
     const defaultExpanded = initiallyExpandedRef.current ?? defaultExpandedProp;
     const [expanded, setExpanded] = useControlledValue({
       controlled: expandedProp,
       default: !!defaultExpanded,
-      name: 'Expandable',
+      name: COMPONENT_NAME,
     });
     const transitionNodeRef = useRef<HTMLDivElement>(null);
-    const transitionNodeHandleRef = useMergeRefs([
+    const transitionNodeHandleRef = useMergeRefs(
       transitionNodeRef,
       forwardedRef,
-    ]);
+    );
     const contentWrapperRef = useRef<HTMLDivElement>(null);
     const contentSize = useElementSize({
       ref: contentWrapperRef,
@@ -105,16 +59,34 @@ export const Expandable = forwardRef<HTMLDivElement, IExpandableProps>(
       orientation,
     });
 
+    const { getStyles } = useComponentTheme<IExpandableThemeFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
+      className,
+      styles,
+      style,
+      variant,
+      theme: expandableTheme,
+      modifiers: {
+        disabled,
+        orientation,
+      },
+    });
+
     const transitionProperty =
       orientation === 'horizontal' ? 'width' : 'height';
-    const collapsedSize: Partial<ISize<ICssSizeValue>> =
+    const collapsedSize: Partial<ISize<string>> =
       orientation === 'horizontal'
-        ? { width: collapsedSizeProp }
-        : { height: collapsedSizeProp };
-    const expandedSize: Partial<ISize<ICssSizeValue>> =
+        ? { width: px(collapsedSizeProp) }
+        : { height: px(collapsedSizeProp) };
+    const expandedSize: Partial<ISize<string>> =
       orientation === 'horizontal'
-        ? { width: contentSize?.width }
-        : { height: contentSize?.height };
+        ? { width: contentSize?.width ? `${contentSize?.width}px` : undefined }
+        : {
+            height: contentSize?.height
+              ? `${contentSize?.height}px`
+              : undefined,
+          };
 
     const expand = (expanded: boolean): void => {
       setExpanded(expanded);
@@ -138,7 +110,7 @@ export const Expandable = forwardRef<HTMLDivElement, IExpandableProps>(
     };
 
     return (
-      <ExpandableContext.Provider value={context}>
+      <ExpandableContextProvider value={context}>
         {triggerElement}
 
         <CSSTransition
@@ -147,54 +119,40 @@ export const Expandable = forwardRef<HTMLDivElement, IExpandableProps>(
           timeout={550} // motionTokens.duration$long3
         >
           {(status) => (
-            <Base
+            <Box
+              {...getStyles(['root', `motion$${status}`], {
+                style: assignInlineVars({
+                  [expandableTheme.tokens.collapsedWidth]: collapsedSize.width,
+                  [expandableTheme.tokens.collapsedHeight]:
+                    collapsedSize.height,
+                  [expandableTheme.tokens.expandedWidth]: expandedSize.width,
+                  [expandableTheme.tokens.expandedHeight]: expandedSize.height,
+                  [expandableTheme.tokens.visibility]:
+                    parseInt(`${collapsedSize.width}`) === 0 ||
+                    parseInt(`${collapsedSize.height}`) === 0
+                      ? 'hidden'
+                      : 'visible',
+                  [expandableTheme.tokens.transitionProperty]:
+                    transitionProperty,
+                }),
+              })}
+              modifiers={{
+                expanded: expanded && status === 'entered',
+              }}
+              ref={transitionNodeHandleRef}
               aria-expanded={expanded}
               {...other}
-              sx={[
-                globalStyles,
-                combineStyles(
-                  'host',
-                  expanded && status === 'entered' && 'host$expanded',
-                ),
-                status === 'exited'
-                  ? localStyles.animation$exited(
-                      collapsedSize,
-                      parseInt(`${collapsedSize.width}`) === 0 ||
-                        parseInt(`${collapsedSize.height}`) === 0
-                        ? 'hidden'
-                        : 'visible',
-                    )
-                  : status === 'entering'
-                    ? localStyles.animation$entering(
-                        expandedSize,
-                        transitionProperty,
-                      )
-                    : status === 'entered'
-                      ? localStyles.animation$entered(expandedSize)
-                      : status === 'exiting'
-                        ? localStyles.animation$exiting(
-                            collapsedSize,
-                            transitionProperty,
-                          )
-                        : undefined,
-                sx,
-              ]}
-              ref={transitionNodeHandleRef}
             >
-              <div
-                {...stylex.props(
-                  localStyles.content(expandedSize),
-                  expanded && status === 'entered'
-                    ? localStyles.content$expanded
-                    : undefined,
-                )}
-              >
+              <div {...getStyles('content')}>
                 <div ref={contentWrapperRef}>{children}</div>
               </div>
-            </Base>
+            </Box>
           )}
         </CSSTransition>
-      </ExpandableContext.Provider>
+      </ExpandableContextProvider>
     );
   },
 );
+
+Expandable.theme = expandableTheme;
+Expandable.displayName = `@sixui/${COMPONENT_NAME}`;

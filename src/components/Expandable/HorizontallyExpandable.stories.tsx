@@ -4,15 +4,15 @@ import {
   faChevronCircleRight,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import stylex from '@stylexjs/stylex';
 
 import type { IExpandableProps } from './Expandable.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { outlineTokens } from '~/themes/base/outline.stylex';
-import { scaleTokens } from '~/themes/base/scale.stylex';
-import { spacingTokens } from '~/themes/base/spacing.stylex';
+import { px } from '~/helpers/styles/px';
+import { Box } from '../Box';
+import { Flex } from '../Flex';
 import { IconButton } from '../IconButton';
+import { Paper } from '../Paper';
+import { Text } from '../Text';
 import { Expandable } from './Expandable';
 
 const meta = {
@@ -23,26 +23,6 @@ type IStory = StoryObj<typeof meta>;
 
 const TEXT =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et leo duis ut diam quam nulla porttitor. Tortor dignissim convallis aenean et tortor. Vulputate mi sit amet mauris commodo. Ac turpis egestas sed tempus. Id nibh tortor id aliquet lectus. Sed risus pretium quam vulputate. Vulputate dignissim suspendisse in est ante in nibh mauris cursus. Viverra ipsum nunc aliquet bibendum enim. Mauris in aliquam sem fringilla. Vitae aliquet nec ullamcorper sit amet risus nullam eget. Nec feugiat nisl pretium fusce id velit. Suspendisse sed nisi lacus sed viverra tellus in hac habitasse. At augue eget arcu dictum varius duis at. In fermentum et sollicitudin ac orci phasellus egestas tellus rutrum. Sem fringilla ut morbi tincidunt augue interdum. Viverra accumsan in nisl nisi scelerisque eu ultrices vitae auctor.';
-
-const styles = stylex.create({
-  container: {
-    display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'row',
-    flexGrow: 1,
-    position: 'relative',
-    maxWidth: `calc(800px * ${scaleTokens.scale})`,
-  },
-  panel: {
-    paddingLeft: spacingTokens.padding$4,
-  },
-  innerPanel: {
-    borderWidth: outlineTokens.width$xs,
-    borderStyle: 'dashed',
-    borderColor: colorSchemeTokens.outline,
-    padding: spacingTokens.padding$4,
-  },
-});
 
 const defaultArgs = {
   trigger: ({ expand, expanded, disabled }) => (
@@ -57,29 +37,29 @@ const defaultArgs = {
     />
   ),
   children: (
-    <div {...stylex.props(styles.panel)}>
-      <div {...stylex.props(styles.innerPanel)}>{TEXT}</div>
-    </div>
+    <Box ml="$4">
+      <Paper p="$4" outline="$xs" outlineStyle="dashed">
+        <Text>{TEXT}</Text>
+      </Paper>
+    </Box>
   ),
   orientation: 'horizontal',
-  onChange: (...args) => void sbHandleEvent('change', args),
+  onChange: (...args) => void sbHandleEvent('onChange', args),
 } satisfies Partial<IExpandableProps>;
 
+const ExpandableDemo: React.FC<IExpandableProps> = (props) => (
+  <Flex direction="row" align="center" grow maw={px(800)} pos="relative">
+    <Expandable {...props} />
+  </Flex>
+);
+
 export const Basic: IStory = {
-  render: (props) => (
-    <div {...stylex.props(styles.container)}>
-      <Expandable {...props} />
-    </div>
-  ),
+  render: (props) => <ExpandableDemo {...props} />,
   args: defaultArgs,
 };
 
 export const CollapsedSize: IStory = {
-  render: (props) => (
-    <div {...stylex.props(styles.container)}>
-      <Expandable {...props} />
-    </div>
-  ),
+  render: (props) => <ExpandableDemo {...props} />,
   args: {
     ...defaultArgs,
     collapsedSize: 200,
@@ -87,11 +67,7 @@ export const CollapsedSize: IStory = {
 };
 
 export const Disabled: IStory = {
-  render: (props) => (
-    <div {...stylex.props(styles.container)}>
-      <Expandable {...props} />
-    </div>
-  ),
+  render: (props) => <ExpandableDemo {...props} />,
   args: {
     ...defaultArgs,
     disabled: true,
@@ -99,11 +75,7 @@ export const Disabled: IStory = {
 };
 
 export const DefaultExpanded: IStory = {
-  render: (props) => (
-    <div {...stylex.props(styles.container)}>
-      <Expandable {...props} />
-    </div>
-  ),
+  render: (props) => <ExpandableDemo {...props} />,
   args: {
     ...defaultArgs,
     defaultExpanded: true,
@@ -111,11 +83,7 @@ export const DefaultExpanded: IStory = {
 };
 
 export const InitiallyExpanded: IStory = {
-  render: (props) => (
-    <div {...stylex.props(styles.container)}>
-      <Expandable {...props} />
-    </div>
-  ),
+  render: (props) => <ExpandableDemo {...props} />,
   args: {
     ...defaultArgs,
     initiallyExpanded: true,

@@ -1,7 +1,12 @@
 import type { ICssSizeValue, IOmit } from '~/helpers/types';
-import type { IBaseProps } from '../Base';
+import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+import type { IBoxProps } from '../Box';
 import type { IExpandableContextValue } from './Expandable.context';
-import type { IExpandableStylesKey } from './Expandable.styles';
+import type {
+  expandableTheme,
+  IExpandableThemeFactory,
+} from './Expandable.css';
 
 export type IExpandableTriggerRenderProps = {
   expand: (expanded: boolean) => void;
@@ -9,12 +14,23 @@ export type IExpandableTriggerRenderProps = {
   expanded?: boolean;
 };
 
-export type IExpandableProps = IBaseProps<IExpandableStylesKey> &
-  IOmit<IExpandableContextValue, 'expand'> & {
-    trigger:
-      | React.ReactNode
-      | ((renderProps: IExpandableTriggerRenderProps) => React.ReactNode);
-    children?: React.ReactNode;
-    onChange?: (expanded: boolean) => void;
-    collapsedSize?: ICssSizeValue;
-  };
+export interface IExpandableOwnProps
+  extends IOmit<IExpandableContextValue, 'expand'> {
+  children?: React.ReactNode;
+  trigger:
+    | React.ReactNode
+    | ((renderProps: IExpandableTriggerRenderProps) => React.ReactNode);
+  onChange?: (expanded: boolean) => void;
+  collapsedSize?: ICssSizeValue;
+}
+
+export interface IExpandableProps
+  extends IBoxProps,
+    IComponentThemeProps<IExpandableThemeFactory>,
+    IExpandableOwnProps {}
+
+export type IExpandableFactory = IComponentFactory<{
+  props: IExpandableProps;
+  ref: HTMLDivElement;
+  theme: typeof expandableTheme;
+}>;
