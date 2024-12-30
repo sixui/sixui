@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { ICardProps, ICardVariant } from './Card.types';
+import { CardTitle } from '../CardTitle';
 import {
   componentShowcaseFactory,
   IComponentPresentation,
@@ -17,6 +18,7 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   children: 'Card',
+  href: 'https://google.fr',
 } satisfies Partial<ICardProps>;
 
 const states: Array<IComponentPresentation<ICardProps>> = [
@@ -38,6 +40,14 @@ const states: Array<IComponentPresentation<ICardProps>> = [
     props: { children: 'Pressed', interactions: { pressed: true } },
   },
   { legend: 'Disabled', props: { children: 'Disabled', disabled: true } },
+];
+
+const rows: Array<IComponentPresentation<ICardProps>> = [
+  { legend: 'Basic' },
+  {
+    legend: 'With title',
+    props: { children: <CardTitle headline="Headline" /> },
+  },
 ];
 
 const CardDemo: React.FC<ICardProps> = ({ children, ...props }) => (
@@ -66,7 +76,9 @@ export const Variants: IStory = {
 };
 
 export const Filled: IStory = {
-  render: (props) => <CardDemoShowcase props={props} cols={states} />,
+  render: (props) => (
+    <CardDemoShowcase props={props} cols={states} rows={rows} />
+  ),
   args: {
     ...defaultArgs,
     variant: 'filled',
@@ -74,7 +86,9 @@ export const Filled: IStory = {
 };
 
 export const Elevated: IStory = {
-  render: (props) => <CardDemoShowcase props={props} cols={states} />,
+  render: (props) => (
+    <CardDemoShowcase props={props} cols={states} rows={rows} />
+  ),
   args: {
     ...defaultArgs,
     variant: 'elevated',
@@ -82,7 +96,9 @@ export const Elevated: IStory = {
 };
 
 export const Outlined: IStory = {
-  render: (props) => <CardDemoShowcase props={props} cols={states} />,
+  render: (props) => (
+    <CardDemoShowcase props={props} cols={states} rows={rows} />
+  ),
   args: {
     ...defaultArgs,
     variant: 'outlined',

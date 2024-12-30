@@ -11,6 +11,7 @@ const COMPONENT_NAME = 'Card';
 export const Card = polymorphicComponentFactory<ICardFactory>(
   (props, forwardedRef) => {
     const {
+      as,
       classNames,
       className,
       styles,
@@ -35,8 +36,15 @@ export const Card = polymorphicComponentFactory<ICardFactory>(
       },
     });
 
+    const rootElement = as ?? (other.href ? undefined : 'div');
+
     return (
-      <ButtonBase {...getStyles('root')} ref={forwardedRef} {...other}>
+      <ButtonBase
+        {...getStyles('root')}
+        as={rootElement}
+        ref={forwardedRef}
+        {...other}
+      >
         {children}
       </ButtonBase>
     );
