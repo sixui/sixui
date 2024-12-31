@@ -190,7 +190,7 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>('loading')]: {
         vars: createTokensVars(PaperBase.theme.tokens, {
           container: {
-            elevation: tokens.container.elevation.normal,
+            elevation: tokens.container.elevation.pressed,
           },
         }),
       },
@@ -482,6 +482,7 @@ export const buttonThemeVariants = {
         ...createTokensVars(PaperBase.theme.tokens, {
           outline: {
             width: px(themeTokens.outline.width.xs),
+            opacity: themeTokens.state.opacity.disabled,
           },
         }),
         ...createTokensVars(tokens, {

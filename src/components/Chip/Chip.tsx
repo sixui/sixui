@@ -69,6 +69,7 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
         elevated,
         avatar: isAvatar,
         selected,
+        disabled: disabledOrReadOnly,
       },
     });
 

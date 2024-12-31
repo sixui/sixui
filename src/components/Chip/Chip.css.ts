@@ -22,7 +22,8 @@ type IModifier =
   | 'non-interactive'
   | 'elevated'
   | 'selected'
-  | 'avatar';
+  | 'avatar'
+  | 'disabled';
 
 const DENSITY = px(getDensity({ min: -2, max: 0 }));
 
@@ -131,9 +132,7 @@ const classNames = createStyles({
       })]: {
         vars: createTokensVars(PaperBase.theme.tokens, {
           outline: {
-            width: {
-              normal: px(themeTokens.outline.width.xs),
-            },
+            width: px(themeTokens.outline.width.xs),
           },
         }),
       },
@@ -210,6 +209,15 @@ const classNames = createStyles({
             icon: tokens.icon$avatar,
           }),
         },
+      },
+      [getModifierSelector<IModifier>({
+        disabled: true,
+      })]: {
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          outline: {
+            opacity: themeTokens.state.opacity.disabled,
+          },
+        }),
       },
     },
   },
