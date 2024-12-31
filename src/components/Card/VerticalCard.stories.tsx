@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { ICardProps } from './Card.types';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { Avatar } from '../Avatar';
 import { Button } from '../Button';
 import { componentShowcaseFactory } from '../ComponentShowcase';
@@ -24,6 +25,7 @@ const AVATAR_URL =
 
 const defaultArgs = {
   w: '$72',
+  onClick: (...args) => sbHandleEvent('card:onClick', args),
 } satisfies Partial<ICardProps>;
 
 const states: Array<IComponentPresentation<ICardProps>> = [
@@ -64,6 +66,7 @@ const rows: Array<IComponentPresentation<ICardProps>> = [
             trailing={
               <IconButton
                 icon={<FontAwesomeIcon icon={faEllipsisVertical} />}
+                onClick={(...args) => sbHandleEvent('menu:onClick', args)}
               />
             }
             pt="$2"
@@ -79,7 +82,12 @@ const rows: Array<IComponentPresentation<ICardProps>> = [
             />
           </Card.Content>
           <Card.Actions>
-            <Button variant="filled">Action</Button>
+            <Button
+              variant="filled"
+              onClick={(...args) => sbHandleEvent('action:onClick', args)}
+            >
+              Action
+            </Button>
           </Card.Actions>
         </>
       ),

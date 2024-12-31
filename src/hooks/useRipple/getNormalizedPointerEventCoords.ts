@@ -18,8 +18,8 @@ export const getNormalizedPointerEventCoords = (
   const surfaceDocumentY = surfaceRect.top;
 
   const coords = {
-    x: pageX - surfaceDocumentX,
-    y: pageY - surfaceDocumentY,
+    x: pageX - surfaceDocumentX - window.scrollX,
+    y: pageY - surfaceDocumentY - window.scrollY,
   };
 
   return coords;

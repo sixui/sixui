@@ -300,6 +300,8 @@ export const useRipple = <TElement extends HTMLElement>(
 
   const handlePointerDown: React.PointerEventHandler = useCallback(
     (event) => {
+      // FIXME:
+      return;
       if (!shouldReactToEvent(event)) {
         return;
       }
@@ -351,6 +353,8 @@ export const useRipple = <TElement extends HTMLElement>(
 
   const handlePointerUp: React.PointerEventHandler = useCallback(
     (event) => {
+      // FIXME:
+      return;
       if (!shouldReactToEvent(event)) {
         return;
       }

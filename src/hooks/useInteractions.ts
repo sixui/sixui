@@ -211,7 +211,7 @@ export const useInteractions = <TElement extends HTMLElement>(
 
   const currentState: IInteractions = useMemo(
     () => ({
-      pressed: events?.hover ? pressed : undefined,
+      pressed: events?.press ? pressed : undefined,
       dragged,
       focused: events?.focus ? focused : undefined,
       hovered: events?.hover ? hovered : undefined,
