@@ -411,6 +411,11 @@ export const buttonThemeVariants = {
     root: {
       vars: {
         ...createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            elevation: {
+              hovered: elevationLevelPreset[0],
+            },
+          },
           outline: {
             width: {
               normal: px(themeTokens.outline.width.xs),

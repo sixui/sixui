@@ -1,12 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
+import type { IComponentPresentation } from '../ComponentShowcase';
 import type { ICardProps, ICardVariant } from './Card.types';
-import {
-  componentShowcaseFactory,
-  IComponentPresentation,
-} from '../ComponentShowcase';
-import { Text } from '../Text';
+import { Button } from '../Button';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Card } from './Card';
 
 const meta = {
@@ -18,7 +16,9 @@ type IStory = StoryObj<typeof meta>;
 const IMAGE_URL =
   'https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600';
 
-const defaultArgs = {} satisfies Partial<ICardProps>;
+const defaultArgs = {
+  w: '$72',
+} satisfies Partial<ICardProps>;
 
 const states: Array<IComponentPresentation<ICardProps>> = [
   { legend: 'Non-interactive', props: { nonInteractive: true } },
@@ -52,7 +52,7 @@ const rows: Array<IComponentPresentation<ICardProps>> = [
     props: {
       children: (
         <>
-          <Card.Media src={IMAGE_URL} h="$32" />
+          <Card.Media src={IMAGE_URL} h="$48" />
           <Card.Content>
             <Card.Title
               headline="Headline"
@@ -60,23 +60,21 @@ const rows: Array<IComponentPresentation<ICardProps>> = [
               supportingText="Supporting text"
             />
           </Card.Content>
+          <Card.Actions>
+            <Button variant="filled">Primary</Button>
+            <Button variant="outlined">Secondary</Button>
+          </Card.Actions>
         </>
       ),
     },
   },
 ];
 
-const CardDemo: React.FC<ICardProps> = ({ children, ...props }) => (
-  <Card w="$48" {...props}>
-    {children}
-  </Card>
-);
-
-const CardDemoShowcase = componentShowcaseFactory(CardDemo);
+const CardShowcase = componentShowcaseFactory(Card);
 
 export const Variants: IStory = {
   render: (props) => (
-    <CardDemoShowcase
+    <CardShowcase
       props={props}
       cols={(['filled', 'elevated', 'outlined'] as Array<ICardVariant>).map(
         (variant) => ({
@@ -90,9 +88,7 @@ export const Variants: IStory = {
 };
 
 export const Filled: IStory = {
-  render: (props) => (
-    <CardDemoShowcase props={props} cols={states} rows={rows} />
-  ),
+  render: (props) => <CardShowcase props={props} cols={states} rows={rows} />,
   args: {
     ...defaultArgs,
     variant: 'filled',
@@ -100,9 +96,7 @@ export const Filled: IStory = {
 };
 
 export const Elevated: IStory = {
-  render: (props) => (
-    <CardDemoShowcase props={props} cols={states} rows={rows} />
-  ),
+  render: (props) => <CardShowcase props={props} cols={states} rows={rows} />,
   args: {
     ...defaultArgs,
     variant: 'elevated',
@@ -110,9 +104,7 @@ export const Elevated: IStory = {
 };
 
 export const Outlined: IStory = {
-  render: (props) => (
-    <CardDemoShowcase props={props} cols={states} rows={rows} />
-  ),
+  render: (props) => <CardShowcase props={props} cols={states} rows={rows} />,
   args: {
     ...defaultArgs,
     variant: 'outlined',

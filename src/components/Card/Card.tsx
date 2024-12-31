@@ -4,6 +4,7 @@ import { polymorphicComponentFactory } from '~/utils/component/polymorphicCompon
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { ButtonBase } from '../ButtonBase';
+import { CardActions } from '../CardActions';
 import { CardContent } from '../CardContent';
 import { CardMedia } from '../CardMedia';
 import { CardTitle } from '../CardTitle';
@@ -59,3 +60,4 @@ Card.displayName = `@sixui/${COMPONENT_NAME}`;
 Card.Content = CardContent;
 Card.Title = CardTitle;
 Card.Media = CardMedia;
+Card.Actions = CardActions;

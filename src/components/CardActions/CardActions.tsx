@@ -1,35 +1,42 @@
-import { forwardRef } from 'react';
+import type { ICardActionsThemeFactory } from './CardActions.css';
+import type { ICardActionsFactory } from './CardActions.types';
+import { componentFactory } from '~/utils/component/componentFactory';
+import { useProps } from '~/utils/component/useProps';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { Box } from '../Box';
+import { cardActionsTheme } from './CardActions.css';
 
-import type { ICardActionsProps } from './CardActions.types';
-import { useStyles } from '~/hooks/useStyles';
-import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
-import { Stack } from '../Stack';
-import { cardActionsStyles } from './CardActions.styles';
+const COMPONENT_NAME = 'CardActions';
 
-// TODO: reduce overhead and avoid this component.
+export const CardActions = componentFactory<ICardActionsFactory>(
+  (props, forwardedRef) => {
+    const {
+      classNames,
+      className,
+      styles,
+      style,
+      variant,
+      children,
+      ...other
+    } = useProps({ componentName: COMPONENT_NAME, props });
 
-export const CardActions = createPolymorphicComponent<'div', ICardActionsProps>(
-  forwardRef<HTMLDivElement, ICardActionsProps>(
-    function CardActions(props, forwardedRef) {
-      const { styles, sx, children, ...other } = props;
+    const { getStyles } = useComponentTheme<ICardActionsThemeFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
+      className,
+      styles,
+      style,
+      variant,
+      theme: cardActionsTheme,
+    });
 
-      const { combineStyles, globalStyles } = useStyles({
-        componentName: 'CardActions',
-        styles: [cardActionsStyles, styles],
-      });
-
-      return (
-        <Stack
-          horizontal
-          justify="end"
-          gap={2}
-          {...other}
-          sx={[globalStyles, combineStyles('host'), sx]}
-          ref={forwardedRef}
-        >
-          {children}
-        </Stack>
-      );
-    },
-  ),
+    return (
+      <Box {...getStyles('root')} ref={forwardedRef} {...other}>
+        {children}
+      </Box>
+    );
+  },
 );
+
+CardActions.theme = cardActionsTheme;
+CardActions.displayName = `@sixui/${COMPONENT_NAME}`;
