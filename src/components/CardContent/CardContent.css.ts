@@ -12,7 +12,7 @@ import { cssLayers, themeTokens } from '../ThemeProvider';
 
 type IModifier = 'disabled';
 
-const DENSITY = px(getDensity({ min: -1, max: 0 }));
+const DENSITY = px(getDensity({ min: -4, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
@@ -33,6 +33,9 @@ const [tokensClassName, tokens] = createTheme({
 
 const classNames = createStyles({
   root: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: calc.add(px(space(4)), DENSITY),
     color: tokens.text.color.normal,
     paddingTop: calc.add(tokens.topSpace, DENSITY),
     paddingBottom: calc.add(tokens.bottomSpace, DENSITY),

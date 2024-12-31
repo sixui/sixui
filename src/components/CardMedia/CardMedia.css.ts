@@ -2,7 +2,6 @@ import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactor
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { themeTokens } from '../ThemeProvider';
 import { cardTheme } from '../Card/Card.css';
 
 type IModifier = 'type';
@@ -21,10 +20,6 @@ const classNames = createStyles({
     selectors: {
       [getModifierSelector<IModifier>({ type: 'image' })]: {
         objectFit: 'cover',
-      },
-      [getModifierSelector({ disabled: true }, cardTheme.classNames.root)]: {
-        filter: 'grayscale(100%)',
-        opacity: themeTokens.state.opacity.disabled,
       },
     },
   },

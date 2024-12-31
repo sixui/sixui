@@ -172,6 +172,9 @@ const classNames = createStyles({
         }),
       },
       [getModifierSelector<IModifier>('disabled')]: {
+        filter: 'grayscale(100%)',
+        opacity: themeTokens.state.opacity.disabled,
+
         vars: createTokensVars(PaperBase.theme.tokens, {
           container: {
             color: tokens.container.color.disabled,

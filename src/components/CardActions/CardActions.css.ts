@@ -12,9 +12,7 @@ const classNames = createStyles({
     alignItems: 'center',
     justifyContent: 'end',
     padding: px(space(4)),
-
     position: 'relative',
-    zIndex: 1,
   },
 });
 

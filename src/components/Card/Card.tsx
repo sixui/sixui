@@ -47,6 +47,7 @@ export const Card = polymorphicComponentFactory<ICardFactory>(
         {...getStyles('root')}
         as={rootElement}
         ref={forwardedRef}
+        touchTargetRenderer={null}
         {...other}
       >
         {children}

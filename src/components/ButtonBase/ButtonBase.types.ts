@@ -20,7 +20,7 @@ export interface IButtonBaseOwnProps {
   rel?: string;
   disabled?: boolean;
   onClick?: (event: React.MouseEvent<Element>) => IMaybeAsync<IAny>;
-  touchTargetRenderer?: () => React.ReactNode;
+  touchTargetRenderer?: (() => React.ReactNode) | null;
   nonInteractive?: boolean;
 
   /**

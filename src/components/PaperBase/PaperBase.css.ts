@@ -8,6 +8,7 @@ import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { Elevation } from '../Elevation';
 import { cssLayers, themeTokens } from '../ThemeProvider';
+import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
 type IModifier = IInteraction | 'disabled' | 'expanded';
 
@@ -16,7 +17,7 @@ export const [tokensClassName, tokens] = createTheme({
   container: {
     color: 'inherit',
     opacity: 'unset',
-    elevation: 'unset',
+    elevation: elevationLevelPreset[0],
     shape: themeTokens.shape.corner.none,
     shapes: {
       topLeft: 'inherit',
