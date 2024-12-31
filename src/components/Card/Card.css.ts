@@ -27,7 +27,7 @@ const [tokensClassName, tokens] = createTheme({
       disabled: themeTokens.colorScheme.onSurface,
     },
     opacity: {
-      disabled: themeTokens.state.containerOpacity.disabled,
+      disabled: themeTokens.state.opacity.disabled,
     },
     elevation: {
       normal: 'unset',
