@@ -5,6 +5,7 @@ import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { ButtonBase } from '../ButtonBase';
 import { CardContent } from '../CardContent';
+import { CardMedia } from '../CardMedia';
 import { CardTitle } from '../CardTitle';
 import { cardTheme, cardThemeVariants } from './Card.css';
 
@@ -57,3 +58,4 @@ Card.theme = cardTheme;
 Card.displayName = `@sixui/${COMPONENT_NAME}`;
 Card.Content = CardContent;
 Card.Title = CardTitle;
+Card.Media = CardMedia;

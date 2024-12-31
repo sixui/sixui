@@ -351,7 +351,7 @@ export const buttonThemeVariants = {
               disabled: themeTokens.colorScheme.onSurface,
             },
             elevation: {
-              // hovered: elevationLevelPreset[1],
+              hovered: elevationLevelPreset[1],
             },
           },
         }),

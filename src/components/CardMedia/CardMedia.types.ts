@@ -1,8 +1,20 @@
-import type { IBaseProps } from '../Base';
-import type { ICardMediaStylesKey } from './CardMedia.styles';
+import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+import type { IBoxProps } from '../Box';
+import type { cardMediaTheme, ICardMediaThemeFactory } from './CardMedia.css';
 
-export type ICardMediaProps = IBaseProps<ICardMediaStylesKey> & {
+export interface ICardMediaOwnProps {
   children?: React.ReactNode;
   src?: string;
-  title?: string;
-};
+}
+
+export interface ICardMediaProps
+  extends IBoxProps,
+    IComponentThemeProps<ICardMediaThemeFactory>,
+    ICardMediaOwnProps {}
+
+export type ICardMediaFactory = IComponentFactory<{
+  props: ICardMediaProps;
+  ref: HTMLDivElement;
+  theme: typeof cardMediaTheme;
+}>;

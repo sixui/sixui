@@ -1,42 +1,55 @@
-import { forwardRef } from 'react';
+import type { ICardMediaThemeFactory } from './CardMedia.css';
+import type { ICardMediaFactory } from './CardMedia.types';
+import { componentFactory } from '~/utils/component/componentFactory';
+import { useProps } from '~/utils/component/useProps';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { Box } from '../Box';
+import { cardMediaTheme } from './CardMedia.css';
 
-import type { ICardMediaProps } from './CardMedia.types';
-import { commonStyles } from '~/helpers/commonStyles';
-import { useStyles } from '~/hooks/useStyles';
-import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
-import { Base } from '../Base';
-import { cardMediaStyles } from './CardMedia.styles';
-import { cardMediaTheme } from './CardMedia.stylex';
+const COMPONENT_NAME = 'CardMedia';
 
-export const CardMedia = createPolymorphicComponent<'div', ICardMediaProps>(
-  forwardRef<HTMLDivElement, ICardMediaProps>(
-    function CardMedia(props, forwardedRef) {
-      const { styles, sx, children, src, ...other } = props;
+export const CardMedia = componentFactory<ICardMediaFactory>(
+  (props, forwardedRef) => {
+    const {
+      classNames,
+      className,
+      styles,
+      style,
+      variant,
+      children,
+      src,
+      ...other
+    } = useProps({ componentName: COMPONENT_NAME, props });
 
-      const { combineStyles, globalStyles } = useStyles({
-        componentName: 'CardMedia',
-        styles: [cardMediaStyles, styles],
-      });
+    const { getStyles } = useComponentTheme<ICardMediaThemeFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
+      className,
+      styles,
+      style,
+      variant,
+      theme: cardMediaTheme,
+      modifiers: {
+        type: 'image',
+      },
+    });
 
-      return (
-        <Base
-          role="img"
-          {...other}
-          sx={[
-            cardMediaTheme,
-            globalStyles,
-            combineStyles(
-              'host',
-              'host$image',
-              !!src && commonStyles.backgroundImage(src),
-            ),
-            sx,
-          ]}
-          ref={forwardedRef}
-        >
-          {children}
-        </Base>
-      );
-    },
-  ),
+    return (
+      <Box
+        {...getStyles('root', {
+          style: {
+            backgroundImage: src ? `url(${src})` : undefined,
+          },
+        })}
+        role="img"
+        ref={forwardedRef}
+        {...other}
+      >
+        {children}
+      </Box>
+    );
+  },
 );
+
+CardMedia.theme = cardMediaTheme;
+CardMedia.displayName = `@sixui/${COMPONENT_NAME}`;

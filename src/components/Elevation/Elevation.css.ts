@@ -47,7 +47,7 @@ export const elevationLevelPreset = {
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
-  transitionDuration: themeTokens.motion.duration.medium.$2,
+  transitionDuration: themeTokens.motion.duration.short.$3,
   transitionTimingFunction: themeTokens.motion.easing.standard.normal,
   level: elevationLevelPreset[0],
 });

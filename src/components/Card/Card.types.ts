@@ -5,6 +5,7 @@ import type { IButtonBaseOwnProps } from '../ButtonBase';
 import type { CardContent } from '../CardContent';
 import type { CardTitle } from '../CardTitle';
 import type { cardTheme, ICardThemeFactory } from './Card.css';
+import { CardMedia } from '../CardMedia';
 
 export type ICardVariant = 'filled' | 'elevated' | 'outlined';
 
@@ -27,5 +28,6 @@ export type ICardFactory = IPolymorphicComponentFactory<{
   staticComponents: {
     Content: typeof CardContent;
     Title: typeof CardTitle;
+    Media: typeof CardMedia;
   };
 }>;

@@ -43,6 +43,10 @@ const classNames = createStyles({
       opacity: 0,
       position: 'absolute',
       inset: 0,
+
+      transitionProperty: 'opacity',
+      transitionDuration: themeTokens.motion.duration.short.$3,
+      transitionTimingFunction: themeTokens.motion.easing.standard.normal,
     },
     '::after': {
       // This is the ripple animation.

@@ -1,13 +1,22 @@
+import { createTheme } from '@vanilla-extract/css';
+
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import type { ICardVariant } from './Card.types';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { PaperBase } from '../PaperBase';
-import { themeTokens } from '../ThemeProvider';
+import { cssLayers, themeTokens } from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
 type IModifier = 'disabled';
+
+const [tokensClassName, tokens] = createTheme({
+  '@layer': cssLayers.theme,
+  container: {
+    shape: themeTokens.shape.corner.md,
+  },
+});
 
 const classNames = createStyles({
   root: {
@@ -22,7 +31,7 @@ const classNames = createStyles({
           hovered: elevationLevelPreset[1],
           pressed: elevationLevelPreset[0],
         },
-        shape: themeTokens.shape.corner.md,
+        shape: tokens.container.shape,
       },
     }),
   },
@@ -32,11 +41,13 @@ export type ICardThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   modifier: IModifier;
   variant: ICardVariant;
+  tokens: typeof tokens;
 }>;
 
 export const cardTheme = componentThemeFactory<ICardThemeFactory>({
   classNames,
-  tokens: undefined,
+  tokens,
+  tokensClassName,
 });
 
 export const cardThemeVariants = {

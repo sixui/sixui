@@ -15,6 +15,9 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
+const IMAGE_URL =
+  'https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600';
+
 const defaultArgs = {} satisfies Partial<ICardProps>;
 
 const states: Array<IComponentPresentation<ICardProps>> = [
@@ -38,26 +41,34 @@ const states: Array<IComponentPresentation<ICardProps>> = [
 ];
 
 const rows: Array<IComponentPresentation<ICardProps>> = [
-  { legend: 'Basic' },
+  {
+    legend: 'Basic',
+    props: {
+      h: '$32',
+    },
+  },
   {
     legend: 'With elements',
     props: {
       children: (
-        <Card.Content>
-          <Card.Title
-            headline="Headline"
-            subhead="Subhead"
-            supportingText="Supporting text"
-          />
-        </Card.Content>
+        <>
+          <Card.Media src={IMAGE_URL} h="$32" />
+          <Card.Content>
+            <Card.Title
+              headline="Headline"
+              subhead="Subhead"
+              supportingText="Supporting text"
+            />
+          </Card.Content>
+        </>
       ),
     },
   },
 ];
 
 const CardDemo: React.FC<ICardProps> = ({ children, ...props }) => (
-  <Card w="$48" h="$24" {...props}>
-    <Text>{children}</Text>
+  <Card w="$48" {...props}>
+    {children}
   </Card>
 );
 
