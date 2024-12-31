@@ -31,6 +31,18 @@ const DENSITY = px(getDensity({ min: -4, max: 0 }));
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   container: {
+    leadingSpace: {
+      normal: px(space(6)),
+      withStartSlot: px(space(4)),
+      withEndSlot: px(space(6)),
+    },
+    trailingSpace: {
+      normal: px(space(6)),
+      withStartSlot: px(space(6)),
+      withEndSlot: px(space(4)),
+    },
+    height: px(40),
+    minWidth: px(64),
     color: {
       normal: 'unset',
       focused: 'unset',
@@ -49,18 +61,25 @@ const [tokensClassName, tokens] = createTheme({
       disabled: themeTokens.state.containerOpacity.disabled,
     },
   },
-  leadingSpace: {
-    normal: px(space(6)),
-    withStartSlot: px(space(4)),
-    withEndSlot: px(space(6)),
+  outline: {
+    color: {
+      normal: themeTokens.colorScheme.outline,
+      focused: 'unset',
+      hovered: 'unset',
+      pressed: 'unset',
+      disabled: themeTokens.colorScheme.outline,
+    },
+    width: {
+      normal: px(themeTokens.outline.width.none),
+      focused: 'unset',
+      hovered: 'unset',
+      pressed: 'unset',
+      disabled: px(themeTokens.outline.width.none),
+    },
+    opacity: {
+      disabled: themeTokens.state.opacity.disabled,
+    },
   },
-  trailingSpace: {
-    normal: px(space(6)),
-    withStartSlot: px(space(6)),
-    withEndSlot: px(space(4)),
-  },
-  height: px(40),
-  minWidth: px(64),
   label: {
     typography: themeTokens.typeScale.label.lg,
     color: {
@@ -103,6 +122,10 @@ const classNames = createStyles({
         elevation: tokens.container.elevation.normal,
         shape: px(themeTokens.shape.corner.full),
       },
+      outline: {
+        color: tokens.outline.color.normal,
+        width: tokens.outline.width.normal,
+      },
     }),
 
     display: 'inline-flex',
@@ -116,21 +139,24 @@ const classNames = createStyles({
     // other if one button has an icon and the other does not.
     verticalAlign: 'top',
 
-    paddingInlineStart: tokens.leadingSpace.normal,
-    paddingInlineEnd: tokens.trailingSpace.normal,
-    height: calc.add(tokens.height, DENSITY),
+    paddingInlineStart: tokens.container.leadingSpace.normal,
+    paddingInlineEnd: tokens.container.trailingSpace.normal,
+    height: calc.add(tokens.container.height, DENSITY),
     // Add extra space between label and the edge for if the label text wraps.
     // The padding added should be relative to the height of the container and
     // the height of its content on a single line (label or icon, whichever is
     // bigger).
     paddingBlock: calc.divide(
-      calc.subtract(tokens.height, tokens.label.typography.lineHeight),
+      calc.subtract(
+        tokens.container.height,
+        tokens.label.typography.lineHeight,
+      ),
       2,
     ),
     minWidth: calc.subtract(
-      tokens.minWidth,
-      tokens.leadingSpace.normal,
-      tokens.trailingSpace.normal,
+      tokens.container.minWidth,
+      tokens.container.leadingSpace.normal,
+      tokens.container.trailingSpace.normal,
     ),
 
     selectors: {
@@ -144,6 +170,16 @@ const classNames = createStyles({
             elevation: fallbackVar(
               tokens.container.elevation.focused,
               tokens.container.elevation.normal,
+            ),
+          },
+          outline: {
+            color: fallbackVar(
+              tokens.outline.color.focused,
+              tokens.outline.color.normal,
+            ),
+            width: fallbackVar(
+              tokens.outline.width.focused,
+              tokens.outline.width.normal,
             ),
           },
         }),
@@ -160,6 +196,16 @@ const classNames = createStyles({
               tokens.container.elevation.normal,
             ),
           },
+          outline: {
+            color: fallbackVar(
+              tokens.outline.color.hovered,
+              tokens.outline.color.normal,
+            ),
+            width: fallbackVar(
+              tokens.outline.width.hovered,
+              tokens.outline.width.normal,
+            ),
+          },
         }),
       },
       [getModifierSelector<IModifier>('pressed')]: {
@@ -174,6 +220,16 @@ const classNames = createStyles({
               tokens.container.elevation.normal,
             ),
           },
+          outline: {
+            color: fallbackVar(
+              tokens.outline.color.pressed,
+              tokens.outline.color.normal,
+            ),
+            width: fallbackVar(
+              tokens.outline.width.pressed,
+              tokens.outline.width.normal,
+            ),
+          },
         }),
       },
       [getModifierSelector<IModifier>('disabled')]: {
@@ -184,6 +240,11 @@ const classNames = createStyles({
             color: tokens.container.color.disabled,
             elevation: tokens.container.elevation.disabled,
             opacity: tokens.container.opacity.disabled,
+          },
+          outline: {
+            color: tokens.outline.color.disabled,
+            width: tokens.outline.width.disabled,
+            opacity: tokens.outline.opacity.disabled,
           },
         }),
       },
@@ -196,20 +257,20 @@ const classNames = createStyles({
       },
       [getModifierSelector<IModifier>(['with-leading-slot', 'with-children'])]:
         {
-          paddingInlineStart: tokens.leadingSpace.withStartSlot,
-          paddingInlineEnd: tokens.trailingSpace.withStartSlot,
+          paddingInlineStart: tokens.container.leadingSpace.withStartSlot,
+          paddingInlineEnd: tokens.container.trailingSpace.withStartSlot,
         },
       [getModifierSelector<IModifier>(['with-trailing-slot', 'with-children'])]:
         {
-          paddingInlineStart: tokens.leadingSpace.withEndSlot,
-          paddingInlineEnd: tokens.trailingSpace.withEndSlot,
+          paddingInlineStart: tokens.container.leadingSpace.withEndSlot,
+          paddingInlineEnd: tokens.container.trailingSpace.withEndSlot,
         },
       [getModifierSelector<IModifier>([
         'with-leading-slot',
         'with-trailing-slot',
       ])]: {
-        paddingInlineStart: tokens.leadingSpace.withStartSlot,
-        paddingInlineEnd: tokens.trailingSpace.withEndSlot,
+        paddingInlineStart: tokens.container.leadingSpace.withStartSlot,
+        paddingInlineEnd: tokens.container.trailingSpace.withEndSlot,
       },
     },
   },
@@ -357,8 +418,8 @@ const classNames = createStyles({
     whiteSpace: 'nowrap',
     textAlign: 'center',
     justifyContent: 'center',
-    paddingInlineStart: tokens.leadingSpace.normal,
-    paddingInlineEnd: tokens.trailingSpace.normal,
+    paddingInlineStart: tokens.container.leadingSpace.normal,
+    paddingInlineEnd: tokens.container.trailingSpace.normal,
   },
   invisible: {
     visibility: 'hidden',
@@ -478,30 +539,35 @@ export const buttonThemeVariants = {
   }),
   outlined: createStyles({
     root: {
-      vars: {
-        ...createTokensVars(PaperBase.theme.tokens, {
-          outline: {
-            width: px(themeTokens.outline.width.xs),
-            opacity: themeTokens.state.opacity.disabled,
+      vars: createTokensVars(tokens, {
+        container: {
+          color: {
+            disabled: 'unset',
           },
-        }),
-        ...createTokensVars(tokens, {
-          container: {
-            color: {
-              disabled: 'unset',
-            },
-            elevation: {
-              hovered: elevationLevelPreset[0],
-            },
+          elevation: {
+            hovered: elevationLevelPreset[0],
           },
-          label: {
-            color: {
-              normal: themeTokens.colorScheme.primary,
-              disabled: themeTokens.colorScheme.onSurface,
-            },
+        },
+        outline: {
+          color: {
+            normal: themeTokens.colorScheme.outline,
+            disabled: themeTokens.colorScheme.outline,
           },
-        }),
-      },
+          width: {
+            normal: px(themeTokens.outline.width.xs),
+            disabled: px(themeTokens.outline.width.xs),
+          },
+          opacity: {
+            disabled: themeTokens.state.opacity.disabled,
+          },
+        },
+        label: {
+          color: {
+            normal: themeTokens.colorScheme.primary,
+            disabled: themeTokens.colorScheme.onSurface,
+          },
+        },
+      }),
     },
     stateLayer: {
       vars: createTokensVars(StateLayer.theme.tokens, {
@@ -519,16 +585,16 @@ export const buttonThemeVariants = {
           color: {
             disabled: 'unset',
           },
-        },
-        leadingSpace: {
-          normal: px(space(3)),
-          withStartSlot: px(space(3)),
-          withEndSlot: px(space(4)),
-        },
-        trailingSpace: {
-          normal: px(space(3)),
-          withStartSlot: px(space(4)),
-          withEndSlot: px(space(3)),
+          leadingSpace: {
+            normal: px(space(3)),
+            withStartSlot: px(space(3)),
+            withEndSlot: px(space(4)),
+          },
+          trailingSpace: {
+            normal: px(space(3)),
+            withStartSlot: px(space(4)),
+            withEndSlot: px(space(3)),
+          },
         },
         label: {
           color: {
@@ -590,18 +656,18 @@ export const buttonThemeVariants = {
             color: {
               disabled: 'unset',
             },
+            leadingSpace: {
+              normal: px(space(4)),
+              withStartSlot: px(space(3)),
+              withEndSlot: px(space(4)),
+            },
+            trailingSpace: {
+              normal: px(space(4)),
+              withStartSlot: px(space(4)),
+              withEndSlot: px(space(3)),
+            },
+            height: px(32),
           },
-          leadingSpace: {
-            normal: px(space(4)),
-            withStartSlot: px(space(3)),
-            withEndSlot: px(space(4)),
-          },
-          trailingSpace: {
-            normal: px(space(4)),
-            withStartSlot: px(space(4)),
-            withEndSlot: px(space(3)),
-          },
-          height: px(32),
           icon: {
             color: {
               normal: themeTokens.colorScheme.inversePrimary,
@@ -636,18 +702,18 @@ export const buttonThemeVariants = {
             color: {
               disabled: 'unset',
             },
-          },
-          height: '1em',
-          minWidth: '1em',
-          leadingSpace: {
-            normal: '0',
-            withStartSlot: '0',
-            withEndSlot: '0',
-          },
-          trailingSpace: {
-            normal: '0',
-            withStartSlot: '0',
-            withEndSlot: '0',
+            height: '1em',
+            minWidth: '1em',
+            leadingSpace: {
+              normal: '0',
+              withStartSlot: '0',
+              withEndSlot: '0',
+            },
+            trailingSpace: {
+              normal: '0',
+              withStartSlot: '0',
+              withEndSlot: '0',
+            },
           },
           icon: {
             size: '1em',

@@ -71,19 +71,19 @@ const classNames = createStyles({
             normal: 'transparent',
             disabled: 'transparent',
           },
+          leadingSpace: {
+            normal: '0px',
+            withStartSlot: '0px',
+            withEndSlot: '0px',
+          },
+          trailingSpace: {
+            normal: '0px',
+            withStartSlot: '0px',
+            withEndSlot: '0px',
+          },
+          minWidth: tokens.size,
+          height: tokens.size,
         },
-        leadingSpace: {
-          normal: '0px',
-          withStartSlot: '0px',
-          withEndSlot: '0px',
-        },
-        trailingSpace: {
-          normal: '0px',
-          withStartSlot: '0px',
-          withEndSlot: '0px',
-        },
-        minWidth: tokens.size,
-        height: tokens.size,
         label: {
           typography: {
             lineHeight: tokens.icon.size,

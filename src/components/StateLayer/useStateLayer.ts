@@ -56,6 +56,8 @@ export const useStateLayer = <TElement extends HTMLElement>(
     clickThrough,
   });
 
+  // FIXME: in the case of a remote trigger (ie. via a <label /> element), we
+  // don't want to show the ripple effect.
   const animating = ripple.animating;
 
   return {
