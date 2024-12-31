@@ -69,6 +69,10 @@ const classNames = createStyles({
         color: tokens.container.color.normal,
         elevation: tokens.container.elevation.normal,
       },
+      outline: {
+        width: tokens.outline.width.normal,
+        color: tokens.outline.color.normal,
+      },
     }),
     selectors: {
       [getModifierSelector<IModifier>('focused')]: {

@@ -2,7 +2,8 @@ import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactor
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { Card } from '../Card';
+import { themeTokens } from '../ThemeProvider';
+import { cardTheme } from '../Card/Card.css';
 
 type IModifier = 'type';
 
@@ -14,12 +15,16 @@ const classNames = createStyles({
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
-    borderRadius: Card.theme.tokens.container.shape,
+    borderRadius: cardTheme.tokens.container.shape,
     flexShrink: 0,
 
     selectors: {
       [getModifierSelector<IModifier>({ type: 'image' })]: {
         objectFit: 'cover',
+      },
+      [getModifierSelector({ disabled: true }, cardTheme.classNames.root)]: {
+        filter: 'grayscale(100%)',
+        opacity: themeTokens.state.opacity.disabled,
       },
     },
   },

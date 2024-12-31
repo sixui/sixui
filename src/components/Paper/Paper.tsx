@@ -70,7 +70,7 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
         {...getStyles('root', {
           style: assignInlineVars({
             ...createThemeSprinkle(
-              paperBaseTheme.tokens.container.color.normal,
+              paperBaseTheme.tokens.container.color,
               surface,
               {
                 ...themeTokens.colorScheme,
@@ -78,7 +78,7 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
               },
             ),
             ...createThemeSprinkle(
-              paperBaseTheme.tokens.container.elevation.normal,
+              paperBaseTheme.tokens.container.elevation,
               elevation,
               elevationLevelPreset,
             ),
@@ -93,7 +93,7 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
               outlineStyle,
             ),
             ...createThemeSprinkle(
-              paperBaseTheme.tokens.outline.width.normal,
+              paperBaseTheme.tokens.outline.width,
               outline,
               themeTokens.outline.width,
               px,

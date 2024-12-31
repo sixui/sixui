@@ -83,7 +83,10 @@ export const Variants: IStory = {
       )}
     />
   ),
-  args: defaultArgs,
+  args: {
+    ...defaultArgs,
+    h: '$32',
+  },
 };
 
 export const Filled: IStory = {

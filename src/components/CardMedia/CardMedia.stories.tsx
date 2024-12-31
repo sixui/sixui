@@ -24,10 +24,6 @@ const states: Array<IComponentPresentation<ICardMediaProps>> = [
   {
     legend: 'Normal',
   },
-  {
-    legend: 'Disabled',
-    props: { disabled: true },
-  },
 ];
 
 const CardMediaShowcase = componentShowcaseFactory(CardMedia);

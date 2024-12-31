@@ -273,9 +273,7 @@ export const iconButtonThemeVariants = {
         ...createTokensVars(PaperBase.theme.tokens, {
           outline: {
             style: 'solid',
-            width: {
-              normal: px(themeTokens.outline.width.xs),
-            },
+            width: px(themeTokens.outline.width.xs),
           },
         }),
         ...createTokensVars(tokens, {
@@ -311,9 +309,7 @@ export const iconButtonThemeVariants = {
         [getModifierSelector<IModifier>(['toggle', 'selected', '!disabled'])]: {
           vars: createTokensVars(PaperBase.theme.tokens, {
             outline: {
-              width: {
-                normal: px(themeTokens.outline.width.none),
-              },
+              width: px(themeTokens.outline.width.none),
             },
           }),
         },
