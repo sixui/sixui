@@ -65,15 +65,8 @@ const classNames = createStyles({
         shape: px(themeTokens.shape.corner.circle),
       },
       outline: {
-        color: {
-          normal: themeTokens.colorScheme.onSurfaceVariant,
-        },
-        width: {
-          normal: px(themeTokens.outline.width.sm),
-        },
-        opacity: {
-          disabled: themeTokens.state.opacity.disabled,
-        },
+        color: themeTokens.colorScheme.onSurfaceVariant,
+        width: px(themeTokens.outline.width.sm),
       },
     }),
 
@@ -81,9 +74,14 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>('loading')]: {
         vars: createTokensVars(PaperBase.theme.tokens, {
           outline: {
-            width: {
-              normal: px(themeTokens.outline.width.none),
-            },
+            width: px(themeTokens.outline.width.none),
+          },
+        }),
+      },
+      [getModifierSelector<IModifier>('disabled')]: {
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          outline: {
+            opacity: themeTokens.state.opacity.disabled,
           },
         }),
       },

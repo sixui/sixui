@@ -61,8 +61,7 @@ const rows: Array<IComponentPresentation<ICardProps>> = [
             />
           </Card.Content>
           <Card.Actions>
-            <Button variant="filled">Primary</Button>
-            <Button variant="outlined">Secondary</Button>
+            <Button variant="filled">Action</Button>
           </Card.Actions>
         </>
       ),
