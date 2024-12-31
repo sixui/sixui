@@ -1,41 +1,42 @@
-import { forwardRef, useContext } from 'react';
+import type { ICardContentThemeFactory } from './CardContent.css';
+import type { ICardContentFactory } from './CardContent.types';
+import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import { useProps } from '~/utils/component/useProps';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { Box } from '../Box';
+import { CardContentTheme } from './CardContent.css';
 
-import type { ICardContentProps } from './CardContent.types';
-import { useStyles } from '~/hooks/useStyles';
-import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
-import { CardContext } from '../Card';
-import { Stack } from '../Stack';
-import { cardContentStyles } from './CardContent.styles';
-import { cardContentTheme } from './CardContent.stylex';
+const COMPONENT_NAME = 'CardContent';
 
-export const CardContent = createPolymorphicComponent<'div', ICardContentProps>(
-  forwardRef<HTMLDivElement, ICardContentProps>(
-    function CardContent(props, forwardedRef) {
-      const { styles, sx, children, ...other } = props;
+export const CardContent = polymorphicComponentFactory<ICardContentFactory>(
+  (props, forwardedRef) => {
+    const {
+      classNames,
+      className,
+      styles,
+      style,
+      variant,
+      children,
+      ...other
+    } = useProps({ componentName: COMPONENT_NAME, props });
 
-      const { combineStyles, globalStyles } = useStyles({
-        componentName: 'CardContent',
-        styles: [cardContentStyles, styles],
-      });
+    const { getStyles } = useComponentTheme<ICardContentThemeFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
+      className,
+      styles,
+      style,
+      variant,
+      theme: CardContentTheme,
+    });
 
-      const context = useContext(CardContext);
-      const { actionable } = context ?? {};
-
-      return (
-        <Stack
-          gap={4}
-          {...other}
-          sx={[
-            cardContentTheme,
-            globalStyles,
-            combineStyles('host', actionable && 'host$actionable'),
-            sx,
-          ]}
-          ref={forwardedRef}
-        >
-          {children}
-        </Stack>
-      );
-    },
-  ),
+    return (
+      <Box {...getStyles('root')} ref={forwardedRef} {...other}>
+        {children}
+      </Box>
+    );
+  },
 );
+
+CardContent.theme = CardContentTheme;
+CardContent.displayName = `@sixui/${COMPONENT_NAME}`;

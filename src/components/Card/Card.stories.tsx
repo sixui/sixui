@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { ICardProps, ICardVariant } from './Card.types';
-import { CardTitle } from '../CardTitle';
 import {
   componentShowcaseFactory,
   IComponentPresentation,
@@ -16,42 +15,48 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {
-  children: 'Card',
-  href: 'https://google.fr',
-} satisfies Partial<ICardProps>;
+const defaultArgs = {} satisfies Partial<ICardProps>;
 
 const states: Array<IComponentPresentation<ICardProps>> = [
   { legend: 'Non-interactive', props: { nonInteractive: true } },
   {
     legend: 'Normal',
-    props: { children: 'Normal' },
   },
   {
     legend: 'Focused',
-    props: { children: 'Focused', interactions: { focused: true } },
+    props: { interactions: { focused: true } },
   },
   {
     legend: 'Hovered',
-    props: { children: 'Hovered', interactions: { hovered: true } },
+    props: { interactions: { hovered: true } },
   },
   {
     legend: 'Pressed',
-    props: { children: 'Pressed', interactions: { pressed: true } },
+    props: { interactions: { pressed: true } },
   },
-  { legend: 'Disabled', props: { children: 'Disabled', disabled: true } },
+  { legend: 'Disabled', props: { disabled: true } },
 ];
 
 const rows: Array<IComponentPresentation<ICardProps>> = [
   { legend: 'Basic' },
   {
-    legend: 'With title',
-    props: { children: <CardTitle headline="Headline" /> },
+    legend: 'With elements',
+    props: {
+      children: (
+        <Card.Content>
+          <Card.Title
+            headline="Headline"
+            subhead="Subhead"
+            supportingText="Supporting text"
+          />
+        </Card.Content>
+      ),
+    },
   },
 ];
 
 const CardDemo: React.FC<ICardProps> = ({ children, ...props }) => (
-  <Card w="$32" h="$24" {...props}>
+  <Card w="$48" h="$24" {...props}>
     <Text>{children}</Text>
   </Card>
 );
@@ -64,10 +69,8 @@ export const Variants: IStory = {
       props={props}
       cols={(['filled', 'elevated', 'outlined'] as Array<ICardVariant>).map(
         (variant) => ({
-          props: {
-            variant,
-            children: capitalizeFirstLetter(variant),
-          },
+          legend: capitalizeFirstLetter(variant),
+          props: { variant },
         }),
       )}
     />

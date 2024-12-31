@@ -4,6 +4,8 @@ import { polymorphicComponentFactory } from '~/utils/component/polymorphicCompon
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { ButtonBase } from '../ButtonBase';
+import { CardContent } from '../CardContent';
+import { CardTitle } from '../CardTitle';
 import { cardTheme, cardThemeVariants } from './Card.css';
 
 const COMPONENT_NAME = 'Card';
@@ -53,3 +55,5 @@ export const Card = polymorphicComponentFactory<ICardFactory>(
 
 Card.theme = cardTheme;
 Card.displayName = `@sixui/${COMPONENT_NAME}`;
+Card.Content = CardContent;
+Card.Title = CardTitle;
