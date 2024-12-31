@@ -481,9 +481,7 @@ export const buttonThemeVariants = {
       vars: {
         ...createTokensVars(PaperBase.theme.tokens, {
           outline: {
-            width: {
-              normal: px(themeTokens.outline.width.xs),
-            },
+            width: px(themeTokens.outline.width.xs),
           },
         }),
         ...createTokensVars(tokens, {

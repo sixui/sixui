@@ -116,32 +116,31 @@ const [tokensClassName, tokens] = createTheme({
 
 const classNames = createStyles({
   root: {
-    vars: createTokensVars(PaperBase.theme.tokens, {
-      container: {
-        color: {
-          normal: tokens.container.color.normal.regular,
-          disabled: tokens.container.color.disabled,
-        },
-        opacity: {
-          disabled: tokens.container.opacity.disabled,
-        },
-      },
-    }),
-
     listStyle: 'none',
     borderRadius: tokens.container.shape,
     textAlign: 'start',
 
+    vars: createTokensVars(PaperBase.theme.tokens, {
+      container: {
+        color: tokens.container.color.normal.regular,
+      },
+    }),
     selectors: {
+      [getModifierSelector<IModifier>('disabled')]: {
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: tokens.container.color.disabled,
+            opacity: tokens.container.opacity.disabled,
+          },
+        }),
+      },
       [getModifierSelector<IModifier>('selected')]: {
         vars: createTokensVars(PaperBase.theme.tokens, {
           container: {
-            color: {
-              normal: fallbackVar(
-                tokens.container.color.normal.selected,
-                tokens.container.color.normal.regular,
-              ),
-            },
+            color: fallbackVar(
+              tokens.container.color.normal.selected,
+              tokens.container.color.normal.regular,
+            ),
           },
         }),
       },

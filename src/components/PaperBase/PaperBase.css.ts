@@ -15,7 +15,7 @@ export const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   container: {
     color: 'inherit',
-    opacity: '1',
+    opacity: 'unset',
     elevation: 'unset',
     shape: themeTokens.shape.corner.none,
     shapes: {
@@ -27,23 +27,9 @@ export const [tokensClassName, tokens] = createTheme({
   },
   outline: {
     style: 'solid',
-    color: {
-      normal: themeTokens.colorScheme.outline,
-      focused: 'inherit',
-      hovered: 'inherit',
-      pressed: 'inherit',
-      disabled: themeTokens.colorScheme.onSurface,
-    },
-    opacity: {
-      disabled: themeTokens.state.outlineOpacity.disabled,
-    },
-    width: {
-      normal: px(0),
-      focused: 'inherit',
-      hovered: 'inherit',
-      pressed: 'inherit',
-      disabled: 'inherit',
-    },
+    color: themeTokens.colorScheme.outline,
+    opacity: 'unset',
+    width: px(0),
   },
   text: {
     opacity: {
@@ -97,60 +83,17 @@ const classNames = createStyles({
     zIndex: -1,
     opacity: tokens.container.opacity,
   },
-  outline: ({ root }) => ({
+  outline: {
     // Separate node to support opacity changes.
     position: 'absolute',
     inset: 0,
     pointerEvents: 'none',
     borderStyle: tokens.outline.style,
-    borderWidth: `round(up, ${tokens.outline.width.normal}, 1px)`,
-    borderColor: tokens.outline.color.normal,
+    borderWidth: `round(up, ${tokens.outline.width}, 1px)`,
+    borderColor: tokens.outline.color,
     borderRadius: 'inherit',
-
-    selectors: {
-      [getModifierSelector<IModifier>('focused', root)]: {
-        borderColor: fallbackVar(
-          tokens.outline.color.focused,
-          tokens.outline.color.normal,
-        ),
-        borderWidth: `round(up, ${fallbackVar(
-          tokens.outline.width.focused,
-          tokens.outline.width.normal,
-        )}, 1px)`,
-      },
-      [getModifierSelector<IModifier>('hovered', root)]: {
-        borderColor: fallbackVar(
-          tokens.outline.color.hovered,
-          tokens.outline.color.normal,
-        ),
-        borderWidth: `round(up, ${fallbackVar(
-          tokens.outline.width.hovered,
-          tokens.outline.width.normal,
-        )}, 1px)`,
-      },
-      [getModifierSelector<IModifier>('pressed', root)]: {
-        borderColor: fallbackVar(
-          tokens.outline.color.pressed,
-          tokens.outline.color.normal,
-        ),
-        borderWidth: `round(up, ${fallbackVar(
-          tokens.outline.width.pressed,
-          tokens.outline.width.normal,
-        )}, 1px)`,
-      },
-      [getModifierSelector<IModifier>('disabled', root)]: {
-        borderColor: fallbackVar(
-          tokens.outline.color.disabled,
-          tokens.outline.color.normal,
-        ),
-        borderWidth: `round(up, ${fallbackVar(
-          tokens.outline.width.disabled,
-          tokens.outline.width.normal,
-        )}, 1px)`,
-        opacity: tokens.outline.opacity.disabled,
-      },
-    },
-  }),
+    opacity: tokens.outline.opacity,
+  },
 });
 
 export type IPaperBaseThemeFactory = IComponentThemeFactory<{

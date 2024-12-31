@@ -63,9 +63,6 @@ const classNames = createStyles({
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {
         shape: px(themeTokens.shape.corner.circle),
-        color: {
-          disabled: 'transparent',
-        },
       },
       outline: {
         color: {

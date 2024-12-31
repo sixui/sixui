@@ -26,18 +26,83 @@ const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   width: px(52),
   height: px(32),
-  handle: {
+  container$off: {
+    color: {
+      normal: themeTokens.colorScheme.surfaceContainerHighest,
+      disabled: themeTokens.colorScheme.surfaceContainerHighest,
+    },
+    opacity: {
+      disabled: themeTokens.state.opacity.disabled,
+    },
+  },
+  container$on: {
+    color: {
+      normal: themeTokens.colorScheme.primary,
+      disabled: themeTokens.colorScheme.onSurface,
+    },
+    opacity: {
+      disabled: themeTokens.state.containerOpacity.disabled,
+    },
+  },
+  outline$off: {
+    width: {
+      normal: px(themeTokens.outline.width.sm),
+    },
+    opacity: {
+      disabled: themeTokens.state.opacity.disabled,
+    },
+  },
+  outline$on: {
+    width: {
+      normal: px(themeTokens.outline.width.none),
+    },
+    opacity: {
+      // disabled: themeTokens.state.outlineOpacity.disabled,
+      disabled: '0',
+    },
+  },
+  handle$off: {
     width: {
       normal: px(16),
-      pressed: px(28),
-      on: px(24),
       withIcon: px(24),
+      pressed: px(28),
     },
     height: {
       normal: px(16),
-      pressed: px(28),
-      on: px(24),
       withIcon: px(24),
+      pressed: px(28),
+    },
+    color: {
+      normal: themeTokens.colorScheme.outline,
+      hovered: themeTokens.colorScheme.onSurfaceVariant,
+      focused: themeTokens.colorScheme.onSurfaceVariant,
+      pressed: themeTokens.colorScheme.onSurfaceVariant,
+      disabled: themeTokens.colorScheme.onSurfaceVariant,
+    },
+    opacity: {
+      disabled: themeTokens.state.opacity.disabled,
+    },
+  },
+  handle$on: {
+    width: {
+      normal: px(24),
+      withIcon: px(24),
+      pressed: px(28),
+    },
+    height: {
+      normal: px(24),
+      withIcon: px(24),
+      pressed: px(28),
+    },
+    color: {
+      normal: themeTokens.colorScheme.onPrimary,
+      hovered: themeTokens.colorScheme.primaryContainer,
+      focused: themeTokens.colorScheme.primaryContainer,
+      pressed: themeTokens.colorScheme.primaryContainer,
+      disabled: themeTokens.colorScheme.surface,
+    },
+    opacity: {
+      disabled: '1',
     },
   },
   icon: {
@@ -77,35 +142,45 @@ const classNames = createStyles({
 
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {
-        color: {
-          normal: themeTokens.colorScheme.surfaceContainerHighest,
-          disabled: themeTokens.colorScheme.surfaceContainerHighest,
-        },
+        color: tokens.container$off.color.normal,
         shape: px(themeTokens.shape.corner.full),
       },
       outline: {
-        width: {
-          normal: px(themeTokens.outline.width.sm),
-        },
-        opacity: {
-          disabled: themeTokens.state.opacity.disabled,
-        },
+        width: px(tokens.outline$off.width.normal),
+        opacity: tokens.container$off.opacity.disabled,
       },
     }),
 
     selectors: {
+      [getModifierSelector<IModifier>('disabled')]: {
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: tokens.container$off.color.disabled,
+            opacity: tokens.container$off.opacity.disabled,
+          },
+          outline: {
+            opacity: tokens.outline$off.opacity.disabled,
+          },
+        }),
+      },
       [getModifierSelector<IModifier>('on')]: {
         vars: createTokensVars(PaperBase.theme.tokens, {
           container: {
-            color: {
-              normal: themeTokens.colorScheme.primary,
-              disabled: themeTokens.colorScheme.onSurface,
-            },
+            color: tokens.container$on.color.normal,
           },
           outline: {
-            width: {
-              normal: px(themeTokens.outline.width.none),
-            },
+            width: px(tokens.outline$on.width.normal),
+          },
+        }),
+      },
+      [getModifierSelector<IModifier>(['on', 'disabled'])]: {
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: tokens.container$on.color.disabled,
+            opacity: tokens.container$on.opacity.disabled,
+          },
+          outline: {
+            opacity: tokens.outline$on.opacity.disabled,
           },
         }),
       },
@@ -183,59 +258,187 @@ const classNames = createStyles({
     transitionProperty: 'width, height',
     transitionTimingFunction: themeTokens.motion.easing.standard.normal,
     transitionDuration: themeTokens.motion.duration.medium.$2,
-    width: tokens.handle.width.normal,
-    height: tokens.handle.height.normal,
+    width: tokens.handle$off.width.normal,
+    height: tokens.handle$off.height.normal,
 
-    vars: createTokensVars(PaperBase.theme.tokens, {
-      container: {
-        shape: px(themeTokens.shape.corner.full),
-        color: {
-          normal: themeTokens.colorScheme.outline,
-          hovered: themeTokens.colorScheme.onSurfaceVariant,
-          focused: themeTokens.colorScheme.onSurfaceVariant,
-          pressed: themeTokens.colorScheme.onSurfaceVariant,
-          disabled: themeTokens.colorScheme.onSurfaceVariant,
+    vars: {
+      ...createTokensVars(PaperBase.theme.tokens, {
+        container: {
+          color: tokens.handle$off.color.normal,
+          shape: px(themeTokens.shape.corner.full),
         },
-        opacity: {
-          disabled: themeTokens.state.opacity.disabled,
-        },
-      },
-    }),
-
+      }),
+    },
     selectors: {
-      [getModifierSelector<IModifier>('pressed', root)]: {
-        width: tokens.handle.width.pressed,
-        height: calc.add(tokens.handle.height.pressed, DENSITY),
-        transitionTimingFunction: themeTokens.motion.easing.standard.normal,
-        transitionDuration: themeTokens.motion.duration.short.$3,
-      },
-      [getModifierSelector<IModifier>(['!pressed', 'with-icon'], root)]: {
-        width: tokens.handle.width.withIcon,
-        height: calc.add(tokens.handle.height.withIcon, DENSITY),
-      },
-      [getModifierSelector<IModifier>(['pressed', 'on'], root)]: {
-        width: tokens.handle.width.pressed,
-        height: calc.add(tokens.handle.height.pressed, DENSITY),
-      },
-      [getModifierSelector<IModifier>(['!pressed', 'on'], root)]: {
-        width: tokens.handle.width.on,
-        height: calc.add(tokens.handle.height.on, DENSITY),
-      },
-      [getModifierSelector<IModifier>('on', root)]: {
+      [getModifierSelector<IModifier>(
+        {
+          on: false,
+          focused: true,
+        },
+        root,
+      )]: {
         vars: createTokensVars(PaperBase.theme.tokens, {
           container: {
-            color: {
-              normal: themeTokens.colorScheme.onPrimary,
-              hovered: themeTokens.colorScheme.primaryContainer,
-              focused: themeTokens.colorScheme.primaryContainer,
-              pressed: themeTokens.colorScheme.primaryContainer,
-              disabled: themeTokens.colorScheme.surface,
-            },
-            opacity: {
-              disabled: '1',
-            },
+            color: fallbackVar(
+              tokens.handle$off.color.focused,
+              tokens.handle$off.color.normal,
+            ),
           },
         }),
+      },
+      [getModifierSelector<IModifier>(
+        {
+          on: false,
+          hovered: true,
+        },
+        root,
+      )]: {
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: fallbackVar(
+              tokens.handle$off.color.hovered,
+              tokens.handle$off.color.normal,
+            ),
+          },
+        }),
+      },
+      [getModifierSelector<IModifier>(
+        {
+          on: false,
+          pressed: true,
+        },
+        root,
+      )]: {
+        width: tokens.handle$off.width.pressed,
+        height: calc.add(tokens.handle$off.height.pressed, DENSITY),
+        transitionTimingFunction: themeTokens.motion.easing.standard.normal,
+        transitionDuration: themeTokens.motion.duration.short.$3,
+
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: fallbackVar(
+              tokens.handle$off.color.pressed,
+              tokens.handle$off.color.normal,
+            ),
+          },
+        }),
+      },
+      [getModifierSelector<IModifier>(
+        {
+          on: false,
+          disabled: true,
+        },
+        root,
+      )]: {
+        cursor: 'default',
+
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: tokens.handle$off.color.disabled,
+            opacity: tokens.handle$off.opacity.disabled,
+          },
+        }),
+      },
+      [getModifierSelector<IModifier>(
+        {
+          on: false,
+          pressed: false,
+          'with-icon': true,
+        },
+        root,
+      )]: {
+        width: tokens.handle$off.width.withIcon,
+        height: calc.add(tokens.handle$off.height.withIcon, DENSITY),
+      },
+      [getModifierSelector<IModifier>({ on: true }, root)]: {
+        width: tokens.handle$on.width.normal,
+        height: tokens.handle$on.height.normal,
+
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: tokens.handle$on.color.normal,
+          },
+        }),
+      },
+      [getModifierSelector<IModifier>(
+        {
+          on: true,
+          focused: true,
+        },
+        root,
+      )]: {
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: fallbackVar(
+              tokens.handle$on.color.focused,
+              tokens.handle$on.color.normal,
+            ),
+          },
+        }),
+      },
+      [getModifierSelector<IModifier>(
+        {
+          on: true,
+          hovered: true,
+        },
+        root,
+      )]: {
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: fallbackVar(
+              tokens.handle$on.color.hovered,
+              tokens.handle$on.color.normal,
+            ),
+          },
+        }),
+      },
+      [getModifierSelector<IModifier>(
+        {
+          on: true,
+          pressed: true,
+        },
+        root,
+      )]: {
+        width: tokens.handle$on.width.pressed,
+        height: calc.add(tokens.handle$on.height.pressed, DENSITY),
+        transitionTimingFunction: themeTokens.motion.easing.standard.normal,
+        transitionDuration: themeTokens.motion.duration.short.$3,
+
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: fallbackVar(
+              tokens.handle$on.color.pressed,
+              tokens.handle$on.color.normal,
+            ),
+          },
+        }),
+      },
+      [getModifierSelector<IModifier>(
+        {
+          on: true,
+          disabled: true,
+        },
+        root,
+      )]: {
+        cursor: 'default',
+
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: tokens.handle$on.color.disabled,
+            opacity: tokens.handle$on.opacity.disabled,
+          },
+        }),
+      },
+      [getModifierSelector<IModifier>(
+        {
+          on: true,
+          pressed: false,
+          'with-icon': true,
+        },
+        root,
+      )]: {
+        width: tokens.handle$on.width.withIcon,
+        height: calc.add(tokens.handle$on.height.withIcon, DENSITY),
       },
     },
   }),
