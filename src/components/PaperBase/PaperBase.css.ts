@@ -15,17 +15,8 @@ type IModifier = IInteraction | 'disabled' | 'expanded';
 export const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   container: {
-    color: {
-      normal: 'inherit',
-      focused: 'inherit',
-      hovered: 'inherit',
-      pressed: 'inherit',
-      disabled: themeTokens.colorScheme.onSurface,
-    },
-    opacity: {
-      normal: '1',
-      disabled: themeTokens.state.containerOpacity.disabled,
-    },
+    color: 'inherit',
+    opacity: '1',
     elevation: {
       normal: elevationLevelPreset[0],
       focused: 'inherit',
@@ -140,43 +131,15 @@ const classNames = createStyles({
       },
     },
   }),
-  background: ({ root }) => ({
+  background: {
     // Separate node to support opacity changes.
-    backgroundColor: tokens.container.color.normal,
+    backgroundColor: tokens.container.color,
     borderRadius: 'inherit',
     inset: 0,
     position: 'absolute',
     zIndex: -1,
-    opacity: tokens.container.opacity.normal,
-
-    selectors: {
-      [getModifierSelector<IModifier>('focused', root)]: {
-        backgroundColor: fallbackVar(
-          tokens.container.color.focused,
-          tokens.container.color.normal,
-        ),
-      },
-      [getModifierSelector<IModifier>('hovered', root)]: {
-        backgroundColor: fallbackVar(
-          tokens.container.color.hovered,
-          tokens.container.color.normal,
-        ),
-      },
-      [getModifierSelector<IModifier>('pressed', root)]: {
-        backgroundColor: fallbackVar(
-          tokens.container.color.pressed,
-          tokens.container.color.normal,
-        ),
-      },
-      [getModifierSelector<IModifier>('disabled', root)]: {
-        backgroundColor: fallbackVar(
-          tokens.container.color.disabled,
-          tokens.container.color.normal,
-        ),
-        opacity: tokens.container.opacity.disabled,
-      },
-    },
-  }),
+    opacity: tokens.container.opacity,
+  },
   outline: ({ root }) => ({
     // Separate node to support opacity changes.
     position: 'absolute',

@@ -2,6 +2,7 @@ import { createTheme } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import type { ICardVariant } from './Card.types';
+import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
@@ -22,9 +23,7 @@ const classNames = createStyles({
   root: {
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {
-        color: {
-          normal: themeTokens.colorScheme.surfaceContainerHighest,
-        },
+        color: themeTokens.colorScheme.surfaceContainerHighest,
         elevation: {
           normal: elevationLevelPreset[0],
           focused: elevationLevelPreset[0],
@@ -34,6 +33,16 @@ const classNames = createStyles({
         shape: tokens.container.shape,
       },
     }),
+    selectors: {
+      [getModifierSelector<IModifier>('disabled')]: {
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: themeTokens.colorScheme.surface,
+            opacity: themeTokens.state.opacity.disabled,
+          },
+        }),
+      },
+    },
   },
 });
 
@@ -55,9 +64,7 @@ export const cardThemeVariants = {
     root: {
       vars: createTokensVars(PaperBase.theme.tokens, {
         container: {
-          color: {
-            normal: themeTokens.colorScheme.surfaceContainerHighest,
-          },
+          color: themeTokens.colorScheme.surfaceContainerHighest,
           elevation: {
             normal: elevationLevelPreset[0],
             focused: elevationLevelPreset[0],
@@ -66,7 +73,6 @@ export const cardThemeVariants = {
             dragged: elevationLevelPreset[4],
             disabled: elevationLevelPreset[0],
           },
-          opacity: {},
         },
       }),
     },
@@ -75,10 +81,7 @@ export const cardThemeVariants = {
     root: {
       vars: createTokensVars(PaperBase.theme.tokens, {
         container: {
-          color: {
-            normal: themeTokens.colorScheme.surfaceContainerLow,
-            disabled: themeTokens.colorScheme.surface,
-          },
+          color: themeTokens.colorScheme.surfaceContainerLow,
           elevation: {
             normal: elevationLevelPreset[1],
             focused: elevationLevelPreset[0],
@@ -95,10 +98,7 @@ export const cardThemeVariants = {
     root: {
       vars: createTokensVars(PaperBase.theme.tokens, {
         container: {
-          color: {
-            normal: themeTokens.colorScheme.surface,
-            disabled: themeTokens.colorScheme.surfaceContainerHighest,
-          },
+          color: themeTokens.colorScheme.surface,
           elevation: {
             normal: elevationLevelPreset[0],
             focused: elevationLevelPreset[0],
@@ -118,6 +118,15 @@ export const cardThemeVariants = {
           },
         },
       }),
+      selectors: {
+        [getModifierSelector<IModifier>('disabled')]: {
+          vars: createTokensVars(PaperBase.theme.tokens, {
+            container: {
+              color: themeTokens.colorScheme.surfaceContainerHighest,
+            },
+          }),
+        },
+      },
     },
   }),
 };

@@ -30,6 +30,18 @@ const DENSITY = px(getDensity({ min: -4, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
+  container: {
+    color: {
+      normal: 'unset',
+      focused: 'unset',
+      hovered: 'unset',
+      pressed: 'unset',
+      disabled: themeTokens.colorScheme.onSurface,
+    },
+    opacity: {
+      disabled: themeTokens.state.containerOpacity.disabled,
+    },
+  },
   leadingSpace: {
     normal: px(space(6)),
     withStartSlot: px(space(4)),
@@ -80,6 +92,7 @@ const classNames = createStyles({
   root: {
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {
+        color: tokens.container.color.normal,
         shape: px(themeTokens.shape.corner.full),
       },
     }),
@@ -115,6 +128,13 @@ const classNames = createStyles({
     selectors: {
       [getModifierSelector<IModifier>('disabled')]: {
         cursor: 'default',
+
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: tokens.container.color.disabled,
+            opacity: tokens.container.opacity.disabled,
+          },
+        }),
       },
       [getModifierSelector<IModifier>(['with-leading-slot', 'with-children'])]:
         {
@@ -309,10 +329,6 @@ export const buttonThemeVariants = {
       vars: {
         ...createTokensVars(PaperBase.theme.tokens, {
           container: {
-            color: {
-              normal: themeTokens.colorScheme.surfaceContainerLow,
-              disabled: themeTokens.colorScheme.onSurface,
-            },
             elevation: {
               normal: elevationLevelPreset[1],
               focused: elevationLevelPreset[1],
@@ -323,6 +339,11 @@ export const buttonThemeVariants = {
           },
         }),
         ...createTokensVars(tokens, {
+          container: {
+            color: {
+              normal: themeTokens.colorScheme.surfaceContainerLow,
+            },
+          },
           label: {
             color: {
               normal: themeTokens.colorScheme.primary,
@@ -346,16 +367,17 @@ export const buttonThemeVariants = {
       vars: {
         ...createTokensVars(PaperBase.theme.tokens, {
           container: {
-            color: {
-              normal: themeTokens.colorScheme.primary,
-              disabled: themeTokens.colorScheme.onSurface,
-            },
             elevation: {
               hovered: elevationLevelPreset[1],
             },
           },
         }),
         ...createTokensVars(tokens, {
+          container: {
+            color: {
+              normal: themeTokens.colorScheme.primary,
+            },
+          },
           label: {
             color: {
               normal: themeTokens.colorScheme.onPrimary,
@@ -379,16 +401,17 @@ export const buttonThemeVariants = {
       vars: {
         ...createTokensVars(PaperBase.theme.tokens, {
           container: {
-            color: {
-              normal: themeTokens.colorScheme.secondaryContainer,
-              disabled: themeTokens.colorScheme.onSurface,
-            },
             elevation: {
               hovered: elevationLevelPreset[1],
             },
           },
         }),
         ...createTokensVars(tokens, {
+          container: {
+            color: {
+              normal: themeTokens.colorScheme.secondaryContainer,
+            },
+          },
           label: {
             color: {
               normal: themeTokens.colorScheme.onSecondaryContainer,
@@ -423,6 +446,11 @@ export const buttonThemeVariants = {
           },
         }),
         ...createTokensVars(tokens, {
+          container: {
+            color: {
+              disabled: 'unset',
+            },
+          },
           label: {
             color: {
               normal: themeTokens.colorScheme.primary,
@@ -444,6 +472,11 @@ export const buttonThemeVariants = {
   text: createStyles({
     root: {
       vars: createTokensVars(tokens, {
+        container: {
+          color: {
+            disabled: 'unset',
+          },
+        },
         leadingSpace: {
           normal: px(space(3)),
           withStartSlot: px(space(3)),
@@ -476,16 +509,17 @@ export const buttonThemeVariants = {
       vars: {
         ...createTokensVars(PaperBase.theme.tokens, {
           container: {
-            color: {
-              normal: themeTokens.colorScheme.errorContainer,
-              disabled: themeTokens.colorScheme.onSurface,
-            },
             elevation: {
               hovered: elevationLevelPreset[1],
             },
           },
         }),
         ...createTokensVars(tokens, {
+          container: {
+            color: {
+              normal: themeTokens.colorScheme.errorContainer,
+            },
+          },
           label: {
             color: {
               normal: themeTokens.colorScheme.onErrorContainer,
@@ -513,6 +547,11 @@ export const buttonThemeVariants = {
           },
         }),
         ...createTokensVars(tokens, {
+          container: {
+            color: {
+              disabled: 'unset',
+            },
+          },
           leadingSpace: {
             normal: px(space(4)),
             withStartSlot: px(space(3)),
@@ -532,6 +571,7 @@ export const buttonThemeVariants = {
           label: {
             color: {
               normal: themeTokens.colorScheme.inversePrimary,
+              disabled: themeTokens.colorScheme.inversePrimary,
             },
           },
         }),
@@ -552,15 +592,12 @@ export const buttonThemeVariants = {
       ...getTypographyStyles(null),
 
       vars: {
-        ...createTokensVars(PaperBase.theme.tokens, {
+        ...createTokensVars(tokens, {
           container: {
             color: {
-              normal: 'unset',
               disabled: 'unset',
             },
           },
-        }),
-        ...createTokensVars(tokens, {
           height: '1em',
           minWidth: '1em',
           leadingSpace: {

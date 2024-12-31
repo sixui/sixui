@@ -35,6 +35,7 @@ const compileModifier = <TModifier extends string = string>(
               : `${acc}:not([${key}])`,
           '',
         );
+
 export const getModifierSelector = <TModifier extends string = string>(
   modifier: IModifier<TModifier>,
   parent?: string,
