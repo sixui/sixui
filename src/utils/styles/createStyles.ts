@@ -36,22 +36,11 @@ export const createStyles = <TClassName extends string>(
         return acc;
       }
 
-      if (isFunction(styles)) {
-        return {
-          ...acc,
-          [key]: style({
-            '@layer': {
-              [cssLayers.components]: styles(acc),
-            },
-          } as ComplexStyleRule),
-        };
-      }
-
       return {
         ...acc,
         [key]: style({
           '@layer': {
-            [cssLayers.components]: styles,
+            [cssLayers.components]: isFunction(styles) ? styles(acc) : styles,
           },
         } as ComplexStyleRule),
       };

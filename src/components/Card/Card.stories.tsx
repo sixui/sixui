@@ -57,7 +57,7 @@ const rows: Array<IComponentPresentation<ICardProps>> = [
             <Card.Title
               headline="Headline"
               subhead="Subhead"
-              supportingText="Supporting text"
+              supportingText="Explain more about the topic shown in the headline and subhead through supporting text."
             />
           </Card.Content>
           <Card.Actions>
