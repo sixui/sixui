@@ -24,9 +24,7 @@ const classNames = createStyles({
   root: {
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {
-        color: {
-          normal: themeTokens.colorScheme.error,
-        },
+        color: themeTokens.colorScheme.error,
         shape: px(themeTokens.shape.corner.full),
       },
     }),
