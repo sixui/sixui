@@ -8,7 +8,6 @@ import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { Elevation } from '../Elevation';
 import { cssLayers, themeTokens } from '../ThemeProvider';
-import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
 type IModifier = IInteraction | 'disabled' | 'expanded';
 
@@ -17,14 +16,7 @@ export const [tokensClassName, tokens] = createTheme({
   container: {
     color: 'inherit',
     opacity: '1',
-    elevation: {
-      normal: elevationLevelPreset[0],
-      focused: 'inherit',
-      hovered: 'inherit',
-      pressed: 'inherit',
-      dragged: 'inherit',
-      disabled: elevationLevelPreset[0],
-    },
+    elevation: 'unset',
     shape: themeTokens.shape.corner.none,
     shapes: {
       topLeft: 'inherit',
@@ -91,46 +83,11 @@ const classNames = createStyles({
       },
     },
   },
-  elevation: ({ root }) => ({
+  elevation: {
     vars: {
-      [Elevation.theme.tokens.level]: tokens.container.elevation.normal,
+      [Elevation.theme.tokens.level]: tokens.container.elevation,
     },
-
-    selectors: {
-      [getModifierSelector<IModifier>('focused', root)]: {
-        vars: {
-          [Elevation.theme.tokens.level]: fallbackVar(
-            tokens.container.elevation.focused,
-            tokens.container.elevation.normal,
-          ),
-        },
-      },
-      [getModifierSelector<IModifier>('hovered', root)]: {
-        vars: {
-          [Elevation.theme.tokens.level]: fallbackVar(
-            tokens.container.elevation.hovered,
-            tokens.container.elevation.normal,
-          ),
-        },
-      },
-      [getModifierSelector<IModifier>('pressed', root)]: {
-        vars: {
-          [Elevation.theme.tokens.level]: fallbackVar(
-            tokens.container.elevation.pressed,
-            tokens.container.elevation.normal,
-          ),
-        },
-      },
-      [getModifierSelector<IModifier>('disabled', root)]: {
-        vars: {
-          [Elevation.theme.tokens.level]: fallbackVar(
-            tokens.container.elevation.disabled,
-            tokens.container.elevation.normal,
-          ),
-        },
-      },
-    },
-  }),
+  },
   background: {
     // Separate node to support opacity changes.
     backgroundColor: tokens.container.color,

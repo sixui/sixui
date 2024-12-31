@@ -289,7 +289,7 @@ const classNames = createStyles({
       },
     },
   },
-  container: {
+  container: ({ root }) => ({
     position: 'relative',
     resize: 'inherit',
     display: 'flex',
@@ -297,13 +297,6 @@ const classNames = createStyles({
 
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {
-        color: {
-          normal: 'inherit',
-          disabled: themeTokens.colorScheme.onSurface,
-        },
-        opacity: {
-          disabled: themeTokens.state.containerOpacity.disabled,
-        },
         shape: 'unset',
         shapes: {
           topLeft: px(themeTokens.shape.corner.xs),
@@ -313,7 +306,17 @@ const classNames = createStyles({
         },
       },
     }),
-  },
+    selectors: {
+      [getModifierSelector<IModifier>('disabled', root)]: {
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: themeTokens.colorScheme.onSurface,
+            opacity: themeTokens.state.containerOpacity.disabled,
+          },
+        }),
+      },
+    },
+  }),
   inner: ({ root }) => ({
     alignItems: 'center',
     borderRadius: 'inherit',
@@ -963,14 +966,18 @@ export const fieldBaseThemeVariants = {
     root: {
       vars: createTokensVars(PaperBase.theme.tokens, {
         container: {
-          color: {
-            normal: themeTokens.colorScheme.surfaceContainerHighest,
-          },
-          opacity: {
-            disabled: '0.04',
-          },
+          color: themeTokens.colorScheme.surfaceContainerHighest,
         },
       }),
+      selectors: {
+        [getModifierSelector<IModifier>('disabled')]: {
+          vars: createTokensVars(PaperBase.theme.tokens, {
+            container: {
+              opacity: '0.04',
+            },
+          }),
+        },
+      },
     },
     inner: ({ root }) => ({
       selectors: {
@@ -1107,11 +1114,18 @@ export const fieldBaseThemeVariants = {
       vars: createTokensVars(PaperBase.theme.tokens, {
         container: {
           shape: px(themeTokens.shape.corner.xs),
-          color: {
-            disabled: 'unset',
-          },
         },
       }),
+
+      selectors: {
+        [getModifierSelector<IModifier>('disabled')]: {
+          vars: createTokensVars(PaperBase.theme.tokens, {
+            container: {
+              color: 'unset',
+            },
+          }),
+        },
+      },
     },
     stateLayer: {
       vars: createTokensVars(StateLayer.theme.tokens, {

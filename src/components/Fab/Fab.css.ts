@@ -63,16 +63,15 @@ const classNames = createStyles({
     vars: {
       ...createTokensVars(PaperBase.theme.tokens, {
         container: {
-          color: {
-            normal: 'unset',
-          },
           shape: px(themeTokens.shape.corner.lg),
+        },
+      }),
+      ...createTokensVars(Button.theme.tokens, {
+        container: {
           elevation: {
             normal: elevationLevelPreset[3],
           },
         },
-      }),
-      ...createTokensVars(Button.theme.tokens, {
         leadingSpace: {
           normal: '0',
           withStartSlot: '0',
@@ -105,11 +104,8 @@ const classNames = createStyles({
         },
       },
       [getModifierSelector<IModifier>('lowered')]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+        vars: createTokensVars(Button.theme.tokens, {
           container: {
-            color: {
-              normal: 'unset',
-            },
             elevation: {
               normal: elevationLevelPreset[1],
               focused: elevationLevelPreset[1],
@@ -152,7 +148,7 @@ export const fabThemeVariants = {
   surface: createStyles({
     root: {
       vars: {
-        ...createTokensVars(PaperBase.theme.tokens, {
+        ...createTokensVars(Button.theme.tokens, {
           container: {
             color: {
               normal: themeTokens.colorScheme.surfaceContainerHigh,
@@ -169,7 +165,7 @@ export const fabThemeVariants = {
       },
       selectors: {
         [getModifierSelector<IModifier>('lowered')]: {
-          vars: createTokensVars(PaperBase.theme.tokens, {
+          vars: createTokensVars(Button.theme.tokens, {
             container: {
               color: {
                 normal: themeTokens.colorScheme.surfaceContainerLow,
@@ -183,7 +179,7 @@ export const fabThemeVariants = {
   primary: createStyles({
     root: {
       vars: {
-        ...createTokensVars(PaperBase.theme.tokens, {
+        ...createTokensVars(Button.theme.tokens, {
           container: {
             color: {
               normal: themeTokens.colorScheme.primaryContainer,
@@ -203,7 +199,7 @@ export const fabThemeVariants = {
   secondary: createStyles({
     root: {
       vars: {
-        ...createTokensVars(PaperBase.theme.tokens, {
+        ...createTokensVars(Button.theme.tokens, {
           container: {
             color: {
               normal: themeTokens.colorScheme.secondaryContainer,
@@ -223,7 +219,7 @@ export const fabThemeVariants = {
   tertiary: createStyles({
     root: {
       vars: {
-        ...createTokensVars(PaperBase.theme.tokens, {
+        ...createTokensVars(Button.theme.tokens, {
           container: {
             color: {
               normal: themeTokens.colorScheme.tertiaryContainer,
@@ -243,7 +239,7 @@ export const fabThemeVariants = {
   branded: createStyles({
     root: {
       vars: {
-        ...createTokensVars(PaperBase.theme.tokens, {
+        ...createTokensVars(Button.theme.tokens, {
           container: {
             color: {
               normal: themeTokens.colorScheme.surfaceContainerHigh,
@@ -263,7 +259,7 @@ export const fabThemeVariants = {
       },
       selectors: {
         [getModifierSelector<IModifier>('lowered')]: {
-          vars: createTokensVars(PaperBase.theme.tokens, {
+          vars: createTokensVars(Button.theme.tokens, {
             container: {
               color: {
                 normal: themeTokens.colorScheme.surfaceContainerLow,

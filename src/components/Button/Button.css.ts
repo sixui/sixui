@@ -38,6 +38,13 @@ const [tokensClassName, tokens] = createTheme({
       pressed: 'unset',
       disabled: themeTokens.colorScheme.onSurface,
     },
+    elevation: {
+      normal: 'unset',
+      focused: 'unset',
+      hovered: 'unset',
+      pressed: 'unset',
+      disabled: 'unset',
+    },
     opacity: {
       disabled: themeTokens.state.containerOpacity.disabled,
     },
@@ -93,6 +100,7 @@ const classNames = createStyles({
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {
         color: tokens.container.color.normal,
+        elevation: tokens.container.elevation.normal,
         shape: px(themeTokens.shape.corner.full),
       },
     }),
@@ -126,13 +134,63 @@ const classNames = createStyles({
     ),
 
     selectors: {
+      [getModifierSelector<IModifier>('focused')]: {
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: fallbackVar(
+              tokens.container.color.focused,
+              tokens.container.color.normal,
+            ),
+            elevation: fallbackVar(
+              tokens.container.elevation.focused,
+              tokens.container.elevation.normal,
+            ),
+          },
+        }),
+      },
+      [getModifierSelector<IModifier>('hovered')]: {
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: fallbackVar(
+              tokens.container.color.hovered,
+              tokens.container.color.normal,
+            ),
+            elevation: fallbackVar(
+              tokens.container.elevation.hovered,
+              tokens.container.elevation.normal,
+            ),
+          },
+        }),
+      },
+      [getModifierSelector<IModifier>('pressed')]: {
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: fallbackVar(
+              tokens.container.color.pressed,
+              tokens.container.color.normal,
+            ),
+            elevation: fallbackVar(
+              tokens.container.elevation.pressed,
+              tokens.container.elevation.normal,
+            ),
+          },
+        }),
+      },
       [getModifierSelector<IModifier>('disabled')]: {
         cursor: 'default',
 
         vars: createTokensVars(PaperBase.theme.tokens, {
           container: {
             color: tokens.container.color.disabled,
+            elevation: tokens.container.elevation.disabled,
             opacity: tokens.container.opacity.disabled,
+          },
+        }),
+      },
+      [getModifierSelector<IModifier>('loading')]: {
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            elevation: tokens.container.elevation.normal,
           },
         }),
       },
@@ -327,21 +385,17 @@ export const buttonThemeVariants = {
   elevated: createStyles({
     root: {
       vars: {
-        ...createTokensVars(PaperBase.theme.tokens, {
+        ...createTokensVars(tokens, {
           container: {
+            color: {
+              normal: themeTokens.colorScheme.surfaceContainerLow,
+            },
             elevation: {
               normal: elevationLevelPreset[1],
               focused: elevationLevelPreset[1],
               hovered: elevationLevelPreset[2],
               pressed: elevationLevelPreset[1],
               disabled: elevationLevelPreset[0],
-            },
-          },
-        }),
-        ...createTokensVars(tokens, {
-          container: {
-            color: {
-              normal: themeTokens.colorScheme.surfaceContainerLow,
             },
           },
           label: {
@@ -365,17 +419,13 @@ export const buttonThemeVariants = {
   filled: createStyles({
     root: {
       vars: {
-        ...createTokensVars(PaperBase.theme.tokens, {
-          container: {
-            elevation: {
-              hovered: elevationLevelPreset[1],
-            },
-          },
-        }),
         ...createTokensVars(tokens, {
           container: {
             color: {
               normal: themeTokens.colorScheme.primary,
+            },
+            elevation: {
+              hovered: elevationLevelPreset[1],
             },
           },
           label: {
@@ -399,17 +449,13 @@ export const buttonThemeVariants = {
   filledTonal: createStyles({
     root: {
       vars: {
-        ...createTokensVars(PaperBase.theme.tokens, {
-          container: {
-            elevation: {
-              hovered: elevationLevelPreset[1],
-            },
-          },
-        }),
         ...createTokensVars(tokens, {
           container: {
             color: {
               normal: themeTokens.colorScheme.secondaryContainer,
+            },
+            elevation: {
+              hovered: elevationLevelPreset[1],
             },
           },
           label: {
@@ -434,11 +480,6 @@ export const buttonThemeVariants = {
     root: {
       vars: {
         ...createTokensVars(PaperBase.theme.tokens, {
-          container: {
-            elevation: {
-              hovered: elevationLevelPreset[0],
-            },
-          },
           outline: {
             width: {
               normal: px(themeTokens.outline.width.xs),
@@ -449,6 +490,9 @@ export const buttonThemeVariants = {
           container: {
             color: {
               disabled: 'unset',
+            },
+            elevation: {
+              hovered: elevationLevelPreset[0],
             },
           },
           label: {
@@ -507,17 +551,13 @@ export const buttonThemeVariants = {
   danger: createStyles({
     root: {
       vars: {
-        ...createTokensVars(PaperBase.theme.tokens, {
-          container: {
-            elevation: {
-              hovered: elevationLevelPreset[1],
-            },
-          },
-        }),
         ...createTokensVars(tokens, {
           container: {
             color: {
               normal: themeTokens.colorScheme.errorContainer,
+            },
+            elevation: {
+              hovered: elevationLevelPreset[1],
             },
           },
           label: {

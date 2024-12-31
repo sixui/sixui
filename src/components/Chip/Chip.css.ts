@@ -22,7 +22,6 @@ type IModifier =
   | 'non-interactive'
   | 'elevated'
   | 'selected'
-  | 'loading'
   | 'avatar';
 
 const DENSITY = px(getDensity({ min: -2, max: 0 }));
@@ -102,13 +101,16 @@ const classNames = createStyles({
     vars: {
       ...createTokensVars(PaperBase.theme.tokens, {
         container: {
-          color: {
-            normal: themeTokens.colorScheme.surfaceContainerLow,
-          },
           shape: px(themeTokens.shape.corner.sm),
         },
       }),
       ...createTokensVars(Button.theme.tokens, {
+        container: {
+          color: {
+            normal: themeTokens.colorScheme.surfaceContainerLow,
+            disabled: 'unset',
+          },
+        },
         leadingSpace: tokens.leadingSpace,
         trailingSpace: tokens.trailingSpace,
         height: tokens.height,
@@ -116,7 +118,6 @@ const classNames = createStyles({
         label: tokens.label,
       }),
     },
-
     selectors: {
       [getModifierSelector<IModifier>({
         'non-interactive': false,
@@ -139,18 +140,17 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>({
         elevated: true,
       })]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+        vars: createTokensVars(Button.theme.tokens, {
           container: {
+            color: {
+              disabled: themeTokens.colorScheme.onSurface,
+            },
             elevation: {
               normal: elevationLevelPreset[1],
               focused: elevationLevelPreset[1],
               hovered: elevationLevelPreset[2],
               pressed: elevationLevelPreset[1],
               disabled: elevationLevelPreset[0],
-            },
-            color: {
-              normal: themeTokens.colorScheme.surfaceContainerLow,
-              disabled: themeTokens.colorScheme.onSurface,
             },
           },
         }),
@@ -159,15 +159,13 @@ const classNames = createStyles({
         selected: true,
       })]: {
         vars: {
-          ...createTokensVars(PaperBase.theme.tokens, {
+          ...createTokensVars(Button.theme.tokens, {
             container: {
               color: {
                 normal: themeTokens.colorScheme.secondaryContainer,
                 disabled: themeTokens.colorScheme.onSurface,
               },
             },
-          }),
-          ...createTokensVars(Button.theme.tokens, {
             icon: tokens.icon$selected,
             label: {
               color: {
@@ -237,6 +235,15 @@ const classNames = createStyles({
     zIndex: 1,
     marginLeft: px(-12),
     marginRight: px(-12),
+
+    vars: createTokensVars(Button.theme.tokens, {
+      container: {
+        color: {
+          normal: 'transparent',
+          disabled: 'transparent',
+        },
+      },
+    }),
   },
 });
 

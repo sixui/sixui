@@ -63,13 +63,15 @@ const classNames = createStyles({
       ...createTokensVars(PaperBase.theme.tokens, {
         container: {
           shape: px(themeTokens.shape.corner.circle),
+        },
+      }),
+      ...createTokensVars(Button.theme.tokens, {
+        container: {
           color: {
             normal: 'transparent',
             disabled: 'transparent',
           },
         },
-      }),
-      ...createTokensVars(Button.theme.tokens, {
         leadingSpace: {
           normal: '0px',
           withStartSlot: '0px',
@@ -148,7 +150,7 @@ export const iconButtonThemeVariants = {
   filled: createStyles({
     root: {
       vars: {
-        ...createTokensVars(PaperBase.theme.tokens, {
+        ...createTokensVars(Button.theme.tokens, {
           container: {
             color: {
               normal: themeTokens.colorScheme.primary,
@@ -177,7 +179,7 @@ export const iconButtonThemeVariants = {
       },
       selectors: {
         [getModifierSelector<IModifier>(['toggle', 'selected'])]: {
-          vars: createTokensVars(PaperBase.theme.tokens, {
+          vars: createTokensVars(Button.theme.tokens, {
             container: {
               color: {
                 normal: themeTokens.colorScheme.primary,
@@ -186,7 +188,7 @@ export const iconButtonThemeVariants = {
           }),
         },
         [getModifierSelector<IModifier>(['toggle', '!selected'])]: {
-          vars: createTokensVars(PaperBase.theme.tokens, {
+          vars: createTokensVars(Button.theme.tokens, {
             container: {
               color: {
                 normal: themeTokens.colorScheme.surfaceContainerHighest,
@@ -207,7 +209,7 @@ export const iconButtonThemeVariants = {
   filledTonal: createStyles({
     root: {
       vars: {
-        ...createTokensVars(PaperBase.theme.tokens, {
+        ...createTokensVars(Button.theme.tokens, {
           container: {
             color: {
               normal: themeTokens.colorScheme.secondaryContainer,
@@ -237,7 +239,7 @@ export const iconButtonThemeVariants = {
       selectors: {
         [getModifierSelector<IModifier>(['toggle', 'selected'])]: {
           vars: {
-            ...createTokensVars(PaperBase.theme.tokens, {
+            ...createTokensVars(Button.theme.tokens, {
               container: {
                 color: {
                   normal: themeTokens.colorScheme.secondaryContainer,
@@ -247,7 +249,7 @@ export const iconButtonThemeVariants = {
           },
         },
         [getModifierSelector<IModifier>(['toggle', '!selected'])]: {
-          vars: createTokensVars(PaperBase.theme.tokens, {
+          vars: createTokensVars(Button.theme.tokens, {
             container: {
               color: {
                 normal: themeTokens.colorScheme.surfaceContainerHighest,
@@ -297,7 +299,7 @@ export const iconButtonThemeVariants = {
       },
       selectors: {
         [getModifierSelector<IModifier>(['toggle', 'selected'])]: {
-          vars: createTokensVars(PaperBase.theme.tokens, {
+          vars: createTokensVars(Button.theme.tokens, {
             container: {
               color: {
                 normal: themeTokens.colorScheme.inverseSurface,
@@ -316,7 +318,7 @@ export const iconButtonThemeVariants = {
           }),
         },
         [getModifierSelector<IModifier>(['toggle', '!selected'])]: {
-          vars: createTokensVars(PaperBase.theme.tokens, {
+          vars: createTokensVars(Button.theme.tokens, {
             container: {
               color: {
                 normal: 'inherit',
@@ -346,7 +348,7 @@ export const iconButtonThemeVariants = {
   danger: createStyles({
     root: {
       vars: {
-        ...createTokensVars(PaperBase.theme.tokens, {
+        ...createTokensVars(Button.theme.tokens, {
           container: {
             color: {
               normal: themeTokens.colorScheme.errorContainer,
@@ -375,7 +377,7 @@ export const iconButtonThemeVariants = {
       },
       selectors: {
         [getModifierSelector<IModifier>(['toggle', 'selected'])]: {
-          vars: createTokensVars(PaperBase.theme.tokens, {
+          vars: createTokensVars(Button.theme.tokens, {
             container: {
               color: {
                 normal: themeTokens.colorScheme.errorContainer,
@@ -384,7 +386,7 @@ export const iconButtonThemeVariants = {
           }),
         },
         [getModifierSelector<IModifier>(['toggle', '!selected'])]: {
-          vars: createTokensVars(PaperBase.theme.tokens, {
+          vars: createTokensVars(Button.theme.tokens, {
             container: {
               color: {
                 normal: themeTokens.colorScheme.surfaceContainerHighest,
