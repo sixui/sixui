@@ -43,9 +43,8 @@ const [tokensClassName, tokens] = createTheme({
   mark: {
     stroke: '2px',
   },
-  background: {
+  container$off: {
     color: {
-      normal: 'transparent',
       focused: 'inherit',
       hovered: 'inherit',
       pressed: 'inherit',
@@ -55,7 +54,7 @@ const [tokensClassName, tokens] = createTheme({
       disabled: themeTokens.state.opacity.disabled,
     },
   },
-  background$checked: {
+  container$on: {
     color: {
       normal: themeTokens.colorScheme.primary,
       focused: 'inherit',
@@ -89,22 +88,14 @@ const classNames = createStyles({
     display: 'flex',
     placeContent: 'center',
     placeItems: 'center',
-    color: themeTokens.colorScheme.onSurfaceVariant,
 
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {
         shape: px(2),
       },
       outline: {
-        color: {
-          normal: themeTokens.colorScheme.onSurfaceVariant,
-        },
-        width: {
-          normal: px(themeTokens.outline.width.sm),
-        },
-        opacity: {
-          disabled: themeTokens.state.opacity.disabled,
-        },
+        color: themeTokens.colorScheme.onSurfaceVariant,
+        width: px(themeTokens.outline.width.sm),
       },
     }),
 
@@ -112,21 +103,28 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>({ loading: true })]: {
         vars: createTokensVars(PaperBase.theme.tokens, {
           outline: {
-            width: {
-              normal: px(themeTokens.outline.width.none),
-            },
+            width: px(themeTokens.outline.width.none),
           },
         }),
       },
       [getModifierSelector<IModifier>({ hovered: true })]: {
         zIndex: 1,
       },
-      [getModifierSelector<IModifier>({ on: true })]: {
+      [getModifierSelector<IModifier>({ on: true, disabled: true })]: {
         vars: createTokensVars(PaperBase.theme.tokens, {
           outline: {
-            width: {
-              disabled: px(themeTokens.outline.width.none),
-            },
+            width: px(themeTokens.outline.width.none),
+          },
+        }),
+      },
+      [getModifierSelector<IModifier>({ disabled: true })]: {
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            opacity: themeTokens.state.opacity.disabled,
+          },
+          outline: {
+            color: tokens.container$on.color.disabled,
+            opacity: tokens.container$on.opacity.disabled,
           },
         }),
       },
@@ -186,12 +184,11 @@ const classNames = createStyles({
   background: ({ root }) => ({
     zIndex: 1,
     borderRadius: 'inherit',
-    backgroundColor: tokens.background.color.normal,
+    backgroundColor: 'unset',
     transitionProperty: 'transform, opacity',
     transitionDuration: `${themeTokens.motion.duration.short.$3}, ${themeTokens.motion.duration.short.$1}`,
     transitionTimingFunction: `${themeTokens.motion.easing.emphasized.accelerate}, linear`,
     transform: 'scale(0.6)',
-    opacity: 0,
 
     selectors: {
       [getModifierSelector<IModifier>('disabled', root)]: {
@@ -202,56 +199,41 @@ const classNames = createStyles({
         transitionDuration: '0s',
       },
       [getModifierSelector<IModifier>('focused', root)]: {
-        backgroundColor: fallbackVar(
-          tokens.background.color.focused,
-          tokens.background.color.normal,
-        ),
+        backgroundColor: tokens.container$off.color.focused,
       },
       [getModifierSelector<IModifier>('hovered', root)]: {
-        backgroundColor: fallbackVar(
-          tokens.background.color.hovered,
-          tokens.background.color.normal,
-        ),
+        backgroundColor: tokens.container$off.color.hovered,
       },
       [getModifierSelector<IModifier>('pressed', root)]: {
-        backgroundColor: fallbackVar(
-          tokens.background.color.pressed,
-          tokens.background.color.normal,
-        ),
+        backgroundColor: tokens.container$off.color.pressed,
       },
       [getModifierSelector<IModifier>('disabled', root)]: {
-        backgroundColor: fallbackVar(
-          tokens.background.color.disabled,
-          tokens.background.color.normal,
-        ),
-        opacity: tokens.background.opacity.disabled,
+        backgroundColor: tokens.container$off.color.disabled,
+        opacity: tokens.container$off.opacity.disabled,
       },
       [getModifierSelector<IModifier>('on', root)]: {
         transitionDuration: `${themeTokens.motion.duration.medium.$3}, ${themeTokens.motion.duration.short.$1}`,
         transitionTimingFunction: `${themeTokens.motion.easing.emphasized.decelerate}, linear`,
         transform: 'scale(1)',
         opacity: 1,
-        backgroundColor: fallbackVar(
-          tokens.background$checked.color.normal,
-          tokens.background.color.normal,
-        ),
+        backgroundColor: tokens.container$on.color.normal,
       },
       [getModifierSelector<IModifier>(['on', 'focused'], root)]: {
         backgroundColor: fallbackVar(
-          tokens.background$checked.color.focused,
-          tokens.background$checked.color.normal,
+          tokens.container$on.color.focused,
+          tokens.container$on.color.normal,
         ),
       },
       [getModifierSelector<IModifier>(['on', 'hovered'], root)]: {
         backgroundColor: fallbackVar(
-          tokens.background$checked.color.hovered,
-          tokens.background$checked.color.normal,
+          tokens.container$on.color.hovered,
+          tokens.container$on.color.normal,
         ),
       },
       [getModifierSelector<IModifier>(['on', 'pressed'], root)]: {
         backgroundColor: fallbackVar(
-          tokens.background$checked.color.pressed,
-          tokens.background$checked.color.normal,
+          tokens.container$on.color.pressed,
+          tokens.container$on.color.normal,
         ),
       },
       [getModifierSelector<IModifier>(['on', 'disabled'], root)]: {
@@ -260,10 +242,10 @@ const classNames = createStyles({
         // Set disabled opacity only when selected since opacity is used to show
         // or hide the container background.
         backgroundColor: fallbackVar(
-          tokens.background$checked.color.disabled,
-          tokens.background$checked.color.normal,
+          tokens.container$on.color.disabled,
+          tokens.container$on.color.normal,
         ),
-        opacity: tokens.background$checked.opacity.disabled,
+        opacity: tokens.container$on.opacity.disabled,
       },
     },
   }),
