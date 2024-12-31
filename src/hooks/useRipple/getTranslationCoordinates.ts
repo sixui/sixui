@@ -26,8 +26,8 @@ export const getTranslationCoordinates = (
   );
 
   const centeredStartPoint = {
-    x: startPoint.x - initialSize / 2,
-    y: startPoint.y - initialSize / 2,
+    x: startPoint.x - initialSize / 2 - window.scrollX,
+    y: startPoint.y - initialSize / 2 - window.scrollY,
   };
 
   return { startPoint: centeredStartPoint, endPoint };

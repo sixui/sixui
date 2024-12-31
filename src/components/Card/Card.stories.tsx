@@ -1,15 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { ICardProps, ICardVariant } from './Card.types';
-import { Avatar } from '../Avatar';
-import { Button } from '../Button';
 import { componentShowcaseFactory } from '../ComponentShowcase';
-import { IconButton } from '../IconButton';
-import { ListItem } from '../ListItem';
 import { Card } from './Card';
 
 const meta = {
@@ -18,13 +12,9 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const MEDIA_URL =
-  'https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600';
-const AVATAR_URL =
-  'https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80';
-
 const defaultArgs = {
-  w: '$72',
+  w: '$32',
+  h: '$24',
 } satisfies Partial<ICardProps>;
 
 const states: Array<IComponentPresentation<ICardProps>> = [
@@ -47,66 +37,7 @@ const states: Array<IComponentPresentation<ICardProps>> = [
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const rows: Array<IComponentPresentation<ICardProps>> = [
-  {
-    legend: 'Basic',
-    props: {
-      h: '$32',
-    },
-  },
-  {
-    legend: 'Example A',
-    props: {
-      children: (
-        <>
-          <ListItem
-            leading={<Avatar src={AVATAR_URL} />}
-            supportingText="February 21, 2024"
-            trailing={
-              <IconButton
-                icon={<FontAwesomeIcon icon={faEllipsisVertical} />}
-              />
-            }
-            pt="$2"
-          >
-            John Doe
-          </ListItem>
-          <Card.Content>
-            <Card.Title headline="Headline" />
-            <Card.Media src={MEDIA_URL} h="$48" />
-            <Card.Title
-              subhead="Subhead"
-              supportingText="Explain more about the topic shown in the headline and subhead through supporting text."
-            />
-          </Card.Content>
-          <Card.Actions>
-            <Button variant="filled">Action</Button>
-          </Card.Actions>
-        </>
-      ),
-    },
-  },
-  {
-    legend: 'Example B',
-    props: {
-      children: (
-        <>
-          <Card.Media src={MEDIA_URL} h="$48" />
-          <Card.Content>
-            <Card.Title
-              headline="Headline"
-              subhead="Subhead"
-              supportingText="Explain more about the topic shown in the headline and subhead through supporting text."
-            />
-          </Card.Content>
-          <Card.Actions>
-            <Button variant="filled">Action</Button>
-          </Card.Actions>
-        </>
-      ),
-    },
-  },
-];
+const rows: Array<IComponentPresentation<ICardProps>> = [{ legend: 'Basic' }];
 
 const CardShowcase = componentShowcaseFactory(Card);
 
@@ -122,10 +53,7 @@ export const Variants: IStory = {
       )}
     />
   ),
-  args: {
-    ...defaultArgs,
-    h: '$32',
-  },
+  args: defaultArgs,
 };
 
 export const Filled: IStory = {
