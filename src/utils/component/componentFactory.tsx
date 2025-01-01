@@ -74,6 +74,7 @@ export const componentFactory = <TPayload extends IComponentFactoryPayload>(
   type IComponentFromFactory = IComponent &
     IFactoryComponentThemeExtend<TPayload> &
     IFactoryComponentTheme<TPayload> &
+    IFactoryComponentStaticComponents<TPayload['staticComponents']> &
     IFactoryComponentWithProps<TPayload>;
 
   const ComponentFromFactory = forwardRef(

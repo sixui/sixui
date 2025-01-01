@@ -5,12 +5,11 @@ import type { ICheckboxFactory } from './Checkbox.types';
 import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
-import { usePrevious } from '~/hooks/usePrevious';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { CheckboxIndicator } from '../CheckboxIndicator';
 import { FocusRing } from '../FocusRing';
-import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
 import { useLabeledContext } from '../Labeled';
 import { PaperBase } from '../PaperBase';
 import { StateLayer, useStateLayer } from '../StateLayer';
@@ -40,7 +39,6 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
       id: idProp,
       value,
       rootRef,
-      nonInteractive,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -66,15 +64,11 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
     const stateLayer = useStateLayer<HTMLInputElement>({
       baseState: interactions,
       mergeStrategy: interactionsMergeStrategy,
-      disabled: disabledOrReadOnly || nonInteractive,
+      disabled: disabledOrReadOnly,
     });
     const inputHandleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
 
     const checked = checkedValue && !indeterminate;
-    const unchecked = !checkedValue && !indeterminate;
-    const on = checkedValue || indeterminate;
-
-    const wasUnchecked = usePrevious(unchecked) ?? false;
 
     const { getStyles } = useComponentTheme<ICheckboxThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -85,11 +79,6 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
       variant,
       theme: checkboxTheme,
       modifiers: {
-        on,
-        checked,
-        indeterminate,
-        'was-unchecked': wasUnchecked,
-        loading,
         disabled: disabledOrReadOnly,
       },
     });
@@ -124,7 +113,7 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
         ref={rootRef}
         {...other}
       >
-        {!nonInteractive && !disabledOrReadOnly && (
+        {!disabledOrReadOnly && (
           <>
             <FocusRing
               {...getStyles('focusRing')}
@@ -134,42 +123,28 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
           </>
         )}
 
-        {loading ? (
-          <IndeterminateCircularProgressIndicator
-            {...getStyles('progressIndicator')}
-            disabled={disabledOrReadOnly}
-          />
-        ) : (
-          <>
-            <div {...getStyles(['overlay', 'background'])} />
-            <svg
-              {...getStyles(['overlay', 'icon'])}
-              viewBox="0 0 18 18"
-              aria-hidden
-            >
-              <rect {...getStyles(['mark', 'mark$short'])} />
-              <rect {...getStyles(['mark', 'mark$long'])} />
-            </svg>
-          </>
-        )}
+        <CheckboxIndicator
+          checked={checked}
+          indeterminate={indeterminate}
+          loading={loading}
+          disabled={disabledOrReadOnly}
+        />
 
-        {!nonInteractive && (
-          <input
-            type="checkbox"
-            role="switch"
-            checked={checkedValue}
-            onChange={handleChange}
-            id={id}
-            required={required}
-            disabled={disabled}
-            readOnly={readOnly}
-            value={value}
-            ref={inputHandleRef}
-            aria-checked={indeterminate ? 'mixed' : checked}
-            {...getStyles('input')}
-            {...stateLayer.interactionsContext.triggerProps}
-          />
-        )}
+        <input
+          type="checkbox"
+          role="switch"
+          checked={checkedValue}
+          onChange={handleChange}
+          id={id}
+          required={required}
+          disabled={disabled}
+          readOnly={readOnly}
+          value={value}
+          ref={inputHandleRef}
+          aria-checked={indeterminate ? 'mixed' : checked}
+          {...getStyles('input')}
+          {...stateLayer.interactionsContext.triggerProps}
+        />
       </PaperBase>
     );
   },
@@ -177,3 +152,4 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
 
 Checkbox.theme = checkboxTheme;
 Checkbox.displayName = `@sixui/${COMPONENT_NAME}`;
+Checkbox.Indicator = CheckboxIndicator;
