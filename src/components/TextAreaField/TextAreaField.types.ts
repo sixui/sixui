@@ -10,8 +10,6 @@ import type {
 export interface ITextAreaFieldOwnProps
   extends IFieldBaseOwnProps,
     IElementProps<'textarea', 'className' | 'children'> {
-  textAreaRef?: React.Ref<HTMLTextAreaElement>;
-
   /**
    * When true, a clear icon button will appear on the right side of the input.
    */
@@ -23,6 +21,7 @@ export interface ITextAreaFieldOwnProps
   clearIcon?: React.ReactNode;
 
   children?: React.ReactNode;
+  rootRef?: React.Ref<HTMLDivElement>;
 }
 
 export interface ITextAreaFieldProps

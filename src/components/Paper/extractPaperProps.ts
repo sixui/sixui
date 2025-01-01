@@ -9,36 +9,17 @@ export type IUseForwardedPropsResult = {
 export const extractPaperProps = <TProps extends IPaperProps>(
   props: TProps,
 ): IUseForwardedPropsResult => {
-  const {
-    corner,
-    cornerTop,
-    cornerBottom,
-    cornerLeft,
-    cornerRight,
-    cornerTopLeft,
-    cornerTopRight,
-    cornerBottomLeft,
-    cornerBottomRight,
-    surface,
-    elevation,
-    ...other
-  } = props;
+  const { shape, outline, outlineStyle, elevation, surface, ...other } = props;
 
   const { boxProps, other: forwardedProps } = extractBoxProps(other);
 
   const paperProps: IPaperProps = {
     ...boxProps,
-    corner,
-    cornerTop,
-    cornerBottom,
-    cornerLeft,
-    cornerRight,
-    cornerTopLeft,
-    cornerTopRight,
-    cornerBottomLeft,
-    cornerBottomRight,
-    surface,
+    shape,
+    outline,
+    outlineStyle,
     elevation,
+    surface,
   };
 
   return {

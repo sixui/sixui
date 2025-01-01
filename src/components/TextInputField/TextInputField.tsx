@@ -39,6 +39,7 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
       onChange,
       children,
       loading,
+      rootRef,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -144,19 +145,22 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
       ) : null;
 
     return (
-      <FieldBase<'input'>
+      <FieldBase
         {...other}
         {...getStyles('root')}
         wrapperProps={{ onClick: handleClick }}
         classNames={classNames}
         interactions={{ focused, ...other.interactions }}
         populated={populated}
+        disabled={disabled}
+        readOnly={readOnly}
         variant={variant}
         end={renderEndSection()}
         forwardProps
         withoutRippleEffect
         managedFocus
         loading={loading}
+        ref={rootRef}
       >
         {({ forwardedProps }) => (
           <>

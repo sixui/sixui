@@ -46,6 +46,7 @@ export interface ITextInputFieldOwnProps
   clearIcon?: React.ReactNode;
 
   children?: React.ReactNode;
+  rootRef?: React.Ref<HTMLDivElement>;
 }
 
 export interface ITextInputFieldProps

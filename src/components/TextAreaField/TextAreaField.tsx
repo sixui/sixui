@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { useFocus } from 'react-aria';
 
+import type { IAny } from '~/helpers/types';
 import type { ITextAreaFieldThemeFactory } from './TextAreaField.css';
 import type { ITextAreaFieldFactory } from './TextAreaField.types';
 import { iconXMark } from '~/assets/icons';
@@ -34,6 +35,7 @@ export const TextAreaField = componentFactory<ITextAreaFieldFactory>(
       onChange,
       children,
       loading,
+      rootRef,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -123,13 +125,15 @@ export const TextAreaField = componentFactory<ITextAreaFieldFactory>(
       ) : null;
 
     return (
-      <FieldBase<'textarea'>
-        {...other}
+      <FieldBase
+        {...(other as IAny)}
         {...getStyles('root')}
         wrapperProps={{ onClick: handleClick }}
         classNames={classNames}
         interactions={{ focused, ...other.interactions }}
         populated={populated}
+        disabled={disabled}
+        readOnly={readOnly}
         variant={variant}
         end={renderEndSection()}
         forwardProps
@@ -137,6 +141,7 @@ export const TextAreaField = componentFactory<ITextAreaFieldFactory>(
         managedFocus
         loading={loading}
         multiline
+        ref={rootRef}
       >
         {({ forwardedProps }) => (
           <>

@@ -44,7 +44,7 @@ export const extractBoxProps = <TProps extends IBoxProps>(
     td,
     z,
     o,
-    grow,
+    pos,
     ...other
   } = props;
 
@@ -84,7 +84,7 @@ export const extractBoxProps = <TProps extends IBoxProps>(
     td,
     z,
     o,
-    grow,
+    pos,
   };
 
   return {

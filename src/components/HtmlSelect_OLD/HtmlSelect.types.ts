@@ -15,9 +15,9 @@ export type IHtmlSelectProps = IBaseProps<IHtmlSelectStylesKey> &
     };
 
     /**
-     * Shorthand for supplying options: an array of basic types or
-     * `{ label?, value }` objects. If no `label` is supplied, `value`
-     * will be used as the labÒel.
+     * Shorthand for supplying options: an array of basic types or `{ label?,
+     * value }` objects. If no `label` is supplied, `value` will be used as the
+     * labÒel.
      */
     items: ReadonlyArray<string | number | IHtmlSelectOption>;
 
