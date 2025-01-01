@@ -8,6 +8,7 @@ import type { IBoxSprinkles } from './Box.css';
 export interface IBoxProps extends IBoxSprinkles {
   className?: Parameters<typeof cx>[0];
   style?: React.CSSProperties;
+  // FIXME: not in box
   interactions?: IInteractions;
   modifiers?: IModifiers;
   scale?: ISixuiSize;

@@ -1,10 +1,10 @@
 import type { IAny, IMaybeAsync } from '~/helpers/types';
+import type { IInteractionsMergeStrategy } from '~/hooks/useInteractions';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { IPaperBaseOwnProps } from '../PaperBase';
 import type { checkboxTheme, ICheckboxThemeFactory } from './Checkbox.css';
-import { IInteractionsMergeStrategy } from '~/hooks/useInteractions';
 
 export interface ICheckboxOwnProps extends IPaperBaseOwnProps {
   checked?: boolean;

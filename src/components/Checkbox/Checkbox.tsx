@@ -165,7 +165,7 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
             readOnly={readOnly}
             value={value}
             ref={inputHandleRef}
-            aria-checked={indeterminate ? 'mixed' : undefined}
+            aria-checked={indeterminate ? 'mixed' : checked}
             {...getStyles('input')}
             {...stateLayer.interactionsContext.triggerProps}
           />
