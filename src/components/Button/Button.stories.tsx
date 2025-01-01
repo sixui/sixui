@@ -111,7 +111,7 @@ export const Variants: IStory = {
           'text',
           'danger',
           'snackbar',
-          'fluid',
+          'inline',
         ] as Array<IButtonVariant>
       ).map((variant) => ({
         props: {
@@ -218,11 +218,11 @@ export const Snackbar: IStory = {
   },
 };
 
-export const Fluid: IStory = {
+export const Inline: IStory = {
   render: (props) => <ButtonShowcase props={props} cols={states} rows={rows} />,
   args: {
     ...defaultArgs,
-    variant: 'fluid',
+    variant: 'inline',
   },
 };
 
@@ -233,7 +233,7 @@ const InlineButton: React.FC<IButtonProps> = (props) => (
   </>
 );
 
-export const FluidInline: IStory = {
+export const InlineWithText: IStory = {
   render: (props) => (
     <ButtonShowcase
       horizontalAlign="start"
@@ -279,9 +279,17 @@ export const FluidInline: IStory = {
   ),
   args: {
     ...defaultArgs,
-    variant: 'fluid',
+    variant: 'inline',
     children: 'click me',
     trailingIcon: <FontAwesomeIcon icon={faArrowUpRightFromSquare} />,
+  },
+};
+
+export const Raw: IStory = {
+  render: (props) => <ButtonShowcase props={props} cols={states} rows={rows} />,
+  args: {
+    ...defaultArgs,
+    variant: false,
   },
 };
 

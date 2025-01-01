@@ -13,7 +13,7 @@ export type IButtonVariant =
   | 'text'
   | 'danger'
   | 'snackbar'
-  | 'fluid';
+  | 'inline';
 
 export interface IButtonOwnProps extends IButtonBaseOwnProps {
   loading?: boolean;

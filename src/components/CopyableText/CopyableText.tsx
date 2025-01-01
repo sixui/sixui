@@ -68,7 +68,7 @@ export const CopyableText = componentFactory<ICopyableTextFactory>(
       >
         <Button
           {...getStyles('root')}
-          variant="fluid"
+          variant="inline"
           classNames={mergeClassNames(classNames, {
             label: getStyles('label').className,
           })}

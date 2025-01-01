@@ -81,15 +81,6 @@ export const FromButton: IStory = {
   },
 };
 
-// const fromIconButtonStyles = stylex.create({
-//   label: {
-//     flexGrow: 1,
-//   },
-//   menu: {
-//     flexGrow: 0,
-//   },
-// });
-
 export const FromIconButton: IStory = {
   render: (props) => (
     <Flex gap="$2" align="center">

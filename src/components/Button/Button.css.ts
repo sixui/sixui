@@ -691,7 +691,7 @@ export const buttonThemeVariants = {
       }),
     },
   }),
-  fluid: createStyles({
+  inline: createStyles({
     root: {
       verticalAlign: 'baseline',
       ...getTypographyStyles(null),
