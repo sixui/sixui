@@ -124,6 +124,7 @@ export const Switch = componentFactory<ISwitchFactory>(
           checkedIcon={checkedIcon}
           uncheckedIcon={uncheckedIcon}
           alwaysOn={alwaysOn}
+          interactions={stateLayer.interactionsContext.state}
           stateLayer={
             <StateLayer {...getStyles('stateLayer')} context={stateLayer} />
           }

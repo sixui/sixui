@@ -129,6 +129,7 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
           indeterminate={indeterminate}
           loading={loading}
           disabled={disabledOrReadOnly}
+          interactions={stateLayer.interactionsContext.state}
         />
 
         <input

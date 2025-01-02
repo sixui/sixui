@@ -129,6 +129,7 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
         checked={checked}
         loading={loading}
         disabled={disabledOrReadOnly}
+        interactions={stateLayer.interactionsContext.state}
       />
 
       <input
