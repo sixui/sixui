@@ -4,10 +4,9 @@ import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { CheckboxIndicator } from '../CheckboxIndicator';
-import type { IPaperBaseOwnProps } from '../PaperBase';
 import type { checkboxTheme, ICheckboxThemeFactory } from './Checkbox.css';
 
-export interface ICheckboxOwnProps extends IPaperBaseOwnProps {
+export interface ICheckboxOwnProps {
   checked?: boolean;
   defaultChecked?: boolean;
   indeterminate?: boolean;
@@ -20,6 +19,7 @@ export interface ICheckboxOwnProps extends IPaperBaseOwnProps {
   required?: boolean;
   readOnly?: boolean;
   loading?: boolean;
+  disabled?: boolean;
   interactionsMergeStrategy?: IInteractionsMergeStrategy;
   id?: string;
   rootRef?: React.Ref<HTMLDivElement>;

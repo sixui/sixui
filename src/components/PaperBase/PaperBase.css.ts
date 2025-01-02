@@ -10,6 +10,7 @@ import { Elevation } from '../Elevation';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
+// FIXME: disabled state should be handled by the component itself.
 type IModifier = IInteraction | 'disabled' | 'expanded';
 
 export const [tokensClassName, tokens] = createTheme({

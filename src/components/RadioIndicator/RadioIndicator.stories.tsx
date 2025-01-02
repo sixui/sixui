@@ -1,29 +1,29 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IComponentPresentation } from '../ComponentShowcase';
-import type { ICheckboxIndicatorProps } from './CheckboxIndicator.types';
+import type { IRadioIndicatorProps } from './RadioIndicator.types';
 import { componentShowcaseFactory } from '../ComponentShowcase';
-import { CheckboxIndicator } from './CheckboxIndicator';
+import { RadioIndicator } from './RadioIndicator';
 
 const meta = {
-  component: CheckboxIndicator,
-} satisfies Meta<typeof CheckboxIndicator>;
+  component: RadioIndicator,
+} satisfies Meta<typeof RadioIndicator>;
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {} satisfies Partial<ICheckboxIndicatorProps>;
+const defaultArgs = {} satisfies Partial<IRadioIndicatorProps>;
 
-const states: Array<IComponentPresentation<ICheckboxIndicatorProps>> = [
+const states: Array<IComponentPresentation<IRadioIndicatorProps>> = [
   { legend: 'Normal' },
   { legend: 'Disabled', props: { disabled: true } },
   { legend: 'Loading', props: { loading: true } },
 ];
 
-const CheckboxIndicatorShowcase = componentShowcaseFactory(CheckboxIndicator);
+const RadioIndicatorShowcase = componentShowcaseFactory(RadioIndicator);
 
 export const Scales: IStory = {
   render: (props) => (
-    <CheckboxIndicatorShowcase
+    <RadioIndicatorShowcase
       props={props}
       cols={[
         { legend: 'Extra small', props: { scale: 'xs' } },
@@ -42,10 +42,9 @@ export const Scales: IStory = {
 
 export const Densities: IStory = {
   render: (props) => (
-    <CheckboxIndicatorShowcase
+    <RadioIndicatorShowcase
       props={props}
       cols={[
-        { legend: '-2', props: { density: -2 } },
         { legend: '-1', props: { density: -1 } },
         { legend: '0', props: { density: 0 } },
       ]}
@@ -59,12 +58,11 @@ export const Densities: IStory = {
 
 export const Configurations: IStory = {
   render: (props) => (
-    <CheckboxIndicatorShowcase
+    <RadioIndicatorShowcase
       props={props}
       cols={states}
       rows={[
-        { legend: 'Unchecked' },
-        { legend: 'Indeterminate', props: { indeterminate: true } },
+        { legend: 'Unchecked', props: { checked: false } },
         { legend: 'Checked', props: { checked: true } },
       ]}
     />

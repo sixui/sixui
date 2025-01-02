@@ -8,10 +8,10 @@ import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { Box } from '../Box';
 import { CheckboxIndicator } from '../CheckboxIndicator';
 import { FocusRing } from '../FocusRing';
 import { useLabeledContext } from '../Labeled';
-import { PaperBase } from '../PaperBase';
 import { StateLayer, useStateLayer } from '../StateLayer';
 import { checkboxTheme } from './Checkbox.css';
 
@@ -33,7 +33,7 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
       defaultIndeterminate,
       onChange,
       required: requiredProp,
-      disabled,
+      disabled: disabledProp,
       readOnly: readOnlyProp,
       loading: loadingProp,
       id: idProp,
@@ -56,10 +56,12 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
     });
 
     const loading = loadingProp || handlingChange || labeledContext?.loading;
+    const disabled = disabledProp || labeledContext?.disabled;
     const readOnly = readOnlyProp || loading || labeledContext?.readOnly;
-    const disabledOrReadOnly = disabled || labeledContext?.disabled || readOnly;
     const required = requiredProp ?? labeledContext?.required;
     const id = idProp ?? labeledContext?.id;
+
+    const disabledOrReadOnly = disabled || readOnly;
 
     const stateLayer = useStateLayer<HTMLInputElement>({
       baseState: interactions,
@@ -106,9 +108,8 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
       );
 
     return (
-      <PaperBase
+      <Box
         {...getStyles('root')}
-        classNames={classNames}
         interactions={stateLayer.interactionsContext.state}
         ref={rootRef}
         {...other}
@@ -145,7 +146,7 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
           {...getStyles('input')}
           {...stateLayer.interactionsContext.triggerProps}
         />
-      </PaperBase>
+      </Box>
     );
   },
 );

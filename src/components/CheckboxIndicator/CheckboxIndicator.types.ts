@@ -11,6 +11,7 @@ export interface ICheckboxIndicatorOwnProps extends IPaperBaseOwnProps {
   checked?: boolean;
   indeterminate?: boolean;
   loading?: boolean;
+  disabled?: boolean;
 }
 
 export interface ICheckboxIndicatorProps

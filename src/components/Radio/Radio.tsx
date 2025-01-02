@@ -7,11 +7,11 @@ import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { Box } from '../Box';
 import { FocusRing } from '../FocusRing';
-import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
 import { useLabeledContext } from '../Labeled';
-import { PaperBase } from '../PaperBase';
 import { useRadioGroupContext } from '../RadioGroup';
+import { RadioIndicator } from '../RadioIndicator';
 import { StateLayer, useStateLayer } from '../StateLayer';
 import { RadioTheme } from './Radio.css';
 
@@ -36,7 +36,6 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
     value,
     id: idProp,
     rootRef,
-    nonInteractive,
     ...other
   } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -66,7 +65,7 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
   const stateLayer = useStateLayer<HTMLInputElement>({
     baseState: interactions,
     mergeStrategy: interactionsMergeStrategy,
-    disabled: disabledOrReadOnly || nonInteractive,
+    disabled: disabledOrReadOnly,
   });
   const inputHandleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
 
@@ -110,14 +109,13 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
   );
 
   return (
-    <PaperBase
+    <Box
       {...getStyles('root')}
-      classNames={classNames}
       interactions={stateLayer.interactionsContext.state}
       ref={rootRef}
       {...other}
     >
-      {!nonInteractive && !disabledOrReadOnly && (
+      {!disabledOrReadOnly && (
         <>
           <FocusRing
             {...getStyles('focusRing')}
@@ -127,41 +125,30 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
         </>
       )}
 
-      {loading && (
-        <IndeterminateCircularProgressIndicator
-          {...getStyles('progressIndicator')}
-          disabled={disabledOrReadOnly}
-        />
-      )}
+      <RadioIndicator
+        checked={checked}
+        loading={loading}
+        disabled={disabledOrReadOnly}
+      />
 
-      <svg {...getStyles('icon')} viewBox="0 0 20 20">
-        <circle
-          {...getStyles(['circle', 'circle$inner'])}
-          cx="10"
-          cy="10"
-          r="5"
-        />
-      </svg>
-
-      {!nonInteractive && (
-        <input
-          name={name}
-          type="radio"
-          checked={checked}
-          onChange={handleChange}
-          value={value}
-          id={id}
-          required={required}
-          disabled={disabled}
-          readOnly={readOnly}
-          ref={inputHandleRef}
-          {...getStyles('input')}
-          {...stateLayer.interactionsContext.triggerProps}
-        />
-      )}
-    </PaperBase>
+      <input
+        name={name}
+        type="radio"
+        checked={checked}
+        onChange={handleChange}
+        value={value}
+        id={id}
+        required={required}
+        disabled={disabled}
+        readOnly={readOnly}
+        ref={inputHandleRef}
+        {...getStyles('input')}
+        {...stateLayer.interactionsContext.triggerProps}
+      />
+    </Box>
   );
 });
 
 Radio.theme = RadioTheme;
 Radio.displayName = `@sixui/${COMPONENT_NAME}`;
+Radio.Indicator = RadioIndicator;
