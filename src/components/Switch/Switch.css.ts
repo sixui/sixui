@@ -1,6 +1,7 @@
 import type { IInteraction } from '~/hooks/useInteractions';
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
+import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { themeTokens } from '../ThemeProvider';
@@ -18,12 +19,14 @@ const classNames = createStyles({
     position: 'relative',
   },
   stateLayer: {
-    borderRadius: themeTokens.shape.corner.full,
     width: `max(${themeTokens.density.minTargetSize}, 100%)`,
     height: `max(${themeTokens.density.minTargetSize}, 100%)`,
+    borderRadius: px(themeTokens.shape.corner.circle),
     inset: 'unset',
   },
-  focusRing: {},
+  focusRing: {
+    borderRadius: px(themeTokens.shape.corner.full),
+  },
   input: ({ root }) => ({
     // Input is also touch target
     appearance: 'none',

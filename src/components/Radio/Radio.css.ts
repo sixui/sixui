@@ -31,6 +31,7 @@ const classNames = createStyles({
   focusRing: {
     width: `max(${themeTokens.density.minTargetSize}, 100%)`,
     height: `max(${themeTokens.density.minTargetSize}, 100%)`,
+    borderRadius: px(themeTokens.shape.corner.circle),
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',

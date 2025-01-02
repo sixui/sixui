@@ -24,6 +24,7 @@ const innerCircleGrowKeyframes = keyframes({
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   size: px(18),
+  shape: px(themeTokens.shape.corner.circle),
   icon: {
     color: {
       normal: themeTokens.colorScheme.onSurfaceVariant,
@@ -61,7 +62,7 @@ const classNames = createStyles({
 
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {
-        shape: px(themeTokens.shape.corner.circle),
+        shape: tokens.shape,
       },
       outline: {
         color: themeTokens.colorScheme.onSurfaceVariant,

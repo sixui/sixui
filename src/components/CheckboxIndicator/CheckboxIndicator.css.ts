@@ -38,6 +38,7 @@ const DENSITY = px(getDensity({ min: -2, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
+  shape: px(2),
   size: px(18),
   mark: {
     stroke: '2px',
@@ -90,7 +91,7 @@ const classNames = createStyles({
 
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {
-        shape: px(2),
+        shape: tokens.shape,
       },
       outline: {
         color: themeTokens.colorScheme.onSurfaceVariant,
