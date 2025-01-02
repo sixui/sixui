@@ -106,7 +106,6 @@ export const CheckboxCard = componentFactory<ICheckboxCardFactory>(
             labelPosition="right"
             label={label}
             supportingText={supportingText}
-            disabled={disabledOrReadOnly}
           >
             <CheckboxIndicator
               checked={checked}
