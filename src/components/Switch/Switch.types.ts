@@ -5,6 +5,7 @@ import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { IPaperBaseOwnProps } from '../PaperBase';
 import type { basicTemplateTheme, ISwitchThemeFactory } from './Switch.css';
+import { SwitchIndicator } from '../SwitchIndicator';
 
 export interface ISwitchOwnProps extends IPaperBaseOwnProps {
   checked?: boolean;
@@ -23,7 +24,6 @@ export interface ISwitchOwnProps extends IPaperBaseOwnProps {
   alwaysOn?: boolean;
   id?: string;
   rootRef?: React.Ref<HTMLDivElement>;
-  nonInteractive?: boolean;
 }
 
 export interface ISwitchProps
@@ -35,4 +35,7 @@ export type ISwitchFactory = IComponentFactory<{
   props: ISwitchProps;
   ref: HTMLInputElement;
   theme: typeof basicTemplateTheme;
+  staticComponents: {
+    Indicator: typeof SwitchIndicator;
+  };
 }>;

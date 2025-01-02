@@ -2,19 +2,17 @@ import { useCallback, useState } from 'react';
 
 import type { ISwitchThemeFactory } from './Switch.css';
 import type { ISwitchFactory } from './Switch.types';
-import { iconCheckMark, iconXMark } from '~/assets/icons';
 import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { Box } from '../Box';
 import { FocusRing } from '../FocusRing';
-import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
 import { useLabeledContext } from '../Labeled';
-import { PaperBase } from '../PaperBase';
 import { StateLayer, useStateLayer } from '../StateLayer';
-import { SvgIcon } from '../SvgIcon';
+import { SwitchIndicator } from '../SwitchIndicator';
 import { basicTemplateTheme } from './Switch.css';
 
 const COMPONENT_NAME = 'Switch';
@@ -42,7 +40,6 @@ export const Switch = componentFactory<ISwitchFactory>(
       id: idProp,
       value,
       rootRef,
-      nonInteractive,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -66,7 +63,7 @@ export const Switch = componentFactory<ISwitchFactory>(
     const stateLayer = useStateLayer<HTMLInputElement>({
       baseState: interactions,
       mergeStrategy: interactionsMergeStrategy,
-      disabled: disabledOrReadOnly || nonInteractive,
+      disabled: disabledOrReadOnly,
     });
     const inputHandleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
 
@@ -107,9 +104,8 @@ export const Switch = componentFactory<ISwitchFactory>(
       );
 
     return (
-      <PaperBase
+      <Box
         {...getStyles('root')}
-        classNames={classNames}
         interactions={stateLayer.interactionsContext.state}
         ref={rootRef}
         {...other}
@@ -121,57 +117,37 @@ export const Switch = componentFactory<ISwitchFactory>(
           />
         )}
 
-        <div {...getStyles('track')}>
-          <div {...getStyles('handleContainer')}>
+        <SwitchIndicator
+          checked={checked}
+          loading={loading}
+          disabled={disabledOrReadOnly}
+          checkedIcon={checkedIcon}
+          uncheckedIcon={uncheckedIcon}
+          alwaysOn={alwaysOn}
+          stateLayer={
             <StateLayer {...getStyles('stateLayer')} context={stateLayer} />
-            <PaperBase {...getStyles('handle')}>
-              <div {...getStyles(['icon', 'icon$checked'])}>
-                {loading ? (
-                  <IndeterminateCircularProgressIndicator
-                    {...getStyles('progressIndicator')}
-                  />
-                ) : checkedIcon === true ? (
-                  <SvgIcon icon={iconCheckMark} />
-                ) : (
-                  checkedIcon
-                )}
-              </div>
+          }
+        />
 
-              <div {...getStyles(['icon', 'icon$unchecked'])}>
-                {loading ? (
-                  <IndeterminateCircularProgressIndicator
-                    {...getStyles('progressIndicator')}
-                  />
-                ) : uncheckedIcon === true ? (
-                  <SvgIcon icon={iconXMark} />
-                ) : (
-                  uncheckedIcon
-                )}
-              </div>
-            </PaperBase>
-          </div>
-        </div>
-
-        {!nonInteractive && (
-          <input
-            type="checkbox"
-            role="switch"
-            checked={checked}
-            onChange={handleChange}
-            id={id}
-            required={required}
-            disabled={disabled}
-            readOnly={readOnly}
-            value={value}
-            ref={inputHandleRef}
-            {...getStyles('input')}
-            {...stateLayer.interactionsContext.triggerProps}
-          />
-        )}
-      </PaperBase>
+        <input
+          type="checkbox"
+          role="switch"
+          checked={checked}
+          onChange={handleChange}
+          id={id}
+          required={required}
+          disabled={disabled}
+          readOnly={readOnly}
+          value={value}
+          ref={inputHandleRef}
+          {...getStyles('input')}
+          {...stateLayer.interactionsContext.triggerProps}
+        />
+      </Box>
     );
   },
 );
 
 Switch.theme = basicTemplateTheme;
 Switch.displayName = `@sixui/${COMPONENT_NAME}`;
+Switch.Indicator = SwitchIndicator;

@@ -21,6 +21,16 @@ const states: Array<IComponentPresentation<IRadioIndicatorProps>> = [
 
 const RadioIndicatorShowcase = componentShowcaseFactory(RadioIndicator);
 
+export const Variants: IStory = {
+  render: (props) => (
+    <RadioIndicatorShowcase
+      props={props}
+      cols={[{ props: { checked: false } }, { props: { checked: true } }]}
+    />
+  ),
+  args: defaultArgs,
+};
+
 export const Scales: IStory = {
   render: (props) => (
     <RadioIndicatorShowcase
