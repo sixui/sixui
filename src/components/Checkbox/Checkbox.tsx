@@ -9,6 +9,7 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
+import { CheckboxCard } from '../CheckboxCard';
 import { CheckboxIndicator } from '../CheckboxIndicator';
 import { FocusRing } from '../FocusRing';
 import { useLabeledContext } from '../Labeled';
@@ -134,7 +135,6 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
 
         <input
           type="checkbox"
-          role="switch"
           checked={checkedValue}
           onChange={handleChange}
           id={id}
@@ -155,3 +155,4 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
 Checkbox.theme = checkboxTheme;
 Checkbox.displayName = `@sixui/${COMPONENT_NAME}`;
 Checkbox.Indicator = CheckboxIndicator;
+Checkbox.Card = CheckboxCard;

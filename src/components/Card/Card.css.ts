@@ -53,10 +53,10 @@ const [tokensClassName, tokens] = createTheme({
       hovered: 'inherit',
       pressed: 'inherit',
       dragged: 'inherit',
-      disabled: 'unset',
+      disabled: themeTokens.colorScheme.onSurface,
     },
     opacity: {
-      disabled: themeTokens.state.outlineOpacity.disabled,
+      disabled: themeTokens.state.opacity.disabled,
     },
   },
 });

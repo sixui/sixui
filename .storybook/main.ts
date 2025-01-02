@@ -12,7 +12,7 @@ const config: StorybookConfig = {
     reactDocgen: false,
   },
   core: {
-    disableTelemetry: true, // 👈 Disables telemetry
+    disableTelemetry: true,
   },
 };
 

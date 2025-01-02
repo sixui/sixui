@@ -5,6 +5,7 @@ import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { CheckboxIndicator } from '../CheckboxIndicator';
 import type { checkboxTheme, ICheckboxThemeFactory } from './Checkbox.css';
+import { CheckboxCard } from '../CheckboxCard';
 
 export interface ICheckboxOwnProps {
   checked?: boolean;
@@ -36,5 +37,6 @@ export type ICheckboxFactory = IComponentFactory<{
   theme: typeof checkboxTheme;
   staticComponents: {
     Indicator: typeof CheckboxIndicator;
+    Card: typeof CheckboxCard;
   };
 }>;
