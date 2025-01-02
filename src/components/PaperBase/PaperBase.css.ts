@@ -96,9 +96,9 @@ const classNames = createStyles({
     borderRadius: 'inherit',
     opacity: tokens.outline.opacity,
 
-    transitionProperty: 'border-color',
-    transitionDuration: themeTokens.motion.duration.long.$3,
-    transitionTimingFunction: themeTokens.motion.easing.emphasized.decelerate,
+    transitionProperty: 'border-color, border-width',
+    transitionDuration: themeTokens.motion.duration.short.$1,
+    transitionTimingFunction: themeTokens.motion.easing.linear,
   },
 });
 

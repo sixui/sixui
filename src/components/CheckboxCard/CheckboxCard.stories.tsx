@@ -5,6 +5,7 @@ import type { IOmit } from '~/helpers/types';
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { ICheckboxCardProps } from './CheckboxCard.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { Card } from '../Card';
 import { componentShowcaseFactory } from '../ComponentShowcase';
 import { CheckboxCard } from './CheckboxCard';
 
@@ -14,11 +15,13 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
+const MEDIA_URL =
+  'https://images.unsplash.com/photo-1729366791089-6c9643dee806?q=80&w=600';
+
 const defaultArgs = {
   onChange: (...args) => sbHandleEvent('onChange', args),
   label: 'Label',
-  supportingText: 'Clicking on this card to toggle it.',
-  children: 'This text explains more about the option shown in the card.',
+  supportingText: 'This text explains more about the option shown in the card.',
   w: '$56',
 } satisfies Partial<ICheckboxCardProps>;
 
@@ -135,6 +138,24 @@ export const Configurations: IStory = {
     />
   ),
   args: defaultArgs,
+};
+
+export const Custom: IStory = {
+  render: (props) => (
+    <CheckboxCardShowcase
+      props={props}
+      cols={states}
+      rows={[
+        { legend: 'Unchecked' },
+        { legend: 'Checked', props: { defaultChecked: true } },
+      ]}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    variant: 'filled',
+    children: <Card.Media src={MEDIA_URL} h="$32" />,
+  },
 };
 
 export default meta;

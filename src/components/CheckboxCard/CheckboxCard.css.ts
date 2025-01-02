@@ -2,6 +2,7 @@ import { createTheme } from '@vanilla-extract/css';
 
 import type { IInteraction } from '~/hooks/useInteractions';
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { ICardVariant } from '../Card';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { px } from '~/helpers/styles/px';
@@ -15,7 +16,7 @@ type IModifier = IInteraction | 'disabled' | 'checked';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
-  text: {
+  supportingText: {
     typography: themeTokens.typeScale.body.sm,
   },
 });
@@ -45,8 +46,8 @@ const classNames = createStyles({
       },
     },
   },
-  text: {
-    ...getTypographyStyles(tokens.text.typography),
+  supportingText: {
+    ...getTypographyStyles(tokens.supportingText.typography),
   },
 });
 
@@ -54,6 +55,7 @@ export type ICheckboxCardThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   modifier: IModifier;
   tokens: typeof tokens;
+  variant: ICardVariant;
 }>;
 
 export const checkboxCardTheme =

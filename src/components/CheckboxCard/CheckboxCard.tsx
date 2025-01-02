@@ -23,7 +23,7 @@ export const CheckboxCard = componentFactory<ICheckboxCardFactory>(
       className,
       styles,
       style,
-      variant,
+      variant = 'outlined',
       checked: checkedProp,
       defaultChecked,
       onChange,
@@ -98,28 +98,30 @@ export const CheckboxCard = componentFactory<ICheckboxCardFactory>(
         as="div"
         ref={rootRef}
         onClick={() => inputRef.current?.click()}
-        variant="outlined"
+        variant={variant}
         {...other}
       >
-        <Card.Content>
-          <Labeled
-            labelPosition="right"
-            label={label}
-            supportingText={supportingText}
-          >
-            <CheckboxIndicator
-              checked={checked}
-              loading={loading}
-              disabled={disabledOrReadOnly}
-            />
-          </Labeled>
+        {children ? (
+          isFunction(children) ? (
+            children({ checked })
+          ) : (
+            children
+          )
+        ) : (
+          <Card.Content>
+            <Labeled labelPosition="right" label={label}>
+              <CheckboxIndicator
+                checked={checked}
+                loading={loading}
+                disabled={disabledOrReadOnly}
+              />
+            </Labeled>
 
-          {children && (
-            <div {...getStyles('text')}>
-              {isFunction(children) ? children({ checked }) : children}
-            </div>
-          )}
-        </Card.Content>
+            {supportingText && (
+              <div {...getStyles('supportingText')}>{supportingText}</div>
+            )}
+          </Card.Content>
+        )}
 
         <input
           type="checkbox"
