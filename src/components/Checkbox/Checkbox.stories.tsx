@@ -127,7 +127,6 @@ export const Densities: IStory = {
     <CheckboxShowcase
       props={props}
       cols={[
-        { legend: '-2', props: { density: -2 } },
         { legend: '-1', props: { density: -1 } },
         { legend: '0', props: { density: 0 } },
       ]}

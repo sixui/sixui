@@ -34,7 +34,7 @@ type IModifier =
   | 'was-unchecked'
   | 'loading';
 
-const DENSITY = px(getDensity({ min: -2, max: 0 }));
+const DENSITY = px(getDensity({ min: -1, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
