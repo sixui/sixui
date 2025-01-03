@@ -57,9 +57,12 @@ export const useCheckbox = (props: IUseCheckboxProps): IUseCheckboxResult => {
     (checkboxGroupContext?.loading &&
       props.value !== undefined &&
       checkboxGroupContext.changingValues?.includes(props.value));
-  const readOnly = props.readOnly || labeledContext?.readOnly || loading;
-  const disabled =
-    props.disabled || labeledContext?.disabled || checkboxGroupContext?.loading;
+  const readOnly =
+    props.readOnly ||
+    labeledContext?.readOnly ||
+    checkboxGroupContext?.loading ||
+    loading;
+  const disabled = props.disabled || labeledContext?.disabled;
   const required = props.required ?? labeledContext?.required;
   const id = props.id ?? labeledContext?.id;
   const checked =
@@ -78,13 +81,17 @@ export const useCheckbox = (props: IUseCheckboxProps): IUseCheckboxResult => {
       const nextChecked = event.target.checked && !indeterminate;
       const nextValue = nextChecked ? event.target.value : undefined;
       const nextValues = checkboxGroupContext
-        ? event.target.checked
-          ? [...(checkboxGroupContext.values ?? []), event.target.value]
-          : [
-              ...(checkboxGroupContext.values?.filter(
-                (value) => value !== event.target.value,
-              ) ?? []),
-            ]
+        ? [
+            ...new Set(
+              event.target.checked
+                ? [...(checkboxGroupContext.values ?? []), event.target.value]
+                : [
+                    ...(checkboxGroupContext.values?.filter(
+                      (value) => value !== event.target.value,
+                    ) ?? []),
+                  ],
+            ),
+          ]
         : [];
 
       void executeLazyPromise(async () => {

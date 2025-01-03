@@ -47,8 +47,7 @@ export const useRadio = (props: IUseRadioProps): IUseRadioResult => {
     labeledContext?.readOnly ||
     radioGroupContext?.loading ||
     loading;
-  const disabled =
-    props.disabled || labeledContext?.disabled || radioGroupContext?.loading;
+  const disabled = props.disabled || labeledContext?.disabled;
   const required = props.required ?? labeledContext?.required;
   const id = props.id ?? labeledContext?.id;
   const name = radioGroupContext?.name ?? props.name;

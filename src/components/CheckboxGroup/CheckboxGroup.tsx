@@ -8,7 +8,6 @@ import {
 
 import type { ICheckboxGroupContextValue } from './CheckboxGroup.context';
 import type { ICheckboxGroupFactory } from './CheckboxGroup.types';
-import { arraySymDiff } from '~/helpers/arraySymDiff';
 import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
@@ -70,19 +69,14 @@ export const CheckboxGroup = polymorphicComponentFactory<ICheckboxGroupFactory>(
           return;
         }
 
-        setChangingValues(
-          values ? arraySymDiff(values, nextValues) : nextValues,
-        );
+        setChangingValues([event.target.value]);
 
         void executeLazyPromise(
           () => onChange?.(event, nextValues) as Promise<void>,
           setHandlingChange,
-        ).finally(() => {
-          setValues(nextValues);
-          setChangingValues([]);
-        });
+        ).finally(() => setValues(nextValues));
       },
-      [handlingChange, onChange, values, setValues],
+      [handlingChange, onChange, setValues],
     );
 
     const contextValue = useMemo(
