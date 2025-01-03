@@ -1,18 +1,15 @@
-import { useCallback, useRef, useState } from 'react';
+import { useRef } from 'react';
 
 import type { ICheckboxCardThemeFactory } from './CheckboxCard.css';
 import type { ICheckboxCardFactory } from './CheckboxCard.types';
-import { executeLazyPromise } from '~/helpers/executeLazyPromise';
-import { isFunction } from '~/helpers/isFunction';
-import { useControlledValue } from '~/hooks/useControlledValue';
+import { useCheckbox } from '~/hooks/useCheckbox';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Card } from '../Card';
-import { useCheckboxGroupContext } from '../CheckboxGroup';
 import { CheckboxIndicator } from '../CheckboxIndicator';
-import { Labeled, useLabeledContext } from '../Labeled';
+import { Labeled } from '../Labeled';
 import { checkboxCardTheme } from './CheckboxCard.css';
 
 const COMPONENT_NAME = 'CheckboxCard';
@@ -27,13 +24,15 @@ export const CheckboxCard = componentFactory<ICheckboxCardFactory>(
       variant = 'outlined',
       checked: checkedProp,
       defaultChecked,
+      indeterminate: indeterminateProp,
+      defaultIndeterminate,
+      value,
       onChange,
-      required: requiredProp,
+      loading: loadingProp,
       disabled: disabledProp,
       readOnly: readOnlyProp,
-      loading: loadingProp,
+      required: requiredProp,
       id: idProp,
-      value,
       rootRef,
       label,
       supportingText,
@@ -41,21 +40,29 @@ export const CheckboxCard = componentFactory<ICheckboxCardFactory>(
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const labeledContext = useLabeledContext();
-    const checkboxGroupContext = useCheckboxGroupContext();
-    const [handlingChange, setHandlingChange] = useState(false);
-    const [checked, setChecked] = useControlledValue({
-      controlled: checkedProp,
-      default:
-        !!defaultChecked || !!checkboxGroupContext?.values?.includes(value),
-      name: COMPONENT_NAME,
+    const {
+      loading,
+      disabled,
+      readOnly,
+      required,
+      checked,
+      indeterminate,
+      id,
+      handleChange,
+    } = useCheckbox({
+      componentName: COMPONENT_NAME,
+      checked: checkedProp,
+      defaultChecked,
+      indeterminate: indeterminateProp,
+      defaultIndeterminate,
+      value,
+      onChange,
+      loading: loadingProp,
+      disabled: disabledProp,
+      readOnly: readOnlyProp,
+      required: requiredProp,
+      id: idProp,
     });
-
-    const loading = loadingProp || handlingChange || labeledContext?.loading;
-    const disabled = disabledProp || labeledContext?.disabled;
-    const readOnly = readOnlyProp || loading || labeledContext?.readOnly;
-    const required = requiredProp ?? labeledContext?.required;
-    const id = idProp ?? labeledContext?.id;
 
     const disabledOrReadOnly = disabled || readOnly;
 
@@ -76,40 +83,6 @@ export const CheckboxCard = componentFactory<ICheckboxCardFactory>(
     const inputRef = useRef<HTMLInputElement>(null);
     const handleRef = useMergeRefs(inputRef, forwardedRef);
 
-    const handleChange: React.ChangeEventHandler<HTMLInputElement> =
-      useCallback(
-        (event) => {
-          if (handlingChange) {
-            return;
-          }
-
-          void executeLazyPromise(
-            () =>
-              Promise.all([
-                checkboxGroupContext?.onChange?.(
-                  event,
-                  event.target.checked
-                    ? [
-                        ...(checkboxGroupContext.values ?? []),
-                        event.target.value,
-                      ]
-                    : [
-                        ...(checkboxGroupContext.values?.filter(
-                          (value) => value !== event.target.value,
-                        ) ?? []),
-                      ],
-                ),
-                onChange?.(
-                  event,
-                  event.target.checked ? event.target.value : undefined,
-                ) as void,
-              ]),
-            setHandlingChange,
-          ).finally(() => setChecked(!event.target.checked));
-        },
-        [handlingChange, onChange, setChecked, checkboxGroupContext],
-      );
-
     return (
       <Card
         {...getStyles('root')}
@@ -120,13 +93,7 @@ export const CheckboxCard = componentFactory<ICheckboxCardFactory>(
         role="checkbox"
         {...other}
       >
-        {children ? (
-          isFunction(children) ? (
-            children({ checked })
-          ) : (
-            children
-          )
-        ) : (
+        {children ?? (
           <Card.Content>
             <Labeled
               labelPosition="right"
@@ -135,6 +102,7 @@ export const CheckboxCard = componentFactory<ICheckboxCardFactory>(
             >
               <CheckboxIndicator
                 checked={checked}
+                indeterminate={indeterminate}
                 loading={loading}
                 disabled={disabledOrReadOnly}
               />

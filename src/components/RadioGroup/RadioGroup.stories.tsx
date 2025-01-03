@@ -47,7 +47,7 @@ const changeActions: Array<IComponentPresentation<IRadioGroupProps>> = [
 const ControlledRadioGroupDemo: React.FC<IRadioGroupDemoProps> = (props) => {
   const { optionsRenderer, onChange, ...other } = props;
   const ref = useRef<HTMLDivElement>(null);
-  const [value, setValue] = useState<IRadioGroupProps['value']>('2');
+  const [value, setValue] = useState('2');
 
   return (
     <Flex direction="row" gap="$8" align="center">
@@ -59,7 +59,7 @@ const ControlledRadioGroupDemo: React.FC<IRadioGroupDemoProps> = (props) => {
         value={value}
         onChange={async (event, value) => {
           await onChange?.(event, value);
-          setValue(value);
+          setValue(value ?? '');
         }}
         ref={ref}
       >

@@ -4,7 +4,6 @@ import type { ICheckboxGroupContextValue } from './CheckboxGroup.context';
 
 export interface ICheckboxGroupOwnProps extends ICheckboxGroupContextValue {
   children?: React.ReactNode;
-  defaultValues?: Array<React.InputHTMLAttributes<HTMLInputElement>['value']>;
   disabled?: boolean;
 }
 

@@ -10,10 +10,10 @@ import { SwitchIndicator } from '../SwitchIndicator';
 export interface ISwitchOwnProps extends IPaperBaseOwnProps {
   checked?: boolean;
   defaultChecked?: boolean;
-  value?: React.InputHTMLAttributes<HTMLInputElement>['value'];
+  value?: string;
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement>,
-    value: React.InputHTMLAttributes<HTMLInputElement>['value'],
+    value: string,
   ) => IMaybeAsync<IAny>;
   required?: boolean;
   readOnly?: boolean;

@@ -1,16 +1,15 @@
-import { useCallback, useRef, useState } from 'react';
+import { useRef } from 'react';
 
 import type { IRadioCardThemeFactory } from './RadioCard.css';
 import type { IRadioCardFactory } from './RadioCard.types';
-import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 import { isFunction } from '~/helpers/isFunction';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
+import { useRadio } from '~/hooks/useRadio';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Card } from '../Card';
-import { Labeled, useLabeledContext } from '../Labeled';
-import { useRadioGroupContext } from '../RadioGroup';
+import { Labeled } from '../Labeled';
 import { RadioIndicator } from '../RadioIndicator';
 import { RadioCardTheme } from './RadioCard.css';
 
@@ -25,14 +24,14 @@ export const RadioCard = componentFactory<IRadioCardFactory>(
       style,
       variant = 'outlined',
       required: requiredProp,
-      disabled,
+      disabled: disabledProp,
       checked: checkedProp,
+      value,
       onChange,
       readOnly: readOnlyProp,
       loading: loadingProp,
-      name: nameProp,
-      value,
       id: idProp,
+      name: nameProp,
       rootRef,
       label,
       supportingText,
@@ -40,30 +39,31 @@ export const RadioCard = componentFactory<IRadioCardFactory>(
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const labeledContext = useLabeledContext();
-    const radioCardGroupContext = useRadioGroupContext();
-    const [handlingChange, setHandlingChange] = useState(false);
+    const {
+      loading,
+      disabled,
+      readOnly,
+      required,
+      checked,
+      id,
+      name,
+      handleChange,
+    } = useRadio({
+      checked: checkedProp,
+      value,
+      onChange,
+      loading: loadingProp,
+      disabled: disabledProp,
+      readOnly: readOnlyProp,
+      required: requiredProp,
+      id: idProp,
+      name: nameProp,
+    });
 
-    const loading =
-      loadingProp ||
-      handlingChange ||
-      labeledContext?.loading ||
-      (radioCardGroupContext?.loading &&
-        radioCardGroupContext.nextValue === value);
-    const readOnly =
-      (readOnlyProp ?? labeledContext?.readOnly) ||
-      labeledContext?.loading ||
-      radioCardGroupContext?.loading ||
-      loading;
-    const disabledOrReadOnly = disabled || labeledContext?.disabled || readOnly;
-    const required = requiredProp ?? labeledContext?.required;
-    const id = idProp ?? labeledContext?.id;
+    const disabledOrReadOnly = disabled || readOnly;
 
-    const name = radioCardGroupContext?.name ?? nameProp;
-    const checked = radioCardGroupContext
-      ? radioCardGroupContext.value !== undefined &&
-        radioCardGroupContext.value === value
-      : checkedProp;
+    const inputRef = useRef<HTMLInputElement>(null);
+    const handleRef = useMergeRefs(inputRef, forwardedRef);
 
     const { getStyles } = useComponentTheme<IRadioCardThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -79,34 +79,6 @@ export const RadioCard = componentFactory<IRadioCardFactory>(
         checked,
       },
     });
-
-    const inputRef = useRef<HTMLInputElement>(null);
-    const handleRef = useMergeRefs(inputRef, forwardedRef);
-
-    const handleChange: React.ChangeEventHandler<HTMLInputElement> =
-      useCallback(
-        (event) => {
-          if (handlingChange) {
-            return;
-          }
-
-          void executeLazyPromise(
-            () =>
-              Promise.all([
-                radioCardGroupContext?.onChange?.(
-                  event,
-                  event.target.checked ? event.target.value : undefined,
-                ),
-                onChange?.(
-                  event,
-                  event.target.checked ? event.target.value : undefined,
-                ),
-              ]),
-            setHandlingChange,
-          );
-        },
-        [handlingChange, onChange, radioCardGroupContext],
-      );
 
     const handleKeyDown: React.KeyboardEventHandler = (event) => {
       if (

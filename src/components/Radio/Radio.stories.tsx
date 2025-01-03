@@ -1,11 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { useId, useState } from 'react';
 
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IRadioProps } from './Radio.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { componentShowcaseFactory } from '../ComponentShowcase';
-import { Flex } from '../Flex';
 import { Radio } from './Radio';
 
 const meta = {
@@ -36,62 +34,19 @@ const states: Array<IComponentPresentation<IRadioProps>> = [
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const changeActions: Array<IComponentPresentation<IRadioProps>> = [
-  {
-    legend: 'Immediate',
-    props: {
-      onChange: (...args) => sbHandleEvent('onChange', args),
-    },
-  },
-  {
-    legend: 'Delayed',
-    props: {
-      onChange: (...args) => sbHandleEvent('onChange', args, 1000),
-    },
-  },
-];
-
 const RadioShowcase = componentShowcaseFactory(Radio);
 
-const ControlledRadioDemo: React.FC<IRadioProps> = (props) => {
-  const { onChange, ...other } = props;
-  const [value, setValue] =
-    useState<React.InputHTMLAttributes<HTMLInputElement>['value']>('');
-  const name = useId();
-
-  const handleChange: IRadioProps['onChange'] = onChange
-    ? (event, value) =>
-        Promise.resolve(onChange?.(event, value)).then(() => setValue(value))
-    : undefined;
-
-  return (
-    <Flex direction="row" gap="$8">
-      <Radio
-        {...other}
-        onChange={handleChange}
-        value="apple"
-        checked={value === 'apple'}
-        name={name}
-      />
-      <Radio
-        {...other}
-        onChange={handleChange}
-        value="banana"
-        checked={value === 'banana'}
-        name={name}
-      />
-    </Flex>
-  );
-};
-
-const ControlledRadioDemoShowcase =
-  componentShowcaseFactory(ControlledRadioDemo);
-
-export const Controlled: IStory = {
+export const Basic: IStory = {
   render: (props) => (
-    <ControlledRadioDemoShowcase props={props} rows={changeActions} />
+    <RadioShowcase
+      props={props}
+      cols={[{ props: { checked: false } }, { props: { checked: true } }]}
+    />
   ),
-  args: defaultArgs,
+  args: {
+    ...defaultArgs,
+    checked: true,
+  },
 };
 
 export const Scales: IStory = {

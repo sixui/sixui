@@ -72,13 +72,12 @@ export const RadioGroup = polymorphicComponentFactory<IRadioGroupFactory>(
     const handleChange = useCallback(
       (
         event: React.ChangeEvent<HTMLInputElement>,
-        nextValue: React.InputHTMLAttributes<HTMLInputElement>['value'],
+        nextValue: string | undefined,
       ) => {
         if (handlingChange) {
           return;
         }
 
-        setHandlingChange(true);
         setNextValue(nextValue);
 
         void executeLazyPromise(
@@ -88,22 +87,23 @@ export const RadioGroup = polymorphicComponentFactory<IRadioGroupFactory>(
           {
             setValue(nextValue);
             setNextValue(undefined);
-            setHandlingChange(false);
           }
         });
       },
       [handlingChange, onChange, setValue],
     );
 
-    const contextValue = useMemo(() => {
-      return {
-        name,
-        loading: handlingChange,
-        onChange: handleChange,
-        value,
-        nextValue,
-      } satisfies IRadioGroupContextValue;
-    }, [name, handleChange, value, nextValue, handlingChange]);
+    const contextValue = useMemo(
+      () =>
+        ({
+          name,
+          loading: handlingChange,
+          onChange: handleChange,
+          value,
+          nextValue,
+        }) satisfies IRadioGroupContextValue,
+      [name, handleChange, value, nextValue, handlingChange],
+    );
 
     return (
       <RadioGroupContextProvider value={contextValue}>

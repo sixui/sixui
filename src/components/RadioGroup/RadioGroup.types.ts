@@ -4,7 +4,7 @@ import type { IRadioGroupContextValue } from './RadioGroup.context';
 
 export interface IRadioGroupOwnProps extends IRadioGroupContextValue {
   children?: React.ReactNode;
-  defaultValue?: React.InputHTMLAttributes<HTMLInputElement>['value'];
+  defaultValue?: string;
   disabled?: boolean;
 }
 

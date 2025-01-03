@@ -31,6 +31,7 @@ export const CheckboxIndicator = componentFactory<ICheckboxIndicatorFactory>(
     const disabled = disabledProp || loading;
 
     const wasUnchecked = usePrevious(unchecked) ?? false;
+    const wasDisabled = usePrevious(disabled) ?? false;
 
     const { getStyles } = useComponentTheme<ICheckboxIndicatorThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -45,6 +46,7 @@ export const CheckboxIndicator = componentFactory<ICheckboxIndicatorFactory>(
         checked,
         indeterminate,
         'was-unchecked': wasUnchecked,
+        'was-disabled': wasDisabled,
         loading,
         disabled,
       },

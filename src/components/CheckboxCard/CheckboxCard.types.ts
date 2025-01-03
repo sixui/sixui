@@ -1,4 +1,5 @@
-import type { IAny, IMaybeAsync, IOmit } from '~/helpers/types';
+import type { IOmit } from '~/helpers/types';
+import type { IUseCheckboxProps } from '~/hooks/useCheckbox';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
@@ -8,30 +9,13 @@ import type {
   ICheckboxCardThemeFactory,
 } from './CheckboxCard.css';
 
-export interface ICheckboxCardRenderProps {
-  checked?: boolean;
-}
-
 export interface ICheckboxCardOwnProps
-  extends IOmit<ICardOwnProps, 'children'> {
-  checked?: boolean;
-  defaultChecked?: boolean;
-  value?: React.InputHTMLAttributes<HTMLInputElement>['value'];
-  onChange?: (
-    event: React.ChangeEvent<HTMLInputElement>,
-    value: React.InputHTMLAttributes<HTMLInputElement>['value'],
-  ) => IMaybeAsync<IAny>;
-  required?: boolean;
-  readOnly?: boolean;
-  loading?: boolean;
-  disabled?: boolean;
-  id?: string;
+  extends IOmit<IUseCheckboxProps, 'componentName'>,
+    IOmit<ICardOwnProps, 'children'> {
   rootRef?: React.Ref<HTMLButtonElement>;
   label?: React.ReactNode;
   supportingText?: React.ReactNode;
-  children?:
-    | React.ReactNode
-    | ((renderProps: ICheckboxCardRenderProps) => React.ReactNode);
+  children?: React.ReactNode;
 }
 
 export interface ICheckboxCardProps

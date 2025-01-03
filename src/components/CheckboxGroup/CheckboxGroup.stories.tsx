@@ -24,7 +24,7 @@ const defaultArgs = {} satisfies Partial<ICheckboxGroupProps>;
 
 const items = [
   { value: '1' },
-  { value: '2' },
+  { value: '2', defaultIndeterminate: true },
   { value: '3', disabled: true },
   { value: '4' },
 ];
@@ -49,10 +49,7 @@ const ControlledCheckboxGroupDemo: React.FC<ICheckboxGroupDemoProps> = (
 ) => {
   const { optionsRenderer, onChange, ...other } = props;
   const ref = useRef<HTMLDivElement>(null);
-  const [values, setValues] = useState<ICheckboxGroupProps['values']>([
-    '2',
-    '4',
-  ]);
+  const [values, setValues] = useState<Array<string>>(['2', '4']);
 
   return (
     <Flex direction="row" gap="$8" align="center">

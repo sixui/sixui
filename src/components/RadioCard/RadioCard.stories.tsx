@@ -53,13 +53,14 @@ const RadioCardShowcase = componentShowcaseFactory(RadioCard);
 
 const ControlledRadioCardDemo: React.FC<IRadioCardProps> = (props) => {
   const { onChange, ...other } = props;
-  const [value, setValue] =
-    useState<React.InputHTMLAttributes<HTMLInputElement>['value']>('');
+  const [value, setValue] = useState<string>('');
   const name = useId();
 
   const handleChange: IRadioCardProps['onChange'] = onChange
     ? (event, value) =>
-        Promise.resolve(onChange?.(event, value)).then(() => setValue(value))
+        Promise.resolve(onChange?.(event, value)).then(() =>
+          setValue(value ?? ''),
+        )
     : undefined;
 
   return (

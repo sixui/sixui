@@ -1,17 +1,14 @@
-import { useCallback, useState } from 'react';
-
 import type { IRadioThemeFactory } from './Radio.css';
 import type { IRadioFactory } from './Radio.types';
-import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
+import { useRadio } from '~/hooks/useRadio';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
 import { FocusRing } from '../FocusRing';
-import { useLabeledContext } from '../Labeled';
 import { RadioCard } from '../RadioCard';
-import { RadioGroup, useRadioGroupContext } from '../RadioGroup';
+import { RadioGroup } from '../RadioGroup';
 import { RadioIndicator } from '../RadioIndicator';
 import { StateLayer, useStateLayer } from '../StateLayer';
 import { RadioTheme } from './Radio.css';
@@ -26,9 +23,8 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
     style,
     variant,
     required: requiredProp,
-    disabled,
+    disabled: disabledProp,
     interactions,
-    interactionsMergeStrategy,
     checked: checkedProp,
     onChange,
     readOnly: readOnlyProp,
@@ -40,32 +36,31 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
     ...other
   } = useProps({ componentName: COMPONENT_NAME, props });
 
-  const labeledContext = useLabeledContext();
-  const radioGroupContext = useRadioGroupContext();
-  const [handlingChange, setHandlingChange] = useState(false);
+  const {
+    loading,
+    disabled,
+    readOnly,
+    required,
+    checked,
+    id,
+    handleChange,
+    name,
+  } = useRadio({
+    checked: checkedProp,
+    value,
+    onChange,
+    loading: loadingProp,
+    disabled: disabledProp,
+    readOnly: readOnlyProp,
+    required: requiredProp,
+    id: idProp,
+    name: nameProp,
+  });
 
-  const loading =
-    loadingProp ||
-    handlingChange ||
-    labeledContext?.loading ||
-    (radioGroupContext?.loading && radioGroupContext.nextValue === value);
-  const readOnly =
-    readOnlyProp ||
-    labeledContext?.readOnly ||
-    radioGroupContext?.loading ||
-    loading;
-  const disabledOrReadOnly = disabled || labeledContext?.disabled || readOnly;
-  const required = requiredProp ?? labeledContext?.required;
-  const id = idProp ?? labeledContext?.id;
-
-  const name = radioGroupContext?.name ?? nameProp;
-  const checked = radioGroupContext
-    ? radioGroupContext.value !== undefined && radioGroupContext.value === value
-    : checkedProp;
+  const disabledOrReadOnly = disabled || readOnly;
 
   const stateLayer = useStateLayer<HTMLInputElement>({
     baseState: interactions,
-    mergeStrategy: interactionsMergeStrategy,
     disabled: disabledOrReadOnly,
   });
   const inputHandleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
@@ -84,30 +79,6 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
       checked,
     },
   });
-
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> = useCallback(
-    (event) => {
-      if (handlingChange) {
-        return;
-      }
-
-      void executeLazyPromise(
-        () =>
-          Promise.all([
-            radioGroupContext?.onChange?.(
-              event,
-              event.target.checked ? event.target.value : undefined,
-            ),
-            onChange?.(
-              event,
-              event.target.checked ? event.target.value : undefined,
-            ),
-          ]),
-        setHandlingChange,
-      );
-    },
-    [handlingChange, onChange, radioGroupContext],
-  );
 
   return (
     <Box

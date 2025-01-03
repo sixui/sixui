@@ -1,20 +1,16 @@
-import { useCallback, useState } from 'react';
 import { CheckboxGroup } from 'react-aria-components';
 
 import type { ICheckboxThemeFactory } from './Checkbox.css';
 import type { ICheckboxFactory } from './Checkbox.types';
-import { executeLazyPromise } from '~/helpers/executeLazyPromise';
-import { useControlledValue } from '~/hooks/useControlledValue';
+import { useCheckbox } from '~/hooks/useCheckbox';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
 import { CheckboxCard } from '../CheckboxCard';
-import { useCheckboxGroupContext } from '../CheckboxGroup';
 import { CheckboxIndicator } from '../CheckboxIndicator';
 import { FocusRing } from '../FocusRing';
-import { useLabeledContext } from '../Labeled';
 import { StateLayer, useStateLayer } from '../StateLayer';
 import { checkboxTheme } from './Checkbox.css';
 
@@ -29,53 +25,52 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
       style,
       variant,
       interactions,
-      interactionsMergeStrategy,
       checked: checkedProp,
       defaultChecked,
       indeterminate: indeterminateProp,
       defaultIndeterminate,
+      value,
       onChange,
-      required: requiredProp,
+      loading: loadingProp,
       disabled: disabledProp,
       readOnly: readOnlyProp,
-      loading: loadingProp,
+      required: requiredProp,
       id: idProp,
-      value,
       rootRef,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const labeledContext = useLabeledContext();
-    const checkboxGroupContext = useCheckboxGroupContext();
-    const [handlingChange, setHandlingChange] = useState(false);
-    const [checkedValue, setCheckedValue] = useControlledValue({
-      controlled: checkedProp,
-      default:
-        !!defaultChecked || !!checkboxGroupContext?.values?.includes(value),
-      name: COMPONENT_NAME,
+    const {
+      loading,
+      disabled,
+      readOnly,
+      required,
+      checked,
+      indeterminate,
+      id,
+      handleChange,
+    } = useCheckbox({
+      componentName: COMPONENT_NAME,
+      checked: checkedProp,
+      defaultChecked,
+      indeterminate: indeterminateProp,
+      defaultIndeterminate,
+      value,
+      onChange,
+      loading: loadingProp,
+      disabled: disabledProp,
+      readOnly: readOnlyProp,
+      required: requiredProp,
+      id: idProp,
     });
-    const [indeterminate, setIndeterminate] = useControlledValue({
-      controlled: indeterminateProp,
-      default: !!defaultIndeterminate,
-      name: COMPONENT_NAME,
-    });
-
-    const loading = loadingProp || handlingChange || labeledContext?.loading;
-    const disabled = disabledProp || labeledContext?.disabled;
-    const readOnly = readOnlyProp || labeledContext?.readOnly || loading;
-    const required = requiredProp ?? labeledContext?.required;
-    const id = idProp ?? labeledContext?.id;
 
     const disabledOrReadOnly = disabled || readOnly;
 
     const stateLayer = useStateLayer<HTMLInputElement>({
       baseState: interactions,
-      mergeStrategy: interactionsMergeStrategy,
       disabled: disabledOrReadOnly,
     });
     const inputHandleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
-
-    const checked = checkedValue && !indeterminate;
 
     const { getStyles } = useComponentTheme<ICheckboxThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -89,49 +84,6 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
         disabled: disabledOrReadOnly,
       },
     });
-
-    const handleChange: React.ChangeEventHandler<HTMLInputElement> =
-      useCallback(
-        (event) => {
-          if (handlingChange) {
-            return;
-          }
-
-          void executeLazyPromise(
-            () =>
-              Promise.all([
-                checkboxGroupContext?.onChange?.(
-                  event,
-                  event.target.checked
-                    ? [
-                        ...(checkboxGroupContext.values ?? []),
-                        event.target.value,
-                      ]
-                    : [
-                        ...(checkboxGroupContext.values?.filter(
-                          (value) => value !== event.target.value,
-                        ) ?? []),
-                      ],
-                ),
-                onChange?.(
-                  event,
-                  event.target.checked ? event.target.value : undefined,
-                ) as void,
-              ]),
-            setHandlingChange,
-          ).finally(() => {
-            setCheckedValue(!event.target.checked);
-            setIndeterminate(false);
-          });
-        },
-        [
-          handlingChange,
-          onChange,
-          setCheckedValue,
-          setIndeterminate,
-          checkboxGroupContext,
-        ],
-      );
 
     return (
       <Box
@@ -160,7 +112,7 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
 
         <input
           type="checkbox"
-          checked={checkedValue}
+          checked={checked}
           onChange={handleChange}
           id={id}
           required={required}

@@ -32,6 +32,7 @@ type IModifier =
   | 'checked'
   | 'indeterminate'
   | 'was-unchecked'
+  | 'was-disabled'
   | 'loading';
 
 const DENSITY = px(getDensity({ min: -1, max: 0 }));
@@ -150,8 +151,8 @@ const classNames = createStyles({
     selectors: {
       [getModifierSelector<IModifier>('disabled', root)]: {
         // Don't animate to/from disabled states because the outline is hidden
-        // when selected. Without this, there'd be a FOUC if the checkboxIndicator state
-        // is programmatically changed while disabled.
+        // when selected. Without this, there'd be a FOUC if the
+        // checkboxIndicator state is programmatically changed while disabled.
         animationDuration: '0s',
         transitionDuration: '0s',
       },
@@ -204,6 +205,13 @@ const classNames = createStyles({
         ),
         opacity: tokens.container$on.opacity.disabled,
       },
+      [getModifierSelector<IModifier>('was-disabled', root)]: {
+        // Don't animate to/from disabled states because the outline is hidden
+        // when selected. Without this, there'd be a FOUC if the checkbox state
+        // is programmatically changed while disabled.
+        animationDuration: '0s',
+        transitionDuration: '0s',
+      },
     },
   }),
   icon: ({ root }) => ({
@@ -243,13 +251,20 @@ const classNames = createStyles({
       },
       [getModifierSelector<IModifier>('disabled', root)]: {
         // Don't animate to/from disabled states because the outline is hidden
-        // when selected. Without this, there'd be a FOUC if the checkboxIndicator state
-        // is programmatically changed while disabled.
+        // when selected. Without this, there'd be a FOUC if the
+        // checkboxIndicator state is programmatically changed while disabled.
         animationDuration: '0s',
         transitionDuration: '0s',
 
         fill: fallbackVar(tokens.icon.color.disabled, tokens.icon.color.normal),
         opacity: tokens.icon.opacity.disabled,
+      },
+      [getModifierSelector<IModifier>('was-disabled', root)]: {
+        // Don't animate to/from disabled states because the outline is hidden
+        // when selected. Without this, there'd be a FOUC if the checkbox state
+        // is programmatically changed while disabled.
+        animationDuration: '0s',
+        transitionDuration: '0s',
       },
     },
   }),
@@ -278,16 +293,23 @@ const classNames = createStyles({
       },
       [getModifierSelector<IModifier>('disabled', root)]: {
         // Don't animate to/from disabled states because the outline is hidden
-        // when selected. Without this, there'd be a FOUC if the checkboxIndicator state
-        // is programmatically changed while disabled.
+        // when selected. Without this, there'd be a FOUC if the
+        // checkboxIndicator state is programmatically changed while disabled.
         animationDuration: '0s',
         transitionDuration: '0s',
       },
       [getModifierSelector<IModifier>('was-unchecked', root)]: {
-        // When selecting an unselected checkboxIndicator, don't transition between the
-        // checked and indeterminate states. The checkmark icon or indeterminate
-        // icon should fade in from its final position.
+        // When selecting an unselected checkboxIndicator, don't transition
+        // between the checked and indeterminate states. The checkmark icon or
+        // indeterminate icon should fade in from its final position.
         transitionProperty: 'none',
+      },
+      [getModifierSelector<IModifier>('was-disabled', root)]: {
+        // Don't animate to/from disabled states because the outline is hidden
+        // when selected. Without this, there'd be a FOUC if the checkbox state
+        // is programmatically  changed while disabled.
+        animationDuration: '0s',
+        transitionDuration: '0s',
       },
     },
   }),
@@ -300,9 +322,9 @@ const classNames = createStyles({
 
     selectors: {
       [getModifierSelector<IModifier>('checked', root)]: {
-        // The right triangle that forms the short end has an X, Y length of 4dp,
-        // 4dp. The hypoteneuse is √(4*4 + 4*4), which is the length of the short
-        // end when checked.
+        // The right triangle that forms the short end has an X, Y length of
+        // 4dp, 4dp. The hypoteneuse is √(4*4 + 4*4), which is the length of the
+        // short end when checked.
         height: Math.sqrt(32),
       },
     },
@@ -316,8 +338,8 @@ const classNames = createStyles({
     selectors: {
       [getModifierSelector<IModifier>('checked', root)]: {
         // The right triangle that forms the long end has an X, Y length of 8dp,
-        // 8dp. The hypoteneuse is √(8*8 + 8*8), which is the length of the long end
-        // when checked.
+        // 8dp. The hypoteneuse is √(8*8 + 8*8), which is the length of the long
+        // end when checked.
         width: Math.sqrt(128),
       },
       [getModifierSelector<IModifier>(['was-unchecked', 'on'], root)]: {

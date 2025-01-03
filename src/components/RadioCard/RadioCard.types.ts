@@ -1,35 +1,19 @@
-import type { IAny, IMaybeAsync } from '~/helpers/types';
-import type { IInteractionsMergeStrategy } from '~/hooks/useInteractions';
+import type { IOmit } from '~/helpers/types';
+import type { IUseRadioProps } from '~/hooks/useRadio';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
+import type { ICardOwnProps } from '../Card';
 import type { RadioIndicator } from '../RadioIndicator';
 import type { IRadioCardThemeFactory, RadioCardTheme } from './RadioCard.css';
 
-export interface IRadioCardRenderProps {
-  checked?: boolean;
-}
-
-export interface IRadioCardOwnProps {
-  checked?: boolean;
-  onChange?: (
-    event: React.ChangeEvent<HTMLInputElement>,
-    value: React.InputHTMLAttributes<HTMLInputElement>['value'],
-  ) => IMaybeAsync<IAny>;
-  required?: boolean;
-  readOnly?: boolean;
-  loading?: boolean;
-  disabled?: boolean;
-  interactionsMergeStrategy?: IInteractionsMergeStrategy;
-  name?: string;
-  value?: React.InputHTMLAttributes<HTMLInputElement>['value'];
-  id?: string;
+export interface IRadioCardOwnProps
+  extends IUseRadioProps,
+    IOmit<ICardOwnProps, 'children'> {
   rootRef?: React.Ref<HTMLButtonElement>;
   label?: React.ReactNode;
   supportingText?: React.ReactNode;
-  children?:
-    | React.ReactNode
-    | ((renderProps: IRadioCardRenderProps) => React.ReactNode);
+  children?: React.ReactNode;
 }
 
 export interface IRadioCardProps

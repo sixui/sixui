@@ -5,10 +5,10 @@ export interface IRadioGroupContextValue {
   name?: string;
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement>,
-    value: React.InputHTMLAttributes<HTMLInputElement>['value'],
+    value: string | undefined,
   ) => IMaybeAsync<IAny>;
-  value?: React.InputHTMLAttributes<HTMLInputElement>['value'];
-  nextValue?: React.InputHTMLAttributes<HTMLInputElement>['value'];
+  value?: string;
+  nextValue?: string;
   loading?: boolean;
 }
 
