@@ -41,7 +41,7 @@ const classNames = createStyles({
             },
             width: {
               normal: px(themeTokens.outline.width.sm),
-              disabled: px(themeTokens.outline.width.xs),
+              disabled: px(themeTokens.outline.width.sm),
             },
           },
         }),
