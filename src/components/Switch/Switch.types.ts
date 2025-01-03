@@ -1,28 +1,17 @@
-import type { IAny, IMaybeAsync } from '~/helpers/types';
-import type { IInteractionsMergeStrategy } from '~/hooks/useInteractions';
+import type { IOmit } from '~/helpers/types';
+import type { IUseSwitchProps } from '~/hooks/useSwitch';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { IPaperBaseOwnProps } from '../PaperBase';
+import type { SwitchIndicator } from '../SwitchIndicator';
 import type { basicTemplateTheme, ISwitchThemeFactory } from './Switch.css';
-import { SwitchIndicator } from '../SwitchIndicator';
 
-export interface ISwitchOwnProps extends IPaperBaseOwnProps {
-  checked?: boolean;
-  defaultChecked?: boolean;
-  value?: string;
-  onChange?: (
-    event: React.ChangeEvent<HTMLInputElement>,
-    value: string | undefined,
-  ) => IMaybeAsync<IAny>;
-  required?: boolean;
-  readOnly?: boolean;
-  loading?: boolean;
-  interactionsMergeStrategy?: IInteractionsMergeStrategy;
+export interface ISwitchOwnProps
+  extends IOmit<IUseSwitchProps, 'componentName'>,
+    IPaperBaseOwnProps {
   checkedIcon?: React.ReactNode | true;
   uncheckedIcon?: React.ReactNode | true;
-  alwaysOn?: boolean;
-  id?: string;
   rootRef?: React.Ref<HTMLDivElement>;
 }
 

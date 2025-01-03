@@ -7,7 +7,6 @@ import {
   faSun,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { delay } from '@olivierpascal/helpers';
 
 import type { IOmit } from '~/helpers/types';
 import type { IComponentPresentation } from '../ComponentShowcase';
@@ -80,22 +79,20 @@ export const Uncontrolled: IStory = {
 };
 
 const ControlledSwitch: React.FC<IOmit<ISwitchProps, 'checked'>> = (props) => {
+  const { onChange, ...other } = props;
   const [checked, setChecked] = useState(props.defaultChecked ?? false);
 
-  return (
-    <Switch
-      {...props}
-      checked={checked}
-      onChange={(event, value) => {
+  const handleChange: ISwitchProps['onChange'] = onChange
+    ? (event, value) => {
         const checked = value !== undefined;
 
-        return delay(300).then(() => {
+        return Promise.resolve(onChange?.(event, value)).then(() => {
           setChecked(checked);
-          props.onChange?.(event, value);
         });
-      }}
-    />
-  );
+      }
+    : undefined;
+
+  return <Switch {...other} checked={checked} onChange={handleChange} />;
 };
 
 const ControlledSwitchShowcase = componentShowcaseFactory(ControlledSwitch);

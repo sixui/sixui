@@ -11,7 +11,7 @@ export const executeLazyPromise = (
 
   const timeout = setTimeout(() => onLoadingChange(true), minDuration);
 
-  return Promise.resolve(promise()).then(() => {
+  return Promise.resolve(promise()).finally(() => {
     clearTimeout(timeout);
     onLoadingChange(false);
   });

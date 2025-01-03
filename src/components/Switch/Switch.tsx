@@ -1,16 +1,12 @@
-import { useCallback, useState } from 'react';
-
 import type { ISwitchThemeFactory } from './Switch.css';
 import type { ISwitchFactory } from './Switch.types';
-import { executeLazyPromise } from '~/helpers/executeLazyPromise';
-import { useControlledValue } from '~/hooks/useControlledValue';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
+import { useSwitch } from '~/hooks/useSwitch';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
 import { FocusRing } from '../FocusRing';
-import { useLabeledContext } from '../Labeled';
 import { StateLayer, useStateLayer } from '../StateLayer';
 import { SwitchIndicator } from '../SwitchIndicator';
 import { basicTemplateTheme } from './Switch.css';
@@ -26,12 +22,11 @@ export const Switch = componentFactory<ISwitchFactory>(
       style,
       variant,
       interactions,
-      interactionsMergeStrategy,
       checked: checkedProp,
       defaultChecked,
       onChange,
       required: requiredProp,
-      disabled,
+      disabled: disabledProp,
       readOnly: readOnlyProp,
       loading: loadingProp,
       checkedIcon,
@@ -43,26 +38,35 @@ export const Switch = componentFactory<ISwitchFactory>(
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const labeledContext = useLabeledContext();
-    const [handlingChange, setHandlingChange] = useState(false);
-    const [checked, setChecked] = useControlledValue({
-      controlled: checkedProp,
-      default: !!defaultChecked,
-      name: COMPONENT_NAME,
+    const {
+      loading,
+      disabled,
+      readOnly,
+      required,
+      checked,
+      isOn,
+      id,
+      handleChange,
+    } = useSwitch({
+      componentName: COMPONENT_NAME,
+      checked: checkedProp,
+      defaultChecked,
+      value,
+      onChange,
+      loading: loadingProp,
+      disabled: disabledProp,
+      readOnly: readOnlyProp,
+      alwaysOn,
+      required: requiredProp,
+      id: idProp,
     });
 
-    const loading = loadingProp || handlingChange || labeledContext?.loading;
-    const readOnly = readOnlyProp || loading || labeledContext?.readOnly;
-    const disabledOrReadOnly = disabled || labeledContext?.disabled || readOnly;
-    const required = requiredProp ?? labeledContext?.required;
-    const id = idProp ?? labeledContext?.id;
+    const disabledOrReadOnly = disabled || readOnly;
     const hasIcon =
       loading || (checked && !!checkedIcon) || (!checked && !!uncheckedIcon);
-    const isOn = checked || alwaysOn;
 
     const stateLayer = useStateLayer<HTMLInputElement>({
       baseState: interactions,
-      mergeStrategy: interactionsMergeStrategy,
       disabled: disabledOrReadOnly,
     });
     const inputHandleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
@@ -83,25 +87,6 @@ export const Switch = componentFactory<ISwitchFactory>(
         on: isOn,
       },
     });
-
-    const handleChange: React.ChangeEventHandler<HTMLInputElement> =
-      useCallback(
-        (event) => {
-          if (handlingChange) {
-            return;
-          }
-
-          void executeLazyPromise(
-            () =>
-              onChange?.(
-                event,
-                event.target.checked ? event.target.value : undefined,
-              ) as void,
-            setHandlingChange,
-          ).finally(() => setChecked(!event.target.checked));
-        },
-        [handlingChange, onChange, setChecked],
-      );
 
     return (
       <Box
