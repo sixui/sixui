@@ -45,7 +45,7 @@ const [tokensClassName, tokens] = createTheme({
       hovered: 'inherit',
       pressed: 'inherit',
       dragged: 'inherit',
-      disabled: 'unset',
+      disabled: px(0),
     },
     color: {
       normal: themeTokens.colorScheme.outlineVariant,
@@ -172,9 +172,6 @@ const classNames = createStyles({
         }),
       },
       [getModifierSelector<IModifier>('disabled')]: {
-        filter: 'grayscale(100%)',
-        opacity: themeTokens.state.opacity.disabled,
-
         vars: createTokensVars(PaperBase.theme.tokens, {
           container: {
             color: tokens.container.color.disabled,
@@ -268,6 +265,7 @@ export const cardThemeVariants = {
           },
           width: {
             normal: px(themeTokens.outline.width.xs),
+            disabled: px(themeTokens.outline.width.xs),
           },
         },
       }),

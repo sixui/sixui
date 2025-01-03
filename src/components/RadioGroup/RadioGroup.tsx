@@ -47,8 +47,18 @@ export const RadioGroup = polymorphicComponentFactory<IRadioGroupFactory>(
         ({
           focus: () => {
             const input =
-              hostRef.current?.querySelector('input:not(:disabled):checked') ??
-              hostRef.current?.querySelector('input:not(:disabled)') ??
+              hostRef.current?.querySelector(
+                `[role="radio"][data-checked]:not([data-disabled])`,
+              ) ??
+              hostRef.current?.querySelector(
+                `input[type="radio"]:not(:disabled):checked`,
+              ) ??
+              hostRef.current?.querySelector(
+                `[role="radio"]:not([data-disabled])`,
+              ) ??
+              hostRef.current?.querySelector(
+                `input[type="radio"]:not(:disabled)`,
+              ) ??
               undefined;
 
             if (input) {

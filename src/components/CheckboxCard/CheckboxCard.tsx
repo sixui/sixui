@@ -95,10 +95,11 @@ export const CheckboxCard = componentFactory<ICheckboxCardFactory>(
     return (
       <Card
         {...getStyles('root')}
-        as="div"
+        as="button"
         ref={rootRef}
         onClick={() => inputRef.current?.click()}
         variant={variant}
+        role="checkbox"
         {...other}
       >
         {children ? (

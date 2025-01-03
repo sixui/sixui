@@ -26,7 +26,7 @@ export interface ICheckboxCardOwnProps
   loading?: boolean;
   disabled?: boolean;
   id?: string;
-  rootRef?: React.Ref<HTMLDivElement>;
+  rootRef?: React.Ref<HTMLButtonElement>;
   label?: React.ReactNode;
   supportingText?: React.ReactNode;
   children?:

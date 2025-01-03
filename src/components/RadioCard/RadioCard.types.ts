@@ -3,12 +3,14 @@ import type { IInteractionsMergeStrategy } from '~/hooks/useInteractions';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
-import type { RadioCard } from '../RadioCard';
-import type { RadioGroup } from '../RadioGroup';
 import type { RadioIndicator } from '../RadioIndicator';
-import type { IRadioThemeFactory, RadioTheme } from './Radio.css';
+import type { IRadioCardThemeFactory, RadioCardTheme } from './RadioCard.css';
 
-export interface IRadioOwnProps {
+export interface IRadioCardRenderProps {
+  checked?: boolean;
+}
+
+export interface IRadioCardOwnProps {
   checked?: boolean;
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -22,21 +24,24 @@ export interface IRadioOwnProps {
   name?: string;
   value?: React.InputHTMLAttributes<HTMLInputElement>['value'];
   id?: string;
-  rootRef?: React.Ref<HTMLDivElement>;
+  rootRef?: React.Ref<HTMLButtonElement>;
+  label?: React.ReactNode;
+  supportingText?: React.ReactNode;
+  children?:
+    | React.ReactNode
+    | ((renderProps: IRadioCardRenderProps) => React.ReactNode);
 }
 
-export interface IRadioProps
+export interface IRadioCardProps
   extends IBoxProps,
-    IComponentThemeProps<IRadioThemeFactory>,
-    IRadioOwnProps {}
+    IComponentThemeProps<IRadioCardThemeFactory>,
+    IRadioCardOwnProps {}
 
-export type IRadioFactory = IComponentFactory<{
-  props: IRadioProps;
+export type IRadioCardFactory = IComponentFactory<{
+  props: IRadioCardProps;
   ref: HTMLInputElement;
-  theme: typeof RadioTheme;
+  theme: typeof RadioCardTheme;
   staticComponents: {
-    Group: typeof RadioGroup;
     Indicator: typeof RadioIndicator;
-    Card: typeof RadioCard;
   };
 }>;

@@ -10,7 +10,8 @@ import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
 import { FocusRing } from '../FocusRing';
 import { useLabeledContext } from '../Labeled';
-import { useRadioGroupContext } from '../RadioGroup';
+import { RadioCard } from '../RadioCard';
+import { RadioGroup, useRadioGroupContext } from '../RadioGroup';
 import { RadioIndicator } from '../RadioIndicator';
 import { StateLayer, useStateLayer } from '../StateLayer';
 import { RadioTheme } from './Radio.css';
@@ -152,4 +153,6 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
 
 Radio.theme = RadioTheme;
 Radio.displayName = `@sixui/${COMPONENT_NAME}`;
+Radio.Group = RadioGroup;
 Radio.Indicator = RadioIndicator;
+Radio.Card = RadioCard;

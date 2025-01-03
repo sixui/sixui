@@ -12,7 +12,7 @@ import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { Card } from '../Card';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 
-type IModifier = IInteraction | 'disabled' | 'checked';
+type IModifier = IInteraction | 'disabled' | 'loading' | 'checked';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
@@ -59,16 +59,15 @@ const classNames = createStyles({
   }),
 });
 
-export type ICheckboxCardThemeFactory = IComponentThemeFactory<{
+export type IRadioCardThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   modifier: IModifier;
   tokens: typeof tokens;
   variant: ICardVariant;
 }>;
 
-export const checkboxCardTheme =
-  componentThemeFactory<ICheckboxCardThemeFactory>({
-    classNames,
-    tokensClassName,
-    tokens,
-  });
+export const RadioCardTheme = componentThemeFactory<IRadioCardThemeFactory>({
+  classNames,
+  tokensClassName,
+  tokens,
+});

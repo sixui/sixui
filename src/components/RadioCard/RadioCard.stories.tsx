@@ -1,17 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
+import { useId, useState } from 'react';
 
-import type { IOmit } from '~/helpers/types';
 import type { IComponentPresentation } from '../ComponentShowcase';
-import type { ICheckboxCardProps } from './CheckboxCard.types';
+import type { IRadioCardProps } from './RadioCard.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { Card } from '../Card';
 import { componentShowcaseFactory } from '../ComponentShowcase';
-import { CheckboxCard } from './CheckboxCard';
+import { Flex } from '../Flex';
+import { RadioCard } from './RadioCard';
 
 const meta = {
-  component: CheckboxCard,
-} satisfies Meta<typeof CheckboxCard>;
+  component: RadioCard,
+} satisfies Meta<typeof RadioCard>;
 
 type IStory = StoryObj<typeof meta>;
 
@@ -23,9 +23,9 @@ const defaultArgs = {
   label: 'Label',
   supportingText: 'This text explains more about the option shown in the card.',
   w: '$56',
-} satisfies Partial<ICheckboxCardProps>;
+} satisfies Partial<IRadioCardProps>;
 
-const states: Array<IComponentPresentation<ICheckboxCardProps>> = [
+const states: Array<IComponentPresentation<IRadioCardProps>> = [
   { legend: 'Normal' },
   { legend: 'Focused', props: { interactions: { focused: true } } },
   { legend: 'Hovered', props: { interactions: { hovered: true } } },
@@ -34,7 +34,7 @@ const states: Array<IComponentPresentation<ICheckboxCardProps>> = [
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const changeActions: Array<IComponentPresentation<ICheckboxCardProps>> = [
+const changeActions: Array<IComponentPresentation<IRadioCardProps>> = [
   {
     legend: 'Immediate',
     props: {
@@ -49,56 +49,53 @@ const changeActions: Array<IComponentPresentation<ICheckboxCardProps>> = [
   },
 ];
 
-const CheckboxCardShowcase = componentShowcaseFactory(CheckboxCard);
+const RadioCardShowcase = componentShowcaseFactory(RadioCard);
 
-export const Uncontrolled: IStory = {
-  render: (props) => (
-    <CheckboxCardShowcase
-      props={props}
-      cols={[{}, { props: { defaultChecked: true } }]}
-      rows={changeActions}
-    />
-  ),
-  args: defaultArgs,
-};
+const ControlledRadioCardDemo: React.FC<IRadioCardProps> = (props) => {
+  const { onChange, ...other } = props;
+  const [value, setValue] =
+    useState<React.InputHTMLAttributes<HTMLInputElement>['value']>('');
+  const name = useId();
 
-const ControlledCheckboxCard: React.FC<IOmit<ICheckboxCardProps, 'checked'>> = (
-  props,
-) => {
-  const { onChange, defaultChecked, ...other } = props;
-  const [checked, setChecked] = useState(defaultChecked ?? false);
-
-  const handleChange: ICheckboxCardProps['onChange'] = onChange
-    ? (event, value) => {
-        const checked = value !== undefined;
-
-        return Promise.resolve(onChange?.(event, value)).then(() =>
-          setChecked(checked),
-        );
-      }
+  const handleChange: IRadioCardProps['onChange'] = onChange
+    ? (event, value) =>
+        Promise.resolve(onChange?.(event, value)).then(() => setValue(value))
     : undefined;
 
-  return <CheckboxCard {...other} checked={checked} onChange={handleChange} />;
+  return (
+    <Flex direction="row" gap="$8">
+      <RadioCard
+        {...other}
+        onChange={handleChange}
+        value="apple"
+        checked={value === 'apple'}
+        name={name}
+      />
+      <RadioCard
+        {...other}
+        onChange={handleChange}
+        value="banana"
+        checked={value === 'banana'}
+        name={name}
+      />
+    </Flex>
+  );
 };
 
-const ControlledCheckboxCardShowcase = componentShowcaseFactory(
-  ControlledCheckboxCard,
+const ControlledRadioCardDemoShowcase = componentShowcaseFactory(
+  ControlledRadioCardDemo,
 );
 
 export const Controlled: IStory = {
   render: (props) => (
-    <ControlledCheckboxCardShowcase
-      props={props}
-      cols={[{}, { props: { defaultChecked: true } }]}
-      rows={changeActions}
-    />
+    <ControlledRadioCardDemoShowcase props={props} rows={changeActions} />
   ),
   args: defaultArgs,
 };
 
 export const Scales: IStory = {
   render: (props) => (
-    <CheckboxCardShowcase
+    <RadioCardShowcase
       props={props}
       cols={[
         { legend: 'Extra small', props: { scale: 'xs' } },
@@ -109,12 +106,15 @@ export const Scales: IStory = {
       ]}
     />
   ),
-  args: defaultArgs,
+  args: {
+    ...defaultArgs,
+    checked: true,
+  },
 };
 
 export const Densities: IStory = {
   render: (props) => (
-    <CheckboxCardShowcase
+    <RadioCardShowcase
       props={props}
       cols={[
         { legend: '-3', props: { density: -3 } },
@@ -124,17 +124,20 @@ export const Densities: IStory = {
       ]}
     />
   ),
-  args: defaultArgs,
+  args: {
+    ...defaultArgs,
+    checked: true,
+  },
 };
 
 export const Configurations: IStory = {
   render: (props) => (
-    <CheckboxCardShowcase
+    <RadioCardShowcase
       props={props}
       cols={states}
       rows={[
-        { legend: 'Unchecked' },
-        { legend: 'Checked', props: { defaultChecked: true } },
+        { legend: 'Unchecked', props: { checked: false } },
+        { legend: 'Checked', props: { checked: true } },
       ]}
     />
   ),
@@ -143,12 +146,12 @@ export const Configurations: IStory = {
 
 export const Custom: IStory = {
   render: (props) => (
-    <CheckboxCardShowcase
+    <RadioCardShowcase
       props={props}
       cols={states}
       rows={[
         { legend: 'Unchecked' },
-        { legend: 'Checked', props: { defaultChecked: true } },
+        { legend: 'Checked', props: { checked: true } },
       ]}
     />
   ),

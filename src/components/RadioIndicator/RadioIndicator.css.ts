@@ -23,8 +23,11 @@ const innerCircleGrowKeyframes = keyframes({
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
-  size: px(18),
-  shape: px(themeTokens.shape.corner.circle),
+  container: {
+    shape: px(themeTokens.shape.corner.circle),
+    size: px(18),
+    color: 'transparent',
+  },
   icon: {
     color: {
       normal: themeTokens.colorScheme.onSurfaceVariant,
@@ -53,8 +56,8 @@ const [tokensClassName, tokens] = createTheme({
 
 const classNames = createStyles({
   root: {
-    width: calc.add(tokens.size, DENSITY),
-    height: calc.add(tokens.size, DENSITY),
+    width: calc.add(tokens.container.size, DENSITY),
+    height: calc.add(tokens.container.size, DENSITY),
     display: 'flex',
     placeContent: 'center',
     placeItems: 'center',
@@ -62,7 +65,8 @@ const classNames = createStyles({
 
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {
-        shape: tokens.shape,
+        color: tokens.container.color,
+        shape: tokens.container.shape,
       },
       outline: {
         color: themeTokens.colorScheme.onSurfaceVariant,
@@ -91,8 +95,8 @@ const classNames = createStyles({
     },
   },
   progressIndicator: {
-    width: tokens.size,
-    height: tokens.size,
+    width: tokens.container.size,
+    height: tokens.container.size,
   },
   icon: ({ root }) => ({
     inset: 0,

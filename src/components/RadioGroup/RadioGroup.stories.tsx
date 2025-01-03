@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useRef, useState } from 'react';
 
+import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IRadioGroupProps } from './RadioGroup.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { Button } from '../Button';
@@ -9,37 +10,60 @@ import { Flex } from '../Flex';
 import { Radio } from '../Radio';
 import { RadioGroup } from './RadioGroup';
 
+interface IRadioGroupDemoProps extends IRadioGroupProps {
+  optionsRenderer: () => React.ReactNode;
+}
+
 const meta = {
   component: RadioGroup,
-} satisfies Meta<typeof RadioGroup>;
+} satisfies Meta<IRadioGroupDemoProps>;
 
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {} satisfies Partial<IRadioGroupProps>;
 
-const ControlledRadioGroupDemo: React.FC<IRadioGroupProps> = (props) => {
+const items = [
+  { value: '1' },
+  { value: '2' },
+  { value: '3', disabled: true },
+  { value: '4' },
+];
+
+const changeActions: Array<IComponentPresentation<IRadioGroupProps>> = [
+  {
+    legend: 'Immediate',
+    props: {
+      onChange: (...args) => sbHandleEvent('onChange', args),
+    },
+  },
+  {
+    legend: 'Delayed',
+    props: {
+      onChange: (...args) => sbHandleEvent('onChange', args, 1000),
+    },
+  },
+];
+
+const ControlledRadioGroupDemo: React.FC<IRadioGroupDemoProps> = (props) => {
+  const { optionsRenderer, onChange, ...other } = props;
   const ref = useRef<HTMLDivElement>(null);
   const [value, setValue] = useState<IRadioGroupProps['value']>('2');
 
   return (
     <Flex direction="row" gap="$8" align="center">
       <RadioGroup
-        {...props}
+        {...other}
         as={Flex}
         direction="row"
         gap="$8"
         value={value}
-        onChange={(_event, value) =>
-          sbHandleEvent('onChange', [_event, value], 1000).then(() =>
-            setValue(value),
-          )
-        }
+        onChange={async (event, value) => {
+          await onChange?.(event, value);
+          setValue(value);
+        }}
         ref={ref}
       >
-        <Radio value="1" />
-        <Radio value="2" />
-        <Radio value="3" disabled />
-        <Radio value="4" />
+        {optionsRenderer()}
       </RadioGroup>
 
       <Button onClick={() => ref.current?.focus()}>Click to focus</Button>
@@ -51,26 +75,21 @@ const ControlledRadioGroupDemoShowcase = componentShowcaseFactory(
   ControlledRadioGroupDemo,
 );
 
-const UncontrolledRadioGroupDemo: React.FC<IRadioGroupProps> = (props) => {
+const UncontrolledRadioGroupDemo: React.FC<IRadioGroupDemoProps> = (props) => {
+  const { optionsRenderer, ...other } = props;
   const ref = useRef<HTMLDivElement>(null);
 
   return (
     <Flex direction="row" gap="$8" align="center">
       <RadioGroup
-        {...props}
+        {...other}
         as={Flex}
         direction="row"
         gap="$8"
         defaultValue="2"
-        onChange={(_event, value) =>
-          sbHandleEvent('onChange', [_event, value], 1000)
-        }
         ref={ref}
       >
-        <Radio value="1" />
-        <Radio value="2" />
-        <Radio value="3" disabled />
-        <Radio value="4" />
+        {optionsRenderer()}
       </RadioGroup>
 
       <Button onClick={() => ref.current?.focus()}>Click to focus</Button>
@@ -83,12 +102,74 @@ const UncontrolledRadioGroupDemoShowcase = componentShowcaseFactory(
 );
 
 export const Controlled: IStory = {
-  render: (props) => <ControlledRadioGroupDemoShowcase props={props} />,
+  render: (props) => (
+    <ControlledRadioGroupDemoShowcase
+      props={{
+        ...props,
+        optionsRenderer: () =>
+          items.map((item, itemIndex) => <Radio key={itemIndex} {...item} />),
+      }}
+      rows={changeActions}
+    />
+  ),
+  args: defaultArgs,
+};
+
+export const ControlledCard: IStory = {
+  render: (props) => (
+    <ControlledRadioGroupDemoShowcase
+      props={{
+        ...props,
+        optionsRenderer: () =>
+          items.map((item, itemIndex) => (
+            <Radio.Card
+              w="$56"
+              key={itemIndex}
+              label={`Item ${itemIndex + 1}`}
+              supportingText="This text explains more about the option shown in the card."
+              {...item}
+            />
+          )),
+      }}
+      rows={changeActions}
+    />
+  ),
   args: defaultArgs,
 };
 
 export const Uncontrolled: IStory = {
-  render: (props) => <UncontrolledRadioGroupDemoShowcase props={props} />,
+  render: (props) => (
+    <UncontrolledRadioGroupDemoShowcase
+      props={{
+        ...props,
+        optionsRenderer: () =>
+          items.map((item, itemIndex) => <Radio key={itemIndex} {...item} />),
+      }}
+      rows={changeActions}
+    />
+  ),
+  args: defaultArgs,
+};
+
+export const UncontrolledCard: IStory = {
+  render: (props) => (
+    <UncontrolledRadioGroupDemoShowcase
+      props={{
+        ...props,
+        optionsRenderer: () =>
+          items.map((item, itemIndex) => (
+            <Radio.Card
+              w="$56"
+              key={itemIndex}
+              label={`Item ${itemIndex + 1}`}
+              supportingText="This text explains more about the option shown in the card."
+              {...item}
+            />
+          )),
+      }}
+      rows={changeActions}
+    />
+  ),
   args: defaultArgs,
 };
 

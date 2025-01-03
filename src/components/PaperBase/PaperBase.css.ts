@@ -17,7 +17,7 @@ export const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   container: {
     color: 'inherit',
-    opacity: 'unset',
+    opacity: '1',
     elevation: elevationLevelPreset[0],
     shape: themeTokens.shape.corner.none,
     shapes: {
@@ -30,7 +30,7 @@ export const [tokensClassName, tokens] = createTheme({
   outline: {
     style: 'solid',
     color: themeTokens.colorScheme.outline,
-    opacity: 'unset',
+    opacity: '1',
     width: px(0),
   },
   text: {
@@ -95,10 +95,6 @@ const classNames = createStyles({
     borderColor: tokens.outline.color,
     borderRadius: 'inherit',
     opacity: tokens.outline.opacity,
-
-    transitionProperty: 'border-color, border-width',
-    transitionDuration: themeTokens.motion.duration.short.$1,
-    transitionTimingFunction: themeTokens.motion.easing.linear,
   },
 });
 
