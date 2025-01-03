@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react';
+import { CheckboxGroup } from 'react-aria-components';
 
 import type { ICheckboxThemeFactory } from './Checkbox.css';
 import type { ICheckboxFactory } from './Checkbox.types';
@@ -10,6 +11,7 @@ import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
 import { CheckboxCard } from '../CheckboxCard';
+import { useCheckboxGroupContext } from '../CheckboxGroup';
 import { CheckboxIndicator } from '../CheckboxIndicator';
 import { FocusRing } from '../FocusRing';
 import { useLabeledContext } from '../Labeled';
@@ -44,10 +46,12 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
     } = useProps({ componentName: COMPONENT_NAME, props });
 
     const labeledContext = useLabeledContext();
+    const checkboxGroupContext = useCheckboxGroupContext();
     const [handlingChange, setHandlingChange] = useState(false);
     const [checkedValue, setCheckedValue] = useControlledValue({
       controlled: checkedProp,
-      default: !!defaultChecked,
+      default:
+        !!defaultChecked || !!checkboxGroupContext?.values?.includes(value),
       name: COMPONENT_NAME,
     });
     const [indeterminate, setIndeterminate] = useControlledValue({
@@ -58,7 +62,7 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
 
     const loading = loadingProp || handlingChange || labeledContext?.loading;
     const disabled = disabledProp || labeledContext?.disabled;
-    const readOnly = readOnlyProp || loading || labeledContext?.readOnly;
+    const readOnly = readOnlyProp || labeledContext?.readOnly || loading;
     const required = requiredProp ?? labeledContext?.required;
     const id = idProp ?? labeledContext?.id;
 
@@ -95,17 +99,38 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
 
           void executeLazyPromise(
             () =>
-              onChange?.(
-                event,
-                event.target.checked ? event.target.value : undefined,
-              ) as void,
+              Promise.all([
+                checkboxGroupContext?.onChange?.(
+                  event,
+                  event.target.checked
+                    ? [
+                        ...(checkboxGroupContext.values ?? []),
+                        event.target.value,
+                      ]
+                    : [
+                        ...(checkboxGroupContext.values?.filter(
+                          (value) => value !== event.target.value,
+                        ) ?? []),
+                      ],
+                ),
+                onChange?.(
+                  event,
+                  event.target.checked ? event.target.value : undefined,
+                ) as void,
+              ]),
             setHandlingChange,
           ).finally(() => {
             setCheckedValue(!event.target.checked);
             setIndeterminate(false);
           });
         },
-        [handlingChange, onChange, setCheckedValue, setIndeterminate],
+        [
+          handlingChange,
+          onChange,
+          setCheckedValue,
+          setIndeterminate,
+          checkboxGroupContext,
+        ],
       );
 
     return (
@@ -154,5 +179,6 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
 
 Checkbox.theme = checkboxTheme;
 Checkbox.displayName = `@sixui/${COMPONENT_NAME}`;
+Checkbox.Group = CheckboxGroup;
 Checkbox.Indicator = CheckboxIndicator;
 Checkbox.Card = CheckboxCard;

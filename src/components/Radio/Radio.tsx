@@ -50,8 +50,8 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
     labeledContext?.loading ||
     (radioGroupContext?.loading && radioGroupContext.nextValue === value);
   const readOnly =
-    (readOnlyProp ?? labeledContext?.readOnly) ||
-    labeledContext?.loading ||
+    readOnlyProp ||
+    labeledContext?.readOnly ||
     radioGroupContext?.loading ||
     loading;
   const disabledOrReadOnly = disabled || labeledContext?.disabled || readOnly;
