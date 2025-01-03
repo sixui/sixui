@@ -40,7 +40,8 @@ export const useRadio = (props: IUseRadioProps): IUseRadioResult => {
     props.loading ||
     handlingChange ||
     labeledContext?.loading ||
-    (radioGroupContext?.loading && radioGroupContext.nextValue === props.value);
+    (radioGroupContext?.loading &&
+      radioGroupContext.changingValue === props.value);
   const readOnly =
     props.readOnly ||
     labeledContext?.readOnly ||

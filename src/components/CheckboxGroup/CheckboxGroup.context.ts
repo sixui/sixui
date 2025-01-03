@@ -9,6 +9,7 @@ export interface ICheckboxGroupContextValue {
   defaultValues?: Array<string>;
   values?: Array<string>;
   loading?: boolean;
+  changingValues?: Array<string>;
 }
 
 export const [CheckboxGroupContextProvider, useCheckboxGroupContext] =

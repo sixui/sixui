@@ -8,7 +8,7 @@ export interface IRadioGroupContextValue {
     value: string | undefined,
   ) => IMaybeAsync<IAny>;
   value?: string;
-  nextValue?: string;
+  changingValue?: string;
   loading?: boolean;
 }
 

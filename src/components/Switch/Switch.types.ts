@@ -13,7 +13,7 @@ export interface ISwitchOwnProps extends IPaperBaseOwnProps {
   value?: string;
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement>,
-    value: string,
+    value: string | undefined,
   ) => IMaybeAsync<IAny>;
   required?: boolean;
   readOnly?: boolean;

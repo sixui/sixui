@@ -1,8 +1,10 @@
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IBoxProps } from '../Box';
 import type { IRadioGroupContextValue } from './RadioGroup.context';
+import { IOmit } from '~/helpers/types';
 
-export interface IRadioGroupOwnProps extends IRadioGroupContextValue {
+export interface IRadioGroupOwnProps
+  extends IOmit<IRadioGroupContextValue, 'changingValue'> {
   children?: React.ReactNode;
   defaultValue?: string;
   disabled?: boolean;

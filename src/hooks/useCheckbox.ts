@@ -54,7 +54,9 @@ export const useCheckbox = (props: IUseCheckboxProps): IUseCheckboxResult => {
     props.loading ||
     handlingChange ||
     labeledContext?.loading ||
-    checkboxGroupContext?.loading;
+    (checkboxGroupContext?.loading &&
+      props.value !== undefined &&
+      checkboxGroupContext.changingValues?.includes(props.value));
   const readOnly = props.readOnly || labeledContext?.readOnly || loading;
   const disabled =
     props.disabled || labeledContext?.disabled || checkboxGroupContext?.loading;

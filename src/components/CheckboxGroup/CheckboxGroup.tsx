@@ -8,6 +8,7 @@ import {
 
 import type { ICheckboxGroupContextValue } from './CheckboxGroup.context';
 import type { ICheckboxGroupFactory } from './CheckboxGroup.types';
+import { arraySymDiff } from '~/helpers/arraySymDiff';
 import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
@@ -30,6 +31,7 @@ export const CheckboxGroup = polymorphicComponentFactory<ICheckboxGroupFactory>(
 
     const hostRef = useRef<HTMLInputElement>(null);
     const [handlingChange, setHandlingChange] = useState(false);
+    const [changingValues, setChangingValues] = useState<Array<string>>([]);
     const [values, setValues] = useControlledValue({
       controlled: valuesProp,
       default: defaultValues,
@@ -60,17 +62,27 @@ export const CheckboxGroup = polymorphicComponentFactory<ICheckboxGroupFactory>(
     );
 
     const handleChange = useCallback(
-      (event: React.ChangeEvent<HTMLInputElement>, values: Array<string>) => {
+      (
+        event: React.ChangeEvent<HTMLInputElement>,
+        nextValues: Array<string>,
+      ) => {
         if (handlingChange) {
           return;
         }
 
+        setChangingValues(
+          values ? arraySymDiff(values, nextValues) : nextValues,
+        );
+
         void executeLazyPromise(
-          () => onChange?.(event, values) as Promise<void>,
+          () => onChange?.(event, nextValues) as Promise<void>,
           setHandlingChange,
-        ).finally(() => setValues(values));
+        ).finally(() => {
+          setValues(nextValues);
+          setChangingValues([]);
+        });
       },
-      [handlingChange, onChange, setValues],
+      [handlingChange, onChange, values, setValues],
     );
 
     const contextValue = useMemo(
@@ -80,8 +92,9 @@ export const CheckboxGroup = polymorphicComponentFactory<ICheckboxGroupFactory>(
           defaultValues,
           values,
           loading: handlingChange,
+          changingValues,
         }) satisfies ICheckboxGroupContextValue,
-      [handleChange, handlingChange, values, defaultValues],
+      [handleChange, handlingChange, values, defaultValues, changingValues],
     );
 
     return (

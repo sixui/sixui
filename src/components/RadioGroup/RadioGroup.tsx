@@ -37,7 +37,7 @@ export const RadioGroup = polymorphicComponentFactory<IRadioGroupFactory>(
       default: defaultValue,
       name: COMPONENT_NAME,
     });
-    const [nextValue, setNextValue] = useState(value);
+    const [changingValue, setChangingValue] = useState<string>();
     const name = useId(nameProp);
     const handleRef = useMergeRefs(hostRef, forwardedRef);
 
@@ -78,7 +78,7 @@ export const RadioGroup = polymorphicComponentFactory<IRadioGroupFactory>(
           return;
         }
 
-        setNextValue(nextValue);
+        setChangingValue(nextValue);
 
         void executeLazyPromise(
           () => onChange?.(event, nextValue) as Promise<void>,
@@ -86,7 +86,7 @@ export const RadioGroup = polymorphicComponentFactory<IRadioGroupFactory>(
         ).finally(() => {
           {
             setValue(nextValue);
-            setNextValue(undefined);
+            setChangingValue(undefined);
           }
         });
       },
@@ -100,9 +100,9 @@ export const RadioGroup = polymorphicComponentFactory<IRadioGroupFactory>(
           loading: handlingChange,
           onChange: handleChange,
           value,
-          nextValue,
+          changingValue,
         }) satisfies IRadioGroupContextValue,
-      [name, handleChange, value, nextValue, handlingChange],
+      [name, handleChange, value, changingValue, handlingChange],
     );
 
     return (
