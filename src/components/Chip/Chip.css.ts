@@ -107,14 +107,14 @@ const classNames = createStyles({
       }),
       ...createTokensVars(Button.theme.tokens, {
         container: {
+          leadingSpace: tokens.leadingSpace,
+          trailingSpace: tokens.trailingSpace,
+          height: tokens.height,
           color: {
             normal: themeTokens.colorScheme.surfaceContainerLow,
             disabled: 'unset',
           },
         },
-        leadingSpace: tokens.leadingSpace,
-        trailingSpace: tokens.trailingSpace,
-        height: tokens.height,
         icon: tokens.icon,
         label: tokens.label,
       }),
@@ -203,8 +203,10 @@ const classNames = createStyles({
             },
           }),
           ...createTokensVars(Button.theme.tokens, {
-            leadingSpace: {
-              withStartSlot: px(space(1)),
+            container: {
+              leadingSpace: {
+                withStartSlot: px(space(1)),
+              },
             },
             icon: tokens.icon$avatar,
           }),

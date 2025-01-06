@@ -36,7 +36,6 @@ const classNames = createStyles({
   },
   textarea: ({ root }) => ({
     overflowWrap: 'inherit',
-    whiteSpace: 'inherit',
     resize: 'none',
     fontFamily: 'inherit',
     fontSize: 'inherit',
