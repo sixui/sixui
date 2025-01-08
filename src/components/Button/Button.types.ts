@@ -18,7 +18,7 @@ export type IButtonVariant =
 export interface IButtonOwnProps extends IButtonBaseOwnProps {
   loading?: boolean;
   loadingAnimation?: 'progressIndicator' | 'halfSpin' | 'none';
-  loadingText?: string;
+  loadingText?: React.ReactNode;
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
   hasLeading?: boolean;

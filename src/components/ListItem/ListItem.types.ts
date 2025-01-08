@@ -16,6 +16,7 @@ export interface IListItemOwnProps
   interactionsMergeStrategy?: IInteractionsMergeStrategy;
   selected?: boolean;
   loading?: boolean;
+  loadingText?: React.ReactNode;
   leading?: React.ReactNode;
   leadingIcon?: React.ReactNode;
   leadingImage?: string;

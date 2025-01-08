@@ -31,7 +31,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       loadingText,
       disabled,
       readOnly: readOnlyProp,
-      hasLeading: hasLeadingProp,
+      hasLeading,
       hasTrailing: hasTrailingProp,
       start,
       end,
@@ -46,14 +46,10 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
     const readOnly = readOnlyProp || loading;
     const disabledOrReadOnly = disabled || readOnly;
 
-    const hasLeadingIcon = !!leadingIcon;
-    const hasTrailingIcon = !!trailingIcon;
-    const hasStartSlot = hasLeadingProp ?? (!!start || !!leadingIcon);
+    const hasStartSlot = hasLeading ?? (!!start || !!leadingIcon);
     const hasEndSlot = hasTrailingProp ?? (!!end || !!trailingIcon);
     const hasOverlay =
-      loading &&
-      (!!loadingText ||
-        (!hasLeadingIcon && !hasTrailingIcon && !hasLeadingProp));
+      loading && (!!loadingText || (!hasStartSlot && !hasEndSlot));
     const iconAnimation =
       (loadingProp || handlingClick || animating) &&
       loadingAnimation !== undefined &&

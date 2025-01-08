@@ -1,5 +1,5 @@
 import type { MouseEventHandler } from 'react';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import type { IListItemThemeFactory } from './ListItem.css';
 import type { IListItemFactory } from './ListItem.types';
@@ -41,6 +41,7 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
       leadingImage,
       leadingVideo,
       trailing,
+      loadingText,
       trailingIcon,
       lineClamp,
       noFocusRing: noFocusRingProp,
@@ -61,6 +62,8 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
     const hasStartSlot =
       !!start || !!leadingIcon || !!leadingImage || !!leadingVideo || !!leading;
     const hasEndSlot = !!end || !!trailingIcon || !!trailing;
+    const hasOverlay =
+      loading && (!!loadingText || (!hasStartSlot && !hasEndSlot));
 
     const { getStyles } = useComponentTheme<IListItemThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -79,54 +82,116 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
       },
     });
 
-    const handleClick: MouseEventHandler = (event) => {
-      if (handlingClick || !onClick) {
-        return;
-      }
+    const handleClick: MouseEventHandler = useCallback(
+      (event) => {
+        if (handlingClick || !onClick) {
+          return;
+        }
 
-      void executeLazyPromise(
-        () => onClick(event) as Promise<void>,
-        setHandlingClick,
-      );
-    };
+        void executeLazyPromise(
+          () => onClick(event) as Promise<void>,
+          setHandlingClick,
+        );
+      },
+      [handlingClick, onClick],
+    );
 
-    const renderStartSlot = (): React.ReactNode =>
-      hasStartSlot && (
-        <Overlayable
-          overlay={<IndeterminateCircularProgressIndicator />}
-          visible={loading}
-        >
-          {start ??
-            (leadingIcon ? (
-              <div {...getStyles(['icon', 'icon$leading'])}>{leadingIcon}</div>
-            ) : leadingImage ? (
-              <div
-                {...getStyles('image', {
-                  style: { backgroundImage: `url(${leadingImage})` },
-                })}
-              />
-            ) : leadingVideo ? (
-              <video {...getStyles('video')} autoPlay={!disabled} loop muted>
-                {leadingVideo.map((video, videoIndex) => (
-                  <source key={videoIndex} src={video.src} type={video.type} />
-                ))}
-              </video>
-            ) : (
-              leading
-            ))}
-        </Overlayable>
-      );
+    const renderStartSlot = useCallback(
+      (): React.ReactNode =>
+        hasStartSlot && (
+          <Overlayable
+            overlay={
+              <IndeterminateCircularProgressIndicator {...getStyles('icon')} />
+            }
+            visible={loading}
+          >
+            {start ??
+              (leadingIcon ? (
+                <div {...getStyles(['icon', 'icon$leading'])}>
+                  {leadingIcon}
+                </div>
+              ) : leadingImage ? (
+                <div
+                  {...getStyles('image', {
+                    style: { backgroundImage: `url(${leadingImage})` },
+                  })}
+                />
+              ) : leadingVideo ? (
+                <video {...getStyles('video')} autoPlay={!disabled} loop muted>
+                  {leadingVideo.map((video, videoIndex) => (
+                    <source
+                      key={videoIndex}
+                      src={video.src}
+                      type={video.type}
+                    />
+                  ))}
+                </video>
+              ) : (
+                leading
+              ))}
+          </Overlayable>
+        ),
+      [
+        disabled,
+        getStyles,
+        hasStartSlot,
+        leading,
+        leadingIcon,
+        leadingImage,
+        leadingVideo,
+        loading,
+        start,
+      ],
+    );
 
-    const renderEndSlot = (): React.ReactNode =>
-      end ??
-      (trailingIcon ? (
-        <div {...getStyles(['icon', 'icon$trailing'])}>{trailingIcon}</div>
-      ) : (
-        trailing
-      ));
+    const renderEndSlot = useCallback(
+      (): React.ReactNode =>
+        hasEndSlot && (
+          <Overlayable
+            overlay={
+              <IndeterminateCircularProgressIndicator {...getStyles('icon')} />
+            }
+            visible={loading && !leadingIcon}
+          >
+            {end ??
+              (trailingIcon ? (
+                <div {...getStyles(['icon', 'icon$trailing'])}>
+                  {trailingIcon}
+                </div>
+              ) : (
+                trailing
+              ))}
+          </Overlayable>
+        ),
+      [
+        end,
+        getStyles,
+        hasEndSlot,
+        leadingIcon,
+        loading,
+        trailing,
+        trailingIcon,
+      ],
+    );
 
     const shouldRenderAsButton =
       other.as === 'button' || other.as === 'a' || !!onClick || !!other.href;
+
+    const renderLabelSlot = useCallback(
+      () => (
+        <Overlayable
+          overlay={
+            loadingText ?? (
+              <IndeterminateCircularProgressIndicator {...getStyles('icon')} />
+            )
+          }
+          visible={hasOverlay}
+        >
+          {children}
+        </Overlayable>
+      ),
+      [children, getStyles, loadingText, hasOverlay],
+    );
 
     const renderItem = (): React.JSX.Element => (
       <Item
@@ -138,7 +203,7 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
         end={renderEndSlot()}
         lineClamp={lineClamp}
       >
-        {children}
+        {renderLabelSlot()}
       </Item>
     );
 

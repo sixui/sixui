@@ -47,6 +47,14 @@ const states: Array<IComponentPresentation<IListItemProps>> = [
   },
   { legend: 'Selected', props: { children: 'Selected', selected: true } },
   { legend: 'Loading', props: { children: 'Loading', loading: true } },
+  {
+    legend: 'Loading text',
+    props: {
+      children: 'Loading',
+      loading: true,
+      loadingText: '…',
+    },
+  },
   { legend: 'Disabled', props: { children: 'Disabled', disabled: true } },
 ];
 
