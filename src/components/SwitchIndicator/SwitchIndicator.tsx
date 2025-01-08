@@ -60,7 +60,7 @@ export const SwitchIndicator = componentFactory<ISwitchIndicatorFactory>(
       >
         <div {...getStyles('track')}>
           <div {...getStyles('handleContainer')}>
-            {stateLayer}
+            {!disabled && stateLayer}
 
             <PaperBase {...getStyles('handle')}>
               <div {...getStyles(['icon', 'icon$checked'])}>

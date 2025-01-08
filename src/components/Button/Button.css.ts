@@ -313,6 +313,7 @@ const classNames = createStyles({
     },
   }),
   icon: ({ root }) => ({
+    pointerEvents: 'none',
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',

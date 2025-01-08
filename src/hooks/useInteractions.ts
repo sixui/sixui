@@ -1,6 +1,6 @@
 import type { DOMAttributes } from '@react-types/shared';
 import type { AriaFocusRingProps } from 'react-aria';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import { accumulate } from '@olivierpascal/helpers';
 import { useFocusRing } from 'react-aria';
 
@@ -179,15 +179,6 @@ export const useInteractions = <TElement extends HTMLElement>(
     }),
     [hoverOptions, handleHoverStart, handleHoverEnd],
   );
-
-  useEffect(() => {
-    if (disabled) {
-      activeTriggers.forEach(({ onHoverEnd }) =>
-        onHoverEnd({} as React.PointerEvent),
-      );
-      activeTriggers.length = 0;
-    }
-  }, [disabled]);
 
   const triggerProps = useMemo<DOMAttributes | undefined>(
     () =>

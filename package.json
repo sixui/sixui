@@ -105,12 +105,12 @@
     "@stylexjs/eslint-plugin": "^0.10.0",
     "@stylexjs/stylex": "^0.10.0",
     "@types/eslint": "^9",
-    "@types/node": "^22.10.4",
+    "@types/node": "^22.10.5",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/react-transition-group": "^4",
-    "@typescript-eslint/eslint-plugin": "^8.19.0",
-    "@typescript-eslint/parser": "^8.19.0",
+    "@typescript-eslint/eslint-plugin": "^8.19.1",
+    "@typescript-eslint/parser": "^8.19.1",
     "@vanilla-extract/vite-plugin": "^4.0.19",
     "@vitejs/plugin-react": "^4.3.4",
     "auto": "^11.3.0",
@@ -151,7 +151,7 @@
     "@stylexjs/stylex": "^0.7.5",
     "react": "^18"
   },
-  "packageManager": "pnpm@9.15.2",
+  "packageManager": "pnpm@9.15.3",
   "engines": {
     "node": ">=22",
     "pnpm": ">=9"

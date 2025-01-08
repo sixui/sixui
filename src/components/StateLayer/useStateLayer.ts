@@ -18,6 +18,7 @@ export type IUseStateLayerResult<TElement extends HTMLElement = HTMLElement> = {
   surfaceRef: React.RefObject<HTMLDivElement | null>;
   animating?: boolean;
   withoutRippleEffect?: boolean;
+  disabled?: boolean;
 };
 
 export const useStateLayer = <TElement extends HTMLElement>(
@@ -72,5 +73,6 @@ export const useStateLayer = <TElement extends HTMLElement>(
     surfaceRef,
     animating,
     withoutRippleEffect,
+    disabled,
   };
 };

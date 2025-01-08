@@ -44,6 +44,7 @@ export const StateLayer = componentFactory<IStateLayerFactory>(
             : context?.interactionsContext.baseState?.pressed),
         'no-ripple-effect': context?.withoutRippleEffect,
         animating: context?.animating,
+        disabled: context?.disabled,
       },
     });
 

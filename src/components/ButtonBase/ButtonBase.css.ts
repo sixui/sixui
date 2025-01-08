@@ -9,30 +9,27 @@ export const classNames = createStyles({
   root: {
     position: 'relative',
     textDecoration: 'none',
+    cursor: 'pointer',
+    userSelect: 'none',
 
     selectors: {
       [getModifierSelector<IModifier>('disabled')]: {
         cursor: 'default',
         pointerEvents: 'none',
       },
-      [getModifierSelector<IModifier>('!non-interactive')]: {
-        cursor: 'pointer',
-        userSelect: 'none',
+      [getModifierSelector<IModifier>('non-interactive')]: {
+        cursor: 'default',
+        pointerEvents: 'none',
+        userSelect: 'auto',
       },
     },
   },
-  background: ({ root }) => ({
+  background: {
     position: 'absolute',
     inset: 0,
     borderRadius: 'inherit',
     pointerEvents: 'none',
-    selectors: {
-      [getModifierSelector('disabled', root)]: {
-        cursor: 'default',
-        pointerEvents: 'none',
-      },
-    },
-  }),
+  },
   touchTarget: {},
   stateLayer: {},
   focusRing: {},

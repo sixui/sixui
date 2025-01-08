@@ -34,9 +34,9 @@ export const Box = createPolymorphicComponent<'div', IBoxProps>(
     const childrenProps = {
       ...mergeProps(other, {
         onKeyDown: (event: React.KeyboardEvent<HTMLElement>) => {
-          // When using a different element than a button, we want to allow
-          // the Enter or Space key to trigger the click event for
-          // accessibility purpose.
+          // When using a different element than a button, we want to allow the
+          // Enter or Space key to trigger the click event for accessibility
+          // purpose.
           if (
             (event.target as HTMLElement).tagName !== 'BUTTON' &&
             typeof other.role === 'string' &&

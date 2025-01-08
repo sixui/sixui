@@ -42,12 +42,6 @@ const states: Array<IComponentPresentation<ICardProps>> = [
 
 const cols: Array<IComponentPresentation<ICardProps>> = [
   {
-    legend: 'Basic',
-    props: {
-      h: '$32',
-    },
-  },
-  {
     legend: 'Example A',
     props: {
       children: (

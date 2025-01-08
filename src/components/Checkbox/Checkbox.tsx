@@ -92,7 +92,7 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
         ref={rootRef}
         {...other}
       >
-        {!disabledOrReadOnly && (
+        {!disabled && (
           <>
             <FocusRing
               {...getStyles('focusRing')}

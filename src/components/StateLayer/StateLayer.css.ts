@@ -12,7 +12,8 @@ type IModifier =
   | 'dragged'
   | 'animating'
   | 'static-pressed'
-  | 'no-ripple-effect';
+  | 'no-ripple-effect'
+  | 'disabled';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
@@ -63,6 +64,9 @@ const classNames = createStyles({
       transitionTimingFunction: 'linear',
     },
     selectors: {
+      [getModifierSelector<IModifier>('disabled')]: {
+        pointerEvents: 'none',
+      },
       [`${getModifierSelector<IModifier>('hovered')}::before`]: {
         backgroundColor: tokens.color.hovered,
         opacity: tokens.opacity.hovered,

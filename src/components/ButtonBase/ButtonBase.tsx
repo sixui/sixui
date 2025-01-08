@@ -133,7 +133,7 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
           other,
         )}
       >
-        {!nonInteractive && !disabledOrReadOnly && (
+        {!nonInteractive && !disabled && (
           <>
             {focusRing !== false && (
               <FocusRing
