@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { IMenuProps } from './Menu.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { Button } from '../Button';
+import { InputChip } from '../Chip';
 import { Flex } from '../Flex';
 import { IconButton } from '../IconButton';
 import { Menu } from './Menu';
@@ -103,6 +104,26 @@ export const FromIconButton: IStory = {
       side: 'bottom',
       alignment: 'end',
     },
+  },
+};
+
+export const FromChip: IStory = {
+  render: (props) => <Menu {...props} />,
+  args: {
+    ...defaultArgs,
+    trigger: ({ opened, getProps }) => (
+      <InputChip
+        trailingIcon={
+          <FontAwesomeIcon
+            icon={opened ? faChevronUp : faChevronDown}
+            size="xs"
+          />
+        }
+        {...getProps()}
+      >
+        Open
+      </InputChip>
+    ),
   },
 };
 

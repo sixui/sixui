@@ -84,7 +84,7 @@ export const Variants: IStory = {
           props: {
             variant: 'input',
             children: 'Input',
-            onActionClick: () => sbHandleEvent('delete', undefined, 1000),
+            onTrailingClick: () => sbHandleEvent('delete', undefined, 1000),
             imageUrl: IMAGE_URL,
           },
         },
@@ -92,7 +92,7 @@ export const Variants: IStory = {
           props: {
             variant: 'input',
             children: 'Avatar',
-            onActionClick: () => sbHandleEvent('delete', undefined, 1000),
+            onTrailingClick: () => sbHandleEvent('delete', undefined, 1000),
             imageUrl: IMAGE_URL,
             avatar: true,
           },
@@ -239,13 +239,18 @@ export const Input: IStory = {
       props={props}
       cols={[
         ...states,
-        { legend: 'Deleting', props: { children: 'Deleting', actioning: true } },
+        {
+          legend: 'Deleting',
+          props: { children: 'Deleting', trailingLoading: true },
+        },
       ]}
       rows={[
         { legend: 'Basic', hiddenIndexes: [8] },
         {
           legend: 'Deletable',
-          props: { onActionClick: () => sbHandleEvent('delete', undefined, 1000) },
+          props: {
+            onTrailingClick: () => sbHandleEvent('delete', undefined, 1000),
+          },
         },
       ]}
       groups={[{}, { legend: 'Selected', props: { selected: true } }]}
@@ -280,7 +285,10 @@ export const InputWithIconOrImage: IStory = {
       props={props}
       cols={[
         ...states,
-        { legend: 'Deleting', props: { children: 'Deleting', actioning: true } },
+        {
+          legend: 'Deleting',
+          props: { children: 'Deleting', trailingLoading: true },
+        },
       ]}
       rows={[
         {
@@ -292,14 +300,14 @@ export const InputWithIconOrImage: IStory = {
           legend: 'With Image',
           props: {
             imageUrl: IMAGE_URL,
-            onActionClick: () => sbHandleEvent('delete', undefined, 1000),
+            onTrailingClick: () => sbHandleEvent('delete', undefined, 1000),
           },
         },
         {
           legend: 'With avatar',
           props: {
             imageUrl: IMAGE_URL,
-            onActionClick: () => sbHandleEvent('delete', undefined, 1000),
+            onTrailingClick: () => sbHandleEvent('delete', undefined, 1000),
             avatar: true,
           },
         },

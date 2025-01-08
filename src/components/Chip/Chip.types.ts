@@ -13,9 +13,9 @@ export interface IChipOwnProps
     IButtonOwnProps,
     'leadingIcon' | 'trailingIcon' | 'start' | 'end'
   > {
-  onActionClick?: (event: React.MouseEvent<Element>) => IMaybeAsync<IAny>;
-  actioning?: boolean;
-  actionIcon?: React.ReactNode;
+  onTrailingClick?: (event: React.MouseEvent<Element>) => IMaybeAsync<IAny>;
+  trailingLoading?: boolean;
+  trailingIcon?: React.ReactNode;
   elevated?: boolean;
   selected?: boolean;
   imageUrl?: string;

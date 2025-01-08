@@ -26,9 +26,9 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
       selected: selectedProp,
       elevated: elevatedProp,
       loading: loadingProp,
-      actioning: actioningProp,
-      actionIcon,
-      onActionClick,
+      trailingLoading: trailingLoadingProp,
+      trailingIcon,
+      onTrailingClick,
       imageUrl,
       icon,
       onClick,
@@ -41,10 +41,10 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
     const [handlingDelete, setHandlingDelete] = useState(false);
 
     const loading = loadingProp || handlingClick;
-    const canAction = variant === 'input' && onActionClick;
-    const actioning =
-      !loading && canAction && (actioningProp || handlingDelete);
-    const readOnly = readOnlyProp || loading || actioning;
+    const hasTrailingAction = variant === 'input' && onTrailingClick;
+    const trailingLoading =
+      !loading && hasTrailingAction && (trailingLoadingProp || handlingDelete);
+    const readOnly = readOnlyProp || loading || trailingLoading;
     const disabledOrReadOnly = other.disabled || readOnly;
 
     const primaryActionRef = useRef<HTMLElement>(null);
@@ -98,19 +98,19 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
       [handlingClick, onClick],
     );
 
-    const handleActionClick = useCallback(
+    const handleTrailingClick = useCallback(
       (event: React.MouseEvent<Element>) => {
         if (handlingDelete) {
           return;
         }
         setHandlingDelete(true);
-        Promise.resolve(onActionClick?.(event))
+        Promise.resolve(onTrailingClick?.(event))
           .finally(() => setHandlingDelete(false))
           .catch((error: Error) => {
             throw error;
           });
       },
-      [onActionClick, handlingDelete],
+      [onTrailingClick, handlingDelete],
     );
 
     // https://github.com/material-components/material-web/blob/035d1553662812e2dcc12aea8d70ea8bf26b164b/chips/internal/multi-action-chip.ts#L74
@@ -178,9 +178,9 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
       () => (
         <IconButton
           as="div"
-          icon={actionIcon ?? <SvgIcon icon={iconXMark} />}
-          onClick={handleActionClick}
-          loading={actioning}
+          icon={trailingIcon ?? <SvgIcon icon={iconXMark} />}
+          onClick={handleTrailingClick}
+          loading={trailingLoading}
           disabled={disabledOrReadOnly}
           tabIndex={-1}
           ref={trailingActionRef}
@@ -189,10 +189,10 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
         />
       ),
       [
-        actionIcon,
+        trailingIcon,
         getStyles,
-        handleActionClick,
-        actioning,
+        handleTrailingClick,
+        trailingLoading,
         disabledOrReadOnly,
         handleTrailingActionFocus,
       ],
@@ -208,7 +208,8 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
         loading={loading}
         ref={primaryHandleRef}
         hasLeading={hasLeading}
-        end={canAction && renderActionButton()}
+        end={hasTrailingAction && renderActionButton()}
+        trailingIcon={!hasTrailingAction && trailingIcon}
         onKeyDown={handleKeyDown}
         readOnly={readOnly}
         {...other}

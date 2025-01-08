@@ -56,7 +56,7 @@ export const chipPlaygroundSections: IPlaygroundSections<IInputChipPlaygroundDem
         {
           label: 'Deletable',
           props: {
-            onActionClick: () => {},
+            onTrailingClick: () => {},
           },
         },
         {
