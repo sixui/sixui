@@ -5,6 +5,7 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
+import { Overlayable } from '../Overlayable';
 import { PaperBase } from '../PaperBase';
 import { checkboxIndicatorTheme } from './CheckboxIndicator.css';
 
@@ -60,24 +61,24 @@ export const CheckboxIndicator = componentFactory<ICheckboxIndicatorFactory>(
         disabled={disabled}
         {...other}
       >
-        {loading ? (
-          <IndeterminateCircularProgressIndicator
-            {...getStyles('progressIndicator')}
-            disabled={disabled}
-          />
-        ) : (
-          <>
-            <div {...getStyles(['overlay', 'background'])} />
-            <svg
-              {...getStyles(['overlay', 'icon'])}
-              viewBox="0 0 18 18"
-              aria-hidden
-            >
-              <rect {...getStyles(['mark', 'mark$short'])} />
-              <rect {...getStyles(['mark', 'mark$long'])} />
-            </svg>
-          </>
-        )}
+        <Overlayable
+          overlay={
+            <IndeterminateCircularProgressIndicator
+              {...getStyles('progressIndicator')}
+            />
+          }
+          visible={loading}
+        >
+          <div {...getStyles(['layer', 'background'])} />
+          <svg
+            {...getStyles(['layer', 'icon'])}
+            viewBox="0 0 18 18"
+            aria-hidden
+          >
+            <rect {...getStyles(['mark', 'mark$short'])} />
+            <rect {...getStyles(['mark', 'mark$long'])} />
+          </svg>
+        </Overlayable>
       </PaperBase>
     );
   },

@@ -84,9 +84,7 @@ const classNames = createStyles({
 
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {
-        color: {
-          normal: tokens.container.color,
-        },
+        color: tokens.container.color,
       },
     }),
 

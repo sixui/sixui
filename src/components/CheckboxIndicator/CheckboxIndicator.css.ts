@@ -132,10 +132,10 @@ const classNames = createStyles({
     },
   },
   progressIndicator: {
-    width: tokens.size,
-    height: tokens.size,
+    width: calc.add(tokens.size, DENSITY),
+    height: calc.add(tokens.size, DENSITY),
   },
-  overlay: {
+  layer: {
     inset: 0,
     position: 'absolute',
   },

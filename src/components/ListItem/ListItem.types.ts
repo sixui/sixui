@@ -15,6 +15,7 @@ export interface IListItemOwnProps
     IButtonBaseOwnProps {
   interactionsMergeStrategy?: IInteractionsMergeStrategy;
   selected?: boolean;
+  loading?: boolean;
   leading?: React.ReactNode;
   leadingIcon?: React.ReactNode;
   leadingImage?: string;
