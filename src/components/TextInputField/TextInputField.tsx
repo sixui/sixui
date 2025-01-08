@@ -88,19 +88,18 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
     });
 
     const handleClear = (): void => {
-      if (!inputRef.current) {
-        return;
-      }
-
       // Clicking on the clear button will blur the input. When a floating label
       // is present, we prevent the label from switching to the resting state by
       // forcing the focus state as we will focus it again later.
       setFocused(true);
-      inputRef.current.focus();
 
-      inputRef.current.value = '';
+      if (inputRef.current) {
+        inputRef.current.focus();
+        inputRef.current.value = '';
+        triggerChangeEvent(inputRef.current);
+      }
+
       setValue('');
-      triggerChangeEvent(inputRef.current);
     };
 
     // TODO: prevents the input from being blurred when the user clicks outside
@@ -120,6 +119,20 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
       }
     };
 
+    // Restore the cursor position when masking/unmasking the password.
+    const handleUnmask = (): void => {
+      if (inputRef.current) {
+        inputRef.current.focus();
+
+        // Place the cursor at the end of the input.
+        const currentPosition = inputRef.current?.selectionStart;
+        inputRef.current.setSelectionRange(currentPosition, currentPosition);
+      }
+
+      // Execute in the next tick to prevent the cursor to reset to the start.
+      setTimeout(() => setUnmasked((unmasked) => !unmasked), 0);
+    };
+
     const renderEndSection = (): React.JSX.Element | null =>
       hasEnd ? (
         <>
@@ -133,7 +146,7 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
           )}
           {unmaskable && (
             <IconButton
-              onClick={() => setUnmasked((unmasked) => !unmasked)}
+              onClick={handleUnmask}
               icon={unmaskIcon}
               selectedIcon={maskIcon}
               selected={unmasked}
