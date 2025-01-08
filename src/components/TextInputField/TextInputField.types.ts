@@ -9,7 +9,7 @@ import type {
 
 export interface ITextInputFieldOwnProps
   extends IFieldBaseOwnProps,
-    IElementProps<'input', 'className' | 'children' | 'name'> {
+    IElementProps<'input', 'className' | 'children'> {
   /**
    * When true, hide the spinner for `type="number"` input fields.
    */

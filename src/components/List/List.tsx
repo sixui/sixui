@@ -6,6 +6,8 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Flex } from '../Flex';
+import { ListDivider } from '../ListDivider';
+import { ListItem } from '../ListItem';
 import { Paper } from '../Paper';
 import { ListContextProvider } from './List.context';
 import { listTheme } from './List.css';
@@ -73,3 +75,8 @@ export const List = componentFactory<IListFactory>((props, forwardedRef) => {
     </ListContextProvider>
   );
 });
+
+List.theme = listTheme;
+List.displayName = `@sixui/${COMPONENT_NAME}`;
+List.Item = ListItem;
+List.Divider = ListDivider;

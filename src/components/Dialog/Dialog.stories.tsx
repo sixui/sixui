@@ -103,7 +103,11 @@ const FormDialogDemo: React.FC<IDialogProps> = (props) => {
                   const formValues = formData
                     ? Object.fromEntries(formData)
                     : undefined;
-                  setName(formValues?.name.toString());
+                  setName(
+                    typeof formValues?.name === 'string'
+                      ? formValues.name
+                      : undefined,
+                  );
                   close();
                 });
               }}

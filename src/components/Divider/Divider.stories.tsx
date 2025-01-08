@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IBoxProps } from '../Box';
+import type { IFlexProps } from '../Flex';
 import type { IDividerProps } from './Divider.types';
-import { Box } from '../Box';
 import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Flex } from '../Flex';
 import { Paper } from '../Paper';
@@ -20,7 +19,7 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {} satisfies Partial<IDividerProps>;
 
-const BoxDemo: React.FC<IBoxProps> = (props) => (
+const Cell: React.FC<IFlexProps> = (props) => (
   <Flex
     align="center"
     justify="center"
@@ -39,10 +38,10 @@ const ListDemo: React.FC<IDividerProps> = (props) => (
       divider={<Divider {...props} />}
       wrap="wrap"
     >
-      <BoxDemo>One</BoxDemo>
-      <BoxDemo>Two</BoxDemo>
-      <BoxDemo>Three</BoxDemo>
-      <BoxDemo>Four</BoxDemo>
+      <Cell>One</Cell>
+      <Cell>Two</Cell>
+      <Cell>Three</Cell>
+      <Cell>Four</Cell>
     </Flex>
   </Paper>
 );

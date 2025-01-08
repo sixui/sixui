@@ -9,7 +9,7 @@ import { Avatar } from '../Avatar';
 import { Button } from '../Button';
 import { componentShowcaseFactory } from '../ComponentShowcase';
 import { IconButton } from '../IconButton';
-import { ListItem } from '../ListItem';
+import { List } from '../List';
 import { Card } from './Card';
 
 const meta = {
@@ -54,7 +54,7 @@ const rows: Array<IComponentPresentation<ICardProps>> = [
     props: {
       children: (
         <>
-          <ListItem
+          <List.Item
             leading={<Avatar src={AVATAR_URL} />}
             supportingText="February 21, 2024"
             trailing={
@@ -66,7 +66,7 @@ const rows: Array<IComponentPresentation<ICardProps>> = [
             pt="$2"
           >
             John Doe
-          </ListItem>
+          </List.Item>
           <Card.Content>
             <Card.Title headline="Headline" />
             <Card.Media src={MEDIA_URL} h="$48" />

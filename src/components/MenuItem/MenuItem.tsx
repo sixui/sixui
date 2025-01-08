@@ -7,7 +7,7 @@ import { polymorphicComponentFactory } from '~/utils/component/polymorphicCompon
 import { useProps } from '~/utils/component/useProps';
 import { mergeProps } from '~/utils/mergeProps';
 import { ListItem } from '../ListItem';
-import { Menu } from '../Menu';
+import { MenuLeaf } from '../Menu/MenuLeaf';
 import { SvgIcon } from '../SvgIcon';
 import { useMenuItemContext } from './MenuItem.context';
 
@@ -50,7 +50,7 @@ export const MenuItem = polymorphicComponentFactory<IMenuItemFactory>(
     );
 
     const renderNestedMenuItem = (): React.JSX.Element => (
-      <Menu
+      <MenuLeaf
         trigger={(renderProps) => (
           <MenuItem
             trailingIcon={<SvgIcon icon={iconTriangleRight} fz="$4" />}
@@ -62,7 +62,7 @@ export const MenuItem = polymorphicComponentFactory<IMenuItemFactory>(
         )}
       >
         {children}
-      </Menu>
+      </MenuLeaf>
     );
 
     return children ? renderNestedMenuItem() : renderListItem();

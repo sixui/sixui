@@ -3,8 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { IMenuListProps } from './MenuList.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { ListItem } from '../ListItem';
-import { MenuDivider } from '../MenuDivider';
+import { List } from '../List';
 import { Placeholder } from '../Placeholder';
 import { MenuList } from './MenuList';
 
@@ -18,22 +17,22 @@ const defaultArgs = {
   w: '$48',
   children: (
     <>
-      <ListItem onClick={(...args) => sbHandleEvent('onClick', args)}>
+      <List.Item onClick={(...args) => sbHandleEvent('onClick', args)}>
         Apple
-      </ListItem>
-      <ListItem onClick={(...args) => sbHandleEvent('onClick', args)}>
+      </List.Item>
+      <List.Item onClick={(...args) => sbHandleEvent('onClick', args)}>
         Banana
-      </ListItem>
-      <ListItem onClick={(...args) => sbHandleEvent('onClick', args)}>
+      </List.Item>
+      <List.Item onClick={(...args) => sbHandleEvent('onClick', args)}>
         This is a very long and unexpected item
-      </ListItem>
-      <MenuDivider />
-      <ListItem
+      </List.Item>
+      <List.Divider />
+      <List.Item
         onClick={(...args) => sbHandleEvent('onClick', args)}
         lineClamp={1}
       >
         This item will never wrap
-      </ListItem>
+      </List.Item>
     </>
   ),
 } satisfies Partial<IMenuListProps>;

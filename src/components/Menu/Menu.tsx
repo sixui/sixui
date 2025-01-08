@@ -2,6 +2,9 @@ import { FloatingTree, useFloatingParentNodeId } from '@floating-ui/react';
 
 import type { IMenuFactory } from './Menu.types';
 import { componentFactory } from '~/utils/component/componentFactory';
+import { ListDivider } from '../ListDivider';
+import { MenuItem } from '../MenuItem';
+import { MenuList } from '../MenuList';
 import { MenuLeaf } from './MenuLeaf';
 import { menuLeafTheme } from './MenuLeaf.css';
 
@@ -21,5 +24,8 @@ export const Menu = componentFactory<IMenuFactory>((props, forwardedRef) => {
   );
 });
 
-MenuLeaf.theme = menuLeafTheme;
-MenuLeaf.displayName = `@sixui/${COMPONENT_NAME}`;
+Menu.theme = menuLeafTheme;
+Menu.displayName = `@sixui/${COMPONENT_NAME}`;
+Menu.List = MenuList;
+Menu.Item = MenuItem;
+Menu.Divider = ListDivider;

@@ -4,6 +4,9 @@ import type { IOrientation, IPlacement } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
+import type { MenuDivider } from '../MenuDivider';
+import type { MenuItem } from '../MenuItem';
+import type { MenuList } from '../MenuList';
 import type { IMotionProps } from '../Motion';
 import type { IPortalProps } from '../Portal';
 import type { IMenuLeafThemeFactory, menuLeafTheme } from './MenuLeaf.css';
@@ -36,4 +39,9 @@ export type IMenuFactory = IComponentFactory<{
   props: IMenuProps;
   ref: HTMLDivElement;
   theme: typeof menuLeafTheme;
+  staticComponents: {
+    List: typeof MenuList;
+    Item: typeof MenuItem;
+    Divider: typeof MenuDivider;
+  };
 }>;

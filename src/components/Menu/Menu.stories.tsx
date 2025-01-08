@@ -12,8 +12,6 @@ import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { Button } from '../Button';
 import { Flex } from '../Flex';
 import { IconButton } from '../IconButton';
-import { MenuDivider } from '../MenuDivider';
-import { MenuItem } from '../MenuItem';
 import { Menu } from './Menu';
 
 const meta = {
@@ -24,12 +22,15 @@ type IStory = StoryObj<typeof meta>;
 
 const items = (
   <>
-    <MenuItem label="Apple" onClick={() => sbHandleEvent('onClick', 'Apple')} />
-    <MenuItem
+    <Menu.Item
+      label="Apple"
+      onClick={() => sbHandleEvent('onClick', 'Apple')}
+    />
+    <Menu.Item
       label="Banana"
       onClick={() => sbHandleEvent('onClick', 'Banana')}
     />
-    <MenuItem
+    <Menu.Item
       label="Dragonfruit"
       onClick={() => sbHandleEvent('onClick', 'Dragonfruit')}
       disabled
@@ -40,20 +41,20 @@ const items = (
 const nestedItems = (
   <>
     {items}
-    <MenuDivider />
-    <MenuItem label="Other fruits">
+    <Menu.Divider />
+    <Menu.Item label="Other fruits">
       {items}
-      <MenuDivider />
-      <MenuItem label="Some fruits again">
+      <Menu.Divider />
+      <Menu.Item label="Some fruits again">
         {items}
-        <MenuDivider />
-        <MenuItem label="Even more fruits">
+        <Menu.Divider />
+        <Menu.Item label="Even more fruits">
           {items}
-          <MenuDivider />
-          <MenuItem label="Too many fruits">{items}</MenuItem>
-        </MenuItem>
-      </MenuItem>
-    </MenuItem>
+          <Menu.Divider />
+          <Menu.Item label="Too many fruits">{items}</Menu.Item>
+        </Menu.Item>
+      </Menu.Item>
+    </Menu.Item>
   </>
 );
 

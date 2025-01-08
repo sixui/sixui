@@ -20,6 +20,8 @@ export type IDividerOwnProps = {
    * Indents the divider with padding on the trailing side.
    */
   insetEnd?: boolean;
+
+  children?: React.ReactNode;
 };
 
 export interface IDividerProps
