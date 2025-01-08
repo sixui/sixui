@@ -52,7 +52,7 @@ const classNames = createStyles({
     caretColor: tokens.caret.color.normal,
     cursor: 'text',
 
-    height: 'auto',
+    height: '100%',
     flexShrink: 1,
     flexGrow: 1,
     flexBasis: 0,
