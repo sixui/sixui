@@ -84,7 +84,7 @@ export const Variants: IStory = {
           props: {
             variant: 'input',
             children: 'Input',
-            onDelete: () => sbHandleEvent('delete', undefined, 1000),
+            onActionClick: () => sbHandleEvent('delete', undefined, 1000),
             imageUrl: IMAGE_URL,
           },
         },
@@ -92,7 +92,7 @@ export const Variants: IStory = {
           props: {
             variant: 'input',
             children: 'Avatar',
-            onDelete: () => sbHandleEvent('delete', undefined, 1000),
+            onActionClick: () => sbHandleEvent('delete', undefined, 1000),
             imageUrl: IMAGE_URL,
             avatar: true,
           },
@@ -239,13 +239,13 @@ export const Input: IStory = {
       props={props}
       cols={[
         ...states,
-        { legend: 'Deleting', props: { children: 'Deleting', deleting: true } },
+        { legend: 'Deleting', props: { children: 'Deleting', actioning: true } },
       ]}
       rows={[
         { legend: 'Basic', hiddenIndexes: [8] },
         {
           legend: 'Deletable',
-          props: { onDelete: () => sbHandleEvent('delete', undefined, 1000) },
+          props: { onActionClick: () => sbHandleEvent('delete', undefined, 1000) },
         },
       ]}
       groups={[{}, { legend: 'Selected', props: { selected: true } }]}
@@ -280,7 +280,7 @@ export const InputWithIconOrImage: IStory = {
       props={props}
       cols={[
         ...states,
-        { legend: 'Deleting', props: { children: 'Deleting', deleting: true } },
+        { legend: 'Deleting', props: { children: 'Deleting', actioning: true } },
       ]}
       rows={[
         {
@@ -292,14 +292,14 @@ export const InputWithIconOrImage: IStory = {
           legend: 'With Image',
           props: {
             imageUrl: IMAGE_URL,
-            onDelete: () => sbHandleEvent('delete', undefined, 1000),
+            onActionClick: () => sbHandleEvent('delete', undefined, 1000),
           },
         },
         {
           legend: 'With avatar',
           props: {
             imageUrl: IMAGE_URL,
-            onDelete: () => sbHandleEvent('delete', undefined, 1000),
+            onActionClick: () => sbHandleEvent('delete', undefined, 1000),
             avatar: true,
           },
         },

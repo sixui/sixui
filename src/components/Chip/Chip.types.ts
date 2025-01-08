@@ -13,12 +13,13 @@ export interface IChipOwnProps
     IButtonOwnProps,
     'leadingIcon' | 'trailingIcon' | 'start' | 'end'
   > {
-  onDelete?: (event: React.MouseEvent<Element>) => IMaybeAsync<IAny>;
+  onActionClick?: (event: React.MouseEvent<Element>) => IMaybeAsync<IAny>;
+  actioning?: boolean;
+  actionIcon?: React.ReactNode;
   elevated?: boolean;
   selected?: boolean;
   imageUrl?: string;
   loadingText?: string;
-  deleting?: boolean;
   avatar?: boolean;
   icon?: React.ReactNode;
   selectedIcon?: React.ReactNode;

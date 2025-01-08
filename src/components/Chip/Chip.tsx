@@ -26,8 +26,9 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
       selected: selectedProp,
       elevated: elevatedProp,
       loading: loadingProp,
-      deleting: deletingProp,
-      onDelete,
+      actioning: actioningProp,
+      actionIcon,
+      onActionClick,
       imageUrl,
       icon,
       onClick,
@@ -40,9 +41,10 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
     const [handlingDelete, setHandlingDelete] = useState(false);
 
     const loading = loadingProp || handlingClick;
-    const canDelete = variant === 'input' && onDelete;
-    const deleting = !loading && canDelete && (deletingProp || handlingDelete);
-    const readOnly = readOnlyProp || loading || deleting;
+    const canAction = variant === 'input' && onActionClick;
+    const actioning =
+      !loading && canAction && (actioningProp || handlingDelete);
+    const readOnly = readOnlyProp || loading || actioning;
     const disabledOrReadOnly = other.disabled || readOnly;
 
     const primaryActionRef = useRef<HTMLElement>(null);
@@ -96,19 +98,19 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
       [handlingClick, onClick],
     );
 
-    const handleDelete = useCallback(
+    const handleActionClick = useCallback(
       (event: React.MouseEvent<Element>) => {
         if (handlingDelete) {
           return;
         }
         setHandlingDelete(true);
-        Promise.resolve(onDelete?.(event))
+        Promise.resolve(onActionClick?.(event))
           .finally(() => setHandlingDelete(false))
           .catch((error: Error) => {
             throw error;
           });
       },
-      [onDelete, handlingDelete],
+      [onActionClick, handlingDelete],
     );
 
     // https://github.com/material-components/material-web/blob/035d1553662812e2dcc12aea8d70ea8bf26b164b/chips/internal/multi-action-chip.ts#L74
@@ -172,24 +174,25 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
       );
     }, []);
 
-    const renderDeleteButton = useCallback(
+    const renderActionButton = useCallback(
       () => (
         <IconButton
           as="div"
-          icon={<SvgIcon icon={iconXMark} />}
-          onClick={handleDelete}
-          loading={deleting}
+          icon={actionIcon ?? <SvgIcon icon={iconXMark} />}
+          onClick={handleActionClick}
+          loading={actioning}
           disabled={disabledOrReadOnly}
           tabIndex={-1}
           ref={trailingActionRef}
           onFocus={handleTrailingActionFocus}
-          {...getStyles('deleteButton')}
+          {...getStyles('actionButton')}
         />
       ),
       [
+        actionIcon,
         getStyles,
-        handleDelete,
-        deleting,
+        handleActionClick,
+        actioning,
         disabledOrReadOnly,
         handleTrailingActionFocus,
       ],
@@ -205,7 +208,7 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
         loading={loading}
         ref={primaryHandleRef}
         hasLeading={hasLeading}
-        end={canDelete && renderDeleteButton()}
+        end={canAction && renderActionButton()}
         onKeyDown={handleKeyDown}
         readOnly={readOnly}
         {...other}

@@ -280,7 +280,7 @@ export const multiSelectBaseFactory = <
                                 ? true
                                 : undefined,
                           }}
-                          onDelete={(event) => {
+                          onActionClick={(event) => {
                             event.stopPropagation();
                             onItemsChange?.(
                               multiFilterableListBase.deselectItemAtIndex(

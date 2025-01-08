@@ -241,7 +241,7 @@ const classNames = createStyles({
       },
     },
   }),
-  deleteButton: {
+  actionButton: {
     zIndex: 1,
     marginLeft: px(-12),
     marginRight: px(-12),
