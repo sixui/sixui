@@ -232,8 +232,8 @@ const classNames = createStyles({
     transitionProperty: 'width, height',
     transitionTimingFunction: themeTokens.motion.easing.standard.normal,
     transitionDuration: themeTokens.motion.duration.medium.$2,
-    width: tokens.handle$off.width.normal,
-    height: tokens.handle$off.height.normal,
+    width: calc.add(tokens.handle$off.width.normal, DENSITY),
+    height: calc.add(tokens.handle$off.height.normal, DENSITY),
 
     vars: {
       ...createTokensVars(PaperBase.theme.tokens, {
@@ -283,8 +283,8 @@ const classNames = createStyles({
         },
         root,
       )]: {
-        width: tokens.handle$off.width.pressed,
-        height: calc.add(tokens.handle$off.height.pressed, DENSITY),
+        width: calc.add(tokens.handle$off.width.pressed, DENSITY),
+        height: calc.add(tokens.handle$off.height.normal, DENSITY),
         transitionTimingFunction: themeTokens.motion.easing.standard.normal,
         transitionDuration: themeTokens.motion.duration.short.$3,
 
@@ -321,12 +321,12 @@ const classNames = createStyles({
         },
         root,
       )]: {
-        width: tokens.handle$off.width.withIcon,
+        width: calc.add(tokens.handle$off.width.withIcon, DENSITY),
         height: calc.add(tokens.handle$off.height.withIcon, DENSITY),
       },
       [getModifierSelector<IModifier>({ on: true }, root)]: {
-        width: tokens.handle$on.width.normal,
-        height: tokens.handle$on.height.normal,
+        width: calc.add(tokens.handle$on.width.normal, DENSITY),
+        height: calc.add(tokens.handle$on.height.normal, DENSITY),
 
         vars: createTokensVars(PaperBase.theme.tokens, {
           container: {
@@ -373,7 +373,7 @@ const classNames = createStyles({
         },
         root,
       )]: {
-        width: tokens.handle$on.width.pressed,
+        width: calc.add(tokens.handle$on.width.pressed, DENSITY),
         height: calc.add(tokens.handle$on.height.pressed, DENSITY),
         transitionTimingFunction: themeTokens.motion.easing.standard.normal,
         transitionDuration: themeTokens.motion.duration.short.$3,
@@ -411,7 +411,7 @@ const classNames = createStyles({
         },
         root,
       )]: {
-        width: tokens.handle$on.width.withIcon,
+        width: calc.add(tokens.handle$on.width.withIcon, DENSITY),
         height: calc.add(tokens.handle$on.height.withIcon, DENSITY),
       },
     },
