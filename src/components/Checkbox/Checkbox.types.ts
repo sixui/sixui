@@ -1,6 +1,5 @@
 import type { CheckboxGroup } from 'react-aria-components';
 
-import type { IOmit } from '~/helpers/types';
 import type { IUseCheckboxProps } from '~/hooks/useCheckbox';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
@@ -9,8 +8,7 @@ import type { CheckboxCard } from '../CheckboxCard';
 import type { CheckboxIndicator } from '../CheckboxIndicator';
 import type { checkboxTheme, ICheckboxThemeFactory } from './Checkbox.css';
 
-export interface ICheckboxOwnProps
-  extends IOmit<IUseCheckboxProps, 'componentName'> {
+export interface ICheckboxOwnProps extends IUseCheckboxProps {
   rootRef?: React.Ref<HTMLDivElement>;
 }
 

@@ -23,7 +23,7 @@ const styles = stylex.create({
 
 const defaultArgs = {
   children: 'Advanced settings',
-  onClick: (...args) => void sbHandleEvent('click', args),
+  onClick: (...args) => sbHandleEvent('click', args, 1000),
   onChange: (...args) => sbHandleEvent('change', args, 1000),
   sx: styles.host,
 } satisfies Partial<IDisclosureButtonProps>;

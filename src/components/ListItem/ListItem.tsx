@@ -103,7 +103,7 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
             overlay={
               <IndeterminateCircularProgressIndicator {...getStyles('icon')} />
             }
-            visible={loading}
+            visible={loading && (!!leadingIcon || !trailingIcon)}
           >
             {start ??
               (leadingIcon ? (
@@ -137,6 +137,7 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
         hasStartSlot,
         leading,
         leadingIcon,
+        trailingIcon,
         leadingImage,
         leadingVideo,
         loading,

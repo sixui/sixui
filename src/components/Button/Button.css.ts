@@ -31,6 +31,9 @@ const DENSITY = px(getDensity({ min: -4, max: 0 }));
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   container: {
+    shape: px(themeTokens.shape.corner.full),
+    height: px(40),
+    minWidth: px(64),
     leadingSpace: {
       normal: px(space(6)),
       withStartSlot: px(space(4)),
@@ -41,8 +44,6 @@ const [tokensClassName, tokens] = createTheme({
       withStartSlot: px(space(6)),
       withEndSlot: px(space(4)),
     },
-    height: px(40),
-    minWidth: px(64),
     color: {
       normal: 'unset',
       focused: 'unset',
@@ -120,7 +121,7 @@ const classNames = createStyles({
       container: {
         color: tokens.container.color.normal,
         elevation: tokens.container.elevation.normal,
-        shape: px(themeTokens.shape.corner.full),
+        shape: tokens.container.shape,
       },
       outline: {
         color: tokens.outline.color.normal,

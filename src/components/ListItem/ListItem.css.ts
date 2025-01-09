@@ -52,11 +52,11 @@ const slotTokens = {
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
-  leadingSpace: px(space(4)),
-  trailingSpace: px(space(4)),
-  topSpace: calc.add(px(space(2)), DENSITY),
-  bottomSpace: calc.add(px(space(2)), DENSITY),
   container: {
+    leadingSpace: px(space(4)),
+    trailingSpace: px(space(4)),
+    topSpace: calc.add(px(space(2)), DENSITY),
+    bottomSpace: calc.add(px(space(2)), DENSITY),
     color: {
       normal: {
         regular: 'inherit',
@@ -179,10 +179,10 @@ const classNames = createStyles({
 
     borderRadius: 'inherit',
     minHeight: tokens.container.minHeight,
-    paddingTop: tokens.topSpace,
-    paddingBottom: tokens.bottomSpace,
-    paddingInlineStart: tokens.leadingSpace,
-    paddingInlineEnd: tokens.trailingSpace,
+    paddingTop: tokens.container.topSpace,
+    paddingBottom: tokens.container.bottomSpace,
+    paddingInlineStart: tokens.container.leadingSpace,
+    paddingInlineEnd: tokens.container.trailingSpace,
     WebkitTapHighlightColor: 'transparent',
 
     selectors: {

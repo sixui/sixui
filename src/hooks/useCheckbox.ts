@@ -7,7 +7,7 @@ import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 import { useControlledValue } from '~/hooks/useControlledValue';
 
 export interface IUseCheckboxProps {
-  componentName: string;
+  componentName?: string;
   checked?: boolean;
   defaultChecked?: boolean;
   indeterminate?: boolean;
@@ -42,12 +42,12 @@ export const useCheckbox = (props: IUseCheckboxProps): IUseCheckboxResult => {
   const [checkedValue, setCheckedValue] = useControlledValue({
     controlled: props.checked,
     default: !!props.defaultChecked,
-    name: props.componentName,
+    name: props.componentName ?? 'Checkbox',
   });
   const [indeterminate, setIndeterminate] = useControlledValue({
     controlled: props.indeterminate,
     default: !!props.defaultIndeterminate,
-    name: props.componentName,
+    name: props.componentName ?? 'Checkbox',
   });
 
   const loading =

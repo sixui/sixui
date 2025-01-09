@@ -133,7 +133,6 @@ export const Variants: IStory = {
             children: capitalizeFirstLetter(variant),
             leadingIcon: <FontAwesomeIcon icon={faCalendarDays} />,
             trailingIcon: <FontAwesomeIcon icon={faChevronRight} />,
-            onClick: () => {},
           },
         }),
       )}

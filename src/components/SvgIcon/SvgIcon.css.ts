@@ -2,11 +2,7 @@ import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactor
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 
-const classNames = createStyles({
-  root: {
-    display: 'contents',
-  },
-});
+const classNames = createStyles();
 
 export type ISvgIconThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;

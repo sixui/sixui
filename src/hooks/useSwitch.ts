@@ -6,7 +6,7 @@ import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 import { useControlledValue } from './useControlledValue';
 
 export interface IUseSwitchProps {
-  componentName: string;
+  componentName?: string;
   checked?: boolean;
   defaultChecked?: boolean;
   value?: string;
@@ -39,7 +39,7 @@ export const useSwitch = (props: IUseSwitchProps): IUseSwitchResult => {
   const [checked, setChecked] = useControlledValue({
     controlled: props.checked,
     default: !!props.defaultChecked,
-    name: props.componentName,
+    name: props.componentName ?? 'Switch',
   });
 
   const loading = props.loading || handlingChange || labeledContext?.loading;

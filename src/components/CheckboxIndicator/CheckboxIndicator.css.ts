@@ -46,6 +46,7 @@ const [tokensClassName, tokens] = createTheme({
   },
   container$off: {
     color: {
+      normal: 'transparent',
       focused: 'inherit',
       hovered: 'inherit',
       pressed: 'inherit',
@@ -93,6 +94,7 @@ const classNames = createStyles({
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {
         shape: tokens.shape,
+        color: tokens.container$off.color.normal,
       },
       outline: {
         color: themeTokens.colorScheme.onSurfaceVariant,

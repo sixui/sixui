@@ -6,13 +6,14 @@ import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { IListItemOwnProps } from '../ListItem';
 import type {
-  disclosureButtonTheme,
-  IDisclosureButtonThemeFactory,
-} from './DisclosureButton.css';
+  disclosureListItemTheme,
+  IDisclosureListItemThemeFactory,
+} from './DisclosureListItem.css';
 
-export interface IDisclosureButtonOwnProps
+export interface IDisclosureListItemOwnProps
   extends IListItemOwnProps,
-    IOmit<IUseCheckboxProps | IUseSwitchProps, 'componentName'> {
+    IOmit<IUseCheckboxProps, 'indeterminate' | 'defaultIndeterminate'>,
+    IUseSwitchProps {
   collapseIcon?: React.ReactNode;
   expandIcon?: React.ReactNode;
   expanded?: boolean;
@@ -20,13 +21,13 @@ export interface IDisclosureButtonOwnProps
   switchable?: boolean;
 }
 
-export interface IDisclosureButtonProps
+export interface IDisclosureListItemProps
   extends IBoxProps,
-    IComponentThemeProps<IDisclosureButtonThemeFactory>,
-    IDisclosureButtonOwnProps {}
+    IComponentThemeProps<IDisclosureListItemThemeFactory>,
+    IDisclosureListItemOwnProps {}
 
-export type IDisclosureButtonFactory = IComponentFactory<{
-  props: IDisclosureButtonProps;
+export type IDisclosureListItemFactory = IComponentFactory<{
+  props: IDisclosureListItemProps;
   ref: HTMLDivElement;
-  theme: typeof disclosureButtonTheme;
+  theme: typeof disclosureListItemTheme;
 }>;

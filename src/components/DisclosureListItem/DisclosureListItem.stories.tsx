@@ -3,24 +3,43 @@ import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IComponentPresentation } from '../ComponentShowcase';
-import type { IDisclosureButtonProps } from './DisclosureButton.types';
+import type { IDisclosureListItemProps } from './DisclosureListItem.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { componentShowcaseFactory } from '../ComponentShowcase';
-import { DisclosureButton } from './DisclosureButton';
+import { DisclosureListItem } from './DisclosureListItem';
 
 const meta = {
-  component: DisclosureButton,
-} satisfies Meta<typeof DisclosureButton>;
+  component: DisclosureListItem,
+} satisfies Meta<typeof DisclosureListItem>;
 
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   children: 'Advanced settings',
-  onClick: (...args) => void sbHandleEvent('onClick', args, 1000),
+  onClick: (...args) => sbHandleEvent('onClick', args, 1000),
   onChange: (...args) => sbHandleEvent('onChange', args, 1000),
-} satisfies Partial<IDisclosureButtonProps>;
+  w: '$96',
+} satisfies Partial<IDisclosureListItemProps>;
 
-const rows: Array<IComponentPresentation<IDisclosureButtonProps>> = [
+const cols: Array<IComponentPresentation<IDisclosureListItemProps>> = [
+  {
+    legend: 'Standard',
+  },
+  {
+    legend: 'Checkable',
+    props: {
+      checkable: true,
+    },
+  },
+  {
+    legend: 'Switchable',
+    props: {
+      switchable: true,
+    },
+  },
+];
+
+const rows: Array<IComponentPresentation<IDisclosureListItemProps>> = [
   {
     legend: 'Collapsed',
     props: {
@@ -34,36 +53,11 @@ const rows: Array<IComponentPresentation<IDisclosureButtonProps>> = [
     },
   },
   {
-    legend: 'Checkable',
+    legend: 'Checked',
     props: {
-      checkable: true,
-    },
-  },
-  {
-    legend: 'Checkable (toggled on)',
-    props: {
-      checkable: true,
       defaultChecked: true,
     },
-  },
-  {
-    legend: 'Switchable',
-    props: {
-      switchable: true,
-    },
-  },
-  {
-    legend: 'Switchable (toggled on)',
-    props: {
-      switchable: true,
-      defaultChecked: true,
-    },
-  },
-  {
-    legend: 'Loading',
-    props: {
-      loading: true,
-    },
+    hiddenIndexes: [0],
   },
   {
     legend: 'Custom expand icon',
@@ -79,6 +73,12 @@ const rows: Array<IComponentPresentation<IDisclosureButtonProps>> = [
     },
   },
   {
+    legend: 'Loading',
+    props: {
+      loading: true,
+    },
+  },
+  {
     legend: 'Disabled',
     props: {
       disabled: true,
@@ -86,10 +86,12 @@ const rows: Array<IComponentPresentation<IDisclosureButtonProps>> = [
   },
 ];
 
-const DisclosureButtonShowcase = componentShowcaseFactory(DisclosureButton);
+const DisclosureListItemShowcase = componentShowcaseFactory(DisclosureListItem);
 
 export const Configurations: IStory = {
-  render: (props) => <DisclosureButtonShowcase props={props} rows={rows} />,
+  render: (props) => (
+    <DisclosureListItemShowcase props={props} cols={cols} rows={rows} />
+  ),
   args: defaultArgs,
 };
 

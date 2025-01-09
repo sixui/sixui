@@ -103,7 +103,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
                 {...getStyles(['icon', 'slot$start'])}
               />
             }
-            visible={loading}
+            visible={loading && (!!leadingIcon || !trailingIcon)}
           >
             {start ? (
               <div {...getStyles(['slot', !!children && 'slot$start'])}>
@@ -135,6 +135,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
         hasStartSlot,
         loading,
         leadingIcon,
+        trailingIcon,
         handleAnimationIteration,
         children,
       ],

@@ -10,7 +10,7 @@ import type {
 } from './CheckboxCard.css';
 
 export interface ICheckboxCardOwnProps
-  extends IOmit<IUseCheckboxProps, 'componentName'>,
+  extends IUseCheckboxProps,
     IOmit<ICardOwnProps, 'children'> {
   rootRef?: React.Ref<HTMLButtonElement>;
   label?: React.ReactNode;
