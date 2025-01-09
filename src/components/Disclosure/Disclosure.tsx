@@ -5,7 +5,7 @@ import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
 import { extractBoxProps } from '../Box/extractBoxProps';
-import { DisclosureListItem } from '../DisclosureListItem';
+import { DisclosureTrigger } from '../DisclosureTrigger';
 import { Expandable } from '../Expandable';
 import { disclosureTheme } from './Disclosure.css';
 
@@ -47,4 +47,4 @@ export const Disclosure = componentFactory<IDisclosureFactory>(
 
 Disclosure.theme = disclosureTheme;
 Disclosure.displayName = `@sixui/${COMPONENT_NAME}`;
-Disclosure.ListItem = DisclosureListItem;
+Disclosure.Trigger = DisclosureTrigger;

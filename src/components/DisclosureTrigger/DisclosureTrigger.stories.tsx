@@ -3,14 +3,14 @@ import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IComponentPresentation } from '../ComponentShowcase';
-import type { IDisclosureListItemProps } from './DisclosureListItem.types';
+import type { IDisclosureTriggerProps } from './DisclosureTrigger.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { componentShowcaseFactory } from '../ComponentShowcase';
-import { DisclosureListItem } from './DisclosureListItem';
+import { DisclosureTrigger } from './DisclosureTrigger';
 
 const meta = {
-  component: DisclosureListItem,
-} satisfies Meta<typeof DisclosureListItem>;
+  component: DisclosureTrigger,
+} satisfies Meta<typeof DisclosureTrigger>;
 
 type IStory = StoryObj<typeof meta>;
 
@@ -19,9 +19,9 @@ const defaultArgs = {
   onClick: (...args) => sbHandleEvent('onClick', args, 1000),
   onChange: (...args) => sbHandleEvent('onChange', args, 1000),
   w: '$96',
-} satisfies Partial<IDisclosureListItemProps>;
+} satisfies Partial<IDisclosureTriggerProps>;
 
-const cols: Array<IComponentPresentation<IDisclosureListItemProps>> = [
+const cols: Array<IComponentPresentation<IDisclosureTriggerProps>> = [
   {
     legend: 'Standard',
   },
@@ -39,7 +39,7 @@ const cols: Array<IComponentPresentation<IDisclosureListItemProps>> = [
   },
 ];
 
-const rows: Array<IComponentPresentation<IDisclosureListItemProps>> = [
+const rows: Array<IComponentPresentation<IDisclosureTriggerProps>> = [
   {
     legend: 'Collapsed',
     props: {
@@ -86,11 +86,11 @@ const rows: Array<IComponentPresentation<IDisclosureListItemProps>> = [
   },
 ];
 
-const DisclosureListItemShowcase = componentShowcaseFactory(DisclosureListItem);
+const DisclosureTriggerShowcase = componentShowcaseFactory(DisclosureTrigger);
 
 export const Configurations: IStory = {
   render: (props) => (
-    <DisclosureListItemShowcase props={props} cols={cols} rows={rows} />
+    <DisclosureTriggerShowcase props={props} cols={cols} rows={rows} />
   ),
   args: defaultArgs,
 };

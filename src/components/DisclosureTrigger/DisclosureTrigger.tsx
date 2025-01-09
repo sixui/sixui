@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react';
 
-import type { IDisclosureListItemThemeFactory } from './DisclosureListItem.css';
-import type { IDisclosureListItemFactory } from './DisclosureListItem.types';
+import type { IDisclosureTriggerThemeFactory } from './DisclosureTrigger.css';
+import type { IDisclosureTriggerFactory } from './DisclosureTrigger.types';
 import { iconChevronDown } from '~/assets/icons';
 import { IAny, IMaybeAsync } from '~/helpers/types';
 import { useControlledValue } from '~/hooks/useControlledValue';
@@ -16,11 +16,11 @@ import { useExpandableContext } from '../Expandable';
 import { ListItem } from '../ListItem';
 import { SvgIcon } from '../SvgIcon';
 import { Switch } from '../Switch';
-import { disclosureListItemTheme } from './DisclosureListItem.css';
+import { disclosureTriggerTheme } from './DisclosureTrigger.css';
 
-const COMPONENT_NAME = 'DisclosureListItem';
+const COMPONENT_NAME = 'DisclosureTrigger';
 
-export const DisclosureListItem = componentFactory<IDisclosureListItemFactory>(
+export const DisclosureTrigger = componentFactory<IDisclosureTriggerFactory>(
   (props, forwardedRef) => {
     const {
       classNames,
@@ -61,14 +61,14 @@ export const DisclosureListItem = componentFactory<IDisclosureListItemFactory>(
       disabledProp || expandableContext?.disabled || (toggleable && !checked);
     const expanded = !disabled && (expandedProp || expandableContext?.expanded);
 
-    const { getStyles } = useComponentTheme<IDisclosureListItemThemeFactory>({
+    const { getStyles } = useComponentTheme<IDisclosureTriggerThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
       className,
       styles,
       style,
       variant,
-      theme: disclosureListItemTheme,
+      theme: disclosureTriggerTheme,
       modifiers: {
         disabled,
         expanded,
@@ -167,5 +167,5 @@ export const DisclosureListItem = componentFactory<IDisclosureListItemFactory>(
   },
 );
 
-DisclosureListItem.theme = disclosureListItemTheme;
-DisclosureListItem.displayName = `@sixui/${COMPONENT_NAME}`;
+DisclosureTrigger.theme = disclosureTriggerTheme;
+DisclosureTrigger.displayName = `@sixui/${COMPONENT_NAME}`;

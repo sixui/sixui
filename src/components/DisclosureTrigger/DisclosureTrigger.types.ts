@@ -6,11 +6,11 @@ import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { IListItemOwnProps } from '../ListItem';
 import type {
-  disclosureListItemTheme,
-  IDisclosureListItemThemeFactory,
-} from './DisclosureListItem.css';
+  disclosureTriggerTheme,
+  IDisclosureTriggerThemeFactory,
+} from './DisclosureTrigger.css';
 
-export interface IDisclosureListItemOwnProps
+export interface IDisclosureTriggerOwnProps
   extends IListItemOwnProps,
     IOmit<IUseCheckboxProps, 'indeterminate' | 'defaultIndeterminate'>,
     IUseSwitchProps {
@@ -22,13 +22,13 @@ export interface IDisclosureListItemOwnProps
   rootRef?: React.Ref<HTMLDivElement>;
 }
 
-export interface IDisclosureListItemProps
+export interface IDisclosureTriggerProps
   extends IBoxProps,
-    IComponentThemeProps<IDisclosureListItemThemeFactory>,
-    IDisclosureListItemOwnProps {}
+    IComponentThemeProps<IDisclosureTriggerThemeFactory>,
+    IDisclosureTriggerOwnProps {}
 
-export type IDisclosureListItemFactory = IComponentFactory<{
-  props: IDisclosureListItemProps;
+export type IDisclosureTriggerFactory = IComponentFactory<{
+  props: IDisclosureTriggerProps;
   ref: HTMLDivElement;
-  theme: typeof disclosureListItemTheme;
+  theme: typeof disclosureTriggerTheme;
 }>;

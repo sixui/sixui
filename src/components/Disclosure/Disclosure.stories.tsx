@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IDisclosureListItemProps } from '../DisclosureListItem';
+import type { IDisclosureTriggerProps } from '../DisclosureTrigger';
 import type { IDisclosureProps } from './Disclosure.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { componentShowcaseFactory } from '../ComponentShowcase';
@@ -16,14 +16,14 @@ type IStory = StoryObj<typeof meta>;
 const TEXT =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et leo duis ut diam quam nulla porttitor. Tortor dignissim convallis aenean et tortor. Vulputate mi sit amet mauris commodo. Ac turpis egestas sed tempus.';
 
-const TriggerDemo: React.FC<IDisclosureListItemProps> = (props) => (
-  <Disclosure.ListItem
+const TriggerDemo: React.FC<IDisclosureTriggerProps> = (props) => (
+  <Disclosure.Trigger
     onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
     onChange={(...args) => sbHandleEvent('onChange', args, 1000)}
     {...props}
   >
     Advanced options
-  </Disclosure.ListItem>
+  </Disclosure.Trigger>
 );
 
 const defaultArgs = {

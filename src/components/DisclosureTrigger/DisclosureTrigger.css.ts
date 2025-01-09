@@ -179,14 +179,14 @@ const classNames = createStyles({
   },
 });
 
-export type IDisclosureListItemThemeFactory = IComponentThemeFactory<{
+export type IDisclosureTriggerThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   modifier: IModifier;
 }>;
 
-export const disclosureListItemTheme =
-  componentThemeFactory<IDisclosureListItemThemeFactory>({
+export const disclosureTriggerTheme =
+  componentThemeFactory<IDisclosureTriggerThemeFactory>({
     classNames,
     tokensClassName,
     tokens,

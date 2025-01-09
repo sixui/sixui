@@ -1,7 +1,7 @@
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
-import type { DisclosureListItem } from '../DisclosureListItem';
+import type { DisclosureTrigger } from '../DisclosureTrigger';
 import type { IExpandableOwnProps } from '../Expandable';
 import type {
   disclosureTheme,
@@ -20,6 +20,6 @@ export type IDisclosureFactory = IComponentFactory<{
   ref: HTMLDivElement;
   theme: typeof disclosureTheme;
   staticComponents: {
-    ListItem: typeof DisclosureListItem;
+    Trigger: typeof DisclosureTrigger;
   };
 }>;
