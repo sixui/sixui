@@ -1,8 +1,10 @@
 import { createTheme } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
+import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
@@ -10,7 +12,7 @@ import { Item } from '../Item';
 import { ListItem } from '../ListItem';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 
-type IModifier = 'disabled' | 'expanded';
+type IModifier = 'disabled' | 'expanded' | 'checkable' | 'switchable';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
@@ -46,10 +48,20 @@ const [tokensClassName, tokens] = createTheme({
       disabled: themeTokens.state.opacity.disabled,
     },
   },
+  toggle: {
+    leadingSpace: px(space(4)),
+    trailingSpace: px(space(4)),
+  },
 });
 
 const classNames = createStyles({
   root: {
+    position: 'relative',
+  },
+  listItem: ({ root }) => ({
+    display: 'block',
+    width: '100%',
+
     vars: createTokensVars(ListItem.theme.tokens, {
       container: {
         shape: tokens.container.shape,
@@ -84,7 +96,7 @@ const classNames = createStyles({
       },
     }),
     selectors: {
-      [getModifierSelector<IModifier>('expanded')]: {
+      [getModifierSelector<IModifier>('expanded', root)]: {
         vars: createTokensVars(ListItem.theme.tokens, {
           container: {
             color: {
@@ -109,8 +121,30 @@ const classNames = createStyles({
           },
         }),
       },
+      [getModifierSelector<IModifier>('checkable', root)]: {
+        vars: createTokensVars(ListItem.theme.tokens, {
+          container: {
+            leadingSpace: calc(tokens.toggle.leadingSpace)
+              // CheckboxIndicator.theme.tokens.container.size
+              .add(px(18))
+              .add(tokens.toggle.trailingSpace)
+              .toString(),
+          },
+        }),
+      },
+      [getModifierSelector<IModifier>('switchable', root)]: {
+        vars: createTokensVars(ListItem.theme.tokens, {
+          container: {
+            leadingSpace: calc(tokens.toggle.leadingSpace)
+              // SwitchIndicator.theme.tokens.container.width
+              .add(px(52))
+              .add(tokens.toggle.trailingSpace)
+              .toString(),
+          },
+        }),
+      },
     },
-  },
+  }),
   item: {
     vars: createTokensVars(Item.theme.tokens, {
       label: {
@@ -134,6 +168,15 @@ const classNames = createStyles({
       },
     },
   }),
+  toggleContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    display: 'flex',
+    alignItems: 'center',
+    marginLeft: tokens.toggle.leadingSpace,
+  },
 });
 
 export type IDisclosureListItemThemeFactory = IComponentThemeFactory<{

@@ -1,3 +1,5 @@
+import { removeUndefineds } from '@olivierpascal/helpers';
+
 import type { IBoxProps } from './Box.types';
 
 export type IUseForwardedPropsResult = {
@@ -15,6 +17,7 @@ export const extractBoxProps = <TProps extends IBoxProps>(
     modifiers,
     scale,
     density,
+    grow,
     m,
     mt,
     mb,
@@ -48,13 +51,14 @@ export const extractBoxProps = <TProps extends IBoxProps>(
     ...other
   } = props;
 
-  const boxProps: IBoxProps = {
+  const boxProps: IBoxProps = removeUndefineds({
     className,
     style,
     interactions,
     modifiers,
     scale,
     density,
+    grow,
     m,
     mt,
     mb,
@@ -85,7 +89,7 @@ export const extractBoxProps = <TProps extends IBoxProps>(
     z,
     o,
     pos,
-  };
+  });
 
   return {
     boxProps,

@@ -24,8 +24,10 @@ const DENSITY = px(getDensity({ min: -2, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
-  width: px(52),
-  height: px(32),
+  container: {
+    width: px(52),
+    height: px(32),
+  },
   container$off: {
     color: {
       normal: themeTokens.colorScheme.surfaceContainerHighest,
@@ -137,8 +139,8 @@ const classNames = createStyles({
   root: {
     display: 'inline-flex',
     verticalAlign: 'top',
-    width: tokens.width,
-    height: calc.add(tokens.height, DENSITY),
+    width: tokens.container.width,
+    height: calc.add(tokens.container.height, DENSITY),
 
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {
@@ -211,12 +213,12 @@ const classNames = createStyles({
     transitionTimingFunction: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
     transitionDuration: themeTokens.motion.duration.medium.$2,
 
-    marginInlineEnd: `calc(${tokens.width} - ${tokens.height})`,
+    marginInlineEnd: `calc(${tokens.container.width} - ${tokens.container.height})`,
     marginInlineStart: 0,
 
     selectors: {
       [getModifierSelector<IModifier>('checked', root)]: {
-        marginInlineStart: `calc(${tokens.width} - ${tokens.height})`,
+        marginInlineStart: `calc(${tokens.container.width} - ${tokens.container.height})`,
         marginInlineEnd: 0,
       },
       [getModifierSelector<IModifier>('disabled', root)]: {

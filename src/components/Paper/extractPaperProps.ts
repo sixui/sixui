@@ -1,3 +1,5 @@
+import { removeUndefineds } from '@olivierpascal/helpers';
+
 import type { IPaperProps } from './Paper.types';
 import { extractBoxProps } from '../Box/extractBoxProps';
 
@@ -13,14 +15,14 @@ export const extractPaperProps = <TProps extends IPaperProps>(
 
   const { boxProps, other: forwardedProps } = extractBoxProps(other);
 
-  const paperProps: IPaperProps = {
+  const paperProps: IPaperProps = removeUndefineds({
     ...boxProps,
     shape,
     outline,
     outlineStyle,
     elevation,
     surface,
-  };
+  });
 
   return {
     paperProps,

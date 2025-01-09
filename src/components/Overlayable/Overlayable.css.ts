@@ -9,8 +9,11 @@ type IModifier = 'visible';
 const classNames = createStyles({
   root: {
     position: 'relative',
+    borderRadius: 'inherit',
   },
   content: ({ root }) => ({
+    borderRadius: 'inherit',
+
     selectors: {
       [getModifierSelector<IModifier>('visible', root)]: {
         visibility: 'hidden',
@@ -29,6 +32,7 @@ const classNames = createStyles({
     whiteSpace: 'nowrap',
     textAlign: 'center',
     justifyContent: 'center',
+    borderRadius: 'inherit',
   },
 });
 

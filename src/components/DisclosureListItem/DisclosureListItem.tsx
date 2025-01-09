@@ -9,6 +9,8 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { Box } from '../Box';
+import { extractBoxProps } from '../Box/extractBoxProps';
 import { Checkbox } from '../Checkbox';
 import { useExpandableContext } from '../Expandable';
 import { ListItem } from '../ListItem';
@@ -40,8 +42,10 @@ export const DisclosureListItem = componentFactory<IDisclosureListItemFactory>(
       expanded: expandedProp,
       checkable,
       switchable,
+      rootRef,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
+    const { boxProps, other: forwardedProps } = extractBoxProps(other);
 
     const expandableContext = useExpandableContext();
     const [checked, setChecked] = useControlledValue({
@@ -67,6 +71,8 @@ export const DisclosureListItem = componentFactory<IDisclosureListItemFactory>(
       modifiers: {
         disabled,
         expanded,
+        checkable,
+        switchable,
       },
     });
 
@@ -109,47 +115,44 @@ export const DisclosureListItem = componentFactory<IDisclosureListItemFactory>(
     );
 
     return (
-      <ListItem
-        {...getStyles('root')}
-        classNames={mergeClassNames(classNames, {
-          item: getStyles('item').className,
-        })}
-        ref={forwardedRef}
-        trailingIcon={icon}
-        loading={loading}
-        disabled={disabled}
-        readOnly={readOnly}
-        leading={
-          toggleable &&
-          (switchable ? (
-            <Switch
-              checked={checked}
-              defaultChecked={defaultChecked}
-              value={value}
-              onChange={handleChange}
-              readOnly={readOnly}
-              disabled={disabled}
-              required={required}
-              id={id}
-            />
-          ) : (
-            <Checkbox
-              checked={checked}
-              defaultChecked={defaultChecked}
-              value={value}
-              onChange={handleChange}
-              readOnly={readOnly}
-              disabled={disabled}
-              required={required}
-              id={id}
-            />
-          ))
-        }
-        as="div"
-        {...other}
-      >
-        {/* {children} */}
-      </ListItem>
+      <Box {...getStyles('root')} {...boxProps} ref={rootRef}>
+        <ListItem
+          classNames={mergeClassNames(classNames, {
+            root: getStyles('listItem').className,
+            item: getStyles('item').className,
+          })}
+          ref={forwardedRef}
+          trailingIcon={icon}
+          loading={loading}
+          disabled={disabled}
+          readOnly={readOnly}
+          {...forwardedProps}
+        />
+
+        {toggleable && (
+          <div {...getStyles('toggleContainer')}>
+            {switchable ? (
+              <Switch
+                checked={checked}
+                defaultChecked={defaultChecked}
+                value={value}
+                onChange={handleChange}
+                required={required}
+                id={id}
+              />
+            ) : (
+              <Checkbox
+                checked={checked}
+                defaultChecked={defaultChecked}
+                value={value}
+                onChange={handleChange}
+                required={required}
+                id={id}
+              />
+            )}
+          </div>
+        )}
+      </Box>
     );
   },
 );

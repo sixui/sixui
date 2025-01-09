@@ -19,6 +19,7 @@ export interface IDisclosureListItemOwnProps
   expanded?: boolean;
   checkable?: boolean;
   switchable?: boolean;
+  rootRef?: React.Ref<HTMLDivElement>;
 }
 
 export interface IDisclosureListItemProps

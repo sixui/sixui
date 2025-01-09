@@ -147,6 +147,14 @@ const classNames = createStyles({
     },
   },
   item: ({ root }) => ({
+    borderRadius: 'inherit',
+    minHeight: tokens.container.minHeight,
+    paddingTop: tokens.container.topSpace,
+    paddingBottom: tokens.container.bottomSpace,
+    paddingInlineStart: tokens.container.leadingSpace,
+    paddingInlineEnd: tokens.container.trailingSpace,
+    WebkitTapHighlightColor: 'transparent',
+
     vars: createTokensVars(Item.theme.tokens, {
       nonText: {
         color: fallbackVar(
@@ -176,14 +184,6 @@ const classNames = createStyles({
         ),
       },
     }),
-
-    borderRadius: 'inherit',
-    minHeight: tokens.container.minHeight,
-    paddingTop: tokens.container.topSpace,
-    paddingBottom: tokens.container.bottomSpace,
-    paddingInlineStart: tokens.container.leadingSpace,
-    paddingInlineEnd: tokens.container.trailingSpace,
-    WebkitTapHighlightColor: 'transparent',
 
     selectors: {
       [getModifierSelector<IModifier>('with-leading', root)]: {

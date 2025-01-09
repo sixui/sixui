@@ -39,8 +39,10 @@ const DENSITY = px(getDensity({ min: -1, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
-  shape: px(2),
-  size: px(18),
+  container: {
+    shape: px(2),
+    size: px(18),
+  },
   mark: {
     stroke: '2px',
   },
@@ -85,15 +87,15 @@ const [tokensClassName, tokens] = createTheme({
 
 const classNames = createStyles({
   root: {
-    width: calc.add(tokens.size, DENSITY),
-    height: calc.add(tokens.size, DENSITY),
+    width: calc.add(tokens.container.size, DENSITY),
+    height: calc.add(tokens.container.size, DENSITY),
     display: 'flex',
     placeContent: 'center',
     placeItems: 'center',
 
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {
-        shape: tokens.shape,
+        shape: tokens.container.shape,
         color: tokens.container$off.color.normal,
       },
       outline: {
@@ -134,8 +136,8 @@ const classNames = createStyles({
     },
   },
   progressIndicator: {
-    width: calc.add(tokens.size, DENSITY),
-    height: calc.add(tokens.size, DENSITY),
+    width: calc.add(tokens.container.size, DENSITY),
+    height: calc.add(tokens.container.size, DENSITY),
   },
   layer: {
     inset: 0,
@@ -275,6 +277,7 @@ const classNames = createStyles({
     animationTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
     transitionDuration: themeTokens.motion.duration.short.$3,
     transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
+    transform: 'scale(0)',
 
     selectors: {
       [getModifierSelector<IModifier>('on', root)]: {
