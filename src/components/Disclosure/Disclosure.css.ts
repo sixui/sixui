@@ -1,53 +1,34 @@
 import { createTheme } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import type { IDisclosureVariant } from './Disclosure.types';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
+import { getDensity } from '~/helpers/styles/getDensity';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { cssLayers, themeTokens } from '../ThemeProvider';
+import { cssLayers } from '../ThemeProvider';
 
-type IModifier = 'disabled';
+const DENSITY = px(getDensity({ min: -2, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
-  container: {
-    color: {
-      normal: 'unset',
-      disabled: 'unset',
-    },
-  },
-  label: {
-    color: {
-      normal: 'unset',
-      disabled: 'unset',
-    },
-  },
+  panelSpacing: px(space(3)),
 });
 
 const classNames = createStyles({
   root: {
-    backgroundColor: tokens.container.color.normal,
-    color: tokens.label.color.normal,
-    padding: px(space(2)),
-
-    selectors: {
-      [getModifierSelector<IModifier>('disabled')]: {
-        backgroundColor: tokens.container.color.disabled,
-        color: tokens.label.color.disabled,
-      },
-    },
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  panel: {
+    marginTop: calc.add(tokens.panelSpacing, DENSITY),
   },
 });
 
 export type IDisclosureThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
-  modifier: IModifier;
-  variant: IDisclosureVariant;
 }>;
 
 export const disclosureTheme = componentThemeFactory<IDisclosureThemeFactory>({
@@ -55,24 +36,3 @@ export const disclosureTheme = componentThemeFactory<IDisclosureThemeFactory>({
   tokensClassName,
   tokens,
 });
-
-export const disclosureThemeVariants = {
-  primary: createStyles({
-    root: {
-      vars: createTokensVars(tokens, {
-        container: {
-          color: {
-            normal: themeTokens.colorScheme.primary,
-            disabled: themeTokens.colorScheme.surfaceContainerHighest,
-          },
-        },
-        label: {
-          color: {
-            normal: themeTokens.colorScheme.onPrimary,
-            disabled: themeTokens.colorScheme.onSurface,
-          },
-        },
-      }),
-    },
-  }),
-};

@@ -4,7 +4,10 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
-import { disclosureTheme, disclosureThemeVariants } from './Disclosure.css';
+import { extractBoxProps } from '../Box/extractBoxProps';
+import { DisclosureListItem } from '../DisclosureListItem';
+import { Expandable } from '../Expandable';
+import { disclosureTheme } from './Disclosure.css';
 
 const COMPONENT_NAME = 'Disclosure';
 
@@ -15,11 +18,12 @@ export const Disclosure = componentFactory<IDisclosureFactory>(
       className,
       styles,
       style,
-      variant = 'primary',
+      variant,
+      trigger,
       children,
-      disabled,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
+    const { boxProps, other: forwardedProps } = extractBoxProps(other);
 
     const { getStyles } = useComponentTheme<IDisclosureThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -29,15 +33,13 @@ export const Disclosure = componentFactory<IDisclosureFactory>(
       style,
       variant,
       theme: disclosureTheme,
-      themeVariants: disclosureThemeVariants,
-      modifiers: {
-        disabled,
-      },
     });
 
     return (
-      <Box {...getStyles('root')} ref={forwardedRef} {...other}>
-        {children}
+      <Box {...getStyles('root')} ref={forwardedRef} {...boxProps}>
+        <Expandable trigger={trigger} ref={forwardedRef} {...forwardedProps}>
+          <div {...getStyles('panel')}>{children}</div>
+        </Expandable>
       </Box>
     );
   },
@@ -45,3 +47,4 @@ export const Disclosure = componentFactory<IDisclosureFactory>(
 
 Disclosure.theme = disclosureTheme;
 Disclosure.displayName = `@sixui/${COMPONENT_NAME}`;
+Disclosure.ListItem = DisclosureListItem;

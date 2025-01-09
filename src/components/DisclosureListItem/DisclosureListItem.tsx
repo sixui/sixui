@@ -43,6 +43,7 @@ export const DisclosureListItem = componentFactory<IDisclosureListItemFactory>(
       checkable,
       switchable,
       rootRef,
+      onClick,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
     const { boxProps, other: forwardedProps } = extractBoxProps(other);
@@ -114,6 +115,14 @@ export const DisclosureListItem = componentFactory<IDisclosureListItemFactory>(
       [expandableContext, checked, onChange, setChecked],
     );
 
+    const handleClick = useCallback(
+      (event: React.MouseEvent<Element>): IMaybeAsync<IAny> =>
+        Promise.all([onClick?.(event)]).then(() =>
+          expandableContext?.expand(!expanded),
+        ),
+      [expandableContext, expanded, onClick],
+    );
+
     return (
       <Box {...getStyles('root')} {...boxProps} ref={rootRef}>
         <ListItem
@@ -126,6 +135,7 @@ export const DisclosureListItem = componentFactory<IDisclosureListItemFactory>(
           loading={loading}
           disabled={disabled}
           readOnly={readOnly}
+          onClick={handleClick}
           {...forwardedProps}
         />
 
