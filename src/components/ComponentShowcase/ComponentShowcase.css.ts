@@ -76,7 +76,7 @@ const classNames = createStyles({
     maxWidth: px(120),
   },
   leftBorder: {
-    borderLeftWidth: themeTokens.outline.width.xs,
+    borderLeftWidth: px(themeTokens.outline.width.xs),
     borderLeftStyle: 'solid',
     borderLeftColor: tokens.outline.color,
     paddingLeft: px(space(8)),

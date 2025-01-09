@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IColorTagProps } from './ColorTag.types';
 import { iconCheckMark } from '~/assets/icons';
-import { ComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { SvgIcon } from '../SvgIcon';
 import { ColorTag } from './ColorTag';
 
@@ -14,10 +14,11 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {} satisfies Partial<IColorTagProps>;
 
+const ColorTagShowcase = componentShowcaseFactory(ColorTag);
+
 export const Configurations: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={ColorTag}
+    <ColorTagShowcase
       props={props}
       cols={[
         {

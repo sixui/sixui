@@ -256,10 +256,10 @@ const [tokensClassName, tokens] = createTheme({
       disabled: themeTokens.state.outlineOpacity.disabled,
     },
     width: {
-      normal: themeTokens.outline.width.xs,
-      focused: themeTokens.outline.width.md,
-      hovered: themeTokens.outline.width.xs,
-      disabled: themeTokens.outline.width.xs,
+      normal: px(themeTokens.outline.width.xs),
+      focused: px(themeTokens.outline.width.md),
+      hovered: px(themeTokens.outline.width.xs),
+      disabled: px(themeTokens.outline.width.xs),
     },
     label: {
       padding: px(space(1)),
