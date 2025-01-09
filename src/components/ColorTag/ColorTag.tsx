@@ -1,8 +1,11 @@
+import { assignInlineVars } from '@vanilla-extract/dynamic';
+
 import type { IColorTagThemeFactory } from './ColorTag.css';
 import type { IColorTagFactory } from './ColorTag.types';
 import { iconCheckMark } from '~/assets/icons';
-import { componentFactory } from '~/utils/component/componentFactory';
+import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
+import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { ButtonBase } from '../ButtonBase';
 import { ColorTagIndicator } from '../ColorTagIndicator';
@@ -11,7 +14,7 @@ import { colorTagTheme } from './ColorTag.css';
 
 const COMPONENT_NAME = 'ColorTag';
 
-export const ColorTag = componentFactory<IColorTagFactory>(
+export const ColorTag = polymorphicComponentFactory<IColorTagFactory>(
   (props, forwardedRef) => {
     const {
       classNames,
@@ -37,7 +40,18 @@ export const ColorTag = componentFactory<IColorTagFactory>(
     });
 
     return (
-      <ButtonBase {...getStyles('root')} ref={forwardedRef} {...other}>
+      <ButtonBase
+        {...getStyles('root', {
+          style: assignInlineVars({
+            [colorTagTheme.tokens.container.color]: backgroundColor,
+          }),
+        })}
+        classNames={mergeClassNames(classNames, {
+          background: getStyles('background').className,
+        })}
+        ref={forwardedRef}
+        {...other}
+      >
         <ColorTagIndicator
           backgroundColor={backgroundColor}
           foregroundColor={foregroundColor}

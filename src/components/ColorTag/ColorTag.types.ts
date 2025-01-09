@@ -1,4 +1,4 @@
-import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { IButtonBaseOwnProps } from '../ButtonBase';
@@ -16,9 +16,10 @@ export interface IColorTagProps
     IComponentThemeProps<IColorTagThemeFactory>,
     IColorTagOwnProps {}
 
-export type IColorTagFactory = IComponentFactory<{
+export type IColorTagFactory = IPolymorphicComponentFactory<{
   props: IColorTagProps;
-  ref: HTMLDivElement;
+  defaultRef: HTMLButtonElement;
+  defaultRoot: 'button';
   theme: typeof colorTagTheme;
   staticComponents: {
     Indicator: typeof ColorTagIndicator;
