@@ -6,8 +6,6 @@ import type {
   IBasicTemplateThemeFactory,
 } from './BasicTemplate.css';
 
-export type IBasicTemplateVariant = 'primary';
-
 export interface IBasicTemplateOwnProps {
   children?: React.ReactNode;
   disabled?: boolean;
@@ -22,5 +20,4 @@ export type IBasicTemplateFactory = IComponentFactory<{
   props: IBasicTemplateProps;
   ref: HTMLDivElement;
   theme: typeof basicTemplateTheme;
-  variant: IBasicTemplateVariant | false;
 }>;

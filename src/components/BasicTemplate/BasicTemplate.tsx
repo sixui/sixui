@@ -4,10 +4,7 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
-import {
-  basicTemplateTheme,
-  basicTemplateThemeVariants,
-} from './BasicTemplate.css';
+import { basicTemplateTheme } from './BasicTemplate.css';
 
 const COMPONENT_NAME = 'BasicTemplate';
 
@@ -18,7 +15,7 @@ export const BasicTemplate = componentFactory<IBasicTemplateFactory>(
       className,
       styles,
       style,
-      variant = 'primary',
+      variant,
       children,
       disabled,
       ...other
@@ -32,7 +29,6 @@ export const BasicTemplate = componentFactory<IBasicTemplateFactory>(
       style,
       variant,
       theme: basicTemplateTheme,
-      themeVariants: basicTemplateThemeVariants,
       modifiers: {
         disabled,
       },

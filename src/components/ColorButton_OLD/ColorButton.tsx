@@ -5,10 +5,10 @@ import stylex from '@stylexjs/stylex';
 import type { IColorButtonProps } from './ColorButton.types';
 import { iconCheckMark } from '~/assets/icons';
 import { ButtonBase } from '~/components/ButtonBase';
-import { ColorTag } from '~/components/ColorTag';
 import { SvgIcon } from '~/components/SvgIcon';
 import { useStyles } from '~/hooks/useStyles';
 import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
+import { ColorIndicator } from '../ColorIndicator/ColorIndicator';
 import { colorButtonStateTokens } from './ColorButton.state.stylex';
 import {
   colorButtonButtonBaseStyles,
@@ -76,11 +76,7 @@ export const ColorButton = createPolymorphicComponent<
           {...other}
           ref={forwardedRef}
         >
-          <ColorTag
-            styles={[
-              colorButtonColorTagStyles,
-              ...asArray(innerStyles?.colorTag),
-            ]}
+          <ColorIndicator
             backgroundColor={backgroundColor}
             foregroundColor={foregroundColor}
             label={children}

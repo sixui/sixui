@@ -1,14 +1,12 @@
 import { createTheme } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import type { IBasicTemplateVariant } from './BasicTemplate.types';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { cssLayers, themeTokens } from '../ThemeProvider';
+import { cssLayers } from '../ThemeProvider';
 
 type IModifier = 'disabled';
 
@@ -47,7 +45,6 @@ export type IBasicTemplateThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   modifier: IModifier;
-  variant: IBasicTemplateVariant;
 }>;
 
 export const basicTemplateTheme =
@@ -56,24 +53,3 @@ export const basicTemplateTheme =
     tokensClassName,
     tokens,
   });
-
-export const basicTemplateThemeVariants = {
-  primary: createStyles({
-    root: {
-      vars: createTokensVars(tokens, {
-        container: {
-          color: {
-            normal: themeTokens.colorScheme.primary,
-            disabled: themeTokens.colorScheme.surfaceContainerHighest,
-          },
-        },
-        label: {
-          color: {
-            normal: themeTokens.colorScheme.onPrimary,
-            disabled: themeTokens.colorScheme.onSurface,
-          },
-        },
-      }),
-    },
-  }),
-};

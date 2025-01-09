@@ -10,10 +10,7 @@ import type { cardTheme, ICardThemeFactory } from './Card.css';
 
 export type ICardVariant = 'filled' | 'elevated' | 'outlined';
 
-export interface ICardOwnProps extends IButtonBaseOwnProps {
-  children?: React.ReactNode;
-  disabled?: boolean;
-}
+export type ICardOwnProps = IButtonBaseOwnProps;
 
 export interface ICardProps
   extends IBoxProps,

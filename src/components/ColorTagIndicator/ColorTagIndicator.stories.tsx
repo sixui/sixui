@@ -1,25 +1,24 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IColorTagProps } from './ColorTag.types';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import type { IColorTagIndicatorProps } from './ColorTagIndicator.types';
+import { iconCheckMark } from '~/assets/icons';
 import { componentShowcaseFactory } from '../ComponentShowcase';
-import { ColorTag } from './ColorTag';
+import { SvgIcon } from '../SvgIcon';
+import { ColorTagIndicator } from './ColorTagIndicator';
 
 const meta = {
-  component: ColorTag,
-} satisfies Meta<typeof ColorTag>;
+  component: ColorTagIndicator,
+} satisfies Meta<typeof ColorTagIndicator>;
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {
-  onClick: (...args) => sbHandleEvent('onClick', args, 1000),
-} satisfies Partial<IColorTagProps>;
+const defaultArgs = {} satisfies Partial<IColorTagIndicatorProps>;
 
-const ColorTagShowcase = componentShowcaseFactory(ColorTag);
+const ColorTagIndicatorShowcase = componentShowcaseFactory(ColorTagIndicator);
 
 export const Configurations: IStory = {
   render: (props) => (
-    <ColorTagShowcase
+    <ColorTagIndicatorShowcase
       props={props}
       cols={[
         {
@@ -35,14 +34,20 @@ export const Configurations: IStory = {
           legend: 'With label',
           props: {
             backgroundColor: '#6750a4',
-            children: '#6750a4',
+            label: '#6750a4',
           },
         },
         {
-          legend: 'Selected',
+          legend: 'With icon',
           props: {
             backgroundColor: '#6750a4',
-            selected: true,
+            icon: <SvgIcon icon={iconCheckMark} />,
+          },
+        },
+        {
+          legend: 'With invalid color',
+          props: {
+            backgroundColor: 'invalid',
           },
         },
       ]}
