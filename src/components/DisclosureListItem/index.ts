@@ -1,2 +1,2 @@
-export * from './DisclosureButton.types';
-export * from './DisclosureButton';
+export * from './DisclosureListItem.types';
+export * from './DisclosureListItem';
