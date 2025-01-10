@@ -9,6 +9,8 @@ import { cssLayers, themeTokens } from '../ThemeProvider';
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   color: themeTokens.colorScheme.outlineVariant,
+  width: px(1),
+  opacity: 'unset',
 });
 
 const classNames = createStyles({
@@ -18,9 +20,14 @@ const classNames = createStyles({
     position: 'absolute',
     inset: 0,
   },
+  svg: {
+    height: '100%',
+    width: '100%',
+  },
   line: {
     stroke: tokens.color,
-    strokeWidth: px(1),
+    strokeWidth: tokens.width,
+    opacity: tokens.opacity,
     vectorEffect: 'non-scaling-stroke',
   },
 });

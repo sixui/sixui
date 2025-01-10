@@ -9,7 +9,7 @@ import type {
 
 export interface IPlaceholderOwnProps extends IPaperOwnProps {
   label?: string;
-  crosshairs?: boolean;
+  diagonals?: boolean;
   disabled?: boolean;
 }
 

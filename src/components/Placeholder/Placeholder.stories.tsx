@@ -31,7 +31,7 @@ export const Basic: IStory = {
   args: {
     ...defaultArgs,
     label: 'Label',
-    crosshairs: true,
+    diagonals: true,
   },
 };
 

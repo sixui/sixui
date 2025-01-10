@@ -9,6 +9,7 @@ import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { Diagonals } from '../Diagonals';
 import { PaperBase } from '../PaperBase';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 
@@ -45,7 +46,7 @@ const [tokensClassName, tokens] = createTheme({
       invalid: '1',
     },
   },
-  crosshairs: {
+  diagonals: {
     color: {
       empty: themeTokens.colorScheme.outlineVariant,
       invalid: themeTokens.colorScheme.error,
@@ -124,65 +125,28 @@ const classNames = createStyles({
     display: 'flex',
     gap: px(space(1)),
   },
-  crosshairs: ({ root }) => ({
-    overflow: 'hidden',
-    borderRadius: 'inherit',
-    position: 'absolute',
-    inset: 0,
-    '::before': {
-      content: '',
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      borderTopStyle: 'solid',
-      width: '150%',
-      transformOrigin: 'top left',
-      transform: 'rotate(45deg)',
-    },
-    '::after': {
-      content: '',
-      position: 'absolute',
-      bottom: 0,
-      left: 0,
-      borderBottomStyle: 'solid',
-      width: '150%',
-      transformOrigin: 'top left',
-      transform: 'rotate(-45deg)',
-    },
+  diagonals: ({ root }) => ({
     display: 'none',
 
     selectors: {
       [`${getModifierSelector<IModifier>('empty', root)}`]: {
         display: 'block',
-      },
-      [`${getModifierSelector<IModifier>('empty', root)}::before`]: {
-        opacity: tokens.crosshairs.opacity.empty,
-        borderColor: tokens.crosshairs.color.empty,
-        borderTopWidth: tokens.crosshairs.width.empty,
-      },
-      [`${getModifierSelector<IModifier>('empty', root)}::after`]: {
-        display: 'block',
-        opacity: tokens.crosshairs.opacity.empty,
-        borderColor: tokens.crosshairs.color.empty,
-        borderBottomWidth: tokens.crosshairs.width.empty,
+
+        vars: createTokensVars(Diagonals.theme.tokens, {
+          color: tokens.diagonals.color.empty,
+          width: tokens.diagonals.width.empty,
+          opacity: tokens.diagonals.opacity.empty,
+        }),
       },
       [`${getModifierSelector<IModifier>(['invalid', '!empty'], root)}`]: {
         display: 'block',
+
+        vars: createTokensVars(Diagonals.theme.tokens, {
+          color: tokens.diagonals.color.invalid,
+          width: tokens.diagonals.width.invalid,
+          opacity: tokens.diagonals.opacity.invalid,
+        }),
       },
-      [`${getModifierSelector<IModifier>(['invalid', '!empty'], root)}::before`]:
-        {
-          display: 'block',
-          opacity: tokens.crosshairs.opacity.invalid,
-          borderColor: tokens.crosshairs.color.invalid,
-          borderTopWidth: tokens.crosshairs.width.invalid,
-        },
-      [`${getModifierSelector<IModifier>(['invalid', '!empty'], root)}::after`]:
-        {
-          display: 'block',
-          opacity: tokens.crosshairs.opacity.invalid,
-          borderColor: tokens.crosshairs.color.invalid,
-          borderBottomWidth: tokens.crosshairs.width.invalid,
-        },
     },
   }),
 });

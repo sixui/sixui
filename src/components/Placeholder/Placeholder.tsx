@@ -3,6 +3,7 @@ import type { IPlaceholderFactory } from './Placeholder.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { Diagonals } from '../Diagonals';
 import { Paper } from '../Paper';
 import { placeholderTheme } from './Placeholder.css';
 
@@ -18,7 +19,7 @@ export const Placeholder = polymorphicComponentFactory<IPlaceholderFactory>(
       variant,
       children,
       label,
-      crosshairs,
+      diagonals,
       disabled,
       surface = '$surfaceContainerHighest',
       ...other
@@ -45,7 +46,7 @@ export const Placeholder = polymorphicComponentFactory<IPlaceholderFactory>(
         classNames={classNames}
         {...other}
       >
-        {crosshairs && <div {...getStyles('crosshairs')} />}
+        {diagonals && <Diagonals {...getStyles('diagonals')} />}
         {label && <div {...getStyles('label')}>{label}</div>}
         {children}
       </Paper>

@@ -13,9 +13,7 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {
-  w: '$96',
-} satisfies Partial<IColorTagIndicatorProps>;
+const defaultArgs = {} satisfies Partial<IColorTagIndicatorProps>;
 
 const ColorTagIndicatorShowcase = componentShowcaseFactory(ColorTagIndicator);
 

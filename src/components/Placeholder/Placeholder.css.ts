@@ -7,13 +7,15 @@ import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
+import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { Diagonals } from '../Diagonals';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 
 type IModifier = 'disabled';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
-  crosshairs: {
+  diagonals: {
     color: themeTokens.colorScheme.outlineVariant,
   },
   label: {
@@ -30,35 +32,11 @@ const classNames = createStyles({
     justifyContent: 'center',
     textAlign: 'center',
   },
-  crosshairs: ({ root }) => ({
-    overflow: 'hidden',
-    borderRadius: 'inherit',
-    position: 'absolute',
-    inset: 0,
-    '::before': {
-      content: '',
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      borderTopStyle: 'solid',
-      borderTopWidth: px(themeTokens.outline.width.xs),
-      borderTopColor: tokens.crosshairs.color,
-      width: '150%',
-      transformOrigin: 'top left',
-      transform: 'rotate(45deg)',
-    },
-    '::after': {
-      content: '',
-      position: 'absolute',
-      bottom: 0,
-      left: 0,
-      borderBottomStyle: 'solid',
-      borderBottomWidth: px(themeTokens.outline.width.xs),
-      borderBottomColor: tokens.crosshairs.color,
-      width: '150%',
-      transformOrigin: 'top left',
-      transform: 'rotate(-45deg)',
-    },
+  diagonals: ({ root }) => ({
+    vars: createTokensVars(Diagonals.theme.tokens, {
+      color: tokens.diagonals.color,
+      width: px(themeTokens.outline.width.xs),
+    }),
 
     selectors: {
       [`${getModifierSelector<IModifier>('disabled', root)}::before`]: {

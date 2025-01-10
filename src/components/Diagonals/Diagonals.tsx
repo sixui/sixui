@@ -36,10 +36,8 @@ export const Diagonals = componentFactory<IDiagonalsFactory>(
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 100 100"
           preserveAspectRatio="none"
-          style={{
-            height: '100%',
-            width: '100%',
-          }}
+          aria-hidden
+          {...getStyles('svg')}
         >
           <line {...getStyles('line')} x1="0" y1="0" x2="100" y2="100" />
           <line {...getStyles('line')} x1="100" y1="0" x2="0" y2="100" />

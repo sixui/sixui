@@ -78,7 +78,7 @@ export const useCheckbox = (props: IUseCheckboxProps): IUseCheckboxResult => {
         return;
       }
 
-      const nextChecked = event.target.checked && !indeterminate;
+      const nextChecked = event.target.checked;
       const nextValue = nextChecked ? event.target.value : undefined;
       const nextValues = checkboxGroupContext
         ? [
@@ -110,7 +110,6 @@ export const useCheckbox = (props: IUseCheckboxProps): IUseCheckboxResult => {
       setCheckedValue,
       setIndeterminate,
       checkboxGroupContext,
-      indeterminate,
     ],
   );
 
