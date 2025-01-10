@@ -1,7 +1,7 @@
 import { useCallback, useRef, useState } from 'react';
 
 import type { IChipFactory } from './Chip.types';
-import { iconCheckMark, iconXMark } from '~/assets/icons';
+import { iconCheckmark, iconXMark } from '~/assets/icons';
 import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
@@ -77,7 +77,7 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
 
     const leadingIcon =
       variant === 'filter' && selected ? (
-        <SvgIcon icon={iconCheckMark} />
+        <SvgIcon icon={iconCheckmark} />
       ) : imageUrl ? (
         <Avatar {...getStyles('avatar')} src={imageUrl} />
       ) : (

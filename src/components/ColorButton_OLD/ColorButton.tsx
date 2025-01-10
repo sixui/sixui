@@ -3,7 +3,7 @@ import { asArray } from '@olivierpascal/helpers';
 import stylex from '@stylexjs/stylex';
 
 import type { IColorButtonProps } from './ColorButton.types';
-import { iconCheckMark } from '~/assets/icons';
+import { iconCheckmark } from '~/assets/icons';
 import { ButtonBase } from '~/components/ButtonBase';
 import { SvgIcon } from '~/components/SvgIcon';
 import { useStyles } from '~/hooks/useStyles';
@@ -80,7 +80,7 @@ export const ColorButton = createPolymorphicComponent<
             backgroundColor={backgroundColor}
             foregroundColor={foregroundColor}
             label={children}
-            icon={selected ? <SvgIcon icon={iconCheckMark} /> : undefined}
+            icon={selected ? <SvgIcon icon={iconCheckmark} /> : undefined}
           />
         </ButtonBase>
       );

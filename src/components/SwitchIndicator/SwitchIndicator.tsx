@@ -1,6 +1,6 @@
 import type { ISwitchIndicatorThemeFactory } from './SwitchIndicator.css';
 import type { ISwitchIndicatorFactory } from './SwitchIndicator.types';
-import { iconCheckMark, iconXMark } from '~/assets/icons';
+import { iconCheckmark, iconXMark } from '~/assets/icons';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
@@ -69,7 +69,7 @@ export const SwitchIndicator = componentFactory<ISwitchIndicatorFactory>(
                     {...getStyles('progressIndicator')}
                   />
                 ) : checkedIcon === true ? (
-                  <SvgIcon icon={iconCheckMark} />
+                  <SvgIcon icon={iconCheckmark} />
                 ) : (
                   checkedIcon
                 )}

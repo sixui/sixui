@@ -2,7 +2,7 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import type { IColorTagThemeFactory } from './ColorTag.css';
 import type { IColorTagFactory } from './ColorTag.types';
-import { iconCheckMark } from '~/assets/icons';
+import { iconCheckmark } from '~/assets/icons';
 import { getTextContrastColor } from '~/helpers/colors/getTextContrastColor';
 import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
@@ -71,7 +71,7 @@ export const ColorTag = polymorphicComponentFactory<IColorTagFactory>(
         as={ColorTagIndicator}
         label={children}
         color={backgroundColorProp}
-        icon={selected && <SvgIcon icon={iconCheckMark} />}
+        icon={selected && <SvgIcon icon={iconCheckmark} />}
         {...other}
       />
     );

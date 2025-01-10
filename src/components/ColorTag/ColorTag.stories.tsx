@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IColorTagProps } from './ColorTag.types';
-import { iconCheckMark } from '~/assets/icons';
+import { iconCheckmark } from '~/assets/icons';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { componentShowcaseFactory } from '../ComponentShowcase';
 import { SvgIcon } from '../SvgIcon';
@@ -56,14 +56,14 @@ const rows: Array<IComponentPresentation<IColorTagProps>> = [
   {
     legend: 'With icon',
     props: {
-      leadingIcon: <SvgIcon icon={iconCheckMark} />,
+      leadingIcon: <SvgIcon icon={iconCheckmark} />,
     },
   },
   {
     legend: 'With label and icon',
     props: {
       children: '#abcdef',
-      leadingIcon: <SvgIcon icon={iconCheckMark} />,
+      leadingIcon: <SvgIcon icon={iconCheckmark} />,
     },
   },
   {
