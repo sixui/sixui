@@ -1,3 +1,4 @@
+import type { IMaybeAsync } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps, IElementProps } from '../Box';
@@ -9,7 +10,7 @@ import type {
 
 export interface ITextInputFieldOwnProps
   extends IFieldBaseOwnProps,
-    IElementProps<'input', 'className' | 'children'> {
+    IElementProps<'input', 'className' | 'children' | 'onChange'> {
   /**
    * When true, hide the spinner for `type="number"` input fields.
    */
@@ -47,6 +48,13 @@ export interface ITextInputFieldOwnProps
 
   children?: React.ReactNode;
   rootRef?: React.Ref<HTMLDivElement>;
+
+  value?: string;
+  defaultValue?: string;
+  onChange?: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    value: string | undefined,
+  ) => IMaybeAsync<unknown>;
 }
 
 export interface ITextInputFieldProps

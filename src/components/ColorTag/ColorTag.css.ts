@@ -12,7 +12,7 @@ import { PaperBase } from '../PaperBase';
 import { StateLayer } from '../StateLayer';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 
-type IModifier = 'disabled' | 'outlined';
+type IModifier = 'disabled';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
@@ -33,6 +33,7 @@ const classNames = createStyles({
 
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {
+        color: 'transparent',
         shape: tokens.container.shape,
       },
       outline: {
@@ -40,13 +41,6 @@ const classNames = createStyles({
       },
     }),
     selectors: {
-      [getModifierSelector<IModifier>('outlined')]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
-          outline: {
-            width: px(themeTokens.outline.width.xs),
-          },
-        }),
-      },
       [getModifierSelector<IModifier>('disabled')]: {
         opacity: themeTokens.state.opacity.disabled,
       },

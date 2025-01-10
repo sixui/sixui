@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IColorInputFieldProps } from './ColorInputField.types';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { componentShowcaseFactory } from '../ComponentShowcase';
 import { ColorInputField } from './ColorInputField';
 
@@ -12,7 +13,8 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  children: 'ColorInputField',
+  onChange: (...args) => sbHandleEvent('change', args, 1000),
+  onColorsQuantized: (...args) => void sbHandleEvent('colorsQuantized', args),
 } satisfies Partial<IColorInputFieldProps>;
 
 const variants: Array<IComponentPresentation<IColorInputFieldProps>> = [

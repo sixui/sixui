@@ -1,3 +1,4 @@
+import type { IMaybeAsync } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps, IElementProps } from '../Box';
@@ -9,7 +10,7 @@ import type {
 
 export interface ITextAreaFieldOwnProps
   extends IFieldBaseOwnProps,
-    IElementProps<'textarea', 'className' | 'children'> {
+    IElementProps<'textarea', 'className' | 'children' | 'onChange'> {
   /**
    * When true, a clear icon button will appear on the right side of the input.
    */
@@ -22,6 +23,13 @@ export interface ITextAreaFieldOwnProps
 
   children?: React.ReactNode;
   rootRef?: React.Ref<HTMLDivElement>;
+
+  value?: string;
+  defaultValue?: string;
+  onChange?: (
+    event: React.ChangeEvent<HTMLTextAreaElement>,
+    value: string | undefined,
+  ) => IMaybeAsync<unknown>;
 }
 
 export interface ITextAreaFieldProps

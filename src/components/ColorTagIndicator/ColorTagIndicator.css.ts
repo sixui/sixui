@@ -48,11 +48,11 @@ const [tokensClassName, tokens] = createTheme({
   },
   diagonals: {
     color: {
-      empty: themeTokens.colorScheme.outlineVariant,
+      empty: themeTokens.colorScheme.outline,
       invalid: themeTokens.colorScheme.error,
     },
     width: {
-      empty: px(themeTokens.outline.width.xs),
+      empty: px(themeTokens.outline.width.none),
       invalid: px(themeTokens.outline.width.sm),
     },
     opacity: {
@@ -84,14 +84,10 @@ const classNames = createStyles({
     }),
     selectors: {
       [getModifierSelector<IModifier>('outlined')]: {
-        vars: createTokensVars(tokens, {
+        vars: createTokensVars(PaperBase.theme.tokens, {
           outline: {
-            width: {
-              normal: px(themeTokens.outline.width.xs),
-            },
-            opacity: {
-              normal: '0.6',
-            },
+            width: px(themeTokens.outline.width.xs),
+            opacity: '0.5',
           },
         }),
       },

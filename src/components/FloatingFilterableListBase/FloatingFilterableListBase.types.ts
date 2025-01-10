@@ -48,7 +48,7 @@ export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
   /**
    * A reference to the input filter element.
    */
-  inputFilterRef?: React.RefObject<HTMLInputElement>;
+  inputFilterRef?: React.RefObject<HTMLInputElement | null>;
 
   /**
    * A function that returns the props to apply to the input filter element.

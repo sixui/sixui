@@ -41,6 +41,7 @@ export type IPopoverBaseContentRendererProps = {
 export type IPopoverBaseTriggerRendererProps = {
   opened: boolean;
   placement: IPlacement;
+  open: (event?: React.MouseEvent) => void;
   close: (event?: React.MouseEvent) => void;
 
   /**
