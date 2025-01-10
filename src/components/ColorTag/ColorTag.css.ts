@@ -17,7 +17,7 @@ type IModifier = 'disabled' | 'outlined';
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   container: {
-    shape: themeTokens.shape.corner.xs,
+    shape: themeTokens.shape.corner.circle,
   },
   icon: {
     size: px(18),

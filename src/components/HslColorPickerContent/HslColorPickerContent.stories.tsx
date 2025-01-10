@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IHslColorPickerContentProps } from './HslColorPickerContent.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { HslColorPickerContent } from './HslColorPickerContent';
 
 const meta = {
@@ -11,16 +12,20 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onClick: (...args) => void sbHandleEvent('click', args),
+  onClick: (...args) => sbHandleEvent('click', args),
 } satisfies Partial<IHslColorPickerContentProps>;
 
+const HslColorPickerContentShowcase = componentShowcaseFactory(
+  HslColorPickerContent,
+);
+
 export const Basic: IStory = {
-  render: (props) => <HslColorPickerContent {...props} />,
+  render: (props) => <HslColorPickerContentShowcase props={props} />,
   args: defaultArgs,
 };
 
 export const HideNeutral: IStory = {
-  render: (props) => <HslColorPickerContent {...props} />,
+  render: (props) => <HslColorPickerContentShowcase props={props} />,
   args: {
     ...defaultArgs,
     hideNeutral: true,
@@ -28,7 +33,7 @@ export const HideNeutral: IStory = {
 };
 
 export const Desaturated: IStory = {
-  render: (props) => <HslColorPickerContent {...props} />,
+  render: (props) => <HslColorPickerContentShowcase props={props} />,
   args: {
     ...defaultArgs,
     saturation: 40,

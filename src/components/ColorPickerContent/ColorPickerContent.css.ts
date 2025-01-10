@@ -1,79 +1,41 @@
-import { createTheme } from '@vanilla-extract/css';
-
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import type { IColorPickerContentVariant } from './ColorPickerContent.types';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { cssLayers, themeTokens } from '../ThemeProvider';
+import { PaperBase } from '../PaperBase';
+import { themeTokens } from '../ThemeProvider';
+import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
 type IModifier = 'disabled';
 
-const [tokensClassName, tokens] = createTheme({
-  '@layer': cssLayers.theme,
-  container: {
-    color: {
-      normal: 'unset',
-      disabled: 'unset',
-    },
-  },
-  label: {
-    color: {
-      normal: 'unset',
-      disabled: 'unset',
-    },
-  },
-});
-
 const classNames = createStyles({
   root: {
-    backgroundColor: tokens.container.color.normal,
-    color: tokens.label.color.normal,
-    padding: px(space(2)),
+    width: 'min-content',
+    display: 'flex',
+    flexDirection: 'column',
 
-    selectors: {
-      [getModifierSelector<IModifier>('disabled')]: {
-        backgroundColor: tokens.container.color.disabled,
-        color: tokens.label.color.disabled,
+    vars: createTokensVars(PaperBase.theme.tokens, {
+      container: {
+        color: themeTokens.colorScheme.surfaceContainer,
+        elevation: elevationLevelPreset[2],
+        shape: themeTokens.shape.corner.xs,
       },
-    },
+    }),
+  },
+  section: {
+    padding: px(space(3)),
   },
 });
 
 export type IColorPickerContentThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
-  tokens: typeof tokens;
   modifier: IModifier;
-  variant: IColorPickerContentVariant;
 }>;
 
 export const colorPickerContentTheme =
   componentThemeFactory<IColorPickerContentThemeFactory>({
     classNames,
-    tokensClassName,
-    tokens,
+    tokens: undefined,
   });
-
-export const colorPickerContentThemeVariants = {
-  primary: createStyles({
-    root: {
-      vars: createTokensVars(tokens, {
-        container: {
-          color: {
-            normal: themeTokens.colorScheme.primary,
-            disabled: themeTokens.colorScheme.surfaceContainerHighest,
-          },
-        },
-        label: {
-          color: {
-            normal: themeTokens.colorScheme.onPrimary,
-            disabled: themeTokens.colorScheme.onSurface,
-          },
-        },
-      }),
-    },
-  }),
-};

@@ -313,7 +313,14 @@ export type IThemeComponentValues = {
 
 export type IThemeComponentsValues = Record<string, IThemeComponentValues>;
 
+// FIXME: rename to ITheme
 export type ITheme2 = {
+  name: string;
+  source: {
+    color: string;
+    schemeVariant: string;
+    contrast: number;
+  };
   tokens: {
     scale: string;
 

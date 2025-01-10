@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IColorPickerContentProps } from './ColorPickerContent.types';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { componentShowcaseFactory } from '../ComponentShowcase';
 import { ColorPickerContent } from './ColorPickerContent';
 
@@ -12,26 +12,47 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  children: 'ColorPickerContent',
+  onClick: (...args) => void sbHandleEvent('click', args),
+  palettes: [
+    ['#ef6c6c', '#e61919', '#931010'],
+    ['#d56cef', '#bd19e6', '#791093'],
+    ['#6c82ef', '#193ce6', '#102693'],
+    ['#6cddef', '#19cae6', '#108193'],
+    ['#6cef84', '#19e63f', '#109328'],
+    ['#efc16c', '#e69e19', '#936510'],
+  ],
 } satisfies Partial<IColorPickerContentProps>;
-
-const variants: Array<IComponentPresentation<IColorPickerContentProps>> = [
-  { legend: 'None', props: { variant: false } },
-  { legend: 'Primary', props: { variant: 'primary' } },
-];
-
-const states: Array<IComponentPresentation<IColorPickerContentProps>> = [
-  { legend: 'Normal' },
-  { legend: 'Disabled', props: { disabled: true } },
-];
 
 const ColorPickerContentShowcase = componentShowcaseFactory(ColorPickerContent);
 
 export const Basic: IStory = {
-  render: (props) => (
-    <ColorPickerContentShowcase props={props} cols={states} rows={variants} />
-  ),
+  render: (props) => <ColorPickerContentShowcase props={props} />,
   args: defaultArgs,
+};
+
+export const Selected: IStory = {
+  render: (props) => <ColorPickerContentShowcase props={props} />,
+  args: {
+    ...defaultArgs,
+    selectedColor: '#e61919',
+  },
+};
+
+export const CustomColors: IStory = {
+  render: (props) => <ColorPickerContentShowcase props={props} />,
+  args: {
+    ...defaultArgs,
+    customPalette: ['#000000', '#444444', '#888888', '#cccccc'],
+  },
+};
+
+export const CustomSelected: IStory = {
+  render: (props) => <ColorPickerContentShowcase props={props} />,
+  args: {
+    ...defaultArgs,
+    customPalette: ['#000000', '#444444', '#888888', '#cccccc'],
+    selectedColor: '#444444',
+  },
 };
 
 export default meta;

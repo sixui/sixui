@@ -469,6 +469,12 @@ const elevation: IThemeElevationValues = {
 };
 
 export const defaultTheme: ITheme2 = {
+  name: 'Material Design 3',
+  source: {
+    color: '#6750a4',
+    schemeVariant: 'vibrant2',
+    contrast: 0,
+  },
   tokens: {
     scale: '1',
     colorScheme,

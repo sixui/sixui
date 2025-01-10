@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IHctColorPickerContentProps } from './HctColorPickerContent.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { HctColorPickerContent } from './HctColorPickerContent';
 
 const meta = {
@@ -11,16 +12,20 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onClick: (...args) => void sbHandleEvent('click', args),
+  onClick: (...args) => sbHandleEvent('click', args),
 } satisfies Partial<IHctColorPickerContentProps>;
 
+const HctColorPickerContentShowcase = componentShowcaseFactory(
+  HctColorPickerContent,
+);
+
 export const Basic: IStory = {
-  render: (props) => <HctColorPickerContent {...props} />,
+  render: (props) => <HctColorPickerContentShowcase props={props} />,
   args: defaultArgs,
 };
 
 export const HideNeutral: IStory = {
-  render: (props) => <HctColorPickerContent {...props} />,
+  render: (props) => <HctColorPickerContentShowcase props={props} />,
   args: {
     ...defaultArgs,
     hideNeutral: true,
@@ -28,7 +33,7 @@ export const HideNeutral: IStory = {
 };
 
 export const CustomSourceColor: IStory = {
-  render: (props) => <HctColorPickerContent {...props} />,
+  render: (props) => <HctColorPickerContentShowcase props={props} />,
   args: {
     ...defaultArgs,
     sourceColor: '#ffff00',
@@ -36,7 +41,7 @@ export const CustomSourceColor: IStory = {
 };
 
 export const InvalidSourceColor: IStory = {
-  render: (props) => <HctColorPickerContent {...props} />,
+  render: (props) => <HctColorPickerContentShowcase props={props} />,
   args: {
     ...defaultArgs,
     sourceColor: 'invalid',
