@@ -61,8 +61,9 @@ export const Snackbar = componentFactory<ISnackbarFactory>(
           <Motion
             {...getStyles('root')}
             orientation="vertical"
-            placement={{ side: 'bottom' }}
-            pattern={{ enter: 'enterExitOffScreen', exit: 'fade' }}
+            origin="edge"
+            placement={{ side: 'top' }}
+            pattern={{ enter: 'enterExit', exit: 'fade' }}
             status={status}
             z="$overlay"
             ref={transitionNodeRef}
