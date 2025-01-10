@@ -51,10 +51,7 @@ export interface ITextInputFieldOwnProps
 
   value?: string;
   defaultValue?: string;
-  onChange?: (
-    event: React.ChangeEvent<HTMLInputElement>,
-    value: string | undefined,
-  ) => IMaybeAsync<unknown>;
+  onChange?: (value: string, isColorValid: boolean) => IMaybeAsync<unknown>;
 }
 
 export interface ITextInputFieldProps

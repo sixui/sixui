@@ -26,10 +26,7 @@ export interface ITextAreaFieldOwnProps
 
   value?: string;
   defaultValue?: string;
-  onChange?: (
-    event: React.ChangeEvent<HTMLTextAreaElement>,
-    value: string | undefined,
-  ) => IMaybeAsync<unknown>;
+  onChange?: (value: string) => IMaybeAsync<unknown>;
 }
 
 export interface ITextAreaFieldProps

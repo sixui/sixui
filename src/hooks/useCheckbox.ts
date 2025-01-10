@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 
-import type { IAny, IMaybeAsync } from '~/helpers/types';
+import type { IMaybeAsync } from '~/helpers/types';
 import { useCheckboxGroupContext } from '~/components/CheckboxGroup';
 import { useLabeledContext } from '~/components/Labeled';
 import { executeLazyPromise } from '~/helpers/executeLazyPromise';
@@ -13,10 +13,7 @@ export interface IUseCheckboxProps {
   indeterminate?: boolean;
   defaultIndeterminate?: boolean;
   value?: string;
-  onChange?: (
-    event: React.ChangeEvent<HTMLInputElement>,
-    value: string | undefined,
-  ) => IMaybeAsync<IAny>;
+  onChange?: (value: string | undefined) => IMaybeAsync<unknown>;
   loading?: boolean;
   disabled?: boolean;
   readOnly?: boolean;
@@ -95,7 +92,7 @@ export const useCheckbox = (props: IUseCheckboxProps): IUseCheckboxResult => {
         : [];
 
       void executeLazyPromise(async () => {
-        await props.onChange?.(event, nextValue);
+        await props.onChange?.(nextValue);
         await checkboxGroupContext?.onChange?.(event, nextValues);
       }, setHandlingChange).finally(() => {
         if (!checkboxGroupContext) {

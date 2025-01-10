@@ -8,10 +8,7 @@ import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 export interface IUseRadioProps {
   checked?: boolean;
   value?: string;
-  onChange?: (
-    event: React.ChangeEvent<HTMLInputElement>,
-    value: string | undefined,
-  ) => IMaybeAsync<IAny>;
+  onChange?: (value: string | undefined) => IMaybeAsync<IAny>;
   loading?: boolean;
   disabled?: boolean;
   readOnly?: boolean;
@@ -67,8 +64,8 @@ export const useRadio = (props: IUseRadioProps): IUseRadioResult => {
       const nextValue = nextChecked ? event.target.value : undefined;
 
       void executeLazyPromise(async () => {
-        await props.onChange?.(event, nextValue);
-        await radioGroupContext?.onChange?.(event, nextValue);
+        await props.onChange?.(nextValue);
+        await radioGroupContext?.onChange?.(nextValue);
       }, setHandlingChange);
     },
     [props, handlingChange, radioGroupContext],

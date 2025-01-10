@@ -6,7 +6,7 @@ import type { ISelectBaseProps } from '../SelectBase';
 export type ISelectOwnProps = {
   value?: string;
   defaultValue?: string;
-  onChange?: (value?: string) => void;
+  onChange?: (value: string | undefined) => void;
   noResultsLabel?: string;
 };
 

@@ -6,7 +6,7 @@ import type { IMultiSelectBaseProps } from '../MultiSelectBase';
 export type IMultiSelectOwnProps = {
   value?: Array<string>;
   defaultValue?: Array<string>;
-  onChange?: (value?: Array<string>) => void;
+  onChange?: (value: Array<string> | undefined) => void;
   noResultsLabel?: string;
 };
 

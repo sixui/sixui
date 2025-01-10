@@ -6,7 +6,7 @@ import type { ISuggestBaseProps } from '../SuggestBase';
 export type ISuggestOwnProps = {
   value?: string;
   defaultValue?: string;
-  onChange?: (value?: string) => void;
+  onChange?: (value: string | undefined) => void;
   noResultsLabel?: string;
 };
 

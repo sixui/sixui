@@ -3,10 +3,7 @@ import { createOptionalContext } from '~/helpers/createOptionalContext';
 
 export interface IRadioGroupContextValue {
   name?: string;
-  onChange?: (
-    event: React.ChangeEvent<HTMLInputElement>,
-    value: string | undefined,
-  ) => IMaybeAsync<IAny>;
+  onChange?: (value: string | undefined) => IMaybeAsync<IAny>;
   value?: string;
   changingValue?: string;
   loading?: boolean;

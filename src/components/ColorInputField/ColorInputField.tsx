@@ -1,4 +1,3 @@
-import type { IColorInputFieldThemeFactory } from './ColorInputField.css';
 import type {
   IColorInputFieldColorPickerRendererProps,
   IColorInputFieldFactory,
@@ -7,9 +6,7 @@ import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { ColorTag } from '../ColorTag';
-import { ColorTagIndicator } from '../ColorTagIndicator';
 import { HslColorPickerContent } from '../HslColorPickerContent';
 import { PopoverBase } from '../PopoverBase';
 import { TextInputField } from '../TextInputField';
@@ -24,11 +21,6 @@ const defaultColorPickerRenderer = (
 export const ColorInputField = componentFactory<IColorInputFieldFactory>(
   (props, forwardedRef) => {
     const {
-      classNames,
-      className,
-      styles,
-      style,
-      variant,
       placement = {
         side: 'bottom',
         alignment: 'start',
@@ -49,23 +41,15 @@ export const ColorInputField = componentFactory<IColorInputFieldFactory>(
       name: COMPONENT_NAME,
     });
 
-    const { getStyles } = useComponentTheme<IColorInputFieldThemeFactory>({
-      componentName: COMPONENT_NAME,
-      classNames,
-      className,
-      styles,
-      style,
-      variant,
-      theme: colorInputFieldTheme,
-    });
+    const isValidColor = isValidHexColor(value);
 
     return (
       <PopoverBase
-        {...getStyles('root')}
         contentRenderer={({ close }) =>
           colorPickerRenderer({
-            onClick: (_, colorHex) => {
+            onClick: (_event, colorHex) => {
               setValue(colorHex);
+              onChange?.(colorHex, true);
               close();
             },
             selectedColor: value,
@@ -82,6 +66,7 @@ export const ColorInputField = componentFactory<IColorInputFieldFactory>(
         {({ getProps, setRef, open }) => (
           <TextInputField
             start={<ColorTag color={value} outlined mr="$2" onClick={open} />}
+            // FIXME:
             end={
               undefined
               // <IconButton
@@ -96,8 +81,11 @@ export const ColorInputField = componentFactory<IColorInputFieldFactory>(
             {...other}
             {...getProps()}
             value={value}
-            hasError={(!!value && !isValidHexColor(value)) || other.hasError}
-            onChange={(event) => setValue(event.target.value)}
+            hasError={(!!value && !isValidColor) || other.hasError}
+            onChange={(nextValue) => {
+              setValue(nextValue);
+              onChange?.(nextValue, isValidHexColor(nextValue));
+            }}
             ref={forwardedRef}
             containerRef={setRef}
           />
