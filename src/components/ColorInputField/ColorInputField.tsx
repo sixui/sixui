@@ -1,5 +1,6 @@
 import { useCallback, useContext, useRef, useState } from 'react';
 
+import type { IColorPalette } from '../ColorPickerContent';
 import type {
   IColorInputFieldColorPickerRendererProps,
   IColorInputFieldFactory,
@@ -49,14 +50,15 @@ export const ColorInputField = componentFactory<IColorInputFieldFactory>(
     });
 
     const colorPaletteGroupContext = useContext(ColorPaletteGroupContext);
-    const [quantizedColors, setQuantizedColors] = useState<Array<string>>();
+    const [quantizedPalette, setQuantizedPalette] = useState<IColorPalette>();
     const [quantizing, setQuantizing] = useState(false);
     const inputFileRef = useRef<HTMLInputElement>(null);
 
     const isValidColor = isValidHexColor(value);
     const customPalette = [
       ...(customPaletteProp ?? []),
-      ...((colorPaletteGroupContext ? undefined : quantizedColors) ?? []),
+      ...(colorPaletteGroupContext?.customPalette ?? []),
+      ...(colorPaletteGroupContext?.quantizedPalette ?? quantizedPalette ?? []),
     ];
 
     const handleUploadImage: React.MouseEventHandler = useCallback(
@@ -81,7 +83,7 @@ export const ColorInputField = componentFactory<IColorInputFieldFactory>(
             image.src = fileReader.result as string;
             void extractPaletteFromImage(image, quantizeColorCount)
               .then((quantizedPalette) => {
-                setQuantizedColors(quantizedPalette);
+                setQuantizedPalette(quantizedPalette);
                 setValue(quantizedPalette[0]);
                 onColorsQuantized?.(quantizedPalette);
                 colorPaletteGroupContext?.setQuantizedPalette(quantizedPalette);

@@ -7,11 +7,11 @@ import { ColorPaletteGroupContext } from './ColorPaletteGroup.context';
 export const ColorPaletteGroupProvider: React.FC<
   IColorPaletteGroupProviderProps
 > = (props) => {
-  const { children, customColors } = props;
+  const { children, customPalette } = props;
   const [quantizedPalette, setQuantizedPalette] = useState<Array<string>>();
 
   const contextValue: IColorPaletteGroupContextValue = {
-    customColors,
+    customPalette,
     quantizedPalette,
     setQuantizedPalette,
   };
