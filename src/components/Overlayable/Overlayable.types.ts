@@ -1,4 +1,4 @@
-import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type {
@@ -6,12 +6,11 @@ import type {
   overlayableTheme,
 } from './Overlayable.css';
 
-export type IOverlayableVariant = 'primary';
-
 export interface IOverlayableOwnProps {
   children: React.ReactNode;
   overlay: React.ReactNode;
   visible?: boolean;
+  keepContentVisible?: boolean;
 }
 
 export interface IOverlayableProps
@@ -19,9 +18,9 @@ export interface IOverlayableProps
     IComponentThemeProps<IOverlayableThemeFactory>,
     IOverlayableOwnProps {}
 
-export type IOverlayableFactory = IComponentFactory<{
+export type IOverlayableFactory = IPolymorphicComponentFactory<{
   props: IOverlayableProps;
-  ref: HTMLDivElement;
+  defaultRef: HTMLDivElement;
+  defaultRoot: 'div';
   theme: typeof overlayableTheme;
-  variant: IOverlayableVariant | false;
 }>;

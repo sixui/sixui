@@ -215,7 +215,8 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
           classNames={mergeClassNames(classNames, {
             stateLayer: getStyles('stateLayer').className,
           })}
-          focusRing={noFocusRing ? false : 'inward'}
+          noFocusRing={noFocusRing}
+          focusRingProps={{ variant: 'inward' }}
           ref={forwardedRef}
           interactionsMergeStrategy={interactionsMergeStrategy}
           disabled={disabled}

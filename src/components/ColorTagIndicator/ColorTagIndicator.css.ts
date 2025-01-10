@@ -4,7 +4,6 @@ import { calc } from '@vanilla-extract/css-utils';
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getDensity } from '~/helpers/styles/getDensity';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
@@ -13,7 +12,7 @@ import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { PaperBase } from '../PaperBase';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 
-type IModifier = 'empty' | 'invalid';
+type IModifier = 'empty' | 'invalid' | 'outlined';
 
 const DENSITY = px(getDensity({ min: -3, max: 0 }));
 
@@ -40,14 +39,11 @@ const [tokensClassName, tokens] = createTheme({
       empty: themeTokens.colorScheme.outline,
       invalid: themeTokens.colorScheme.outline,
     },
-  },
-  label: {
-    color: themeTokens.colorScheme.onSurface,
-    typography: themeTokens.typeScale.body.md,
-  },
-  icon: {
-    color: themeTokens.colorScheme.onSurface,
-    size: px(18),
+    opacity: {
+      normal: '1',
+      empty: '1',
+      invalid: '1',
+    },
   },
   crosshairs: {
     color: {
@@ -72,6 +68,7 @@ const classNames = createStyles({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    padding: px(space(2)),
 
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {
@@ -81,9 +78,22 @@ const classNames = createStyles({
       outline: {
         width: tokens.outline.width.normal,
         color: tokens.outline.color.normal,
+        opacity: tokens.outline.opacity.normal,
       },
     }),
     selectors: {
+      [getModifierSelector<IModifier>('outlined')]: {
+        vars: createTokensVars(tokens, {
+          outline: {
+            width: {
+              normal: px(themeTokens.outline.width.xs),
+            },
+            opacity: {
+              normal: '0.7',
+            },
+          },
+        }),
+      },
       [getModifierSelector<IModifier>('empty')]: {
         vars: createTokensVars(PaperBase.theme.tokens, {
           container: {
@@ -92,10 +102,11 @@ const classNames = createStyles({
           outline: {
             width: tokens.outline.width.empty,
             color: tokens.outline.color.empty,
+            opacity: tokens.outline.opacity.empty,
           },
         }),
       },
-      [getModifierSelector<IModifier>('invalid')]: {
+      [getModifierSelector<IModifier>(['invalid', '!empty'])]: {
         vars: createTokensVars(PaperBase.theme.tokens, {
           container: {
             color: tokens.container.color.invalid,
@@ -103,23 +114,15 @@ const classNames = createStyles({
           outline: {
             width: tokens.outline.width.invalid,
             color: tokens.outline.color.invalid,
+            opacity: tokens.outline.opacity.invalid,
           },
         }),
       },
     },
   },
-  icon: {
-    position: 'relative',
-    color: tokens.icon.color,
-    fontSize: tokens.icon.size,
-    inlineSize: tokens.icon.size,
-    blockSize: tokens.icon.size,
-  },
-  label: {
-    position: 'relative',
-    padding: px(space(2)),
-    color: tokens.label.color,
-    ...getTypographyStyles(tokens.label.typography),
+  content: {
+    display: 'flex',
+    gap: px(space(1)),
   },
   crosshairs: ({ root }) => ({
     overflow: 'hidden',
@@ -163,21 +166,23 @@ const classNames = createStyles({
         borderColor: tokens.crosshairs.color.empty,
         borderBottomWidth: tokens.crosshairs.width.empty,
       },
-      [`${getModifierSelector<IModifier>('invalid', root)}`]: {
+      [`${getModifierSelector<IModifier>(['invalid', '!empty'], root)}`]: {
         display: 'block',
       },
-      [`${getModifierSelector<IModifier>('invalid', root)}::before`]: {
-        display: 'block',
-        opacity: tokens.crosshairs.opacity.invalid,
-        borderColor: tokens.crosshairs.color.invalid,
-        borderTopWidth: tokens.crosshairs.width.invalid,
-      },
-      [`${getModifierSelector<IModifier>('invalid', root)}::after`]: {
-        display: 'block',
-        opacity: tokens.crosshairs.opacity.invalid,
-        borderColor: tokens.crosshairs.color.invalid,
-        borderBottomWidth: tokens.crosshairs.width.invalid,
-      },
+      [`${getModifierSelector<IModifier>(['invalid', '!empty'], root)}::before`]:
+        {
+          display: 'block',
+          opacity: tokens.crosshairs.opacity.invalid,
+          borderColor: tokens.crosshairs.color.invalid,
+          borderTopWidth: tokens.crosshairs.width.invalid,
+        },
+      [`${getModifierSelector<IModifier>(['invalid', '!empty'], root)}::after`]:
+        {
+          display: 'block',
+          opacity: tokens.crosshairs.opacity.invalid,
+          borderColor: tokens.crosshairs.color.invalid,
+          borderBottomWidth: tokens.crosshairs.width.invalid,
+        },
     },
   }),
 });

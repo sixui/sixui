@@ -3,6 +3,8 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 import type { IColorTagThemeFactory } from './ColorTag.css';
 import type { IColorTagFactory } from './ColorTag.types';
 import { iconCheckMark } from '~/assets/icons';
+import { getTextContrastColor } from '~/helpers/colors/getTextContrastColor';
+import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
@@ -24,8 +26,9 @@ export const ColorTag = polymorphicComponentFactory<IColorTagFactory>(
       variant,
       selected,
       children,
-      backgroundColor,
-      foregroundColor,
+      backgroundColor: backgroundColorProp,
+      foregroundColor: foregroundColorProp,
+      outlined,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -37,28 +40,41 @@ export const ColorTag = polymorphicComponentFactory<IColorTagFactory>(
       style,
       variant,
       theme: colorTagTheme,
+      modifiers: {
+        outlined,
+      },
     });
+
+    const backgroundColor =
+      backgroundColorProp && isValidHexColor(backgroundColorProp)
+        ? backgroundColorProp
+        : undefined;
+    const foregroundColor = foregroundColorProp
+      ? isValidHexColor(foregroundColorProp)
+        ? foregroundColorProp
+        : undefined
+      : backgroundColor
+        ? getTextContrastColor(backgroundColor)
+        : undefined;
 
     return (
       <ButtonBase
         {...getStyles('root', {
           style: assignInlineVars({
-            [colorTagTheme.tokens.container.color]: backgroundColor,
+            [colorTagTheme.tokens.foreground.color]: foregroundColor,
           }),
         })}
         classNames={mergeClassNames(classNames, {
-          background: getStyles('background').className,
+          stateLayer: getStyles('stateLayer').className,
         })}
         ref={forwardedRef}
+        as={ColorTagIndicator}
+        label={children}
+        backgroundColor={backgroundColorProp}
+        foregroundColor={foregroundColorProp}
+        icon={selected && <SvgIcon icon={iconCheckMark} />}
         {...other}
-      >
-        <ColorTagIndicator
-          backgroundColor={backgroundColor}
-          foregroundColor={foregroundColor}
-          label={children}
-          icon={selected && <SvgIcon icon={iconCheckMark} />}
-        />
-      </ButtonBase>
+      />
     );
   },
 );

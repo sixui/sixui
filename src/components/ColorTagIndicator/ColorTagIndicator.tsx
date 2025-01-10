@@ -22,26 +22,15 @@ export const ColorTagIndicator =
         style,
         variant,
         children,
-        label,
-        icon,
-        backgroundColor: backgroundColorProp,
-        foregroundColor: foregroundColorProp,
+        color,
+        outlined,
         ...other
       } = useProps({ componentName: COMPONENT_NAME, props });
 
-      const backgroundColor =
-        backgroundColorProp && isValidHexColor(backgroundColorProp)
-          ? backgroundColorProp
-          : undefined;
-      const foregroundColor = foregroundColorProp
-        ? isValidHexColor(foregroundColorProp)
-          ? foregroundColorProp
-          : undefined
-        : backgroundColor
-          ? getTextContrastColor(backgroundColor)
-          : undefined;
-      const isEmpty = !backgroundColor;
-      const isInvalid = !!backgroundColorProp && !backgroundColor;
+      const isEmpty = !color;
+      const isValid = !!color && isValidHexColor(color);
+      const contrastColor =
+        !!color && isValid ? getTextContrastColor(color) : undefined;
 
       const { getStyles } = useComponentTheme<IColorTagIndicatorThemeFactory>({
         componentName: COMPONENT_NAME,
@@ -53,7 +42,8 @@ export const ColorTagIndicator =
         theme: colorTagIndicatorTheme,
         modifiers: {
           empty: isEmpty,
-          invalid: isInvalid,
+          invalid: !isValid,
+          outlined,
         },
       });
 
@@ -61,20 +51,14 @@ export const ColorTagIndicator =
         <PaperBase
           {...getStyles('root', {
             style: assignInlineVars({
-              [colorTagIndicatorTheme.tokens.container.color.normal]:
-                backgroundColor,
-              [colorTagIndicatorTheme.tokens.label.color]: foregroundColor,
-              [colorTagIndicatorTheme.tokens.icon.color]: foregroundColor,
+              [colorTagIndicatorTheme.tokens.container.color.normal]: color,
+              [colorTagIndicatorTheme.tokens.outline.color.normal]:
+                contrastColor,
             }),
           })}
           ref={forwardedRef}
           {...other}
         >
-          {icon ? (
-            <div {...getStyles('icon')}>{icon}</div>
-          ) : label ? (
-            <div {...getStyles('label')}>{label}</div>
-          ) : undefined}
           <div {...getStyles('crosshairs')} />
           {children}
         </PaperBase>

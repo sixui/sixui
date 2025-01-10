@@ -2,14 +2,15 @@ import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphic
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { IButtonBaseOwnProps } from '../ButtonBase';
-import type { ColorTagIndicator } from '../ColorTagIndicator';
+import type {
+  ColorTagIndicator,
+  IColorTagIndicatorOwnProps,
+} from '../ColorTagIndicator';
 import type { colorTagTheme, IColorTagThemeFactory } from './ColorTag.css';
 
-export interface IColorTagOwnProps extends IButtonBaseOwnProps {
-  selected?: boolean;
-  backgroundColor?: string;
-  foregroundColor?: string;
-}
+export interface IColorTagOwnProps
+  extends IButtonBaseOwnProps,
+    IColorTagIndicatorOwnProps {}
 
 export interface IColorTagProps
   extends IBoxProps,

@@ -3,7 +3,7 @@ import type { IInteractionsMergeStrategy } from '~/hooks/useInteractions';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
-import type { IFocusRingVariant } from '../FocusRing';
+import type { IFocusRingProps } from '../FocusRing';
 import type { IPaperOwnProps } from '../Paper';
 import type { IUseStateLayerResult } from '../StateLayer';
 import type {
@@ -14,7 +14,8 @@ import type {
 export interface IButtonBaseOwnProps {
   interactionsMergeStrategy?: IInteractionsMergeStrategy;
   children?: React.ReactNode;
-  focusRing?: IFocusRingVariant | false;
+  noFocusRing?: boolean;
+  focusRingProps?: IFocusRingProps;
   href?: string;
   target?: React.AnchorHTMLAttributes<HTMLAnchorElement>['target'];
   rel?: string;

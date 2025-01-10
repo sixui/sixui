@@ -9,10 +9,8 @@ import type {
 
 export interface IColorTagIndicatorOwnProps extends IPaperBaseOwnProps {
   children?: React.ReactNode;
-  label?: React.ReactNode;
-  icon?: React.ReactNode;
-  backgroundColor?: string;
-  foregroundColor?: string;
+  color?: string;
+  outlined?: boolean;
 }
 
 export interface IColorTagIndicatorProps

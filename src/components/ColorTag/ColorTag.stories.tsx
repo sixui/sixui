@@ -36,14 +36,7 @@ const states: Array<IComponentPresentation<IColorTagProps>> = [
     props: { interactions: { pressed: true } },
   },
   { legend: 'Loading', props: { loading: true } },
-  {
-    legend: 'Loading text',
-    props: {
-      loading: true,
-      loadingText: '…',
-    },
-  },
-  { legend: 'Disabled', props: { children: 'Disabled', disabled: true } },
+  { legend: 'Disabled', props: { disabled: true } },
 ];
 
 const rows: Array<IComponentPresentation<IColorTagProps>> = [
@@ -52,21 +45,16 @@ const rows: Array<IComponentPresentation<IColorTagProps>> = [
   },
   {
     legend: 'With color',
-    props: {
-      backgroundColor: '#6750a4',
-    },
   },
   {
     legend: 'With label',
     props: {
-      backgroundColor: '#6750a4',
       children: '#6750a4',
     },
   },
   {
     legend: 'Selected',
     props: {
-      backgroundColor: '#6750a4',
       selected: true,
     },
   },
@@ -78,11 +66,29 @@ const rows: Array<IComponentPresentation<IColorTagProps>> = [
   },
 ];
 
-export const Configurations: IStory = {
+const groups: Array<IComponentPresentation<IColorTagProps>> = [
+  { legend: 'Normal' },
+  { legend: 'Outlined', props: { outlined: true } },
+];
+
+export const DarkColor: IStory = {
   render: (props) => (
-    <ColorTagShowcase props={props} cols={states} rows={rows} />
+    <ColorTagShowcase props={props} cols={states} rows={rows} groups={groups} />
   ),
-  args: defaultArgs,
+  args: {
+    ...defaultArgs,
+    backgroundColor: '#6750a4',
+  },
+};
+
+export const LightColor: IStory = {
+  render: (props) => (
+    <ColorTagShowcase props={props} cols={states} rows={rows} groups={groups} />
+  ),
+  args: {
+    ...defaultArgs,
+    backgroundColor: '#ffffff',
+  },
 };
 
 export default meta;

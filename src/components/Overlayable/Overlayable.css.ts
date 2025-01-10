@@ -1,10 +1,9 @@
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import type { IOverlayableVariant } from './Overlayable.types';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 
-type IModifier = 'visible';
+type IModifier = 'visible' | 'keep-content-visible';
 
 const classNames = createStyles({
   root: {
@@ -15,7 +14,10 @@ const classNames = createStyles({
     borderRadius: 'inherit',
 
     selectors: {
-      [getModifierSelector<IModifier>('visible', root)]: {
+      [getModifierSelector<IModifier>(
+        ['visible', '!keep-content-visible'],
+        root,
+      )]: {
         visibility: 'hidden',
       },
     },
@@ -39,7 +41,6 @@ const classNames = createStyles({
 export type IOverlayableThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   modifier: IModifier;
-  variant: IOverlayableVariant;
 }>;
 
 export const overlayableTheme = componentThemeFactory<IOverlayableThemeFactory>(

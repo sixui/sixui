@@ -1,6 +1,6 @@
 import type { IOverlayableThemeFactory } from './Overlayable.css';
 import type { IOverlayableFactory } from './Overlayable.types';
-import { componentFactory } from '~/utils/component/componentFactory';
+import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
@@ -8,7 +8,7 @@ import { overlayableTheme } from './Overlayable.css';
 
 const COMPONENT_NAME = 'Overlayable';
 
-export const Overlayable = componentFactory<IOverlayableFactory>(
+export const Overlayable = polymorphicComponentFactory<IOverlayableFactory>(
   (props, forwardedRef) => {
     const {
       classNames,
@@ -19,6 +19,7 @@ export const Overlayable = componentFactory<IOverlayableFactory>(
       children,
       overlay,
       visible,
+      keepContentVisible,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -32,6 +33,7 @@ export const Overlayable = componentFactory<IOverlayableFactory>(
       theme: overlayableTheme,
       modifiers: {
         visible,
+        'keep-content-visible': keepContentVisible,
       },
     });
 
