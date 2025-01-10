@@ -6,7 +6,6 @@ import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Checkmark } from '../Checkmark';
 import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
-import { Overlayable } from '../Overlayable';
 import { PaperBase } from '../PaperBase';
 import { checkboxIndicatorTheme } from './CheckboxIndicator.css';
 
@@ -59,24 +58,23 @@ export const CheckboxIndicator = componentFactory<ICheckboxIndicatorFactory>(
         disabled={disabled}
         {...other}
       >
-        <Overlayable
-          overlay={
-            <IndeterminateCircularProgressIndicator
-              {...getStyles('progressIndicator')}
-            />
-          }
-          visible={loading}
-        >
-          <div {...getStyles(['layer', 'background'])} />
-          <Checkmark
-            {...getStyles('icon')}
-            disabled={disabled}
-            checked={checked}
-            indeterminate={indeterminate}
-            wasUnchecked={wasUnchecked}
-            wasDisabled={wasDisabled}
+        {loading ? (
+          <IndeterminateCircularProgressIndicator
+            {...getStyles('progressIndicator')}
           />
-        </Overlayable>
+        ) : (
+          <>
+            <div {...getStyles(['layer', 'background'])} />
+            <Checkmark
+              {...getStyles('icon')}
+              disabled={disabled}
+              checked={checked}
+              indeterminate={indeterminate}
+              wasUnchecked={wasUnchecked}
+              wasDisabled={wasDisabled}
+            />
+          </>
+        )}
       </PaperBase>
     );
   },

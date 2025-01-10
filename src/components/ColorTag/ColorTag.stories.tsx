@@ -1,15 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-
-
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IColorTagProps } from './ColorTag.types';
-import { iconCheckmark } from '~/assets/icons';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { componentShowcaseFactory } from '../ComponentShowcase';
-import { SvgIcon } from '../SvgIcon';
 import { ColorTag } from './ColorTag';
-
 
 const meta = {
   component: ColorTag,
@@ -26,6 +21,12 @@ const ColorTagShowcase = componentShowcaseFactory(ColorTag);
 const states: Array<IComponentPresentation<IColorTagProps>> = [
   {
     legend: 'Normal',
+  },
+  {
+    legend: 'Selected',
+    props: {
+      selected: true,
+    },
   },
   {
     legend: 'Focused',
@@ -48,22 +49,9 @@ const rows: Array<IComponentPresentation<IColorTagProps>> = [
     legend: 'Normal',
   },
   {
-    legend: 'With label',
+    legend: 'Selected',
     props: {
-      children: '#abcdef',
-    },
-  },
-  {
-    legend: 'With icon',
-    props: {
-      leadingIcon: <SvgIcon icon={iconCheckmark} />,
-    },
-  },
-  {
-    legend: 'With label and icon',
-    props: {
-      children: '#abcdef',
-      leadingIcon: <SvgIcon icon={iconCheckmark} />,
+      selected: true,
     },
   },
   {
@@ -75,7 +63,7 @@ const rows: Array<IComponentPresentation<IColorTagProps>> = [
   {
     legend: 'With invalid color',
     props: {
-      backgroundColor: 'invalid',
+      color: 'invalid',
     },
   },
 ];
@@ -91,7 +79,7 @@ export const DarkColor: IStory = {
   ),
   args: {
     ...defaultArgs,
-    backgroundColor: '#000000',
+    color: '#000000',
   },
 };
 
@@ -101,7 +89,7 @@ export const LightColor: IStory = {
   ),
   args: {
     ...defaultArgs,
-    backgroundColor: '#ffffff',
+    color: '#ffffff',
   },
 };
 

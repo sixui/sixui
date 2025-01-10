@@ -16,10 +16,10 @@ type IModifier =
 
 // The coordinates in an 18px viewBox of the bottom left corner of the
 // indeterminate icon. Y is negative to fix an issue in Safari (see below).
-const indeterminateBottomLeft = '4px, -10px';
+const indeterminateBottomLeft = '1px, -10px';
 // The coordinates in an 18px viewBox of the bottom left corner of the checkmark
 // icon. Y is negative to fix an issue in Safari (see below).
-const checkmarkBottomLeft = '7px, -14px';
+const checkmarkBottomLeft = '6px, -16px';
 
 const prevUnselectedToCheckedKeyframes = keyframes({
   from: {
@@ -43,6 +43,7 @@ const classNames = createStyles({
     transitionDuration: themeTokens.motion.duration.short.$3,
     transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
     transform: 'scale(0)',
+    vectorEffect: 'non-scaling-stroke',
 
     selectors: {
       [getModifierSelector<IModifier>('on', root)]: {
@@ -86,6 +87,7 @@ const classNames = createStyles({
   mark$short: ({ root }) => ({
     // The short end of the checkmark. Initially hidden underneath the
     // indeterminate mark.
+    border: '2px solid red',
     width: tokens.stroke,
     height: tokens.stroke,
     transitionProperty: 'transform, height',
@@ -95,13 +97,13 @@ const classNames = createStyles({
         // The right triangle that forms the short end has an X, Y length of
         // 4dp, 4dp. The hypoteneuse is √(4*4 + 4*4), which is the length of the
         // short end when checked.
-        height: Math.sqrt(32),
+        height: Math.sqrt(64),
       },
     },
   }),
   mark$long: ({ root }) => ({
     // The long end of the checkmark. Initially the indeterminate mark.
-    width: 10,
+    width: 16,
     height: tokens.stroke,
     transitionProperty: 'transform, width',
 
@@ -110,7 +112,7 @@ const classNames = createStyles({
         // The right triangle that forms the long end has an X, Y length of 8dp,
         // 8dp. The hypoteneuse is √(8*8 + 8*8), which is the length of the long
         // end when checked.
-        width: Math.sqrt(128),
+        width: Math.sqrt(256),
       },
       [getModifierSelector<IModifier>(['was-unchecked', 'on'], root)]: {
         animationName: prevUnselectedToCheckedKeyframes,

@@ -24,7 +24,7 @@ const [tokensClassName, tokens] = createTheme({
     size: px(18),
   },
   mark: {
-    stroke: '2px',
+    stroke: '3px',
   },
   container$off: {
     color: {
@@ -51,7 +51,7 @@ const [tokensClassName, tokens] = createTheme({
     },
   },
   icon: {
-    size: px(18),
+    size: px(12),
     color: {
       normal: themeTokens.colorScheme.onPrimary,
       focused: 'inherit',
@@ -120,8 +120,8 @@ const classNames = createStyles({
     height: calc.add(tokens.container.size, DENSITY),
   },
   layer: {
-    inset: 0,
     position: 'absolute',
+    inset: 0,
   },
   background: ({ root }) => ({
     zIndex: 1,

@@ -2,16 +2,16 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import type { IColorTagThemeFactory } from './ColorTag.css';
 import type { IColorTagFactory } from './ColorTag.types';
-import { iconCheckmark } from '~/assets/icons';
 import { getTextContrastColor } from '~/helpers/colors/getTextContrastColor';
 import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Button } from '../Button';
+import { ButtonBase } from '../ButtonBase';
+import { Checkmark } from '../Checkmark';
 import { ColorTagIndicator } from '../ColorTagIndicator';
-import { SvgIcon } from '../SvgIcon';
+import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
 import { colorTagTheme } from './ColorTag.css';
 
 const COMPONENT_NAME = 'ColorTag';
@@ -24,13 +24,16 @@ export const ColorTag = polymorphicComponentFactory<IColorTagFactory>(
       styles,
       style,
       variant,
-      selected,
       children,
-      backgroundColor: backgroundColorProp,
-      foregroundColor: foregroundColorProp,
+      color,
       outlined,
+      selected,
+      loading,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
+
+    const isValid = !!color && isValidHexColor(color);
+    const contrastColor = isValid ? getTextContrastColor(color) : undefined;
 
     const { getStyles } = useComponentTheme<IColorTagThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -45,35 +48,32 @@ export const ColorTag = polymorphicComponentFactory<IColorTagFactory>(
       },
     });
 
-    const backgroundColor =
-      backgroundColorProp && isValidHexColor(backgroundColorProp)
-        ? backgroundColorProp
-        : undefined;
-    const foregroundColor = foregroundColorProp
-      ? isValidHexColor(foregroundColorProp)
-        ? foregroundColorProp
-        : undefined
-      : backgroundColor
-        ? getTextContrastColor(backgroundColor)
-        : undefined;
-
     return (
-      <Button
+      <ButtonBase
         {...getStyles('root', {
           style: assignInlineVars({
-            [colorTagTheme.tokens.foreground.color]: foregroundColor,
+            [colorTagTheme.tokens.foreground.color]: contrastColor,
           }),
         })}
         classNames={mergeClassNames(classNames, {
           stateLayer: getStyles('stateLayer').className,
         })}
         ref={forwardedRef}
-        as={ColorTagIndicator}
-        label={children}
-        color={backgroundColorProp}
-        icon={selected && <SvgIcon icon={iconCheckmark} />}
         {...other}
-      />
+      >
+        <ColorTagIndicator
+          {...getStyles('indicator')}
+          color={color}
+          outlined={outlined}
+        >
+          {loading ? (
+            <IndeterminateCircularProgressIndicator />
+          ) : (
+            <Checkmark {...getStyles('checkmark')} checked={selected} />
+          )}
+          {children}
+        </ColorTagIndicator>
+      </ButtonBase>
     );
   },
 );

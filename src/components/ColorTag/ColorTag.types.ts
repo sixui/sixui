@@ -12,9 +12,6 @@ export interface IColorTagOwnProps
   extends IButtonBaseOwnProps,
     IColorTagIndicatorOwnProps {
   selected?: boolean;
-  backgroundColor?: string;
-  foregroundColor?: string;
-  outlined?: boolean;
   loading?: boolean;
 }
 

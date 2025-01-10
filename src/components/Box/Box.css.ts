@@ -82,8 +82,6 @@ const sprinklesProps = defineProperties({
     fontSize: spacingValues,
     zIndex: themeTokens.zIndex,
     opacity: true,
-  },
-  staticProperties: {
     color: themeTokens.colorScheme,
   },
   shorthands: {

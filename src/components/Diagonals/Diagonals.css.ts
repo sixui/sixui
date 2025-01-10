@@ -19,6 +19,7 @@ const classNames = createStyles({
     borderRadius: 'inherit',
     position: 'absolute',
     inset: 0,
+    zIndex: -1,
   },
   svg: {
     height: '100%',

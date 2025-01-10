@@ -30,8 +30,7 @@ export const ColorTagIndicator =
 
       const isEmpty = !color;
       const isValid = !!color && isValidHexColor(color);
-      const contrastColor =
-        !!color && isValid ? getTextContrastColor(color) : undefined;
+      const contrastColor = isValid ? getTextContrastColor(color) : undefined;
 
       const { getStyles } = useComponentTheme<IColorTagIndicatorThemeFactory>({
         componentName: COMPONENT_NAME,
