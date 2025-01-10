@@ -5,7 +5,7 @@ import type {
   IUseInteractionsResult,
 } from '~/hooks/useInteractions';
 import { useInteractions } from '~/hooks/useInteractions';
-import { useRipple } from '~/hooks/useRipple';
+import { useRippleEffect } from '~/hooks/useRippleEffect';
 import { mergeProps } from '~/utils/mergeProps';
 
 export type IUseStateLayerProps = IUseInteractionsProps & {
@@ -50,7 +50,7 @@ export const useStateLayer = <TElement extends HTMLElement>(
   });
 
   const triggerRef = useRef<TElement>(null);
-  const ripple = useRipple({
+  const rippleEffect = useRippleEffect({
     triggerRef,
     surfaceRef,
     disabled: withoutRippleEffect || disabled || isStaticState,
@@ -59,7 +59,7 @@ export const useStateLayer = <TElement extends HTMLElement>(
 
   // FIXME: in the case of a remote trigger (ie. via a <label /> element), we
   // don't want to show the ripple effect.
-  const animating = ripple.animating;
+  const animating = rippleEffect.animating;
 
   return {
     triggerRef,
@@ -67,7 +67,7 @@ export const useStateLayer = <TElement extends HTMLElement>(
       ...interactionsContext,
       triggerProps: mergeProps(
         interactionsContext.triggerProps,
-        ripple.triggerProps,
+        rippleEffect.triggerProps,
       ),
     },
     surfaceRef,

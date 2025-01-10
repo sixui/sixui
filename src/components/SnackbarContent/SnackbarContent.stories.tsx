@@ -3,10 +3,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { ISnackbarContentProps } from './SnackbarContent.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { ComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { SnackbarContent } from './SnackbarContent';
-
-// https://m3.material.io/components/snackbar
 
 const meta = {
   component: SnackbarContent,
@@ -15,6 +13,8 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {} satisfies Partial<ISnackbarContentProps>;
+
+const SnackbarContentShowcase = componentShowcaseFactory(SnackbarContent);
 
 const rows: Array<IComponentPresentation<ISnackbarContentProps>> = [
   { legend: 'Text' },
@@ -52,8 +52,7 @@ const rows: Array<IComponentPresentation<ISnackbarContentProps>> = [
 
 export const Short: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={SnackbarContent}
+    <SnackbarContentShowcase
       props={props}
       rows={rows}
       horizontalAlign="start"
@@ -67,8 +66,7 @@ export const Short: IStory = {
 
 export const Long: IStory = {
   render: (props) => (
-    <ComponentShowcase
-      component={SnackbarContent}
+    <SnackbarContentShowcase
       props={props}
       rows={rows}
       horizontalAlign="start"

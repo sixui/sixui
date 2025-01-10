@@ -4,7 +4,7 @@ import { delay } from '@olivierpascal/helpers';
 import { getTranslationCoordinates } from './getTranslationCoordinates';
 import { isEventInElementBounds } from './isEventInElementBounds';
 
-export type IUSeRippleOptions = {
+export type IUseRippleEffectOptions = {
   /** The delay in milliseconds after the touch start, to determine if the touch
    * is a real press, or a swipe/scroll. If the touch is a press, the ripple
    * will be shown. If the touch is a swipe or a scroll, the ripple will not be
@@ -59,15 +59,15 @@ const DEFAULT_OPTIONS = {
   easing: 'cubic-bezier(0.2, 0, 0, 1)',
 };
 
-export type IUseRippleProps<TElement extends HTMLElement> = {
+export type IUseRippleEffectProps<TElement extends HTMLElement> = {
   triggerRef: React.RefObject<TElement | null>;
   surfaceRef: React.RefObject<HTMLDivElement | null>;
   disabled?: boolean;
-  options?: IUSeRippleOptions;
+  options?: IUseRippleEffectOptions;
   clickThrough?: boolean;
 };
 
-export type IUseRippleResult = {
+export type IUseRippleEffectResult = {
   animating: boolean;
   triggerProps?: {
     onPointerDown?: React.PointerEventHandler;
@@ -130,9 +130,9 @@ enum IState {
 const isTouch = ({ pointerType }: React.PointerEvent): boolean =>
   pointerType === 'touch';
 
-export const useRipple = <TElement extends HTMLElement>(
-  props: IUseRippleProps<TElement>,
-): IUseRippleResult => {
+export const useRippleEffect = <TElement extends HTMLElement>(
+  props: IUseRippleEffectProps<TElement>,
+): IUseRippleEffectResult => {
   const {
     triggerRef,
     surfaceRef,
