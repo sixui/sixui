@@ -4,10 +4,8 @@ import { useState } from 'react';
 import type { ISnackbarProps } from './Snackbar.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { Button } from '../Button';
-import { ComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Snackbar } from './Snackbar';
-
-// https://m3.material.io/components/snackbar
 
 const meta = {
   component: Snackbar,
@@ -15,35 +13,44 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {} satisfies Partial<ISnackbarProps>;
+const defaultArgs = {
+  onActionClick: (...args) => sbHandleEvent('onActionClick', args, 1000),
+} satisfies Partial<ISnackbarProps>;
 
-const Demo: React.FC<ISnackbarProps> = (props: ISnackbarProps) => {
-  const [open, setOpen] = useState(false);
+const SnackbarDemo: React.FC<ISnackbarProps> = (props: ISnackbarProps) => {
+  const [opened, setOpened] = useState(false);
 
   return (
     <>
-      <Snackbar open={open} onClose={() => setOpen(false)} {...props} />
-      <Button onClick={() => setOpen((open) => !open)}>Open</Button>
+      <Snackbar
+        opened={opened}
+        {...props}
+        onClose={(...args) =>
+          sbHandleEvent('onClose', args, 1000).then(() => setOpened(false))
+        }
+      />
+      <Button onClick={() => setOpened((opened) => !opened)}>Open</Button>
     </>
   );
 };
 
+const SnackbarDemoShowcase = componentShowcaseFactory(SnackbarDemo);
+
 export const Open: IStory = {
   render: (props: ISnackbarProps) => (
-    <ComponentShowcase
-      component={Demo}
+    <SnackbarDemoShowcase
       props={props}
       cols={[
         {
-          legend: 'Left',
+          legend: 'Start',
           props: {
-            horizontalOrigin: 'left',
+            justify: 'start',
           },
         },
         {
           legend: 'Center',
           props: {
-            horizontalOrigin: 'center',
+            justify: 'center',
           },
         },
       ]}
@@ -60,7 +67,6 @@ export const Open: IStory = {
           props: {
             children: "Couldn't send photo.",
             actionLabel: 'Retry',
-            onActionClick: (...args) => sbHandleEvent('click', args, 1000),
           },
         },
         {
@@ -68,7 +74,6 @@ export const Open: IStory = {
           props: {
             children: "Couldn't send photo.",
             actionLabel: 'Retry',
-            onActionClick: (...args) => sbHandleEvent('click', args, 1000),
             autoHideDuration: 2000,
           },
         },
@@ -77,7 +82,6 @@ export const Open: IStory = {
           props: {
             children: "Couldn't send photo.",
             actionLabel: 'Retry',
-            onActionClick: (...args) => sbHandleEvent('click', args, 1000),
             showCloseButton: true,
           },
         },

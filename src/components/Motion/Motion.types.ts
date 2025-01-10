@@ -61,7 +61,12 @@ export interface IMotionOwnProps {
    * - `enterExitOffScreen`: The animated element comes from outside the screen.
    * @defaultValue 'enterExit'
    */
-  pattern?: IMotionPattern;
+  pattern?:
+    | IMotionPattern
+    | {
+        enter: IMotionPattern;
+        exit: IMotionPattern;
+      };
 
   disabled?: boolean;
 

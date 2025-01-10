@@ -21,7 +21,7 @@ export interface IDialogContentOwnProps extends IPaperOwnProps {
   actions:
     | React.ReactNode
     | ((props: IDialogActionsRenderProps) => React.ReactNode);
-  onClose?: () => IMaybeAsync<unknown>;
+  onClose?: () => void;
   size?: ISixuiSize;
 }
 

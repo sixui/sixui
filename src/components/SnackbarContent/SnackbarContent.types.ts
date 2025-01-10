@@ -12,7 +12,7 @@ export interface ISnackbarContentOwnProps extends IPaperBaseOwnProps {
   children?: React.ReactNode;
   actionLabel?: string;
   onActionClick?: () => IMaybeAsync<unknown>;
-  onClose?: (event: React.MouseEvent<Element>) => IMaybeAsync<unknown>;
+  onClose?: () => IMaybeAsync<unknown>;
   showCloseButton?: boolean;
 }
 

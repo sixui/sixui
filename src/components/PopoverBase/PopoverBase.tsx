@@ -101,15 +101,21 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const openEvents = {
-      ...defaultOpenEvents,
-      ...openEventsProp,
-    };
+    const openEvents =
+      openEventsProp !== false
+        ? {
+            ...defaultOpenEvents,
+            ...openEventsProp,
+          }
+        : {};
 
-    const closeEvents = {
-      ...defaultCloseEvents,
-      ...closeEventsProp,
-    };
+    const closeEvents =
+      closeEventsProp !== false
+        ? {
+            ...defaultCloseEvents,
+            ...closeEventsProp,
+          }
+        : {};
 
     const middlewares = {
       ...defaultMiddlewares,

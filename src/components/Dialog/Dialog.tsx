@@ -19,7 +19,6 @@ export const Dialog = polymorphicComponentFactory<IDialogFactory>(
       style,
       variant,
       children,
-      dialogContentProps,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -42,7 +41,6 @@ export const Dialog = polymorphicComponentFactory<IDialogFactory>(
             {...mergeProps(
               { onClose: close },
               forwardedProps as IDialogContentOwnProps,
-              dialogContentProps,
             )}
           >
             {children}

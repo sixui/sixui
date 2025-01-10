@@ -57,7 +57,12 @@ export const Motion = polymorphicComponentFactory<IMotionFactory>(
         side,
         alignment,
         orientation,
-        pattern,
+        pattern:
+          typeof pattern === 'string'
+            ? pattern
+            : ['entered', 'exiting'].includes(status)
+              ? pattern.exit
+              : pattern.enter,
       },
     });
 

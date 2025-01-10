@@ -2,17 +2,13 @@ import type { IOmit } from '~/helpers/types';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
-import type {
-  IDialogContentOwnProps,
-  IDialogContentProps,
-} from '../DialogContent';
+import type { IDialogContentOwnProps } from '../DialogContent';
 import type { IPopoverBaseOwnProps } from '../PopoverBase';
 import type { dialogTheme, IDialogThemeFactory } from './Dialog.css';
 
 export interface IDialogOwnProps
   extends IOmit<IPopoverBaseOwnProps, 'children' | 'contentRenderer'>,
     IOmit<IDialogContentOwnProps, 'onClose'> {
-  dialogContentProps?: Partial<IDialogContentProps>;
   children?: React.ReactNode;
 }
 

@@ -52,7 +52,7 @@ const classNames = createStyles({
     }),
 
     '@media': {
-      '(min-width: 0) and (max-width: 599)': {
+      '(min-width: 0px) and (max-width: 599px)': {
         flexGrow: 1,
         minWidth: 'unset',
       },

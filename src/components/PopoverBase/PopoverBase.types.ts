@@ -182,13 +182,13 @@ export type IPopoverBaseOwnProps<TForwardedProps extends object = object> =
      * The events that will open the popover.
      * @defaultValue `{ hover: false, focus: false, click: false, touch: false }`
      */
-    openEvents?: IPopoverOpenEvents;
+    openEvents?: IPopoverOpenEvents | false;
 
     /**
      * The events that will close the popover.
      * @defaultValue `{ clickOutside: true, focusOut: true, escapeKey: true }`
      */
-    closeEvents?: IPopoverCloseEvents;
+    closeEvents?: IPopoverCloseEvents | false;
 
     /**
      * Whether the <body> is prevented from scrolling while the overlay is
