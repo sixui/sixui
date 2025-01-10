@@ -21,7 +21,6 @@ const defaultArgs = {
 } satisfies Partial<ICardProps>;
 
 const states: Array<IComponentPresentation<ICardProps>> = [
-  { legend: 'Non-interactive', props: { nonInteractive: true } },
   {
     legend: 'Normal',
   },

@@ -9,7 +9,7 @@ import { polymorphicComponentFactory } from '~/utils/component/polymorphicCompon
 import { useProps } from '~/utils/component/useProps';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { ButtonBase } from '../ButtonBase';
+import { Button } from '../Button';
 import { ColorTagIndicator } from '../ColorTagIndicator';
 import { SvgIcon } from '../SvgIcon';
 import { colorTagTheme } from './ColorTag.css';
@@ -58,7 +58,7 @@ export const ColorTag = polymorphicComponentFactory<IColorTagFactory>(
         : undefined;
 
     return (
-      <ButtonBase
+      <Button
         {...getStyles('root', {
           style: assignInlineVars({
             [colorTagTheme.tokens.foreground.color]: foregroundColor,
@@ -70,8 +70,7 @@ export const ColorTag = polymorphicComponentFactory<IColorTagFactory>(
         ref={forwardedRef}
         as={ColorTagIndicator}
         label={children}
-        backgroundColor={backgroundColorProp}
-        foregroundColor={foregroundColorProp}
+        color={backgroundColorProp}
         icon={selected && <SvgIcon icon={iconCheckMark} />}
         {...other}
       />

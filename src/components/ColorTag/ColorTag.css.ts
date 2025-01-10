@@ -7,6 +7,7 @@ import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { Button } from '../Button';
 import { ColorTagIndicator } from '../ColorTagIndicator';
 import { PaperBase } from '../PaperBase';
 import { StateLayer } from '../StateLayer';
@@ -32,16 +33,41 @@ const classNames = createStyles({
     transform: 'scale(1)',
     color: tokens.foreground.color,
 
-    vars: createTokensVars(PaperBase.theme.tokens, {
-      container: {
-        shape: tokens.container.shape,
-      },
-      outline: {
-        color: tokens.foreground.color,
-      },
-    }),
+    vars: {
+      ...createTokensVars(PaperBase.theme.tokens, {
+        container: {
+          shape: tokens.container.shape,
+        },
+        outline: {
+          color: tokens.foreground.color,
+        },
+      }),
+      ...createTokensVars(Button.theme.tokens, {
+        container: {
+          color: {
+            normal: 'transparent',
+            disabled: 'transparent',
+          },
+          leadingSpace: {
+            normal: '0px',
+            withStartSlot: '0px',
+            withEndSlot: '0px',
+          },
+          trailingSpace: {
+            normal: '0px',
+            withStartSlot: '0px',
+            withEndSlot: '0px',
+          },
+          minWidth: '40px',
+          height: '40px',
+        },
+      }),
+    },
     selectors: {
       [getModifierSelector<IModifier>('focused')]: {
+        transform: 'scale(1.1)',
+      },
+      [getModifierSelector<IModifier>('loading')]: {
         transform: 'scale(1.1)',
       },
       [getModifierSelector<IModifier>('hovered')]: {

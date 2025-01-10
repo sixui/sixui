@@ -1,10 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+
+
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IColorTagProps } from './ColorTag.types';
+import { iconCheckMark } from '~/assets/icons';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { componentShowcaseFactory } from '../ComponentShowcase';
+import { SvgIcon } from '../SvgIcon';
 import { ColorTag } from './ColorTag';
+
 
 const meta = {
   component: ColorTag,
@@ -19,7 +24,6 @@ const defaultArgs = {
 const ColorTagShowcase = componentShowcaseFactory(ColorTag);
 
 const states: Array<IComponentPresentation<IColorTagProps>> = [
-  { legend: 'Non-interactive', props: { nonInteractive: true } },
   {
     legend: 'Normal',
   },
@@ -41,21 +45,31 @@ const states: Array<IComponentPresentation<IColorTagProps>> = [
 
 const rows: Array<IComponentPresentation<IColorTagProps>> = [
   {
-    legend: 'Empty',
-  },
-  {
-    legend: 'With color',
+    legend: 'Normal',
   },
   {
     legend: 'With label',
     props: {
-      children: '#6750a4',
+      children: '#abcdef',
     },
   },
   {
-    legend: 'Selected',
+    legend: 'With icon',
     props: {
-      selected: true,
+      leadingIcon: <SvgIcon icon={iconCheckMark} />,
+    },
+  },
+  {
+    legend: 'With label and icon',
+    props: {
+      children: '#abcdef',
+      leadingIcon: <SvgIcon icon={iconCheckMark} />,
+    },
+  },
+  {
+    legend: 'Empty',
+    props: {
+      color: undefined,
     },
   },
   {
@@ -77,7 +91,7 @@ export const DarkColor: IStory = {
   ),
   args: {
     ...defaultArgs,
-    backgroundColor: '#6750a4',
+    backgroundColor: '#000000',
   },
 };
 

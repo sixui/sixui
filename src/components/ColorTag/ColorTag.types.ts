@@ -10,7 +10,13 @@ import type { colorTagTheme, IColorTagThemeFactory } from './ColorTag.css';
 
 export interface IColorTagOwnProps
   extends IButtonBaseOwnProps,
-    IColorTagIndicatorOwnProps {}
+    IColorTagIndicatorOwnProps {
+  selected?: boolean;
+  backgroundColor?: string;
+  foregroundColor?: string;
+  outlined?: boolean;
+  loading?: boolean;
+}
 
 export interface IColorTagProps
   extends IBoxProps,

@@ -89,7 +89,7 @@ const classNames = createStyles({
               normal: px(themeTokens.outline.width.xs),
             },
             opacity: {
-              normal: '0.7',
+              normal: '0.6',
             },
           },
         }),
