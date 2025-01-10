@@ -14,7 +14,9 @@ export type ISnackbarContentProps = IBaseProps<ISnackbarContentStylesKey> & {
   };
   children?: React.ReactNode;
   actionLabel?: string;
-  onActionClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
-  onClose?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<IAny>;
+  onActionClick?: (
+    event: React.MouseEvent<HTMLElement>,
+  ) => IMaybeAsync<unknown>;
+  onClose?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<unknown>;
   showCloseButton?: boolean;
 };

@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 
-import type { IAny, IMaybeAsync } from '~/helpers/types';
+import type { IMaybeAsync } from '~/helpers/types';
 import { useLabeledContext } from '~/components/Labeled';
 import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 import { useControlledValue } from './useControlledValue';
@@ -10,7 +10,7 @@ export interface IUseSwitchProps {
   checked?: boolean;
   defaultChecked?: boolean;
   value?: string;
-  onChange?: (value: string | undefined) => IMaybeAsync<IAny>;
+  onChange?: (value: string | undefined) => IMaybeAsync<unknown>;
   loading?: boolean;
   readOnly?: boolean;
   disabled?: boolean;

@@ -1,9 +1,9 @@
 import { useCallback, useEffect } from 'react';
 
+import type { IMaybeAsync } from '~/helpers/types';
 import type { IDisclosureTriggerThemeFactory } from './DisclosureTrigger.css';
 import type { IDisclosureTriggerFactory } from './DisclosureTrigger.types';
 import { iconChevronDown } from '~/assets/icons';
-import { IAny, IMaybeAsync } from '~/helpers/types';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
@@ -101,13 +101,13 @@ export const DisclosureTrigger = componentFactory<IDisclosureTriggerFactory>(
       (
         event: React.ChangeEvent<HTMLInputElement>,
         value: string | undefined,
-      ): IMaybeAsync<IAny> => {
+      ): IMaybeAsync<unknown> => {
         const newChecked = value !== undefined;
         if (newChecked === checked) {
           return;
         }
 
-        return Promise.all([onChange?.(event, value)]).then(() => {
+        return Promise.all([onChange?.(value)]).then(() => {
           setChecked(newChecked);
           expandableContext?.expand(newChecked);
         });
@@ -116,7 +116,7 @@ export const DisclosureTrigger = componentFactory<IDisclosureTriggerFactory>(
     );
 
     const handleClick = useCallback(
-      (event: React.MouseEvent<Element>): IMaybeAsync<IAny> =>
+      (event: React.MouseEvent<Element>): IMaybeAsync<unknown> =>
         Promise.all([onClick?.(event)]).then(() =>
           expandableContext?.expand(!expanded),
         ),

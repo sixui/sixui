@@ -1,4 +1,4 @@
-import type { IAny, IMaybeAsync } from '~/helpers/types';
+import type { IMaybeAsync } from '~/helpers/types';
 import type { IInteractionsMergeStrategy } from '~/hooks/useInteractions';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
@@ -20,7 +20,7 @@ export interface IButtonBaseOwnProps {
   target?: React.AnchorHTMLAttributes<HTMLAnchorElement>['target'];
   rel?: string;
   disabled?: boolean;
-  onClick?: (event: React.MouseEvent<Element>) => IMaybeAsync<IAny>;
+  onClick?: (event: React.MouseEvent<Element>) => IMaybeAsync<unknown>;
   touchTargetRenderer?: (() => React.ReactNode) | null;
   nonInteractive?: boolean;
 

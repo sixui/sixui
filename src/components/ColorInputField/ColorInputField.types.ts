@@ -1,4 +1,4 @@
-import type { IMaybeAsync, IPlacement } from '~/helpers/types';
+import type { IMaybeAsync, IOmit, IPlacement } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
@@ -18,7 +18,8 @@ export type IColorInputFieldColorPickerRendererProps = {
   customPalette?: IColorPalette;
 };
 
-export interface IColorInputFieldOwnProps extends ITextInputFieldOwnProps {
+export interface IColorInputFieldOwnProps
+  extends IOmit<ITextInputFieldOwnProps, 'onChange'> {
   placement?: IPlacement;
   colorPickerRenderer?: (
     props: IColorInputFieldColorPickerRendererProps,
@@ -26,6 +27,7 @@ export interface IColorInputFieldOwnProps extends ITextInputFieldOwnProps {
   customPalette?: IColorPalette;
   onColorsQuantized?: (colors: Array<string>) => void;
   quantizeColorCount?: number;
+  onChange?: (color: string, isValid: boolean) => IMaybeAsync<unknown>;
 }
 
 export interface IColorInputFieldProps

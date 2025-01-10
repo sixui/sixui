@@ -51,7 +51,7 @@ export interface ITextInputFieldOwnProps
 
   value?: string;
   defaultValue?: string;
-  onChange?: (value: string, isColorValid: boolean) => IMaybeAsync<unknown>;
+  onChange?: (value: string) => IMaybeAsync<unknown>;
 }
 
 export interface ITextInputFieldProps

@@ -1,11 +1,11 @@
-import type { IAny, IMaybeAsync } from '~/helpers/types';
+import type { IMaybeAsync } from '~/helpers/types';
 import { createOptionalContext } from '~/helpers/createOptionalContext';
 
 export interface ICheckboxGroupContextValue {
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement>,
     values: Array<string>,
-  ) => IMaybeAsync<IAny>;
+  ) => IMaybeAsync<unknown>;
   defaultValues?: Array<string>;
   values?: Array<string>;
   loading?: boolean;

@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 
-import type { IAny, IMaybeAsync } from '~/helpers/types';
+import type { IMaybeAsync } from '~/helpers/types';
 import { useLabeledContext } from '~/components/Labeled';
 import { useRadioGroupContext } from '~/components/RadioGroup';
 import { executeLazyPromise } from '~/helpers/executeLazyPromise';
@@ -8,7 +8,7 @@ import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 export interface IUseRadioProps {
   checked?: boolean;
   value?: string;
-  onChange?: (value: string | undefined) => IMaybeAsync<IAny>;
+  onChange?: (value: string | undefined) => IMaybeAsync<unknown>;
   loading?: boolean;
   disabled?: boolean;
   readOnly?: boolean;

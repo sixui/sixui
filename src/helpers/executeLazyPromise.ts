@@ -1,10 +1,10 @@
-import type { IAny, IMaybeAsync } from './types';
+import type { IMaybeAsync } from './types';
 
 export const executeLazyPromise = (
-  promise: () => IMaybeAsync<IAny>,
+  promise: () => IMaybeAsync<unknown>,
   onLoadingChange: (loading: boolean) => void,
   minDuration = 10,
-): Promise<IAny> => {
+): Promise<unknown> => {
   if (!minDuration) {
     return Promise.resolve(promise());
   }

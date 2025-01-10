@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useId, useRef, useState } from 'react';
 
-import type { IAny, IMaybeAsync } from '~/helpers/types';
+import type { IMaybeAsync } from '~/helpers/types';
 import type { IDialogContentThemeFactory } from './DialogContent.css';
 import type { IDialogContentFactory } from './DialogContent.types';
 import { isFunction } from '~/helpers/isFunction';
@@ -158,7 +158,7 @@ export const DialogContent = polymorphicComponentFactory<IDialogContentFactory>(
           {actions && (
             <div {...getStyles('actions')}>
               {isFunction(actions)
-                ? actions({ close: (): IMaybeAsync<IAny> => onClose?.() })
+                ? actions({ close: (): IMaybeAsync<unknown> => onClose?.() })
                 : actions}
             </div>
           )}

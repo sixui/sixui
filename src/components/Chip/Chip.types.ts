@@ -1,4 +1,4 @@
-import type { IAny, IMaybeAsync, IOmit } from '~/helpers/types';
+import type { IMaybeAsync, IOmit } from '~/helpers/types';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
@@ -13,7 +13,7 @@ export interface IChipOwnProps
     IButtonOwnProps,
     'leadingIcon' | 'trailingIcon' | 'start' | 'end'
   > {
-  onTrailingClick?: (event: React.MouseEvent<Element>) => IMaybeAsync<IAny>;
+  onTrailingClick?: (event: React.MouseEvent<Element>) => IMaybeAsync<unknown>;
   trailingLoading?: boolean;
   trailingIcon?: React.ReactNode;
   elevated?: boolean;
