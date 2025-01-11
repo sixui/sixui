@@ -1,5 +1,5 @@
 import type { IMaybeAsync } from '~/helpers/types';
-import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBadgeProps } from '../Badge';
 import type { IBoxProps } from '../Box';
@@ -28,9 +28,10 @@ export interface ITabProps
     IComponentThemeProps<ITabThemeFactory>,
     ITabOwnProps {}
 
-export type ITabFactory = IComponentFactory<{
+export type ITabFactory = IPolymorphicComponentFactory<{
   props: ITabProps;
-  ref: HTMLDivElement;
+  defaultRef: HTMLButtonElement;
+  defaultRoot: 'button';
   theme: typeof tabTheme;
   variant: ITabVariant | false;
 }>;

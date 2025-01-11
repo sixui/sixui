@@ -59,39 +59,33 @@ const classNames = createStyles({
     width: calc.add(tokens.size, DENSITY),
     flexShrink: 0,
 
-    vars: {
-      ...createTokensVars(PaperBase.theme.tokens, {
-        container: {
-          shape: px(themeTokens.shape.corner.circle),
+    vars: createTokensVars(Button.theme.tokens, {
+      container: {
+        shape: px(themeTokens.shape.corner.circle),
+        color: {
+          normal: 'transparent',
+          disabled: 'transparent',
         },
-      }),
-      ...createTokensVars(Button.theme.tokens, {
-        container: {
-          color: {
-            normal: 'transparent',
-            disabled: 'transparent',
-          },
-          leadingSpace: {
-            normal: '0px',
-            withStartSlot: '0px',
-            withEndSlot: '0px',
-          },
-          trailingSpace: {
-            normal: '0px',
-            withStartSlot: '0px',
-            withEndSlot: '0px',
-          },
-          minWidth: tokens.size,
-          height: tokens.size,
+        leadingSpace: {
+          normal: '0px',
+          withStartSlot: '0px',
+          withEndSlot: '0px',
         },
-        label: {
-          typography: {
-            lineHeight: tokens.icon.size,
-          },
+        trailingSpace: {
+          normal: '0px',
+          withStartSlot: '0px',
+          withEndSlot: '0px',
         },
-        icon: tokens.icon,
-      }),
-    },
+        minWidth: tokens.size,
+        height: tokens.size,
+      },
+      label: {
+        typography: {
+          lineHeight: tokens.icon.size,
+        },
+      },
+      icon: tokens.icon,
+    }),
 
     selectors: {
       [getModifierSelector<IModifier>('toggle')]: {
