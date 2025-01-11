@@ -41,6 +41,7 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
       themeVariants: tabThemeVariants,
       modifiers: {
         'with-icon-and-label': hasIconAndLabel,
+        active,
       },
     });
 

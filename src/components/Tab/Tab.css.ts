@@ -1,4 +1,4 @@
-import { createTheme } from '@vanilla-extract/css';
+import { createTheme, fallbackVar } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import type { ITabVariant } from './Tab.types';
@@ -14,7 +14,7 @@ import { StateLayer } from '../StateLayer';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
-type IModifier = 'disabled' | 'with-icon-and-label';
+type IModifier = 'disabled' | 'with-icon-and-label' | 'active';
 
 const DENSITY = px(getDensity({ min: -4, max: 0 }));
 
@@ -38,6 +38,11 @@ const [tokensClassName, tokens] = createTheme({
       disabled: themeTokens.state.opacity.disabled,
     },
   },
+  container$active: {
+    color: {
+      normal: 'inherit',
+    },
+  },
   stateLayer: {
     color: {
       hovered: themeTokens.colorScheme.onSurface,
@@ -50,8 +55,8 @@ const [tokensClassName, tokens] = createTheme({
   },
   stateLayer$active: {
     color: {
-      hovered: 'unset',
-      pressed: 'unset',
+      hovered: 'inherit',
+      pressed: 'inherit',
     },
     opacity: {
       hovered: themeTokens.state.stateLayerOpacity.hovered,
@@ -141,9 +146,63 @@ const classNames = createStyles({
       icon: {
         labelSpace: px(0),
       },
+      label: {
+        color: {
+          normal: tokens.label.color.normal,
+          focused: fallbackVar(
+            tokens.label.color.focused,
+            tokens.label.color.normal,
+          ),
+          hovered: fallbackVar(
+            tokens.label.color.hovered,
+            tokens.label.color.normal,
+          ),
+          pressed: fallbackVar(
+            tokens.label.color.pressed,
+            tokens.label.color.normal,
+          ),
+          disabled: tokens.label.color.disabled,
+        },
+        opacity: {
+          disabled: tokens.label.opacity.disabled,
+        },
+        typography: tokens.label.typography,
+      },
     }),
 
     selectors: {
+      [getModifierSelector<IModifier>('active')]: {
+        vars: createTokensVars(Button.theme.tokens, {
+          container: {
+            color: {
+              normal: fallbackVar(
+                tokens.container$active.color.normal,
+                tokens.container.color.normal,
+              ),
+            },
+          },
+          label: {
+            color: {
+              normal: fallbackVar(
+                tokens.label$active.color.normal,
+                tokens.label.color.normal,
+              ),
+              focused: fallbackVar(
+                tokens.label$active.color.focused,
+                tokens.label.color.focused,
+              ),
+              hovered: fallbackVar(
+                tokens.label$active.color.hovered,
+                tokens.label.color.hovered,
+              ),
+              pressed: fallbackVar(
+                tokens.label$active.color.pressed,
+                tokens.label.color.pressed,
+              ),
+            },
+          },
+        }),
+      },
       [getModifierSelector<IModifier>('with-icon-and-label')]: {
         vars: createTokensVars(Button.theme.tokens, {
           container: {
@@ -153,7 +212,7 @@ const classNames = createStyles({
       },
     },
   },
-  stateLayer: {
+  stateLayer: ({ root }) => ({
     vars: createTokensVars(StateLayer.theme.tokens, {
       color: {
         hovered: tokens.stateLayer.color.hovered,
@@ -164,7 +223,34 @@ const classNames = createStyles({
         pressed: tokens.stateLayer.opacity.pressed,
       },
     }),
-  },
+
+    selectors: {
+      [getModifierSelector<IModifier>('active', root)]: {
+        vars: createTokensVars(StateLayer.theme.tokens, {
+          color: {
+            hovered: fallbackVar(
+              tokens.stateLayer$active.color.hovered,
+              tokens.stateLayer.color.hovered,
+            ),
+            pressed: fallbackVar(
+              tokens.stateLayer$active.color.pressed,
+              tokens.stateLayer.color.pressed,
+            ),
+          },
+          opacity: {
+            hovered: fallbackVar(
+              tokens.stateLayer$active.opacity.hovered,
+              tokens.stateLayer.opacity.hovered,
+            ),
+            pressed: fallbackVar(
+              tokens.stateLayer$active.opacity.pressed,
+              tokens.stateLayer.opacity.pressed,
+            ),
+          },
+        }),
+      },
+    },
+  }),
 });
 
 export type ITabThemeFactory = IComponentThemeFactory<{
@@ -187,6 +273,14 @@ export const tabThemeVariants = {
         container: {
           height: {
             withIconAndLabelText: px(64),
+          },
+        },
+        label$active: {
+          color: {
+            normal: themeTokens.colorScheme.primary,
+            focused: themeTokens.colorScheme.primary,
+            hovered: themeTokens.colorScheme.primary,
+            pressed: themeTokens.colorScheme.primary,
           },
         },
       }),
