@@ -28,6 +28,8 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
+    const hasIconAndLabel = !!icon && !!label;
+
     const { getStyles } = useComponentTheme<ITabThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
@@ -38,8 +40,7 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
       theme: tabTheme,
       themeVariants: tabThemeVariants,
       modifiers: {
-        // FIXME:
-        // disabled,
+        'with-icon-and-label': hasIconAndLabel,
       },
     });
 

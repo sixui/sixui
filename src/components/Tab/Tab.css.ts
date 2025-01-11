@@ -14,7 +14,7 @@ import { StateLayer } from '../StateLayer';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
-type IModifier = 'disabled';
+type IModifier = 'disabled' | 'with-icon-and-label';
 
 const DENSITY = px(getDensity({ min: -4, max: 0 }));
 
@@ -127,11 +127,31 @@ const classNames = createStyles({
         opacity: {
           disabled: tokens.container.opacity.disabled,
         },
+        leadingSpace: {
+          normal: px(space(4)),
+          withStartSlot: px(space(4)),
+          withEndSlot: px(space(4)),
+        },
+        trailingSpace: {
+          normal: px(space(4)),
+          withStartSlot: px(space(4)),
+          withEndSlot: px(space(4)),
+        },
       },
       icon: {
         labelSpace: px(0),
       },
     }),
+
+    selectors: {
+      [getModifierSelector<IModifier>('with-icon-and-label')]: {
+        vars: createTokensVars(Button.theme.tokens, {
+          container: {
+            height: tokens.container.height.withIconAndLabelText,
+          },
+        }),
+      },
+    },
   },
   stateLayer: {
     vars: createTokensVars(StateLayer.theme.tokens, {
@@ -161,6 +181,18 @@ export const tabTheme = componentThemeFactory<ITabThemeFactory>({
 });
 
 export const tabThemeVariants = {
-  primary: {},
-  secondary: {},
+  primary: createStyles({
+    root: {
+      vars: createTokensVars(tokens, {
+        container: {
+          height: {
+            withIconAndLabelText: px(64),
+          },
+        },
+      }),
+    },
+  }),
+  secondary: createStyles({
+    //
+  }),
 };
