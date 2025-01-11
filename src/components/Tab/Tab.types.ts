@@ -1,13 +1,16 @@
-import type { IMaybeAsync } from '~/helpers/types';
+import type { IMaybeAsync, IOmit } from '~/helpers/types';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBadgeProps } from '../Badge';
 import type { IBoxProps } from '../Box';
+import type { IButtonOwnProps } from '../Button';
 import type { ITabThemeFactory, tabTheme } from './Tab.css';
 
 export type ITabVariant = 'primary' | 'secondary';
 
-export interface ITabOwnProps {
+export interface ITabOwnProps
+  extends IOmit<IButtonOwnProps, 'leadingIcon' | 'trailingIcon'> {
+  label?: React.ReactNode;
   /**
    * Whether or not the tab is selected.
    **/
@@ -15,11 +18,7 @@ export interface ITabOwnProps {
 
   icon?: React.ReactNode;
   activeIcon?: React.ReactNode;
-  onClick?: (event: React.MouseEvent<HTMLElement>) => IMaybeAsync<unknown>;
-  label?: string;
-  href?: string;
   anchor?: string;
-  disabled?: boolean;
   badgeProps?: IBadgeProps;
 }
 

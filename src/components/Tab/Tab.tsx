@@ -18,14 +18,12 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
       styles,
       style,
       variant = 'primary',
+      label,
+      children,
       active,
       icon,
       activeIcon,
-      onClick,
-      label,
-      href,
       anchor,
-      disabled,
       badgeProps,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
@@ -40,7 +38,8 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
       theme: tabTheme,
       themeVariants: tabThemeVariants,
       modifiers: {
-        disabled,
+        // FIXME:
+        // disabled,
       },
     });
 
@@ -52,9 +51,10 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
         })}
         ref={forwardedRef}
         variant={false}
+        leadingIcon={icon}
         {...other}
       >
-        XX
+        {label ?? children}
       </Button>
     );
   },

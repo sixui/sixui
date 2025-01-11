@@ -389,6 +389,7 @@ const classNames = createStyles({
     transitionDuration: themeTokens.motion.duration.medium.$4,
     transitionTimingFunction: themeTokens.motion.easing.emphasized.decelerate,
   },
+  // FIXME: collapse animation due to Overlayable component - use animatedSlots
   slot$icon$collapsed: {
     marginInlineStart: 0,
     marginInlineEnd: 0,

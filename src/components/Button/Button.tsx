@@ -35,6 +35,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       hasTrailing: hasTrailingProp,
       start,
       end,
+      animatedSlots,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -127,7 +128,9 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
             )}
           </Overlayable>
         ) : (
-          <div {...getStyles(['slot', 'slot$icon', 'slot$icon$collapsed'])} />
+          animatedSlots && (
+            <div {...getStyles(['slot', 'slot$icon', 'slot$icon$collapsed'])} />
+          )
         ),
       [
         start,
@@ -138,6 +141,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
         trailingIcon,
         handleAnimationIteration,
         children,
+        animatedSlots,
       ],
     );
 
@@ -170,7 +174,9 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
             )}
           </Overlayable>
         ) : (
-          <div {...getStyles(['slot', 'slot$icon', 'slot$icon$collapsed'])} />
+          animatedSlots && (
+            <div {...getStyles(['slot', 'slot$icon', 'slot$icon$collapsed'])} />
+          )
         ),
       [
         end,
@@ -181,6 +187,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
         trailingIcon,
         handleAnimationIteration,
         children,
+        animatedSlots,
       ],
     );
 

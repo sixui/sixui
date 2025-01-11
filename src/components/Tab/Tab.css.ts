@@ -109,6 +109,9 @@ const [tokensClassName, tokens] = createTheme({
 
 const classNames = createStyles({
   root: {
+    flexDirection: 'column',
+    gap: px(space(1)),
+
     vars: createTokensVars(Button.theme.tokens, {
       container: {
         shape: tokens.container.shape,
@@ -124,6 +127,9 @@ const classNames = createStyles({
         opacity: {
           disabled: tokens.container.opacity.disabled,
         },
+      },
+      icon: {
+        labelSpace: px(0),
       },
     }),
   },
