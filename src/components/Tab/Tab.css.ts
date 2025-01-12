@@ -1,6 +1,8 @@
 import { createTheme, fallbackVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
+
+
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import type { ITabVariant } from './Tab.types';
 import { getDensity } from '~/helpers/styles/getDensity';
@@ -16,7 +18,8 @@ import { StateLayer } from '../StateLayer';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
-type IModifier = 'disabled' | 'with-icon-and-label' | 'active';
+
+type IModifier = 'disabled' | 'with-icon' | 'with-label' | 'active';
 
 const DENSITY = px(getDensity({ min: -4, max: 0 }));
 
@@ -26,7 +29,7 @@ const [tokensClassName, tokens] = createTheme({
     shape: themeTokens.shape.corner.none,
     height: {
       normal: px(48),
-      withIconAndLabelText: 'unset',
+      withIconAndLabelText: px(48),
     },
     elevation: {
       normal: elevationLevelPreset[0],
@@ -109,16 +112,13 @@ const [tokensClassName, tokens] = createTheme({
   },
   activeIndicator: {
     shape: 'unset',
-    height: 'unset',
+    height: px(themeTokens.outline.width.sm),
     color: themeTokens.colorScheme.primary,
   },
 });
 
 const classNames = createStyles({
   root: {
-    flexDirection: 'column',
-    gap: px(space(1)),
-
     vars: createTokensVars(Button.theme.tokens, {
       container: {
         shape: tokens.container.shape,
@@ -144,9 +144,6 @@ const classNames = createStyles({
           withStartSlot: px(space(4)),
           withEndSlot: px(space(4)),
         },
-      },
-      icon: {
-        labelSpace: px(0),
       },
       label: {
         color: {
@@ -191,21 +188,24 @@ const classNames = createStyles({
               ),
               focused: fallbackVar(
                 tokens.label$active.color.focused,
+                tokens.label$active.color.normal,
                 tokens.label.color.focused,
               ),
               hovered: fallbackVar(
                 tokens.label$active.color.hovered,
+                tokens.label$active.color.normal,
                 tokens.label.color.hovered,
               ),
               pressed: fallbackVar(
                 tokens.label$active.color.pressed,
+                tokens.label$active.color.normal,
                 tokens.label.color.pressed,
               ),
             },
           },
         }),
       },
-      [getModifierSelector<IModifier>('with-icon-and-label')]: {
+      [getModifierSelector<IModifier>(['with-icon', 'with-label'])]: {
         vars: createTokensVars(Button.theme.tokens, {
           container: {
             height: calc.add(
@@ -272,11 +272,7 @@ const classNames = createStyles({
       },
     },
   }),
-  focusRing: {
-    vars: createTokensVars(FocusRing.theme.tokens, {
-      shape: themeTokens.shape.corner.sm,
-    }),
-  },
+  focusRing: {},
 });
 
 export type ITabThemeFactory = IComponentThemeFactory<{
@@ -295,32 +291,68 @@ export const tabTheme = componentThemeFactory<ITabThemeFactory>({
 export const tabThemeVariants = {
   primary: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
-        container: {
-          height: {
-            withIconAndLabelText: px(64),
+      flexDirection: 'column',
+      gap: px(space(1)),
+
+      vars: {
+        ...createTokensVars(tokens, {
+          container: {
+            height: {
+              withIconAndLabelText: px(64),
+            },
           },
-        },
-        label$active: {
-          color: {
-            normal: themeTokens.colorScheme.primary,
-            focused: themeTokens.colorScheme.primary,
-            hovered: themeTokens.colorScheme.primary,
-            pressed: themeTokens.colorScheme.primary,
+          label$active: {
+            color: {
+              normal: themeTokens.colorScheme.primary,
+            },
           },
-        },
-        activeIndicator: {
-          shape: `${px(3)} ${px(3)} 0 0`,
-          height: themeTokens.outline.width.md,
-        },
-      }),
+          activeIndicator: {
+            shape: `${px(3)} ${px(3)} 0 0`,
+            height: themeTokens.outline.width.md,
+          },
+        }),
+        ...createTokensVars(Button.theme.tokens, {
+          icon: {
+            labelSpace: px(0),
+          },
+        }),
+      },
     },
     activeIndicator: {
       marginLeft: px(space(4)),
       marginRight: px(space(4)),
     },
+    focusRing: {
+      vars: createTokensVars(FocusRing.theme.tokens, {
+        shape: themeTokens.shape.corner.sm,
+        offset: {
+          inward: `0 0 ${px(calc.add(themeTokens.outline.width.md, '1px'))} 0`,
+        },
+      }),
+    },
   }),
   secondary: createStyles({
-    //
+    root: {
+      vars: createTokensVars(tokens, {
+        icon$active: {
+          color: {
+            normal: themeTokens.colorScheme.onSurface,
+          },
+        },
+        label$active: {
+          color: {
+            normal: themeTokens.colorScheme.onSurface,
+          },
+        },
+      }),
+    },
+    focusRing: {
+      vars: createTokensVars(FocusRing.theme.tokens, {
+        shape: themeTokens.shape.corner.sm,
+        offset: {
+          inward: `0 0 ${px(calc.add(themeTokens.outline.width.sm, '1px'))} 0`,
+        },
+      }),
+    },
   }),
 };

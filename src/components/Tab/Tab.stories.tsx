@@ -66,8 +66,20 @@ export const Variants: IStory = {
   render: (props) => (
     <TabShowcase
       cols={[
-        { legend: 'Primary', props: { variant: 'primary' } },
-        { legend: 'Secondary', props: { variant: 'secondary' } },
+        {
+          legend: 'Primary',
+          props: {
+            variant: 'primary',
+            label: 'Primary',
+          },
+        },
+        {
+          legend: 'Secondary',
+          props: {
+            variant: 'secondary',
+            label: 'Secondary',
+          },
+        },
       ]}
       props={props}
     />

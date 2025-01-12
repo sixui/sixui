@@ -6,7 +6,8 @@ import { polymorphicComponentFactory } from '~/utils/component/polymorphicCompon
 import { useProps } from '~/utils/component/useProps';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../Box';
+import { Anchored } from '../Anchored';
+import { Badge } from '../Badge';
 import { Button } from '../Button';
 import { useTabsContext } from '../Tabs';
 import { tabTheme, tabThemeVariants } from './Tab.css';
@@ -24,7 +25,7 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
       label,
       children,
       active: activeProp,
-      icon,
+      icon: iconProp,
       activeIcon,
       anchor,
       badgeProps,
@@ -35,14 +36,16 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
     const activeIndicatorRef = useRef<HTMLDivElement>(null);
     const tabsContext = useTabsContext();
 
-    const hasIconAndLabel = !!icon && !!label;
     const disabled = disabledProp ?? tabsContext?.disabled;
     const active =
       !disabled &&
       (tabsContext
         ? tabsContext.anchor !== undefined && tabsContext.anchor === anchor
         : activeProp);
+    const icon = active && activeIcon ? activeIcon : iconProp;
     const hasIcon = active ? !!activeIcon || !!icon : !!icon;
+    const hasLabel = !!label;
+    const hasBadge = !!badgeProps;
     const id =
       tabsContext && anchor ? `${tabsContext.id}-${anchor}` : undefined;
 
@@ -56,11 +59,29 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
       theme: tabTheme,
       themeVariants: tabThemeVariants,
       modifiers: {
-        'with-icon-and-label': hasIconAndLabel,
+        'with-icon': hasIcon,
+        'with-label': hasLabel,
         active,
         disabled,
       },
     });
+
+    const renderIcon = useCallback(
+      (): React.ReactNode =>
+        hasIcon &&
+        (hasBadge && (variant === 'primary' || !hasLabel) ? (
+          <Anchored
+            content={
+              badgeProps && !disabled ? <Badge {...badgeProps} /> : undefined
+            }
+          >
+            {icon}
+          </Anchored>
+        ) : (
+          icon
+        )),
+      [hasIcon, hasBadge, variant, hasLabel, badgeProps, disabled, icon],
+    );
 
     const renderActiveIndicator = useCallback(
       () => <div {...getStyles('activeIndicator')} ref={activeIndicatorRef} />,
@@ -76,12 +97,19 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
         })}
         ref={forwardedRef}
         variant={false}
-        leadingIcon={icon}
+        leadingIcon={renderIcon()}
         disabled={disabled}
         indicator={renderActiveIndicator()}
+        focusRingProps={{ variant: 'inward' }}
+        role="tab"
+        aria-controls={id}
+        aria-selected={active}
         {...other}
       >
         {label ?? children}
+        {hasBadge && !disabled && (!hasIcon || variant === 'secondary') && (
+          <Badge {...badgeProps} ml="$2" />
+        )}
       </Button>
     );
   },
