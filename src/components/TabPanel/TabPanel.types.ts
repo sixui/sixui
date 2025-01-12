@@ -5,7 +5,7 @@ import type { ITabPanelThemeFactory, tabPanelTheme } from './TabPanel.css';
 
 export interface ITabPanelOwnProps {
   children?: React.ReactNode;
-  disabled?: boolean;
+  anchor: string;
 }
 
 export interface ITabPanelProps
