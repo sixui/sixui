@@ -34,6 +34,19 @@ const [tokensClassName, tokens] = createTheme({
       disabled: themeTokens.state.containerOpacity.disabled,
     },
   },
+  icon: {
+    color: {
+      normal: themeTokens.colorScheme.primary,
+      completed: themeTokens.colorScheme.primary,
+      error: themeTokens.colorScheme.error,
+      inactive: themeTokens.colorScheme.onSurface,
+      disabled: themeTokens.colorScheme.onSurface,
+    },
+    opacity: {
+      inactive: themeTokens.state.opacity.disabled,
+      disabled: themeTokens.state.containerOpacity.disabled,
+    },
+  },
   label: {
     typography: themeTokens.typeScale.label.md,
     color: {
@@ -71,8 +84,8 @@ const classNames = createStyles({
 
     selectors: {
       [getModifierSelector<IModifier>('icon-only')]: {
-        color: tokens.container.color.normal,
-        fill: tokens.container.color.normal,
+        color: tokens.icon.color.normal,
+        fill: tokens.icon.color.normal,
 
         vars: createTokensVars(PaperBase.theme.tokens, {
           container: {
@@ -82,8 +95,8 @@ const classNames = createStyles({
       },
 
       [getModifierSelector<IModifier>('completed')]: {
-        color: tokens.container.color.completed,
-        fill: tokens.container.color.completed,
+        color: tokens.icon.color.completed,
+        fill: tokens.icon.color.completed,
       },
       [getModifierSelector<IModifier>(['completed', '!icon-only'])]: {
         vars: createTokensVars(PaperBase.theme.tokens, {
@@ -93,8 +106,8 @@ const classNames = createStyles({
         }),
       },
       [getModifierSelector<IModifier>('has-error')]: {
-        color: tokens.container.color.error,
-        fill: tokens.container.color.error,
+        color: tokens.icon.color.error,
+        fill: tokens.icon.color.error,
       },
       [getModifierSelector<IModifier>(['has-error', '!icon-only'])]: {
         vars: createTokensVars(PaperBase.theme.tokens, {
@@ -104,11 +117,11 @@ const classNames = createStyles({
         }),
       },
       [getModifierSelector<IModifier>('inactive')]: {
-        color: tokens.container.color.inactive,
-        fill: tokens.container.color.inactive,
+        color: tokens.icon.color.inactive,
+        fill: tokens.icon.color.inactive,
       },
       [getModifierSelector<IModifier>(['inactive', 'icon-only'])]: {
-        opacity: tokens.container.opacity.inactive,
+        opacity: tokens.icon.opacity.inactive,
       },
       [getModifierSelector<IModifier>(['inactive', '!icon-only'])]: {
         vars: createTokensVars(PaperBase.theme.tokens, {
@@ -119,11 +132,11 @@ const classNames = createStyles({
         }),
       },
       [getModifierSelector<IModifier>('disabled')]: {
-        color: tokens.container.color.disabled,
-        fill: tokens.container.color.disabled,
+        color: tokens.icon.color.disabled,
+        fill: tokens.icon.color.disabled,
       },
       [getModifierSelector<IModifier>(['disabled', 'icon-only'])]: {
-        opacity: tokens.container.opacity.disabled,
+        opacity: tokens.icon.opacity.disabled,
       },
       [getModifierSelector<IModifier>(['disabled', '!icon-only'])]: {
         vars: createTokensVars(PaperBase.theme.tokens, {

@@ -8,6 +8,7 @@ import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
 import { Button } from '../Button';
 import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
+import { StepIndicator } from '../StepIndicator';
 import { useStepperContext } from '../Stepper';
 import { SvgIcon } from '../SvgIcon';
 import { StepContextProvider } from './Step.context';
@@ -140,3 +141,4 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
 
 Step.theme = stepTheme;
 Step.displayName = `@sixui/${COMPONENT_NAME}`;
+Step.Indicator = StepIndicator;
