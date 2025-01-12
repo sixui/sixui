@@ -8,6 +8,7 @@ import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
 import { Button } from '../Button';
+import { useTabsContext } from '../Tabs';
 import { tabTheme, tabThemeVariants } from './Tab.css';
 
 const COMPONENT_NAME = 'Tab';
@@ -22,17 +23,28 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
       variant = 'primary',
       label,
       children,
-      active,
+      active: activeProp,
       icon,
       activeIcon,
       anchor,
       badgeProps,
+      disabled: disabledProp,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
     const activeIndicatorRef = useRef<HTMLDivElement>(null);
+    const tabsContext = useTabsContext();
 
     const hasIconAndLabel = !!icon && !!label;
+    const disabled = disabledProp ?? tabsContext?.disabled;
+    const active =
+      !disabled &&
+      (tabsContext
+        ? tabsContext.anchor !== undefined && tabsContext.anchor === anchor
+        : activeProp);
+    const hasIcon = active ? !!activeIcon || !!icon : !!icon;
+    const id =
+      tabsContext && anchor ? `${tabsContext.id}-${anchor}` : undefined;
 
     const { getStyles } = useComponentTheme<ITabThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -46,6 +58,7 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
       modifiers: {
         'with-icon-and-label': hasIconAndLabel,
         active,
+        disabled,
       },
     });
 
@@ -64,6 +77,7 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
         ref={forwardedRef}
         variant={false}
         leadingIcon={icon}
+        disabled={disabled}
         indicator={renderActiveIndicator()}
         {...other}
       >

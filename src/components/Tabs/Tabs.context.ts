@@ -1,7 +1,6 @@
-import { createContext } from 'react';
-
 import type { IAny, IMaybeAsync } from '~/helpers/types';
 import type { ITabVariant } from '../Tab/Tab.types';
+import { createOptionalContext } from '~/helpers/createOptionalContext';
 
 export type ITabsContextValue = {
   id?: string;
@@ -12,6 +11,5 @@ export type ITabsContextValue = {
   disabled?: boolean;
 };
 
-export const TabsContext = createContext<ITabsContextValue | undefined>(
-  undefined,
-);
+export const [TabsContextProvider, useTabsContext] =
+  createOptionalContext<ITabsContextValue>();
