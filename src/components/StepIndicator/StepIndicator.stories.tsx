@@ -43,11 +43,21 @@ const states: Array<IComponentPresentation<IStepIndicatorProps>> = [
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
+const groups: Array<IComponentPresentation<IStepIndicatorProps>> = [
+  { legend: 'Active', props: { inactive: false } },
+  { legend: 'Inactive', props: { inactive: true } },
+];
+
 const StepIndicatorShowcase = componentShowcaseFactory(StepIndicator);
 
 export const Basic: IStory = {
   render: (props) => (
-    <StepIndicatorShowcase props={props} cols={states} rows={variants} />
+    <StepIndicatorShowcase
+      props={props}
+      cols={states}
+      rows={variants}
+      groups={groups}
+    />
   ),
   args: defaultArgs,
 };

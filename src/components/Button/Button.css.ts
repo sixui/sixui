@@ -142,7 +142,7 @@ const classNames = createStyles({
 
     paddingInlineStart: tokens.container.leadingSpace.normal,
     paddingInlineEnd: tokens.container.trailingSpace.normal,
-    height: calc.add(tokens.container.height, DENSITY),
+    minHeight: calc.add(tokens.container.height, DENSITY),
     // Add extra space between label and the edge for if the label text wraps.
     // The padding added should be relative to the height of the container and
     // the height of its content on a single line (label or icon, whichever is

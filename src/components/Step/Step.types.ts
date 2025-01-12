@@ -8,14 +8,14 @@ import type { IStepThemeFactory, stepTheme } from './Step.css';
 import { StepIndicator } from '../StepIndicator';
 
 export interface IStepRenderProps {
-  active: boolean;
+  inactive: boolean;
   completed: boolean;
   hasError: boolean;
 }
 
 export interface IStepOwnProps
   extends IOmit<IButtonOwnProps, 'leadingIcon' | 'trailingIcon' | 'children'> {
-  active?: boolean;
+  inactive?: boolean;
   completed?: boolean;
   index?: number;
   last?: boolean;

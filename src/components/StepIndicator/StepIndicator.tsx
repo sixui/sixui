@@ -20,6 +20,7 @@ export const StepIndicator = componentFactory<IStepIndicatorFactory>(
       styles,
       style,
       variant,
+      children,
       label,
       icon,
       loading,
@@ -63,6 +64,7 @@ export const StepIndicator = componentFactory<IStepIndicatorFactory>(
               ? (completedIcon ?? <Checkmark {...getStyles('label')} checked />)
               : label && <div {...getStyles('label')}>{label}</div>))
         )}
+        {children}
       </Paper>
     );
   },

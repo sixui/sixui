@@ -23,7 +23,7 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
     styles,
     style,
     variant,
-    active: activeProp,
+    inactive: inactiveProp,
     completed: completedProp,
     nonInteractive,
     disabled,
@@ -51,10 +51,13 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
       (completedProp ??
         (stepperContext?.activeStep !== undefined &&
           index < stepperContext.activeStep)));
-  const active =
-    !disabled && (activeProp ?? index === stepperContext?.activeStep);
+  const inactive =
+    disabled ||
+    inactiveProp ||
+    (stepperContext?.activeStep !== undefined &&
+      index !== stepperContext.activeStep);
   const expanded =
-    orientation === 'vertical' && !!children && (active || alwaysExpanded);
+    orientation === 'vertical' && !!children && (!inactive || alwaysExpanded);
 
   const state = disabled
     ? 'disabled'
@@ -62,7 +65,7 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
       ? 'error'
       : completed
         ? 'completed'
-        : !active
+        : inactive
           ? 'inactive'
           : undefined;
 
@@ -99,29 +102,17 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
             {...getStyles('button')}
             // onClick={onClick}
             // disabled={disabled}
+            variant={false}
           >
             <div {...getStyles('buttonInner')} horizontal gap={2}>
-              {loading || icon || hasError ? (
-                <div {...getStyles('bulletPoint')}>
-                  <div {...getStyles('icon', state && `icon$${state}`)}>
-                    {loading ? (
-                      <IndeterminateCircularProgressIndicator />
-                    ) : (
-                      (icon ??
-                      (hasError && <SvgIcon icon={iconExclamationTriangle} />))
-                    )}
-                  </div>
-                </div>
-              ) : (
-                <div {...getStyles('bulletPoint', 'bulletPoint$container')}>
-                  <div
-                    {...getStyles('background', state && `background$${state}`)}
-                  />
-                  <div {...getStyles('text', state && `text$${state}`)}>
-                    {completed ? <SvgIcon icon={iconCheckmark} /> : index + 1}
-                  </div>
-                </div>
-              )}
+              <StepIndicator
+                label="1"
+                loading={loading}
+                hasError={hasError}
+                completed={completed}
+                inactive={inactive}
+                disabled={disabled}
+              />
 
               {hasText && (
                 <div {...getStyles('labelContainer')}>

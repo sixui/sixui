@@ -7,6 +7,8 @@ import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
+import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { Button } from '../Button';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 
 type IModifier = 'disabled' | 'label-position' | 'state' | 'non-interactive';
@@ -23,36 +25,6 @@ const [tokensClassName, tokens] = createTheme({
     // For a proper rendering, should be at least (StepConnector.thickness / 2).
     bottomSpace: px(space(2)),
     shape: themeTokens.shape.corner.md,
-  },
-  bulletPoint: {
-    size: px(24),
-    shape: themeTokens.shape.corner.circle,
-    color: {
-      normal: themeTokens.colorScheme.primary,
-      completed: themeTokens.colorScheme.primary,
-      error: themeTokens.colorScheme.error,
-      inactive: themeTokens.colorScheme.onSurface,
-      disabled: themeTokens.colorScheme.onSurface,
-    },
-    opacity: {
-      inactive: '0.16',
-      disabled: themeTokens.state.opacity.disabled,
-    },
-    space: px(space(2)),
-  },
-  bulletPointLabel: {
-    typography: themeTokens.typeScale.label.md,
-    color: {
-      normal: themeTokens.colorScheme.onPrimary,
-      completed: themeTokens.colorScheme.onPrimary,
-      error: themeTokens.colorScheme.onError,
-      inactive: themeTokens.colorScheme.onSurface,
-      disabled: themeTokens.colorScheme.onSurface,
-    },
-    opacity: {
-      inactive: '1',
-      disabled: themeTokens.state.opacity.disabled,
-    },
   },
   label: {
     typography: themeTokens.typeScale.label.lg,
@@ -96,6 +68,24 @@ const [tokensClassName, tokens] = createTheme({
 
 const classNames = createStyles({
   root: {},
+  button: {
+    minWidth: 'unset',
+    minHeight: 'unset',
+    paddingTop: tokens.container.topSpace,
+    paddingBottom: tokens.container.bottomSpace,
+
+    vars: createTokensVars(Button.theme.tokens, {
+      container: {
+        shape: tokens.container.shape,
+        leadingSpace: {
+          normal: tokens.container.leadingSpace,
+        },
+        trailingSpace: {
+          normal: tokens.container.trailingSpace,
+        },
+      },
+    }),
+  },
 });
 
 export type IStepThemeFactory = IComponentThemeFactory<{

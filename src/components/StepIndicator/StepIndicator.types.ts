@@ -8,6 +8,7 @@ import type {
 import { IPaperOwnProps } from '../Paper';
 
 export interface IStepIndicatorOwnProps extends IPaperOwnProps {
+  children?: React.ReactNode;
   label?: React.ReactNode;
   icon?: React.ReactNode;
   loading?: boolean;

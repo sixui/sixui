@@ -20,7 +20,7 @@ const defaultArgs = {
 
 const rows: Array<IComponentPresentation<IStepProps>> = [
   {
-    legend: 'Basic',
+    legend: 'Normal',
   },
   {
     legend: 'With Icon',
@@ -41,30 +41,24 @@ const rows: Array<IComponentPresentation<IStepProps>> = [
       supportingText: 'Lorem ipsum',
     },
   },
+  {
+    legend: 'Loading',
+    props: {
+      loading: true,
+    },
+  },
 ];
 
 const cols: Array<IComponentPresentation<IStepProps>> = [
-  {
-    legend: 'Normal',
-  },
-  {
-    legend: 'Completed',
-    props: {
-      completed: true,
-    },
-  },
-  {
-    legend: 'Error',
-    props: {
-      hasError: true,
-    },
-  },
-  {
-    legend: 'Disabled',
-    props: {
-      disabled: true,
-    },
-  },
+  { legend: 'Normal' },
+  { legend: 'Completed', props: { completed: true } },
+  { legend: 'Error', props: { hasError: true } },
+  { legend: 'Disabled', props: { disabled: true } },
+];
+
+const groups: Array<IComponentPresentation<IStepProps>> = [
+  { legend: 'Active', props: { inactive: false } },
+  { legend: 'Inactive', props: { inactive: true } },
 ];
 
 const StepShowcase = componentShowcaseFactory(Step);
@@ -93,7 +87,9 @@ export const Variants: IStory = {
 };
 
 export const RightLabel: IStory = {
-  render: (props) => <StepShowcase props={props} rows={rows} cols={cols} />,
+  render: (props) => (
+    <StepShowcase props={props} rows={rows} cols={cols} groups={groups} />
+  ),
   args: {
     ...defaultArgs,
     labelPosition: 'right',
@@ -101,7 +97,9 @@ export const RightLabel: IStory = {
 };
 
 export const BottomLabel: IStory = {
-  render: (props) => <StepShowcase props={props} rows={rows} cols={cols} />,
+  render: (props) => (
+    <StepShowcase props={props} rows={rows} cols={cols} groups={groups} />
+  ),
   args: {
     ...defaultArgs,
     labelPosition: 'bottom',
