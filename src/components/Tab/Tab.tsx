@@ -22,7 +22,7 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
       className,
       styles,
       style,
-      variant: variantProp = 'primary',
+      variant: variantProp,
       label,
       children,
       active: activeProp,
@@ -31,6 +31,7 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
       anchor,
       badgeProps,
       disabled: disabledProp,
+      onClick,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -39,7 +40,7 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
     const activeIndicatorRef = useRef<HTMLDivElement>(null);
     const tabsContext = useTabsContext();
 
-    const variant = variantProp ?? tabsContext?.variant;
+    const variant = variantProp ?? tabsContext?.variant ?? 'primary';
     const disabled = disabledProp ?? tabsContext?.disabled;
     const active =
       !disabled &&
@@ -95,10 +96,25 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
     useEffect(() => {
       const activeTab = activeTabRef.current;
       const activeIndicator = activeIndicatorRef.current;
-      if (tabsContext && active && activeTab && activeIndicator) {
-        tabsContext.onTabActivated(activeTab, activeIndicator);
+      if (!activeTab || !activeIndicator) {
+        return;
+      }
+
+      if (active) {
+        tabsContext?.onTabActivated(activeTab, activeIndicator);
       }
     }, [active, anchor, tabsContext, forwardedRef]);
+
+    const handleClick: React.MouseEventHandler<Element> = useCallback(
+      (event) => {
+        tabsContext?.onChange?.(anchor);
+
+        Promise.resolve(onClick?.(event)).catch((error: Error) => {
+          throw error;
+        });
+      },
+      [onClick, tabsContext, anchor],
+    );
 
     return (
       <Button
@@ -116,6 +132,7 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
         role="tab"
         aria-controls={id}
         aria-selected={active}
+        onClick={handleClick}
         {...other}
       >
         {label ?? children}

@@ -1,9 +1,19 @@
+import { useCallback, useMemo, useRef } from 'react';
+
+import type { ITabsContextValue } from './Tabs.context';
 import type { ITabsThemeFactory } from './Tabs.css';
 import type { ITabsFactory } from './Tabs.types';
+import { shouldReduceMotion } from '~/helpers/shouldReduceAnimations';
+import { useControlledValue } from '~/hooks/useControlledValue';
+import { useId } from '~/hooks/useId';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
+import { Tab } from '../Tab';
+import { TabList } from '../TabList';
+import { TabPanel } from '../TabPanel';
+import { TabsContextProvider } from './Tabs.context';
 import { basicTemplateTheme } from './Tabs.css';
 
 const COMPONENT_NAME = 'Tabs';
@@ -15,13 +25,17 @@ export const Tabs = componentFactory<ITabsFactory>((props, forwardedRef) => {
     styles,
     style,
     variant,
-    children,
+    id: idProp,
     onChange,
-    variant,
     disabled,
+    anchor: anchorProp,
     defaultAnchor,
     ...other
   } = useProps({ componentName: COMPONENT_NAME, props });
+
+  const id = useId(idProp);
+  const previousTabRef = useRef<HTMLElement>(null);
+  const indicatorAnimationRef = useRef<Animation>(null);
 
   const { getStyles } = useComponentTheme<ITabsThemeFactory>({
     componentName: COMPONENT_NAME,
@@ -33,12 +47,92 @@ export const Tabs = componentFactory<ITabsFactory>((props, forwardedRef) => {
     theme: basicTemplateTheme,
   });
 
+  const [anchor, setAnchor] = useControlledValue({
+    controlled: anchorProp,
+    default: defaultAnchor,
+    name: COMPONENT_NAME,
+  });
+
+  const getIndicatorKeyframes = useCallback(
+    (previousTab: HTMLElement, activeTab: HTMLElement): Array<Keyframe> => {
+      const reduceMotion = shouldReduceMotion();
+      if (reduceMotion) {
+        return [
+          { opacity: 0 },
+          // Note: including `transform: none` avoids quirky Safari behavior that can hide the
+          // animation.
+          { transform: 'none' },
+        ];
+      }
+
+      const fromRect = previousTab.getBoundingClientRect();
+      const fromPos = fromRect.left;
+      const fromExtent = fromRect.width;
+
+      const toRect = activeTab.getBoundingClientRect();
+      const toPos = toRect.left;
+      const toExtent = toRect.width;
+
+      const translateX = (fromPos - toPos).toFixed(4);
+      const scaleX = (fromExtent / toExtent).toFixed(4);
+
+      return [
+        { transform: `translateX(${translateX}px) scaleX(${scaleX})` },
+        // Note: including `transform: none` avoids quirky Safari behavior that can hide the
+        // animation.
+        { transform: 'none' },
+      ];
+    },
+    [],
+  );
+
+  const contextValue: ITabsContextValue = useMemo(
+    () => ({
+      id,
+      anchor,
+      variant,
+      onTabActivated: (activeTab, indicator) => {
+        if (!previousTabRef.current) {
+          previousTabRef.current = activeTab;
+
+          return;
+        }
+
+        indicator?.getAnimations().forEach((animation) => animation.cancel());
+
+        if (activeTab) {
+          const previousTab = previousTabRef.current;
+          if (previousTab && indicator) {
+            indicatorAnimationRef.current = indicator.animate(
+              getIndicatorKeyframes(previousTab, activeTab),
+              {
+                duration: 150,
+                easing: 'cubic-bezier(0.2, 0, 0, 1)',
+              },
+            );
+          }
+
+          previousTabRef.current = activeTab;
+        }
+      },
+      onChange(anchor) {
+        setAnchor(anchor);
+        onChange?.(anchor);
+      },
+      disabled,
+    }),
+    [id, variant, anchor, getIndicatorKeyframes, setAnchor, onChange, disabled],
+  );
+
   return (
-    <Box {...getStyles('root')} ref={forwardedRef} {...other}>
-      {children}
-    </Box>
+    <TabsContextProvider value={contextValue}>
+      <Box {...getStyles('root')} ref={forwardedRef} {...other} />
+    </TabsContextProvider>
   );
 });
 
 Tabs.theme = basicTemplateTheme;
 Tabs.displayName = `@sixui/${COMPONENT_NAME}`;
+Tabs.Tab = Tab;
+Tabs.TabList = TabList;
+Tabs.TabPanel = TabPanel;

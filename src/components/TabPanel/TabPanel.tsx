@@ -23,12 +23,7 @@ export const TabPanel = componentFactory<ITabPanelFactory>(
     } = useProps({ componentName: COMPONENT_NAME, props });
 
     const tabsContext = useTabsContext();
-    const visible = tabsContext?.disabled || tabsContext?.anchor !== anchor;
-
-    if (!visible) {
-      return null;
-    }
-
+    const visible = !tabsContext?.disabled && tabsContext?.anchor === anchor;
     const id =
       tabsContext && anchor ? `${tabsContext.id}-${anchor}` : undefined;
 
@@ -43,15 +38,17 @@ export const TabPanel = componentFactory<ITabPanelFactory>(
     });
 
     return (
-      <Box
-        {...getStyles('root')}
-        ref={forwardedRef}
-        role="tabpanel"
-        aria-labelledby={id}
-        {...other}
-      >
-        {children}
-      </Box>
+      visible && (
+        <Box
+          {...getStyles('root')}
+          ref={forwardedRef}
+          role="tabpanel"
+          aria-labelledby={id}
+          {...other}
+        >
+          {children}
+        </Box>
+      )
     );
   },
 );
