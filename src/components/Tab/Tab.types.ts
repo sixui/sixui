@@ -1,4 +1,4 @@
-import type { IMaybeAsync, IOmit } from '~/helpers/types';
+import type { IOmit } from '~/helpers/types';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBadgeProps } from '../Badge';

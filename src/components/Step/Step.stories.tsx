@@ -1,7 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { faGear } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IStepProps } from './Step.types';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Step } from './Step';
 
@@ -12,26 +15,97 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  children: 'Step',
+  onClick: (...args) => sbHandleEvent('click', args, 1000),
 } satisfies Partial<IStepProps>;
 
-const variants: Array<IComponentPresentation<IStepProps>> = [
-  { legend: 'None', props: { variant: false } },
-  { legend: 'Primary', props: { variant: 'primary' } },
+const rows: Array<IComponentPresentation<IStepProps>> = [
+  {
+    legend: 'Basic',
+  },
+  {
+    legend: 'With Icon',
+    props: {
+      icon: <FontAwesomeIcon icon={faGear} />,
+    },
+  },
+  {
+    legend: 'With Label',
+    props: {
+      label: 'Lorem ipsum',
+    },
+  },
+  {
+    legend: 'With Supporting Text',
+    props: {
+      label: 'Lorem ipsum',
+      supportingText: 'Lorem ipsum',
+    },
+  },
 ];
 
-const states: Array<IComponentPresentation<IStepProps>> = [
-  { legend: 'Normal' },
-  { legend: 'Disabled', props: { disabled: true } },
+const cols: Array<IComponentPresentation<IStepProps>> = [
+  {
+    legend: 'Normal',
+  },
+  {
+    legend: 'Completed',
+    props: {
+      completed: true,
+    },
+  },
+  {
+    legend: 'Error',
+    props: {
+      hasError: true,
+    },
+  },
+  {
+    legend: 'Disabled',
+    props: {
+      disabled: true,
+    },
+  },
 ];
 
 const StepShowcase = componentShowcaseFactory(Step);
 
-export const Basic: IStory = {
+export const Variants: IStory = {
   render: (props) => (
-    <StepShowcase props={props} cols={states} rows={variants} />
+    <StepShowcase
+      props={props}
+      cols={[
+        {
+          legend: 'Right label',
+          props: {
+            labelPosition: 'right',
+          },
+        },
+        {
+          legend: 'Bottom label',
+          props: {
+            labelPosition: 'bottom',
+          },
+        },
+      ]}
+    />
   ),
   args: defaultArgs,
+};
+
+export const RightLabel: IStory = {
+  render: (props) => <StepShowcase props={props} rows={rows} cols={cols} />,
+  args: {
+    ...defaultArgs,
+    labelPosition: 'right',
+  },
+};
+
+export const BottomLabel: IStory = {
+  render: (props) => <StepShowcase props={props} rows={rows} cols={cols} />,
+  args: {
+    ...defaultArgs,
+    labelPosition: 'bottom',
+  },
 };
 
 export default meta;

@@ -17,15 +17,12 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
     variant,
     active,
     completed,
-    disabled,
     index,
     last,
     icon,
     label,
     supportingText,
     hasError,
-    loading,
-    onClick,
     orientation,
     nextConnector,
     alwaysExpanded,
@@ -43,7 +40,7 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
     variant,
     theme: stepTheme,
     modifiers: {
-      disabled,
+      // FIXME: disabled,
     },
   });
 

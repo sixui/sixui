@@ -1,6 +1,8 @@
+import type { IOmit } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
+import type { IButtonOwnProps } from '../Button';
 import type { IStepperContextValue } from '../Stepper';
 import type { IStepThemeFactory, stepTheme } from './Step.css';
 
@@ -10,18 +12,16 @@ export interface IStepRenderProps {
   hasError: boolean;
 }
 
-export interface IStepOwnProps {
+export interface IStepOwnProps
+  extends IOmit<IButtonOwnProps, 'leadingIcon' | 'trailingIcon' | 'children'> {
   active?: boolean;
   completed?: boolean;
-  disabled?: boolean;
   index?: number;
   last?: boolean;
   icon?: React.ReactNode;
   label?: React.ReactNode;
   supportingText?: React.ReactNode;
   hasError?: boolean;
-  loading?: boolean;
-  onClick?: () => void;
   orientation?: IStepperContextValue['orientation'];
   nextConnector?: IStepperContextValue['connector'];
   alwaysExpanded?: boolean;
