@@ -16,7 +16,10 @@ export const Tabs = componentFactory<ITabsFactory>((props, forwardedRef) => {
     style,
     variant,
     children,
+    onChange,
+    variant,
     disabled,
+    defaultAnchor,
     ...other
   } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -28,9 +31,6 @@ export const Tabs = componentFactory<ITabsFactory>((props, forwardedRef) => {
     style,
     variant,
     theme: basicTemplateTheme,
-    modifiers: {
-      disabled,
-    },
   });
 
   return (

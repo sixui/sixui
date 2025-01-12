@@ -1,11 +1,14 @@
+import type { IOmit } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
+import type { ITabsContextValue } from './Tabs.context';
 import type { basicTemplateTheme, ITabsThemeFactory } from './Tabs.css';
 
-export interface ITabsOwnProps {
+export interface ITabsOwnProps
+  extends IOmit<ITabsContextValue, 'onTabActivated' | 'anchor'> {
   children?: React.ReactNode;
-  disabled?: boolean;
+  defaultAnchor?: string;
 }
 
 export interface ITabsProps
