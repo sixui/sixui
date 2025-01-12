@@ -1,4 +1,5 @@
 import { createTheme, fallbackVar } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import type { ITabVariant } from './Tab.types';
@@ -10,6 +11,7 @@ import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { Button } from '../Button';
+import { FocusRing } from '../FocusRing';
 import { StateLayer } from '../StateLayer';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
@@ -31,11 +33,11 @@ const [tokensClassName, tokens] = createTheme({
       disabled: elevationLevelPreset[0],
     },
     color: {
-      normal: themeTokens.colorScheme.surface,
-      disabled: themeTokens.colorScheme.surface,
+      normal: 'unset',
+      disabled: 'unset',
     },
     opacity: {
-      disabled: themeTokens.state.opacity.disabled,
+      disabled: 'unset',
     },
   },
   container$active: {
@@ -120,7 +122,7 @@ const classNames = createStyles({
     vars: createTokensVars(Button.theme.tokens, {
       container: {
         shape: tokens.container.shape,
-        height: tokens.container.height.normal,
+        height: calc.add(tokens.container.height.normal, DENSITY),
         elevation: {
           normal: tokens.container.elevation.normal,
           disabled: tokens.container.elevation.disabled,
@@ -206,7 +208,10 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>('with-icon-and-label')]: {
         vars: createTokensVars(Button.theme.tokens, {
           container: {
-            height: tokens.container.height.withIconAndLabelText,
+            height: calc.add(
+              tokens.container.height.withIconAndLabelText,
+              DENSITY,
+            ),
           },
         }),
       },
@@ -251,6 +256,27 @@ const classNames = createStyles({
       },
     },
   }),
+  activeIndicator: ({ root }) => ({
+    position: 'absolute',
+    transformOrigin: 'left bottom',
+    backgroundColor: tokens.activeIndicator.color,
+    borderRadius: tokens.activeIndicator.shape,
+    height: tokens.activeIndicator.height,
+    inset: 'auto 0 0 0',
+    // Hidden unless the tab is selected.
+    opacity: 0,
+
+    selectors: {
+      [getModifierSelector<IModifier>('active', root)]: {
+        opacity: 1,
+      },
+    },
+  }),
+  focusRing: {
+    vars: createTokensVars(FocusRing.theme.tokens, {
+      shape: themeTokens.shape.corner.sm,
+    }),
+  },
 });
 
 export type ITabThemeFactory = IComponentThemeFactory<{
@@ -283,7 +309,15 @@ export const tabThemeVariants = {
             pressed: themeTokens.colorScheme.primary,
           },
         },
+        activeIndicator: {
+          shape: `${px(3)} ${px(3)} 0 0`,
+          height: themeTokens.outline.width.md,
+        },
       }),
+    },
+    activeIndicator: {
+      marginLeft: px(space(4)),
+      marginRight: px(space(4)),
     },
   }),
   secondary: createStyles({

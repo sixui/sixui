@@ -25,6 +25,8 @@ export interface IButtonOwnProps extends IButtonBaseOwnProps {
   hasTrailing?: boolean;
   start?: React.ReactNode;
   end?: React.ReactNode;
+  indicator?: React.ReactNode;
+  // FIXME: animated slots
   animatedSlots?: boolean;
 }
 

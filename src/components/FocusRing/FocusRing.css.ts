@@ -13,6 +13,7 @@ type IModifier = 'visible' | 'variant';
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   color: themeTokens.colorScheme.secondary,
+  shape: 'inherit',
   animationDuration: themeTokens.motion.duration.long.$4,
   offset: {
     inward: px(0),
@@ -50,7 +51,7 @@ const classNames = createStyles({
     animationDuration: `calc(${tokens.animationDuration} * 0.25), calc(${tokens.animationDuration} * 0.75)`,
     animationTimingFunction: themeTokens.motion.easing.standard.normal,
     color: tokens.color,
-    borderRadius: 'inherit',
+    borderRadius: tokens.shape,
     display: 'none',
     pointerEvents: 'none',
 

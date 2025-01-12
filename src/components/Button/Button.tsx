@@ -36,6 +36,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       start,
       end,
       animatedSlots,
+      indicator,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -230,6 +231,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
         {renderStartSlot()}
         {children && renderLabelSlot()}
         {renderEndSlot()}
+        {indicator}
       </ButtonBase>
     );
   },

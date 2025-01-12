@@ -1,3 +1,5 @@
+import { useCallback, useRef } from 'react';
+
 import type { ITabThemeFactory } from './Tab.css';
 import type { ITabFactory } from './Tab.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
@@ -28,6 +30,8 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
+    const activeIndicatorRef = useRef<HTMLDivElement>(null);
+
     const hasIconAndLabel = !!icon && !!label;
 
     const { getStyles } = useComponentTheme<ITabThemeFactory>({
@@ -45,15 +49,22 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
       },
     });
 
+    const renderActiveIndicator = useCallback(
+      () => <div {...getStyles('activeIndicator')} ref={activeIndicatorRef} />,
+      [getStyles],
+    );
+
     return (
       <Button
         {...getStyles('root')}
         classNames={mergeClassNames(classNames, {
           stateLayer: getStyles('stateLayer').className,
+          focusRing: getStyles('focusRing').className,
         })}
         ref={forwardedRef}
         variant={false}
         leadingIcon={icon}
+        indicator={renderActiveIndicator()}
         {...other}
       >
         {label ?? children}
