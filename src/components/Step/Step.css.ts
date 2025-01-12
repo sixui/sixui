@@ -3,6 +3,7 @@ import { createTheme } from '@vanilla-extract/css';
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getDensity } from '~/helpers/styles/getDensity';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
+import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
@@ -79,12 +80,28 @@ const classNames = createStyles({
         shape: tokens.container.shape,
         leadingSpace: {
           normal: tokens.container.leadingSpace,
+          withStartSlot: tokens.container.leadingSpace,
+          withEndSlot: tokens.container.leadingSpace,
         },
         trailingSpace: {
           normal: tokens.container.trailingSpace,
+          withStartSlot: tokens.container.leadingSpace,
+          withEndSlot: tokens.container.leadingSpace,
         },
       },
     }),
+  },
+  buttonInner: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: px(space(2)),
+    textAlign: 'left',
+  },
+  supportingText: {
+    ...getTypographyStyles(tokens.supportingText.typography),
+    color: tokens.supportingText.color.normal,
   },
 });
 

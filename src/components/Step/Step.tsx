@@ -104,7 +104,7 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
             // disabled={disabled}
             variant={false}
           >
-            <div {...getStyles('buttonInner')} horizontal gap={2}>
+            <div {...getStyles('buttonInner')}>
               <StepIndicator
                 label="1"
                 loading={loading}
