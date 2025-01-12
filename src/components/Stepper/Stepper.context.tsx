@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import { createOptionalContext } from '~/helpers/createOptionalContext';
 
 export type IStepperContextValue = {
   orientation: 'horizontal' | 'vertical';
@@ -9,6 +9,4 @@ export type IStepperContextValue = {
   connector?: React.ReactNode;
 };
 
-export const StepperContext = createContext<IStepperContextValue | undefined>(
-  undefined,
-);
+export const StepperContext = createOptionalContext<IStepperContextValue>();

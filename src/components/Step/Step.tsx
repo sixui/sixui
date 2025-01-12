@@ -15,8 +15,22 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
     styles,
     style,
     variant,
-    children,
+    active,
+    completed,
     disabled,
+    index,
+    last,
+    icon,
+    label,
+    supportingText,
+    hasError,
+    loading,
+    onClick,
+    orientation,
+    nextConnector,
+    alwaysExpanded,
+    labelPosition,
+    children,
     ...other
   } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -35,7 +49,7 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
 
   return (
     <Box {...getStyles('root')} ref={forwardedRef} {...other}>
-      {children}
+      X
     </Box>
   );
 });

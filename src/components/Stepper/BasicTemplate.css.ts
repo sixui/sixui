@@ -12,23 +12,44 @@ type IModifier = 'disabled';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
-  //
+  container: {
+    color: {
+      normal: 'unset',
+      disabled: 'unset',
+    },
+  },
+  label: {
+    color: {
+      normal: 'unset',
+      disabled: 'unset',
+    },
+  },
 });
 
 const classNames = createStyles({
   root: {
-    //
+    backgroundColor: tokens.container.color.normal,
+    color: tokens.label.color.normal,
+    padding: px(space(2)),
+
+    selectors: {
+      [getModifierSelector<IModifier>('disabled')]: {
+        backgroundColor: tokens.container.color.disabled,
+        color: tokens.label.color.disabled,
+      },
+    },
   },
 });
 
-export type IStepThemeFactory = IComponentThemeFactory<{
+export type IBasicTemplateThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   modifier: IModifier;
 }>;
 
-export const stepTheme = componentThemeFactory<IStepThemeFactory>({
-  classNames,
-  tokensClassName,
-  tokens,
-});
+export const basicTemplateTheme =
+  componentThemeFactory<IBasicTemplateThemeFactory>({
+    classNames,
+    tokensClassName,
+    tokens,
+  });
