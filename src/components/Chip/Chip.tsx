@@ -104,11 +104,12 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
           return;
         }
         setHandlingDelete(true);
-        Promise.resolve(onTrailingClick?.(event))
-          .finally(() => setHandlingDelete(false))
+        Promise.resolve()
+          .then(() => onTrailingClick?.(event))
           .catch((error: Error) => {
             throw error;
-          });
+          })
+          .finally(() => setHandlingDelete(false));
       },
       [onTrailingClick, handlingDelete],
     );

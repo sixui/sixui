@@ -23,7 +23,7 @@ export const TabPanel = componentFactory<ITabPanelFactory>(
     } = useProps({ componentName: COMPONENT_NAME, props });
 
     const tabsContext = useTabsContext();
-    const visible = !tabsContext?.disabled && tabsContext?.anchor === anchor;
+    const active = tabsContext?.anchor === anchor;
     const id =
       tabsContext && anchor ? `${tabsContext.id}-${anchor}` : undefined;
 
@@ -38,7 +38,7 @@ export const TabPanel = componentFactory<ITabPanelFactory>(
     });
 
     return (
-      visible && (
+      active && (
         <Box
           {...getStyles('root')}
           ref={forwardedRef}

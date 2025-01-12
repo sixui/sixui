@@ -110,7 +110,13 @@ const [tokensClassName, tokens] = createTheme({
   activeIndicator: {
     shape: 'unset',
     height: px(themeTokens.outline.width.sm),
-    color: themeTokens.colorScheme.primary,
+    color: {
+      normal: themeTokens.colorScheme.primary,
+      disabled: themeTokens.colorScheme.onSurface,
+    },
+    opacity: {
+      disabled: themeTokens.state.opacity.disabled,
+    },
   },
 });
 
@@ -259,7 +265,7 @@ const classNames = createStyles({
   activeIndicator: ({ root }) => ({
     position: 'absolute',
     transformOrigin: 'left bottom',
-    backgroundColor: tokens.activeIndicator.color,
+    backgroundColor: tokens.activeIndicator.color.normal,
     borderRadius: tokens.activeIndicator.shape,
     height: tokens.activeIndicator.height,
     inset: 'auto 0 0 0',
@@ -269,6 +275,12 @@ const classNames = createStyles({
     selectors: {
       [getModifierSelector<IModifier>('active', root)]: {
         opacity: 1,
+      },
+      [getModifierSelector<IModifier>(['active', 'disabled'], root)]: {
+        opacity: tokens.activeIndicator.opacity.disabled,
+      },
+      [getModifierSelector<IModifier>('disabled', root)]: {
+        backgroundColor: tokens.activeIndicator.color.disabled,
       },
     },
   }),

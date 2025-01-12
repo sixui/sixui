@@ -57,10 +57,10 @@ const ControlledRadioCardDemo: React.FC<IRadioCardProps> = (props) => {
   const name = useId();
 
   const handleChange: IRadioCardProps['onChange'] = onChange
-    ? (event, value) =>
-        Promise.resolve(onChange?.(event, value)).then(() =>
-          setValue(value ?? ''),
-        )
+    ? (value) =>
+        Promise.resolve()
+          .then(() => onChange?.(value))
+          .then(() => setValue(value ?? ''))
     : undefined;
 
   return (

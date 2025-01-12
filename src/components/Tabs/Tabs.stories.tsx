@@ -39,24 +39,28 @@ const TabsDemo: React.FC<ITabsProps> = (props) => (
           anchor="tab-1"
           icon={<FontAwesomeIcon icon={faEnvelope} />}
           activeIcon={<FontAwesomeIcon icon={faEnvelopeSolid} />}
+          onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
         />
         <Tabs.Tab
           label="Item two"
           anchor="tab-2"
           icon={<FontAwesomeIcon icon={faUser} />}
           activeIcon={<FontAwesomeIcon icon={faUserSolid} />}
+          onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
         />
         <Tabs.Tab
           label="Item three"
           anchor="tab-3"
           icon={<FontAwesomeIcon icon={faBookmark} />}
           activeIcon={<FontAwesomeIcon icon={faBookmarkSolid} />}
+          onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
         />
         <Tabs.Tab
           label="Item four"
           anchor="tab-4"
           icon={<FontAwesomeIcon icon={faCalendar} />}
           activeIcon={<FontAwesomeIcon icon={faCalendarSolid} />}
+          onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
           disabled
         />
       </Tabs.TabList>

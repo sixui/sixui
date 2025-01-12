@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import type { ITabThemeFactory } from './Tab.css';
 import type { ITabFactory } from './Tab.types';
@@ -24,6 +24,7 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
       style,
       variant: variantProp,
       label,
+      loading: loadingProp,
       children,
       active: activeProp,
       icon: iconProp,
@@ -39,20 +40,20 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
     const activeTabHandleRef = useMergeRefs(forwardedRef, activeTabRef);
     const activeIndicatorRef = useRef<HTMLDivElement>(null);
     const tabsContext = useTabsContext();
+    const [handlingClick, setHandlingClick] = useState(false);
 
     const variant = variantProp ?? tabsContext?.variant ?? 'primary';
     const disabled = disabledProp ?? tabsContext?.disabled;
-    const active =
-      !disabled &&
-      (tabsContext
-        ? tabsContext.anchor !== undefined && tabsContext.anchor === anchor
-        : activeProp);
+    const active = tabsContext
+      ? tabsContext.anchor !== undefined && tabsContext.anchor === anchor
+      : activeProp;
     const icon = active && activeIcon ? activeIcon : iconProp;
     const hasIcon = active ? !!activeIcon || !!icon : !!icon;
     const hasLabel = !!label;
     const hasBadge = !!badgeProps;
     const id =
       tabsContext && anchor ? `${tabsContext.id}-${anchor}` : undefined;
+    const loading = loadingProp || handlingClick;
 
     const { getStyles } = useComponentTheme<ITabThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -107,13 +108,18 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
 
     const handleClick: React.MouseEventHandler<Element> = useCallback(
       (event) => {
-        tabsContext?.onChange?.(anchor);
+        if (handlingClick) {
+          return;
+        }
 
-        Promise.resolve(onClick?.(event)).catch((error: Error) => {
-          throw error;
-        });
+        setHandlingClick(true);
+
+        void Promise.resolve()
+          .then(() => onClick?.(event))
+          .then(() => tabsContext?.onChange?.(anchor))
+          .finally(() => setHandlingClick(false));
       },
-      [onClick, tabsContext, anchor],
+      [onClick, tabsContext, anchor, handlingClick, setHandlingClick],
     );
 
     return (
@@ -133,6 +139,7 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
         aria-controls={id}
         aria-selected={active}
         onClick={handleClick}
+        loading={loading}
         {...other}
       >
         {label ?? children}

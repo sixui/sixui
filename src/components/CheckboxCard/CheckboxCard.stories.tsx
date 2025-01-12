@@ -69,12 +69,12 @@ const ControlledCheckboxCard: React.FC<IOmit<ICheckboxCardProps, 'checked'>> = (
   const [checked, setChecked] = useState(defaultChecked ?? false);
 
   const handleChange: ICheckboxCardProps['onChange'] = onChange
-    ? (event, value) => {
+    ? (value) => {
         const checked = value !== undefined;
 
-        return Promise.resolve(onChange?.(event, value)).then(() =>
-          setChecked(checked),
-        );
+        return Promise.resolve()
+          .then(() => onChange?.(value))
+          .then(() => setChecked(checked));
       }
     : undefined;
 
