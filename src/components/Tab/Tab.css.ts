@@ -164,6 +164,9 @@ const classNames = createStyles({
         },
         typography: tokens.label.typography,
       },
+      icon: {
+        labelSpace: px(0),
+      },
     }),
 
     selectors: {
@@ -291,29 +294,22 @@ export const tabThemeVariants = {
       flexDirection: 'column',
       gap: px(space(1)),
 
-      vars: {
-        ...createTokensVars(tokens, {
-          container: {
-            height: {
-              withIconAndLabelText: px(64),
-            },
+      vars: createTokensVars(tokens, {
+        container: {
+          height: {
+            withIconAndLabelText: px(64),
           },
-          label$active: {
-            color: {
-              normal: themeTokens.colorScheme.primary,
-            },
+        },
+        label$active: {
+          color: {
+            normal: themeTokens.colorScheme.primary,
           },
-          activeIndicator: {
-            shape: `${px(3)} ${px(3)} 0 0`,
-            height: themeTokens.outline.width.md,
-          },
-        }),
-        ...createTokensVars(Button.theme.tokens, {
-          icon: {
-            labelSpace: px(0),
-          },
-        }),
-      },
+        },
+        activeIndicator: {
+          shape: `${px(3)} ${px(3)} 0 0`,
+          height: themeTokens.outline.width.md,
+        },
+      }),
     },
     activeIndicator: {
       marginLeft: px(space(4)),
@@ -342,6 +338,16 @@ export const tabThemeVariants = {
           },
         },
       }),
+
+      selectors: {
+        [getModifierSelector<IModifier>(['with-icon', 'with-label'])]: {
+          vars: createTokensVars(Button.theme.tokens, {
+            icon: {
+              labelSpace: px(space(2)),
+            },
+          }),
+        },
+      },
     },
     focusRing: {
       vars: createTokensVars(FocusRing.theme.tokens, {
