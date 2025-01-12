@@ -1,35 +1,35 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IComponentPresentation } from '../ComponentShowcase';
-import type { IBasicTemplateProps } from './BasicTemplate.types';
+import type { ITabsProps } from './Tabs.types';
 import { componentShowcaseFactory } from '../ComponentShowcase';
-import { BasicTemplate } from './BasicTemplate';
+import { Tabs } from './Tabs';
 
 const meta = {
-  component: BasicTemplate,
-} satisfies Meta<typeof BasicTemplate>;
+  component: Tabs,
+} satisfies Meta<typeof Tabs>;
 
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  children: 'BasicTemplate',
-} satisfies Partial<IBasicTemplateProps>;
+  children: 'Tabs',
+} satisfies Partial<ITabsProps>;
 
-const variants: Array<IComponentPresentation<IBasicTemplateProps>> = [
+const variants: Array<IComponentPresentation<ITabsProps>> = [
   { legend: 'None', props: { variant: false } },
   { legend: 'Primary', props: { variant: 'primary' } },
 ];
 
-const states: Array<IComponentPresentation<IBasicTemplateProps>> = [
+const states: Array<IComponentPresentation<ITabsProps>> = [
   { legend: 'Normal' },
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const BasicTemplateShowcase = componentShowcaseFactory(BasicTemplate);
+const TabsShowcase = componentShowcaseFactory(Tabs);
 
 export const Basic: IStory = {
   render: (props) => (
-    <BasicTemplateShowcase props={props} cols={states} rows={variants} />
+    <TabsShowcase props={props} cols={states} rows={variants} />
   ),
   args: defaultArgs,
 };

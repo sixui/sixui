@@ -41,15 +41,14 @@ const classNames = createStyles({
   },
 });
 
-export type IBasicTemplateThemeFactory = IComponentThemeFactory<{
+export type ITabsThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   modifier: IModifier;
 }>;
 
-export const basicTemplateTheme =
-  componentThemeFactory<IBasicTemplateThemeFactory>({
-    classNames,
-    tokensClassName,
-    tokens,
-  });
+export const basicTemplateTheme = componentThemeFactory<ITabsThemeFactory>({
+  classNames,
+  tokensClassName,
+  tokens,
+});
