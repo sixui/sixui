@@ -7,7 +7,7 @@ export interface ITabsContextValue {
   anchor?: string;
   onTabActivated: (activeTab: HTMLElement, indicator: HTMLElement) => void;
   onChange: (anchor: string | undefined) => IMaybeAsync<IAny>;
-  variant?: ITabVariant;
+  variant?: ITabVariant | false;
   disabled?: boolean;
 }
 
