@@ -53,7 +53,6 @@ export const Step = forwardRef<HTMLDivElement, IStepProps>(
     const context = useContext(StepperContext);
 
     const hasText = !!label || !!supportingText;
-
     const completed =
       !disabled &&
       (context?.completed ||

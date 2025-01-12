@@ -9,7 +9,7 @@ import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 
-type IModifier = 'disabled';
+type IModifier = 'disabled' | 'label-position' | 'state' | 'non-interactive';
 
 const DENSITY = px(getDensity({ min: -1, max: 0 }));
 

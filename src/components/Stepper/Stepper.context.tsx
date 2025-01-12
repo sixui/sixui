@@ -9,4 +9,5 @@ export type IStepperContextValue = {
   connector?: React.ReactNode;
 };
 
-export const StepperContext = createOptionalContext<IStepperContextValue>();
+export const [StepperContextProvider, useStepperContext] =
+  createOptionalContext<IStepperContextValue>();

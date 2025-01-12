@@ -2,6 +2,7 @@ import { createTheme, keyframes } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
+import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { cssLayers, themeTokens } from '../ThemeProvider';
@@ -34,6 +35,10 @@ const [tokensClassName, tokens] = createTheme({
 });
 
 const classNames = createStyles({
+  root: {
+    width: '1em',
+    height: '1em',
+  },
   svg: {
     fill: tokens.color,
   },
