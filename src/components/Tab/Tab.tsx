@@ -22,7 +22,7 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
       className,
       styles,
       style,
-      variant = 'primary',
+      variant: variantProp = 'primary',
       label,
       children,
       active: activeProp,
@@ -39,6 +39,7 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
     const activeIndicatorRef = useRef<HTMLDivElement>(null);
     const tabsContext = useTabsContext();
 
+    const variant = variantProp ?? tabsContext?.variant;
     const disabled = disabledProp ?? tabsContext?.disabled;
     const active =
       !disabled &&

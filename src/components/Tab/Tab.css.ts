@@ -1,8 +1,6 @@
 import { createTheme, fallbackVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
-
-
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import type { ITabVariant } from './Tab.types';
 import { getDensity } from '~/helpers/styles/getDensity';
@@ -17,7 +15,6 @@ import { FocusRing } from '../FocusRing';
 import { StateLayer } from '../StateLayer';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
-
 
 type IModifier = 'disabled' | 'with-icon' | 'with-label' | 'active';
 
