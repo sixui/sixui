@@ -64,6 +64,16 @@ const classNames = createStyles({
         alignSelf: 'stretch',
         gap: tokens.label.verticalSpace,
       },
+      [getModifierSelector<IModifier>({
+        'content-position': 'top',
+      })]: {
+        paddingTop: tokens.label.verticalSpace,
+      },
+      [getModifierSelector<IModifier>({
+        'content-position': 'bottom',
+      })]: {
+        paddingBottom: tokens.label.verticalSpace,
+      },
     },
   },
   line: ({ root }) => ({
