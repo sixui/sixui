@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import type { IComponentPresentation } from '../ComponentShowcase';
+import type { IFlexProps } from '../Flex';
 import type { IStepConnectorProps } from './StepConnector.types';
 import { componentShowcaseFactory } from '../ComponentShowcase';
+import { Flex } from '../Flex';
+import { Paper } from '../Paper';
 import { StepConnector } from './StepConnector';
-
-// https://m3.material.io/components/divider/
-// https://material-web.dev/components/divider/
-// https://github.com/material-components/material-web/blob/main/divider/demo/stories.ts
 
 const meta = {
   component: StepConnector,
@@ -16,41 +16,94 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {} satisfies Partial<IStepConnectorProps>;
 
-const StepConnectorShowcase = componentShowcaseFactory(StepConnector);
+const configurations: Array<IComponentPresentation<IStepConnectorProps>> = [
+  { legend: 'Normal' },
+  { legend: 'Inset', props: { inset: true } },
+  { legend: 'Inset start', props: { insetStart: true } },
+  { legend: 'Inset end', props: { insetEnd: true } },
+  {
+    legend: 'Text on top',
+    props: { label: 'Text', contentPosition: 'top' },
+  },
+  {
+    legend: 'Text on middle',
+    props: { label: 'Text', contentPosition: 'middle' },
+  },
+  {
+    legend: 'Text on bottom',
+    props: { label: 'Text', contentPosition: 'bottom' },
+  },
+];
 
-export const Horizontal: IStory = {
+const Cell: React.FC<IFlexProps> = (props) => (
+  <Flex
+    align="center"
+    justify="center"
+    miw="$24"
+    mih="$12"
+    p="$2"
+    ta="center"
+    {...props}
+  />
+);
+
+const ListDemo: React.FC<IStepConnectorProps> = (props) => (
+  <Paper outline="$xs" outlineStyle="solid" shape="$xs">
+    <Flex
+      direction={props.orientation === 'horizontal' ? 'column' : 'row'}
+      divider={<StepConnector {...props} />}
+      wrap="wrap"
+    >
+      <Cell>One</Cell>
+      <Cell>Two</Cell>
+      <Cell>Three</Cell>
+      <Cell>Four</Cell>
+    </Flex>
+  </Paper>
+);
+
+const StepConnectorShowcase = componentShowcaseFactory(StepConnector);
+const ListDemoShowcase = componentShowcaseFactory(ListDemo);
+
+export const Variants: IStory = {
   render: (props) => (
-    <StepConnectorShowcase
+    <ListDemoShowcase
       props={props}
-      rows={[
+      cols={[
         {
-          legend: 'Basic',
-        },
-        {
-          legend: 'With top text',
+          legend: 'Horizontal',
           props: {
-            textPosition: 'top',
-            children: 'Lorem ipsum',
+            orientation: 'horizontal',
           },
         },
         {
-          legend: 'With middle text',
+          legend: 'Vertical',
           props: {
-            textPosition: 'middle',
-            children: 'Lorem ipsum',
-          },
-        },
-        {
-          legend: 'With bottom text',
-          props: {
-            textPosition: 'bottom',
-            children: 'Lorem ipsum',
+            orientation: 'vertical',
           },
         },
       ]}
-      fullWidth
     />
   ),
+  args: {
+    ...defaultArgs,
+    label: 'or',
+  },
+};
+
+export const Horizontal: IStory = {
+  render: (props) => (
+    <StepConnectorShowcase props={props} rows={configurations} fullWidth />
+  ),
+  args: {
+    ...defaultArgs,
+    orientation: 'horizontal',
+    w: '$96',
+  },
+};
+
+export const HorizontalList: IStory = {
+  render: (props) => <ListDemoShowcase props={props} cols={configurations} />,
   args: {
     ...defaultArgs,
     orientation: 'horizontal',
@@ -60,24 +113,20 @@ export const Horizontal: IStory = {
 export const Vertical: IStory = {
   render: (props) => (
     <StepConnectorShowcase
-      // FIXME: component={(props) => (
-      //   <div {...stylex.props(styles.connector)}>
-      //     <StepConnector {...props} />
-      //   </div>
-      // )}
       props={props}
-      cols={[
-        {
-          legend: 'Basic',
-        },
-        {
-          legend: 'With text',
-          props: { textPosition: 'middle', children: 'Lorem ipsum' },
-        },
-      ]}
+      cols={configurations}
       horizontalAlign="start"
     />
   ),
+  args: {
+    ...defaultArgs,
+    orientation: 'vertical',
+    h: '$96',
+  },
+};
+
+export const VerticalList: IStory = {
+  render: (props) => <ListDemoShowcase props={props} rows={configurations} />,
   args: {
     ...defaultArgs,
     orientation: 'vertical',

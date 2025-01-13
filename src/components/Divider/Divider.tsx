@@ -50,30 +50,28 @@ export const Divider = componentFactory<IDividerFactory>(
       </div>
     );
 
-    const renderLine = (): React.ReactNode => <div {...getStyles('line')} />;
-
     return (
       <Box {...getStyles('root')} ref={forwardedRef} {...other}>
         {label ? (
           contentPosition === 'top' ? (
             <>
               {renderText()}
-              {renderLine()}
+              <div {...getStyles(['line', 'line$end'])} />
             </>
           ) : contentPosition === 'bottom' ? (
             <>
-              {renderLine()}
+              <div {...getStyles(['line', 'line$start'])} />
               {renderText()}
             </>
           ) : (
             <>
-              {renderLine()}
+              <div {...getStyles(['line', 'line$start'])} />
               {renderText()}
-              {renderLine()}
+              <div {...getStyles(['line', 'line$end'])} />
             </>
           )
         ) : (
-          renderLine()
+          <div {...getStyles(['line', 'line$start', 'line$end'])} />
         )}
       </Box>
     );

@@ -94,6 +94,14 @@ const classNames = createStyles({
         flexDirection: 'row',
         height: tokens.stroke,
       },
+      [getModifierSelector<IModifier>({ orientation: 'vertical' }, root)]: {
+        flexDirection: 'column',
+        width: 'inherit',
+      },
+    },
+  }),
+  line$start: ({ root }) => ({
+    selectors: {
       [getModifierSelector<IModifier>(
         { orientation: 'horizontal', 'inset-start': true },
         root,
@@ -101,20 +109,20 @@ const classNames = createStyles({
         paddingInlineStart: tokens.inset.horizontal.leadingSpace,
       },
       [getModifierSelector<IModifier>(
-        { orientation: 'horizontal', 'inset-end': true },
-        root,
-      )]: {
-        paddingInlineEnd: tokens.inset.horizontal.trailingSpace,
-      },
-      [getModifierSelector<IModifier>({ orientation: 'vertical' }, root)]: {
-        flexDirection: 'column',
-        width: 'inherit',
-      },
-      [getModifierSelector<IModifier>(
         { orientation: 'vertical', 'inset-start': true },
         root,
       )]: {
         paddingBlockStart: tokens.inset.vertical.leadingSpace,
+      },
+    },
+  }),
+  line$end: ({ root }) => ({
+    selectors: {
+      [getModifierSelector<IModifier>(
+        { orientation: 'horizontal', 'inset-end': true },
+        root,
+      )]: {
+        paddingInlineEnd: tokens.inset.horizontal.trailingSpace,
       },
       [getModifierSelector<IModifier>(
         { orientation: 'vertical', 'inset-end': true },

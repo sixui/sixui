@@ -1,18 +1,15 @@
-import type { IOrientation } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
+import type { IDividerOwnProps } from '../Divider';
 import type {
   dividerTheme,
   IStepConnectorThemeFactory,
 } from './StepConnector.css';
 
-export type IStepConnectorOwnProps = {
-  children?: React.ReactNode;
-  orientation?: IOrientation;
+export interface IStepConnectorOwnProps extends IDividerOwnProps {
   stepLabelPosition?: 'right' | 'bottom';
-  textPosition?: 'top' | 'middle' | 'bottom';
-};
+}
 
 export interface IStepConnectorProps
   extends IBoxProps,

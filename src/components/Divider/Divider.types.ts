@@ -4,7 +4,7 @@ import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { dividerTheme, IDividerThemeFactory } from './Divider.css';
 
-export type IDividerOwnProps = {
+export interface IDividerOwnProps {
   orientation?: IOrientation;
 
   /**
@@ -25,7 +25,7 @@ export type IDividerOwnProps = {
   children?: React.ReactNode;
   label?: React.ReactNode;
   contentPosition?: 'top' | 'middle' | 'bottom';
-};
+}
 
 export interface IDividerProps
   extends IBoxProps,
