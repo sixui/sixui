@@ -1,3 +1,3 @@
-export * from './BasicTemplate.types';
-export * from './BasicTemplate';
+export * from './Stepper.types';
+export * from './Stepper';
 export * from './Stepper.context';

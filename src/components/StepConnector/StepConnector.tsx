@@ -10,8 +10,15 @@ const COMPONENT_NAME = 'StepConnector';
 
 export const StepConnector = componentFactory<IStepConnectorFactory>(
   (props, forwardedRef) => {
-    const { classNames, className, styles, style, variant, ...other } =
-      useProps({ componentName: COMPONENT_NAME, props });
+    const {
+      classNames,
+      className,
+      styles,
+      style,
+      variant,
+      stepLabelPosition,
+      ...other
+    } = useProps({ componentName: COMPONENT_NAME, props });
 
     const { getStyles } = useComponentTheme<IStepConnectorThemeFactory>({
       componentName: COMPONENT_NAME,

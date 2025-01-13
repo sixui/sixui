@@ -50,6 +50,5 @@ export type IStepFactory = IComponentFactory<{
   theme: typeof stepTheme;
   staticComponents: {
     Indicator: typeof StepIndicator;
-    Connector: typeof StepConnector;
   };
 }>;

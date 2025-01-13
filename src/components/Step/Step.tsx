@@ -111,4 +111,3 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
 
 Step.theme = stepTheme;
 Step.displayName = `@sixui/${COMPONENT_NAME}`;
-Step.Indicator = StepIndicator;
