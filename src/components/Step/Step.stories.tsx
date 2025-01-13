@@ -18,6 +18,21 @@ const defaultArgs = {
   onClick: (...args) => sbHandleEvent('click', args, 1000),
 } satisfies Partial<IStepProps>;
 
+const variants: Array<IComponentPresentation<IStepProps>> = [
+  {
+    legend: 'Right label',
+    props: {
+      labelPosition: 'right',
+    },
+  },
+  {
+    legend: 'Bottom label',
+    props: {
+      labelPosition: 'bottom',
+    },
+  },
+];
+
 const rows: Array<IComponentPresentation<IStepProps>> = [
   {
     legend: 'Normal',
@@ -59,26 +74,12 @@ const groups: Array<IComponentPresentation<IStepProps>> = [
 const StepShowcase = componentShowcaseFactory(Step);
 
 export const Variants: IStory = {
-  render: (props) => (
-    <StepShowcase
-      props={props}
-      cols={[
-        {
-          legend: 'Right label',
-          props: {
-            labelPosition: 'right',
-          },
-        },
-        {
-          legend: 'Bottom label',
-          props: {
-            labelPosition: 'bottom',
-          },
-        },
-      ]}
-    />
-  ),
-  args: defaultArgs,
+  render: (props) => <StepShowcase props={props} cols={variants} />,
+  args: {
+    ...defaultArgs,
+    label: 'Lorem ipsum',
+    supportingText: 'Lorem ipsum',
+  },
 };
 
 export const RightLabel: IStory = {
@@ -105,6 +106,7 @@ export const Scales: IStory = {
   render: (props) => (
     <StepShowcase
       props={props}
+      rows={variants}
       cols={[
         { legend: 'Extra small', props: { scale: 'xs' } },
         { legend: 'Small', props: { scale: 'sm' } },
@@ -125,6 +127,7 @@ export const Densities: IStory = {
   render: (props) => (
     <StepShowcase
       props={props}
+      rows={variants}
       cols={[
         { legend: '-2', props: { density: -2 } },
         { legend: '-1', props: { density: -1 } },

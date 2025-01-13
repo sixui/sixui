@@ -3,6 +3,7 @@ import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getDensity } from '~/helpers/styles/getDensity';
+import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
@@ -11,6 +12,8 @@ import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { Button } from '../Button';
 import { cssLayers, themeTokens } from '../ThemeProvider';
+
+type IModifier = 'label-position';
 
 const DENSITY = px(getDensity({ min: -2, max: 0 }));
 
@@ -71,8 +74,8 @@ const classNames = createStyles({
     minHeight: 'unset',
     paddingTop: calc.add(tokens.container.topSpace, DENSITY),
     paddingBottom: calc.add(tokens.container.bottomSpace, DENSITY),
-    textAlign: 'start',
     gap: px(space(2)),
+    textAlign: 'start',
 
     vars: createTokensVars(Button.theme.tokens, {
       container: {
@@ -95,6 +98,14 @@ const classNames = createStyles({
         labelSpace: px(0),
       },
     }),
+
+    selectors: {
+      [getModifierSelector<IModifier>({ 'label-position': 'bottom' })]: {
+        flexDirection: 'column',
+        gap: calc.add(px(space(1)), DENSITY),
+        textAlign: 'center',
+      },
+    },
   },
   supportingText: {
     ...getTypographyStyles(tokens.supportingText.typography),
@@ -105,6 +116,7 @@ const classNames = createStyles({
 export type IStepThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
+  modifier: IModifier;
 }>;
 
 export const stepTheme = componentThemeFactory<IStepThemeFactory>({

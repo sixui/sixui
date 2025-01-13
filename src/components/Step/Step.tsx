@@ -60,6 +60,9 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
     style,
     variant,
     theme: stepTheme,
+    modifiers: {
+      'label-position': labelPosition,
+    },
   });
 
   const stepperContextValue: IStepContextValue = {
