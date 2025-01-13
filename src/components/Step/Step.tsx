@@ -22,17 +22,17 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
     active: activeProp,
     completed: completedProp,
     disabled,
-    loading,
+    loading: loadingProp,
     index = 0,
     last,
     icon,
     label,
     supportingText,
     hasError,
-    orientation,
-    nextConnector,
+    orientation: orientationProp,
+    nextConnector: nextConnectorProp,
     alwaysExpanded,
-    labelPosition,
+    labelPosition: labelPositionProp,
     children,
     ...other
   } = useProps({ componentName: COMPONENT_NAME, props });
@@ -46,11 +46,26 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
       (completedProp ??
         (stepperContext?.activeStep !== undefined &&
           index < stepperContext.activeStep)));
+  const previousCompleted =
+    !disabled &&
+    stepperContext?.activeStep !== undefined &&
+    index <= stepperContext.activeStep;
   const active =
     !disabled &&
     (activeProp ?? (stepperContext && index === stepperContext.activeStep));
+  const loading = stepperContext?.loading || loadingProp;
+  const labelPosition = hasText
+    ? (labelPositionProp ?? stepperContext?.labelPosition ?? 'right')
+    : 'right';
+  const nextConnector =
+    nextConnectorProp !== undefined
+      ? nextConnectorProp
+      : stepperContext?.connector;
+  const orientation =
+    orientationProp ?? stepperContext?.orientation ?? 'horizontal';
   const expanded =
     orientation === 'vertical' && !!children && (active || alwaysExpanded);
+  const isFirst = index === 0;
 
   const { getStyles } = useComponentTheme<IStepThemeFactory>({
     componentName: COMPONENT_NAME,

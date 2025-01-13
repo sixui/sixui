@@ -59,7 +59,7 @@ export const Stepper = componentFactory<IStepperFactory>(
       .filter(isValidElement)
       .filter(isStep);
 
-    // TODO: avoid cloneElement
+    // FIXME: avoid cloneElement
     const steps = validChildren.map((child, index) =>
       cloneElement(child, {
         index,
