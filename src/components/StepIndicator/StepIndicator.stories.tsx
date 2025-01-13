@@ -39,13 +39,12 @@ const states: Array<IComponentPresentation<IStepIndicatorProps>> = [
   { legend: 'Normal' },
   { legend: 'Completed', props: { completed: true } },
   { legend: 'Error', props: { hasError: true } },
-  { legend: 'Inactive', props: { inactive: true } },
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
 const groups: Array<IComponentPresentation<IStepIndicatorProps>> = [
-  { legend: 'Active', props: { inactive: false } },
-  { legend: 'Inactive', props: { inactive: true } },
+  { legend: 'Inactive' },
+  { legend: 'Active', props: { active: true } },
 ];
 
 const StepIndicatorShowcase = componentShowcaseFactory(StepIndicator);

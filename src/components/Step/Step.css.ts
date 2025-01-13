@@ -10,6 +10,7 @@ import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { Button } from '../Button';
+import { StepIndicator } from '../StepIndicator';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 
 type IModifier = 'disabled' | 'label-position' | 'state' | 'non-interactive';
@@ -78,6 +79,9 @@ const classNames = createStyles({
     vars: createTokensVars(Button.theme.tokens, {
       container: {
         shape: tokens.container.shape,
+        color: {
+          disabled: 'unset',
+        },
         leadingSpace: {
           normal: tokens.container.leadingSpace,
           withStartSlot: tokens.container.leadingSpace,

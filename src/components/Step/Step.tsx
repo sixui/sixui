@@ -101,11 +101,12 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
           <Button
             {...getStyles('button')}
             // onClick={onClick}
-            // disabled={disabled}
+            disabled={disabled}
             variant={false}
           >
             <div {...getStyles('buttonInner')}>
               <StepIndicator
+                {...getStyles('stepIndicator')}
                 label="1"
                 loading={loading}
                 hasError={hasError}

@@ -16,7 +16,7 @@ export interface IStepIndicatorOwnProps extends IPaperOwnProps {
   hasErrorIcon?: React.ReactNode;
   completed?: boolean;
   completedIcon?: React.ReactNode;
-  inactive?: boolean;
+  active?: boolean;
   disabled?: boolean;
 }
 

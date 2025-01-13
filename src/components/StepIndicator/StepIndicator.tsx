@@ -28,7 +28,7 @@ export const StepIndicator = componentFactory<IStepIndicatorFactory>(
       hasErrorIcon,
       completed,
       completedIcon,
-      inactive,
+      active,
       disabled,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
@@ -46,7 +46,7 @@ export const StepIndicator = componentFactory<IStepIndicatorFactory>(
       modifiers: {
         'has-error': hasError,
         completed,
-        inactive,
+        active,
         disabled,
         'icon-only': isIconOnly,
       },
@@ -54,15 +54,20 @@ export const StepIndicator = componentFactory<IStepIndicatorFactory>(
 
     return (
       <Paper {...getStyles('root')} ref={forwardedRef} {...other}>
-        {loading ? (
-          <IndeterminateCircularProgressIndicator />
+        {loading || icon || hasError ? (
+          <div {...getStyles('icon')}>
+            {loading ? (
+              <IndeterminateCircularProgressIndicator />
+            ) : hasError ? (
+              (hasErrorIcon ?? <SvgIcon icon={iconExclamationTriangle} />)
+            ) : (
+              icon
+            )}
+          </div>
+        ) : completed ? (
+          (completedIcon ?? <Checkmark {...getStyles('label')} checked />)
         ) : (
-          (icon ??
-          (hasError
-            ? (hasErrorIcon ?? <SvgIcon icon={iconExclamationTriangle} />)
-            : completed
-              ? (completedIcon ?? <Checkmark {...getStyles('label')} checked />)
-              : label && <div {...getStyles('label')}>{label}</div>))
+          label && <div {...getStyles('label')}>{label}</div>
         )}
         {children}
       </Paper>

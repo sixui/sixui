@@ -12,6 +12,7 @@ import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { FocusRing } from '../FocusRing';
 import { PaperBase } from '../PaperBase';
 import { StateLayer } from '../StateLayer';
 import { cssLayers, themeTokens } from '../ThemeProvider';
@@ -411,7 +412,11 @@ const classNames = createStyles({
   },
   stateLayer: {},
   touchTarget: {},
-  focusRing: {},
+  focusRing: {
+    vars: createTokensVars(FocusRing.theme.tokens, {
+      shape: tokens.container.shape,
+    }),
+  },
 });
 
 export type IButtonThemeFactory = IComponentThemeFactory<{

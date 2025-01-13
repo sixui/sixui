@@ -19,7 +19,6 @@ export const PaperBase = polymorphicComponentFactory<IPaperBaseFactory>(
       variant,
       children,
       expanded,
-      disabled,
       ...other
     } = useProps({
       componentName: COMPONENT_NAME,
@@ -36,17 +35,11 @@ export const PaperBase = polymorphicComponentFactory<IPaperBaseFactory>(
       theme: paperBaseTheme,
       modifiers: {
         expanded,
-        disabled,
       },
     });
 
     return (
-      <Box
-        {...getStyles('root')}
-        ref={forwardedRef}
-        disabled={disabled}
-        {...other}
-      >
+      <Box {...getStyles('root')} ref={forwardedRef} {...other}>
         <Elevation {...getStyles('elevation')} />
         <div {...getStyles('background')} aria-hidden />
         {children}

@@ -13,7 +13,7 @@ import { cssLayers, themeTokens } from '../ThemeProvider';
 type IModifier =
   | 'has-error'
   | 'completed'
-  | 'inactive'
+  | 'active'
   | 'disabled'
   | 'icon-only';
 
@@ -23,10 +23,10 @@ const [tokensClassName, tokens] = createTheme({
     size: px(24),
     shape: themeTokens.shape.corner.circle,
     color: {
-      normal: themeTokens.colorScheme.primary,
+      inactive: themeTokens.colorScheme.onSurface,
+      active: themeTokens.colorScheme.primary,
       completed: themeTokens.colorScheme.primary,
       error: themeTokens.colorScheme.error,
-      inactive: themeTokens.colorScheme.onSurface,
       disabled: themeTokens.colorScheme.onSurface,
     },
     opacity: {
@@ -36,10 +36,10 @@ const [tokensClassName, tokens] = createTheme({
   },
   icon: {
     color: {
-      normal: themeTokens.colorScheme.primary,
+      inactive: themeTokens.colorScheme.onSurface,
+      active: themeTokens.colorScheme.primary,
       completed: themeTokens.colorScheme.primary,
       error: themeTokens.colorScheme.error,
-      inactive: themeTokens.colorScheme.onSurface,
       disabled: themeTokens.colorScheme.onSurface,
     },
     opacity: {
@@ -50,10 +50,10 @@ const [tokensClassName, tokens] = createTheme({
   label: {
     typography: themeTokens.typeScale.label.md,
     color: {
-      normal: themeTokens.colorScheme.onPrimary,
+      inactive: themeTokens.colorScheme.onSurface,
+      active: themeTokens.colorScheme.onPrimary,
       completed: themeTokens.colorScheme.onPrimary,
       error: themeTokens.colorScheme.onError,
-      inactive: themeTokens.colorScheme.onSurface,
       disabled: themeTokens.colorScheme.onSurface,
     },
     opacity: {
@@ -72,31 +72,37 @@ const classNames = createStyles({
     width: tokens.container.size,
     height: tokens.container.size,
     fontSize: tokens.container.size,
-    color: tokens.label.color.normal,
-    fill: tokens.label.color.normal,
 
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {
-        color: tokens.container.color.normal,
         shape: tokens.container.shape,
       },
     }),
 
     selectors: {
-      [getModifierSelector<IModifier>('icon-only')]: {
-        color: tokens.icon.color.normal,
-        fill: tokens.icon.color.normal,
-
+      [getModifierSelector<IModifier>(['!active', '!completed', '!has-error'])]:
+        {
+          vars: createTokensVars(PaperBase.theme.tokens, {
+            container: {
+              color: tokens.container.color.inactive,
+              opacity: tokens.container.opacity.inactive,
+            },
+          }),
+        },
+      [getModifierSelector<IModifier>('active')]: {
         vars: createTokensVars(PaperBase.theme.tokens, {
           container: {
-            color: 'transparent',
+            color: tokens.container.color.active,
           },
         }),
       },
-
-      [getModifierSelector<IModifier>('completed')]: {
-        color: tokens.icon.color.completed,
-        fill: tokens.icon.color.completed,
+      [getModifierSelector<IModifier>('icon-only')]: {
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: 'transparent',
+            opacity: tokens.icon.opacity.inactive,
+          },
+        }),
       },
       [getModifierSelector<IModifier>(['completed', '!icon-only'])]: {
         vars: createTokensVars(PaperBase.theme.tokens, {
@@ -105,38 +111,12 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>('has-error')]: {
-        color: tokens.icon.color.error,
-        fill: tokens.icon.color.error,
-      },
       [getModifierSelector<IModifier>(['has-error', '!icon-only'])]: {
         vars: createTokensVars(PaperBase.theme.tokens, {
           container: {
             color: tokens.container.color.error,
           },
         }),
-      },
-      [getModifierSelector<IModifier>('inactive')]: {
-        color: tokens.icon.color.inactive,
-        fill: tokens.icon.color.inactive,
-      },
-      [getModifierSelector<IModifier>(['inactive', 'icon-only'])]: {
-        opacity: tokens.icon.opacity.inactive,
-      },
-      [getModifierSelector<IModifier>(['inactive', '!icon-only'])]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
-          container: {
-            color: tokens.container.color.inactive,
-            opacity: tokens.container.opacity.inactive,
-          },
-        }),
-      },
-      [getModifierSelector<IModifier>('disabled')]: {
-        color: tokens.icon.color.disabled,
-        fill: tokens.icon.color.disabled,
-      },
-      [getModifierSelector<IModifier>(['disabled', 'icon-only'])]: {
-        opacity: tokens.icon.opacity.disabled,
       },
       [getModifierSelector<IModifier>(['disabled', '!icon-only'])]: {
         vars: createTokensVars(PaperBase.theme.tokens, {
@@ -148,9 +128,39 @@ const classNames = createStyles({
       },
     },
   },
+  icon: ({ root }) => ({
+    selectors: {
+      [getModifierSelector<IModifier>(
+        ['!active', '!completed', '!has-error'],
+        root,
+      )]: {
+        color: tokens.icon.color.inactive,
+        fill: tokens.icon.color.inactive,
+        opacity: tokens.icon.opacity.inactive,
+      },
+      [getModifierSelector<IModifier>('active', root)]: {
+        color: tokens.icon.color.active,
+        fill: tokens.icon.color.active,
+      },
+      [getModifierSelector<IModifier>('completed', root)]: {
+        color: tokens.icon.color.completed,
+        fill: tokens.icon.color.completed,
+      },
+      [getModifierSelector<IModifier>('has-error', root)]: {
+        color: tokens.icon.color.error,
+        fill: tokens.icon.color.error,
+      },
+      [getModifierSelector<IModifier>('disabled', root)]: {
+        color: tokens.icon.color.disabled,
+        fill: tokens.icon.color.disabled,
+        opacity: tokens.icon.opacity.disabled,
+      },
+    },
+  }),
   label: ({ root }) => ({
     ...getTypographyStyles(tokens.label.typography),
-    color: tokens.label.color.normal,
+    color: tokens.label.color.inactive,
+    opacity: tokens.label.opacity.inactive,
 
     selectors: {
       [getModifierSelector<IModifier>('completed', root)]: {
@@ -159,9 +169,8 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>('has-error', root)]: {
         color: tokens.label.color.error,
       },
-      [getModifierSelector<IModifier>('inactive', root)]: {
-        color: tokens.label.color.inactive,
-        opacity: tokens.label.opacity.inactive,
+      [getModifierSelector<IModifier>('active', root)]: {
+        color: tokens.label.color.active,
       },
       [getModifierSelector<IModifier>('disabled', root)]: {
         color: tokens.label.color.disabled,

@@ -10,8 +10,7 @@ import { Elevation } from '../Elevation';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
-// FIXME: disabled state should be handled by the component itself.
-type IModifier = IInteraction | 'disabled' | 'expanded';
+type IModifier = IInteraction | 'expanded';
 
 export const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
@@ -32,11 +31,6 @@ export const [tokensClassName, tokens] = createTheme({
     color: themeTokens.colorScheme.outline,
     opacity: '1',
     width: px(0),
-  },
-  text: {
-    opacity: {
-      disabled: themeTokens.state.opacity.disabled,
-    },
   },
 });
 
@@ -62,9 +56,6 @@ const classNames = createStyles({
     zIndex: 0,
 
     selectors: {
-      [getModifierSelector<IModifier>('disabled')]: {
-        color: `color-mix(in srgb, currentColor calc(${tokens.text.opacity.disabled} * 100%), transparent)`,
-      },
       [getModifierSelector<IModifier>('expanded')]: {
         width: '100%',
         height: '100%',
