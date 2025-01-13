@@ -101,4 +101,42 @@ export const BottomLabel: IStory = {
   },
 };
 
+export const Scales: IStory = {
+  render: (props) => (
+    <StepShowcase
+      props={props}
+      cols={[
+        { legend: 'Extra small', props: { scale: 'xs' } },
+        { legend: 'Small', props: { scale: 'sm' } },
+        { legend: 'Medium', props: { scale: 'md' } },
+        { legend: 'Large', props: { scale: 'lg' } },
+        { legend: 'Extra large', props: { scale: 'xl' } },
+      ]}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    label: 'Lorem ipsum',
+    supportingText: 'Lorem ipsum',
+  },
+};
+
+export const Densities: IStory = {
+  render: (props) => (
+    <StepShowcase
+      props={props}
+      cols={[
+        { legend: '-2', props: { density: -2 } },
+        { legend: '-1', props: { density: -1 } },
+        { legend: '0', props: { density: 0 } },
+      ]}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    label: 'Lorem ipsum',
+    supportingText: 'Lorem ipsum',
+  },
+};
+
 export default meta;

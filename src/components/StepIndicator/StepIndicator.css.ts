@@ -1,6 +1,8 @@
 import { createTheme } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { getDensity } from '~/helpers/styles/getDensity';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { px } from '~/helpers/styles/px';
@@ -16,6 +18,8 @@ type IModifier =
   | 'active'
   | 'disabled'
   | 'icon-only';
+
+const DENSITY = px(getDensity({ min: -2, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
@@ -69,9 +73,9 @@ const classNames = createStyles({
     alignItems: 'center',
     justifyContent: 'center',
     flexShrink: 0,
-    width: tokens.container.size,
-    height: tokens.container.size,
-    fontSize: tokens.container.size,
+    width: calc.add(tokens.container.size, DENSITY),
+    height: calc.add(tokens.container.size, DENSITY),
+    fontSize: calc.add(tokens.container.size, DENSITY),
 
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {

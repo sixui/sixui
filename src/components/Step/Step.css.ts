@@ -1,8 +1,8 @@
 import { createTheme } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getDensity } from '~/helpers/styles/getDensity';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
@@ -10,12 +10,9 @@ import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { Button } from '../Button';
-import { StepIndicator } from '../StepIndicator';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 
-type IModifier = 'disabled' | 'label-position' | 'state' | 'non-interactive';
-
-const DENSITY = px(getDensity({ min: -1, max: 0 }));
+const DENSITY = px(getDensity({ min: -2, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
@@ -72,8 +69,8 @@ const classNames = createStyles({
   root: {
     minWidth: 'unset',
     minHeight: 'unset',
-    paddingTop: tokens.container.topSpace,
-    paddingBottom: tokens.container.bottomSpace,
+    paddingTop: calc.add(tokens.container.topSpace, DENSITY),
+    paddingBottom: calc.add(tokens.container.bottomSpace, DENSITY),
     textAlign: 'start',
     gap: px(space(2)),
 
@@ -108,7 +105,6 @@ const classNames = createStyles({
 export type IStepThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
-  modifier: IModifier;
 }>;
 
 export const stepTheme = componentThemeFactory<IStepThemeFactory>({

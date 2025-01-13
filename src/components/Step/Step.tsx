@@ -21,7 +21,6 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
     variant,
     active: activeProp,
     completed: completedProp,
-    nonInteractive,
     disabled,
     loading,
     index = 0,
@@ -53,16 +52,6 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
   const expanded =
     orientation === 'vertical' && !!children && (active || alwaysExpanded);
 
-  const state = disabled
-    ? 'disabled'
-    : hasError
-      ? 'error'
-      : completed
-        ? 'completed'
-        : !active
-          ? 'inactive'
-          : undefined;
-
   const { getStyles } = useComponentTheme<IStepThemeFactory>({
     componentName: COMPONENT_NAME,
     classNames,
@@ -71,12 +60,6 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
     style,
     variant,
     theme: stepTheme,
-    modifiers: {
-      disabled,
-      'label-position': labelPosition,
-      state,
-      'non-interactive': nonInteractive,
-    },
   });
 
   const stepperContextValue: IStepContextValue = {
@@ -109,9 +92,13 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
           }
           {...other}
         >
-          {label && <div>{label}</div>}
-          {supportingText && (
-            <div {...getStyles('supportingText')}>{supportingText}</div>
+          {(label || supportingText) && (
+            <>
+              {label && <div>{label}</div>}
+              {supportingText && (
+                <div {...getStyles('supportingText')}>{supportingText}</div>
+              )}
+            </>
           )}
         </Button>
       </div>
