@@ -69,7 +69,7 @@ const [tokensClassName, tokens] = createTheme({
 });
 
 const classNames = createStyles({
-  button: {
+  root: {
     minWidth: 'unset',
     minHeight: 'unset',
     paddingTop: tokens.container.topSpace,

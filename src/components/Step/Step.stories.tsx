@@ -41,18 +41,13 @@ const rows: Array<IComponentPresentation<IStepProps>> = [
       supportingText: 'Lorem ipsum',
     },
   },
-  {
-    legend: 'Loading',
-    props: {
-      loading: true,
-    },
-  },
 ];
 
 const cols: Array<IComponentPresentation<IStepProps>> = [
   { legend: 'Normal' },
   { legend: 'Completed', props: { completed: true } },
   { legend: 'Error', props: { hasError: true } },
+  { legend: 'Loading', props: { loading: true } },
   { legend: 'Disabled', props: { disabled: true } },
 ];
 

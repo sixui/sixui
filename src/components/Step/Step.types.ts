@@ -45,7 +45,7 @@ export interface IStepProps
 
 export type IStepFactory = IComponentFactory<{
   props: IStepProps;
-  ref: HTMLDivElement;
+  ref: HTMLButtonElement;
   theme: typeof stepTheme;
   staticComponents: {
     Indicator: typeof StepIndicator;

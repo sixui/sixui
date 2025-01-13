@@ -230,8 +230,8 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       >
         {renderStartSlot()}
         {children && renderLabelSlot()}
-        {/* {renderEndSlot()} */}
-        {/* {indicator} */}
+        {renderEndSlot()}
+        {indicator}
       </ButtonBase>
     );
   },

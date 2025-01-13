@@ -1,16 +1,12 @@
 import type { IStepContextValue } from './Step.context';
 import type { IStepThemeFactory } from './Step.css';
 import type { IStepFactory } from './Step.types';
-import { iconCheckmark, iconExclamationTriangle } from '~/assets/icons';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../Box';
 import { Button } from '../Button';
-import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
 import { StepIndicator } from '../StepIndicator';
 import { useStepperContext } from '../Stepper';
-import { SvgIcon } from '../SvgIcon';
 import { StepContextProvider } from './Step.context';
 import { stepTheme } from './Step.css';
 
@@ -36,7 +32,6 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
     hasError,
     orientation,
     nextConnector,
-    onClick,
     alwaysExpanded,
     labelPosition,
     children,
@@ -94,38 +89,32 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
 
   return (
     <StepContextProvider value={stepperContextValue}>
-      <Box {...getStyles('root')} ref={forwardedRef} {...other}>
-        <div {...getStyles('buttonContainer')}>
-          {/* {orientation === 'vertical' ? renderInnerConnectors() : null} */}
-          <Button
-            {...getStyles('button')}
-            onClick={onClick}
-            disabled={disabled}
-            variant={false}
-            start={
-              <StepIndicator
-                label="1"
-                loading={loading}
-                hasError={hasError}
-                completed={completed}
-                active={active}
-                disabled={disabled}
-              />
-            }
-          >
-            {hasText && (
-              <div {...getStyles('buttonInner')}>
-                <div {...getStyles('labelContainer')}>
-                  {label && <div {...getStyles('label')}>{label}</div>}
-                  {supportingText && (
-                    <div {...getStyles('supportingText')}>{supportingText}</div>
-                  )}
-                </div>
-              </div>
-            )}
-          </Button>
-        </div>
-      </Box>
+      <div {...getStyles('buttonContainer')}>
+        {/* {orientation === 'vertical' ? renderInnerConnectors() : null} */}
+        <Button
+          {...getStyles('root')}
+          loading={loading}
+          disabled={disabled}
+          variant={false}
+          ref={forwardedRef}
+          start={
+            <StepIndicator
+              label="1"
+              hasError={hasError}
+              completed={completed}
+              active={active}
+              loading={loading}
+              disabled={disabled}
+            />
+          }
+          {...other}
+        >
+          {label && <div>{label}</div>}
+          {supportingText && (
+            <div {...getStyles('supportingText')}>{supportingText}</div>
+          )}
+        </Button>
+      </div>
     </StepContextProvider>
   );
 });
