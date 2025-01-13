@@ -1,34 +1,36 @@
-import { createTheme } from '@vanilla-extract/css';
-
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { cssLayers } from '../ThemeProvider';
 
-type IModifier = 'disabled';
-
-const [tokensClassName, tokens] = createTheme({
-  '@layer': cssLayers.theme,
-  //
-});
+type IModifier = 'orientation' | 'label-position';
 
 const classNames = createStyles({
   root: {
-    //
+    display: 'flex',
+    flexGrow: 1,
+
+    selectors: {
+      [getModifierSelector<IModifier>({ orientation: 'horizontal' })]: {
+        flexDirection: 'row',
+        alignItems: 'center',
+      },
+      [getModifierSelector<IModifier>({ orientation: 'vertical' })]: {
+        flexDirection: 'column',
+      },
+      [getModifierSelector<IModifier>({ 'label-position': 'bottom' })]: {
+        alignItems: 'flex-start',
+      },
+    },
   },
 });
 
 export type IStepperThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
-  tokens: typeof tokens;
   modifier: IModifier;
 }>;
 
 export const stepperTheme = componentThemeFactory<IStepperThemeFactory>({
   classNames,
-  tokensClassName,
-  tokens,
+  tokens: undefined,
 });
