@@ -69,12 +69,13 @@ const [tokensClassName, tokens] = createTheme({
 });
 
 const classNames = createStyles({
-  root: {},
   button: {
     minWidth: 'unset',
     minHeight: 'unset',
     paddingTop: tokens.container.topSpace,
     paddingBottom: tokens.container.bottomSpace,
+    textAlign: 'start',
+    gap: px(space(2)),
 
     vars: createTokensVars(Button.theme.tokens, {
       container: {
@@ -93,15 +94,10 @@ const classNames = createStyles({
           withEndSlot: tokens.container.leadingSpace,
         },
       },
+      icon: {
+        labelSpace: px(0),
+      },
     }),
-  },
-  buttonInner: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: px(space(2)),
-    textAlign: 'left',
   },
   supportingText: {
     ...getTypographyStyles(tokens.supportingText.typography),

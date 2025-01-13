@@ -57,8 +57,8 @@ const cols: Array<IComponentPresentation<IStepProps>> = [
 ];
 
 const groups: Array<IComponentPresentation<IStepProps>> = [
-  { legend: 'Active', props: { inactive: false } },
-  { legend: 'Inactive', props: { inactive: true } },
+  { legend: 'Inactive' },
+  { legend: 'Active', props: { active: true } },
 ];
 
 const StepShowcase = componentShowcaseFactory(Step);

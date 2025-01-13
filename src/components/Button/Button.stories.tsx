@@ -55,6 +55,7 @@ const states: Array<IComponentPresentation<IButtonProps>> = [
       loadingText: '…',
     },
   },
+  { legend: 'Read-only', props: { children: 'Read-only', readOnly: true } },
   { legend: 'Disabled', props: { children: 'Disabled', disabled: true } },
 ];
 

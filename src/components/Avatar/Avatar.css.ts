@@ -32,9 +32,7 @@ const classNames = createStyles({
       [vars.size]: calc.add(tokens.size, DENSITY),
       ...createTokensVars(PaperBase.theme.tokens, {
         container: {
-          color: {
-            normal: themeTokens.colorScheme.primaryContainer,
-          },
+          color: themeTokens.colorScheme.primaryContainer,
           shape: px(themeTokens.shape.corner.circle),
         },
       }),

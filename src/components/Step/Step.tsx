@@ -23,7 +23,7 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
     styles,
     style,
     variant,
-    inactive: inactiveProp,
+    active: activeProp,
     completed: completedProp,
     nonInteractive,
     disabled,
@@ -36,6 +36,7 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
     hasError,
     orientation,
     nextConnector,
+    onClick,
     alwaysExpanded,
     labelPosition,
     children,
@@ -51,13 +52,11 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
       (completedProp ??
         (stepperContext?.activeStep !== undefined &&
           index < stepperContext.activeStep)));
-  const inactive =
-    disabled ||
-    inactiveProp ||
-    (stepperContext?.activeStep !== undefined &&
-      index !== stepperContext.activeStep);
+  const active =
+    !disabled &&
+    (activeProp ?? (stepperContext && index === stepperContext.activeStep));
   const expanded =
-    orientation === 'vertical' && !!children && (!inactive || alwaysExpanded);
+    orientation === 'vertical' && !!children && (active || alwaysExpanded);
 
   const state = disabled
     ? 'disabled'
@@ -65,7 +64,7 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
       ? 'error'
       : completed
         ? 'completed'
-        : inactive
+        : !active
           ? 'inactive'
           : undefined;
 
@@ -100,30 +99,30 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
           {/* {orientation === 'vertical' ? renderInnerConnectors() : null} */}
           <Button
             {...getStyles('button')}
-            // onClick={onClick}
+            onClick={onClick}
             disabled={disabled}
             variant={false}
-          >
-            <div {...getStyles('buttonInner')}>
+            start={
               <StepIndicator
-                {...getStyles('stepIndicator')}
                 label="1"
                 loading={loading}
                 hasError={hasError}
                 completed={completed}
-                inactive={inactive}
+                active={active}
                 disabled={disabled}
               />
-
-              {hasText && (
+            }
+          >
+            {hasText && (
+              <div {...getStyles('buttonInner')}>
                 <div {...getStyles('labelContainer')}>
                   {label && <div {...getStyles('label')}>{label}</div>}
                   {supportingText && (
                     <div {...getStyles('supportingText')}>{supportingText}</div>
                   )}
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </Button>
         </div>
       </Box>

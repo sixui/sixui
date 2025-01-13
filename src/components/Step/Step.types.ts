@@ -15,7 +15,7 @@ export interface IStepRenderProps {
 
 export interface IStepOwnProps
   extends IOmit<IButtonOwnProps, 'leadingIcon' | 'trailingIcon' | 'children'> {
-  inactive?: boolean;
+  active?: boolean;
   completed?: boolean;
   index?: number;
   last?: boolean;
