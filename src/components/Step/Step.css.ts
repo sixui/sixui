@@ -13,9 +13,12 @@ import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { Button } from '../Button';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 
-type IModifier = 'label-position';
+type IModifier = 'orientation' | 'label-position';
 
 const DENSITY = px(getDensity({ min: -2, max: 0 }));
+
+// FIXME:
+const stepIndicatorSize = '24px';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
@@ -27,6 +30,7 @@ const [tokensClassName, tokens] = createTheme({
     // For a proper rendering, should be at least (StepConnector.thickness / 2).
     bottomSpace: px(space(2)),
     shape: themeTokens.shape.corner.md,
+    connectorSpace: px(space(2)),
   },
   label: {
     typography: themeTokens.typeScale.label.lg,
@@ -70,6 +74,17 @@ const [tokensClassName, tokens] = createTheme({
 
 const classNames = createStyles({
   root: {
+    display: 'contents',
+  },
+  wrapper: ({ root }) => ({
+    selectors: {
+      [getModifierSelector<IModifier>({ 'label-position': 'bottom' }, root)]: {
+        flexGrow: 1,
+        justifyContent: 'center',
+      },
+    },
+  }),
+  button: ({ root }) => ({
     minWidth: 'unset',
     minHeight: 'unset',
     paddingTop: calc.add(tokens.container.topSpace, DENSITY),
@@ -100,17 +115,80 @@ const classNames = createStyles({
     }),
 
     selectors: {
-      [getModifierSelector<IModifier>({ 'label-position': 'bottom' })]: {
+      [getModifierSelector<IModifier>({ 'label-position': 'bottom' }, root)]: {
         flexDirection: 'column',
         gap: calc.add(px(space(1)), DENSITY),
         textAlign: 'center',
       },
     },
-  },
+  }),
   supportingText: {
     ...getTypographyStyles(tokens.supportingText.typography),
     color: tokens.supportingText.color.normal,
   },
+  extensibleConnectorContainer: ({ root }) => ({
+    display: 'flex',
+    position: 'relative',
+    flexGrow: 1,
+    flexShrink: 0,
+
+    selectors: {
+      [getModifierSelector<IModifier>({ orientation: 'horizontal' }, root)]: {
+        alignItems: 'center',
+        minWidth: tokens.connector.minLength,
+      },
+      [getModifierSelector<IModifier>({ orientation: 'vertical' }, root)]: {
+        alignItems: 'stretch',
+        minHeight: tokens.connector.minLength,
+      },
+    },
+  }),
+  connectorContainer: ({ root }) => ({
+    display: 'flex',
+    flexGrow: 1,
+    flexBasis: 0,
+    position: 'relative',
+    borderRadius: 'inherit',
+
+    selectors: {
+      [getModifierSelector<IModifier>(
+        {
+          orientation: 'horizontal',
+          'label-position': 'right',
+        },
+        root,
+      )]: {
+        flexDirection: 'row',
+        transform: `translateY(${calc.negate(
+          calc.subtract(
+            calc.divide(
+              calc.add(
+                tokens.container.topSpace,
+                stepIndicatorSize,
+                tokens.container.bottomSpace,
+              ),
+              2,
+            ),
+
+            calc.add(
+              tokens.container.topSpace,
+              calc.divide(stepIndicatorSize, 2),
+            ),
+          ),
+        )})`,
+        position: 'relative',
+        marginLeft: calc.add(
+          calc.negate(tokens.container.trailingSpace),
+          tokens.container.connectorSpace,
+        ),
+        marginRight: calc.add(
+          calc.negate(tokens.container.leadingSpace),
+          tokens.container.connectorSpace,
+        ),
+        borderRadius: tokens.connector.shape,
+      },
+    },
+  }),
 });
 
 export type IStepThemeFactory = IComponentThemeFactory<{

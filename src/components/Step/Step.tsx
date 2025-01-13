@@ -1,9 +1,14 @@
+import { cloneElement, isValidElement } from 'react';
+
 import type { IStepContextValue } from './Step.context';
 import type { IStepThemeFactory } from './Step.css';
 import type { IStepFactory } from './Step.types';
+import { isFunction } from '~/helpers/isFunction';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { Box } from '../Box';
+import { extractBoxProps } from '../Box/extractBoxProps';
 import { Button } from '../Button';
 import { StepIndicator } from '../StepIndicator';
 import { useStepperContext } from '../Stepper';
@@ -36,6 +41,7 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
     children,
     ...other
   } = useProps({ componentName: COMPONENT_NAME, props });
+  const { boxProps, other: forwardedProps } = extractBoxProps(other);
 
   const stepperContext = useStepperContext();
 
@@ -65,7 +71,7 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
     orientationProp ?? stepperContext?.orientation ?? 'horizontal';
   const expanded =
     orientation === 'vertical' && !!children && (active || alwaysExpanded);
-  const isFirst = index === 0;
+  const first = index === 0;
 
   const { getStyles } = useComponentTheme<IStepThemeFactory>({
     componentName: COMPONENT_NAME,
@@ -77,10 +83,11 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
     theme: stepTheme,
     modifiers: {
       'label-position': labelPosition,
+      orientation,
     },
   });
 
-  const stepperContextValue: IStepContextValue = {
+  const stepContextValue: IStepContextValue = {
     completed,
     hasContent: expanded,
     hasText,
@@ -88,37 +95,124 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
     labelPosition,
   };
 
+  const renderConnectorWithoutChildren = (): React.ReactNode =>
+    isValidElement(nextConnector) &&
+    cloneElement<{ children?: React.ReactNode }>(
+      nextConnector as React.ReactElement<{
+        children?: React.ReactNode;
+      }>,
+      { children: undefined },
+    );
+
+  // As the step height may change depending on the content, in a vertical
+  // orientation, we need to add inner top and bottom connectors in order to
+  // connect the bullet point to the previous and next elements.
+  const renderInnerConnectors = (): React.ReactNode => (
+    <>
+      {/* Connect the bullet point to the previous element, if any. */}
+      {!first && (
+        // This connector must be rendered in the context of the previous
+        // step.
+        <StepContextProvider
+          value={{ ...stepContextValue, completed: previousCompleted }}
+        >
+          <div {...getStyles(['connectorContainer', 'connectorContainer$top'])}>
+            {renderConnectorWithoutChildren()}
+          </div>
+        </StepContextProvider>
+      )}
+
+      {/* Connect the bullet point to the next element, if any. */}
+      {!last && (
+        <div
+          {...getStyles(['connectorContainer', 'connectorContainer$bottom'])}
+        >
+          {renderConnectorWithoutChildren()}
+        </div>
+      )}
+    </>
+  );
+
   return (
-    <StepContextProvider value={stepperContextValue}>
-      <div {...getStyles('buttonContainer')}>
-        {/* {orientation === 'vertical' ? renderInnerConnectors() : null} */}
-        <Button
-          {...getStyles('root')}
-          loading={loading}
-          disabled={disabled}
-          variant={false}
-          ref={forwardedRef}
-          start={
-            <StepIndicator
-              label="1"
-              hasError={hasError}
-              completed={completed}
-              active={active}
+    <StepContextProvider value={stepContextValue}>
+      <div {...getStyles('root')}>
+        <Box {...getStyles('wrapper')} {...boxProps}>
+          <div {...getStyles('buttonContainer')}>
+            {orientation === 'vertical' ? renderInnerConnectors() : null}
+
+            <Button
+              {...getStyles('button')}
               loading={loading}
               disabled={disabled}
-            />
-          }
-          {...other}
-        >
-          {(label || supportingText) && (
-            <>
-              {label && <div>{label}</div>}
-              {supportingText && (
-                <div {...getStyles('supportingText')}>{supportingText}</div>
+              variant={false}
+              ref={forwardedRef}
+              start={
+                <StepIndicator
+                  label="1"
+                  hasError={hasError}
+                  completed={completed}
+                  active={active}
+                  loading={loading}
+                  disabled={disabled}
+                />
+              }
+              {...forwardedProps}
+            >
+              {(label || supportingText) && (
+                <>
+                  {label && <div>{label}</div>}
+                  {supportingText && (
+                    <div {...getStyles('supportingText')}>{supportingText}</div>
+                  )}
+                </>
               )}
-            </>
+            </Button>
+          </div>
+
+          {expanded && (
+            <div {...getStyles('content')}>
+              {/* Connect the content block to the next connector. */}
+              {!last && (
+                <div
+                  {...getStyles([
+                    'connectorContainer',
+                    'connectorContainer$content',
+                  ])}
+                >
+                  {renderConnectorWithoutChildren()}
+                </div>
+              )}
+              <div {...getStyles('contentText')}>
+                {isFunction(children)
+                  ? children({
+                      active,
+                      completed,
+                      hasError,
+                    })
+                  : children}
+              </div>
+            </div>
           )}
-        </Button>
+
+          {!last &&
+            orientation === 'horizontal' &&
+            labelPosition === 'bottom' && (
+              <div
+                {...getStyles([
+                  'connectorContainer',
+                  'connectorContainer$horizontal$bottomLabel',
+                ])}
+              >
+                {nextConnector}
+              </div>
+            )}
+        </Box>
+
+        {!last && labelPosition === 'right' && (
+          <div {...getStyles('extensibleConnectorContainer')}>
+            <div {...getStyles('connectorContainer')}>{nextConnector}</div>
+          </div>
+        )}
       </div>
     </StepContextProvider>
   );

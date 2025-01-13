@@ -3,15 +3,14 @@ import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { IButtonOwnProps } from '../Button';
+import type { StepIndicator } from '../StepIndicator';
 import type { IStepperContextValue } from '../Stepper';
 import type { IStepThemeFactory, stepTheme } from './Step.css';
-import { StepConnector } from '../StepConnector';
-import { StepIndicator } from '../StepIndicator';
 
 export interface IStepRenderProps {
-  inactive: boolean;
-  completed: boolean;
-  hasError: boolean;
+  active?: boolean;
+  completed?: boolean;
+  hasError?: boolean;
 }
 
 export interface IStepOwnProps
