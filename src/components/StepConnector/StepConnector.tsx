@@ -4,6 +4,7 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Divider } from '../Divider';
+import { useStepContext } from '../Step/Step.context';
 import { dividerTheme } from './StepConnector.css';
 
 const COMPONENT_NAME = 'StepConnector';
@@ -16,9 +17,21 @@ export const StepConnector = componentFactory<IStepConnectorFactory>(
       styles,
       style,
       variant,
-      stepLabelPosition,
+      orientation: orientationProp,
+      labelPosition: labelPositionProp,
+      contentPosition: contentPositionProp,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
+
+    const stepContext = useStepContext();
+
+    const orientation =
+      orientationProp ?? stepContext?.orientation ?? 'horizontal';
+    const labelPosition =
+      labelPositionProp ?? stepContext?.labelPosition ?? 'right';
+    const contentPosition =
+      (orientation === 'horizontal' ? contentPositionProp : undefined) ??
+      'middle';
 
     const { getStyles } = useComponentTheme<IStepConnectorThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -28,9 +41,21 @@ export const StepConnector = componentFactory<IStepConnectorFactory>(
       style,
       variant,
       theme: dividerTheme,
+      modifiers: {
+        orientation,
+        'label-position': labelPosition,
+      },
     });
 
-    return <Divider {...getStyles('root')} ref={forwardedRef} {...other} />;
+    return (
+      <Divider
+        {...getStyles('root')}
+        ref={forwardedRef}
+        orientation={orientation}
+        contentPosition={contentPosition}
+        {...other}
+      />
+    );
   },
 );
 

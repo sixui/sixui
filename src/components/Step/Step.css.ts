@@ -77,10 +77,30 @@ const classNames = createStyles({
     display: 'contents',
   },
   wrapper: ({ root }) => ({
+    position: 'relative',
+
     selectors: {
       [getModifierSelector<IModifier>({ 'label-position': 'bottom' }, root)]: {
         flexGrow: 1,
         justifyContent: 'center',
+      },
+    },
+  }),
+  buttonContainer: ({ root }) => ({
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    minHeight: calc.add(
+      tokens.container.topSpace,
+      stepIndicatorSize,
+      tokens.container.bottomSpace,
+      calc.multiply(tokens.container.connectorSpace, 2),
+    ),
+
+    selectors: {
+      [getModifierSelector<IModifier>({ 'label-position': 'bottom' }, root)]: {
+        flexDirection: 'column',
       },
     },
   }),
@@ -154,11 +174,20 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>(
         {
           orientation: 'horizontal',
-          'label-position': 'right',
         },
         root,
       )]: {
         flexDirection: 'row',
+        borderRadius: tokens.connector.shape,
+      },
+      [getModifierSelector<IModifier>(
+        {
+          orientation: 'horizontal',
+          'label-position': 'right',
+        },
+        root,
+      )]: {
+        position: 'relative',
         transform: `translateY(${calc.negate(
           calc.subtract(
             calc.divide(
@@ -176,7 +205,6 @@ const classNames = createStyles({
             ),
           ),
         )})`,
-        position: 'relative',
         marginLeft: calc.add(
           calc.negate(tokens.container.trailingSpace),
           tokens.container.connectorSpace,
@@ -185,7 +213,58 @@ const classNames = createStyles({
           calc.negate(tokens.container.leadingSpace),
           tokens.container.connectorSpace,
         ),
-        borderRadius: tokens.connector.shape,
+      },
+      [getModifierSelector<IModifier>(
+        {
+          orientation: 'horizontal',
+          'label-position': 'bottom',
+        },
+        root,
+      )]: {
+        position: 'absolute',
+        top: 0,
+        left: calc.add(
+          '50%',
+          calc.negate(
+            calc.subtract(
+              calc.divide(
+                calc.add(
+                  tokens.container.leadingSpace,
+                  stepIndicatorSize,
+                  tokens.container.trailingSpace,
+                ),
+                2,
+              ),
+              calc.add(
+                tokens.container.leadingSpace,
+                calc.divide(stepIndicatorSize, 2),
+              ),
+            ),
+          ),
+          calc.divide(stepIndicatorSize, 2),
+          tokens.container.connectorSpace,
+        ),
+        right: calc.add(
+          '-50%',
+          calc.add(
+            calc.subtract(
+              calc.divide(
+                calc.add(
+                  tokens.container.leadingSpace,
+                  stepIndicatorSize,
+                  tokens.container.trailingSpace,
+                ),
+                2,
+              ),
+              calc.add(
+                tokens.container.leadingSpace,
+                calc.divide(stepIndicatorSize, 2),
+              ),
+            ),
+            calc.divide(stepIndicatorSize, 2),
+            tokens.container.connectorSpace,
+          ),
+        ),
       },
     },
   }),

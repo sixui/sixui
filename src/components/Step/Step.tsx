@@ -197,14 +197,7 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
           {!last &&
             orientation === 'horizontal' &&
             labelPosition === 'bottom' && (
-              <div
-                {...getStyles([
-                  'connectorContainer',
-                  'connectorContainer$horizontal$bottomLabel',
-                ])}
-              >
-                {nextConnector}
-              </div>
+              <div {...getStyles(['connectorContainer'])}>{nextConnector}</div>
             )}
         </Box>
 
