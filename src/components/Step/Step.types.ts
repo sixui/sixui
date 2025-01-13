@@ -5,6 +5,7 @@ import type { IBoxProps } from '../Box';
 import type { IButtonOwnProps } from '../Button';
 import type { IStepperContextValue } from '../Stepper';
 import type { IStepThemeFactory, stepTheme } from './Step.css';
+import { StepConnector } from '../StepConnector';
 import { StepIndicator } from '../StepIndicator';
 
 export interface IStepRenderProps {
@@ -49,5 +50,6 @@ export type IStepFactory = IComponentFactory<{
   theme: typeof stepTheme;
   staticComponents: {
     Indicator: typeof StepIndicator;
+    Connector: typeof StepConnector;
   };
 }>;

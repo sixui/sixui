@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IFlexProps } from '../Flex';
 import type { IDividerProps } from './Divider.types';
 import { componentShowcaseFactory } from '../ComponentShowcase';
@@ -18,6 +19,25 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {} satisfies Partial<IDividerProps>;
+
+const configurations: Array<IComponentPresentation<IDividerProps>> = [
+  { legend: 'Normal' },
+  { legend: 'Inset', props: { inset: true } },
+  { legend: 'Inset start', props: { insetStart: true } },
+  { legend: 'Inset end', props: { insetEnd: true } },
+  {
+    legend: 'Text on top',
+    props: { label: 'Text', contentPosition: 'top' },
+  },
+  {
+    legend: 'Text on middle',
+    props: { label: 'Text', contentPosition: 'middle' },
+  },
+  {
+    legend: 'Text on bottom',
+    props: { label: 'Text', contentPosition: 'bottom' },
+  },
+];
 
 const Cell: React.FC<IFlexProps> = (props) => (
   <Flex
@@ -46,6 +66,7 @@ const ListDemo: React.FC<IDividerProps> = (props) => (
   </Paper>
 );
 
+const DividerShowcase = componentShowcaseFactory(Divider);
 const ListDemoShowcase = componentShowcaseFactory(ListDemo);
 
 export const Variants: IStory = {
@@ -68,22 +89,25 @@ export const Variants: IStory = {
       ]}
     />
   ),
-  args: defaultArgs,
+  args: {
+    ...defaultArgs,
+    label: 'or',
+  },
 };
 
 export const Horizontal: IStory = {
   render: (props) => (
-    <ListDemoShowcase
-      props={props}
-      cols={[
-        { legend: 'Normal' },
-        { legend: 'Inset', props: { inset: true } },
-        { legend: 'Inset start', props: { insetStart: true } },
-        { legend: 'Inset end', props: { insetEnd: true } },
-        { legend: 'Text', props: { children: 'Text' } },
-      ]}
-    />
+    <DividerShowcase props={props} rows={configurations} fullWidth />
   ),
+  args: {
+    ...defaultArgs,
+    orientation: 'horizontal',
+    w: '$96',
+  },
+};
+
+export const HorizontalList: IStory = {
+  render: (props) => <ListDemoShowcase props={props} cols={configurations} />,
   args: {
     ...defaultArgs,
     orientation: 'horizontal',
@@ -92,15 +116,21 @@ export const Horizontal: IStory = {
 
 export const Vertical: IStory = {
   render: (props) => (
-    <ListDemoShowcase
+    <DividerShowcase
       props={props}
-      rows={[
-        { legend: 'Normal' },
-        { legend: 'Inset', props: { inset: true } },
-        { legend: 'Text', props: { children: 'Text' } },
-      ]}
+      cols={configurations}
+      horizontalAlign="start"
     />
   ),
+  args: {
+    ...defaultArgs,
+    orientation: 'vertical',
+    h: '$96',
+  },
+};
+
+export const VerticalList: IStory = {
+  render: (props) => <ListDemoShowcase props={props} rows={configurations} />,
   args: {
     ...defaultArgs,
     orientation: 'vertical',

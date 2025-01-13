@@ -17,10 +17,11 @@ export const Divider = componentFactory<IDividerFactory>(
       style,
       variant,
       orientation = 'horizontal',
+      contentPosition = 'middle',
       inset,
       insetStart,
       insetEnd,
-      children,
+      label,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -39,21 +40,40 @@ export const Divider = componentFactory<IDividerFactory>(
         orientation,
         'inset-start': hasInsetStart,
         'inset-end': hasInsetEnd,
+        'content-position': contentPosition,
       },
     });
 
+    const renderText = (): React.ReactNode => (
+      <div {...getStyles('textContainer')}>
+        <div {...getStyles('text')}>{label}</div>
+      </div>
+    );
+
+    const renderLine = (): React.ReactNode => <div {...getStyles('line')} />;
+
     return (
       <Box {...getStyles('root')} ref={forwardedRef} {...other}>
-        {children ? (
-          <>
-            <div {...getStyles('line')} />
-            <div {...getStyles('textContainer')}>
-              <div {...getStyles('text')}>{children}</div>
-            </div>
-            <div {...getStyles('line')} />
-          </>
+        {label ? (
+          contentPosition === 'top' ? (
+            <>
+              {renderText()}
+              {renderLine()}
+            </>
+          ) : contentPosition === 'bottom' ? (
+            <>
+              {renderLine()}
+              {renderText()}
+            </>
+          ) : (
+            <>
+              {renderLine()}
+              {renderText()}
+              {renderLine()}
+            </>
+          )
         ) : (
-          <div {...getStyles('line')} />
+          renderLine()
         )}
       </Box>
     );

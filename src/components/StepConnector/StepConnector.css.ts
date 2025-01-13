@@ -9,30 +9,22 @@ import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 
-type IModifier =
-  | 'orientation'
-  | 'inset-start'
-  | 'inset-end'
-  | 'content-position';
+type IModifier = 'orientation';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   stroke: px(themeTokens.outline.width.xs),
   shape: px(themeTokens.shape.corner.none),
   color: themeTokens.colorScheme.outlineVariant,
-  inset: {
+  text: {
     horizontal: {
-      leadingSpace: px(space(4)),
-      trailingSpace: px(space(4)),
-    },
-    vertical: {
       leadingSpace: px(space(2)),
       trailingSpace: px(space(2)),
     },
-  },
-  label: {
-    horizontalSpace: px(space(2)),
-    verticalSpace: px(space(1)),
+    vertical: {
+      leadingSpace: px(space(1)),
+      trailingSpace: px(space(1)),
+    },
     typography: themeTokens.typeScale.body.sm,
     color: themeTokens.colorScheme.outline,
   },
@@ -46,23 +38,14 @@ const classNames = createStyles({
 
     selectors: {
       [getModifierSelector<IModifier>({ orientation: 'horizontal' })]: {
-        flexDirection: 'column',
-        width: '100%',
-        gap: tokens.label.verticalSpace,
-      },
-      [getModifierSelector<IModifier>({
-        orientation: 'horizontal',
-        'content-position': 'middle',
-      })]: {
         flexDirection: 'row',
-        gap: tokens.label.horizontalSpace,
+        width: '100%',
         height: tokens.stroke,
       },
       [getModifierSelector<IModifier>({ orientation: 'vertical' })]: {
         flexDirection: 'column',
         width: tokens.stroke,
         alignSelf: 'stretch',
-        gap: tokens.label.verticalSpace,
       },
     },
   },
@@ -82,69 +65,50 @@ const classNames = createStyles({
     selectors: {
       [getModifierSelector<IModifier>({ orientation: 'horizontal' }, root)]: {
         flexDirection: 'row',
-        height: tokens.stroke,
-      },
-      [getModifierSelector<IModifier>(
-        { orientation: 'horizontal', 'inset-start': true },
-        root,
-      )]: {
-        paddingInlineStart: tokens.inset.horizontal.leadingSpace,
-      },
-      [getModifierSelector<IModifier>(
-        { orientation: 'horizontal', 'inset-end': true },
-        root,
-      )]: {
-        paddingInlineEnd: tokens.inset.horizontal.trailingSpace,
+        height: 'inherit',
       },
       [getModifierSelector<IModifier>({ orientation: 'vertical' }, root)]: {
         flexDirection: 'column',
         width: 'inherit',
       },
-      [getModifierSelector<IModifier>(
-        { orientation: 'vertical', 'inset-start': true },
-        root,
-      )]: {
-        paddingBlockStart: tokens.inset.vertical.leadingSpace,
-      },
-      [getModifierSelector<IModifier>(
-        { orientation: 'vertical', 'inset-end': true },
-        root,
-      )]: {
-        paddingBlockEnd: tokens.inset.vertical.trailingSpace,
-      },
     },
   }),
-  textContainer: {
+  textContainer: ({ root }) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'baseline',
-  },
-  text: ({ root }) => ({
-    textAlign: 'center',
-    color: tokens.label.color,
-    ...getTypographyStyles(tokens.label.typography),
 
     selectors: {
-      [getModifierSelector<IModifier>(
-        {
-          orientation: 'horizontal',
-          'content-position': 'middle',
-        },
-        root,
-      )]: {
+      [getModifierSelector<IModifier>({ orientation: 'horizontal' }, root)]: {
+        marginInlineStart: tokens.text.horizontal.leadingSpace,
+        marginInlineEnd: tokens.text.horizontal.trailingSpace,
+      },
+      [getModifierSelector<IModifier>({ orientation: 'vertical' }, root)]: {
+        marginBlockStart: tokens.text.vertical.leadingSpace,
+        marginBlockEnd: tokens.text.vertical.trailingSpace,
+      },
+    },
+  }),
+  text: ({ root }) => ({
+    textAlign: 'center',
+    color: tokens.text.color,
+    ...getTypographyStyles(tokens.text.typography),
+
+    selectors: {
+      [getModifierSelector<IModifier>({ orientation: 'horizontal' }, root)]: {
         transform: 'translateY(-50%)',
       },
     },
   }),
 });
 
-export type IDividerThemeFactory = IComponentThemeFactory<{
+export type IStepConnectorThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   modifier: IModifier;
 }>;
 
-export const dividerTheme = componentThemeFactory<IDividerThemeFactory>({
+export const dividerTheme = componentThemeFactory<IStepConnectorThemeFactory>({
   classNames,
   tokensClassName,
   tokens,
