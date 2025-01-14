@@ -50,7 +50,6 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>({ orientation: 'horizontal' })]: {
         flexDirection: 'column',
         width: '100%',
-        gap: tokens.label.verticalSpace,
       },
       [getModifierSelector<IModifier>({
         orientation: 'horizontal',
@@ -64,7 +63,7 @@ const classNames = createStyles({
         'label-position': 'middle',
       })]: {
         flexDirection: 'row',
-        gap: tokens.label.horizontalSpace,
+
         height: tokens.stroke,
       },
       [getModifierSelector<IModifier>({
@@ -78,17 +77,6 @@ const classNames = createStyles({
         flexDirection: 'column',
         width: tokens.stroke,
         alignSelf: 'stretch',
-        gap: tokens.label.verticalSpace,
-      },
-      [getModifierSelector<IModifier>({
-        'label-position': 'top',
-      })]: {
-        paddingTop: tokens.label.verticalSpace,
-      },
-      [getModifierSelector<IModifier>({
-        'label-position': 'bottom',
-      })]: {
-        paddingBottom: tokens.label.verticalSpace,
       },
     },
   },
@@ -148,11 +136,34 @@ const classNames = createStyles({
       },
     },
   }),
-  textContainer: {
+  textContainer: ({ root }) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'baseline',
-  },
+
+    selectors: {
+      [getModifierSelector<IModifier>({ orientation: 'horizontal' }, root)]: {
+        paddingLeft: tokens.label.horizontalSpace,
+        paddingRight: tokens.label.horizontalSpace,
+      },
+      [getModifierSelector<IModifier>(
+        { orientation: 'horizontal', 'label-position': 'top' },
+        root,
+      )]: {
+        paddingBottom: tokens.label.verticalSpace,
+      },
+      [getModifierSelector<IModifier>(
+        { orientation: 'horizontal', 'label-position': 'bottom' },
+        root,
+      )]: {
+        paddingTop: tokens.label.verticalSpace,
+      },
+      [getModifierSelector<IModifier>({ orientation: 'vertical' }, root)]: {
+        paddingTop: tokens.label.verticalSpace,
+        paddingBottom: tokens.label.verticalSpace,
+      },
+    },
+  }),
   text: ({ root }) => ({
     textAlign: 'center',
     color: tokens.label.color,

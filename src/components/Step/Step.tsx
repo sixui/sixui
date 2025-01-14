@@ -9,7 +9,7 @@ import { Box } from '../Box';
 import { extractBoxProps } from '../Box/extractBoxProps';
 import { Button } from '../Button';
 import { StepIndicator } from '../StepIndicator';
-import { useStepperContext } from '../Stepper';
+import { useStepperContext } from '../Stepper/Stepper.context';
 import { StepContextProvider } from './Step.context';
 import { stepTheme } from './Step.css';
 

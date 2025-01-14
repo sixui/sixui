@@ -39,11 +39,21 @@ const classNames = createStyles({
       stroke: tokens.stroke,
       shape: tokens.shape,
       color: tokens.color.normal,
+      label: {
+        color: tokens.label.color.normal,
+      },
     }),
 
     selectors: {
       [getModifierSelector<IModifier>('completed')]: {
-        color: tokens.color.completed,
+        vars: createTokensVars(Divider.theme.tokens, {
+          stroke: tokens.stroke,
+          shape: tokens.shape,
+          color: tokens.color.completed,
+          label: {
+            color: tokens.label.color.completed,
+          },
+        }),
       },
       [getModifierSelector<IModifier>({
         orientation: 'horizontal',
