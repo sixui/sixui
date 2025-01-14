@@ -268,6 +268,59 @@ const classNames = createStyles({
       },
     },
   }),
+  connectorContainer$top: {
+    position: 'absolute',
+    display: 'flex',
+    left: 0,
+    top: 0,
+    bottom: calc.add(
+      '50%',
+      calc.subtract(
+        calc.divide(
+          calc.add(
+            tokens.container.topSpace,
+            stepIndicatorSize,
+            tokens.container.bottomSpace,
+          ),
+          2,
+        ),
+        calc.add(tokens.container.topSpace, calc.divide(stepIndicatorSize, 2)),
+      ),
+      calc.divide(stepIndicatorSize, 2),
+      tokens.container.connectorSpace,
+    ),
+    borderBottomLeftRadius: tokens.connector.shape,
+    borderBottomRightRadius: tokens.connector.shape,
+  },
+  connectorContainer$bottom: {
+    position: 'absolute',
+    display: 'flex',
+    left: 0,
+    top: calc.add(
+      calc.subtract(
+        '50%',
+        calc.subtract(
+          calc.divide(
+            calc.add(
+              tokens.container.topSpace,
+              stepIndicatorSize,
+              tokens.container.bottomSpace,
+            ),
+            2,
+          ),
+          calc.add(
+            tokens.container.topSpace,
+            calc.divide(stepIndicatorSize, 2),
+          ),
+        ),
+      ),
+      calc.divide(stepIndicatorSize, 2),
+      tokens.container.connectorSpace,
+    ),
+    bottom: 0,
+    borderBottomLeftRadius: tokens.connector.shape,
+    borderBottomRightRadius: tokens.connector.shape,
+  },
 });
 
 export type IStepThemeFactory = IComponentThemeFactory<{
