@@ -17,7 +17,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  children: 'Stepper',
+  activeStep: 1,
 } satisfies Partial<IStepperProps>;
 
 const StepperShowcase = componentShowcaseFactory(Stepper);

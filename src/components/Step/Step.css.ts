@@ -321,6 +321,25 @@ const classNames = createStyles({
     borderBottomLeftRadius: tokens.connector.shape,
     borderBottomRightRadius: tokens.connector.shape,
   },
+  connectorContainer$content: {
+    display: 'flex',
+    width: 0,
+    flexGrow: 0,
+  },
+  content: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  contentText: {
+    color: tokens.content.color,
+    ...getTypographyStyles(tokens.content.typography),
+    paddingLeft: calc.add(
+      tokens.container.leadingSpace,
+      stepIndicatorSize,
+      px(space(2)),
+    ),
+    paddingRight: tokens.container.trailingSpace,
+  },
 });
 
 export type IStepThemeFactory = IComponentThemeFactory<{
