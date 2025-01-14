@@ -3,17 +3,12 @@ import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { Step } from '../Step';
+import type { StepConnector } from '../StepConnector';
+import type { IStepperContextValue } from './Stepper.context';
 import type { IStepperThemeFactory, stepperTheme } from './Stepper.css';
-import { StepConnector } from '../StepConnector';
 
-export interface IStepperOwnProps {
+export interface IStepperOwnProps extends IStepperContextValue {
   children: React.ReactNode;
-  activeStep?: number;
-  loading?: boolean;
-  connector?: React.ReactNode;
-  orientation?: IOrientation;
-  labelPosition?: 'right' | 'bottom';
-  completed?: boolean;
 }
 
 export interface IStepperProps

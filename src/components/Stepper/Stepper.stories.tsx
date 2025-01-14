@@ -28,7 +28,7 @@ const makeSteps = (
 ): Array<React.ReactElement> =>
   createSequence(count).map((index) => (
     <Stepper.Step
-      onClick={(...args) => void sbHandleEvent('click', args)}
+      onClick={(...args) => sbHandleEvent('click', args, 1000)}
       {...(isFunction(props) ? props(index) : props)}
       key={index}
     />
@@ -64,8 +64,9 @@ export const Horizontal: IStory = {
           legend: 'Custom connector',
           props: {
             children: makeSteps((index) => ({
-              nextConnector: (
+              connectorRenderer: (props) => (
                 <Stepper.Connector
+                  label={!props?.extension && 'Lorem ipsum'}
                   contentPosition={
                     index === 0
                       ? 'top'
@@ -75,9 +76,7 @@ export const Horizontal: IStory = {
                           ? 'bottom'
                           : undefined
                   }
-                >
-                  Lorem ipsum
-                </Stepper.Connector>
+                />
               ),
             })),
           },
@@ -167,7 +166,9 @@ export const Vertical: IStory = {
           legend: 'Custom connector',
           props: {
             children: makeSteps({
-              nextConnector: <Stepper.Connector>Lorem ipsum</Stepper.Connector>,
+              connectorRenderer: (props) => (
+                <Stepper.Connector label={!props?.extension && 'Lorem ipsum'} />
+              ),
             }),
           },
         },
@@ -176,8 +177,25 @@ export const Vertical: IStory = {
           props: {
             children: makeSteps((index) => ({
               label: 'Lorem ipsum',
-              supportingText:
-                index === 1 ? (
+              supportingText: index === 1 && (
+                <>
+                  Supporting text
+                  <br />
+                  Supporting text
+                  <br />
+                  Supporting text
+                </>
+              ),
+            })),
+          },
+        },
+        {
+          legend: 'Content',
+          props: {
+            children: makeSteps(
+              (index) => ({
+                label: 'Lorem ipsum',
+                supportingText: index === 1 && (
                   <>
                     Supporting text
                     <br />
@@ -185,80 +203,65 @@ export const Vertical: IStory = {
                     <br />
                     Supporting text
                   </>
-                ) : null,
-            })),
+                ),
+                children: index === 1 && (
+                  <>
+                    Lorem ipsum dolor sit amet.
+                    <br />
+                    Lorem ipsum dolor sit amet.
+                    <br />
+                    Lorem ipsum dolor sit amet.
+                  </>
+                ),
+                connectorRenderer:
+                  index === 1
+                    ? (props) => (
+                        <Stepper.Connector
+                          label={!props?.extension && 'Lorem ipsum'}
+                        />
+                      )
+                    : undefined,
+              }),
+              3,
+            ),
           },
         },
         {
-          legend: 'Content',
-          props: {
-            children: [
-              <Stepper.Step
-                key={0}
-                onClick={(...args) => sbHandleEvent('click', args, 1000)}
-                label="Lorem ipsum"
-              >
-                Lorem ipsum dolor sit amet.
-              </Stepper.Step>,
-              <Stepper.Step
-                key={1}
-                onClick={(...args) => sbHandleEvent('click', args, 1000)}
-                label="Lorem ipsum"
-                supportingText="Supporting text"
-                nextConnector={
-                  <Stepper.Connector>Lorem ipsum</Stepper.Connector>
-                }
-              >
-                Lorem ipsum dolor sit amet.
-                <br />
-                Lorem ipsum dolor sit amet.
-                <br />
-                Lorem ipsum dolor sit amet.
-              </Stepper.Step>,
-              <Stepper.Step
-                key={2}
-                onClick={(...args) => sbHandleEvent('click', args, 1000)}
-                label="Lorem ipsum"
-              >
-                Lorem ipsum dolor sit amet.
-              </Stepper.Step>,
-            ],
-          },
-        },
-        {
+          // FIXME:
           legend: 'No space',
           props: {
-            children: [
-              <Stepper.Step
-                key={0}
-                onClick={(...args) => sbHandleEvent('click', args, 1000)}
-                // FIXME: sx={styles.step$noSpace}
-              />,
-              <Stepper.Step
-                key={1}
-                onClick={(...args) => sbHandleEvent('click', args, 1000)}
-                label="Lorem ipsum"
-                // FIXME: sx={styles.step$noSpace}
-                supportingText="Supporting text"
-                nextConnector={
-                  <Stepper.Connector>Lorem ipsum</Stepper.Connector>
-                }
-              >
-                Lorem ipsum dolor sit amet.
-                <br />
-                Lorem ipsum dolor sit amet.
-                <br />
-                Lorem ipsum dolor sit amet.
-              </Stepper.Step>,
-              <Stepper.Step
-                key={2}
-                onClick={(...args) => void sbHandleEvent('click', args)}
-                label="Lorem ipsum"
-                // FIXME: sx={styles.step$noSpace}
-              >
-                Lorem ipsum dolor sit amet.
-              </Stepper.Step>,
-            ],
+            children: makeSteps(
+              (index) => ({
+                label: 'Lorem ipsum',
+                supportingText: index === 1 && (
+                  <>
+                    Supporting text
+                    <br />
+                    Supporting text
+                    <br />
+                    Supporting text
+                  </>
+                ),
+                children: index === 1 && (
+                  <>
+                    Lorem ipsum dolor sit amet.
+                    <br />
+                    Lorem ipsum dolor sit amet.
+                    <br />
+                    Lorem ipsum dolor sit amet.
+                  </>
+                ),
+                connectorRenderer:
+                  index === 1
+                    ? (props) => (
+                        <Stepper.Connector
+                          label={!props?.extension && 'Lorem ipsum'}
+                        />
+                      )
+                    : undefined,
+              }),
+              3,
+            ),
           },
         },
       ]}

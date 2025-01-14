@@ -1,5 +1,3 @@
-import { cloneElement, isValidElement } from 'react';
-
 import type { IStepContextValue } from './Step.context';
 import type { IStepThemeFactory } from './Step.css';
 import type { IStepFactory } from './Step.types';
@@ -35,7 +33,7 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
     supportingText,
     hasError,
     orientation: orientationProp,
-    nextConnector: nextConnectorProp,
+    connectorRenderer: connectorRendererProp,
     alwaysExpanded,
     labelPosition: labelPositionProp,
     children,
@@ -63,10 +61,8 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
   const labelPosition = hasText
     ? (labelPositionProp ?? stepperContext?.labelPosition ?? 'right')
     : 'right';
-  const nextConnector =
-    nextConnectorProp !== undefined
-      ? nextConnectorProp
-      : stepperContext?.connector;
+  const connectorRenderer =
+    connectorRendererProp ?? stepperContext?.connectorRenderer;
   const orientation =
     orientationProp ?? stepperContext?.orientation ?? 'horizontal';
   const expanded =
@@ -95,50 +91,48 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
     labelPosition,
   };
 
-  const renderConnectorWithoutChildren = (): React.ReactNode =>
-    isValidElement(nextConnector) &&
-    cloneElement<{ children?: React.ReactNode }>(
-      nextConnector as React.ReactElement<{
-        children?: React.ReactNode;
-      }>,
-      { children: undefined },
-    );
-
   // As the step height may change depending on the content, in a vertical
   // orientation, we need to add inner top and bottom connectors in order to
   // connect the bullet point to the previous and next elements.
-  const renderInnerConnectors = (): React.ReactNode => (
-    <>
-      {/* Connect the bullet point to the previous element, if any. */}
-      {!first && (
-        // This connector must be rendered in the context of the previous
-        // step.
-        <StepContextProvider
-          value={{ ...stepContextValue, completed: previousCompleted }}
-        >
-          <div {...getStyles(['connectorContainer', 'connectorContainer$top'])}>
-            {renderConnectorWithoutChildren()}
-          </div>
-        </StepContextProvider>
-      )}
+  const renderInnerConnectors = connectorRenderer
+    ? (): React.ReactNode => (
+        <>
+          {/* Connect the bullet point to the previous element, if any. */}
+          {!first && (
+            // This connector must be rendered in the context of the previous
+            // step.
+            <StepContextProvider
+              value={{ ...stepContextValue, completed: previousCompleted }}
+            >
+              <div
+                {...getStyles(['connectorContainer', 'connectorContainer$top'])}
+              >
+                {connectorRenderer({ extension: 'top' })}
+              </div>
+            </StepContextProvider>
+          )}
 
-      {/* Connect the bullet point to the next element, if any. */}
-      {!last && (
-        <div
-          {...getStyles(['connectorContainer', 'connectorContainer$bottom'])}
-        >
-          {renderConnectorWithoutChildren()}
-        </div>
-      )}
-    </>
-  );
+          {/* Connect the bullet point to the next element, if any. */}
+          {!last && (
+            <div
+              {...getStyles([
+                'connectorContainer',
+                'connectorContainer$bottom',
+              ])}
+            >
+              {connectorRenderer({ extension: 'bottom' })}
+            </div>
+          )}
+        </>
+      )
+    : undefined;
 
   return (
     <StepContextProvider value={stepContextValue}>
       <div {...getStyles('root')}>
         <Box {...getStyles('wrapper')} {...boxProps}>
           <div {...getStyles('buttonContainer')}>
-            {orientation === 'vertical' ? renderInnerConnectors() : null}
+            {orientation === 'vertical' && renderInnerConnectors?.()}
 
             <Button
               {...getStyles('button')}
@@ -148,7 +142,8 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
               ref={forwardedRef}
               start={
                 <StepIndicator
-                  label="1"
+                  label={index + 1}
+                  icon={icon}
                   hasError={hasError}
                   completed={completed}
                   active={active}
@@ -172,14 +167,14 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
           {expanded && (
             <div {...getStyles('content')}>
               {/* Connect the content block to the next connector. */}
-              {!last && (
+              {connectorRenderer && !last && (
                 <div
                   {...getStyles([
                     'connectorContainer',
                     'connectorContainer$content',
                   ])}
                 >
-                  {renderConnectorWithoutChildren()}
+                  {connectorRenderer({ extension: 'middle' })}
                 </div>
               )}
               <div {...getStyles('contentText')}>
@@ -194,16 +189,21 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
             </div>
           )}
 
-          {!last &&
+          {connectorRenderer &&
+            !last &&
             orientation === 'horizontal' &&
             labelPosition === 'bottom' && (
-              <div {...getStyles(['connectorContainer'])}>{nextConnector}</div>
+              <div {...getStyles(['connectorContainer'])}>
+                {connectorRenderer()}
+              </div>
             )}
         </Box>
 
-        {!last && labelPosition === 'right' && (
+        {connectorRenderer && !last && labelPosition === 'right' && (
           <div {...getStyles('extensibleConnectorContainer')}>
-            <div {...getStyles('connectorContainer')}>{nextConnector}</div>
+            <div {...getStyles('connectorContainer')}>
+              {connectorRenderer()}
+            </div>
           </div>
         )}
       </div>

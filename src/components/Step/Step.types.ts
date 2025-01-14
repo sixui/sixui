@@ -14,23 +14,16 @@ export interface IStepRenderProps {
 }
 
 export interface IStepOwnProps
-  extends IOmit<IButtonOwnProps, 'leadingIcon' | 'trailingIcon' | 'children'> {
+  extends IOmit<IButtonOwnProps, 'leadingIcon' | 'trailingIcon' | 'children'>,
+    IOmit<IStepperContextValue, 'activeStep'> {
   active?: boolean;
-  completed?: boolean;
   index?: number;
   last?: boolean;
   icon?: React.ReactNode;
   label?: React.ReactNode;
   supportingText?: React.ReactNode;
   hasError?: boolean;
-  orientation?: IStepperContextValue['orientation'];
-  nextConnector?: IStepperContextValue['connector'];
   alwaysExpanded?: boolean;
-
-  /**
-   * Only supported in vertical orientation.
-   */
-  labelPosition?: IStepperContextValue['labelPosition'];
 
   /**
    * Only supported in vertical orientation.

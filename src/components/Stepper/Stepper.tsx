@@ -27,7 +27,7 @@ export const Stepper = componentFactory<IStepperFactory>(
       children,
       activeStep,
       loading,
-      connector = <StepConnector />,
+      connectorRenderer = () => <StepConnector />,
       orientation = 'horizontal',
       labelPosition: labelPositionProp = 'right',
       completed,
@@ -75,7 +75,7 @@ export const Stepper = componentFactory<IStepperFactory>(
           activeStep !== undefined
             ? Math.max(Math.min(activeStep, validChildren.length - 1), 0)
             : undefined,
-        connector,
+        connectorRenderer,
         orientation,
         labelPosition,
         completed,
@@ -83,7 +83,7 @@ export const Stepper = componentFactory<IStepperFactory>(
       [
         activeStep,
         validChildren.length,
-        connector,
+        connectorRenderer,
         orientation,
         labelPosition,
         completed,
