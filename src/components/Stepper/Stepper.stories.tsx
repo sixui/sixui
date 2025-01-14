@@ -1,8 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import {
+  faChevronDown,
   faChevronLeft,
   faChevronRight,
+  faChevronUp,
   faLocationDot,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -45,29 +47,45 @@ const InteractiveStepper: React.FC<IStepperProps> = (props) => {
 
   const [activeStep, setActiveStep] = useState(0);
   const nextStep = (): void =>
-    setActiveStep((current) => (current < stepCount ? current + 1 : current));
+    setActiveStep((current) => Math.min(current + 1, stepCount));
   const prevStep = (): void =>
-    setActiveStep((current) => (current > 0 ? current - 1 : current));
+    setActiveStep((current) => Math.max(current - 1, 0));
   const completed = activeStep === stepCount;
 
   return (
-    <Flex direction="column">
+    <Flex
+      direction="column"
+      align={props.orientation === 'vertical' ? undefined : 'center'}
+    >
       <Stepper
         {...props}
         activeStep={activeStep}
         completed={completed}
         onStepClick={setActiveStep}
       />
-      <Flex>
-        <IconButton
-          icon={<FontAwesomeIcon icon={faChevronLeft} />}
-          onClick={prevStep}
-        />
-        <IconButton
-          icon={<FontAwesomeIcon icon={faChevronRight} />}
-          onClick={nextStep}
-        />
-      </Flex>
+      {props.orientation === 'vertical' ? (
+        <Flex direction="column">
+          <IconButton
+            icon={<FontAwesomeIcon icon={faChevronUp} />}
+            onClick={prevStep}
+          />
+          <IconButton
+            icon={<FontAwesomeIcon icon={faChevronDown} />}
+            onClick={nextStep}
+          />
+        </Flex>
+      ) : (
+        <Flex>
+          <IconButton
+            icon={<FontAwesomeIcon icon={faChevronLeft} />}
+            onClick={prevStep}
+          />
+          <IconButton
+            icon={<FontAwesomeIcon icon={faChevronRight} />}
+            onClick={nextStep}
+          />
+        </Flex>
+      )}
     </Flex>
   );
 };
