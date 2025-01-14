@@ -477,6 +477,7 @@ export const buttonThemeVariants = {
             },
             elevation: {
               hovered: elevationLevelPreset[1],
+              pressed: elevationLevelPreset[1],
             },
           },
           label: {
