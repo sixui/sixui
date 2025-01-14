@@ -75,7 +75,6 @@ const classNames = createStyles({
       },
       [getModifierSelector<IModifier>({ orientation: 'vertical' })]: {
         flexDirection: 'column',
-        width: tokens.stroke,
         alignSelf: 'stretch',
       },
     },
@@ -100,7 +99,7 @@ const classNames = createStyles({
       },
       [getModifierSelector<IModifier>({ orientation: 'vertical' }, root)]: {
         flexDirection: 'column',
-        width: 'inherit',
+        width: tokens.stroke,
       },
     },
   }),
@@ -161,6 +160,10 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>({ orientation: 'vertical' }, root)]: {
         paddingTop: tokens.label.verticalSpace,
         paddingBottom: tokens.label.verticalSpace,
+        transform: `translateX(${calc.add(
+          '-50%',
+          calc.divide(tokens.stroke, 2),
+        )})`,
       },
     },
   }),
