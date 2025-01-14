@@ -1,5 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { useState } from 'react';
+import {
+  faChevronLeft,
+  faChevronRight,
+  faLocationDot,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { createSequence } from '@olivierpascal/helpers';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
@@ -9,6 +14,8 @@ import type { IStepperProps } from './Stepper.types';
 import { isFunction } from '~/helpers/isFunction';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { componentShowcaseFactory } from '../ComponentShowcase';
+import { Flex } from '../Flex';
+import { IconButton } from '../IconButton';
 import { Stepper } from './Stepper';
 
 const meta = {
@@ -17,9 +24,7 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {
-  activeStep: 1,
-} satisfies Partial<IStepperProps>;
+const defaultArgs = {} satisfies Partial<IStepperProps>;
 
 const StepperShowcase = componentShowcaseFactory(Stepper);
 
@@ -29,11 +34,45 @@ const makeSteps = (
 ): Array<React.ReactElement> =>
   createSequence(count).map((index) => (
     <Stepper.Step
-      onClick={(...args) => sbHandleEvent('click', args, 1000)}
+      onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
       {...(isFunction(props) ? props(index) : props)}
       key={index}
     />
   ));
+
+const InteractiveStepper: React.FC<IStepperProps> = (props) => {
+  const stepCount = 4;
+
+  const [activeStep, setActiveStep] = useState(0);
+  const nextStep = (): void =>
+    setActiveStep((current) => (current < stepCount ? current + 1 : current));
+  const prevStep = (): void =>
+    setActiveStep((current) => (current > 0 ? current - 1 : current));
+  const completed = activeStep === stepCount;
+
+  return (
+    <Flex direction="column">
+      <Stepper
+        {...props}
+        activeStep={activeStep}
+        completed={completed}
+        onStepClick={setActiveStep}
+      />
+      <Flex>
+        <IconButton
+          icon={<FontAwesomeIcon icon={faChevronLeft} />}
+          onClick={prevStep}
+        />
+        <IconButton
+          icon={<FontAwesomeIcon icon={faChevronRight} />}
+          onClick={nextStep}
+        />
+      </Flex>
+    </Flex>
+  );
+};
+
+const InteractiveStepperShowcase = componentShowcaseFactory(InteractiveStepper);
 
 export const Horizontal: IStory = {
   render: (props) => (
@@ -137,8 +176,27 @@ export const Horizontal: IStory = {
   ),
   args: {
     ...defaultArgs,
+    activeStep: 1,
     w: '$160',
   } as IStepperProps,
+};
+
+export const HorizontalInteractive: IStory = {
+  render: (props) => (
+    <InteractiveStepperShowcase props={props} horizontalAlign="start" />
+  ),
+  args: {
+    ...defaultArgs,
+    w: '$160',
+    children: makeSteps(
+      (index) => ({
+        label: 'Lorem ipsum',
+        supportingText: index % 2 === 0 ? undefined : 'Supporting text',
+      }),
+      4,
+    ),
+    labelPosition: 'right',
+  },
 };
 
 export const Vertical: IStory = {
@@ -281,7 +339,44 @@ export const Vertical: IStory = {
     orientation: 'vertical',
     miw: '$32',
     h: '$128',
+    activeStep: 1,
   } as IStepperProps,
+};
+
+export const VerticalInteractive: IStory = {
+  render: (props) => (
+    <InteractiveStepperShowcase props={props} horizontalAlign="start" />
+  ),
+  args: {
+    ...defaultArgs,
+    orientation: 'vertical',
+    miw: '$32',
+    h: '$128',
+    children: makeSteps(
+      (index) => ({
+        label: 'Lorem ipsum',
+        supportingText: index === 1 && (
+          <>
+            Supporting text
+            <br />
+            Supporting text
+            <br />
+            Supporting text
+          </>
+        ),
+        children: index === 1 && (
+          <>
+            Lorem ipsum dolor sit amet.
+            <br />
+            Lorem ipsum dolor sit amet.
+            <br />
+            Lorem ipsum dolor sit amet.
+          </>
+        ),
+      }),
+      4,
+    ),
+  },
 };
 
 export default meta;

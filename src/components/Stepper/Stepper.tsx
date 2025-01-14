@@ -7,6 +7,7 @@ import type { IStepperFactory } from './Stepper.types';
 import { isElementLike } from '~/helpers/react/isElementLike';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
+import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
 import { Step } from '../Step';
@@ -31,6 +32,7 @@ export const Stepper = componentFactory<IStepperFactory>(
       orientation = 'horizontal',
       labelPosition: labelPositionProp = 'right',
       completed,
+      onStepClick,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -59,13 +61,15 @@ export const Stepper = componentFactory<IStepperFactory>(
       .filter(isValidElement)
       .filter(isStep);
 
-    // FIXME: avoid cloneElement
     const steps = validChildren.map((child, index) =>
       cloneElement(child, {
         index,
         last: index + 1 >= validChildren.length,
         loading: loading && activeStep === index,
-        ...child.props,
+        ...mergeProps(
+          { onClick: onStepClick ? () => onStepClick(index) : undefined },
+          child.props,
+        ),
       }),
     );
 

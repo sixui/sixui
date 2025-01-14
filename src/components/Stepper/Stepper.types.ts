@@ -1,4 +1,3 @@
-import type { IOrientation } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
@@ -9,6 +8,7 @@ import type { IStepperThemeFactory, stepperTheme } from './Stepper.css';
 
 export interface IStepperOwnProps extends IStepperContextValue {
   children: React.ReactNode;
+  onStepClick?: (index: number) => void;
 }
 
 export interface IStepperProps
