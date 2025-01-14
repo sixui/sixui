@@ -64,9 +64,9 @@ export const Horizontal: IStory = {
           legend: 'Custom connector',
           props: {
             children: makeSteps((index) => ({
-              connectorRenderer: (props) => (
+              connectorRenderer: ({ part }) => (
                 <Stepper.Connector
-                  label={!props?.extension && 'Lorem ipsum'}
+                  label={part === 'main' && 'Lorem ipsum'}
                   contentPosition={
                     index === 0
                       ? 'top'
@@ -166,8 +166,8 @@ export const Vertical: IStory = {
           legend: 'Custom connector',
           props: {
             children: makeSteps({
-              connectorRenderer: (props) => (
-                <Stepper.Connector label={!props?.extension && 'Lorem ipsum'} />
+              connectorRenderer: ({ part }) => (
+                <Stepper.Connector label={part === 'main' && 'Lorem ipsum'} />
               ),
             }),
           },
@@ -215,9 +215,9 @@ export const Vertical: IStory = {
                 ),
                 connectorRenderer:
                   index === 1
-                    ? (props) => (
+                    ? ({ part }) => (
                         <Stepper.Connector
-                          label={!props?.extension && 'Lorem ipsum'}
+                          label={part === 'main' && 'Lorem ipsum'}
                         />
                       )
                     : undefined,
@@ -253,9 +253,9 @@ export const Vertical: IStory = {
                 ),
                 connectorRenderer:
                   index === 1
-                    ? (props) => (
+                    ? ({ part }) => (
                         <Stepper.Connector
-                          label={!props?.extension && 'Lorem ipsum'}
+                          label={part === 'main' && 'Lorem ipsum'}
                         />
                       )
                     : undefined,

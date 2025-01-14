@@ -107,7 +107,7 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
               <div
                 {...getStyles(['connectorContainer', 'connectorContainer$top'])}
               >
-                {connectorRenderer({ extension: 'top' })}
+                {connectorRenderer({ orientation, part: 'start' })}
               </div>
             </StepContextProvider>
           )}
@@ -120,7 +120,7 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
                 'connectorContainer$bottom',
               ])}
             >
-              {connectorRenderer({ extension: 'bottom' })}
+              {connectorRenderer({ orientation, part: 'end' })}
             </div>
           )}
         </>
@@ -174,7 +174,7 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
                     'connectorContainer$content',
                   ])}
                 >
-                  {connectorRenderer({ extension: 'middle' })}
+                  {connectorRenderer({ orientation, part: 'content' })}
                 </div>
               )}
               <div {...getStyles('contentText')}>
@@ -194,7 +194,7 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
             orientation === 'horizontal' &&
             labelPosition === 'bottom' && (
               <div {...getStyles(['connectorContainer'])}>
-                {connectorRenderer()}
+                {connectorRenderer({ orientation, part: 'main' })}
               </div>
             )}
         </Box>
@@ -202,7 +202,7 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
         {connectorRenderer && !last && labelPosition === 'right' && (
           <div {...getStyles('extensibleConnectorContainer')}>
             <div {...getStyles('connectorContainer')}>
-              {connectorRenderer()}
+              {connectorRenderer({ orientation, part: 'main' })}
             </div>
           </div>
         )}

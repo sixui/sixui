@@ -44,6 +44,7 @@ export const StepConnector = componentFactory<IStepConnectorFactory>(
       modifiers: {
         orientation,
         'label-position': labelPosition,
+        completed: stepContext?.completed,
       },
     });
 

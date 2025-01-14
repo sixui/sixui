@@ -1,13 +1,15 @@
+import type { IOrientation } from '~/helpers/types';
 import { createOptionalContext } from '~/helpers/createOptionalContext';
 
 export type IStepperContextValue = {
-  orientation?: 'horizontal' | 'vertical';
+  orientation?: IOrientation;
   labelPosition?: 'right' | 'bottom';
   activeStep?: number;
   loading?: boolean;
   completed?: boolean;
-  connectorRenderer?: (props?: {
-    extension?: 'top' | 'middle' | 'bottom';
+  connectorRenderer?: (props: {
+    orientation?: IOrientation;
+    part?: 'start' | 'content' | 'main' | 'end';
   }) => React.ReactNode;
 };
 
