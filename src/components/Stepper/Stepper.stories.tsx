@@ -67,7 +67,7 @@ export const Horizontal: IStory = {
               connectorRenderer: ({ part }) => (
                 <Stepper.Connector
                   label={part === 'main' && 'Lorem ipsum'}
-                  contentPosition={
+                  labelPosition={
                     index === 0
                       ? 'top'
                       : index === 1

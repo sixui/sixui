@@ -18,8 +18,9 @@ export const StepConnector = componentFactory<IStepConnectorFactory>(
       style,
       variant,
       orientation: orientationProp,
-      labelPosition: labelPositionProp,
-      contentPosition: contentPositionProp,
+      stepLabelPosition: stepLabelPositionProp,
+      labelPosition: contentPositionProp,
+      verticalAlign = 'middle',
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -27,8 +28,8 @@ export const StepConnector = componentFactory<IStepConnectorFactory>(
 
     const orientation =
       orientationProp ?? stepContext?.orientation ?? 'horizontal';
-    const labelPosition =
-      labelPositionProp ?? stepContext?.labelPosition ?? 'right';
+    const stepLabelPosition =
+      stepLabelPositionProp ?? stepContext?.labelPosition ?? 'right';
     const contentPosition =
       (orientation === 'horizontal' ? contentPositionProp : undefined) ??
       'middle';
@@ -43,7 +44,7 @@ export const StepConnector = componentFactory<IStepConnectorFactory>(
       theme: dividerTheme,
       modifiers: {
         orientation,
-        'label-position': labelPosition,
+        'step-label-position': stepLabelPosition,
         completed: stepContext?.completed,
       },
     });
@@ -53,7 +54,8 @@ export const StepConnector = componentFactory<IStepConnectorFactory>(
         {...getStyles('root')}
         ref={forwardedRef}
         orientation={orientation}
-        contentPosition={contentPosition}
+        labelPosition={contentPosition}
+        verticalAlign={verticalAlign}
         {...other}
       />
     );

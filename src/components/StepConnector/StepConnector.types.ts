@@ -8,7 +8,7 @@ import type {
 } from './StepConnector.css';
 
 export interface IStepConnectorOwnProps extends IDividerOwnProps {
-  labelPosition?: 'right' | 'bottom';
+  stepLabelPosition?: 'right' | 'bottom';
 }
 
 export interface IStepConnectorProps

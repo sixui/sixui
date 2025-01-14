@@ -23,15 +23,15 @@ const configurations: Array<IComponentPresentation<IStepConnectorProps>> = [
   { legend: 'Inset end', props: { insetEnd: true } },
   {
     legend: 'Text on top',
-    props: { label: 'Text', contentPosition: 'top' },
+    props: { label: 'Text', labelPosition: 'top' },
   },
   {
     legend: 'Text on middle',
-    props: { label: 'Text', contentPosition: 'middle' },
+    props: { label: 'Text', labelPosition: 'middle' },
   },
   {
     legend: 'Text on bottom',
-    props: { label: 'Text', contentPosition: 'bottom' },
+    props: { label: 'Text', labelPosition: 'bottom' },
   },
 ];
 

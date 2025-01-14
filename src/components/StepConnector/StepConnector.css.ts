@@ -10,7 +10,7 @@ import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { Divider } from '../Divider';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 
-type IModifier = 'orientation' | 'label-position' | 'completed';
+type IModifier = 'orientation' | 'step-label-position' | 'completed';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
@@ -47,12 +47,7 @@ const classNames = createStyles({
       },
       [getModifierSelector<IModifier>({
         orientation: 'horizontal',
-      })]: {
-        flexDirection: 'row',
-      },
-      [getModifierSelector<IModifier>({
-        orientation: 'horizontal',
-        'label-position': 'bottom',
+        'step-label-position': 'bottom',
       })]: {
         marginTop: calc.add(
           calc.negate(calc.divide(tokens.stroke, 2)),
@@ -62,12 +57,7 @@ const classNames = createStyles({
       },
       [getModifierSelector<IModifier>({
         orientation: 'vertical',
-      })]: {
-        flexDirection: 'column',
-      },
-      [getModifierSelector<IModifier>({
-        orientation: 'vertical',
-        'label-position': 'right',
+        'step-label-position': 'right',
       })]: {
         marginLeft: calc.add(
           calc.negate(calc.divide(tokens.stroke, 2)),
@@ -77,7 +67,7 @@ const classNames = createStyles({
       },
       [getModifierSelector<IModifier>({
         orientation: 'vertical',
-        'label-position': 'bottom',
+        'step-label-position': 'bottom',
       })]: {
         // This style is never applied because the vertical orientation does not
         // support bottom label.

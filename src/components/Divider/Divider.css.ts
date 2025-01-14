@@ -1,4 +1,5 @@
 import { createTheme } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
@@ -13,7 +14,8 @@ type IModifier =
   | 'orientation'
   | 'inset-start'
   | 'inset-end'
-  | 'content-position';
+  | 'label-position'
+  | 'vertical-align';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
@@ -52,11 +54,25 @@ const classNames = createStyles({
       },
       [getModifierSelector<IModifier>({
         orientation: 'horizontal',
-        'content-position': 'middle',
+        'label-position': 'top',
+        'vertical-align': 'middle',
+      })]: {
+        transform: `translateY(${calc.add('-50%', calc.divide(tokens.stroke, 2))})`,
+      },
+      [getModifierSelector<IModifier>({
+        orientation: 'horizontal',
+        'label-position': 'middle',
       })]: {
         flexDirection: 'row',
         gap: tokens.label.horizontalSpace,
         height: tokens.stroke,
+      },
+      [getModifierSelector<IModifier>({
+        orientation: 'horizontal',
+        'label-position': 'bottom',
+        'vertical-align': 'middle',
+      })]: {
+        transform: `translateY(${calc.subtract('50%', calc.divide(tokens.stroke, 2))})`,
       },
       [getModifierSelector<IModifier>({ orientation: 'vertical' })]: {
         flexDirection: 'column',
@@ -65,12 +81,12 @@ const classNames = createStyles({
         gap: tokens.label.verticalSpace,
       },
       [getModifierSelector<IModifier>({
-        'content-position': 'top',
+        'label-position': 'top',
       })]: {
         paddingTop: tokens.label.verticalSpace,
       },
       [getModifierSelector<IModifier>({
-        'content-position': 'bottom',
+        'label-position': 'bottom',
       })]: {
         paddingBottom: tokens.label.verticalSpace,
       },
@@ -146,7 +162,7 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>(
         {
           orientation: 'horizontal',
-          'content-position': 'middle',
+          'label-position': 'middle',
         },
         root,
       )]: {

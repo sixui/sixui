@@ -17,7 +17,8 @@ export const Divider = componentFactory<IDividerFactory>(
       style,
       variant,
       orientation = 'horizontal',
-      contentPosition = 'middle',
+      labelPosition = 'middle',
+      verticalAlign,
       inset,
       insetStart,
       insetEnd,
@@ -40,7 +41,8 @@ export const Divider = componentFactory<IDividerFactory>(
         orientation,
         'inset-start': hasInsetStart,
         'inset-end': hasInsetEnd,
-        'content-position': contentPosition,
+        'label-position': labelPosition,
+        'vertical-align': verticalAlign,
       },
     });
 
@@ -53,12 +55,12 @@ export const Divider = componentFactory<IDividerFactory>(
     return (
       <Box {...getStyles('root')} ref={forwardedRef} {...other}>
         {label ? (
-          contentPosition === 'top' ? (
+          labelPosition === 'top' ? (
             <>
               {renderText()}
               <div {...getStyles(['line', 'line$end'])} />
             </>
-          ) : contentPosition === 'bottom' ? (
+          ) : labelPosition === 'bottom' ? (
             <>
               <div {...getStyles(['line', 'line$start'])} />
               {renderText()}

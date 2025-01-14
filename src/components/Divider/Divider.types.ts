@@ -24,7 +24,8 @@ export interface IDividerOwnProps {
 
   children?: React.ReactNode;
   label?: React.ReactNode;
-  contentPosition?: 'top' | 'middle' | 'bottom';
+  labelPosition?: 'top' | 'middle' | 'bottom';
+  verticalAlign?: 'middle';
 }
 
 export interface IDividerProps
