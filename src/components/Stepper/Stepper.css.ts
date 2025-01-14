@@ -1,9 +1,19 @@
+import { createTheme } from '@vanilla-extract/css';
+
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
+import { px } from '~/helpers/styles/px';
+import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 
 type IModifier = 'orientation' | 'label-position';
+
+const [tokensClassName, tokens] = createTheme({
+  connector: {
+    space: px(space(2)),
+  },
+});
 
 const classNames = createStyles({
   root: {
@@ -28,9 +38,11 @@ const classNames = createStyles({
 export type IStepperThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   modifier: IModifier;
+  tokens: typeof tokens;
 }>;
 
 export const stepperTheme = componentThemeFactory<IStepperThemeFactory>({
   classNames,
-  tokens: undefined,
+  tokensClassName,
+  tokens,
 });

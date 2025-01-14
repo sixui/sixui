@@ -1,4 +1,4 @@
-import { createTheme } from '@vanilla-extract/css';
+import { createTheme, fallbackVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
@@ -11,14 +11,13 @@ import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { Button } from '../Button';
+import { StepIndicator } from '../StepIndicator';
 import { cssLayers, themeTokens } from '../ThemeProvider';
+import { stepperTheme } from '../Stepper/Stepper.css';
 
 type IModifier = 'orientation' | 'label-position';
 
 const DENSITY = px(getDensity({ min: -2, max: 0 }));
-
-// FIXME:
-const stepIndicatorSize = '24px';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
@@ -30,7 +29,6 @@ const [tokensClassName, tokens] = createTheme({
     // For a proper rendering, should be at least (StepConnector.thickness / 2).
     bottomSpace: px(space(2)),
     shape: themeTokens.shape.corner.md,
-    connectorSpace: px(space(2)),
   },
   label: {
     typography: themeTokens.typeScale.label.lg,
@@ -66,9 +64,13 @@ const [tokensClassName, tokens] = createTheme({
     typography: themeTokens.typeScale.body.md,
     color: themeTokens.colorScheme.onSurface,
   },
+  indicator: {
+    size: px(24),
+  },
   connector: {
     shape: themeTokens.shape.corner.full,
     minLength: px(space(4)),
+    space: fallbackVar(stepperTheme.tokens.connector.space, px(space(2))),
   },
 });
 
@@ -93,9 +95,9 @@ const classNames = createStyles({
     alignItems: 'center',
     minHeight: calc.add(
       tokens.container.topSpace,
-      stepIndicatorSize,
+      tokens.indicator.size,
       tokens.container.bottomSpace,
-      calc.multiply(tokens.container.connectorSpace, 2),
+      calc.multiply(tokens.connector.space, 2),
     ),
 
     selectors: {
@@ -142,6 +144,13 @@ const classNames = createStyles({
       },
     },
   }),
+  indicator: {
+    vars: createTokensVars(StepIndicator.theme.tokens, {
+      container: {
+        size: tokens.indicator.size,
+      },
+    }),
+  },
   supportingText: {
     ...getTypographyStyles(tokens.supportingText.typography),
     color: tokens.supportingText.color.normal,
@@ -193,7 +202,7 @@ const classNames = createStyles({
             calc.divide(
               calc.add(
                 tokens.container.topSpace,
-                stepIndicatorSize,
+                tokens.indicator.size,
                 tokens.container.bottomSpace,
               ),
               2,
@@ -201,17 +210,17 @@ const classNames = createStyles({
 
             calc.add(
               tokens.container.topSpace,
-              calc.divide(stepIndicatorSize, 2),
+              calc.divide(tokens.indicator.size, 2),
             ),
           ),
         )})`,
         marginLeft: calc.add(
           calc.negate(tokens.container.trailingSpace),
-          tokens.container.connectorSpace,
+          tokens.connector.space,
         ),
         marginRight: calc.add(
           calc.negate(tokens.container.leadingSpace),
-          tokens.container.connectorSpace,
+          tokens.connector.space,
         ),
       },
       [getModifierSelector<IModifier>(
@@ -230,19 +239,19 @@ const classNames = createStyles({
               calc.divide(
                 calc.add(
                   tokens.container.leadingSpace,
-                  stepIndicatorSize,
+                  tokens.indicator.size,
                   tokens.container.trailingSpace,
                 ),
                 2,
               ),
               calc.add(
                 tokens.container.leadingSpace,
-                calc.divide(stepIndicatorSize, 2),
+                calc.divide(tokens.indicator.size, 2),
               ),
             ),
           ),
-          calc.divide(stepIndicatorSize, 2),
-          tokens.container.connectorSpace,
+          calc.divide(tokens.indicator.size, 2),
+          tokens.connector.space,
         ),
         right: calc.add(
           '-50%',
@@ -251,18 +260,18 @@ const classNames = createStyles({
               calc.divide(
                 calc.add(
                   tokens.container.leadingSpace,
-                  stepIndicatorSize,
+                  tokens.indicator.size,
                   tokens.container.trailingSpace,
                 ),
                 2,
               ),
               calc.add(
                 tokens.container.leadingSpace,
-                calc.divide(stepIndicatorSize, 2),
+                calc.divide(tokens.indicator.size, 2),
               ),
             ),
-            calc.divide(stepIndicatorSize, 2),
-            tokens.container.connectorSpace,
+            calc.divide(tokens.indicator.size, 2),
+            tokens.connector.space,
           ),
         ),
       },
@@ -279,15 +288,18 @@ const classNames = createStyles({
         calc.divide(
           calc.add(
             tokens.container.topSpace,
-            stepIndicatorSize,
+            tokens.indicator.size,
             tokens.container.bottomSpace,
           ),
           2,
         ),
-        calc.add(tokens.container.topSpace, calc.divide(stepIndicatorSize, 2)),
+        calc.add(
+          tokens.container.topSpace,
+          calc.divide(tokens.indicator.size, 2),
+        ),
       ),
-      calc.divide(stepIndicatorSize, 2),
-      tokens.container.connectorSpace,
+      calc.divide(tokens.indicator.size, 2),
+      tokens.connector.space,
     ),
     borderBottomLeftRadius: tokens.connector.shape,
     borderBottomRightRadius: tokens.connector.shape,
@@ -303,19 +315,19 @@ const classNames = createStyles({
           calc.divide(
             calc.add(
               tokens.container.topSpace,
-              stepIndicatorSize,
+              tokens.indicator.size,
               tokens.container.bottomSpace,
             ),
             2,
           ),
           calc.add(
             tokens.container.topSpace,
-            calc.divide(stepIndicatorSize, 2),
+            calc.divide(tokens.indicator.size, 2),
           ),
         ),
       ),
-      calc.divide(stepIndicatorSize, 2),
-      tokens.container.connectorSpace,
+      calc.divide(tokens.indicator.size, 2),
+      tokens.connector.space,
     ),
     bottom: 0,
     borderBottomLeftRadius: tokens.connector.shape,
@@ -335,7 +347,7 @@ const classNames = createStyles({
     ...getTypographyStyles(tokens.content.typography),
     paddingLeft: calc.add(
       tokens.container.leadingSpace,
-      stepIndicatorSize,
+      tokens.indicator.size,
       px(space(2)),
     ),
     paddingRight: tokens.container.trailingSpace,

@@ -142,6 +142,7 @@ export const Step = componentFactory<IStepFactory>((props, forwardedRef) => {
               ref={forwardedRef}
               start={
                 <StepIndicator
+                  {...getStyles('indicator')}
                   label={index + 1}
                   icon={icon}
                   hasError={hasError}

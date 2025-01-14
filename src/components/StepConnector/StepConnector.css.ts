@@ -9,6 +9,7 @@ import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { Divider } from '../Divider';
 import { cssLayers, themeTokens } from '../ThemeProvider';
+import { stepTheme } from '../Step/Step.css';
 
 type IModifier = 'orientation' | 'step-label-position' | 'completed';
 
@@ -27,11 +28,6 @@ const [tokensClassName, tokens] = createTheme({
     },
   },
 });
-
-// FIXME:
-const topSpace = '8px';
-const leadingSpace = '8px';
-const stepIndicatorSize = '24px';
 
 const classNames = createStyles({
   root: {
@@ -61,8 +57,8 @@ const classNames = createStyles({
       })]: {
         marginTop: calc.add(
           calc.negate(calc.divide(tokens.stroke, 2)),
-          topSpace,
-          calc.divide(stepIndicatorSize, 2),
+          stepTheme.tokens.container.topSpace,
+          calc.divide(stepTheme.tokens.indicator.size, 2),
         ),
       },
       [getModifierSelector<IModifier>({
@@ -71,8 +67,8 @@ const classNames = createStyles({
       })]: {
         marginLeft: calc.add(
           calc.negate(calc.divide(tokens.stroke, 2)),
-          leadingSpace,
-          calc.divide(stepIndicatorSize, 2),
+          stepTheme.tokens.container.leadingSpace,
+          calc.divide(stepTheme.tokens.indicator.size, 2),
         ),
       },
       [getModifierSelector<IModifier>({

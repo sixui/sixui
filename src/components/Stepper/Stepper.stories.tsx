@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { createSequence } from '@olivierpascal/helpers';
+import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import type { IStepProps } from '../Step';
 import type { IStepperProps } from './Stepper.types';
@@ -100,7 +101,9 @@ export const Horizontal: IStory = {
               supportingText: index === 2 ? 'Supporting text' : undefined,
               children: 'Lorem ipsum dolor sit amet.',
               nextConnector: <Stepper.Connector />,
-              // FIXME: sx: styles.step$noSpace,
+              style: assignInlineVars({
+                [Stepper.theme.tokens.connector.space]: '0px',
+              }),
             })),
             labelPosition: 'right',
           },
@@ -121,7 +124,9 @@ export const Horizontal: IStory = {
             children: makeSteps((index) => ({
               label: 'Lorem ipsum',
               supportingText: index % 2 === 0 ? undefined : 'Supporting text',
-              // FIXME: styles.step$noSpace,
+              style: assignInlineVars({
+                [Stepper.theme.tokens.connector.space]: '0px',
+              }),
             })),
             labelPosition: 'bottom',
           },
@@ -132,8 +137,8 @@ export const Horizontal: IStory = {
   ),
   args: {
     ...defaultArgs,
-    miw: '$160',
-  },
+    w: '$160',
+  } as IStepperProps,
 };
 
 export const Vertical: IStory = {
@@ -227,7 +232,6 @@ export const Vertical: IStory = {
           },
         },
         {
-          // FIXME:
           legend: 'No space',
           props: {
             children: makeSteps(
@@ -262,6 +266,9 @@ export const Vertical: IStory = {
               }),
               3,
             ),
+            style: assignInlineVars({
+              [Stepper.theme.tokens.connector.space]: '0px',
+            }),
           },
         },
       ]}
@@ -273,7 +280,8 @@ export const Vertical: IStory = {
     ...defaultArgs,
     orientation: 'vertical',
     miw: '$32',
-  },
+    h: '$128',
+  } as IStepperProps,
 };
 
 export default meta;
