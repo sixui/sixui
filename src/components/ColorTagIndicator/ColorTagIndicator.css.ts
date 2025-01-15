@@ -22,7 +22,7 @@ const [tokensClassName, tokens] = createTheme({
   container: {
     minWidth: px(40),
     height: px(40),
-    shape: themeTokens.shape.corner.circle,
+    shape: px(themeTokens.shape.corner.circle),
     color: {
       normal: themeTokens.colorScheme.surfaceContainerHighest,
       empty: 'transparent',

@@ -8,7 +8,10 @@ import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { IconButton } from '../IconButton';
 import { Paper } from '../Paper';
 import { SvgIcon } from '../SvgIcon';
-import { sideSheetContentTheme } from './SideSheetContent.css';
+import {
+  sideSheetContentTheme,
+  sideSheetContentThemeVariants,
+} from './SideSheetContent.css';
 
 const COMPONENT_NAME = 'SideSheetContent';
 
@@ -43,6 +46,7 @@ export const SideSheetContent = componentFactory<ISideSheetContentFactory>(
       style,
       variant,
       theme: sideSheetContentTheme,
+      themeVariants: sideSheetContentThemeVariants,
       modifiers: {
         anchor,
         'with-divider': divider,
@@ -60,55 +64,57 @@ export const SideSheetContent = componentFactory<ISideSheetContentFactory>(
 
     return (
       <Paper {...getStyles('root')} ref={forwardedRef} {...other}>
-        {hasHeader && (
-          <div {...getStyles('headerContainer')}>
-            {(leadingActions ||
-              headline ||
-              trailingActions ||
-              showCloseButton) && (
-              <div {...getStyles('header')}>
-                {leadingActions && (
-                  <div {...getStyles('actions')}>{leadingActions}</div>
-                )}
-                {headline && <div {...getStyles('headline')}>{headline}</div>}
-                {(trailingActions || showCloseButton) && (
+        <div {...getStyles('inner')}>
+          {hasHeader && (
+            <div {...getStyles('headerContainer')}>
+              {(leadingActions ||
+                headline ||
+                trailingActions ||
+                showCloseButton) && (
+                <div {...getStyles('header')}>
+                  {leadingActions && (
+                    <div {...getStyles('actions')}>{leadingActions}</div>
+                  )}
+                  {headline && <div {...getStyles('headline')}>{headline}</div>}
+                  {(trailingActions || showCloseButton) && (
+                    <div {...getStyles('actions')}>
+                      {trailingActions}
+                      {showCloseButton && (
+                        <IconButton icon={closeIcon} onClick={onClose} />
+                      )}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {header}
+            </div>
+          )}
+
+          {children && (
+            <div {...getStyles('content')}>
+              {isFunction(children)
+                ? children({ close: (event) => onClose?.(event) })
+                : children}
+            </div>
+          )}
+
+          {hasFooter && (
+            <div {...getStyles('footerContainer')}>
+              <div {...getStyles('footer')}>
+                {bottomActions && (
                   <div {...getStyles('actions')}>
-                    {trailingActions}
-                    {showCloseButton && (
-                      <IconButton icon={closeIcon} onClick={onClose} />
-                    )}
+                    {isFunction(bottomActions)
+                      ? bottomActions({ close: (event) => onClose?.(event) })
+                      : bottomActions}
                   </div>
                 )}
               </div>
-            )}
 
-            {header}
-          </div>
-        )}
-
-        {children && (
-          <div {...getStyles('content')}>
-            {isFunction(children)
-              ? children({ close: (event) => onClose?.(event) })
-              : children}
-          </div>
-        )}
-
-        {hasFooter && (
-          <div {...getStyles('footerContainer')}>
-            <div {...getStyles('footer')}>
-              {bottomActions && (
-                <div {...getStyles('actions')}>
-                  {isFunction(bottomActions)
-                    ? bottomActions({ close: (event) => onClose?.(event) })
-                    : bottomActions}
-                </div>
-              )}
+              {footer}
             </div>
-
-            {footer}
-          </div>
-        )}
+          )}
+        </div>
       </Paper>
     );
   },

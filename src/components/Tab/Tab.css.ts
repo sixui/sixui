@@ -23,7 +23,7 @@ const DENSITY = px(getDensity({ min: -4, max: 0 }));
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   container: {
-    shape: themeTokens.shape.corner.none,
+    shape: px(themeTokens.shape.corner.none),
     height: {
       normal: px(48),
       withIconAndLabelText: px(48),
@@ -329,7 +329,7 @@ export const tabThemeVariants = {
     },
     focusRing: {
       vars: createTokensVars(FocusRing.theme.tokens, {
-        shape: themeTokens.shape.corner.sm,
+        shape: px(themeTokens.shape.corner.sm),
         offset: {
           inward: `0 0 ${px(calc.add(themeTokens.outline.width.md, '1px'))} 0`,
         },
@@ -363,7 +363,7 @@ export const tabThemeVariants = {
     },
     focusRing: {
       vars: createTokensVars(FocusRing.theme.tokens, {
-        shape: themeTokens.shape.corner.sm,
+        shape: px(themeTokens.shape.corner.sm),
         offset: {
           inward: `0 0 ${px(calc.add(themeTokens.outline.width.sm, '1px'))} 0`,
         },

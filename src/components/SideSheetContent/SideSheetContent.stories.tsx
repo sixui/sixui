@@ -1,6 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
-import type { ISideSheetContentProps } from './SideSheetContent.types';
+import type {
+  ISideSheetContentProps,
+  ISideSheetContentVariant,
+} from './SideSheetContent.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Placeholder } from '../Placeholder';
@@ -38,12 +42,29 @@ const defaultArgs = {} satisfies Partial<ISideSheetContentProps>;
 
 const SideSheetContentShowcase = componentShowcaseFactory(SideSheetContent);
 
-export const Basic: IStory = {
-  render: (props) => <SideSheetContentShowcase props={props} fullWidth />,
+export const Variants: IStory = {
+  render: (props) => (
+    <SideSheetContentShowcase
+      props={props}
+      cols={(
+        [
+          'standard',
+          'modal',
+          'detachedModal',
+        ] as Array<ISideSheetContentVariant>
+      ).map((variant) => ({
+        props: {
+          variant,
+        },
+        legend: capitalizeFirstLetter(variant),
+      }))}
+      fullWidth
+    />
+  ),
   args: {
     ...defaultArgs,
     divider: true,
-    w: '$80',
+    w: '$72',
     h: '$96',
     headline: 'Headline',
     onClose: (args) => void sbHandleEvent('onClose', args),

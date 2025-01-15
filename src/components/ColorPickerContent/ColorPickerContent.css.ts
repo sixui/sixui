@@ -20,7 +20,7 @@ const classNames = createStyles({
       container: {
         color: themeTokens.colorScheme.surfaceContainer,
         elevation: elevationLevelPreset[2],
-        shape: themeTokens.shape.corner.xs,
+        shape: px(themeTokens.shape.corner.xs),
       },
     }),
   },

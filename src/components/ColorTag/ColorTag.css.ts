@@ -17,7 +17,7 @@ type IModifier = 'disabled';
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   container: {
-    shape: themeTokens.shape.corner.circle,
+    shape: px(themeTokens.shape.corner.circle),
   },
   icon: {
     size: px(18),

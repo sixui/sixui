@@ -1,4 +1,4 @@
-import { createTheme, fallbackVar } from '@vanilla-extract/css';
+import { createTheme } from '@vanilla-extract/css';
 
 import type { IInteraction } from '~/hooks/useInteractions';
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
@@ -18,13 +18,7 @@ export const [tokensClassName, tokens] = createTheme({
     color: 'inherit',
     opacity: '1',
     elevation: elevationLevelPreset[0],
-    shape: themeTokens.shape.corner.none,
-    shapes: {
-      topLeft: 'inherit',
-      topRight: 'inherit',
-      bottomRight: 'inherit',
-      bottomLeft: 'inherit',
-    },
+    shape: px(themeTokens.shape.corner.none),
   },
   outline: {
     style: 'solid',
@@ -37,22 +31,7 @@ export const [tokensClassName, tokens] = createTheme({
 const classNames = createStyles({
   root: {
     position: 'relative',
-    borderTopLeftRadius: fallbackVar(
-      tokens.container.shape,
-      tokens.container.shapes.topLeft,
-    ),
-    borderTopRightRadius: fallbackVar(
-      tokens.container.shape,
-      tokens.container.shapes.topRight,
-    ),
-    borderBottomRightRadius: fallbackVar(
-      tokens.container.shape,
-      tokens.container.shapes.bottomRight,
-    ),
-    borderBottomLeftRadius: fallbackVar(
-      tokens.container.shape,
-      tokens.container.shapes.bottomLeft,
-    ),
+    borderRadius: tokens.container.shape,
     zIndex: 0,
 
     selectors: {

@@ -297,13 +297,7 @@ const classNames = createStyles({
 
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {
-        shape: 'unset',
-        shapes: {
-          topLeft: px(themeTokens.shape.corner.xs),
-          topRight: px(themeTokens.shape.corner.xs),
-          bottomRight: px(themeTokens.shape.corner.none),
-          bottomLeft: px(themeTokens.shape.corner.none),
-        },
+        shape: `${px(themeTokens.shape.corner.xs)} ${px(themeTokens.shape.corner.xs)} 0 0`,
       },
     }),
     selectors: {

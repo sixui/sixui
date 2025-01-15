@@ -25,7 +25,7 @@ const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   container: {
     size: px(24),
-    shape: themeTokens.shape.corner.circle,
+    shape: px(themeTokens.shape.corner.circle),
     color: {
       inactive: themeTokens.colorScheme.onSurface,
       active: themeTokens.colorScheme.primary,

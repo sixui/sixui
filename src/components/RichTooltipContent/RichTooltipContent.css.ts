@@ -19,7 +19,7 @@ const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   container: {
     color: themeTokens.colorScheme.surfaceContainer,
-    shape: themeTokens.shape.corner.md,
+    shape: px(themeTokens.shape.corner.md),
     maxWidth: px(315),
     elevation: elevationLevelPreset[2],
     topSpace: px(space(3)),

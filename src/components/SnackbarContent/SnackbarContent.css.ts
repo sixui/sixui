@@ -20,7 +20,7 @@ const [tokensClassName, tokens] = createTheme({
     space: px(space(4)),
     color: themeTokens.colorScheme.onSurface,
     elevation: elevationLevelPreset[3],
-    shape: themeTokens.shape.corner.xs,
+    shape: px(themeTokens.shape.corner.xs),
     minWidth: px(288),
     minHeight: px(48),
   },

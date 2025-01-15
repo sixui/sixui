@@ -13,8 +13,8 @@ const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   container: {
     color: themeTokens.colorScheme.primary,
-    size: '10px',
-    shape: themeTokens.shape.corner.circle,
+    size: px(10),
+    shape: px(themeTokens.shape.corner.circle),
     zIndex: '200',
   },
 });

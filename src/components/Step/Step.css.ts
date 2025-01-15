@@ -28,7 +28,7 @@ const [tokensClassName, tokens] = createTheme({
     topSpace: px(space(2)),
     // For a proper rendering, should be at least (StepConnector.thickness / 2).
     bottomSpace: px(space(2)),
-    shape: themeTokens.shape.corner.md,
+    shape: px(themeTokens.shape.corner.md),
   },
   label: {
     typography: themeTokens.typeScale.label.lg,
@@ -68,7 +68,7 @@ const [tokensClassName, tokens] = createTheme({
     size: px(24),
   },
   connector: {
-    shape: themeTokens.shape.corner.full,
+    shape: px(themeTokens.shape.corner.full),
     minLength: px(space(4)),
     space: fallbackVar(stepperTheme.tokens.connector.space, px(space(2))),
   },

@@ -17,7 +17,7 @@ type IModifier = IInteraction | 'disabled';
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   container: {
-    shape: themeTokens.shape.corner.md,
+    shape: px(themeTokens.shape.corner.md),
     color: {
       normal: themeTokens.colorScheme.surface,
       focused: 'inherit',

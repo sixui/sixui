@@ -149,7 +149,7 @@ export const skeletonThemeVariants = {
 
       vars: createTokensVars(PaperBase.theme.tokens, {
         container: {
-          shape: themeTokens.shape.corner.circle,
+          shape: px(themeTokens.shape.corner.circle),
         },
       }),
     },

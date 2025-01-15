@@ -19,7 +19,7 @@ const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   container: {
     color: themeTokens.colorScheme.surface,
-    shape: themeTokens.shape.corner.none,
+    shape: px(themeTokens.shape.corner.none),
     elevation: elevationLevelPreset[0],
   },
   header: {
@@ -55,9 +55,6 @@ const [tokensClassName, tokens] = createTheme({
 
 const classNames = createStyles({
   root: {
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100%',
     flexShrink: 0,
 
     vars: createTokensVars(PaperBase.theme.tokens, {
@@ -90,6 +87,13 @@ const classNames = createStyles({
         borderLeftStyle: 'solid',
       },
     },
+  },
+  inner: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    overflow: 'hidden',
+    borderRadius: 'inherit',
   },
   headerContainer: {
     display: 'flex',
@@ -166,6 +170,76 @@ export const sideSheetContentTheme =
 
 export const sideSheetContentThemeVariants = {
   standard: createStyles(),
-  modal: createStyles(),
-  detachedModal: createStyles(),
+  modal: createStyles({
+    root: {
+      vars: createTokensVars(tokens, {
+        container: {
+          color: themeTokens.colorScheme.surfaceContainerLow,
+          elevation: elevationLevelPreset[1],
+        },
+        divider: {
+          width: themeTokens.outline.width.none,
+        },
+        header: {
+          leadingSpace: {
+            withIcons: px(space(4)),
+          },
+        },
+      }),
+
+      selectors: {
+        [getModifierSelector<IModifier>('anchor', 'left')]: {
+          vars: createTokensVars(tokens, {
+            container: {
+              shape: `${themeTokens.shape.corner.none} ${themeTokens.shape.corner.lg} ${themeTokens.shape.corner.none} ${themeTokens.shape.corner.lg}`,
+            },
+          }),
+        },
+        [getModifierSelector<IModifier>('anchor', 'right')]: {
+          vars: createTokensVars(tokens, {
+            container: {
+              shape: `${themeTokens.shape.corner.lg} ${themeTokens.shape.corner.none} ${themeTokens.shape.corner.lg} ${themeTokens.shape.corner.none}`,
+            },
+          }),
+        },
+      },
+    },
+  }),
+  detachedModal: createStyles({
+    root: {
+      vars: createTokensVars(tokens, {
+        container: {
+          color: themeTokens.colorScheme.surfaceContainerLow,
+          elevation: elevationLevelPreset[1],
+        },
+        divider: {
+          width: themeTokens.outline.width.none,
+        },
+        header: {
+          leadingSpace: {
+            withIcons: px(space(4)),
+          },
+        },
+      }),
+
+      selectors: {
+        [getModifierSelector<IModifier>(['with-divider', { anchor: 'left' }])]:
+          {
+            vars: createTokensVars(tokens, {
+              container: {
+                shape: `0 ${px(themeTokens.shape.corner.lg)} ${px(themeTokens.shape.corner.lg)} 0`,
+              },
+            }),
+          },
+        [getModifierSelector<IModifier>(['with-divider', { anchor: 'right' }])]:
+          {
+            vars: createTokensVars(tokens, {
+              container: {
+                shape: `${px(themeTokens.shape.corner.lg)} 0 0 ${px(themeTokens.shape.corner.lg)}`,
+              },
+            }),
+          },
+      },
+    },
+  }),
 };
