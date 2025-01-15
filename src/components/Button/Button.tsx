@@ -72,8 +72,8 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       modifiers: {
         disabled: disabledOrReadOnly,
         loading,
-        'with-leading-slot': !!hasStartSlot,
-        'with-trailing-slot': !!hasEndSlot,
+        'with-start-slot': !!hasStartSlot,
+        'with-end-slot': !!hasEndSlot,
         'with-children': !!children,
         'icon-animation': iconAnimation,
       },

@@ -2,16 +2,11 @@ import { createTheme } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { getDensity } from '~/helpers/styles/getDensity';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { Button } from '../Button';
 import { cssLayers, themeTokens } from '../ThemeProvider';
-
-const DENSITY = px(getDensity({ min: -1, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
@@ -21,22 +16,7 @@ const [tokensClassName, tokens] = createTheme({
   separator: {
     color: themeTokens.colorScheme.onSurface,
     size: themeTokens.typeScale.body.md.size,
-  },
-  expandButton: {
-    container: {
-      shape: px(2),
-      color: themeTokens.colorScheme.surfaceContainer,
-      width: px(24),
-      height: calc.add(px(16), DENSITY),
-      leadingSpace: px(1),
-      trailingSpace: px(1),
-    },
-    icon: {
-      size: px(18),
-    },
-    label: {
-      color: themeTokens.colorScheme.onSurface,
-    },
+    space: px(space(2)),
   },
 });
 
@@ -44,45 +24,29 @@ const classNames = createStyles({
   root: {
     display: 'flex',
     flexDirection: 'row',
-    gap: px(space(2)),
+    alignItems: 'center',
+    gap: tokens.separator.space,
     listStyle: 'none',
   },
   item: {
     color: tokens.item.color,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  more: {
+    height: '0',
+    display: 'flex',
+    alignContent: 'center',
+    alignItems: 'center',
+    marginLeft: calc.negate(px(space(2))),
+    marginRight: calc.negate(px(space(2))),
   },
   separator: {
     color: tokens.separator.color,
     display: 'flex',
     userSelect: 'none',
     fontSize: tokens.separator.size,
-  },
-  expandButton: {
-    minWidth: 'unset',
-    width: tokens.expandButton.container.width,
-
-    vars: createTokensVars(Button.theme.tokens, {
-      container: {
-        shape: tokens.expandButton.container.shape,
-        color: {
-          normal: tokens.expandButton.container.color,
-        },
-        height: tokens.expandButton.container.height,
-        leadingSpace: {
-          withStartSlot: tokens.expandButton.container.leadingSpace,
-        },
-        trailingSpace: {
-          withStartSlot: tokens.expandButton.container.trailingSpace,
-        },
-      },
-      icon: {
-        size: tokens.expandButton.icon.size,
-      },
-      label: {
-        color: {
-          normal: tokens.expandButton.label.color,
-        },
-      },
-    }),
   },
 });
 

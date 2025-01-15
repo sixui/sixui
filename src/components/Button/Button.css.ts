@@ -22,8 +22,8 @@ type IModifier =
   | IInteraction
   | 'disabled'
   | 'loading'
-  | 'with-leading-slot'
-  | 'with-trailing-slot'
+  | 'with-start-slot'
+  | 'with-end-slot'
   | 'with-children'
   | 'icon-animation';
 
@@ -257,20 +257,15 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>(['with-leading-slot', 'with-children'])]:
-        {
-          paddingInlineStart: tokens.container.leadingSpace.withStartSlot,
-          paddingInlineEnd: tokens.container.trailingSpace.withStartSlot,
-        },
-      [getModifierSelector<IModifier>(['with-trailing-slot', 'with-children'])]:
-        {
-          paddingInlineStart: tokens.container.leadingSpace.withEndSlot,
-          paddingInlineEnd: tokens.container.trailingSpace.withEndSlot,
-        },
-      [getModifierSelector<IModifier>([
-        'with-leading-slot',
-        'with-trailing-slot',
-      ])]: {
+      [getModifierSelector<IModifier>('with-start-slot')]: {
+        paddingInlineStart: tokens.container.leadingSpace.withStartSlot,
+        paddingInlineEnd: tokens.container.trailingSpace.withStartSlot,
+      },
+      [getModifierSelector<IModifier>('with-end-slot')]: {
+        paddingInlineStart: tokens.container.leadingSpace.withEndSlot,
+        paddingInlineEnd: tokens.container.trailingSpace.withEndSlot,
+      },
+      [getModifierSelector<IModifier>(['with-start-slot', 'with-end-slot'])]: {
         paddingInlineStart: tokens.container.leadingSpace.withStartSlot,
         paddingInlineEnd: tokens.container.trailingSpace.withEndSlot,
       },

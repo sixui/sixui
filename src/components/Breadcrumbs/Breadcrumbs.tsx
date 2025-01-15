@@ -9,7 +9,7 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
-import { Button } from '../Button';
+import { IconButton } from '../IconButton';
 import { SvgIcon } from '../SvgIcon';
 import { breadcrumbsTheme } from './Breadcrumbs.css';
 
@@ -97,13 +97,11 @@ export const Breadcrumbs = componentFactory<IBreadcrumbsFactory>(
 
       return [
         ...items.slice(0, itemCountBeforeCollapse),
-        <li key="ellipsis" {...getStyles('item')}>
-          <Button
-            {...getStyles('expandButton')}
+        <li key="ellipsis" {...getStyles(['item', 'more'])}>
+          <IconButton
             aria-label={expandText}
-            key="ellipsis"
             onClick={handleClickExpand}
-            leadingIcon={expandIcon}
+            icon={expandIcon}
           />
         </li>,
         ...items.slice(items.length - itemCountAfterCollapse, items.length),
