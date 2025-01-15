@@ -191,12 +191,6 @@ export type IPopoverBaseOwnProps<TForwardedProps extends object = object> =
     closeEvents?: IPopoverCloseEvents | false;
 
     /**
-     * Whether the <body> is prevented from scrolling while the overlay is
-     * rendered.
-     */
-    lockScroll?: boolean;
-
-    /**
      * Modal popovers interrupt interaction with the rest of the page being
      * inert, while non-modal popovers allow interaction with the rest of
      * the page.

@@ -95,7 +95,6 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       positioned,
       openEvents: openEventsProp,
       closeEvents: closeEventsProp,
-      lockScroll,
       modal,
       keepMounted,
       ...other
@@ -339,7 +338,11 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
                     floatingMotionProps,
                   )}
                 >
-                  <RemoveScroll enabled={!!lockScroll} {...removeScrollProps}>
+                  <RemoveScroll
+                    enabled={withScrim}
+                    style={{ display: 'contents' }}
+                    {...removeScrollProps}
+                  >
                     {isFunction(contentRenderer) ? (
                       contentRenderer({
                         parentProps: props,

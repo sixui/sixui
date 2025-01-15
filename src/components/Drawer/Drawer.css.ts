@@ -11,7 +11,7 @@ import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 
-type IModifier = 'side';
+type IModifier = 'side' | 'full-height';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
@@ -19,13 +19,11 @@ const [tokensClassName, tokens] = createTheme({
 });
 
 const classNames = createStyles({
-  root: {},
   content: ({ root }) => ({
     position: 'fixed',
+    display: 'flex',
     zIndex: themeTokens.zIndex.modal,
-    // FIXME: prop for full height or not
-    height: calc.subtract('100vh', calc.multiply(2, tokens.inset)),
-    border: '2px solid red',
+    maxHeight: calc.subtract('100vh', calc.multiply(2, tokens.inset)),
 
     selectors: {
       [getModifierSelector<IModifier>({ side: 'left' }, root)]: {
@@ -43,6 +41,9 @@ const classNames = createStyles({
         left: tokens.inset,
         right: tokens.inset,
         bottom: tokens.inset,
+      },
+      [getModifierSelector<IModifier>('full-height', root)]: {
+        height: '100%',
       },
     },
   }),

@@ -55,7 +55,6 @@ export const Dialog = polymorphicComponentFactory<IDialogFactory>(
           size: false,
         }}
         forwardProps
-        lockScroll
         {...other}
       />
     );

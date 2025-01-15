@@ -23,6 +23,7 @@ export const Drawer = componentFactory<IDrawerFactory>(
       side = 'left',
       children,
       disabled,
+      fullHeight,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -36,6 +37,7 @@ export const Drawer = componentFactory<IDrawerFactory>(
       theme: drawerTheme,
       modifiers: {
         side,
+        'full-height': fullHeight,
       },
     });
 

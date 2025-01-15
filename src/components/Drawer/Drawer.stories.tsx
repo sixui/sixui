@@ -25,9 +25,7 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {
-  children: 'Drawer',
-} satisfies Partial<IDrawerProps>;
+const defaultArgs = {} satisfies Partial<IDrawerProps>;
 
 type IDrawerDemoProps = IOmit<IDrawerProps, 'children'>;
 
@@ -37,7 +35,7 @@ const DrawerDemo: React.FC<IDrawerDemoProps> = (props) => {
   return (
     <Drawer {...other}>
       {({ close }) => (
-        <Paper p="$4" surface="$surface" grow={1} data-test="xxxx">
+        <Paper p="$4" surface="$surface" grow={1}>
           {/* FIXME: This is a hack to prevent the first focusable element
                     from being focused when the side sheet is opened. */}
           {/* <button
@@ -83,6 +81,7 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
           opened={leftOpened}
           onClose={leftActions.close}
           side="left"
+          fullHeight
         />
         <DrawerDemo
           {...props}
@@ -97,6 +96,7 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
           opened={rightOpened}
           onClose={rightActions.close}
           side="right"
+          fullHeight
         />
         <DrawerDemo
           {...props}
