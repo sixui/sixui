@@ -62,30 +62,35 @@ export const SideSheetContent = componentFactory<ISideSheetContentFactory>(
         <div {...getStyles('inner')}>
           {hasHeader && (
             <div {...getStyles('headerContainer')}>
-              <div {...getStyles('header')}>
-                {leadingActions && (
-                  <div {...getStyles('actions')}>{leadingActions}</div>
-                )}
-                {headline && <div {...getStyles('headline')}>{headline}</div>}
-                {(trailingActions || showCloseButton) && (
-                  <div {...getStyles('actions')}>
-                    {trailingActions}
-                    <IconButton icon={closeIcon} onClick={onClose} />
-                  </div>
-                )}
-              </div>
+              {(leadingActions ||
+                headline ||
+                trailingActions ||
+                showCloseButton) && (
+                <div {...getStyles('header')}>
+                  {leadingActions && (
+                    <div {...getStyles('actions')}>{leadingActions}</div>
+                  )}
+                  {headline && <div {...getStyles('headline')}>{headline}</div>}
+                  {(trailingActions || showCloseButton) && (
+                    <div {...getStyles('actions')}>
+                      {trailingActions}
+                      {showCloseButton && (
+                        <IconButton icon={closeIcon} onClick={onClose} />
+                      )}
+                    </div>
+                  )}
+                </div>
+              )}
 
               {header}
             </div>
           )}
 
-          {children && (
-            <div {...getStyles('content')}>
-              {isFunction(children)
-                ? children({ close: (event) => onClose?.(event) })
-                : children}
-            </div>
-          )}
+          <div {...getStyles('content')}>
+            {isFunction(children)
+              ? children({ close: (event) => onClose?.(event) })
+              : children}
+          </div>
 
           {(footer ?? bottomActions) && (
             <div {...getStyles('footerContainer')}>
