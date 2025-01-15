@@ -4,7 +4,7 @@ import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { drawerTheme, IDrawerThemeFactory } from './Drawer.css';
 
-export type IDrawerVariant = 'normal' | 'detached';
+export type IDrawerVariant = 'standard' | 'detached';
 
 export type IDrawerChildrenRenderProps = {
   close: (event?: React.MouseEvent) => void;
