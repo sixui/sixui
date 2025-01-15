@@ -11,19 +11,17 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {
-  children: 'SideSheetContent',
-} satisfies Partial<ISideSheetContentProps>;
+const defaultArgs = {} satisfies Partial<ISideSheetContentProps>;
 
-const variants: Array<IComponentPresentation<ISideSheetContentProps>> = [
-  { legend: 'None', props: { variant: false } },
-  { legend: 'Primary', props: { variant: 'primary' } },
-];
-
-const states: Array<IComponentPresentation<ISideSheetContentProps>> = [
-  { legend: 'Normal' },
-  { legend: 'Disabled', props: { disabled: true } },
-];
+const SideSheetContentFrame: React.FC<ISideSheetContentProps> = (props) => {
+  return (
+    <Frame importParentStyles sx={styles.frame}>
+      <div>
+        <SideSheetContent {...props} sx={styles.sideSheetContent} />
+      </div>
+    </Frame>
+  );
+};
 
 const SideSheetContentShowcase = componentShowcaseFactory(SideSheetContent);
 

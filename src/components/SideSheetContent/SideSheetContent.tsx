@@ -15,9 +15,19 @@ export const SideSheetContent = componentFactory<ISideSheetContentFactory>(
       className,
       styles,
       style,
-      variant,
+      variant = 'standard',
+      onClose,
       children,
-      disabled,
+      headline,
+      leadingActions,
+      trailingActions,
+      showCloseButton,
+      closeIcon,
+      header,
+      footer,
+      bottomActions,
+      anchor,
+      divider,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -30,13 +40,13 @@ export const SideSheetContent = componentFactory<ISideSheetContentFactory>(
       variant,
       theme: sideSheetContentTheme,
       modifiers: {
-        disabled,
+        anchor,
       },
     });
 
     return (
       <Box {...getStyles('root')} ref={forwardedRef} {...other}>
-        {children}
+        XX
       </Box>
     );
   },

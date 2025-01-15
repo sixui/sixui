@@ -1,43 +1,67 @@
 import { createTheme } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
+import type { ISideSheetContentVariant } from './SideSheetContent.types';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { cssLayers } from '../ThemeProvider';
+import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { PaperBase } from '../PaperBase';
+import { cssLayers, themeTokens } from '../ThemeProvider';
+import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
-type IModifier = 'disabled';
+type IModifier = 'anchor';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   container: {
-    color: {
-      normal: 'unset',
-      disabled: 'unset',
-    },
+    color: themeTokens.colorScheme.surface,
+    shape: themeTokens.shape.corner.none,
+    elevation: elevationLevelPreset[0],
   },
-  label: {
-    color: {
-      normal: 'unset',
-      disabled: 'unset',
+  header: {
+    height: px(64),
+    leadingSpace: {
+      normal: px(space(6)),
+      withIcons: px(space(6)),
     },
+    trailingSpace: px(space(6)),
+  },
+  headline: {
+    color: themeTokens.colorScheme.onSurfaceVariant,
+    typography: themeTokens.typeScale.title.lg,
+  },
+  divider: {
+    width: themeTokens.outline.width.xs,
+    color: themeTokens.colorScheme.outline,
+  },
+  topElements: {
+    gap: px(space(3)),
+  },
+  bottomActions: {
+    height: px(72),
+    topSpace: px(space(4)),
+    bottomSpace: px(space(6)),
+    gap: px(space(6)),
+  },
+  content: {
+    topSpace: px(space(4)),
+    bottomSpace: px(space(4)),
   },
 });
 
 const classNames = createStyles({
   root: {
-    backgroundColor: tokens.container.color.normal,
-    color: tokens.label.color.normal,
-    padding: px(space(2)),
+    flexShrink: 0,
 
-    selectors: {
-      [getModifierSelector<IModifier>('disabled')]: {
-        backgroundColor: tokens.container.color.disabled,
-        color: tokens.label.color.disabled,
+    vars: createTokensVars(PaperBase.theme.tokens, {
+      container: {
+        color: tokens.container.color,
+        shape: tokens.container.shape,
+        elevation: tokens.container.elevation,
       },
-    },
+    }),
   },
 });
 
@@ -45,6 +69,7 @@ export type ISideSheetContentThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   modifier: IModifier;
+  variant: ISideSheetContentVariant;
 }>;
 
 export const sideSheetContentTheme =
@@ -53,3 +78,9 @@ export const sideSheetContentTheme =
     tokensClassName,
     tokens,
   });
+
+export const sideSheetContentThemeVariants = {
+  standard: createStyles(),
+  modal: createStyles(),
+  detachedModal: createStyles(),
+};
