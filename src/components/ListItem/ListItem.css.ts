@@ -11,6 +11,7 @@ import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { FocusRing } from '../FocusRing';
 import { Item } from '../Item';
 import { PaperBase } from '../PaperBase';
 import { StateLayer } from '../StateLayer';
@@ -21,7 +22,9 @@ type IModifier =
   | 'selected'
   | 'disabled'
   | 'with-leading'
-  | 'with-trailing';
+  | 'with-trailing'
+  | 'with-start-slot'
+  | 'with-end-slot';
 
 const DENSITY = px(getDensity({ min: -6, max: 2 }));
 
@@ -53,8 +56,14 @@ const slotTokens = {
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   container: {
-    leadingSpace: px(space(4)),
-    trailingSpace: px(space(4)),
+    leadingSpace: {
+      normal: px(space(4)),
+      withStartSlot: px(space(2)),
+    },
+    trailingSpace: {
+      normal: px(space(4)),
+      withEndSlot: px(space(2)),
+    },
     topSpace: calc.add(px(space(2)), DENSITY),
     bottomSpace: calc.add(px(space(2)), DENSITY),
     color: {
@@ -106,10 +115,12 @@ const [tokensClassName, tokens] = createTheme({
     },
   },
   leadingImage: {
+    shape: 'unset',
     width: calc.add(px(56), DENSITY),
     height: calc.add(px(56), DENSITY),
   },
   leadingVideo: {
+    shape: 'unset',
     height: calc.add(px(64), DENSITY),
   },
 });
@@ -146,13 +157,18 @@ const classNames = createStyles({
       },
     },
   },
+  focusRing: {
+    vars: createTokensVars(FocusRing.theme.tokens, {
+      shape: tokens.container.shape,
+    }),
+  },
   item: ({ root }) => ({
     borderRadius: 'inherit',
     minHeight: tokens.container.minHeight,
     paddingTop: tokens.container.topSpace,
     paddingBottom: tokens.container.bottomSpace,
-    paddingInlineStart: tokens.container.leadingSpace,
-    paddingInlineEnd: tokens.container.trailingSpace,
+    paddingInlineStart: tokens.container.leadingSpace.normal,
+    paddingInlineEnd: tokens.container.trailingSpace.normal,
     WebkitTapHighlightColor: 'transparent',
 
     vars: createTokensVars(Item.theme.tokens, {
@@ -186,6 +202,12 @@ const classNames = createStyles({
     }),
 
     selectors: {
+      [getModifierSelector<IModifier>('with-start-slot', root)]: {
+        paddingInlineStart: tokens.container.leadingSpace.withStartSlot,
+      },
+      [getModifierSelector<IModifier>('with-end-slot', root)]: {
+        paddingInlineEnd: tokens.container.trailingSpace.withEndSlot,
+      },
       [getModifierSelector<IModifier>('with-leading', root)]: {
         paddingInlineStart: '0px',
       },
@@ -717,11 +739,13 @@ const classNames = createStyles({
     },
   }),
   image: {
+    borderRadius: tokens.leadingImage.shape,
     width: tokens.leadingImage.width,
     height: tokens.leadingImage.height,
     backgroundSize: 'cover',
   },
   video: {
+    borderRadius: tokens.leadingVideo.shape,
     height: tokens.leadingVideo.height,
     objectFit: 'cover',
   },
@@ -841,6 +865,81 @@ export const listItemVariants = {
               selected: '1',
             },
           },
+        },
+      }),
+    },
+  }),
+  navigation: createStyles({
+    root: {
+      vars: createTokensVars(tokens, {
+        container: {
+          leadingSpace: {
+            normal: px(space(6)),
+            withStartSlot: px(space(4)),
+          },
+          trailingSpace: {
+            normal: px(space(6)),
+            withEndSlot: px(space(4)),
+          },
+          shape: px(themeTokens.shape.corner.full),
+          color: {
+            normal: {
+              selected: themeTokens.colorScheme.secondaryContainer,
+            },
+          },
+        },
+        text: {
+          color: {
+            normal: {
+              regular: themeTokens.colorScheme.onSurfaceVariant,
+              selected: themeTokens.colorScheme.onSecondaryContainer,
+            },
+            hovered: {
+              regular: themeTokens.colorScheme.onSurface,
+            },
+            focused: {
+              regular: themeTokens.colorScheme.onSurface,
+            },
+            pressed: {
+              regular: themeTokens.colorScheme.onSurface,
+            },
+          },
+        },
+        leadingIcon: {
+          size: px(24),
+          color: {
+            normal: {
+              regular: themeTokens.colorScheme.onSurfaceVariant,
+              selected: themeTokens.colorScheme.onSecondaryContainer,
+            },
+            hovered: {
+              regular: themeTokens.colorScheme.onSurface,
+            },
+            focused: {
+              regular: themeTokens.colorScheme.onSurface,
+            },
+            pressed: {
+              regular: themeTokens.colorScheme.onSurface,
+            },
+          },
+        },
+        stateLayer: {
+          color: {
+            hovered: {
+              regular: themeTokens.colorScheme.onSurface,
+              selected: themeTokens.colorScheme.onSecondaryContainer,
+            },
+            pressed: {
+              regular: themeTokens.colorScheme.onSurface,
+              selected: themeTokens.colorScheme.onSecondaryContainer,
+            },
+          },
+        },
+        leadingImage: {
+          shape: px(themeTokens.shape.corner.circle),
+        },
+        leadingVideo: {
+          shape: px(themeTokens.shape.corner.circle),
         },
       }),
     },

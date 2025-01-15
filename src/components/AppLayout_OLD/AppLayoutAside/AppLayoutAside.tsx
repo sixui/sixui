@@ -44,7 +44,7 @@ export const AppLayoutAside = forwardRef<HTMLDivElement, IAppLayoutAsideProps>(
       props?: Partial<React.ComponentPropsWithRef<typeof SideSheetContent>>,
     ): React.JSX.Element => (
       <SideSheetContent
-        anchor={anchor}
+        side={anchor}
         {...other}
         {...props}
         sx={[globalStyles, combineStyles('inner'), props?.sx, sx]}

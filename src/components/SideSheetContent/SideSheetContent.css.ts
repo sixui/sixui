@@ -13,7 +13,7 @@ import { PaperBase } from '../PaperBase';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
-type IModifier = 'anchor' | 'with-divider' | 'with-leading-actions';
+type IModifier = 'side' | 'with-divider' | 'with-leading-actions';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
@@ -69,7 +69,7 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>([
         'with-divider',
         {
-          anchor: 'left',
+          side: 'left',
         },
       ])]: {
         borderRightWidth: tokens.divider.width,
@@ -79,7 +79,7 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>([
         'with-divider',
         {
-          anchor: 'right',
+          side: 'right',
         },
       ])]: {
         borderLeftWidth: tokens.divider.width,
@@ -188,14 +188,14 @@ export const sideSheetContentThemeVariants = {
       }),
 
       selectors: {
-        [getModifierSelector<IModifier>('anchor', 'left')]: {
+        [getModifierSelector<IModifier>('side', 'left')]: {
           vars: createTokensVars(tokens, {
             container: {
               shape: `${themeTokens.shape.corner.none} ${themeTokens.shape.corner.lg} ${themeTokens.shape.corner.none} ${themeTokens.shape.corner.lg}`,
             },
           }),
         },
-        [getModifierSelector<IModifier>('anchor', 'right')]: {
+        [getModifierSelector<IModifier>('side', 'right')]: {
           vars: createTokensVars(tokens, {
             container: {
               shape: `${themeTokens.shape.corner.lg} ${themeTokens.shape.corner.none} ${themeTokens.shape.corner.lg} ${themeTokens.shape.corner.none}`,
@@ -223,22 +223,20 @@ export const sideSheetContentThemeVariants = {
       }),
 
       selectors: {
-        [getModifierSelector<IModifier>(['with-divider', { anchor: 'left' }])]:
-          {
-            vars: createTokensVars(tokens, {
-              container: {
-                shape: `0 ${px(themeTokens.shape.corner.lg)} ${px(themeTokens.shape.corner.lg)} 0`,
-              },
-            }),
-          },
-        [getModifierSelector<IModifier>(['with-divider', { anchor: 'right' }])]:
-          {
-            vars: createTokensVars(tokens, {
-              container: {
-                shape: `${px(themeTokens.shape.corner.lg)} 0 0 ${px(themeTokens.shape.corner.lg)}`,
-              },
-            }),
-          },
+        [getModifierSelector<IModifier>(['with-divider', { side: 'left' }])]: {
+          vars: createTokensVars(tokens, {
+            container: {
+              shape: `0 ${px(themeTokens.shape.corner.lg)} ${px(themeTokens.shape.corner.lg)} 0`,
+            },
+          }),
+        },
+        [getModifierSelector<IModifier>(['with-divider', { side: 'right' }])]: {
+          vars: createTokensVars(tokens, {
+            container: {
+              shape: `${px(themeTokens.shape.corner.lg)} 0 0 ${px(themeTokens.shape.corner.lg)}`,
+            },
+          }),
+        },
       },
     },
   }),

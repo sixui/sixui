@@ -28,7 +28,7 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {
   onClick: (...args) => sbHandleEvent('onClick', args, 1000),
   outlineStyle: 'dashed',
-  w: '$40',
+  w: '$48',
 } satisfies Partial<IListItemProps>;
 
 const states: Array<IComponentPresentation<IListItemProps>> = [
@@ -126,16 +126,16 @@ export const Variants: IStory = {
   render: (props) => (
     <ListItemShowcase
       props={props}
-      cols={(['standard', 'danger'] as Array<IListItemVariant>).map(
-        (variant) => ({
-          props: {
-            variant,
-            children: capitalizeFirstLetter(variant),
-            leadingIcon: <FontAwesomeIcon icon={faCalendarDays} />,
-            trailingIcon: <FontAwesomeIcon icon={faChevronRight} />,
-          },
-        }),
-      )}
+      cols={(
+        ['standard', 'danger', 'navigation'] as Array<IListItemVariant>
+      ).map((variant) => ({
+        props: {
+          variant,
+          children: capitalizeFirstLetter(variant),
+          leadingIcon: <FontAwesomeIcon icon={faCalendarDays} />,
+          trailingIcon: <FontAwesomeIcon icon={faChevronRight} />,
+        },
+      }))}
     />
   ),
   args: defaultArgs,
@@ -169,6 +169,22 @@ export const Danger: IStory = {
   args: {
     ...defaultArgs,
     variant: 'danger',
+    children: 'Label',
+  },
+};
+
+export const Navigation: IStory = {
+  render: (props) => (
+    <ListItemShowcase
+      horizontalAlign="start"
+      props={props}
+      cols={states}
+      rows={rows}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    variant: 'navigation',
     children: 'Label',
   },
 };

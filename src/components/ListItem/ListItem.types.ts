@@ -7,7 +7,7 @@ import type { IItemOwnProps } from '../Item';
 import type { IPaperOwnProps } from '../Paper';
 import type { IListItemThemeFactory, listItemTheme } from './ListItem.css';
 
-export type IListItemVariant = 'standard' | 'danger';
+export type IListItemVariant = 'standard' | 'danger' | 'navigation';
 
 export interface IListItemOwnProps
   extends IItemOwnProps,

@@ -33,7 +33,7 @@ export const SideSheetContent = componentFactory<ISideSheetContentFactory>(
       header,
       footer,
       bottomActions,
-      anchor = 'left',
+      side = 'left',
       divider,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
@@ -48,7 +48,7 @@ export const SideSheetContent = componentFactory<ISideSheetContentFactory>(
       theme: sideSheetContentTheme,
       themeVariants: sideSheetContentThemeVariants,
       modifiers: {
-        anchor,
+        side,
         'with-divider': divider,
         'with-leading-actions': !!leadingActions,
       },

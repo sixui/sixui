@@ -30,7 +30,7 @@ export interface ISideSheetContentOwnProps
   bottomActions?:
     | React.ReactNode
     | ((props: ISideSheetContentRenderProps) => React.ReactNode);
-  anchor?: 'left' | 'right';
+  side?: 'left' | 'right';
   divider?: boolean;
 }
 

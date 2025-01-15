@@ -134,8 +134,6 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
           other,
         )}
       >
-        {children}
-
         {!nonInteractive && !disabled && (
           <>
             {!noFocusRing && (
@@ -148,6 +146,8 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
             <StateLayer {...getStyles('stateLayer')} context={stateLayer} />
           </>
         )}
+
+        {children}
 
         {!nonInteractive && renderTouchTarget()}
       </Paper>
