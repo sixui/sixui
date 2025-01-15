@@ -21,14 +21,10 @@ export const Box = createPolymorphicComponent<'div', IBoxProps>(
       modifiers,
       scale,
       density,
-      grow,
       ...otherWithSprinkles
     } = props as IWithAsProp<IBoxProps>;
 
-    const sprinkles = boxSprinkles({
-      ...otherWithSprinkles,
-      flexGrow: grow ? 1 : undefined,
-    });
+    const sprinkles = boxSprinkles(otherWithSprinkles);
     const other = sprinkles.otherProps;
 
     const childrenProps = {
