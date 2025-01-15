@@ -55,6 +55,9 @@ const [tokensClassName, tokens] = createTheme({
 
 const classNames = createStyles({
   root: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
     flexShrink: 0,
 
     vars: createTokensVars(PaperBase.theme.tokens, {
@@ -87,11 +90,6 @@ const classNames = createStyles({
         borderLeftStyle: 'solid',
       },
     },
-  },
-  inner: {
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100%',
   },
   headerContainer: {
     display: 'flex',

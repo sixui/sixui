@@ -56,58 +56,59 @@ export const SideSheetContent = componentFactory<ISideSheetContentFactory>(
       !!trailingActions ||
       !!headline ||
       showCloseButton;
+    const hasFooter = footer ?? bottomActions;
 
     return (
       <Paper {...getStyles('root')} ref={forwardedRef} {...other}>
-        <div {...getStyles('inner')}>
-          {hasHeader && (
-            <div {...getStyles('headerContainer')}>
-              {(leadingActions ||
-                headline ||
-                trailingActions ||
-                showCloseButton) && (
-                <div {...getStyles('header')}>
-                  {leadingActions && (
-                    <div {...getStyles('actions')}>{leadingActions}</div>
-                  )}
-                  {headline && <div {...getStyles('headline')}>{headline}</div>}
-                  {(trailingActions || showCloseButton) && (
-                    <div {...getStyles('actions')}>
-                      {trailingActions}
-                      {showCloseButton && (
-                        <IconButton icon={closeIcon} onClick={onClose} />
-                      )}
-                    </div>
-                  )}
-                </div>
-              )}
+        {hasHeader && (
+          <div {...getStyles('headerContainer')}>
+            {(leadingActions ||
+              headline ||
+              trailingActions ||
+              showCloseButton) && (
+              <div {...getStyles('header')}>
+                {leadingActions && (
+                  <div {...getStyles('actions')}>{leadingActions}</div>
+                )}
+                {headline && <div {...getStyles('headline')}>{headline}</div>}
+                {(trailingActions || showCloseButton) && (
+                  <div {...getStyles('actions')}>
+                    {trailingActions}
+                    {showCloseButton && (
+                      <IconButton icon={closeIcon} onClick={onClose} />
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
 
-              {header}
-            </div>
-          )}
+            {header}
+          </div>
+        )}
 
+        {children && (
           <div {...getStyles('content')}>
             {isFunction(children)
               ? children({ close: (event) => onClose?.(event) })
               : children}
           </div>
+        )}
 
-          {(footer ?? bottomActions) && (
-            <div {...getStyles('footerContainer')}>
-              <div {...getStyles('footer')}>
-                {bottomActions && (
-                  <div {...getStyles('actions')}>
-                    {isFunction(bottomActions)
-                      ? bottomActions({ close: (event) => onClose?.(event) })
-                      : bottomActions}
-                  </div>
-                )}
-              </div>
-
-              {footer}
+        {hasFooter && (
+          <div {...getStyles('footerContainer')}>
+            <div {...getStyles('footer')}>
+              {bottomActions && (
+                <div {...getStyles('actions')}>
+                  {isFunction(bottomActions)
+                    ? bottomActions({ close: (event) => onClose?.(event) })
+                    : bottomActions}
+                </div>
+              )}
             </div>
-          )}
-        </div>
+
+            {footer}
+          </div>
+        )}
       </Paper>
     );
   },
