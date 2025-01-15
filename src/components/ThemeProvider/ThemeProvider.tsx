@@ -20,13 +20,16 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
     style,
     children,
     theme,
-    colorSchemeVariant = 'light',
+    colorSchemeVariant: colorSchemeVariantProp,
     inherit = true,
     ...other
   } = props;
 
   const themeContext = useContext(ThemeContext);
+
   const parentTheme = themeContext?.theme;
+  const colorSchemeVariant =
+    colorSchemeVariantProp ?? themeContext?.colorSchemeVariant ?? 'light';
 
   const [dynamicTheme, setDynamicTheme] = useState<
     IThemeOverride | undefined
@@ -45,8 +48,9 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
     () => ({
       getRoot: () => rootRef.current,
       theme: mergedTheme,
+      colorSchemeVariant,
     }),
-    [mergedTheme],
+    [mergedTheme, colorSchemeVariant],
   );
 
   const themeSetterContextValue: IThemeSetterContextValue = useMemo(
