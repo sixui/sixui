@@ -53,15 +53,10 @@ export const Drawer = componentFactory<IDrawerFactory>(
         floatingFocusManagerProps={{
           visuallyHiddenDismiss: true,
         }}
-        // slotProps={{
-        //   floatingFocusManager: {
-        //     visuallyHiddenDismiss: true,
-        //   },
-        //   floatingTransition: {
-        //     ...getStyles('content'),
-        //     ...other,
-        //   },
-        // }}
+        floatingMotionProps={{
+          ...getStyles('content'),
+          ...other,
+        }}
         middlewares={{
           flip: false,
           shift: false,

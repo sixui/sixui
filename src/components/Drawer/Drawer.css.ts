@@ -19,31 +19,33 @@ const [tokensClassName, tokens] = createTheme({
 });
 
 const classNames = createStyles({
-  root: {
+  root: {},
+  content: ({ root }) => ({
     position: 'fixed',
     zIndex: themeTokens.zIndex.modal,
+    // FIXME: prop for full height or not
     height: calc.subtract('100vh', calc.multiply(2, tokens.inset)),
+    border: '2px solid red',
 
     selectors: {
-      [getModifierSelector<IModifier>({ side: 'left' })]: {
+      [getModifierSelector<IModifier>({ side: 'left' }, root)]: {
         left: tokens.inset,
       },
-      [getModifierSelector<IModifier>({ side: 'right' })]: {
+      [getModifierSelector<IModifier>({ side: 'right' }, root)]: {
         right: tokens.inset,
       },
-      [getModifierSelector<IModifier>({ side: 'top' })]: {
+      [getModifierSelector<IModifier>({ side: 'top' }, root)]: {
+        left: tokens.inset,
+        right: tokens.inset,
         top: tokens.inset,
       },
-      [getModifierSelector<IModifier>({ side: 'bottom' })]: {
+      [getModifierSelector<IModifier>({ side: 'bottom' }, root)]: {
+        left: tokens.inset,
+        right: tokens.inset,
         bottom: tokens.inset,
       },
     },
-  },
-  content: {
-    display: 'flex',
-    height: '100%',
-    flexGrow: 1,
-  },
+  }),
 });
 
 export type IDrawerThemeFactory = IComponentThemeFactory<{

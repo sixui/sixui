@@ -37,7 +37,7 @@ const DrawerDemo: React.FC<IDrawerDemoProps> = (props) => {
   return (
     <Drawer {...other}>
       {({ close }) => (
-        <Paper p="$4" surface="$surface" grow={1}>
+        <Paper p="$4" surface="$surface" grow={1} data-test="xxxx">
           {/* FIXME: This is a hack to prevent the first focusable element
                     from being focused when the side sheet is opened. */}
           {/* <button

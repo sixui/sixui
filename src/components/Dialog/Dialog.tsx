@@ -6,7 +6,6 @@ import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { DialogContent, IDialogContentOwnProps } from '../DialogContent';
 import { PopoverBase } from '../PopoverBase';
-import { useThemeContext } from '../ThemeProvider';
 import { dialogTheme } from './Dialog.css';
 
 const COMPONENT_NAME = 'Dialog';
