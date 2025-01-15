@@ -135,6 +135,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       theme: popoverBaseTheme,
       modifiers: {
         shake: isShaking,
+        positioned,
       },
     });
 

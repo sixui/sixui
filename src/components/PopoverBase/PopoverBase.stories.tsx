@@ -197,13 +197,6 @@ export const ModalStyle: IStory = {
   args: {
     ...defaultArgs,
     openEvents: { click: true },
-    style: {
-      position: 'fixed',
-      inset: 0,
-      display: 'grid',
-      placeItems: 'center',
-      overflow: 'auto',
-    },
     floatingMotionProps: {
       origin: 'edge',
       pattern: 'enterExitOffScreen',

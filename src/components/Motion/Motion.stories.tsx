@@ -59,23 +59,11 @@ const MotionUnpositionedDemo: React.FC<IMotionDemoProps> = (props) => {
         selected={transitioning}
         onClick={() => toggle()}
       />
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          display: 'grid',
-          placeItems: 'center',
-          overflow: 'auto',
-          pointerEvents: 'none',
-          zIndex: 999,
-        }}
-      >
-        <MotionDemo
-          {...props}
-          transitioning={transitioning}
-          onClose={() => toggle(false)}
-        />
-      </div>
+      <MotionDemo
+        {...props}
+        transitioning={transitioning}
+        onClose={() => toggle(false)}
+      />
     </>
   );
 };
