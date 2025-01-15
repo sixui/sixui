@@ -27,7 +27,7 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
 
   const themeContext = useContext(ThemeContext);
 
-  const parentTheme = themeContext?.theme;
+  const parentTheme = inherit ? themeContext?.theme : undefined;
   const colorSchemeVariant =
     colorSchemeVariantProp ?? themeContext?.colorSchemeVariant ?? 'light';
 
@@ -36,11 +36,8 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
   >();
   const mergedTheme = useMemo(
     () =>
-      mergeTheme(
-        mergeTheme((inherit ? parentTheme : undefined) ?? defaultTheme, theme),
-        dynamicTheme,
-      ),
-    [inherit, parentTheme, theme, dynamicTheme],
+      mergeTheme(mergeTheme(parentTheme ?? defaultTheme, theme), dynamicTheme),
+    [parentTheme, theme, dynamicTheme],
   );
 
   const rootRef = useRef<HTMLDivElement | null>(null);

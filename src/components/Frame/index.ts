@@ -1,2 +1,2 @@
-export * from './BasicTemplate.types';
-export * from './BasicTemplate';
+export * from './Frame.types';
+export * from './Frame';

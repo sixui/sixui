@@ -1,8 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IComponentPresentation } from '../ComponentShowcase';
 import type { ISideSheetContentProps } from './SideSheetContent.types';
+import { px } from '~/helpers/styles/px';
 import { componentShowcaseFactory } from '../ComponentShowcase';
+import { Frame } from '../Frame';
+import { SixuiProvider } from '../SixuiProvider';
+import { ThemeProvider, themeTokens } from '../ThemeProvider';
 import { SideSheetContent } from './SideSheetContent';
 
 const meta = {
@@ -15,20 +18,31 @@ const defaultArgs = {} satisfies Partial<ISideSheetContentProps>;
 
 const SideSheetContentFrame: React.FC<ISideSheetContentProps> = (props) => {
   return (
-    <Frame importParentStyles sx={styles.frame}>
-      <div>
-        <SideSheetContent {...props} sx={styles.sideSheetContent} />
-      </div>
+    <Frame
+      importParentStyles
+      w="100%"
+      h="$96"
+      style={{
+        borderWidth: px(1),
+        borderStyle: 'dashed',
+        borderColor: themeTokens.colorScheme.outline,
+      }}
+    >
+      <ThemeProvider inherit={false}>
+        <SideSheetContent {...props} w="$60">
+          FSDQSDQS
+        </SideSheetContent>
+      </ThemeProvider>
     </Frame>
   );
 };
 
-const SideSheetContentShowcase = componentShowcaseFactory(SideSheetContent);
+const SideSheetContentFrameShowcase = componentShowcaseFactory(
+  SideSheetContentFrame,
+);
 
 export const Basic: IStory = {
-  render: (props) => (
-    <SideSheetContentShowcase props={props} cols={states} rows={variants} />
-  ),
+  render: (props) => <SideSheetContentFrameShowcase props={props} fullWidth />,
   args: defaultArgs,
 };
 

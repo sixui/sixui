@@ -1,6 +1,8 @@
+import type { IOmit } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
+import type { IPaperBaseOwnProps } from '../PaperBase';
 import type {
   ISideSheetContentThemeFactory,
   sideSheetContentTheme,
@@ -12,9 +14,10 @@ export type ISideSheetContentRenderProps = {
   close: (event: React.MouseEvent) => void;
 };
 
-export interface ISideSheetContentOwnProps {
+export interface ISideSheetContentOwnProps
+  extends IOmit<IPaperBaseOwnProps, 'children'> {
   onClose?: (event?: React.MouseEvent) => void;
-  children:
+  children?:
     | React.ReactNode
     | ((props: ISideSheetContentRenderProps) => React.ReactNode);
   headline?: React.ReactNode;
