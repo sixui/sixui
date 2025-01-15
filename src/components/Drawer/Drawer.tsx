@@ -16,11 +16,13 @@ export const Drawer = componentFactory<IDrawerFactory>(
       styles,
       style,
       variant,
+      target,
       opened,
       defaultOpened,
       onClose,
       side = 'left',
       children,
+      disabled,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -40,15 +42,17 @@ export const Drawer = componentFactory<IDrawerFactory>(
     return (
       <PopoverBase
         {...getStyles('root')}
+        portalProps={{ target }}
         opened={opened}
         defaultOpened={defaultOpened}
         onClose={onClose}
         contentRenderer={children}
-        // floatingStrategy={false}
-        // placement={{side}}
+        placement={{ side }}
         trapFocus
-        // preventAutoFocus
         withScrim
+        floatingFocusManagerProps={{
+          visuallyHiddenDismiss: true,
+        }}
         // slotProps={{
         //   floatingFocusManager: {
         //     visuallyHiddenDismiss: true,
@@ -63,7 +67,7 @@ export const Drawer = componentFactory<IDrawerFactory>(
           shift: false,
           size: false,
         }}
-        // disabled={disabled}
+        disabled={disabled}
         ref={forwardedRef}
       />
     );

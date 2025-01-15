@@ -2,9 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IFrameProps } from './Frame.types';
 import { px } from '~/helpers/styles/px';
-import { Button } from '../Button';
 import { componentShowcaseFactory } from '../ComponentShowcase';
-import { ThemeProvider, themeTokens } from '../ThemeProvider';
+import { themeTokens } from '../ThemeProvider';
 import { Frame } from './Frame';
 
 const meta = {

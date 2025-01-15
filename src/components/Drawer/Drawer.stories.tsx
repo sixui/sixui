@@ -79,34 +79,40 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
       <div ref={setRootElement}>
         <DrawerDemo
           {...props}
-          root={rootElement}
+          target={rootElement}
           opened={leftOpened}
           onClose={leftActions.close}
-          anchor="left"
+          side="left"
         />
         <DrawerDemo
           {...props}
-          root={rootElement}
+          target={rootElement}
           opened={topOpened}
           onClose={topActions.close}
-          anchor="top"
+          side="top"
         />
         <DrawerDemo
           {...props}
-          root={rootElement}
+          target={rootElement}
           opened={rightOpened}
           onClose={rightActions.close}
-          anchor="right"
+          side="right"
         />
         <DrawerDemo
           {...props}
-          root={rootElement}
+          target={rootElement}
           opened={bottomOpened}
           onClose={bottomActions.close}
-          anchor="bottom"
+          side="bottom"
         />
 
-        <Flex direction="row" justify="space-between" p="$4" h="100%">
+        <Flex
+          direction="row"
+          align="center"
+          justify="space-between"
+          p="$4"
+          h="100%"
+        >
           <Button
             variant="text"
             onClick={leftActions.open}
