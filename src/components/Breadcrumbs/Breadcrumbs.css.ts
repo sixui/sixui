@@ -4,6 +4,7 @@ import { calc } from '@vanilla-extract/css-utils';
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getDensity } from '~/helpers/styles/getDensity';
 import { px } from '~/helpers/styles/px';
+import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
@@ -41,6 +42,21 @@ const [tokensClassName, tokens] = createTheme({
 
 const classNames = createStyles({
   root: {
+    display: 'flex',
+    flexDirection: 'row',
+    gap: px(space(2)),
+    listStyle: 'none',
+  },
+  item: {
+    color: tokens.item.color,
+  },
+  separator: {
+    color: tokens.separator.color,
+    display: 'flex',
+    userSelect: 'none',
+    fontSize: tokens.separator.size,
+  },
+  expandButton: {
     minWidth: 'unset',
     width: tokens.expandButton.container.width,
 

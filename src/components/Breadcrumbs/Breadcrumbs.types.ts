@@ -9,6 +9,7 @@ import type {
 export interface IBreadcrumbsOwnProps {
   children: React.ReactNode;
   expandText?: string;
+  expandIcon?: React.ReactNode;
   itemCountBeforeCollapse?: number;
   itemCountAfterCollapse?: number;
   maxItems?: number;

@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { createSequence } from '@olivierpascal/helpers';
 
-import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IBreadcrumbsProps } from './Breadcrumbs.types';
 import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Breadcrumbs } from './Breadcrumbs';
@@ -11,27 +13,47 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {
-  children: 'Breadcrumbs',
-} satisfies Partial<IBreadcrumbsProps>;
-
-const variants: Array<IComponentPresentation<IBreadcrumbsProps>> = [
-  { legend: 'None', props: { variant: false } },
-  { legend: 'Primary', props: { variant: 'primary' } },
-];
-
-const states: Array<IComponentPresentation<IBreadcrumbsProps>> = [
-  { legend: 'Normal' },
-  { legend: 'Disabled', props: { disabled: true } },
-];
+const defaultArgs = {} satisfies Partial<IBreadcrumbsProps>;
 
 const BreadcrumbsShowcase = componentShowcaseFactory(Breadcrumbs);
 
-export const Basic: IStory = {
+export const Variants: IStory = {
   render: (props) => (
-    <BreadcrumbsShowcase props={props} cols={states} rows={variants} />
+    <BreadcrumbsShowcase
+      horizontalAlign="start"
+      rows={[
+        {
+          legend: 'Default',
+        },
+        {
+          legend: 'Trailing Separator',
+          props: { showTrailingSeparator: true },
+        },
+        {
+          legend: 'Custom Separator',
+          props: {
+            separator: <FontAwesomeIcon icon={faChevronRight} size="2xs" />,
+          },
+        },
+        {
+          legend: 'Collapsed',
+          props: {
+            maxItems: 2,
+            children: createSequence(5).map((index) => (
+              <span key={index}>Item {index + 1}</span>
+            )),
+          },
+        },
+      ]}
+      props={props}
+    />
   ),
-  args: defaultArgs,
+  args: {
+    ...defaultArgs,
+    children: createSequence(3).map((index) => (
+      <span key={index}>Item {index + 1}</span>
+    )),
+  },
 };
 
 export default meta;
