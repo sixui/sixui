@@ -114,7 +114,12 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
           >
             Open left
           </Button>
-          <Flex justify="space-between" align="center" h="100%">
+          <Flex
+            direction="column"
+            justify="space-between"
+            align="center"
+            h="100%"
+          >
             <Button
               variant="text"
               onClick={topActions.open}

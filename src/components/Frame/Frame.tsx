@@ -9,6 +9,7 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
+import { ThemeProvider } from '../ThemeProvider';
 import { useParentStyles } from './useParentStyles';
 import { frameTheme } from './Frame.css';
 
@@ -61,26 +62,26 @@ export const Frame = componentFactory<IFrameFactory>((props, forwardedRef) => {
       onLoad={handleLoad}
       {...other}
     >
-      {iframeContentWindow && iframeDocument ? (
+      {iframeContentWindow && iframeDocument && (
         <>
           {createPortal(
             <div id="sixui-root">
-              {/* <ResponsiveStyles /> */}
-              {isFunction(children)
-                ? children({ window: iframeContentWindow })
-                : children}
+              <ThemeProvider inherit={false}>
+                {isFunction(children)
+                  ? children({ window: iframeContentWindow })
+                  : children}
+              </ThemeProvider>
             </div>,
             iframeDocument.body,
           )}
 
-          {parentStyles
-            ? createPortal(
-                <style type="text/css">{parentStyles}</style>,
-                iframeDocument.head,
-              )
-            : null}
+          {parentStyles &&
+            createPortal(
+              <style type="text/css">{parentStyles}</style>,
+              iframeDocument.head,
+            )}
         </>
-      ) : null}
+      )}
     </Box>
   );
 });

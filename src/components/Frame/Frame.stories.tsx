@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IFrameProps } from './Frame.types';
 import { px } from '~/helpers/styles/px';
+import { Button } from '../Button';
 import { componentShowcaseFactory } from '../ComponentShowcase';
 import { ThemeProvider, themeTokens } from '../ThemeProvider';
 import { Frame } from './Frame';
@@ -14,21 +15,19 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   children: (
-    <ThemeProvider>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          width: '100%',
-          height: '100%',
-          backgroundColor: '#000',
-          backgroundImage: '-webkit-linear-gradient(45deg, #000 50%, #fff 50%)',
-        }}
-      >
-        Hello world!
-      </div>
-    </ThemeProvider>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        height: '100%',
+        backgroundColor: '#000',
+        backgroundImage: '-webkit-linear-gradient(45deg, #000 50%, #fff 50%)',
+      }}
+    >
+      Hello world!
+    </div>
   ),
   w: '$48',
   h: '$48',
