@@ -39,7 +39,7 @@ export const NavigationRailDestination = createPolymorphicComponent<
         active,
         badge,
         ...other
-      } = props as IWithAsProp<INavigationRailDestinationProps>;
+      } = props;
 
       const visuallyDisabled = other.disabled || readOnly;
       const { visualState, setRef: setVisualStateRef } = useVisualState(

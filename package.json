@@ -47,7 +47,7 @@
     "release": "auto shipit",
     "prettify:fix:file": "prettier --write",
     "lint:fix:file": "eslint --fix",
-    "lint:check": "eslint src --ext .js,.ts,.jsx,.tsx --fix",
+    "lint:check": "eslint src --fix",
     "ts:check": "tsc --project tsconfig.app.json --pretty --noEmit",
     "check:all": "run-s lint:check ts:check test",
     "cy": "cypress open"

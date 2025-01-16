@@ -7,7 +7,6 @@ export const isElementLike = <TElement extends React.ReactElement>(
   element: React.ReactElement,
   expectedDisplayName: string,
 ): element is TElement => {
-  // eslint-disable-next-line no-console
   if (!isProduction() && isFragment(element)) {
     // eslint-disable-next-line no-console
     console.error(

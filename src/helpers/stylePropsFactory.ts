@@ -13,9 +13,8 @@ export type IStyleProps<TStyleKey extends string> = (
   ...styleKeys: Array<
     IStyleKey<TStyleKey> | Array<IStyleKey<TStyleKey>> | IStyleXStyles | ITheme
   >
-) => ReturnType<typeof stylex.props> & {
-  [key in `data-${keyof IVisualState}`]?: string;
-};
+) => ReturnType<typeof stylex.props> &
+  Partial<Record<`data-${keyof IVisualState}`, string>>;
 
 export const stylePropsFactory =
   <TStyleKey extends string>(

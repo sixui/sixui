@@ -5,6 +5,7 @@ import type { ICustomizableThemeThemeFactory } from './CustomizableTheme.css';
 import type { ICustomizableThemeFactory } from './CustomizableTheme.types';
 import { generateThemeFromSourceColor } from '~/helpers/colors/generateThemeFromSourceColor';
 import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
+import { px } from '~/helpers/styles/px';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
@@ -56,7 +57,7 @@ export const CustomizableTheme = componentFactory<ICustomizableThemeFactory>(
         scale,
         density: {
           scale: density,
-          minTargetSize,
+          minTargetSize: px(minTargetSize),
         },
       },
     };
