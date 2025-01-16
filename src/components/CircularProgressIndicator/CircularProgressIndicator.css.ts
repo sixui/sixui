@@ -22,7 +22,7 @@ const [tokensClassName, tokens] = createTheme({
   },
   size: calc.multiply('1em', themeTokens.scale),
   containerPadding: px(0),
-  strokeWidth: `round(up, 0.1em, 0.5px)`,
+  strokeWidth: `round(up, ${px(2)}, 1px)`,
 });
 
 const classNames = createStyles({
