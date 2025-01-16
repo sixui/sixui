@@ -12,11 +12,6 @@ export interface ITextInputFieldOwnProps
   extends IFieldBaseOwnProps,
     IElementProps<'input', 'className' | 'children' | 'onChange'> {
   /**
-   * When true, hide the spinner for `type="number"` input fields.
-   */
-  noSpinner?: boolean;
-
-  /**
    * When true, the password field can be unmasked for `type="passord"` input
    * fields.
    *

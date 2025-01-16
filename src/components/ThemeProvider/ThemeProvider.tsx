@@ -11,7 +11,7 @@ import { partialAssignInlineVars } from '~/utils/styles/partialAssignInlineVars'
 import { defaultTheme } from './defaultTheme';
 import { mergeTheme } from './mergeTheme';
 import { ThemeContext } from './ThemeProvider.context';
-import { ThemeSetterContext } from './ThemeSetter.context';
+import { ThemeSetterProvider } from './ThemeSetter.context';
 import * as styles from './ThemeProvider.css';
 
 export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
@@ -78,7 +78,7 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
 
   return (
     <ThemeContext.Provider value={themeContextValue}>
-      <ThemeSetterContext.Provider value={themeSetterContextValue}>
+      <ThemeSetterProvider value={themeSetterContextValue}>
         <div
           className={cx(
             styles.styles.root,
@@ -101,7 +101,7 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
             {children}
           </FloatingDelayGroup>
         </div>
-      </ThemeSetterContext.Provider>
+      </ThemeSetterProvider>
     </ThemeContext.Provider>
   );
 };

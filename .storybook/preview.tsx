@@ -1,19 +1,18 @@
 import type { Decorator, Preview } from '@storybook/react';
 
 import { Avatar } from '~/components/Avatar';
-import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
 import { SixuiProvider } from '~/components/SixuiProvider';
-import { StateLayer } from '~/components/StateLayer';
 import { ThemeProvider } from '~/components/ThemeProvider';
 import { modes } from './modes';
 // import variantTheme from '~/themes/variant/theme.json';
-// import { ThemeControls } from './ThemeControls';
 import * as styles from './preview.css';
 
 import '~/styles/main.css';
 import '~/styles/storybook.css';
 
+import { Box } from '~/components/Box';
 import { Button } from '~/components/Button';
+import { CustomizableTheme } from '~/components/CustomizableTheme';
 
 const preview: Preview = {
   parameters: {
@@ -96,24 +95,28 @@ export const decorators: Array<Decorator> = [
         }}
         colorSchemeVariant="light"
       >
-        {showLightMode ? (
-          <ThemeProvider
-            // theme={variantTheme}
-            className={styles.storyWrapper}
-          >
-            <Story />
-          </ThemeProvider>
-        ) : null}
+        <CustomizableTheme>
+          <Box w="100%">
+            {showLightMode && (
+              <ThemeProvider
+                // theme={variantTheme}
+                className={styles.storyWrapper}
+              >
+                <Story />
+              </ThemeProvider>
+            )}
 
-        {showDarkMode ? (
-          <ThemeProvider
-            // theme={variantTheme}
-            colorSchemeVariant="dark"
-            className={styles.storyWrapper}
-          >
-            <Story />
-          </ThemeProvider>
-        ) : null}
+            {showDarkMode && (
+              <ThemeProvider
+                // theme={variantTheme}
+                colorSchemeVariant="dark"
+                className={styles.storyWrapper}
+              >
+                <Story />
+              </ThemeProvider>
+            )}
+          </Box>
+        </CustomizableTheme>
       </SixuiProvider>
     );
   },

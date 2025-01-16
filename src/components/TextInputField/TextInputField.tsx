@@ -30,7 +30,6 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
       type: typeProp = 'text',
       defaultValue,
       value: valueProp,
-      noSpinner,
       clearable: clearableProp,
       clearIcon = <SvgIcon icon={iconXMark} />,
       unmaskable: unmaskableProp = true,
@@ -62,7 +61,6 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
       modifiers: {
         disabled: disabledOrReadOnly,
         'with-error': !!other.hasError,
-        'no-spinner': noSpinner,
       },
     });
 

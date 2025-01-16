@@ -20,7 +20,7 @@ const DENSITY = px(getDensity({ min: -3, max: 0 }));
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   container: {
-    minWidth: px(40),
+    width: px(40),
     height: px(40),
     shape: px(themeTokens.shape.corner.circle),
     color: {
@@ -64,7 +64,7 @@ const [tokensClassName, tokens] = createTheme({
 
 const classNames = createStyles({
   root: {
-    minWidth: tokens.container.minWidth,
+    width: calc.add(tokens.container.width, DENSITY),
     height: calc.add(tokens.container.height, DENSITY),
     display: 'flex',
     justifyContent: 'center',

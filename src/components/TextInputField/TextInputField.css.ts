@@ -42,7 +42,7 @@ const classNames = createStyles({
     fontWeight: 'inherit',
     lineHeight: 'inherit',
     letterSpacing: 'inherit',
-    // remove extra height added by horizontal scrollbars
+    // Remove extra height added by horizontal scrollbars.
     overflowX: 'hidden',
     textAlign: 'inherit',
     padding: 0,
@@ -51,12 +51,13 @@ const classNames = createStyles({
     display: 'block',
     caretColor: tokens.caret.color.normal,
     cursor: 'text',
+    position: 'absolute',
+    inset: 0,
 
     height: '100%',
     flexShrink: 1,
     flexGrow: 1,
     flexBasis: 0,
-    minWidth: '8rem',
 
     '::placeholder': {
       WebkitTextFillColor: tokens.placeholder.color.normal,
@@ -126,9 +127,6 @@ const classNames = createStyles({
         {
           display: 'none',
         },
-      [getModifierSelector({ type: 'number' }, root)]: {
-        '-moz-appearance': 'textfield',
-      },
     },
   }),
 });

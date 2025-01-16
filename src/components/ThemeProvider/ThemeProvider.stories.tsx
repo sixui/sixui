@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { useContext } from 'react';
 
 import type { IThemeProviderProps } from './ThemeProvider.types';
 import { generateThemeFromSourceColor } from '~/helpers/colors/generateThemeFromSourceColor';
@@ -9,7 +8,7 @@ import { ColorScheme } from '../ColorScheme';
 import { Flex } from '../Flex';
 import { Paper } from '../Paper';
 import { ThemeProvider } from './ThemeProvider';
-import { ThemeSetterContext } from './ThemeSetter.context';
+import { useThemeSetterContext } from './ThemeSetter.context';
 
 const meta = {
   component: ThemeProvider,
@@ -20,7 +19,7 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {} satisfies Partial<IThemeProviderProps>;
 
 const DynamicThemeProviderDemo: React.FC = () => {
-  const themeSetterContext = useContext(ThemeSetterContext);
+  const themeSetterContext = useThemeSetterContext();
 
   const handleChange = (color: string): void => {
     themeSetterContext?.setTheme({

@@ -292,6 +292,7 @@ const classNames = createStyles({
   container: ({ root }) => ({
     position: 'relative',
     resize: 'inherit',
+    width: 'inherit',
     display: 'flex',
     height: '100%',
 
@@ -650,6 +651,11 @@ const classNames = createStyles({
     textWrap: 'nowrap',
     width: 'min-content',
     paddingInlineEnd: tokens.prefix.trailingSpace,
+    // Do not take prefix height into account for the field's height. This is
+    // important when the density is increased.
+    height: 0,
+    display: 'flex',
+    alignItems: 'center',
 
     selectors: {
       [getModifierSelector<IModifier>('disabled', root)]: {
@@ -662,6 +668,11 @@ const classNames = createStyles({
     textWrap: 'nowrap',
     width: 'min-content',
     paddingInlineStart: tokens.suffix.leadingSpace,
+    // Do not take suffix height into account for the field's height. This is
+    // important when the density is increased.
+    height: 0,
+    display: 'flex',
+    alignItems: 'center',
 
     selectors: {
       [getModifierSelector<IModifier>('disabled', root)]: {
@@ -676,7 +687,8 @@ const classNames = createStyles({
     display: 'flex',
     alignItems: 'center',
     height: '100%',
-    minWidth: px(30),
+    minWidth: px(48),
+    position: 'relative',
 
     flexWrap: 'wrap',
     flexDirection: 'row',
