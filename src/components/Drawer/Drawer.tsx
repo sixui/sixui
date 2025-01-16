@@ -65,6 +65,7 @@ export const Drawer = componentFactory<IDrawerFactory>(
         }}
         popoverProps={{ ...getStyles('popover'), ...other }}
         disabled={disabled}
+        preventAutoFocus
         ref={forwardedRef}
       />
     );

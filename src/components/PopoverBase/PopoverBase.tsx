@@ -37,6 +37,7 @@ import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Motion } from '../Motion';
 import { Portal } from '../Portal';
 import { Scrim } from '../Scrim';
+import { PreventAutoFocus } from './PreventAutoFocus';
 import { popoverBaseTheme } from './PopoverBase.css';
 
 const defaultOpenEvents: IPopoverOpenEvents = {
@@ -98,6 +99,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       modal,
       keepMounted,
       popoverProps,
+      preventAutoFocus,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -351,6 +353,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
                       removeScrollProps,
                     )}
                   >
+                    {preventAutoFocus && <PreventAutoFocus />}
                     {isFunction(contentRenderer) ? (
                       contentRenderer({
                         parentProps: props,

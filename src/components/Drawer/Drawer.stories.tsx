@@ -36,14 +36,6 @@ const DrawerDemo: React.FC<IDrawerDemoProps> = (props) => {
     <Drawer {...other}>
       {({ close }) => (
         <Paper p="$4" surface="$surface" grow={1}>
-          {/* FIXME: This is a hack to prevent the first focusable element
-                    from being focused when the side sheet is opened. */}
-          {/* <button
-            aria-hidden
-            type="button"
-            {...stylex.props(commonStyles.outOfScreen)}
-          /> */}
-
           <Flex direction="column" align="start">
             <Text>Press escape to close the drawer.</Text>
             <Button onClick={close} variant="text">

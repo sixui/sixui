@@ -199,6 +199,7 @@ export type IPopoverBaseOwnProps<TForwardedProps extends object = object> =
 
     keepMounted?: boolean;
     popoverProps?: IBoxProps;
+    preventAutoFocus?: boolean;
   };
 
 export interface IPopoverBaseProps
