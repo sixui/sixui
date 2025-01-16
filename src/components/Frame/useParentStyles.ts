@@ -1,4 +1,6 @@
-import { useMemo } from 'react';
+import { useState } from 'react';
+
+import { useTimeout } from '~/hooks/useTimeout';
 
 export type IUseParentStylesProps = {
   disabled?: boolean;
@@ -7,7 +9,11 @@ export type IUseParentStylesProps = {
 export const useParentStyles = (
   props?: IUseParentStylesProps,
 ): string | undefined => {
-  const stylesAsString = useMemo(() => {
+  const [stylesAsString, setStylesAsString] = useState<string>();
+
+  // As some libraries may inject styles after the component is mounted, we need
+  // to wait a bit before getting the styles.
+  useTimeout(() => {
     if (props?.disabled) {
       return undefined;
     }
@@ -35,8 +41,8 @@ export const useParentStyles = (
       '\n\n',
     );
 
-    return parentStylesAsString;
-  }, [props?.disabled]);
+    setStylesAsString(parentStylesAsString);
+  }, 0);
 
   return stylesAsString;
 };

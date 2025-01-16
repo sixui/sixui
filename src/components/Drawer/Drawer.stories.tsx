@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import {
-  faArrowDown,
-  faArrowLeft,
-  faArrowRight,
-  faArrowUp,
+  faChevronDown,
+  faChevronLeft,
+  faChevronRight,
+  faChevronUp,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -108,7 +108,7 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
           <Button
             variant="text"
             onClick={leftActions.open}
-            leadingIcon={<FontAwesomeIcon icon={faArrowLeft} />}
+            leadingIcon={<FontAwesomeIcon icon={faChevronLeft} />}
           >
             Open left
           </Button>
@@ -121,14 +121,14 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
             <Button
               variant="text"
               onClick={topActions.open}
-              leadingIcon={<FontAwesomeIcon icon={faArrowUp} />}
+              leadingIcon={<FontAwesomeIcon icon={faChevronUp} />}
             >
               Open top
             </Button>
             <Button
               variant="text"
               onClick={bottomActions.open}
-              leadingIcon={<FontAwesomeIcon icon={faArrowDown} />}
+              leadingIcon={<FontAwesomeIcon icon={faChevronDown} />}
             >
               Open bottom
             </Button>
@@ -136,8 +136,7 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
           <Button
             variant="text"
             onClick={rightActions.open}
-            leadingIcon={<FontAwesomeIcon icon={faArrowRight} />}
-            trailingIcon
+            trailingIcon={<FontAwesomeIcon icon={faChevronRight} />}
           >
             Open right
           </Button>

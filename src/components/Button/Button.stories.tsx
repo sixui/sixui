@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import {
   faArrowUpRightFromSquare,
+  faChevronRight,
   faPlus,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -70,7 +71,7 @@ const rows: Array<IComponentPresentation<IButtonProps>> = [
   {
     legend: 'With trailing icon',
     props: {
-      trailingIcon: <FontAwesomeIcon icon={faPlus} />,
+      trailingIcon: <FontAwesomeIcon icon={faChevronRight} />,
     },
   },
   {
