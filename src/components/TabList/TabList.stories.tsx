@@ -30,7 +30,7 @@ const defaultArgs = {
 } satisfies Partial<ITabListProps>;
 
 type ITabListDemoProps = ITabListProps & {
-  tabProps?: ITabProps;
+  tabProps?: Partial<ITabProps>;
   withIcon?: boolean;
   withLabel?: boolean;
 };

@@ -77,7 +77,7 @@ const classNames = createStyles({
       },
       [getModifierSelector<IModifier>({ pattern: 'enterExitOffScreen' })]: {
         opacity: 0,
-        transform: 'translate(-130%, -130%)',
+        transform: 'translate(-30%, -30%)',
       },
       [getModifierSelector<IModifier>({
         orientation: 'horizontal',
@@ -90,14 +90,14 @@ const classNames = createStyles({
         pattern: 'enterExitOffScreen',
         side: 'left',
       })]: {
-        transform: 'translateX(-130%)',
+        transform: 'translateX(-30%)',
       },
       [getModifierSelector<IModifier>({
         orientation: 'horizontal',
         pattern: 'enterExitOffScreen',
         side: 'right',
       })]: {
-        transform: 'translateX(130%)',
+        transform: 'translateX(30%)',
       },
       [getModifierSelector<IModifier>({
         orientation: 'vertical',
@@ -110,14 +110,14 @@ const classNames = createStyles({
         pattern: 'enterExitOffScreen',
         side: 'top',
       })]: {
-        transform: 'translateY(-130%)',
+        transform: 'translateY(-30%)',
       },
       [getModifierSelector<IModifier>({
         orientation: 'vertical',
         pattern: 'enterExitOffScreen',
         side: 'bottom',
       })]: {
-        transform: 'translateY(130%)',
+        transform: 'translateY(30%)',
       },
     },
   },

@@ -45,6 +45,7 @@ export const Drawer = componentFactory<IDrawerFactory>(
     return (
       <PopoverBase
         {...getStyles('root')}
+        classNames={classNames}
         portalProps={{ target }}
         opened={opened}
         defaultOpened={defaultOpened}
@@ -56,15 +57,13 @@ export const Drawer = componentFactory<IDrawerFactory>(
         floatingFocusManagerProps={{
           visuallyHiddenDismiss: true,
         }}
-        floatingMotionProps={{
-          ...getStyles('content'),
-          ...other,
-        }}
+        floatingMotionProps={other}
         middlewares={{
           flip: false,
           shift: false,
           size: false,
         }}
+        popoverProps={{ ...getStyles('popover'), ...other }}
         disabled={disabled}
         ref={forwardedRef}
       />

@@ -29,11 +29,10 @@ const classNames = createStyles({
       },
     },
   },
-  floating: ({ root }) => ({
+  popover: ({ root }) => ({
     zIndex: themeTokens.zIndex.popover,
     width: 'inherit',
     height: 'inherit',
-    position: 'absolute',
 
     selectors: {
       [getModifierSelector<IModifier>('shake', root)]: {
@@ -44,6 +43,9 @@ const classNames = createStyles({
       },
     },
   }),
+  removeScroll: {
+    display: 'contents',
+  },
 });
 
 export type IPopoverBaseThemeFactory = IComponentThemeFactory<{

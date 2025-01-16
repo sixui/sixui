@@ -19,7 +19,7 @@ const [tokensClassName, tokens] = createTheme({
 });
 
 const classNames = createStyles({
-  content: ({ root }) => ({
+  popover: ({ root }) => ({
     position: 'fixed',
     display: 'flex',
     zIndex: themeTokens.zIndex.modal,

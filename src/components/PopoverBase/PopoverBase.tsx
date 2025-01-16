@@ -97,6 +97,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       closeEvents: closeEventsProp,
       modal,
       keepMounted,
+      popoverProps,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -330,18 +331,25 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
                   {...mergeProps(
                     { ref: floatingHandleRef },
                     interactions.getFloatingProps(),
-                    getStyles('floating', {
+                    getStyles('popover', {
                       style: positioned
-                        ? { left: floating.x, top: floating.y }
+                        ? {
+                            position: 'absolute',
+                            left: floating.x,
+                            top: floating.y,
+                          }
                         : undefined,
                     }),
+                    popoverProps,
                     floatingMotionProps,
                   )}
                 >
                   <RemoveScroll
                     enabled={withScrim}
-                    style={{ display: 'contents' }}
-                    {...removeScrollProps}
+                    {...mergeProps(
+                      getStyles('removeScroll'),
+                      removeScrollProps,
+                    )}
                   >
                     {isFunction(contentRenderer) ? (
                       contentRenderer({

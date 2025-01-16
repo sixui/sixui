@@ -198,6 +198,7 @@ export type IPopoverBaseOwnProps<TForwardedProps extends object = object> =
     modal?: boolean;
 
     keepMounted?: boolean;
+    popoverProps?: IBoxProps;
   };
 
 export interface IPopoverBaseProps

@@ -157,7 +157,7 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
 
 export const Standard: IStory = {
   render: (props) => <DrawerFrame {...props} />,
-  args: defaultArgs,
+  args: defaultArgs as IDrawerProps,
 };
 
 export const Detached: IStory = {
@@ -165,7 +165,7 @@ export const Detached: IStory = {
   args: {
     ...defaultArgs,
     variant: 'detached',
-  },
+  } as IDrawerProps,
 };
 
 export default meta;
