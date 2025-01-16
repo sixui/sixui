@@ -3,8 +3,6 @@ import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { themeTokens } from '../ThemeProvider';
 
-// type IModifier = IInteraction;
-
 const classNames = createStyles({
   root: {
     position: 'absolute',
@@ -13,13 +11,6 @@ const classNames = createStyles({
     width: `max(${themeTokens.density.minTargetSize}, 100%)`,
     height: `max(${themeTokens.density.minTargetSize}, 100%)`,
     transform: 'translate(-50%, -50%)',
-    // zIndex: 1,
-
-    // selectors: {
-    //   [getModifierSelector<IModifier>('hovered')]: {
-    //     zIndex: 2,
-    //   },
-    // },
   },
 });
 

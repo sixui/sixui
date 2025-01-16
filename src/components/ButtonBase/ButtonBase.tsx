@@ -102,15 +102,14 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
 
     const renderTouchTarget = useCallback(
       () =>
-        touchTargetRenderer &&
-        (touchTargetRenderer !== undefined
+        touchTargetRenderer !== null && touchTargetRenderer !== undefined
           ? touchTargetRenderer()
           : !disabledOrReadOnly && (
               <TouchTarget
                 {...getStyles('touchTarget')}
                 interactions={stateLayer.interactionsContext.state}
               />
-            )),
+            ),
       [
         disabledOrReadOnly,
         getStyles,
