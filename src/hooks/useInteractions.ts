@@ -1,6 +1,6 @@
 import type { DOMAttributes } from '@react-types/shared';
 import type { AriaFocusRingProps } from 'react-aria';
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { accumulate } from '@olivierpascal/helpers';
 import { useFocusRing } from 'react-aria';
 
@@ -179,6 +179,19 @@ export const useInteractions = <TElement extends HTMLElement>(
     }),
     [hoverOptions, handleHoverStart, handleHoverEnd],
   );
+
+  // Clear active triggers and manually call "hover end" events when the
+  // component is disabled. This is to compensate for the fact that "hover end"
+  // events are NOT being triggered when the component is disabled and the mouse
+  // leaves the component, because pointer events are disabled.
+  useEffect(() => {
+    if (disabled) {
+      activeTriggers.forEach(({ onHoverEnd }) =>
+        onHoverEnd({} as React.PointerEvent),
+      );
+      activeTriggers.length = 0;
+    }
+  }, [disabled]);
 
   const triggerProps = useMemo<DOMAttributes | undefined>(
     () =>

@@ -29,6 +29,7 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
       active: activeProp,
       icon: iconProp,
       activeIcon,
+      readOnly: readOnlyProp,
       anchor,
       badgeProps,
       disabled: disabledProp,
@@ -54,6 +55,8 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
     const id =
       tabsContext && anchor ? `${tabsContext.id}-${anchor}` : undefined;
     const loading = loadingProp || handlingClick;
+    const readOnly = readOnlyProp || loading;
+    const disabledOrReadOnly = disabled || readOnly;
 
     const { getStyles } = useComponentTheme<ITabThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -68,7 +71,7 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
         'with-icon': hasIcon,
         'with-label': hasLabel,
         active,
-        disabled,
+        disabled: disabledOrReadOnly,
       },
     });
 
@@ -133,6 +136,7 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
         variant={false}
         leadingIcon={renderIcon()}
         disabled={disabled}
+        readOnly={readOnly}
         indicator={renderActiveIndicator()}
         focusRingProps={{ variant: 'inward' }}
         role="tab"
