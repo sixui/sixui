@@ -10,7 +10,7 @@ import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Anchored } from '../Anchored';
 import { Badge } from '../Badge';
 import { Button } from '../Button';
-import { useTabsContext } from '../Tabs';
+import { useTabsContext } from '../Tabs/Tabs.context';
 import { tabTheme, tabThemeVariants } from './Tab.css';
 
 const COMPONENT_NAME = 'Tab';

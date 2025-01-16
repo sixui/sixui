@@ -148,12 +148,15 @@ const classNames = createStyles({
     // The padding added should be relative to the height of the container and
     // the height of its content on a single line (label or icon, whichever is
     // bigger).
-    paddingBlock: calc.divide(
-      calc.subtract(
-        tokens.container.height,
-        tokens.label.typography.lineHeight,
+    paddingBlock: calc.add(
+      calc.divide(
+        calc.subtract(
+          tokens.container.height,
+          tokens.label.typography.lineHeight,
+        ),
+        2,
       ),
-      2,
+      DENSITY,
     ),
     minWidth: calc.subtract(
       tokens.container.minWidth,
