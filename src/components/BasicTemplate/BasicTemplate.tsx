@@ -3,7 +3,7 @@ import type { IBasicTemplateFactory } from './BasicTemplate.types';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../Box';
+import { Paper } from '../Paper';
 import { basicTemplateTheme } from './BasicTemplate.css';
 
 const COMPONENT_NAME = 'BasicTemplate';
@@ -35,9 +35,9 @@ export const BasicTemplate = componentFactory<IBasicTemplateFactory>(
     });
 
     return (
-      <Box {...getStyles('root')} ref={forwardedRef} {...other}>
-        {children}
-      </Box>
+      <Paper {...getStyles('root')} ref={forwardedRef} {...other}>
+        <div {...getStyles('label')}>{children}</div>
+      </Paper>
     );
   },
 );
