@@ -56,7 +56,7 @@ export const useWindowSizeClass = (
       query: MediaQueryList;
       callback: IMediaQueryCallback;
     }>
-  >();
+  >(null);
   const rules = useMemo(
     () => getResponsiveRules(windowSizeClasses),
     [windowSizeClasses],

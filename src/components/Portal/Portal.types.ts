@@ -2,7 +2,7 @@ import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IBoxProps } from '../Box';
 
 export interface IPortalOwnProps {
-  target?: HTMLElement | null;
+  root?: HTMLElement | null;
   children?: React.ReactNode;
   disabled?: boolean;
 }

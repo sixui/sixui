@@ -11,7 +11,7 @@ export type IDrawerChildrenRenderProps = {
 };
 
 export interface IDrawerOwnProps {
-  target?: HTMLElement | null;
+  root?: HTMLElement | null;
   opened?: boolean;
   defaultOpened?: boolean;
   onClose?: () => void;

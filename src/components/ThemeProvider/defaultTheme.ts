@@ -1,5 +1,5 @@
 import type {
-  ITheme2,
+  ITheme,
   IThemeColorSchemeValues,
   IThemeDensityValues,
   IThemeElevationValues,
@@ -358,11 +358,11 @@ const zIndex: IThemeZIndexValues = {
 };
 
 const windowSizeClasses: IThemeWindowSizeClassesValues = {
-  compact: '600px',
-  medium: '960px',
-  expanded: '1280px',
-  large: '1440px',
-  extraLarge: '',
+  compact: 600,
+  medium: 960,
+  expanded: 1280,
+  large: 1440,
+  extraLarge: null,
 };
 
 const elevation: IThemeElevationValues = {
@@ -468,7 +468,7 @@ const elevation: IThemeElevationValues = {
   },
 };
 
-export const defaultTheme: ITheme2 = {
+export const defaultTheme: ITheme = {
   name: 'Material Design 3',
   source: {
     color: '#6750a4',
@@ -487,7 +487,7 @@ export const defaultTheme: ITheme2 = {
     spacing,
     state,
     zIndex,
-    windowSizeClasses,
     elevation,
   },
+  windowSizeClasses,
 };

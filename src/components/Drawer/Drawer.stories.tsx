@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IOmit } from '~/helpers/types';
 import type { IDrawerProps } from './Drawer.types';
+import { px } from '~/helpers/styles/px';
 import { useDisclosure } from '~/hooks/useDisclosure';
 import { Button } from '../Button';
 import { Flex } from '../Flex';
@@ -61,7 +62,7 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
       w="100%"
       h="$96"
       style={{
-        borderWidth: themeTokens.outline.width.xs,
+        borderWidth: px(themeTokens.outline.width.xs),
         borderColor: themeTokens.colorScheme.outlineVariant,
         borderStyle: 'dashed',
       }}
@@ -69,7 +70,7 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
       <div ref={setRootElement}>
         <DrawerDemo
           {...props}
-          target={rootElement}
+          root={rootElement}
           opened={leftOpened}
           onClose={leftActions.close}
           side="left"
@@ -77,14 +78,14 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
         />
         <DrawerDemo
           {...props}
-          target={rootElement}
+          root={rootElement}
           opened={topOpened}
           onClose={topActions.close}
           side="top"
         />
         <DrawerDemo
           {...props}
-          target={rootElement}
+          root={rootElement}
           opened={rightOpened}
           onClose={rightActions.close}
           side="right"
@@ -92,7 +93,7 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
         />
         <DrawerDemo
           {...props}
-          target={rootElement}
+          root={rootElement}
           opened={bottomOpened}
           onClose={bottomActions.close}
           side="bottom"

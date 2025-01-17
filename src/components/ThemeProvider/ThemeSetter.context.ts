@@ -1,10 +1,10 @@
 import type { PartialDeep } from 'type-fest';
 
 import { createSafeContext } from '~/helpers/createSafeContext';
-import { ITheme2 } from './theme.types';
+import { ITheme } from './theme.types';
 
 export type IThemeSetterContextValue = {
-  setTheme: (theme: PartialDeep<ITheme2> | undefined) => void;
+  setTheme: (theme: PartialDeep<ITheme> | undefined) => void;
 };
 
 export const [ThemeSetterProvider, useThemeSetterContext] =

@@ -282,7 +282,7 @@ export type IThemeWindowSizeClassName =
 
 export type IThemeWindowSizeClassesValues = Record<
   IThemeWindowSizeClassName,
-  string
+  number | null
 >;
 
 export type IThemeElevationLevel = 0 | 1 | 2 | 3 | 4 | 5;
@@ -307,14 +307,13 @@ export type IThemeElevationValues = {
 };
 
 export type IThemeComponentValues = {
-  defaultProps: ((theme: ITheme2) => object) | object;
+  defaultProps: ((theme: ITheme) => object) | object;
   classNames: Record<string, string>;
 };
 
 export type IThemeComponentsValues = Record<string, IThemeComponentValues>;
 
-// FIXME: rename to ITheme
-export type ITheme2 = {
+export type ITheme = {
   name: string;
   source: {
     color: string;
@@ -372,17 +371,17 @@ export type ITheme2 = {
 
     zIndex: IThemeZIndexValues;
 
-    /**
-     * Window size classes help create layouts that scale across devices of all
-     * shapes and sizes.
-     * @see https://m3.material.io/foundations/layout/applying-layout/window-size-classes
-     */
-    windowSizeClasses: IThemeWindowSizeClassesValues;
-
     elevation: IThemeElevationValues;
   };
 
   components?: IThemeComponentsValues;
+
+  /**
+   * Window size classes help create layouts that scale across devices of all
+   * shapes and sizes.
+   * @see https://m3.material.io/foundations/layout/applying-layout/window-size-classes
+   */
+  windowSizeClasses: IThemeWindowSizeClassesValues;
 };
 
-export type IThemeOverride = PartialDeep<ITheme2>;
+export type IThemeOverride = PartialDeep<ITheme>;

@@ -1,11 +1,11 @@
 import type {
-  IWindowSizeClassesTheme,
-  IWindowSizeClassName,
-} from '~/themes/base';
+  IThemeWindowSizeClassesValues,
+  IThemeWindowSizeClassName,
+} from '~/components/ThemeProvider';
 
 export type IWindowSizeClassContainerName =
-  | IWindowSizeClassName
-  | `${IWindowSizeClassName}AndUp`;
+  | IThemeWindowSizeClassName
+  | `${IThemeWindowSizeClassName}AndUp`;
 
 export type IResponsiveRule = {
   containerNames: Array<IWindowSizeClassContainerName>;
@@ -27,10 +27,10 @@ const serializeResponsiveRuleQuery = (
 };
 
 export const getResponsiveRules = (
-  classes: IWindowSizeClassesTheme,
+  classes: IThemeWindowSizeClassesValues,
 ): Array<IResponsiveRule> =>
   Object.entries(classes).reduce((acc, [key, breakpoint], index) => {
-    const className = key as IWindowSizeClassName;
+    const className = key as IThemeWindowSizeClassName;
     const previousRule = index > 0 ? acc[index - 1] : undefined;
     const containerNames: Array<IWindowSizeClassContainerName> = previousRule
       ? [

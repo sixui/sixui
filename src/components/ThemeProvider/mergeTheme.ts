@@ -1,7 +1,7 @@
-import type { ITheme2, IThemeOverride } from './theme.types';
+import type { ITheme, IThemeOverride } from './theme.types';
 import { deepMerge } from '~/helpers/deepMerge';
 
 export const mergeTheme = (
-  currentTheme: ITheme2,
+  currentTheme: ITheme,
   themeOverride?: IThemeOverride,
-): ITheme2 => deepMerge(currentTheme, themeOverride);
+): ITheme => deepMerge(currentTheme, themeOverride);
