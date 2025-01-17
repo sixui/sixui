@@ -18,6 +18,7 @@ const defaultArgs = {
 const variants: Array<IComponentPresentation<IPolymorphicTemplateProps>> = [
   { legend: 'None', props: { variant: false } },
   { legend: 'Primary', props: { variant: 'primary' } },
+  { legend: 'Secondary', props: { variant: 'secondary' } },
 ];
 
 const states: Array<IComponentPresentation<IPolymorphicTemplateProps>> = [

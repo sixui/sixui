@@ -8,6 +8,7 @@ import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { PaperBase } from '../PaperBase';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 
 type IModifier = 'disabled';
@@ -19,28 +20,53 @@ const [tokensClassName, tokens] = createTheme({
       normal: 'unset',
       disabled: 'unset',
     },
+    opacity: {
+      disabled: themeTokens.state.containerOpacity.disabled,
+    },
   },
   label: {
+    typography: themeTokens.typeScale.label.md,
     color: {
-      normal: 'unset',
-      disabled: 'unset',
+      normal: themeTokens.colorScheme.onSurface,
+      disabled: themeTokens.colorScheme.onSurface,
+    },
+    opacity: {
+      disabled: themeTokens.state.opacity.disabled,
     },
   },
 });
 
 const classNames = createStyles({
   root: {
-    backgroundColor: tokens.container.color.normal,
-    color: tokens.label.color.normal,
     padding: px(space(2)),
+
+    vars: createTokensVars(PaperBase.theme.tokens, {
+      container: {
+        color: tokens.container.color.normal,
+      },
+    }),
 
     selectors: {
       [getModifierSelector<IModifier>('disabled')]: {
-        backgroundColor: tokens.container.color.disabled,
-        color: tokens.label.color.disabled,
+        vars: createTokensVars(PaperBase.theme.tokens, {
+          container: {
+            color: tokens.container.color.disabled,
+            opacity: tokens.container.opacity.disabled,
+          },
+        }),
       },
     },
   },
+  label: ({ root }) => ({
+    color: tokens.label.color.normal,
+
+    selectors: {
+      [getModifierSelector<IModifier>('disabled', root)]: {
+        color: tokens.label.color.disabled,
+        opacity: tokens.label.opacity.disabled,
+      },
+    },
+  }),
 });
 
 export type IPolymorphicTemplateThemeFactory = IComponentThemeFactory<{
@@ -64,13 +90,29 @@ export const polymorphicTemplateThemeVariants = {
         container: {
           color: {
             normal: themeTokens.colorScheme.primary,
-            disabled: themeTokens.colorScheme.surfaceContainerHighest,
+            disabled: themeTokens.colorScheme.onSurface,
           },
         },
         label: {
           color: {
             normal: themeTokens.colorScheme.onPrimary,
+          },
+        },
+      }),
+    },
+  }),
+  secondary: createStyles({
+    root: {
+      vars: createTokensVars(tokens, {
+        container: {
+          color: {
+            normal: themeTokens.colorScheme.secondary,
             disabled: themeTokens.colorScheme.onSurface,
+          },
+        },
+        label: {
+          color: {
+            normal: themeTokens.colorScheme.onSecondary,
           },
         },
       }),

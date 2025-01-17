@@ -3,7 +3,7 @@ import type { IPolymorphicTemplateFactory } from './PolymorphicTemplate.types';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../Box';
+import { Paper } from '../Paper';
 import {
   polymorphicTemplateTheme,
   polymorphicTemplateThemeVariants,
@@ -42,9 +42,9 @@ export const PolymorphicTemplate =
       );
 
       return (
-        <Box {...getStyles('root')} ref={forwardedRef} {...other}>
-          {children}
-        </Box>
+        <Paper {...getStyles('root')} ref={forwardedRef} {...other}>
+          <div {...getStyles('label')}>{children}</div>
+        </Paper>
       );
     },
   );
