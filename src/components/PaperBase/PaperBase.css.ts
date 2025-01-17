@@ -15,7 +15,7 @@ type IModifier = IInteraction | 'expanded';
 export const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   container: {
-    color: 'inherit',
+    color: 'transparent',
     opacity: '1',
     elevation: elevationLevelPreset[0],
     shape: px(themeTokens.shape.corner.none),
