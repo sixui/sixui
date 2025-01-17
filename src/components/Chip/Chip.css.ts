@@ -99,26 +99,20 @@ const classNames = createStyles({
     transitionDuration: themeTokens.motion.duration.medium.$4,
     transitionTimingFunction: themeTokens.motion.easing.emphasized.decelerate,
 
-    vars: {
-      ...createTokensVars(PaperBase.theme.tokens, {
-        container: {
-          shape: px(themeTokens.shape.corner.sm),
+    vars: createTokensVars(Button.theme.tokens, {
+      container: {
+        shape: px(themeTokens.shape.corner.sm),
+        leadingSpace: tokens.leadingSpace,
+        trailingSpace: tokens.trailingSpace,
+        height: tokens.height,
+        color: {
+          normal: themeTokens.colorScheme.surfaceContainerLow,
+          disabled: 'unset',
         },
-      }),
-      ...createTokensVars(Button.theme.tokens, {
-        container: {
-          leadingSpace: tokens.leadingSpace,
-          trailingSpace: tokens.trailingSpace,
-          height: tokens.height,
-          color: {
-            normal: themeTokens.colorScheme.surfaceContainerLow,
-            disabled: 'unset',
-          },
-        },
-        icon: tokens.icon,
-        label: tokens.label,
-      }),
-    },
+      },
+      icon: tokens.icon,
+      label: tokens.label,
+    }),
     selectors: {
       [getModifierSelector<IModifier>({
         'non-interactive': false,
