@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { INavigationDrawerSectionProps } from './NavigationDrawerSection.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { componentShowcaseFactory } from '../ComponentShowcase';
+import { Flex } from '../Flex';
 import { NavigationDrawerDestination } from '../NavigationDrawerDestination';
 import { Paper } from '../Paper';
 import { NavigationDrawerSection } from './NavigationDrawerSection';
@@ -20,15 +21,22 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {
-  w: '$96',
-  h: '$72',
-} satisfies Partial<INavigationDrawerSectionProps>;
+const defaultArgs = {} satisfies Partial<INavigationDrawerSectionProps>;
 
 const NavigationDrawerSectionDemo: React.FC<INavigationDrawerSectionProps> = (
   props,
 ) => (
-  <Paper surface="$surface" outline="$xs" outlineStyle="dashed" pt="$8" pb="$8">
+  <Paper
+    as={Flex}
+    direction="column"
+    gap="$4"
+    surface="$surface"
+    outline="$xs"
+    outlineStyle="dashed"
+    pt="$8"
+    pb="$8"
+    w="$96"
+  >
     <NavigationDrawerSection headline="Mail" endDivider {...props}>
       <NavigationDrawerDestination
         variant="navigation"
