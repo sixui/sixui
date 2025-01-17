@@ -12,7 +12,16 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  children: 'AppHeader',
+  children: (
+    <>
+      <span>Content</span>
+      <span>Content</span>
+      <span>Content</span>
+    </>
+  ),
+  w: '$128',
+  outline: '$xs',
+  outlineStyle: 'dashed',
 } satisfies Partial<IAppHeaderProps>;
 
 const variants: Array<IComponentPresentation<IAppHeaderProps>> = [

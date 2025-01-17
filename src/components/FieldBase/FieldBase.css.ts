@@ -298,6 +298,7 @@ const classNames = createStyles({
 
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {
+        color: 'inherit',
         shape: `${px(themeTokens.shape.corner.xs)} ${px(themeTokens.shape.corner.xs)} 0 0`,
       },
     }),

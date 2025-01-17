@@ -1,5 +1,6 @@
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+import type { AppHeader } from '../AppHeader';
 import type { IBoxProps } from '../Box';
 import type { IAppLayoutContextValue } from './AppLayout.context';
 import type { appLayoutTheme, IAppLayoutThemeFactory } from './AppLayout.css';
@@ -38,4 +39,7 @@ export type IAppLayoutFactory = IComponentFactory<{
   props: IAppLayoutProps;
   ref: HTMLDivElement;
   theme: typeof appLayoutTheme;
+  staticComponents: {
+    Header: typeof AppHeader;
+  };
 }>;
