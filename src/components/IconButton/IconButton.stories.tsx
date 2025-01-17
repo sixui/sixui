@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as fasHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IComponentPresentation } from '../ComponentShowcase';
@@ -22,7 +22,7 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {
   onClick: (...args) => sbHandleEvent('onClick', args, 1000),
   icon: <FontAwesomeIcon icon={faHeart} />,
-  selectedIcon: <FontAwesomeIcon icon={faHeartSolid} />,
+  selectedIcon: <FontAwesomeIcon icon={fasHeart} />,
 } satisfies Partial<IIconButtonProps>;
 
 const states: Array<IComponentPresentation<IIconButtonProps>> = [

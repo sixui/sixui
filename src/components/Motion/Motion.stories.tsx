@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useRef } from 'react';
 import { faStar } from '@fortawesome/free-regular-svg-icons';
-import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
+import { faStar as fasStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CSSTransition } from 'react-transition-group';
 
@@ -54,7 +54,7 @@ const MotionUnpositionedDemo: React.FC<IMotionDemoProps> = (props) => {
     <>
       <IconButton
         icon={<FontAwesomeIcon icon={faStar} />}
-        selectedIcon={<FontAwesomeIcon icon={faStarSolid} />}
+        selectedIcon={<FontAwesomeIcon icon={fasStar} />}
         toggle
         selected={transitioning}
         onClick={() => toggle()}

@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
-import { faEnvelope as faEnvelopeSolid } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope as fasEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IComponentPresentation } from '../ComponentShowcase';
 import type { ITabProps } from './Tab.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { Badge } from '../Badge';
 import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Tab } from './Tab';
 
@@ -44,7 +45,7 @@ const rows: Array<IComponentPresentation<ITabProps>> = [
     legend: 'Icon',
     props: {
       icon: <FontAwesomeIcon icon={faEnvelope} />,
-      activeIcon: <FontAwesomeIcon icon={faEnvelopeSolid} />,
+      activeIcon: <FontAwesomeIcon icon={fasEnvelope} />,
       label: undefined,
     },
   },
@@ -52,7 +53,7 @@ const rows: Array<IComponentPresentation<ITabProps>> = [
     legend: 'Label and icon',
     props: {
       icon: <FontAwesomeIcon icon={faEnvelope} />,
-      activeIcon: <FontAwesomeIcon icon={faEnvelopeSolid} />,
+      activeIcon: <FontAwesomeIcon icon={fasEnvelope} />,
     },
   },
 ];
@@ -87,9 +88,9 @@ export const Variants: IStory = {
   args: {
     ...defaultArgs,
     active: true,
-    badgeProps: { value: 3 },
+    badge: <Badge value={3} />,
     icon: <FontAwesomeIcon icon={faEnvelope} />,
-    activeIcon: <FontAwesomeIcon icon={faEnvelopeSolid} />,
+    activeIcon: <FontAwesomeIcon icon={fasEnvelope} />,
   },
 };
 
@@ -106,7 +107,7 @@ export const PrimaryWithBadge: IStory = {
   ),
   args: {
     ...defaultArgs,
-    badgeProps: { value: 3 },
+    badge: <Badge value={3} />,
   },
 };
 
@@ -127,7 +128,7 @@ export const SecondaryWithBadge: IStory = {
   args: {
     ...defaultArgs,
     variant: 'secondary',
-    badgeProps: { value: 3 },
+    badge: <Badge value={3} />,
   },
 };
 

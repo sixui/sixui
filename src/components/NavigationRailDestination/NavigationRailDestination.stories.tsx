@@ -7,7 +7,7 @@ import type { IComponentPresentation } from '../ComponentShowcase';
 import type { INavigationRailDestinationProps } from './NavigationRailDestination.types';
 import { useToggle } from '~/hooks/useToggle';
 import { Badge } from '../Badge';
-import { ComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { NavigationRailDestination } from './NavigationRailDestination';
 
 const meta = {
@@ -18,11 +18,14 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {} satisfies Partial<INavigationRailDestinationProps>;
 
+const NavigationRailDestinationShowcase = componentShowcaseFactory(
+  NavigationRailDestination,
+);
+
 export const Variants: IStory = {
   render: (props) => (
-    <ComponentShowcase
+    <NavigationRailDestinationShowcase
       props={props}
-      component={NavigationRailDestination}
       cols={[
         { props: { active: false, label: 'Inactive' } },
         { props: { active: true, label: 'Active' } },
@@ -41,15 +44,15 @@ const states: Array<IComponentPresentation<INavigationRailDestinationProps>> = [
   { legend: 'Active', props: { active: true, label: 'Active' } },
   {
     legend: 'Focused',
-    props: { label: 'Focused', visualState: { focused: true } },
+    props: { label: 'Focused', interactions: { focused: true } },
   },
   {
     legend: 'Hovered',
-    props: { label: 'Hovered', visualState: { hovered: true } },
+    props: { label: 'Hovered', interactions: { hovered: true } },
   },
   {
     legend: 'Pressed',
-    props: { label: 'Pressed', visualState: { pressed: true } },
+    props: { label: 'Pressed', interactions: { pressed: true } },
   },
   { legend: 'Disabled', props: { label: 'Disabled', disabled: true } },
 ];
@@ -65,16 +68,19 @@ const NavigationRailDestinationDemo: React.FC<
     <NavigationRailDestination
       {...props}
       badge={<Badge value={hasBadge ? 3 : undefined} />}
-      onClick={toggle}
+      onClick={() => toggle()}
     />
   );
 };
 
+const NavigationRailDestinationDemoShowcase = componentShowcaseFactory(
+  NavigationRailDestinationDemo,
+);
+
 export const Configurations: IStory = {
   render: (props) => (
-    <ComponentShowcase
+    <NavigationRailDestinationDemoShowcase
       props={props}
-      component={NavigationRailDestinationDemo}
       cols={states}
       rows={[
         { legend: 'No label', props: { label: undefined } },

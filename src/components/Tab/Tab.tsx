@@ -8,7 +8,6 @@ import { useProps } from '~/utils/component/useProps';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Anchored } from '../Anchored';
-import { Badge } from '../Badge';
 import { Button } from '../Button';
 import { useTabsContext } from '../Tabs/Tabs.context';
 import { tabTheme, tabThemeVariants } from './Tab.css';
@@ -25,13 +24,12 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
       variant: variantProp,
       label,
       loading: loadingProp,
-      children,
       active: activeProp,
       icon: iconProp,
       activeIcon,
       readOnly: readOnlyProp,
       anchor,
-      badgeProps,
+      badge,
       disabled: disabledProp,
       onClick,
       ...other
@@ -51,12 +49,18 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
     const icon = active && activeIcon ? activeIcon : iconProp;
     const hasIcon = active ? !!activeIcon || !!icon : !!icon;
     const hasLabel = !!label;
-    const hasBadge = !!badgeProps;
     const id =
       tabsContext && anchor ? `${tabsContext.id}-${anchor}` : undefined;
     const loading = loadingProp || handlingClick;
     const readOnly = readOnlyProp || loading;
     const disabledOrReadOnly = disabled || readOnly;
+    const hasAnchoredBadge =
+      !!badge && !disabled && (variant === 'primary' || !hasLabel);
+    const hasInlineBadge =
+      !!badge &&
+      !disabled &&
+      !!hasLabel &&
+      (variant === 'secondary' || !hasIcon);
 
     const { getStyles } = useComponentTheme<ITabThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -68,28 +72,24 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
       theme: tabTheme,
       themeVariants: tabThemeVariants,
       modifiers: {
+        disabled: disabledOrReadOnly,
+        active,
         'with-icon': hasIcon,
         'with-label': hasLabel,
-        active,
-        disabled: disabledOrReadOnly,
+        'with-inline-badge': hasInlineBadge,
+        'with-anchored-badge': hasAnchoredBadge,
       },
     });
 
     const renderIcon = useCallback(
       (): React.ReactNode =>
         hasIcon &&
-        (hasBadge && (variant === 'primary' || !hasLabel) ? (
-          <Anchored
-            content={
-              badgeProps && !disabled ? <Badge {...badgeProps} /> : undefined
-            }
-          >
-            {icon}
-          </Anchored>
+        (hasAnchoredBadge ? (
+          <Anchored content={!disabled && badge}>{icon}</Anchored>
         ) : (
           icon
         )),
-      [hasIcon, hasBadge, variant, hasLabel, badgeProps, disabled, icon],
+      [hasIcon, badge, disabled, icon, hasAnchoredBadge],
     );
 
     const renderActiveIndicator = useCallback(
@@ -146,9 +146,13 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
         loading={loading}
         {...other}
       >
-        {label ?? children}
-        {hasBadge && !disabled && (!hasIcon || variant === 'secondary') && (
-          <Badge {...badgeProps} ml="$2" />
+        {hasInlineBadge ? (
+          <>
+            <span {...getStyles('label')}>{label}</span>
+            {badge}
+          </>
+        ) : (
+          label
         )}
       </Button>
     );

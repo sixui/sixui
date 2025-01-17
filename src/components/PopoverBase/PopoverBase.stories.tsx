@@ -1,9 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { faStar } from '@fortawesome/free-regular-svg-icons';
-import {
-  faStar as faStarSolid,
-  faXmark,
-} from '@fortawesome/free-solid-svg-icons';
+import { faStar as fasStar, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IPlacement } from '~/helpers/types';
@@ -61,7 +58,7 @@ const defaultArgs = {
       {...getProps()}
       ref={setRef}
       icon={<FontAwesomeIcon icon={faStar} />}
-      selectedIcon={<FontAwesomeIcon icon={faStarSolid} />}
+      selectedIcon={<FontAwesomeIcon icon={fasStar} />}
       toggle
       selected={opened}
     />

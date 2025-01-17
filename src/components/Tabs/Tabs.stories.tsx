@@ -6,10 +6,10 @@ import {
   faUser,
 } from '@fortawesome/free-regular-svg-icons';
 import {
-  faBookmark as faBookmarkSolid,
-  faCalendar as faCalendarSolid,
-  faEnvelope as faEnvelopeSolid,
-  faUser as faUserSolid,
+  faBookmark as fasBookmark,
+  faCalendar as fasCalendar,
+  faEnvelope as fasEnvelope,
+  faUser as fasUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -38,28 +38,28 @@ const TabsDemo: React.FC<ITabsProps> = (props) => (
           label="Item one"
           anchor="tab-1"
           icon={<FontAwesomeIcon icon={faEnvelope} />}
-          activeIcon={<FontAwesomeIcon icon={faEnvelopeSolid} />}
+          activeIcon={<FontAwesomeIcon icon={fasEnvelope} />}
           onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
         />
         <Tabs.Tab
           label="Item two"
           anchor="tab-2"
           icon={<FontAwesomeIcon icon={faUser} />}
-          activeIcon={<FontAwesomeIcon icon={faUserSolid} />}
+          activeIcon={<FontAwesomeIcon icon={fasUser} />}
           onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
         />
         <Tabs.Tab
           label="Item three"
           anchor="tab-3"
           icon={<FontAwesomeIcon icon={faBookmark} />}
-          activeIcon={<FontAwesomeIcon icon={faBookmarkSolid} />}
+          activeIcon={<FontAwesomeIcon icon={fasBookmark} />}
           onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
         />
         <Tabs.Tab
           label="Item four"
           anchor="tab-4"
           icon={<FontAwesomeIcon icon={faCalendar} />}
-          activeIcon={<FontAwesomeIcon icon={faCalendarSolid} />}
+          activeIcon={<FontAwesomeIcon icon={fasCalendar} />}
           onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
           disabled
         />

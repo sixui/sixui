@@ -16,7 +16,13 @@ import { StateLayer } from '../StateLayer';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
-type IModifier = 'disabled' | 'with-icon' | 'with-label' | 'active';
+type IModifier =
+  | 'disabled'
+  | 'with-icon'
+  | 'with-label'
+  | 'with-inline-badge'
+  | 'with-anchored-badge'
+  | 'active';
 
 const DENSITY = px(getDensity({ min: -4, max: 0 }));
 
@@ -285,6 +291,14 @@ const classNames = createStyles({
     },
   }),
   focusRing: {},
+  label: ({ root }) => ({
+    selectors: {
+      [getModifierSelector<IModifier>('with-inline-badge', root)]: {
+        marginRight: px(space(1)),
+        verticalAlign: 'middle',
+      },
+    },
+  }),
 });
 
 export type ITabThemeFactory = IComponentThemeFactory<{

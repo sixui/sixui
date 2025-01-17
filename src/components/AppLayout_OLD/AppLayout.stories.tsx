@@ -7,9 +7,9 @@ import {
 } from '@fortawesome/free-regular-svg-icons';
 import {
   faBars,
-  faCircle as faCircleSolid,
-  faHeart as faHeartSolid,
-  faSquare as faSquareSolid,
+  faCircle as fasCircle,
+  faHeart as fasHeart,
+  faSquare as fasSquare,
   faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -171,21 +171,21 @@ const NavigationRailContentDemo: React.FC<INavigationRailContentProps> = (
     <>
       <NavigationRailDestination
         icon={<FontAwesomeIcon icon={faSquare} />}
-        activeIcon={<FontAwesomeIcon icon={faSquareSolid} />}
+        activeIcon={<FontAwesomeIcon icon={fasSquare} />}
         label="List-detail"
         onClick={() => setCanonicalLayoutType('listDetail')}
         active={canonicalLayoutType === 'listDetail'}
       />
       <NavigationRailDestination
         icon={<FontAwesomeIcon icon={faCircle} />}
-        activeIcon={<FontAwesomeIcon icon={faCircleSolid} />}
+        activeIcon={<FontAwesomeIcon icon={fasCircle} />}
         label="Supporting pane"
         onClick={() => setCanonicalLayoutType('supportingPane')}
         active={canonicalLayoutType === 'supportingPane'}
       />
       <NavigationRailDestination
         icon={<FontAwesomeIcon icon={faHeart} />}
-        activeIcon={<FontAwesomeIcon icon={faHeartSolid} />}
+        activeIcon={<FontAwesomeIcon icon={fasHeart} />}
         label="Feed"
         onClick={() => setCanonicalLayoutType('feed')}
         active={canonicalLayoutType === 'feed'}

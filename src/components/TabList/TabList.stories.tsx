@@ -5,9 +5,9 @@ import {
   faUser,
 } from '@fortawesome/free-regular-svg-icons';
 import {
-  faBookmark as faBookmarkSolid,
-  faEnvelope as faEnvelopeSolid,
-  faUser as faUserSolid,
+  faBookmark as fasBookmark,
+  faEnvelope as fasEnvelope,
+  faUser as fasUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -45,20 +45,20 @@ const TabListDemo: React.FC<ITabListDemoProps> = ({
     <Tab
       label={withLabel && 'Item one'}
       icon={withIcon && <FontAwesomeIcon icon={faEnvelope} />}
-      activeIcon={withIcon && <FontAwesomeIcon icon={faEnvelopeSolid} />}
+      activeIcon={withIcon && <FontAwesomeIcon icon={fasEnvelope} />}
       {...tabProps}
       active
     />
     <Tab
       label={withLabel && 'Item two'}
       icon={withIcon && <FontAwesomeIcon icon={faUser} />}
-      activeIcon={withIcon && <FontAwesomeIcon icon={faUserSolid} />}
+      activeIcon={withIcon && <FontAwesomeIcon icon={fasUser} />}
       {...tabProps}
     />
     <Tab
       label={withLabel && 'Item three'}
       icon={withIcon && <FontAwesomeIcon icon={faBookmark} />}
-      activeIcon={withIcon && <FontAwesomeIcon icon={faBookmarkSolid} />}
+      activeIcon={withIcon && <FontAwesomeIcon icon={fasBookmark} />}
       {...tabProps}
       disabled
     />

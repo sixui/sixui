@@ -6,9 +6,9 @@ import {
   faSquare,
 } from '@fortawesome/free-regular-svg-icons';
 import {
-  faCircle as faCircleSolid,
-  faHeart as faHeartSolid,
-  faSquare as faSquareSolid,
+  faCircle as fasCircle,
+  faHeart as fasHeart,
+  faSquare as fasSquare,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import stylex from '@stylexjs/stylex';
@@ -53,7 +53,7 @@ const NavigationRailDemo: React.FC<IOmit<INavigationRailProps, 'children'>> = (
     <NavigationRail {...props}>
       <NavigationRail.Destination
         icon={<FontAwesomeIcon icon={faSquare} />}
-        activeIcon={<FontAwesomeIcon icon={faSquareSolid} />}
+        activeIcon={<FontAwesomeIcon icon={fasSquare} />}
         label="First"
         onClick={() => setActiveIndex(0)}
         active={activeIndex === 0}
@@ -61,7 +61,7 @@ const NavigationRailDemo: React.FC<IOmit<INavigationRailProps, 'children'>> = (
       />
       <NavigationRail.Destination
         icon={<FontAwesomeIcon icon={faCircle} />}
-        activeIcon={<FontAwesomeIcon icon={faCircleSolid} />}
+        activeIcon={<FontAwesomeIcon icon={fasCircle} />}
         label="Second"
         onClick={() => setActiveIndex(1)}
         active={activeIndex === 1}
@@ -69,7 +69,7 @@ const NavigationRailDemo: React.FC<IOmit<INavigationRailProps, 'children'>> = (
       />
       <NavigationRail.Destination
         icon={<FontAwesomeIcon icon={faHeart} />}
-        activeIcon={<FontAwesomeIcon icon={faHeartSolid} />}
+        activeIcon={<FontAwesomeIcon icon={fasHeart} />}
         label="Third"
         onClick={() => setActiveIndex(2)}
         active={activeIndex === 2}

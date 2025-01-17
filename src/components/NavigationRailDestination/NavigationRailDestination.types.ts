@@ -3,11 +3,12 @@ import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphic
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { IButtonOwnProps } from '../Button';
-import type { ITabThemeFactory, tabTheme } from './Tab.css';
+import type {
+  INavigationRailDestinationThemeFactory,
+  navigationRailDestinationTheme,
+} from './NavigationRailDestination.css';
 
-export type ITabVariant = 'primary' | 'secondary';
-
-export interface ITabOwnProps
+export interface INavigationRailDestinationOwnProps
   extends IOmit<IButtonOwnProps, 'leadingIcon' | 'trailingIcon' | 'children'> {
   label?: React.ReactNode;
 
@@ -16,19 +17,18 @@ export interface ITabOwnProps
 
   icon?: React.ReactNode;
   activeIcon?: React.ReactNode;
-  anchor?: string;
+  side?: string;
   badge?: React.ReactNode;
 }
 
-export interface ITabProps
+export interface INavigationRailDestinationProps
   extends IBoxProps,
-    IComponentThemeProps<ITabThemeFactory>,
-    ITabOwnProps {}
+    IComponentThemeProps<INavigationRailDestinationThemeFactory>,
+    INavigationRailDestinationOwnProps {}
 
-export type ITabFactory = IPolymorphicComponentFactory<{
-  props: ITabProps;
+export type INavigationRailDestinationFactory = IPolymorphicComponentFactory<{
+  props: INavigationRailDestinationProps;
   defaultRef: HTMLButtonElement;
   defaultRoot: 'button';
-  theme: typeof tabTheme;
-  variant: ITabVariant | false;
+  theme: typeof navigationRailDestinationTheme;
 }>;
