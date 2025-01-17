@@ -39,9 +39,9 @@ export const CardTitle = componentFactory<ICardTitleFactory>(
           {subhead && <div {...getStyles('subhead')}>{subhead}</div>}
         </div>
 
-        {supportingText ? (
+        {supportingText && (
           <div {...getStyles('supportingText')}>{supportingText}</div>
-        ) : null}
+        )}
       </Box>
     );
   },

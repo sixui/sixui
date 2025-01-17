@@ -6,17 +6,17 @@ import type { IButtonBaseOwnProps } from '../ButtonBase';
 import type { IItemOwnProps } from '../Item';
 import type { IPaperOwnProps } from '../Paper';
 import type { IListItemThemeFactory, listItemTheme } from './ListItem.css';
+import { IOmit } from '~/helpers/types';
 
-export type IListItemVariant = 'standard' | 'danger' | 'navigation';
+export type IListItemVariant = 'standard' | 'danger';
 
 export interface IListItemOwnProps
   extends IItemOwnProps,
     IPaperOwnProps,
-    IButtonBaseOwnProps {
+    IOmit<IButtonBaseOwnProps, 'children'> {
   interactionsMergeStrategy?: IInteractionsMergeStrategy;
   selected?: boolean;
   loading?: boolean;
-  loadingText?: React.ReactNode;
   leading?: React.ReactNode;
   leadingIcon?: React.ReactNode;
   leadingImage?: string;

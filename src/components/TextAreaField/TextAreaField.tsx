@@ -110,8 +110,8 @@ export const TextAreaField = componentFactory<ITextAreaFieldFactory>(
       }
     };
 
-    const renderEndSection = (): React.JSX.Element | null =>
-      hasEnd ? (
+    const renderEndSection = (): React.ReactNode =>
+      hasEnd && (
         <>
           {other.end}
           {clearable && (
@@ -122,7 +122,7 @@ export const TextAreaField = componentFactory<ITextAreaFieldFactory>(
             />
           )}
         </>
-      ) : null;
+      );
 
     return (
       <FieldBase

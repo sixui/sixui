@@ -54,7 +54,7 @@ export const List = componentFactory<IListFactory>((props, forwardedRef) => {
         ref={forwardedRef}
         {...other}
       >
-        <Flex {...getStyles('inner')} direction="column">
+        <div {...getStyles('inner')}>
           {header && <header {...getStyles('header')}>{header}</header>}
           <Flex
             {...getStyles('content', {
@@ -70,7 +70,7 @@ export const List = componentFactory<IListFactory>((props, forwardedRef) => {
             {children}
           </Flex>
           {footer && <footer {...getStyles('footer')}>{footer}</footer>}
-        </Flex>
+        </div>
       </Paper>
     </ListContextProvider>
   );

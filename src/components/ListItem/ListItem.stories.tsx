@@ -47,14 +47,6 @@ const states: Array<IComponentPresentation<IListItemProps>> = [
   },
   { legend: 'Selected', props: { children: 'Selected', selected: true } },
   { legend: 'Loading', props: { children: 'Loading', loading: true } },
-  {
-    legend: 'Loading text',
-    props: {
-      children: 'Loading',
-      loading: true,
-      loadingText: '…',
-    },
-  },
   { legend: 'Disabled', props: { children: 'Disabled', disabled: true } },
 ];
 
@@ -126,16 +118,16 @@ export const Variants: IStory = {
   render: (props) => (
     <ListItemShowcase
       props={props}
-      cols={(
-        ['standard', 'danger', 'navigation'] as Array<IListItemVariant>
-      ).map((variant) => ({
-        props: {
-          variant,
-          children: capitalizeFirstLetter(variant),
-          leadingIcon: <FontAwesomeIcon icon={faCalendarDays} />,
-          trailingIcon: <FontAwesomeIcon icon={faChevronRight} />,
-        },
-      }))}
+      cols={(['standard', 'danger'] as Array<IListItemVariant>).map(
+        (variant) => ({
+          props: {
+            variant,
+            children: capitalizeFirstLetter(variant),
+            leadingIcon: <FontAwesomeIcon icon={faCalendarDays} />,
+            trailingIcon: <FontAwesomeIcon icon={faChevronRight} />,
+          },
+        }),
+      )}
     />
   ),
   args: defaultArgs,
@@ -169,22 +161,6 @@ export const Danger: IStory = {
   args: {
     ...defaultArgs,
     variant: 'danger',
-    children: 'Label',
-  },
-};
-
-export const Navigation: IStory = {
-  render: (props) => (
-    <ListItemShowcase
-      horizontalAlign="start"
-      props={props}
-      cols={states}
-      rows={rows}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    variant: 'navigation',
     children: 'Label',
   },
 };

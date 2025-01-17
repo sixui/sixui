@@ -131,8 +131,8 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
       setTimeout(() => setUnmasked((unmasked) => !unmasked), 0);
     };
 
-    const renderEndSection = (): React.JSX.Element | null =>
-      hasEnd ? (
+    const renderEndSection = (): React.ReactNode =>
+      hasEnd && (
         <>
           {other.end}
           {clearable && (
@@ -153,7 +153,7 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
             />
           )}
         </>
-      ) : null;
+      );
 
     return (
       <FieldBase

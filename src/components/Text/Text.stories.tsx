@@ -28,8 +28,7 @@ const LOREM$LG =
 
 const TypeScaleShowcase = componentShowcaseFactory((props: ITextProps) => (
   <Text {...props}>
-    {props.children ??
-      (props.variant ? capitalizeFirstLetter(props.variant) : null)}
+    {props.children ?? (props.variant && capitalizeFirstLetter(props.variant))}
   </Text>
 ));
 

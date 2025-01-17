@@ -41,9 +41,9 @@ export const NavigationRail = componentFactory<INavigationRailFactory>(
 
     return (
       <PaperBase {...getStyles('root')} ref={forwardedRef} {...other}>
-        {header ? <div {...getStyles('header')}>{header}</div> : null}
+        {header && <div {...getStyles('header')}>{header}</div>}
         <div {...getStyles('content')}>{children}</div>
-        {footer ? <div {...getStyles('footer')}>{footer}</div> : null}
+        {footer && <div {...getStyles('footer')}>{footer}</div>}
       </PaperBase>
     );
   },

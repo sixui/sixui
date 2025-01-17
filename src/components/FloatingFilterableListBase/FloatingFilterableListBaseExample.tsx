@@ -109,9 +109,8 @@ export const FloatingFilterableListBaseExample: React.FC<
           interactions={{ focused: renderProps.opened && !canFilter }}
           {...renderProps.forwardedProps}
         >
-          {singleFilterableListBase.selectedItem
-            ? getMovieLabel(singleFilterableListBase.selectedItem)
-            : null}
+          {singleFilterableListBase.selectedItem &&
+            getMovieLabel(singleFilterableListBase.selectedItem)}
         </FieldBase>
       )}
     </MovieFloatingFilterableListBase>

@@ -40,7 +40,6 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
       leadingImage,
       leadingVideo,
       trailing,
-      loadingText,
       trailingIcon,
       lineClamp,
       noFocusRing: noFocusRingProp,
@@ -61,8 +60,6 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
     const hasStartSlot =
       !!start || !!leadingIcon || !!leadingImage || !!leadingVideo || !!leading;
     const hasEndSlot = !!end || !!trailingIcon || !!trailing;
-    const hasOverlay =
-      loading && (!!loadingText || (!hasStartSlot && !hasEndSlot));
 
     const { getStyles } = useComponentTheme<IListItemThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -148,7 +145,7 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
 
     const renderEndSlot = useCallback(
       (): React.ReactNode =>
-        hasEndSlot && (
+        hasEndSlot ? (
           <Overlayable
             overlay={
               <IndeterminateCircularProgressIndicator {...getStyles('icon')} />
@@ -164,7 +161,9 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
                 trailing
               ))}
           </Overlayable>
-        ),
+        ) : loading && !hasStartSlot ? (
+          <IndeterminateCircularProgressIndicator {...getStyles('icon')} />
+        ) : undefined,
       [
         end,
         getStyles,
@@ -173,27 +172,12 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
         loading,
         trailing,
         trailingIcon,
+        hasStartSlot,
       ],
     );
 
     const shouldRenderAsButton =
       other.as === 'button' || other.as === 'a' || !!onClick || !!other.href;
-
-    const renderLabelSlot = useCallback(
-      () => (
-        <Overlayable
-          overlay={
-            loadingText ?? (
-              <IndeterminateCircularProgressIndicator {...getStyles('icon')} />
-            )
-          }
-          visible={hasOverlay}
-        >
-          {children}
-        </Overlayable>
-      ),
-      [children, getStyles, loadingText, hasOverlay],
-    );
 
     const renderItem = (): React.JSX.Element => (
       <Item
@@ -205,7 +189,7 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
         end={renderEndSlot()}
         lineClamp={lineClamp}
       >
-        {renderLabelSlot()}
+        {children}
       </Item>
     );
 

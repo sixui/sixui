@@ -6,6 +6,8 @@ import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
+import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { PaperBase } from '../PaperBase';
 import { cssLayers } from '../ThemeProvider';
 
 type IModifier = 'grid' | 'empty';
@@ -29,8 +31,16 @@ const classNames = createStyles({
     paddingLeft: 0,
     paddingRight: 0,
     maxHeight: 'inherit',
+
+    vars: createTokensVars(PaperBase.theme.tokens, {
+      container: {
+        color: 'transparent',
+      },
+    }),
   },
   inner: {
+    display: 'flex',
+    flexDirection: 'column',
     maxHeight: 'inherit',
     borderRadius: 'inherit',
   },

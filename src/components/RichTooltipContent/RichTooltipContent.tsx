@@ -49,12 +49,12 @@ export const RichTooltipContent = componentFactory<IRichTooltipContentFactory>(
         <Flex direction="column">
           {renderCursor?.(getStyles('cursor'))}
           <Flex {...getStyles('content')} direction="column" gap="$2">
-            {subhead ? <div {...getStyles('subhead')}>{subhead}</div> : null}
-            {supportingText ? (
+            {subhead && <div {...getStyles('subhead')}>{subhead}</div>}
+            {supportingText && (
               <div {...getStyles('supportingText')}>{supportingText}</div>
-            ) : null}
+            )}
           </Flex>
-          {actions ? (
+          {actions && (
             <Flex
               {...getStyles('actions')}
               direction="row"
@@ -63,7 +63,7 @@ export const RichTooltipContent = componentFactory<IRichTooltipContentFactory>(
             >
               {isFunction(actions) ? actions({ onClose }) : actions}
             </Flex>
-          ) : null}
+          )}
         </Flex>
       </Paper>
     );

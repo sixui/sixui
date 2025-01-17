@@ -51,7 +51,8 @@ export const IndeterminateCircularProgressIndicator =
               </div>
             </div>
           </div>
-          {children ? <div {...getStyles('layer')}>{children}</div> : null}
+
+          {children && <div {...getStyles('layer')}>{children}</div>}
         </Box>
       );
     },

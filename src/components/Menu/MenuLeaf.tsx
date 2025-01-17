@@ -214,7 +214,7 @@ export const MenuLeaf = componentFactory<IMenuFactory>(
       <FloatingNode id={nodeId}>
         {triggerElement}
 
-        {transitionStatus.isMounted ? (
+        {transitionStatus.isMounted && (
           <MenuItemContextProvider
             value={{
               activeIndex,
@@ -261,7 +261,7 @@ export const MenuLeaf = componentFactory<IMenuFactory>(
               </FloatingFocusManager>
             </Portal>
           </MenuItemContextProvider>
-        ) : null}
+        )}
       </FloatingNode>
     );
   },

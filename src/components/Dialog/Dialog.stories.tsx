@@ -122,11 +122,11 @@ const FormDialogDemo: React.FC<IDialogProps> = (props) => {
 
       <Flex direction="row" gap="$4" align="center">
         <Button onClick={open}>Open</Button>
-        {name ? (
+        {name && (
           <div>
             Hello, <strong>{name}</strong>!
           </div>
-        ) : null}
+        )}
       </Flex>
     </>
   );

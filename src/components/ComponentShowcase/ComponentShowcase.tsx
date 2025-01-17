@@ -63,13 +63,13 @@ export const componentShowcaseFactory = <TComponentProps extends object>(
         ref={forwardedRef}
         {...other}
       >
-        {shouldShowRowLegends && rowLegendPosition === 'start' ? (
+        {shouldShowRowLegends && rowLegendPosition === 'start' && (
           <div {...getStyles(['rows', 'gap$lg'])}>
-            {shouldShowColLegends ? (
+            {shouldShowColLegends && (
               <div {...getStyles(['legendText', 'invisible'])} aria-hidden>
                 {DUMMY_TEXT}
               </div>
-            ) : null}
+            )}
 
             <div {...getStyles(['flex', 'groupRows'])}>
               {nonEmptyGroups.map((_, groupIndex) => (
@@ -96,7 +96,7 @@ export const componentShowcaseFactory = <TComponentProps extends object>(
               ))}
             </div>
           </div>
-        ) : null}
+        )}
 
         <div
           {...getStyles(['cols', 'gap$md', 'align$start', fullWidth && 'flex'])}
@@ -116,13 +116,13 @@ export const componentShowcaseFactory = <TComponentProps extends object>(
                     'flex',
                   ])}
                 >
-                  {shouldShowColLegends && groupIndex === 0 ? (
+                  {shouldShowColLegends && groupIndex === 0 && (
                     <div
                       {...getStyles(['legendText', !col.legend && 'invisible'])}
                     >
                       {col.legend ?? DUMMY_TEXT}
                     </div>
-                  ) : null}
+                  )}
 
                   {nonEmptyRows.map((row, rowIndex) => {
                     const Component =
@@ -144,10 +144,10 @@ export const componentShowcaseFactory = <TComponentProps extends object>(
                         ])}
                       >
                         {shouldShowRowLegends &&
-                        rowLegendPosition === 'top' &&
-                        row.legend ? (
-                          <div {...getStyles('legendText')}>{row.legend}</div>
-                        ) : null}
+                          rowLegendPosition === 'top' &&
+                          row.legend && (
+                            <div {...getStyles('legendText')}>{row.legend}</div>
+                          )}
 
                         <div
                           {...getStyles([
@@ -182,13 +182,13 @@ export const componentShowcaseFactory = <TComponentProps extends object>(
           ))}
         </div>
 
-        {shouldShowGroupLegends ? (
+        {shouldShowGroupLegends && (
           <div {...getStyles(['rows', 'gap$lg'])}>
-            {shouldShowColLegends ? (
+            {shouldShowColLegends && (
               <div {...getStyles(['legendText', 'invisible'])} aria-hidden>
                 {DUMMY_TEXT}
               </div>
-            ) : null}
+            )}
 
             <div {...getStyles(['flex', 'groupRows'])}>
               {nonEmptyGroups.map((group, groupIndex) => (
@@ -213,7 +213,7 @@ export const componentShowcaseFactory = <TComponentProps extends object>(
               ))}
             </div>
           </div>
-        ) : null}
+        )}
       </Box>
     );
   });
