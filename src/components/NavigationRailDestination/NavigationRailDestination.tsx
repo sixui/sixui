@@ -1,6 +1,5 @@
 import type { INavigationRailDestinationThemeFactory } from './NavigationRailDestination.css';
 import type { INavigationRailDestinationFactory } from './NavigationRailDestination.types';
-import { componentFactory } from '~/utils/component/componentFactory';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
@@ -39,7 +38,7 @@ export const NavigationRailDestination =
 
       return (
         <Button {...getStyles('root')} ref={forwardedRef} {...other}>
-          {children}
+          {({ renderTouchTarget }) => <>XX</>}
         </Button>
       );
     },

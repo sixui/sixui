@@ -78,7 +78,7 @@ const rows: Array<IComponentPresentation<IButtonProps>> = [
     legend: 'With leading and trailing icon',
     props: {
       leadingIcon: <FontAwesomeIcon icon={faPlus} />,
-      trailingIcon: <FontAwesomeIcon icon={faPlus} />,
+      trailingIcon: <FontAwesomeIcon icon={faChevronRight} />,
     },
   },
   {
@@ -92,7 +92,7 @@ const rows: Array<IComponentPresentation<IButtonProps>> = [
     legend: 'With start slot and trailing icon',
     props: {
       start: <Badge value="2" />,
-      trailingIcon: <FontAwesomeIcon icon={faPlus} />,
+      trailingIcon: <FontAwesomeIcon icon={faChevronRight} />,
     },
   },
 ];

@@ -1,9 +1,13 @@
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
-import type { IButtonBaseOwnProps } from '../ButtonBase';
+import type {
+  IButtonBaseChildrenRendererPops,
+  IButtonBaseOwnProps,
+} from '../ButtonBase';
 import type { IPaperOwnProps } from '../Paper';
 import type { buttonTheme, IButtonThemeFactory } from './Button.css';
+import { IOmit } from '~/helpers/types';
 
 export type IButtonVariant =
   | 'elevated'
@@ -15,7 +19,16 @@ export type IButtonVariant =
   | 'snackbar'
   | 'inline';
 
-export interface IButtonOwnProps extends IButtonBaseOwnProps {
+export interface IButtonChildrenRendererPops
+  extends IButtonBaseChildrenRendererPops {
+  renderContent: (children: React.ReactNode) => React.ReactNode;
+}
+
+export interface IButtonOwnProps
+  extends IOmit<IButtonBaseOwnProps, 'children'> {
+  children?:
+    | React.ReactNode
+    | ((props: IButtonChildrenRendererPops) => React.ReactNode);
   loading?: boolean;
   loadingAnimation?: 'progressIndicator' | 'halfSpin' | 'none';
   loadingText?: React.ReactNode;
@@ -25,7 +38,6 @@ export interface IButtonOwnProps extends IButtonBaseOwnProps {
   hasTrailing?: boolean;
   start?: React.ReactNode;
   end?: React.ReactNode;
-  indicator?: React.ReactNode;
   // FIXME: animated slots
   animatedSlots?: boolean;
 }
@@ -33,7 +45,7 @@ export interface IButtonOwnProps extends IButtonBaseOwnProps {
 export interface IButtonProps
   extends IBoxProps,
     IComponentThemeProps<IButtonThemeFactory>,
-    IPaperOwnProps,
+    IOmit<IPaperOwnProps, 'children'>,
     IButtonOwnProps {}
 
 export type IButtonFactory = IPolymorphicComponentFactory<{

@@ -1,4 +1,4 @@
-import type { IMaybeAsync } from '~/helpers/types';
+import type { IMaybeAsync, IOmit } from '~/helpers/types';
 import type { IInteractionsMergeStrategy } from '~/hooks/useInteractions';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
@@ -11,9 +11,17 @@ import type {
   IButtonBaseThemeFactory,
 } from './ButtonBase.css';
 
+export interface IButtonBaseChildrenRendererPops {
+  renderFocusRing: () => React.ReactNode;
+  renderStateLayer: () => React.ReactNode;
+  renderTouchTarget: () => React.ReactNode;
+}
+
 export interface IButtonBaseOwnProps {
   interactionsMergeStrategy?: IInteractionsMergeStrategy;
-  children?: React.ReactNode;
+  children?:
+    | React.ReactNode
+    | ((props: IButtonBaseChildrenRendererPops) => React.ReactNode);
   noFocusRing?: boolean;
   focusRingProps?: IFocusRingProps;
   href?: string;
@@ -36,7 +44,7 @@ export interface IButtonBaseOwnProps {
 
 export interface IButtonBaseProps
   extends IBoxProps,
-    IPaperOwnProps,
+    IOmit<IPaperOwnProps, 'children'>,
     IButtonBaseOwnProps,
     IComponentThemeProps<IButtonBaseThemeFactory> {}
 

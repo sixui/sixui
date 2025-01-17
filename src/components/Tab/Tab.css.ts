@@ -32,7 +32,7 @@ const [tokensClassName, tokens] = createTheme({
     shape: px(themeTokens.shape.corner.none),
     height: {
       normal: px(48),
-      withIconAndLabelText: px(48),
+      withIconAndLabel: px(48),
     },
     elevation: {
       normal: elevationLevelPreset[0],
@@ -220,10 +220,7 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>(['with-icon', 'with-label'])]: {
         vars: createTokensVars(Button.theme.tokens, {
           container: {
-            height: calc.add(
-              tokens.container.height.withIconAndLabelText,
-              DENSITY,
-            ),
+            height: calc.add(tokens.container.height.withIconAndLabel, DENSITY),
           },
         }),
       },
@@ -323,7 +320,7 @@ export const tabThemeVariants = {
       vars: createTokensVars(tokens, {
         container: {
           height: {
-            withIconAndLabelText: px(64),
+            withIconAndLabel: px(64),
           },
         },
         label$active: {

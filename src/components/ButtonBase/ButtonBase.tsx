@@ -1,7 +1,6 @@
-import { useCallback } from 'react';
-
 import type { IButtonBaseThemeFactory } from './ButtonBase.css';
 import type { IButtonBaseFactory } from './ButtonBase.types';
+import { isFunction } from '~/helpers/isFunction';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
@@ -100,23 +99,32 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
 
     const handleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
 
-    const renderTouchTarget = useCallback(
-      () =>
-        touchTargetRenderer !== null && touchTargetRenderer !== undefined
-          ? touchTargetRenderer()
-          : !disabledOrReadOnly && (
-              <TouchTarget
-                {...getStyles('touchTarget')}
-                interactions={stateLayer.interactionsContext.state}
-              />
-            ),
-      [
-        disabledOrReadOnly,
-        getStyles,
-        stateLayer.interactionsContext.state,
-        touchTargetRenderer,
-      ],
-    );
+    const renderFocusRing = (): React.ReactNode =>
+      !nonInteractive &&
+      !disabled &&
+      !noFocusRing && (
+        <FocusRing
+          {...getStyles('focusRing')}
+          interactions={stateLayer.interactionsContext.state}
+          {...focusRingProps}
+        />
+      );
+
+    const renderTouchTarget = (): React.ReactNode =>
+      !nonInteractive && touchTargetRenderer !== undefined
+        ? touchTargetRenderer?.()
+        : !disabledOrReadOnly && (
+            <TouchTarget
+              {...getStyles('touchTarget')}
+              interactions={stateLayer.interactionsContext.state}
+            />
+          );
+
+    const renderStateLayer = (): React.ReactNode =>
+      !nonInteractive &&
+      !disabled && (
+        <StateLayer {...getStyles('stateLayer')} context={stateLayer} />
+      );
 
     return (
       <Paper
@@ -133,22 +141,16 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
           other,
         )}
       >
-        {!nonInteractive && !disabled && (
+        {isFunction(children) ? (
+          children({ renderFocusRing, renderStateLayer, renderTouchTarget })
+        ) : (
           <>
-            {!noFocusRing && (
-              <FocusRing
-                {...getStyles('focusRing')}
-                interactions={stateLayer.interactionsContext.state}
-                {...focusRingProps}
-              />
-            )}
-            <StateLayer {...getStyles('stateLayer')} context={stateLayer} />
+            {renderFocusRing()}
+            {renderStateLayer()}
+            {children}
+            {renderTouchTarget()}
           </>
         )}
-
-        {children}
-
-        {!nonInteractive && renderTouchTarget()}
       </Paper>
     );
   },

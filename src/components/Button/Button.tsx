@@ -3,6 +3,7 @@ import { MouseEventHandler, useCallback, useState } from 'react';
 import type { IButtonThemeFactory } from './Button.css';
 import type { IButtonFactory } from './Button.types';
 import { executeLazyPromise } from '~/helpers/executeLazyPromise';
+import { isFunction } from '~/helpers/isFunction';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
@@ -36,7 +37,6 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       start,
       end,
       animatedSlots,
-      indicator,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -74,7 +74,6 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
         loading,
         'with-start-slot': !!hasStartSlot,
         'with-end-slot': !!hasEndSlot,
-        'with-children': !!children,
         'icon-animation': iconAnimation,
       },
     });
@@ -96,104 +95,72 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       );
     };
 
-    const renderStartSlot = useCallback(
-      (): React.ReactNode =>
-        hasStartSlot ? (
-          <Overlayable
-            overlay={
-              <IndeterminateCircularProgressIndicator
-                {...getStyles(['icon', 'slot$start'])}
-              />
-            }
-            visible={loading && (!!leadingIcon || !trailingIcon)}
-          >
-            {start ? (
-              <div {...getStyles(['slot', !!children && 'slot$start'])}>
-                {start}
-              </div>
-            ) : (
+    const renderStartSlot = (children: React.ReactNode): React.ReactNode =>
+      hasStartSlot ? (
+        <Overlayable
+          overlay={
+            <IndeterminateCircularProgressIndicator
+              {...getStyles(['icon', 'slot$start'])}
+            />
+          }
+          visible={loading && (!!leadingIcon || !trailingIcon)}
+        >
+          {start ? (
+            <div {...getStyles(['slot', !!children && 'slot$start'])}>
+              {start}
+            </div>
+          ) : (
+            <div
+              {...getStyles(['slot', !!children && 'slot$start', 'slot$icon'])}
+            >
               <div
-                {...getStyles([
-                  'slot',
-                  !!children && 'slot$start',
-                  'slot$icon',
-                ])}
+                {...getStyles('icon')}
+                onAnimationIteration={handleAnimationIteration}
               >
-                <div
-                  {...getStyles('icon')}
-                  onAnimationIteration={handleAnimationIteration}
-                >
-                  {leadingIcon}
-                </div>
+                {leadingIcon}
               </div>
-            )}
-          </Overlayable>
-        ) : (
-          animatedSlots && (
-            <div {...getStyles(['slot', 'slot$icon', 'slot$icon$collapsed'])} />
-          )
-        ),
-      [
-        start,
-        getStyles,
-        hasStartSlot,
-        loading,
-        leadingIcon,
-        trailingIcon,
-        handleAnimationIteration,
-        children,
-        animatedSlots,
-      ],
-    );
+            </div>
+          )}
+        </Overlayable>
+      ) : (
+        animatedSlots && (
+          <div {...getStyles(['slot', 'slot$icon', 'slot$icon$collapsed'])} />
+        )
+      );
 
-    const renderEndSlot = useCallback(
-      (): React.ReactNode =>
-        hasEndSlot ? (
-          <Overlayable
-            overlay={
-              <IndeterminateCircularProgressIndicator
-                {...getStyles(['icon', 'slot$end'])}
-              />
-            }
-            visible={loading && !leadingIcon}
-          >
-            {end ? (
-              <div {...getStyles(['slot', !!children && 'slot$end'])}>
-                {end}
-              </div>
-            ) : (
+    const renderEndSlot = (children: React.ReactNode): React.ReactNode =>
+      hasEndSlot ? (
+        <Overlayable
+          overlay={
+            <IndeterminateCircularProgressIndicator
+              {...getStyles(['icon', 'slot$end'])}
+            />
+          }
+          visible={loading && !leadingIcon}
+        >
+          {end ? (
+            <div {...getStyles(['slot', !!children && 'slot$end'])}>{end}</div>
+          ) : (
+            <div
+              {...getStyles(['slot', !!children && 'slot$end', 'slot$icon'])}
+            >
               <div
-                {...getStyles(['slot', !!children && 'slot$end', 'slot$icon'])}
+                {...getStyles('icon')}
+                onAnimationIteration={handleAnimationIteration}
               >
-                <div
-                  {...getStyles('icon')}
-                  onAnimationIteration={handleAnimationIteration}
-                >
-                  {trailingIcon}
-                </div>
+                {trailingIcon}
               </div>
-            )}
-          </Overlayable>
-        ) : (
-          animatedSlots && (
-            <div {...getStyles(['slot', 'slot$icon', 'slot$icon$collapsed'])} />
-          )
-        ),
-      [
-        end,
-        getStyles,
-        hasEndSlot,
-        loading,
-        leadingIcon,
-        trailingIcon,
-        handleAnimationIteration,
-        children,
-        animatedSlots,
-      ],
-    );
+            </div>
+          )}
+        </Overlayable>
+      ) : (
+        animatedSlots && (
+          <div {...getStyles(['slot', 'slot$icon', 'slot$icon$collapsed'])} />
+        )
+      );
 
-    const renderLabelSlot = useCallback(
-      () => (
+    const renderLabelSlot = (children: React.ReactNode): React.ReactNode =>
+      children && (
         <Overlayable
           overlay={
             <>
@@ -210,8 +177,14 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
         >
           <span {...getStyles('label')}>{children}</span>
         </Overlayable>
-      ),
-      [children, getStyles, loadingText, hasOverlay],
+      );
+
+    const renderContent = (children: React.ReactNode): React.ReactNode => (
+      <>
+        {renderStartSlot(children)}
+        {renderLabelSlot(children)}
+        {renderEndSlot(children)}
+      </>
     );
 
     return (
@@ -228,10 +201,23 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
         ref={forwardedRef}
         {...other}
       >
-        {renderStartSlot()}
-        {children && renderLabelSlot()}
-        {renderEndSlot()}
-        {indicator}
+        {({ renderFocusRing, renderStateLayer, renderTouchTarget }) =>
+          isFunction(children) ? (
+            children({
+              renderFocusRing,
+              renderStateLayer,
+              renderContent,
+              renderTouchTarget,
+            })
+          ) : (
+            <>
+              {renderFocusRing()}
+              {renderStateLayer()}
+              {renderContent(children)}
+              {renderTouchTarget()}
+            </>
+          )
+        }
       </ButtonBase>
     );
   },

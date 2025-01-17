@@ -29,16 +29,16 @@ import type {
   popoverBaseTheme,
 } from './PopoverBase.css';
 
-export type IPopoverBaseContentRendererProps = {
+export interface IPopoverBaseContentRendererProps {
   parentProps: IPopoverBaseProps;
   placement: IPlacement;
   close: (event?: React.MouseEvent) => void;
   renderCursor?: (
     userProps?: React.HTMLAttributes<SVGSVGElement>,
   ) => React.ReactNode;
-};
+}
 
-export type IPopoverBaseTriggerRendererProps = {
+export interface IPopoverBaseTriggerRendererProps {
   opened: boolean;
   placement: IPlacement;
   open: (event?: React.MouseEvent) => void;
@@ -53,7 +53,7 @@ export type IPopoverBaseTriggerRendererProps = {
    * A function that returns the props to apply to the trigger element.
    */
   getProps: (props?: Record<string, unknown>) => Record<string, unknown>;
-};
+}
 
 export type IPopoverOpenEvent = 'hover' | 'focus' | 'click' | 'touch';
 export type IPopoverOpenEvents = Partial<Record<IPopoverOpenEvent, boolean>>;

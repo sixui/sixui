@@ -1,6 +1,8 @@
 import { createTheme } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { px } from '~/helpers/styles/px';
+import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
@@ -24,7 +26,9 @@ const classNames = createStyles({
       },
     }),
   },
-  controlBar: {},
+  controlBar: {
+    padding: px(space(2)),
+  },
 });
 
 export type ICustomizableThemeThemeFactory = IComponentThemeFactory<{

@@ -9,14 +9,14 @@ import type {
   IColorInputFieldThemeFactory,
 } from './ColorInputField.css';
 
-export type IColorInputFieldColorPickerRendererProps = {
+export interface IColorInputFieldColorPickerRendererProps {
   onClick: (
     event: React.MouseEvent<Element>,
     color: string,
   ) => IMaybeAsync<unknown>;
   selectedColor?: string;
   customPalette?: IColorPalette;
-};
+}
 
 export interface IColorInputFieldOwnProps
   extends IOmit<ITextInputFieldOwnProps, 'onChange'> {

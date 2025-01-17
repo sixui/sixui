@@ -24,7 +24,6 @@ type IModifier =
   | 'loading'
   | 'with-start-slot'
   | 'with-end-slot'
-  | 'with-children'
   | 'icon-animation';
 
 const DENSITY = px(getDensity({ min: -4, max: 0 }));

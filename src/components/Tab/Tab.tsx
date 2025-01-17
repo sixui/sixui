@@ -137,7 +137,6 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
         leadingIcon={renderIcon()}
         disabled={disabled}
         readOnly={readOnly}
-        indicator={renderActiveIndicator()}
         focusRingProps={{ variant: 'inward' }}
         role="tab"
         aria-controls={id}
@@ -146,13 +145,28 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
         loading={loading}
         {...other}
       >
-        {hasInlineBadge ? (
+        {({
+          renderFocusRing,
+          renderStateLayer,
+          renderContent,
+          renderTouchTarget,
+        }) => (
           <>
-            <span {...getStyles('label')}>{label}</span>
-            {badge}
+            {renderFocusRing()}
+            {renderStateLayer()}
+            {renderContent(
+              hasInlineBadge ? (
+                <>
+                  <span {...getStyles('label')}>{label}</span>
+                  {badge}
+                </>
+              ) : (
+                label
+              ),
+            )}
+            {renderActiveIndicator()}
+            {renderTouchTarget()}
           </>
-        ) : (
-          label
         )}
       </Button>
     );
