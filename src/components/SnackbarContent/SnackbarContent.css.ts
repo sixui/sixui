@@ -41,6 +41,9 @@ const classNames = createStyles({
     padding: tokens.container.space,
     minHeight: tokens.container.minHeight,
     minWidth: tokens.container.minWidth,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'start',
     flexGrow: 'initial',
 
     vars: createTokensVars(PaperBase.theme.tokens, {

@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IAppHeaderProps } from './AppHeader.types';
+import type { IAppBodyProps } from './AppBody.types';
 import { componentShowcaseFactory } from '../ComponentShowcase';
-import { AppHeader } from './AppHeader';
+import { AppBody } from './AppBody';
 
 const meta = {
-  component: AppHeader,
-} satisfies Meta<typeof AppHeader>;
+  component: AppBody,
+} satisfies Meta<typeof AppBody>;
 
 type IStory = StoryObj<typeof meta>;
 
@@ -19,14 +19,17 @@ const defaultArgs = {
     </>
   ),
   w: '$128',
+  h: '$128',
   outline: '$xs',
   outlineStyle: 'dashed',
-} satisfies Partial<IAppHeaderProps>;
+} satisfies Partial<IAppBodyProps>;
 
-const AppHeaderShowcase = componentShowcaseFactory(AppHeader);
+// FIXME: in frame
+
+const AppBodyShowcase = componentShowcaseFactory(AppBody);
 
 export const Basic: IStory = {
-  render: (props) => <AppHeaderShowcase props={props} />,
+  render: (props) => <AppBodyShowcase props={props} />,
   args: defaultArgs,
 };
 

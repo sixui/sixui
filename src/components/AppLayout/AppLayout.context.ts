@@ -4,7 +4,7 @@ import type {
   IAppLayoutNavigationMode,
   IAppLayoutProps,
 } from './AppLayout.types';
-import { createSafeContext } from '~/helpers/createSafeContext';
+import { createOptionalContext } from '~/helpers/createOptionalContext';
 
 export type IAppLayoutSideSheetState = {
   opened: boolean;
@@ -32,6 +32,4 @@ export type IAppLayoutContextValue = Pick<
 };
 
 export const [AppLayoutProvider, useAppLayoutContext] =
-  createSafeContext<IAppLayoutContextValue>(
-    'You forgot to wrap your component in <AppLayoutProvider />.',
-  );
+  createOptionalContext<IAppLayoutContextValue>();
