@@ -119,7 +119,7 @@ const classNames = createStyles({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: tokens.gap,
+    gap: calc.add(tokens.gap, DENSITY),
 
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {

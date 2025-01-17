@@ -11,15 +11,11 @@ import {
   faSquare as fasSquare,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import stylex from '@stylexjs/stylex';
 
+import type { IOmit } from '~/helpers/types';
 import type { INavigationRailProps } from './NavigationRail.types';
-import { IOmit } from '~/helpers/types';
-import { colorSchemeTokens } from '~/themes/base/colorScheme.stylex';
-import { outlineTokens } from '~/themes/base/outline.stylex';
-import { scaleTokens } from '~/themes/base/scale.stylex';
 import { Badge } from '../Badge';
-import { ComponentShowcase } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Placeholder } from '../Placeholder';
 import { NavigationRail } from './NavigationRail';
 
@@ -29,19 +25,11 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const styles = stylex.create({
-  host: {
-    height: `calc(480px * ${scaleTokens.scale})`,
-    borderWidth: outlineTokens.width$xs,
-    borderColor: colorSchemeTokens.outlineVariant,
-    borderStyle: 'dashed',
-  },
-});
-
 const defaultArgs = {
-  sx: styles.host,
-  header: <Placeholder label="Leading" corner="none" />,
-  footer: <Placeholder label="Trailing" corner="none" />,
+  header: <Placeholder label="Leading" />,
+  footer: <Placeholder label="Trailing" />,
+  divider: true,
+  h: '$128',
 } satisfies Partial<INavigationRailProps>;
 
 const NavigationRailDemo: React.FC<IOmit<INavigationRailProps, 'children'>> = (
@@ -78,18 +66,19 @@ const NavigationRailDemo: React.FC<IOmit<INavigationRailProps, 'children'>> = (
   );
 };
 
+const NavigationRailDemoShowcase = componentShowcaseFactory(NavigationRailDemo);
+
 export const Configurations: IStory = {
   render: (props) => (
-    <ComponentShowcase
+    <NavigationRailDemoShowcase
       props={props}
-      component={NavigationRailDemo}
       cols={[
-        { legend: 'Align top', props: { groupAlignment: 'start' } },
+        { legend: 'Justify start', props: { justify: 'start' } },
         {
-          legend: 'Align center (default)',
-          props: { groupAlignment: 'center' },
+          legend: 'Justify center (default)',
+          props: { justify: 'center' },
         },
-        { legend: 'Align bottom', props: { groupAlignment: 'end' } },
+        { legend: 'Justify end', props: { justify: 'end' } },
       ]}
     />
   ),
