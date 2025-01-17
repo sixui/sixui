@@ -11,16 +11,8 @@ const COMPONENT_NAME = 'NavigationRailDestination';
 export const NavigationRailDestination =
   polymorphicComponentFactory<INavigationRailDestinationFactory>(
     (props, forwardedRef) => {
-      const {
-        classNames,
-        className,
-        styles,
-        style,
-        variant,
-        children,
-        disabled,
-        ...other
-      } = useProps({ componentName: COMPONENT_NAME, props });
+      const { classNames, className, styles, style, variant, label, ...other } =
+        useProps({ componentName: COMPONENT_NAME, props });
 
       const { getStyles } =
         useComponentTheme<INavigationRailDestinationThemeFactory>({
@@ -31,14 +23,34 @@ export const NavigationRailDestination =
           style,
           variant,
           theme: navigationRailDestinationTheme,
-          modifiers: {
-            disabled,
-          },
         });
 
       return (
-        <Button {...getStyles('root')} ref={forwardedRef} {...other}>
-          {({ renderTouchTarget }) => <>XX</>}
+        <Button
+          {...getStyles('root')}
+          // classNames={mergeClassNames(classNames, {
+          //   stateLayer: getStyles('stateLayer').className,
+          //   focusRing: getStyles('focusRing').className,
+          // })}
+          ref={forwardedRef}
+          variant={false}
+          // leadingIcon={renderIcon()}
+          // aria-selected={active}
+          {...other}
+        >
+          {({
+            renderFocusRing,
+            renderStateLayer,
+            renderContent,
+            renderTouchTarget,
+          }) => (
+            <>
+              {renderFocusRing()}
+              {renderStateLayer()}
+              {renderContent(label)}
+              {renderTouchTarget()}
+            </>
+          )}
         </Button>
       );
     },
