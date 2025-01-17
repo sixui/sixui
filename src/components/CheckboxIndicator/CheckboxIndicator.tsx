@@ -61,6 +61,7 @@ export const CheckboxIndicator = componentFactory<ICheckboxIndicatorFactory>(
         {loading ? (
           <IndeterminateCircularProgressIndicator
             {...getStyles('progressIndicator')}
+            disabled={disabled}
           />
         ) : (
           <>

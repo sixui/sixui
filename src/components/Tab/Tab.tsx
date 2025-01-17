@@ -81,20 +81,16 @@ export const Tab = polymorphicComponentFactory<ITabFactory>(
       },
     });
 
-    const renderIcon = useCallback(
-      (): React.ReactNode =>
-        hasIcon &&
-        (hasAnchoredBadge ? (
-          <Anchored content={!disabled && badge}>{icon}</Anchored>
-        ) : (
-          icon
-        )),
-      [hasIcon, badge, disabled, icon, hasAnchoredBadge],
-    );
+    const renderIcon = (): React.ReactNode =>
+      hasIcon &&
+      (hasAnchoredBadge ? (
+        <Anchored content={!disabled && badge}>{icon}</Anchored>
+      ) : (
+        icon
+      ));
 
-    const renderActiveIndicator = useCallback(
-      () => <div {...getStyles('activeIndicator')} ref={activeIndicatorRef} />,
-      [getStyles],
+    const renderActiveIndicator = (): React.ReactNode => (
+      <div {...getStyles('activeIndicator')} ref={activeIndicatorRef} />
     );
 
     useEffect(() => {

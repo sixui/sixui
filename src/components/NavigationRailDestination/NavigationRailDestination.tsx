@@ -1,9 +1,15 @@
+import { useState } from 'react';
+
 import type { INavigationRailDestinationThemeFactory } from './NavigationRailDestination.css';
 import type { INavigationRailDestinationFactory } from './NavigationRailDestination.types';
+import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
+import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Button } from '../Button';
+import { Anchored } from '../Anchored';
+import { ButtonBase } from '../ButtonBase';
+import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
 import { navigationRailDestinationTheme } from './NavigationRailDestination.css';
 
 const COMPONENT_NAME = 'NavigationRailDestination';
@@ -11,8 +17,29 @@ const COMPONENT_NAME = 'NavigationRailDestination';
 export const NavigationRailDestination =
   polymorphicComponentFactory<INavigationRailDestinationFactory>(
     (props, forwardedRef) => {
-      const { classNames, className, styles, style, variant, label, ...other } =
-        useProps({ componentName: COMPONENT_NAME, props });
+      const {
+        classNames,
+        className,
+        styles,
+        style,
+        variant,
+        label,
+        active,
+        icon,
+        activeIcon,
+        disabled,
+        readOnly: readOnlyProp,
+        loading: loadingProp,
+        onClick,
+        badge,
+        ...other
+      } = useProps({ componentName: COMPONENT_NAME, props });
+
+      const [handlingClick, setHandlingClick] = useState(false);
+
+      const loading = loadingProp || handlingClick;
+      const readOnly = readOnlyProp || loading;
+      const disabledOrReadOnly = disabled || readOnly;
 
       const { getStyles } =
         useComponentTheme<INavigationRailDestinationThemeFactory>({
@@ -23,35 +50,69 @@ export const NavigationRailDestination =
           style,
           variant,
           theme: navigationRailDestinationTheme,
+          modifiers: {
+            'icon-only': !label,
+            active,
+            disabled: disabledOrReadOnly,
+          },
         });
 
+      const handleClick: React.MouseEventHandler = (event) => {
+        if (handlingClick || !onClick) {
+          return;
+        }
+
+        void executeLazyPromise(
+          () => onClick(event) as Promise<void>,
+          setHandlingClick,
+        );
+      };
+
+      const renderIcon = (): React.ReactNode =>
+        active ? (activeIcon ?? icon) : icon;
+
       return (
-        <Button
+        <ButtonBase
           {...getStyles('root')}
-          // classNames={mergeClassNames(classNames, {
-          //   stateLayer: getStyles('stateLayer').className,
-          //   focusRing: getStyles('focusRing').className,
-          // })}
+          classNames={mergeClassNames(classNames, {
+            stateLayer: getStyles('stateLayer').className,
+            focusRing: getStyles('focusRing').className,
+          })}
           ref={forwardedRef}
           variant={false}
-          // leadingIcon={renderIcon()}
-          // aria-selected={active}
+          disabled={disabled}
+          readOnly={readOnly}
+          aria-selected={active}
+          onClick={handleClick}
           {...other}
         >
-          {({
-            renderFocusRing,
-            renderStateLayer,
-            renderContent,
-            renderTouchTarget,
-          }) => (
+          {({ renderFocusRing, renderStateLayer, renderTouchTarget }) => (
             <>
               {renderFocusRing()}
-              {renderStateLayer()}
-              {renderContent(label)}
+
+              <div {...getStyles('activeIndicator')}>
+                {renderStateLayer()}
+                <div {...getStyles('icon')}>
+                  {loading ? (
+                    <IndeterminateCircularProgressIndicator />
+                  ) : (
+                    <>
+                      {!disabled && badge ? (
+                        <Anchored content={badge}>{renderIcon()}</Anchored>
+                      ) : (
+                        renderIcon()
+                      )}
+                    </>
+                  )}
+                </div>
+              </div>
+
+              {label && <div {...getStyles('label')}>{label}</div>}
+
               {renderTouchTarget()}
             </>
           )}
-        </Button>
+        </ButtonBase>
       );
     },
   );

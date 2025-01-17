@@ -1,4 +1,3 @@
-import type { MouseEventHandler } from 'react';
 import { useCallback, useState } from 'react';
 
 import type { IListItemThemeFactory } from './ListItem.css';
@@ -84,7 +83,7 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
       },
     });
 
-    const handleClick: MouseEventHandler = useCallback(
+    const handleClick: React.MouseEventHandler = useCallback(
       (event) => {
         if (handlingClick || !onClick) {
           return;

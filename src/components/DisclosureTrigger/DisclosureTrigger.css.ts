@@ -124,22 +124,36 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>('checkable', root)]: {
         vars: createTokensVars(ListItem.theme.tokens, {
           container: {
-            leadingSpace: calc(tokens.toggle.leadingSpace)
-              // CheckboxIndicator.theme.tokens.container.size
-              .add(px(18))
-              .add(tokens.toggle.trailingSpace)
-              .toString(),
+            leadingSpace: {
+              normal: calc(tokens.toggle.leadingSpace)
+                // CheckboxIndicator.theme.tokens.container.size
+                .add(px(18))
+                .add(tokens.toggle.trailingSpace)
+                .toString(),
+              withStartSlot: calc(tokens.toggle.leadingSpace)
+                // CheckboxIndicator.theme.tokens.container.size
+                .add(px(16))
+                .add(tokens.toggle.trailingSpace)
+                .toString(),
+            },
           },
         }),
       },
       [getModifierSelector<IModifier>('switchable', root)]: {
         vars: createTokensVars(ListItem.theme.tokens, {
           container: {
-            leadingSpace: calc(tokens.toggle.leadingSpace)
-              // SwitchIndicator.theme.tokens.container.width
-              .add(px(52))
-              .add(tokens.toggle.trailingSpace)
-              .toString(),
+            leadingSpace: {
+              normal: calc(tokens.toggle.leadingSpace)
+                // SwitchIndicator.theme.tokens.container.width
+                .add(px(52))
+                .add(tokens.toggle.trailingSpace)
+                .toString(),
+              withStartSlot: calc(tokens.toggle.leadingSpace)
+                // SwitchIndicator.theme.tokens.container.width
+                .add(px(50))
+                .add(tokens.toggle.trailingSpace)
+                .toString(),
+            },
           },
         }),
       },

@@ -1,4 +1,4 @@
-import { MouseEventHandler, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import type { IButtonThemeFactory } from './Button.css';
 import type { IButtonFactory } from './Button.types';
@@ -83,7 +83,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       [handlingClick, setAnimating],
     );
 
-    const handleClick: MouseEventHandler = (event) => {
+    const handleClick: React.MouseEventHandler = (event) => {
       if (handlingClick || !onClick) {
         return;
       }

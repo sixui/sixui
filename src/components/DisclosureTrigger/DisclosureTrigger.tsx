@@ -1,6 +1,5 @@
 import { useCallback, useEffect } from 'react';
 
-import type { IMaybeAsync } from '~/helpers/types';
 import type { IDisclosureTriggerThemeFactory } from './DisclosureTrigger.css';
 import type { IDisclosureTriggerFactory } from './DisclosureTrigger.types';
 import { iconChevronDown } from '~/assets/icons';
@@ -98,28 +97,25 @@ export const DisclosureTrigger = componentFactory<IDisclosureTriggerFactory>(
     }, [expanded, expandableContext]);
 
     const handleChange = useCallback(
-      (
-        event: React.ChangeEvent<HTMLInputElement>,
-        value: string | undefined,
-      ): IMaybeAsync<unknown> => {
+      async (value: string | undefined): Promise<void> => {
         const newChecked = value !== undefined;
         if (newChecked === checked) {
           return;
         }
 
-        return Promise.all([onChange?.(value)]).then(() => {
-          setChecked(newChecked);
-          expandableContext?.expand(newChecked);
-        });
+        await onChange?.(value);
+
+        setChecked(newChecked);
+        expandableContext?.expand(newChecked);
       },
       [expandableContext, checked, onChange, setChecked],
     );
 
     const handleClick = useCallback(
-      (event: React.MouseEvent<Element>): IMaybeAsync<unknown> =>
-        Promise.all([onClick?.(event)]).then(() =>
-          expandableContext?.expand(!expanded),
-        ),
+      async (event: React.MouseEvent<Element>): Promise<void> => {
+        await onClick?.(event);
+        expandableContext?.expand(!expanded);
+      },
       [expandableContext, expanded, onClick],
     );
 
