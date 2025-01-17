@@ -38,7 +38,6 @@ export const Variants: IStory = {
         },
         legend: capitalizeFirstLetter(variant),
       }))}
-      fullWidth
     />
   ),
   args: {
