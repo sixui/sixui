@@ -1,34 +1,36 @@
-import { style } from '@vanilla-extract/css';
 import { createRainbowSprinkles, defineProperties } from 'rainbow-sprinkles';
 
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { getSpacingValues } from '~/helpers/styles/getSpacingValues';
+import { createStyles } from '~/utils/styles/createStyles';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 
 type IModifier = 'scale';
 
-export const boxRootClassName = style({
-  '@layer': {
-    [cssLayers.components]: {
-      selectors: {
-        [getModifierSelector<IModifier>({ scale: 'xs' })]: {
-          vars: {
-            [themeTokens.scale]: '0.6',
+export const classNames = createStyles({
+  root: {
+    '@layer': {
+      [cssLayers.components]: {
+        selectors: {
+          [getModifierSelector<IModifier>({ scale: 'xs' })]: {
+            vars: {
+              [themeTokens.scale]: '0.6',
+            },
           },
-        },
-        [getModifierSelector<IModifier>({ scale: 'sm' })]: {
-          vars: {
-            [themeTokens.scale]: '0.8',
+          [getModifierSelector<IModifier>({ scale: 'sm' })]: {
+            vars: {
+              [themeTokens.scale]: '0.8',
+            },
           },
-        },
-        [getModifierSelector<IModifier>({ scale: 'lg' })]: {
-          vars: {
-            [themeTokens.scale]: '1.2',
+          [getModifierSelector<IModifier>({ scale: 'lg' })]: {
+            vars: {
+              [themeTokens.scale]: '1.2',
+            },
           },
-        },
-        [getModifierSelector<IModifier>({ scale: 'xl' })]: {
-          vars: {
-            [themeTokens.scale]: '1.4',
+          [getModifierSelector<IModifier>({ scale: 'xl' })]: {
+            vars: {
+              [themeTokens.scale]: '1.4',
+            },
           },
         },
       },

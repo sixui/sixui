@@ -8,7 +8,7 @@ import { createPolymorphicComponent } from '~/utils/component/createPolymorphicC
 import { getDataAttributes } from '~/utils/getDataAttributes';
 import { mergeProps } from '~/utils/mergeProps';
 import { themeTokens } from '../ThemeProvider';
-import { boxRootClassName, boxSprinkles } from './Box.css';
+import { boxSprinkles, classNames } from './Box.css';
 
 export const Box = createPolymorphicComponent<'div', IBoxProps>(
   forwardRef<HTMLDivElement, IBoxProps>(function Box(props, forwardedRef) {
@@ -21,6 +21,8 @@ export const Box = createPolymorphicComponent<'div', IBoxProps>(
       modifiers,
       scale,
       density,
+      hiddenFrom,
+      visibleFrom,
       ...otherWithSprinkles
     } = props as IWithAsProp<IBoxProps>;
 
@@ -50,7 +52,10 @@ export const Box = createPolymorphicComponent<'div', IBoxProps>(
         ...interactions,
         ...modifiers,
       }),
-      className: cx(boxRootClassName, className, sprinkles.className),
+      className: cx(classNames.root, className, sprinkles.className, {
+        [`sixui-hidden-from-${hiddenFrom}`]: hiddenFrom,
+        [`sixui-visible-from-${visibleFrom}`]: visibleFrom,
+      }),
       style: {
         ...style,
         ...sprinkles.style,

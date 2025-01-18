@@ -358,10 +358,10 @@ const zIndex: IThemeZIndexValues = {
 };
 
 const windowSizeClasses: IThemeWindowSizeClassesValues = {
-  compact: 600,
-  medium: 960,
-  expanded: 1280,
-  large: 1440,
+  compact: '600px',
+  medium: '960px',
+  expanded: '1280px',
+  large: '1440px',
   extraLarge: null,
 };
 

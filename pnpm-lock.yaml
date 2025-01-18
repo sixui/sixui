@@ -133,11 +133,11 @@ importers:
         specifier: ^8.5.0
         version: 8.5.0(storybook@8.5.0(prettier@3.4.2))
       '@stylexjs/eslint-plugin':
-        specifier: ^0.10.0
-        version: 0.10.0
+        specifier: ^0.10.1
+        version: 0.10.1
       '@stylexjs/stylex':
-        specifier: ^0.10.0
-        version: 0.10.0
+        specifier: ^0.10.1
+        version: 0.10.1
       '@types/eslint':
         specifier: ^9
         version: 9.6.1
@@ -263,7 +263,7 @@ importers:
         version: 4.5.0(@types/node@22.10.7)(rollup@4.28.1)(typescript@5.7.3)(vite@6.0.3(@types/node@22.10.7)(jiti@2.4.1)(yaml@2.6.1))
       vite-plugin-stylex:
         specifier: ^0.13.0
-        version: 0.13.0(@stylexjs/stylex@0.10.0)(vite@6.0.3(@types/node@22.10.7)(jiti@2.4.1)(yaml@2.6.1))
+        version: 0.13.0(@stylexjs/stylex@0.10.1)(vite@6.0.3(@types/node@22.10.7)(jiti@2.4.1)(yaml@2.6.1))
 
 packages:
 
@@ -2610,14 +2610,14 @@ packages:
   '@stylexjs/babel-plugin@0.9.3':
     resolution: {integrity: sha512-D/zWrxddlEmVOKSMB0Ei+IOtpxK/U5ghQPaByKEUKIHVlH2Di4dYQiR8W1DjZJamD6NigR5ULB5Lait15p4gdg==}
 
-  '@stylexjs/eslint-plugin@0.10.0':
-    resolution: {integrity: sha512-leMXu6XSmq22sZIIGXMox+9gBOwir6n8xDF7zai/w8fghftFUzmuDD0RaUuXrTm2sBjNADr3xVSKTeLDsdFJ9Q==}
+  '@stylexjs/eslint-plugin@0.10.1':
+    resolution: {integrity: sha512-Ya+ivxWNRQ5b4ozOK/TDmIUP+mf5+9+/+D9kLE+yQHjdiY8laSKqNtEz2OTki6uz1zx/wxIGBJjHUkxOYeGVaw==}
 
   '@stylexjs/shared@0.9.3':
     resolution: {integrity: sha512-0gtKFjZxAvDdUdoZTuvukovboD3K12BxkswKHHBRvzfcrM0rQXGMXoHS1gLRMQJ9kllJaa/I3sclbeWKyELm6Q==}
 
-  '@stylexjs/stylex@0.10.0':
-    resolution: {integrity: sha512-nO3STzHZDSb92RADfXsNDsjspd0De84TdpkBVbC914ppMLw5hz6B35puJZ8swjEbqUZC8xYncpd3yWot+gVLeA==}
+  '@stylexjs/stylex@0.10.1':
+    resolution: {integrity: sha512-J2LUqD9Z1Vg9rBpvAcluBR7aXP0RbI4FDcjoJoNwPQT1NGiBa0VaoDim7mLQYvivOV0gWbeBnW23Pi6ylhxaMQ==}
 
   '@stylexjs/stylex@0.9.3':
     resolution: {integrity: sha512-q3kYZ5bMXlVyF6Wh8b8Uwl701aSu8aEhim0AlQTaAXKMt0J6nTCWOjSwq6GNR74Ez4pcm2Ha4NDqhkYhKYGBcQ==}
@@ -9690,7 +9690,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@stylexjs/eslint-plugin@0.10.0':
+  '@stylexjs/eslint-plugin@0.10.1':
     dependencies:
       css-shorthand-expand: 1.2.0
       micromatch: 4.0.8
@@ -9699,7 +9699,7 @@ snapshots:
     dependencies:
       postcss-value-parser: 4.2.0
 
-  '@stylexjs/stylex@0.10.0':
+  '@stylexjs/stylex@0.10.1':
     dependencies:
       css-mediaquery: 0.1.2
       invariant: 2.2.4
@@ -14135,14 +14135,14 @@ snapshots:
       - rollup
       - supports-color
 
-  vite-plugin-stylex@0.13.0(@stylexjs/stylex@0.10.0)(vite@6.0.3(@types/node@22.10.7)(jiti@2.4.1)(yaml@2.6.1)):
+  vite-plugin-stylex@0.13.0(@stylexjs/stylex@0.10.1)(vite@6.0.3(@types/node@22.10.7)(jiti@2.4.1)(yaml@2.6.1)):
     dependencies:
       '@babel/core': 7.26.0
       '@babel/plugin-syntax-flow': 7.24.7(@babel/core@7.26.0)
       '@babel/plugin-syntax-jsx': 7.25.7(@babel/core@7.26.0)
       '@babel/plugin-syntax-typescript': 7.25.7(@babel/core@7.26.0)
       '@stylexjs/babel-plugin': 0.9.3
-      '@stylexjs/stylex': 0.10.0
+      '@stylexjs/stylex': 0.10.1
       compare-versions: 6.1.1
       vite: 6.0.3(@types/node@22.10.7)(jiti@2.4.1)(yaml@2.6.1)
     transitivePeerDependencies:

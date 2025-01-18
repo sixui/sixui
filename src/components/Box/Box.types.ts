@@ -3,9 +3,11 @@ import type cx from 'clsx';
 import type { ISixuiSize } from '~/helpers/types';
 import type { IInteractions } from '~/hooks/useInteractions';
 import type { IModifiers } from '~/utils/getDataAttributes';
+import type { IThemeWindowSizeClassName } from '../ThemeProvider';
 import type { IBoxSprinkles } from './Box.css';
 
 export interface IBoxProps extends IBoxSprinkles {
+  children?: React.ReactNode;
   className?: Parameters<typeof cx>[0];
   style?: React.CSSProperties;
   // FIXME: not in box
@@ -13,6 +15,12 @@ export interface IBoxProps extends IBoxSprinkles {
   modifiers?: IModifiers;
   scale?: ISixuiSize;
   density?: number;
+
+  /** Breakpoint above which the component is hidden with `display: none` */
+  hiddenFrom?: IThemeWindowSizeClassName;
+
+  /** Breakpoint below which the component is hidden with `display: none` */
+  visibleFrom?: IThemeWindowSizeClassName;
 }
 
 export type IElementProps<

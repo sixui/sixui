@@ -24,7 +24,7 @@ const defaultArgs = {
   outlineStyle: 'dashed',
 } satisfies Partial<IAppBodyProps>;
 
-// FIXME: in frame
+// FIXME: in frame (Body and Header)
 
 const AppBodyShowcase = componentShowcaseFactory(AppBody);
 
