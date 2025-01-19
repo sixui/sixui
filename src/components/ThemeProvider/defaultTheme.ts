@@ -362,7 +362,7 @@ const windowSizeClasses: IThemeWindowSizeClassesValues = {
   medium: '960px',
   expanded: '1280px',
   large: '1440px',
-  extraLarge: null,
+  extraLarge: undefined,
 };
 
 const elevation: IThemeElevationValues = {

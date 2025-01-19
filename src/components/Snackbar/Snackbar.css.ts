@@ -32,6 +32,7 @@ const classNames = createStyles({
         justifyContent: 'start',
 
         '@media': {
+          // FIXME: use responsive styles
           '(min-width: 0px) and (max-width: 599px)': {
             left: tokens.fixedHorizontalSpace.compact,
           },

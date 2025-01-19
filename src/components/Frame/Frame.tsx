@@ -65,13 +65,11 @@ export const Frame = componentFactory<IFrameFactory>((props, forwardedRef) => {
       {iframeContentWindow && iframeDocument && (
         <>
           {createPortal(
-            <div id="sixui-root">
-              <ThemeProvider inherit={false}>
-                {isFunction(children)
-                  ? children({ window: iframeContentWindow })
-                  : children}
-              </ThemeProvider>
-            </div>,
+            <ThemeProvider inherit={false} window={iframeContentWindow}>
+              {isFunction(children)
+                ? children({ window: iframeContentWindow })
+                : children}
+            </ThemeProvider>,
             iframeDocument.body,
           )}
 

@@ -282,7 +282,7 @@ export type IThemeWindowSizeClassName =
 
 export type IThemeWindowSizeClassesValues = Record<
   IThemeWindowSizeClassName,
-  string | null
+  string | undefined
 >;
 
 export type IThemeElevationLevel = 0 | 1 | 2 | 3 | 4 | 5;

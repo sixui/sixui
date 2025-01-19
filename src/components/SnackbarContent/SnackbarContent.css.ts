@@ -55,6 +55,7 @@ const classNames = createStyles({
     }),
 
     '@media': {
+      // FIXME: use responsive styles
       '(min-width: 0px) and (max-width: 599px)': {
         flexGrow: 1,
         minWidth: 'unset',
