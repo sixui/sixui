@@ -1,66 +1,52 @@
 import { createTheme } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { CSS_FALSE, CSS_TRUE } from '~/helpers/styles/constants';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { cssLayers } from '../ThemeProvider';
-
-type IModifier = 'disabled';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   windowSizeClass: {
     compact: {
-      on: '',
-      off: 'initial',
-      from: '',
-      to: '',
+      on: CSS_FALSE,
+      off: CSS_TRUE,
+      gte: CSS_FALSE,
+      lt: CSS_FALSE,
     },
     medium: {
-      on: '',
-      off: 'initial',
-      from: '',
-      to: '',
+      on: CSS_FALSE,
+      off: CSS_TRUE,
+      gte: CSS_FALSE,
+      lt: CSS_FALSE,
     },
     expanded: {
-      on: '',
-      off: 'initial',
-      from: '',
-      to: '',
+      on: CSS_FALSE,
+      off: CSS_TRUE,
+      gte: CSS_FALSE,
+      lt: CSS_FALSE,
     },
     large: {
-      on: '',
-      off: 'initial',
-      from: '',
-      to: '',
+      on: CSS_FALSE,
+      off: CSS_TRUE,
+      gte: CSS_FALSE,
+      lt: CSS_FALSE,
     },
     extraLarge: {
-      on: '',
-      off: 'initial',
-      from: '',
-      to: '',
+      on: CSS_FALSE,
+      off: CSS_TRUE,
+      gte: CSS_FALSE,
+      lt: CSS_FALSE,
     },
   },
 });
 
-const classNames = createStyles({
-  root: {
-    '@media': {
-      // TODO: generate dynamically
-      '(min-width: 0) and (max-width: 599px)': {
-        vars: {
-          [tokens.windowSizeClass.compact.on]: 'initial',
-          [tokens.windowSizeClass.compact.off]: '',
-        },
-      },
-    },
-  },
-});
+const classNames = createStyles();
 
 export type IResponsiveThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
-  modifier: IModifier;
 }>;
 
 export const responsiveTheme = componentThemeFactory<IResponsiveThemeFactory>({

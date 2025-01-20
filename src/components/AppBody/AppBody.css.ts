@@ -1,10 +1,8 @@
-import { fallbackVar } from '@vanilla-extract/css';
-
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
+import { getResponsiveCssValue } from '~/helpers/styles/getResponsiveCssValue';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { Responsive } from '../Responsive';
 
 type IModifier = 'with-aside' | 'with-header';
 
@@ -31,11 +29,12 @@ const classNames = createStyles({
 
     borderWidth: '2px',
     borderStyle: 'solid',
-    borderColor: [
-      // TODO: helper for rules
-      fallbackVar(Responsive.theme.tokens.windowSizeClass.compact.on, 'red'),
-      fallbackVar(Responsive.theme.tokens.windowSizeClass.compact.off, 'blue'),
-    ].join(' '),
+    borderColor: getResponsiveCssValue({
+      op: '<',
+      size: 'medium',
+      then: 'green',
+      else: 'red',
+    }),
 
     selectors: {
       // [getModifierSelector({ 'window-size': 'compactAndUp' }, '#sixui-root')]: {

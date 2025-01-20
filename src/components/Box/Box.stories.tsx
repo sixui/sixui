@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
+import type { IThemeWindowSizeClassName } from '../ThemeProvider';
 import type { IBoxProps } from './Box.types';
 import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Paper } from '../Paper';
@@ -21,36 +23,21 @@ export const Responsive: IStory = {
   render: (props) => (
     <BoxShowcase
       props={props}
-      cols={[
-        {
-          legend: 'compact',
-          props: {
-            hiddenFrom: 'compact',
-            visibleFrom: 'compact',
-          },
+      cols={(
+        [
+          'compact',
+          'medium',
+          'expanded',
+          'large',
+          'extraLarge',
+        ] as Array<IThemeWindowSizeClassName>
+      ).map((windowSize) => ({
+        legend: capitalizeFirstLetter(windowSize),
+        props: {
+          hiddenFrom: windowSize,
+          visibleFrom: windowSize,
         },
-        {
-          legend: 'medium',
-          props: {
-            hiddenFrom: 'medium',
-            visibleFrom: 'medium',
-          },
-        },
-        {
-          legend: 'expanded',
-          props: {
-            hiddenFrom: 'expanded',
-            visibleFrom: 'expanded',
-          },
-        },
-        {
-          legend: 'large',
-          props: {
-            hiddenFrom: 'large',
-            visibleFrom: 'large',
-          },
-        },
-      ]}
+      }))}
       rows={[
         {
           legend: 'Hidden from',
