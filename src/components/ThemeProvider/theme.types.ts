@@ -273,12 +273,14 @@ export type IThemeZIndexValues = {
   max: string;
 };
 
-export type IThemeWindowSizeClassName =
-  | 'compact'
-  | 'medium'
-  | 'expanded'
-  | 'large'
-  | 'extraLarge';
+export const windowSizeClassNames = [
+  'compact',
+  'medium',
+  'expanded',
+  'large',
+  'extraLarge',
+] as const;
+export type IThemeWindowSizeClassName = (typeof windowSizeClassNames)[number];
 
 export type IThemeWindowSizeClassesValues = Record<
   IThemeWindowSizeClassName,

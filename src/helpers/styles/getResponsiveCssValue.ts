@@ -3,8 +3,12 @@ import { fallbackVar } from '@vanilla-extract/css';
 import type { IThemeWindowSizeClassName } from '~/components/ThemeProvider';
 import { Responsive } from '~/components/Responsive';
 
-interface IResponsiveStyleRule {
-  op?: '=' | '<' | '>=';
+export const responsiveStyleRuleOperators = ['=', '<', '>='] as const;
+export type IResponsiveStyleRuleOperator =
+  (typeof responsiveStyleRuleOperators)[number];
+
+export interface IResponsiveStyleRule {
+  op?: IResponsiveStyleRuleOperator;
   size: IThemeWindowSizeClassName;
   then?: string;
   else?: string;

@@ -4,15 +4,44 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import type { IPaperProps } from '../Paper';
 import type { IThemeWindowSizeClassName } from '../ThemeProvider';
-import { getResponsiveCssValue } from '~/helpers/styles/getResponsiveCssValue';
+import {
+  getResponsiveCssValue,
+  IResponsiveStyleRuleOperator,
+} from '~/helpers/styles/getResponsiveCssValue';
 import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Paper } from '../Paper';
 import { PaperBase } from '../PaperBase';
-import { themeTokens } from '../ThemeProvider';
+import { themeTokens, windowSizeClassNames } from '../ThemeProvider';
+
+interface IResponsivePaperProps extends IPaperProps {
+  windowSizeClassName?: IThemeWindowSizeClassName;
+  op?: IResponsiveStyleRuleOperator;
+}
+
+const ResponsivePaper: React.FC<IResponsivePaperProps> = ({
+  windowSizeClassName,
+  op,
+  ...props
+}) => (
+  <Paper
+    {...props}
+    style={
+      windowSizeClassName &&
+      assignInlineVars({
+        [PaperBase.theme.tokens.container.color]: getResponsiveCssValue({
+          size: windowSizeClassName,
+          op,
+          then: themeTokens.colorScheme.primary,
+          else: themeTokens.colorScheme.surfaceContainerHighest,
+        }),
+      })
+    }
+  />
+);
 
 const meta = {
-  component: Paper,
-} satisfies Meta<typeof Paper>;
+  component: ResponsivePaper,
+} satisfies Meta<typeof ResponsivePaper>;
 
 type IStory = StoryObj<typeof meta>;
 
@@ -20,34 +49,40 @@ const defaultArgs = {
   w: '$8',
   h: '$8',
   shape: '$xs',
-} satisfies Partial<IPaperProps>;
+} satisfies Partial<IResponsivePaperProps>;
 
-const PaperShowcase = componentShowcaseFactory(Paper);
+const ResponsivePaperShowcase = componentShowcaseFactory(ResponsivePaper);
 
 export const Basic: IStory = {
   render: (props) => (
-    <PaperShowcase
+    <ResponsivePaperShowcase
       props={props}
-      cols={(
-        [
-          'compact',
-          'medium',
-          'expanded',
-          'large',
-          'extraLarge',
-        ] as Array<IThemeWindowSizeClassName>
-      ).map((windowClassSize) => ({
-        legend: capitalizeFirstLetter(windowClassSize),
+      cols={windowSizeClassNames.map((windowSizeClassName) => ({
+        legend: capitalizeFirstLetter(windowSizeClassName),
         props: {
-          style: assignInlineVars({
-            [PaperBase.theme.tokens.container.color]: getResponsiveCssValue({
-              size: windowClassSize,
-              then: themeTokens.colorScheme.primary,
-              else: themeTokens.colorScheme.surfaceContainerHighest,
-            }),
-          }),
+          windowSizeClassName,
         },
       }))}
+      rows={[
+        {
+          legend: 'Equal (=)',
+          props: {
+            op: '=',
+          },
+        },
+        {
+          legend: 'Less than (<)',
+          props: {
+            op: '<',
+          },
+        },
+        {
+          legend: 'Greater than or equal (>=)',
+          props: {
+            op: '>=',
+          },
+        },
+      ]}
     />
   ),
   args: defaultArgs,
