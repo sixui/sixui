@@ -21,7 +21,6 @@ export const Responsive = componentFactory<IResponsiveFactory>(
     } = useProps({ componentName: COMPONENT_NAME, props });
 
     const responsiveCssRules = useResponsiveCssRules();
-    console.log('_____', responsiveCssRules);
 
     const { getStyles } = useComponentTheme<IResponsiveThemeFactory>({
       componentName: COMPONENT_NAME,

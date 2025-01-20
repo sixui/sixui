@@ -1,96 +1,140 @@
 import { isProduction } from '@olivierpascal/helpers';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
-import type { IThemeWindowSizeClassName } from '../ThemeProvider';
+import type {
+  IThemeWindowSizeClassesValues,
+  IThemeWindowSizeClassName,
+} from '../ThemeProvider';
 import { CSS_FALSE, CSS_TRUE } from '~/helpers/styles/constants';
 import { em } from '~/helpers/styles/em';
 import { getNumericPixelValue } from '~/helpers/styles/getNumericPixelValue';
 import { useThemeContext } from '../ThemeProvider';
 import { responsiveTheme } from './Responsive.css';
 
-export const useResponsiveCssRules = (): string => {
-  const { theme } = useThemeContext();
+interface IWindowSizeClassRange {
+  name: IThemeWindowSizeClassName;
+  minBreakpointWidth?: string;
+  maxBreakpointWidth?: string;
+}
 
+const getBreakpointPlusEpsilon = (
+  breakpoint: string,
+  epsilon = 0.1,
+): string => {
+  const isPxBreakpoint = breakpoint.includes('px');
+  const pxValue = getNumericPixelValue(breakpoint);
+  if (!pxValue) {
+    throw new Error(`sixui: Invalid breakpoint value: ${breakpoint}`);
+  }
+
+  const pxValuePlusEpsilon = pxValue + epsilon;
+  const breakpointPlusEpsilon = isPxBreakpoint
+    ? `${pxValuePlusEpsilon}px`
+    : em(pxValuePlusEpsilon);
+
+  return breakpointPlusEpsilon;
+};
+
+const getWindowSizeClassRanges = (
+  windowSizeClasses: IThemeWindowSizeClassesValues,
+): Array<IWindowSizeClassRange> => {
   const windowSizeClassNames = Object.keys(
-    theme.windowSizeClasses,
+    windowSizeClasses,
   ) as Array<IThemeWindowSizeClassName>;
 
-  const rules = windowSizeClassNames.reduce(
-    (acc, windowSizeClassName, windowSizeClassNameIndex) => {
-      const breakpoint = theme.windowSizeClasses[windowSizeClassName];
-      if (!breakpoint) {
-        return acc;
+  const ranges = windowSizeClassNames.reduce((acc, windowSizeClassName) => {
+    const previousRange: IWindowSizeClassRange | undefined =
+      acc[acc.length - 1];
+    const breakpoint = windowSizeClasses[windowSizeClassName];
+
+    return [
+      ...acc,
+      {
+        name: windowSizeClassName,
+        minBreakpointWidth: previousRange?.maxBreakpointWidth
+          ? getBreakpointPlusEpsilon(previousRange.maxBreakpointWidth)
+          : undefined,
+        maxBreakpointWidth: breakpoint,
+      },
+    ];
+  }, [] as Array<IWindowSizeClassRange>);
+
+  return ranges;
+};
+
+const getVisibilityMediaQueries = (
+  ranges: Array<IWindowSizeClassRange>,
+): Array<string> => {
+  // Forge the media queries to hide/show elements based on the window class
+  // size.
+
+  const mediaQueries = ranges
+    .map((range) => {
+      const breakpointWidth = range.maxBreakpointWidth;
+      if (!breakpointWidth) {
+        return [];
       }
 
-      const isPxBreakpoint = breakpoint.includes('px');
-      const pxValue = getNumericPixelValue(breakpoint);
-      if (!pxValue) {
-        if (!isProduction()) {
-          // eslint-disable-next-line no-console
-          console.error(
-            `sixui: Invalid breakpoint value for window class \`${windowSizeClassName}\`: ${breakpoint}`,
-          );
-        }
-
-        return acc;
-      }
-
-      // Forge the media queries to hide/show elements based on the window class
-      // size.
-
-      const minWidthPxValue = pxValue + 0.1;
-      const minWidthBreakpoint = isPxBreakpoint
-        ? `${minWidthPxValue}px`
-        : em(minWidthPxValue);
-      const maxWidthBreakpoint = isPxBreakpoint ? `${pxValue}px` : em(pxValue);
-
-      const visibilityMediaQueries = [
-        `@media (max-width: ${maxWidthBreakpoint}) { .sixui-visible-from-${windowSizeClassName} {display: none !important;} }`,
-        `@media (min-width: ${minWidthBreakpoint}) { .sixui-hidden-from-${windowSizeClassName} {display: none !important;} }`,
+      const mediaQueries = [
+        `@media (max-width: ${breakpointWidth}) { .sixui-visible-from-${range.name} {display: none !important;} }`,
+        `@media (min-width: ${getBreakpointPlusEpsilon(breakpointWidth)}) { .sixui-hidden-from-${range.name} {display: none !important;} }`,
       ];
 
-      // Forge the media queries to conditionally set CSS properties based on
-      // the window class size.
+      return mediaQueries;
+    })
+    .flat();
 
-      const tokens = responsiveTheme.tokens.windowSizeClass;
+  return mediaQueries;
+};
+
+const getResponsiveVarsMediaQueries = (
+  ranges: Array<IWindowSizeClassRange>,
+): Array<string> => {
+  // Forge the media queries to conditionally set CSS properties based on
+  // the window class size.
+
+  const tokens = responsiveTheme.tokens.windowSizeClass;
+  const windowSizeClassNames = ranges.map((range) => range.name);
+
+  const mediaQueries = ranges
+    .map((range, rangeIndex) => {
       const responsiveVars = assignInlineVars({
-        [tokens[windowSizeClassName].on]: CSS_TRUE,
-        [tokens[windowSizeClassName].off]: CSS_FALSE,
+        [tokens[range.name].on]: CSS_TRUE,
+        [tokens[range.name].off]: CSS_FALSE,
 
         ...windowSizeClassNames.reduce(
           (acc, key, index) => ({
             ...acc,
-            [index <= windowSizeClassNameIndex
-              ? tokens[key].gte
-              : tokens[key].lt]: CSS_TRUE,
+            [index <= rangeIndex ? tokens[key].gte : tokens[key].lt]: CSS_TRUE,
           }),
           {} as Record<string, string | undefined | null>,
         ),
       });
+
       const serializedResponsiveVars = Object.entries(responsiveVars)
         .map(([key, value]) => `${key}: ${value ?? '""'};`)
         .join(' ');
-      const previousWidthBreakpoint =
-        acc[acc.length - 1]?.maxWidthBreakpoint ?? '0';
 
-      const responsiveVarsMediaQueries = [
-        `@media (min-width: ${previousWidthBreakpoint}) and (max-width: ${maxWidthBreakpoint}) { .${responsiveTheme.classNames.root} {${serializedResponsiveVars}} }`,
+      const mediaQueries = [
+        `@media (min-width: ${range.minBreakpointWidth}) and (max-width: ${range.maxBreakpointWidth}) { .${responsiveTheme.classNames.root} {${serializedResponsiveVars}} }`,
       ];
 
-      return [
-        ...acc,
-        {
-          maxWidthBreakpoint,
-          rule: [...visibilityMediaQueries, ...responsiveVarsMediaQueries].join(
-            '\n',
-          ),
-        },
-      ];
-    },
-    [] as Array<{ maxWidthBreakpoint: string; rule: string }>,
-  );
+      return mediaQueries;
+    })
+    .flat();
 
-  const rulesAsString = rules.map(({ rule }) => rule).join('\n');
+  return mediaQueries;
+};
+
+export const useResponsiveCssRules = (): string => {
+  const { theme } = useThemeContext();
+
+  const ranges = getWindowSizeClassRanges(theme.windowSizeClasses);
+  const rules = [
+    ...getVisibilityMediaQueries(ranges),
+    ...getResponsiveVarsMediaQueries(ranges),
+  ];
+  const rulesAsString = rules.join('\n');
 
   return rulesAsString;
 };

@@ -29,7 +29,6 @@ export const Responsive: IStory = {
           'medium',
           'expanded',
           'large',
-          'extraLarge',
         ] as Array<IThemeWindowSizeClassName>
       ).map((windowSize) => ({
         legend: capitalizeFirstLetter(windowSize),
