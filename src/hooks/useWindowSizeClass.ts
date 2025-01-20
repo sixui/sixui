@@ -15,6 +15,8 @@ export type IUseWindowSizeClassProps = {
   window?: Window;
 };
 
+// FIXME:
+
 type IMediaQueryCallback = (event: { matches: boolean; media: string }) => void;
 
 const arrayToMap = (

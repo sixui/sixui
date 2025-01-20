@@ -1,10 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
-import type { IThemeWindowSizeClassName } from '../ThemeProvider';
 import type { IBoxProps } from './Box.types';
 import { componentShowcaseFactory } from '../ComponentShowcase';
-import { Paper } from '../Paper';
+import { themeTokens, windowSizeClassNames } from '../ThemeProvider';
 import { Box } from './Box';
 
 const meta = {
@@ -13,30 +12,23 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {
-  children: <Paper surface="$primary" w="$8" h="$8" shape="$xs" />,
-} satisfies Partial<IBoxProps>;
+const defaultArgs = {} satisfies Partial<IBoxProps>;
 
 const BoxShowcase = componentShowcaseFactory(Box);
 
-export const Responsive: IStory = {
+export const ResponsiveVisibility: IStory = {
   render: (props) => (
     <BoxShowcase
       props={props}
-      cols={(
-        [
-          'compact',
-          'medium',
-          'expanded',
-          'large',
-        ] as Array<IThemeWindowSizeClassName>
-      ).map((windowSize) => ({
-        legend: capitalizeFirstLetter(windowSize),
-        props: {
-          hiddenFrom: windowSize,
-          visibleFrom: windowSize,
-        },
-      }))}
+      cols={windowSizeClassNames
+        .filter((windowSize) => windowSize !== 'extraLarge')
+        .map((windowSize) => ({
+          legend: capitalizeFirstLetter(windowSize),
+          props: {
+            hiddenFrom: windowSize,
+            visibleFrom: windowSize,
+          },
+        }))}
       rows={[
         {
           legend: 'Hidden from',
@@ -53,7 +45,40 @@ export const Responsive: IStory = {
       ]}
     />
   ),
-  args: defaultArgs,
+  args: {
+    ...defaultArgs,
+    w: '$8',
+    h: '$8',
+    br: '$1',
+    bg: '$primary',
+  },
+};
+
+export const ResponsiveProperties: IStory = {
+  render: (props) => (
+    <BoxShowcase
+      props={props}
+      cols={windowSizeClassNames.map((windowSize) => ({
+        legend: capitalizeFirstLetter(windowSize),
+        props: {
+          bg: {
+            base: '$onSurface',
+            [windowSize]: '$primary',
+          },
+          opacity: {
+            base: themeTokens.state.containerOpacity.disabled,
+            [windowSize]: '1',
+          },
+        },
+      }))}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    w: '$8',
+    h: '$8',
+    br: '$1',
+  },
 };
 
 export default meta;

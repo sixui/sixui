@@ -1,47 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
-import { assignInlineVars } from '@vanilla-extract/dynamic';
+import clsx from 'clsx';
 
 import type { IPaperProps } from '../Paper';
-import type { IThemeWindowSizeClassName } from '../ThemeProvider';
-import {
-  getResponsiveCssValue,
-  IResponsiveStyleRuleOperator,
-} from '~/helpers/styles/getResponsiveCssValue';
 import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Paper } from '../Paper';
-import { PaperBase } from '../PaperBase';
-import { themeTokens, windowSizeClassNames } from '../ThemeProvider';
-
-interface IResponsivePaperProps extends IPaperProps {
-  windowSizeClassName?: IThemeWindowSizeClassName;
-  op?: IResponsiveStyleRuleOperator;
-}
-
-const ResponsivePaper: React.FC<IResponsivePaperProps> = ({
-  windowSizeClassName,
-  op,
-  ...props
-}) => (
-  <Paper
-    {...props}
-    style={
-      windowSizeClassName &&
-      assignInlineVars({
-        [PaperBase.theme.tokens.container.color]: getResponsiveCssValue({
-          size: windowSizeClassName,
-          op,
-          then: themeTokens.colorScheme.primary,
-          else: themeTokens.colorScheme.surfaceContainerHighest,
-        }),
-      })
-    }
-  />
-);
+import { windowSizeClassNames } from '../ThemeProvider';
+import { responsiveStoriesClassNames } from './Responsive.stories.css';
 
 const meta = {
-  component: ResponsivePaper,
-} satisfies Meta<typeof ResponsivePaper>;
+  component: Paper,
+} satisfies Meta<typeof Paper>;
 
 type IStory = StoryObj<typeof meta>;
 
@@ -49,40 +18,24 @@ const defaultArgs = {
   w: '$8',
   h: '$8',
   shape: '$xs',
-} satisfies Partial<IResponsivePaperProps>;
+  className: responsiveStoriesClassNames.root,
+} satisfies Partial<IPaperProps>;
 
-const ResponsivePaperShowcase = componentShowcaseFactory(ResponsivePaper);
+const ResponsivePaperShowcase = componentShowcaseFactory(Paper);
 
-export const Basic: IStory = {
+export const ContainerQueries: IStory = {
   render: (props) => (
     <ResponsivePaperShowcase
       props={props}
       cols={windowSizeClassNames.map((windowSizeClassName) => ({
         legend: capitalizeFirstLetter(windowSizeClassName),
         props: {
-          windowSizeClassName,
+          className: clsx(
+            responsiveStoriesClassNames.root,
+            responsiveStoriesClassNames[`root$eq$${windowSizeClassName}`],
+          ),
         },
       }))}
-      rows={[
-        {
-          legend: 'Equal (=)',
-          props: {
-            op: '=',
-          },
-        },
-        {
-          legend: 'Less than (<)',
-          props: {
-            op: '<',
-          },
-        },
-        {
-          legend: 'Greater than or equal (>=)',
-          props: {
-            op: '>=',
-          },
-        },
-      ]}
     />
   ),
   args: defaultArgs,

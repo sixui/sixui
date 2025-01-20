@@ -45,7 +45,8 @@ export const AppBody = componentFactory<IAppBodyFactory>(
 
     return (
       <Paper as="main" {...getStyles('root')} ref={forwardedRef} {...other}>
-        {children}
+        <div {...getStyles('test')}>TEST</div>
+        {/* {children} */}
       </Paper>
     );
   },

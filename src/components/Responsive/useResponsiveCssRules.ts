@@ -1,6 +1,6 @@
 import { useThemeContext } from '../ThemeProvider/ThemeProvider.context';
-import { getResponsiveVarsMediaQueries } from './getResponsiveVarsMediaQueries';
-import { getVisibilityMediaQueries } from './getVisibilityMediaQueries';
+import { getSizesCssStyles } from './getSizesCssStyles';
+import { getVisibilityCssStyles } from './getVisibilityCssStyles';
 import { getWindowSizeClassRanges } from './getWindowSizeClassRanges';
 
 export const useResponsiveCssRules = (): string => {
@@ -8,8 +8,8 @@ export const useResponsiveCssRules = (): string => {
 
   const ranges = getWindowSizeClassRanges(theme.windowSizeClasses);
   const rules = [
-    ...getVisibilityMediaQueries(ranges),
-    ...getResponsiveVarsMediaQueries(ranges),
+    getVisibilityCssStyles(ranges),
+    getSizesCssStyles(ranges),
   ].join('\n');
 
   return rules;

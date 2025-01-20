@@ -1,9 +1,9 @@
 import type { IWindowSizeClassRange } from './getWindowSizeClassRanges';
 import { getBreakpointPlusEpsilon } from './getBreakpointPlusEpsilon';
 
-export const getVisibilityMediaQueries = (
+export const getVisibilityCssStyles = (
   ranges: Array<IWindowSizeClassRange>,
-): Array<string> => {
+): string => {
   // Forge the media queries to hide/show elements based on the window class
   // size.
 
@@ -15,13 +15,19 @@ export const getVisibilityMediaQueries = (
       }
 
       const mediaQueries = [
-        `@media (max-width: ${breakpointWidth}) { .sixui-visible-from-${range.name} {display: none !important;} }`,
-        `@media (min-width: ${getBreakpointPlusEpsilon(breakpointWidth)}) { .sixui-hidden-from-${range.name} {display: none !important;} }`,
+        `@media (max-width: ${breakpointWidth}) {`,
+        `  .sixui-visible-from-${range.name} { display: none !important; }`,
+        `}`,
+        `@media (min-width: ${getBreakpointPlusEpsilon(breakpointWidth)}) {`,
+        ` .sixui-hidden-from-${range.name} { display: none !important; }`,
+        `}`,
       ];
 
       return mediaQueries;
     })
     .flat();
 
-  return mediaQueries;
+  const styles = mediaQueries.join('\n');
+
+  return styles;
 };

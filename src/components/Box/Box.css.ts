@@ -1,9 +1,15 @@
 import { createRainbowSprinkles, defineProperties } from 'rainbow-sprinkles';
 
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
+import { getResponsiveContainerQuery } from '~/helpers/styles/getResponsiveContainerQuery';
 import { getSpacingValues } from '~/helpers/styles/getSpacingValues';
 import { createStyles } from '~/utils/styles/createStyles';
-import { cssLayers, themeTokens } from '../ThemeProvider';
+import {
+  cssLayers,
+  IThemeWindowSizeClassName,
+  themeTokens,
+  windowSizeClassNames,
+} from '../ThemeProvider';
 
 type IModifier = 'scale';
 
@@ -42,6 +48,27 @@ const spacingValues = getSpacingValues();
 
 const sprinklesProps = defineProperties({
   '@layer': cssLayers.sprinkles,
+  conditions: {
+    base: {},
+    ...windowSizeClassNames.reduce(
+      (acc, size) => ({
+        ...acc,
+        [size]: {
+          '@container': getResponsiveContainerQuery({ size }),
+        },
+      }),
+      {} as Record<
+        IThemeWindowSizeClassName,
+        {
+          '@media'?: string;
+          '@supports'?: string;
+          '@container'?: string;
+          selector?: string;
+        }
+      >,
+    ),
+  },
+  defaultCondition: 'base',
   dynamicProperties: {
     margin: spacingValues,
     marginTop: spacingValues,
@@ -61,17 +88,29 @@ const sprinklesProps = defineProperties({
     paddingInlineEnd: spacingValues,
     paddingInline: spacingValues,
     paddingBlock: spacingValues,
+    border: true,
+    background: themeTokens.colorScheme,
+    color: themeTokens.colorScheme,
+    opacity: true,
+    fontFamily: true,
+    fontSize: spacingValues,
+    fontWeight: true,
+    letterSpacing: true,
+    textAlign: true,
+    lineHeight: true,
+    fontStyle: true,
+    textTransform: true,
+    textDecoration: true,
     width: spacingValues,
     minWidth: spacingValues,
     maxWidth: spacingValues,
     height: spacingValues,
     minHeight: spacingValues,
     maxHeight: spacingValues,
-    alignItems: true,
-    justifyContent: true,
-    textTransform: true,
-    textDecoration: true,
-    textAlign: true,
+    backgroundSize: true,
+    backgroundPosition: true,
+    backgroundRepeat: true,
+    backgroundAttachment: true,
     position: true,
     top: true,
     left: true,
@@ -80,12 +119,12 @@ const sprinklesProps = defineProperties({
     inset: true,
     display: true,
     flex: true,
+    alignItems: true,
+    justifyContent: true,
     flexGrow: true,
     flexShrink: true,
-    fontSize: spacingValues,
+    borderRadius: spacingValues,
     zIndex: themeTokens.zIndex,
-    opacity: true,
-    color: themeTokens.colorScheme,
   },
   shorthands: {
     m: ['margin'],
@@ -106,22 +145,39 @@ const sprinklesProps = defineProperties({
     pe: ['paddingInlineEnd'],
     px: ['paddingInline'],
     py: ['paddingBlock'],
+    bd: ['border'],
+    bg: ['background'],
+    c: ['color'],
+    opacity: ['opacity'],
+    ff: ['fontFamily'],
+    fz: ['fontSize'],
+    fw: ['fontWeight'],
+    lts: ['letterSpacing'],
+    ta: ['textAlign'],
+    lh: ['lineHeight'],
+    fs: ['fontStyle'],
+    tt: ['textTransform'],
+    td: ['textDecoration'],
     w: ['width'],
     miw: ['minWidth'],
     maw: ['maxWidth'],
     h: ['height'],
     mih: ['minHeight'],
     mah: ['maxHeight'],
-    ta: ['textAlign'],
-    c: ['color'],
-    fz: ['fontSize'],
-    tt: ['textTransform'],
-    td: ['textDecoration'],
-    z: ['zIndex'],
-    o: ['opacity'],
+    bgsz: ['backgroundSize'],
+    bgp: ['backgroundPosition'],
+    bgr: ['backgroundRepeat'],
+    bga: ['backgroundAttachment'],
     pos: ['position'],
-    grow: ['flexGrow'],
-    shrink: ['flexShrink'],
+    top: ['top'],
+    left: ['left'],
+    bottom: ['bottom'],
+    right: ['right'],
+    inset: ['inset'],
+    display: ['display'],
+    flex: ['flex'],
+    br: ['borderRadius'],
+    z: ['zIndex'],
   },
 });
 
@@ -143,23 +199,39 @@ export type IBoxSprinkles = Pick<
   | 'pl'
   | 'pr'
   | 'ps'
+  | 'pe'
   | 'px'
   | 'py'
+  | 'bd'
+  | 'bg'
+  | 'c'
+  | 'opacity'
+  | 'ff'
+  | 'fz'
+  | 'lts'
+  | 'ta'
+  | 'lh'
+  | 'fs'
+  | 'tt'
+  | 'td'
   | 'w'
   | 'miw'
   | 'maw'
   | 'h'
   | 'mih'
   | 'mah'
-  | 'ta'
-  | 'c'
-  | 'fz'
-  | 'tt'
-  | 'td'
-  | 'z'
-  | 'o'
+  | 'bgsz'
+  | 'bgp'
+  | 'bgr'
+  | 'bga'
   | 'pos'
-  | 'grow'
-  | 'shrink'
+  | 'top'
+  | 'left'
+  | 'bottom'
+  | 'right'
+  | 'inset'
+  | 'display'
   | 'flex'
+  | 'br'
+  | 'z'
 >;
