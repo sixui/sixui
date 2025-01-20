@@ -1,14 +1,14 @@
-import type { IBasicTemplateThemeFactory } from './BasicTemplate.css';
-import type { IBasicTemplateFactory } from './BasicTemplate.types';
+import type { IAppLayoutFooterThemeFactory } from './AppLayoutFooter.css';
+import type { IAppLayoutFooterFactory } from './AppLayoutFooter.types';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Paper } from '../Paper';
-import { basicTemplateTheme } from './BasicTemplate.css';
+import { appLayoutFooterTheme } from './AppLayoutFooter.css';
 
-const COMPONENT_NAME = 'BasicTemplate';
+const COMPONENT_NAME = 'AppLayoutFooter';
 
-export const BasicTemplate = componentFactory<IBasicTemplateFactory>(
+export const AppLayoutFooter = componentFactory<IAppLayoutFooterFactory>(
   (props, forwardedRef) => {
     const {
       classNames,
@@ -21,14 +21,14 @@ export const BasicTemplate = componentFactory<IBasicTemplateFactory>(
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const { getStyles } = useComponentTheme<IBasicTemplateThemeFactory>({
+    const { getStyles } = useComponentTheme<IAppLayoutFooterThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
       className,
       styles,
       style,
       variant,
-      theme: basicTemplateTheme,
+      theme: appLayoutFooterTheme,
       modifiers: {
         disabled,
       },
@@ -42,5 +42,5 @@ export const BasicTemplate = componentFactory<IBasicTemplateFactory>(
   },
 );
 
-BasicTemplate.theme = basicTemplateTheme;
-BasicTemplate.displayName = `@sixui/${COMPONENT_NAME}`;
+AppLayoutFooter.theme = appLayoutFooterTheme;
+AppLayoutFooter.displayName = `@sixui/${COMPONENT_NAME}`;

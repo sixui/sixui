@@ -1,2 +1,2 @@
-export * from './BasicTemplate.types';
-export * from './BasicTemplate';
+export * from './AppLayoutFooter.types';
+export * from './AppLayoutFooter';
