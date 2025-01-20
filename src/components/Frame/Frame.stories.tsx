@@ -21,8 +21,9 @@ const defaultArgs = {
         alignItems: 'center',
         width: '100%',
         height: '100%',
-        backgroundColor: '#000',
-        backgroundImage: '-webkit-linear-gradient(45deg, #000 50%, #fff 50%)',
+        backgroundColor: themeTokens.colorScheme.primary,
+        backgroundImage: `-webkit-linear-gradient(45deg, ${themeTokens.colorScheme.primary} 50%, #fff 50%)`,
+        color: themeTokens.colorScheme.onPrimary,
       }}
     >
       Hello world!

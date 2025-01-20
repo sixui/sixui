@@ -15,8 +15,8 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  children: createSequence(3).map((index) => (
-    <Placeholder key={index} grow={1} diagonals />
+  children: createSequence(4).map((index) => (
+    <Placeholder key={index} expanded diagonals />
   )),
   divider: true,
 } satisfies Partial<IAppLayoutHeaderProps>;
