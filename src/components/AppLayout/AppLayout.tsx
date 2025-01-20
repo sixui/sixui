@@ -9,7 +9,8 @@ import { useWindowSizeClass } from '~/hooks/useWindowSizeClass';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { AppHeader } from '../AppHeader';
+import { AppLayoutBody } from '../AppLayoutBody/AppLayoutBody';
+import { AppLayoutHeader } from '../AppLayoutHeader';
 import { Box } from '../Box';
 import { AppLayoutProvider, IAppLayoutContextValue } from './AppLayout.context';
 import { resolveNavigationMode } from './resolveNavigationMode';
@@ -152,4 +153,5 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
 
 AppLayout.theme = appLayoutTheme;
 AppLayout.displayName = `@sixui/${COMPONENT_NAME}`;
-AppLayout.Header = AppHeader;
+AppLayout.Header = AppLayoutHeader;
+AppLayout.Body = AppLayoutBody;

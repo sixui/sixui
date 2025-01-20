@@ -1,14 +1,14 @@
-import type { IAppHeaderThemeFactory } from './AppHeader.css';
-import type { IAppHeaderFactory } from './AppHeader.types';
+import type { IAppLayoutHeaderThemeFactory } from './AppLayoutHeader.css';
+import type { IAppLayoutHeaderFactory } from './AppLayoutHeader.types';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Paper } from '../Paper';
-import { appHeaderTheme } from './AppHeader.css';
+import { appLayoutHeaderTheme } from './AppLayoutHeader.css';
 
-const COMPONENT_NAME = 'AppHeader';
+const COMPONENT_NAME = 'AppLayoutHeader';
 
-export const AppHeader = componentFactory<IAppHeaderFactory>(
+export const AppLayoutHeader = componentFactory<IAppLayoutHeaderFactory>(
   (props, forwardedRef) => {
     const {
       classNames,
@@ -21,14 +21,14 @@ export const AppHeader = componentFactory<IAppHeaderFactory>(
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const { getStyles } = useComponentTheme<IAppHeaderThemeFactory>({
+    const { getStyles } = useComponentTheme<IAppLayoutHeaderThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
       className,
       styles,
       style,
       variant,
-      theme: appHeaderTheme,
+      theme: appLayoutHeaderTheme,
       modifiers: {
         'with-divider': divider,
       },
@@ -42,5 +42,5 @@ export const AppHeader = componentFactory<IAppHeaderFactory>(
   },
 );
 
-AppHeader.theme = appHeaderTheme;
-AppHeader.displayName = `@sixui/${COMPONENT_NAME}`;
+AppLayoutHeader.theme = appLayoutHeaderTheme;
+AppLayoutHeader.displayName = `@sixui/${COMPONENT_NAME}`;

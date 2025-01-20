@@ -18,28 +18,6 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {} satisfies Partial<ISideSheetContentProps>;
 
-// FIXME:
-// const SideSheetContentFrame: React.FC<ISideSheetContentProps> = (props) => {
-//   return (
-//     <Frame
-//       importParentStyles
-//       w="100%"
-//       h="$96"
-//       style={{
-//         borderWidth: px(1),
-//         borderStyle: 'dashed',
-//         borderColor: themeTokens.colorScheme.outline,
-//       }}
-//     >
-//       <ThemeProvider inherit={false}>
-//         <SideSheetContent {...props} w="$60">
-//           FSDQSDQS
-//         </SideSheetContent>
-//       </ThemeProvider>
-//     </Frame>
-//   );
-// };
-
 const SideSheetContentShowcase = componentShowcaseFactory(SideSheetContent);
 
 export const Variants: IStory = {

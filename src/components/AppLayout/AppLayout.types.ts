@@ -1,9 +1,11 @@
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
-import type { AppHeader } from '../AppHeader';
 import type { IBoxProps } from '../Box';
 import type { IAppLayoutContextValue } from './AppLayout.context';
 import type { appLayoutTheme, IAppLayoutThemeFactory } from './AppLayout.css';
+import { IOmit } from '~/helpers/types';
+import { AppLayoutBody } from '../AppLayoutBody/AppLayoutBody';
+import { AppLayoutHeader } from '../AppLayoutHeader';
 
 export type IAppLayoutRenderProps = IAppLayoutContextValue;
 
@@ -31,7 +33,7 @@ export interface IAppLayoutOwnProps {
 }
 
 export interface IAppLayoutProps
-  extends IBoxProps,
+  extends IOmit<IBoxProps, 'children'>,
     IComponentThemeProps<IAppLayoutThemeFactory>,
     IAppLayoutOwnProps {}
 
@@ -40,6 +42,7 @@ export type IAppLayoutFactory = IComponentFactory<{
   ref: HTMLDivElement;
   theme: typeof appLayoutTheme;
   staticComponents: {
-    Header: typeof AppHeader;
+    Header: typeof AppLayoutHeader;
+    Body: typeof AppLayoutBody;
   };
 }>;

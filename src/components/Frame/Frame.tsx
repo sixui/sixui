@@ -9,6 +9,7 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
+import { Responsive } from '../Responsive';
 import { ThemeProvider } from '../ThemeProvider';
 import { useParentStyles } from './useParentStyles';
 import { frameTheme } from './Frame.css';
@@ -66,9 +67,11 @@ export const Frame = componentFactory<IFrameFactory>((props, forwardedRef) => {
         <>
           {createPortal(
             <ThemeProvider inherit={false}>
-              {isFunction(children)
-                ? children({ window: iframeContentWindow })
-                : children}
+              <Responsive>
+                {isFunction(children)
+                  ? children({ window: iframeContentWindow })
+                  : children}
+              </Responsive>
             </ThemeProvider>,
             iframeDocument.body,
           )}

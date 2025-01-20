@@ -119,8 +119,6 @@ const sprinklesProps = defineProperties({
     inset: true,
     display: true,
     flex: true,
-    alignItems: true,
-    justifyContent: true,
     flexGrow: true,
     flexShrink: true,
     borderRadius: spacingValues,
@@ -178,6 +176,8 @@ const sprinklesProps = defineProperties({
     flex: ['flex'],
     br: ['borderRadius'],
     z: ['zIndex'],
+    grow: ['flexGrow'],
+    shrink: ['flexShrink'],
   },
 });
 
@@ -234,4 +234,6 @@ export type IBoxSprinkles = Pick<
   | 'flex'
   | 'br'
   | 'z'
+  | 'grow'
+  | 'shrink'
 >;

@@ -41,6 +41,7 @@ const classNames = createStyles({
     zIndex: themeTokens.zIndex.app,
     paddingLeft: px(space(3)),
     paddingRight: px(space(3)),
+    gap: px(space(3)),
 
     selectors: {
       [getModifierSelector<IModifier>('with-divider')]: {
@@ -52,14 +53,15 @@ const classNames = createStyles({
   },
 });
 
-export type IAppHeaderThemeFactory = IComponentThemeFactory<{
+export type IAppLayoutHeaderThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   modifier: IModifier;
 }>;
 
-export const appHeaderTheme = componentThemeFactory<IAppHeaderThemeFactory>({
-  classNames,
-  tokensClassName,
-  tokens,
-});
+export const appLayoutHeaderTheme =
+  componentThemeFactory<IAppLayoutHeaderThemeFactory>({
+    classNames,
+    tokensClassName,
+    tokens,
+  });

@@ -1,15 +1,15 @@
-import type { IAppBodyThemeFactory } from './AppBody.css';
-import type { IAppBodyFactory } from './AppBody.types';
+import type { IAppLayoutBodyThemeFactory } from './AppLayoutBody.css';
+import type { IAppLayoutBodyFactory } from './AppLayoutBody.types';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { useAppLayoutContext } from '../AppLayout/AppLayout.context';
 import { Paper } from '../Paper';
-import { appBodyTheme } from './AppBody.css';
+import { appLayoutBodyTheme } from './AppLayoutBody.css';
 
-const COMPONENT_NAME = 'AppBody';
+const COMPONENT_NAME = 'AppLayoutBody';
 
-export const AppBody = componentFactory<IAppBodyFactory>(
+export const AppLayoutBody = componentFactory<IAppLayoutBodyFactory>(
   (props, forwardedRef) => {
     const {
       classNames,
@@ -29,14 +29,14 @@ export const AppBody = componentFactory<IAppBodyFactory>(
     const hasAside =
       hasAsideProp ?? appLayoutContext?.components.includes('aside');
 
-    const { getStyles } = useComponentTheme<IAppBodyThemeFactory>({
+    const { getStyles } = useComponentTheme<IAppLayoutBodyThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
       className,
       styles,
       style,
       variant,
-      theme: appBodyTheme,
+      theme: appLayoutBodyTheme,
       modifiers: {
         'with-header': hasHeader,
         'with-aside': hasAside,
@@ -45,12 +45,11 @@ export const AppBody = componentFactory<IAppBodyFactory>(
 
     return (
       <Paper as="main" {...getStyles('root')} ref={forwardedRef} {...other}>
-        <div {...getStyles('test')}>TEST</div>
-        {/* {children} */}
+        {children}
       </Paper>
     );
   },
 );
 
-AppBody.theme = appBodyTheme;
-AppBody.displayName = `@sixui/${COMPONENT_NAME}`;
+AppLayoutBody.theme = appLayoutBodyTheme;
+AppLayoutBody.displayName = `@sixui/${COMPONENT_NAME}`;
