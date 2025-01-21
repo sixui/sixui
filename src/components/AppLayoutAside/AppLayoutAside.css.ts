@@ -41,6 +41,9 @@ const classNames = createStyles({
     },
   },
   wrapper: {
+    position: 'fixed',
+    top: 0,
+    right: 0,
     height: '100%',
   },
   transitionContainer: {
