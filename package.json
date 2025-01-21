@@ -72,10 +72,9 @@
     "modern-normalize": "^3.0.1",
     "rainbow-sprinkles": "^1.0.0",
     "react-aria": "^3.37.0",
-    "react-aria-components": "^1.6.0",
     "react-remove-scroll": "^2.6.2",
     "react-transition-group": "^4.4.5",
-    "type-fest": "^4.32.0"
+    "type-fest": "^4.33.0"
   },
   "devDependencies": {
     "@auto-it/npm": "^11.3.0",
@@ -107,8 +106,8 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/react-transition-group": "^4",
-    "@typescript-eslint/eslint-plugin": "^8.20.0",
-    "@typescript-eslint/parser": "^8.20.0",
+    "@typescript-eslint/eslint-plugin": "^8.21.0",
+    "@typescript-eslint/parser": "^8.21.0",
     "@vanilla-extract/vite-plugin": "^4.0.19",
     "@vitejs/plugin-react": "^4.3.4",
     "auto": "^11.3.0",

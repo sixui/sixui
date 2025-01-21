@@ -1,5 +1,3 @@
-import { CheckboxGroup } from 'react-aria-components';
-
 import type { ICheckboxThemeFactory } from './Checkbox.css';
 import type { ICheckboxFactory } from './Checkbox.types';
 import { useCheckbox } from '~/hooks/useCheckbox';
@@ -9,6 +7,7 @@ import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
 import { CheckboxCard } from '../CheckboxCard';
+import { CheckboxGroup } from '../CheckboxGroup';
 import { CheckboxIndicator } from '../CheckboxIndicator';
 import { FocusRing } from '../FocusRing';
 import { StateLayer, useStateLayer } from '../StateLayer';
