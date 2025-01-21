@@ -3,6 +3,7 @@ import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { INavigationDrawerContentOwnProps } from '../NavigationDrawerContent';
+import type { NavigationDrawerSection } from '../NavigationDrawerSection';
 import type {
   appLayoutNavigationDrawerTheme,
   IAppLayoutNavigationDrawerThemeFactory,
@@ -24,4 +25,7 @@ export type IAppLayoutNavigationDrawerFactory = IComponentFactory<{
   props: IAppLayoutNavigationDrawerProps;
   ref: HTMLDivElement;
   theme: typeof appLayoutNavigationDrawerTheme;
+  staticComponents: {
+    Section: typeof NavigationDrawerSection;
+  };
 }>;

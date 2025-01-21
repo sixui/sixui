@@ -18,6 +18,7 @@ import { AppLayoutNavigationRail } from '../AppLayoutNavigationRail';
 import { AppLayoutPane } from '../AppLayoutPane';
 import { AppLayoutSideSheet } from '../AppLayoutSideSheet';
 import { Box } from '../Box';
+import { themeTokens } from '../ThemeProvider';
 import { AppLayoutProvider, IAppLayoutContextValue } from './AppLayout.context';
 import { resolveNavigationMode } from './resolveNavigationMode';
 import { appLayoutTheme } from './AppLayout.css';
@@ -146,8 +147,11 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
       asideCallbacks.close,
     ]);
 
+    const xxx = `:root { background-color: ${themeTokens.colorScheme.surface}; }`;
+
     return (
       <AppLayoutProvider value={contextValue}>
+        <style type="text/css" dangerouslySetInnerHTML={{ __html: xxx }} />
         <Box {...getStyles('root')} ref={forwardedRef} {...other}>
           <div ref={setRootElement} />
           {isFunction(children) ? children(contextValue) : children}

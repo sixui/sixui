@@ -6,6 +6,7 @@ import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
 import { Divider } from '../Divider';
 import { List } from '../List';
+import { NavigationDrawerDestination } from '../NavigationDrawerDestination';
 import { navigationDrawerSectionTheme } from './NavigationDrawerSection.css';
 
 const COMPONENT_NAME = 'NavigationDrawerSection';
@@ -50,3 +51,4 @@ export const NavigationDrawerSection =
 
 NavigationDrawerSection.theme = navigationDrawerSectionTheme;
 NavigationDrawerSection.displayName = `@sixui/${COMPONENT_NAME}`;
+NavigationDrawerSection.Destination = NavigationDrawerDestination;

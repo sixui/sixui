@@ -6,6 +6,8 @@ import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
+import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { PaperBase } from '../PaperBase';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 import { appLayoutTheme } from '../AppLayout/AppLayout.css';
 
@@ -15,6 +17,10 @@ const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   container: {
     height: fallbackVar(appLayoutTheme.tokens.header.height, px(64)),
+    color: fallbackVar(
+      appLayoutTheme.tokens.header.color,
+      themeTokens.colorScheme.surface,
+    ),
   },
   divider: {
     width: fallbackVar(
@@ -42,6 +48,12 @@ const classNames = createStyles({
     paddingLeft: px(space(3)),
     paddingRight: px(space(3)),
     gap: px(space(3)),
+
+    vars: createTokensVars(PaperBase.theme.tokens, {
+      container: {
+        color: tokens.container.color,
+      },
+    }),
 
     selectors: {
       [getModifierSelector<IModifier>('with-divider')]: {

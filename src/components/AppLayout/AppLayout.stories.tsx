@@ -2,14 +2,18 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import {
   faCircle,
+  faFolder,
   faHeart,
+  faPaperPlane,
   faSquare,
 } from '@fortawesome/free-regular-svg-icons';
 import {
   faBars,
+  faInbox,
   faCircle as fasCircle,
   faHeart as fasHeart,
   faSquare as fasSquare,
+  faTrash,
   faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -22,7 +26,6 @@ import { useCanonicalLayout } from '~/hooks/useCanonicalLayout';
 import { Flex } from '../Flex';
 import { Frame } from '../Frame';
 import { IconButton } from '../IconButton';
-import { NavigationDrawerDestination } from '../NavigationDrawerDestination';
 import { NavigationDrawerSection } from '../NavigationDrawerSection';
 import { NavigationRailDestination } from '../NavigationRailDestination';
 import { Placeholder } from '../Placeholder';
@@ -111,32 +114,63 @@ const BodyDemo: React.FC<IBodyDemoProps> = (props) => {
   );
 };
 
-const NavigationDrawerContentDemo: React.FC = () => (
-  <Flex direction="column" gap="$6">
-    <NavigationDrawerSection headline="Mail" endDivider>
-      <NavigationDrawerDestination
-        onClick={() => {}}
-        active
-        badgeLabel="24"
-        leadingIcon="xx"
-      >
-        XX
-      </NavigationDrawerDestination>
-      <NavigationDrawerDestination onClick={() => {}}>
-        YY
-      </NavigationDrawerDestination>
-    </NavigationDrawerSection>
+const NavigationDrawerContentDemo: React.FC = () => {
+  const [activeDestination, setActiveDestination] = useState<string>('inbox');
 
-    <NavigationDrawerSection headline="Labels">
-      <NavigationDrawerDestination onClick={() => {}} badgeLabel="24">
-        XX
-      </NavigationDrawerDestination>
-      <NavigationDrawerDestination onClick={() => {}}>
-        YY
-      </NavigationDrawerDestination>
-    </NavigationDrawerSection>
-  </Flex>
-);
+  return (
+    <Flex direction="column" gap="$6">
+      <AppLayout.NavigationDrawer.Section headline="Mail" endDivider>
+        <AppLayout.NavigationDrawer.Section.Destination
+          onClick={() => setActiveDestination('inbox')}
+          active={activeDestination === 'inbox'}
+          leadingIcon={<FontAwesomeIcon icon={faInbox} />}
+          badgeLabel="24"
+        >
+          Inbox
+        </AppLayout.NavigationDrawer.Section.Destination>
+        <AppLayout.NavigationDrawer.Section.Destination
+          onClick={() => setActiveDestination('outbox')}
+          active={activeDestination === 'outbox'}
+          leadingIcon={<FontAwesomeIcon icon={faPaperPlane} />}
+        >
+          Outbox
+        </AppLayout.NavigationDrawer.Section.Destination>
+        <AppLayout.NavigationDrawer.Section.Destination
+          onClick={() => setActiveDestination('favorites')}
+          active={activeDestination === 'favorites'}
+          leadingIcon={<FontAwesomeIcon icon={faHeart} />}
+          disabled
+        >
+          Favorites
+        </AppLayout.NavigationDrawer.Section.Destination>
+        <AppLayout.NavigationDrawer.Section.Destination
+          onClick={() => setActiveDestination('trash')}
+          active={activeDestination === 'trash'}
+          leadingIcon={<FontAwesomeIcon icon={faTrash} />}
+        >
+          Trash
+        </AppLayout.NavigationDrawer.Section.Destination>
+      </AppLayout.NavigationDrawer.Section>
+
+      <NavigationDrawerSection headline="Labels">
+        <AppLayout.NavigationDrawer.Section.Destination
+          onClick={() => setActiveDestination('labelA')}
+          active={activeDestination === 'labelA'}
+          leadingIcon={<FontAwesomeIcon icon={faFolder} />}
+        >
+          Label A
+        </AppLayout.NavigationDrawer.Section.Destination>
+        <AppLayout.NavigationDrawer.Section.Destination
+          onClick={() => setActiveDestination('labelB')}
+          active={activeDestination === 'labelB'}
+          leadingIcon={<FontAwesomeIcon icon={faFolder} />}
+        >
+          Label B
+        </AppLayout.NavigationDrawer.Section.Destination>
+      </NavigationDrawerSection>
+    </Flex>
+  );
+};
 
 type INavigationRailContentProps = {
   canonicalLayoutType: ICanonicalLayoutType;
@@ -240,7 +274,6 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
           <AppLayout.Footer divider>
             <FooterContent />
           </AppLayout.Footer>
-          <div>FOOTER</div>
         </AppLayout>
       )}
     </Frame>
@@ -289,7 +322,6 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
                 <AppLayout.Header divider>
                   <HeaderContentDemo />
                 </AppLayout.Header>
-                <div>HEADER</div>
 
                 <Flex direction="row" align="start">
                   <BodyDemo canonicalLayoutType={canonicalLayoutType} />
@@ -301,7 +333,6 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
           <AppLayout.Footer divider>
             <FooterContent />
           </AppLayout.Footer>
-          <div>FOOTER</div>
         </AppLayout>
       )}
     </Frame>

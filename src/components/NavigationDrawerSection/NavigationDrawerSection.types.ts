@@ -1,6 +1,7 @@
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
+import type { NavigationDrawerDestination } from '../NavigationDrawerDestination';
 import type {
   INavigationDrawerSectionThemeFactory,
   navigationDrawerSectionTheme,
@@ -21,4 +22,7 @@ export type INavigationDrawerSectionFactory = IComponentFactory<{
   props: INavigationDrawerSectionProps;
   ref: HTMLDivElement;
   theme: typeof navigationDrawerSectionTheme;
+  staticComponents: {
+    Destination: typeof NavigationDrawerDestination;
+  };
 }>;

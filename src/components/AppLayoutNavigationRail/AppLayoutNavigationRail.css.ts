@@ -15,6 +15,10 @@ const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   container: {
     width: fallbackVar(appLayoutTheme.tokens.navigationRail.width, px(80)),
+    color: fallbackVar(
+      appLayoutTheme.tokens.navigationRail.color,
+      themeTokens.colorScheme.surface,
+    ),
   },
   divider: {
     color: fallbackVar(
@@ -35,6 +39,7 @@ const classNames = createStyles({
     vars: createTokensVars(NavigationRail.theme.tokens, {
       container: {
         width: tokens.container.width,
+        color: tokens.container.color,
       },
       divider: {
         color: tokens.divider.color,

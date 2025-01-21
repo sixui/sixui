@@ -10,18 +10,23 @@ const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   header: {
     height: px(64),
-  },
-  navigationRail: {
-    width: px(80),
+    color: 'initial',
   },
   navigationDrawer: {
     width: px(360),
+    color: 'initial',
+  },
+  navigationRail: {
+    width: px(80),
+    color: 'initial',
   },
   aside: {
     width: px(400),
+    color: 'initial',
   },
   footer: {
     height: px(64),
+    color: 'initial',
   },
   divider: {
     width: px(themeTokens.outline.width.xs),

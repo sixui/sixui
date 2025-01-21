@@ -11,6 +11,7 @@ import { useAppLayoutContext } from '../AppLayout/AppLayout.context';
 import { Drawer } from '../Drawer';
 import { Motion } from '../Motion';
 import { NavigationDrawerContent } from '../NavigationDrawerContent';
+import { NavigationDrawerSection } from '../NavigationDrawerSection';
 import { appLayoutNavigationDrawerTheme } from './AppLayoutNavigationDrawer.css';
 
 const COMPONENT_NAME = 'AppLayoutNavigationDrawer';
@@ -114,3 +115,4 @@ export const AppLayoutNavigationDrawer =
 
 AppLayoutNavigationDrawer.theme = appLayoutNavigationDrawerTheme;
 AppLayoutNavigationDrawer.displayName = `@sixui/${COMPONENT_NAME}`;
+AppLayoutNavigationDrawer.Section = NavigationDrawerSection;

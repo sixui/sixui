@@ -11,7 +11,6 @@ import type { INavigationDrawerSectionProps } from './NavigationDrawerSection.ty
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Flex } from '../Flex';
-import { NavigationDrawerDestination } from '../NavigationDrawerDestination';
 import { Paper } from '../Paper';
 import { NavigationDrawerSection } from './NavigationDrawerSection';
 
@@ -38,55 +37,49 @@ const NavigationDrawerSectionDemo: React.FC<INavigationDrawerSectionProps> = (
     w="$96"
   >
     <NavigationDrawerSection headline="Mail" endDivider {...props}>
-      <NavigationDrawerDestination
-        variant="navigation"
+      <NavigationDrawerSection.Destination
         leadingIcon={<FontAwesomeIcon icon={faInbox} />}
         badgeLabel="24"
         onClick={(args) => sbHandleEvent('onClick', args, 1000)}
         active
       >
         Inbox
-      </NavigationDrawerDestination>
-      <NavigationDrawerDestination
-        variant="navigation"
+      </NavigationDrawerSection.Destination>
+      <NavigationDrawerSection.Destination
         leadingIcon={<FontAwesomeIcon icon={faPaperPlane} />}
         onClick={(args) => sbHandleEvent('onClick', args, 1000)}
       >
         Outbox
-      </NavigationDrawerDestination>
-      <NavigationDrawerDestination
-        variant="navigation"
+      </NavigationDrawerSection.Destination>
+      <NavigationDrawerSection.Destination
         leadingIcon={<FontAwesomeIcon icon={faHeart} />}
         onClick={(args) => sbHandleEvent('onClick', args, 1000)}
         disabled
       >
         Favorites
-      </NavigationDrawerDestination>
-      <NavigationDrawerDestination
-        variant="navigation"
+      </NavigationDrawerSection.Destination>
+      <NavigationDrawerSection.Destination
         leadingIcon={<FontAwesomeIcon icon={faTrash} />}
         onClick={(args) => sbHandleEvent('onClick', args, 1000)}
       >
         Trash
-      </NavigationDrawerDestination>
+      </NavigationDrawerSection.Destination>
     </NavigationDrawerSection>
 
     <NavigationDrawerSection headline="Labels" {...props}>
-      <NavigationDrawerDestination
-        variant="navigation"
+      <NavigationDrawerSection.Destination
         leadingIcon={<FontAwesomeIcon icon={faFolder} />}
         onClick={(args) => sbHandleEvent('onClick', args, 1000)}
         supportingText="Supporting text"
       >
-        Label
-      </NavigationDrawerDestination>
-      <NavigationDrawerDestination
-        variant="navigation"
+        Label A
+      </NavigationDrawerSection.Destination>
+      <NavigationDrawerSection.Destination
         leadingIcon={<FontAwesomeIcon icon={faFolder} />}
         onClick={(args) => sbHandleEvent('onClick', args, 1000)}
       >
-        Label
-      </NavigationDrawerDestination>
+        Label B
+      </NavigationDrawerSection.Destination>
     </NavigationDrawerSection>
   </Paper>
 );
