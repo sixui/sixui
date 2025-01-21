@@ -1,24 +1,23 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IAppLayoutFooterProps } from './AppLayoutFooter.types';
+import type { IAppLayoutPaneProps } from './AppLayoutPane.types';
 import { px } from '~/helpers/styles/px';
 import { Frame } from '../Frame';
 import { Placeholder } from '../Placeholder';
 import { themeTokens } from '../ThemeProvider';
-import { AppLayoutFooter } from './AppLayoutFooter';
+import { AppLayoutPane } from './AppLayoutPane';
 
 const meta = {
-  component: AppLayoutFooter,
-} satisfies Meta<typeof AppLayoutFooter>;
+  component: AppLayoutPane,
+} satisfies Meta<typeof AppLayoutPane>;
 
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   children: <Placeholder diagonals h="$72" />,
-  divider: true,
-} satisfies Partial<IAppLayoutFooterProps>;
+} satisfies Partial<IAppLayoutPaneProps>;
 
-const AppLayoutFooterFrame: React.FC<IAppLayoutFooterProps> = (props) => {
+const AppLayoutPaneFrame: React.FC<IAppLayoutPaneProps> = (props) => {
   return (
     <Frame
       importParentStyles
@@ -28,16 +27,15 @@ const AppLayoutFooterFrame: React.FC<IAppLayoutFooterProps> = (props) => {
         borderWidth: px(1),
         borderStyle: 'dashed',
         borderColor: themeTokens.colorScheme.outlineVariant,
-        borderTopWidth: 0,
       }}
     >
-      <AppLayoutFooter {...props} />
+      <AppLayoutPane {...props} />
     </Frame>
   );
 };
 
 export const Basic: IStory = {
-  render: (props) => <AppLayoutFooterFrame {...props} />,
+  render: (props) => <AppLayoutPaneFrame {...props} />,
   args: defaultArgs,
 };
 
