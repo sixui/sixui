@@ -1,8 +1,8 @@
 import { useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
-import type { IAppLayoutAsideThemeFactory } from './AppLayoutAside.css';
-import type { IAppLayoutAsideFactory } from './AppLayoutAside.types';
+import type { IAppLayoutNavigationDrawerThemeFactory } from './AppLayoutNavigationDrawer.css';
+import type { IAppLayoutNavigationDrawerFactory } from './AppLayoutNavigationDrawer.types';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
@@ -10,13 +10,13 @@ import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { useAppLayoutContext } from '../AppLayout/AppLayout.context';
 import { Drawer } from '../Drawer';
 import { Motion } from '../Motion';
-import { SideSheetContent } from '../SideSheetContent';
-import { appLayoutAsideTheme } from './AppLayoutAside.css';
+import { NavigationDrawerContent } from '../NavigationDrawerContent';
+import { appLayoutNavigationDrawerTheme } from './AppLayoutNavigationDrawer.css';
 
-const COMPONENT_NAME = 'AppLayoutAside';
+const COMPONENT_NAME = 'AppLayoutNavigationDrawer';
 
-export const AppLayoutAside = componentFactory<IAppLayoutAsideFactory>(
-  (props, forwardedRef) => {
+export const AppLayoutNavigationDrawer =
+  componentFactory<IAppLayoutNavigationDrawerFactory>((props, forwardedRef) => {
     const {
       classNames,
       className,
@@ -31,15 +31,16 @@ export const AppLayoutAside = componentFactory<IAppLayoutAsideFactory>(
 
     const appLayoutContext = useAppLayoutContext();
 
-    const { getStyles } = useComponentTheme<IAppLayoutAsideThemeFactory>({
-      componentName: COMPONENT_NAME,
-      classNames,
-      className,
-      styles,
-      style,
-      variant,
-      theme: appLayoutAsideTheme,
-    });
+    const { getStyles } =
+      useComponentTheme<IAppLayoutNavigationDrawerThemeFactory>({
+        componentName: COMPONENT_NAME,
+        classNames,
+        className,
+        styles,
+        style,
+        variant,
+        theme: appLayoutNavigationDrawerTheme,
+      });
 
     const transitionNodeRef = useRef<HTMLDivElement>(null);
     const transitionNodeHandleRef = useMergeRefs(
@@ -47,30 +48,26 @@ export const AppLayoutAside = componentFactory<IAppLayoutAsideFactory>(
       forwardedRef,
     );
 
-    const hasAside = appLayoutContext?.components.includes('aside') ?? true;
-    if (!hasAside) {
-      return null;
-    }
+    const standardNavigationDrawerOpened =
+      standardOpened ??
+      appLayoutContext?.navigationDrawer?.state?.standardOpened;
+    const modalNavigationDrawerOpened =
+      modalOpened ?? appLayoutContext?.navigationDrawer?.state?.modalOpened;
 
-    const standardAsideOpened =
-      standardOpened ?? appLayoutContext?.aside?.state?.standardOpened;
-    const modalAsideOpened =
-      modalOpened ?? appLayoutContext?.aside?.state?.modalOpened;
-
-    const side = 'right';
+    const side = 'left';
 
     return (
       <>
         <Drawer
           root={appLayoutContext?.root}
-          opened={modalAsideOpened}
-          onClose={appLayoutContext?.aside?.state?.close}
+          opened={modalNavigationDrawerOpened}
+          onClose={appLayoutContext?.navigationDrawer?.state?.close}
           side={side}
           variant={detached ? 'detached' : undefined}
           {...getStyles('wrapper')}
         >
           {({ close }) => (
-            <SideSheetContent
+            <NavigationDrawerContent
               {...getStyles('root', {
                 modifiers: {
                   modal: true,
@@ -88,8 +85,8 @@ export const AppLayoutAside = componentFactory<IAppLayoutAsideFactory>(
 
         <CSSTransition
           nodeRef={transitionNodeRef}
-          in={standardAsideOpened}
-          timeout={550} // motionTokens.duration$long3
+          in={standardNavigationDrawerOpened}
+          timeout={150} // motionTokens.duration$short3
           unmountOnExit
         >
           {(status) => (
@@ -101,9 +98,8 @@ export const AppLayoutAside = componentFactory<IAppLayoutAsideFactory>(
               {...getStyles('transitionContainer')}
               ref={transitionNodeHandleRef}
             >
-              <SideSheetContent
+              <NavigationDrawerContent
                 {...getStyles('root')}
-                side={side}
                 onClose={appLayoutContext?.aside?.state?.close}
                 variant="standard"
                 ref={transitionNodeHandleRef}
@@ -114,8 +110,7 @@ export const AppLayoutAside = componentFactory<IAppLayoutAsideFactory>(
         </CSSTransition>
       </>
     );
-  },
-);
+  });
 
-AppLayoutAside.theme = appLayoutAsideTheme;
-AppLayoutAside.displayName = `@sixui/${COMPONENT_NAME}`;
+AppLayoutNavigationDrawer.theme = appLayoutNavigationDrawerTheme;
+AppLayoutNavigationDrawer.displayName = `@sixui/${COMPONENT_NAME}`;

@@ -66,22 +66,12 @@ const classNames = createStyles({
     }),
 
     selectors: {
-      [getModifierSelector<IModifier>([
-        'with-divider',
-        {
-          side: 'left',
-        },
-      ])]: {
+      [getModifierSelector<IModifier>(['with-divider', { side: 'left' }])]: {
         borderRightWidth: tokens.divider.width,
         borderRightColor: tokens.divider.color,
         borderRightStyle: 'solid',
       },
-      [getModifierSelector<IModifier>([
-        'with-divider',
-        {
-          side: 'right',
-        },
-      ])]: {
+      [getModifierSelector<IModifier>(['with-divider', { side: 'right' }])]: {
         borderLeftWidth: tokens.divider.width,
         borderLeftColor: tokens.divider.color,
         borderLeftStyle: 'solid',

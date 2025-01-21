@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IAppLayoutAsideProps } from './AppLayoutAside.types';
+import type { IAppLayoutNavigationDrawerProps } from './AppLayoutNavigationDrawer.types';
 import { px } from '~/helpers/styles/px';
 import { useToggle } from '~/hooks/useToggle';
 import { AppLayoutSideSheet } from '../AppLayoutSideSheet';
@@ -9,20 +9,22 @@ import { Flex } from '../Flex';
 import { Frame } from '../Frame';
 import { Placeholder } from '../Placeholder';
 import { themeTokens } from '../ThemeProvider';
-import { AppLayoutAside } from './AppLayoutAside';
+import { AppLayoutNavigationDrawer } from './AppLayoutNavigationDrawer';
 
 const meta = {
-  component: AppLayoutAside,
-} satisfies Meta<typeof AppLayoutAside>;
+  component: AppLayoutNavigationDrawer,
+} satisfies Meta<typeof AppLayoutNavigationDrawer>;
 
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   children: <Placeholder expanded diagonals />,
   divider: true,
-} satisfies Partial<IAppLayoutAsideProps>;
+} satisfies Partial<IAppLayoutNavigationDrawerProps>;
 
-const AppLayoutAsideFrame: React.FC<IAppLayoutAsideProps> = (props) => {
+const AppLayoutNavigationDrawerFrame: React.FC<
+  IAppLayoutNavigationDrawerProps
+> = (props) => {
   const [standardOpened, toggleStandardOpened] = useToggle([false, true]);
   const [modalOpened, toggleModalOpened] = useToggle([false, true]);
 
@@ -47,7 +49,7 @@ const AppLayoutAsideFrame: React.FC<IAppLayoutAsideProps> = (props) => {
         }}
       >
         <AppLayoutSideSheet side="right">
-          <AppLayoutAside
+          <AppLayoutNavigationDrawer
             standardOpened={standardOpened}
             modalOpened={modalOpened}
             {...props}
@@ -59,7 +61,7 @@ const AppLayoutAsideFrame: React.FC<IAppLayoutAsideProps> = (props) => {
 };
 
 export const Basic: IStory = {
-  render: (props) => <AppLayoutAsideFrame {...props} />,
+  render: (props) => <AppLayoutNavigationDrawerFrame {...props} />,
   args: defaultArgs,
 };
 

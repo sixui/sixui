@@ -1,3 +1,4 @@
+import type { IOmit } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
@@ -15,7 +16,7 @@ export type INavigationDrawerContentVariant = ISideSheetContentVariant;
 export type INavigationDrawerContentOwnProps = ISideSheetContentOwnProps;
 
 export interface INavigationDrawerContentProps
-  extends IBoxProps,
+  extends IOmit<IBoxProps, 'children'>,
     IComponentThemeProps<INavigationDrawerContentThemeFactory>,
     INavigationDrawerContentOwnProps {}
 
