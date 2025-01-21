@@ -16,7 +16,7 @@ export type INavigationDrawerContentVariant = ISideSheetContentVariant;
 export type INavigationDrawerContentOwnProps = ISideSheetContentOwnProps;
 
 export interface INavigationDrawerContentProps
-  extends IOmit<IBoxProps, 'children'>,
+  extends IBoxProps,
     IComponentThemeProps<INavigationDrawerContentThemeFactory>,
     INavigationDrawerContentOwnProps {}
 

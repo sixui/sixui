@@ -8,6 +8,8 @@ import { appLayoutPaneTheme } from './AppLayoutPane.css';
 
 const COMPONENT_NAME = 'AppLayoutPane';
 
+// FIXME: delete component?
+
 export const AppLayoutPane = componentFactory<IAppLayoutPaneFactory>(
   (props, forwardedRef) => {
     const {

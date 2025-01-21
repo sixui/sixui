@@ -1,4 +1,3 @@
-import type { IOmit } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
@@ -15,7 +14,7 @@ export interface IAppLayoutAsideOwnProps extends ISideSheetContentOwnProps {
 }
 
 export interface IAppLayoutAsideProps
-  extends IOmit<IBoxProps, 'children'>,
+  extends IBoxProps,
     IComponentThemeProps<IAppLayoutAsideThemeFactory>,
     IAppLayoutAsideOwnProps {}
 

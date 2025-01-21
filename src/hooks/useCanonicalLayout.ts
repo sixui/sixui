@@ -17,7 +17,6 @@ export type ICanonicalLayoutOptions = {
 export type ICanonicalLayoutPane = {
   name: 'listDetail' | 'list' | 'detail' | 'focus' | 'supporting' | 'feed';
   sheet?: boolean;
-  fixedWidth?: number;
   dismissible?: boolean;
   columns?: number;
 };

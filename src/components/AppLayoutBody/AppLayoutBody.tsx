@@ -19,16 +19,13 @@ export const AppLayoutBody = componentFactory<IAppLayoutBodyFactory>(
       variant,
       children,
       hasHeader: hasHeaderProp,
-      hasAside: hasAsideProp,
-      orientation = 'vertical',
+      orientation = 'horizontal',
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
     const appLayoutContext = useAppLayoutContext();
     const hasHeader =
       hasHeaderProp ?? appLayoutContext?.components.includes('header');
-    const hasAside =
-      hasAsideProp ?? appLayoutContext?.components.includes('aside');
 
     const { getStyles } = useComponentTheme<IAppLayoutBodyThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -41,7 +38,6 @@ export const AppLayoutBody = componentFactory<IAppLayoutBodyFactory>(
       modifiers: {
         orientation,
         'with-header': hasHeader,
-        'with-aside': hasAside,
       },
     });
 

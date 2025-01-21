@@ -24,7 +24,7 @@ export interface IDrawerOwnProps {
 }
 
 export interface IDrawerProps
-  extends IOmit<IBoxProps, 'children'>,
+  extends IBoxProps,
     IComponentThemeProps<IDrawerThemeFactory>,
     IDrawerOwnProps {}
 

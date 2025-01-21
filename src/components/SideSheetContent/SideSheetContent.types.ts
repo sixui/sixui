@@ -35,7 +35,7 @@ export interface ISideSheetContentOwnProps
 }
 
 export interface ISideSheetContentProps
-  extends IOmit<IBoxProps, 'children'>,
+  extends IBoxProps,
     IComponentThemeProps<ISideSheetContentThemeFactory>,
     ISideSheetContentOwnProps {}
 

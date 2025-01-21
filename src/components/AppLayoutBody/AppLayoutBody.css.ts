@@ -9,22 +9,25 @@ import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { appLayoutTheme } from '../AppLayout/AppLayout.css';
 
-type IModifier = 'orientation' | 'with-header' | 'with-aside';
+type IModifier = 'orientation' | 'with-header';
 
 const classNames = createStyles({
   root: {
     display: 'flex',
+    flexDirection: 'row',
     flexGrow: 1,
     minHeight: '100vh',
 
     '@container': {
       [getResponsiveContainerQuery({ size: 'compact' })]: {
         gap: px(space(4)),
-        marginInline: px(space(4)),
+        marginLeft: px(space(4)),
+        marginRight: px(space(4)),
       },
       [getResponsiveContainerQuery({ op: '>=', size: 'medium' })]: {
         gap: px(space(6)),
-        marginInline: px(space(6)),
+        marginLeft: px(space(6)),
+        marginRight: px(space(6)),
       },
     },
 
@@ -34,9 +37,6 @@ const classNames = createStyles({
       },
       [getModifierSelector<IModifier>('with-header')]: {
         minHeight: calc.subtract('100vh', appLayoutTheme.tokens.header.height),
-      },
-      [getModifierSelector<IModifier>('with-aside')]: {
-        marginRight: 0,
       },
     },
   },

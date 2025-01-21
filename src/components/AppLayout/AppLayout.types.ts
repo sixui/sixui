@@ -39,7 +39,7 @@ export interface IAppLayoutOwnProps {
 }
 
 export interface IAppLayoutProps
-  extends IOmit<IBoxProps, 'children'>,
+  extends IBoxProps,
     IComponentThemeProps<IAppLayoutThemeFactory>,
     IAppLayoutOwnProps {}
 

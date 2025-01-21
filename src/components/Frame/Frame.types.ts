@@ -14,7 +14,7 @@ export interface IFrameOwnProps {
 }
 
 export interface IFrameProps
-  extends IOmit<IBoxProps, 'children'>,
+  extends IBoxProps,
     IComponentThemeProps<IFrameThemeFactory>,
     IElementProps<'iframe', 'className' | 'children'>,
     IFrameOwnProps {}

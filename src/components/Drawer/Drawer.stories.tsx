@@ -109,7 +109,7 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
           <Button
             variant="text"
             onClick={leftActions.open}
-            leadingIcon={<FontAwesomeIcon icon={faChevronLeft} />}
+            trailingIcon={<FontAwesomeIcon icon={faChevronRight} />}
           >
             Open left
           </Button>
@@ -122,14 +122,14 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
             <Button
               variant="text"
               onClick={topActions.open}
-              leadingIcon={<FontAwesomeIcon icon={faChevronUp} />}
+              leadingIcon={<FontAwesomeIcon icon={faChevronDown} />}
             >
               Open top
             </Button>
             <Button
               variant="text"
               onClick={bottomActions.open}
-              leadingIcon={<FontAwesomeIcon icon={faChevronDown} />}
+              leadingIcon={<FontAwesomeIcon icon={faChevronUp} />}
             >
               Open bottom
             </Button>
@@ -137,7 +137,7 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
           <Button
             variant="text"
             onClick={rightActions.open}
-            trailingIcon={<FontAwesomeIcon icon={faChevronRight} />}
+            leadingIcon={<FontAwesomeIcon icon={faChevronLeft} />}
           >
             Open right
           </Button>

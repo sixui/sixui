@@ -20,6 +20,7 @@ import type { ICanonicalLayoutType } from '~/hooks/useCanonicalLayout';
 import type { IAppLayoutProps } from './AppLayout.types';
 import { px } from '~/helpers/styles/px';
 import { useCanonicalLayout } from '~/hooks/useCanonicalLayout';
+import { Box } from '../Box';
 import { Flex } from '../Flex';
 import { Frame } from '../Frame';
 import { IconButton } from '../IconButton';
@@ -90,25 +91,63 @@ const BodyDemo: React.FC<IBodyDemoProps> = (props) => {
   const canonicalLayout = useCanonicalLayout(canonicalLayoutType);
 
   return (
-    <AppLayout.Body orientation={canonicalLayout.orientation}>
-      {canonicalLayout.panes.map((pane) => (
-        <Placeholder
-          key={pane.name}
-          h="$48"
-          w={pane.fixedWidth}
-          grow={!pane.fixedWidth ? 1 : 0}
-        >
-          {pane.name} {pane.sheet && '(sheet)'}
-          {pane.fixedWidth && `(${pane.fixedWidth}px)`}
-        </Placeholder>
-      ))}
+    <Flex direction="row" grow={1}>
+      <AppLayout.Body orientation={canonicalLayout.orientation} pt="$6" pb="$6">
+        {canonicalLayout.panes.map((pane) => (
+          <Box
+            key={pane.name}
+            grow={canonicalLayout.orientation === 'horizontal' ? 1 : 0}
+          >
+            {['list', 'listDetail'].includes(pane.name) && (
+              <Flex direction="column" rowGap="$2">
+                {createSequence(4).map((index) => (
+                  <Placeholder
+                    key={index}
+                    label={pane.name}
+                    shape="$sm"
+                    h="$24"
+                    diagonals
+                  />
+                ))}
+              </Flex>
+            )}
+
+            {pane.name === 'detail' && (
+              <Placeholder label={pane.name} shape="$sm" h="$128" diagonals />
+            )}
+
+            {pane.name === 'focus' && (
+              <Placeholder label={pane.name} shape="$sm" h="$64" diagonals />
+            )}
+
+            {pane.name === 'supporting' && (
+              <Flex direction="row" gap="$2">
+                <Placeholder
+                  label={pane.name}
+                  shape="$sm"
+                  w="$32"
+                  h="$32"
+                  diagonals
+                />
+                <Placeholder
+                  label={pane.name}
+                  shape="$sm"
+                  w="$32"
+                  h="$32"
+                  diagonals
+                />
+              </Flex>
+            )}
+          </Box>
+        ))}
+      </AppLayout.Body>
 
       <AppLayout.SideSheet side="right">
         <AppLayout.Aside divider>
           <AsideContent />
         </AppLayout.Aside>
       </AppLayout.SideSheet>
-    </AppLayout.Body>
+    </Flex>
   );
 };
 
@@ -125,7 +164,7 @@ const NavigationDrawerContentDemo: React.FC<
   return (
     <Flex direction="column" gap="$6">
       <AppLayout.NavigationDrawer.Section
-        headline="Canonical Layout Type"
+        headline="Canonical layouts"
         endDivider
       >
         <AppLayout.NavigationDrawer.Section.Destination
@@ -158,12 +197,14 @@ const NavigationDrawerContentDemo: React.FC<
         <AppLayout.NavigationDrawer.Section.Destination
           onClick={() => {}}
           leadingIcon={<FontAwesomeIcon icon={faFolder} />}
+          disabled
         >
           Label A
         </AppLayout.NavigationDrawer.Section.Destination>
         <AppLayout.NavigationDrawer.Section.Destination
           onClick={() => {}}
           leadingIcon={<FontAwesomeIcon icon={faFolder} />}
+          disabled
         >
           Label B
         </AppLayout.NavigationDrawer.Section.Destination>
@@ -228,7 +269,7 @@ const FooterContent: React.FC = () =>
   ));
 
 const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
-  const [activeDestination, setActiveDestination] = useState('listDetail');
+  const [activeDestination, setActiveDestination] = useState('supportingPane');
 
   return (
     <Frame
@@ -285,7 +326,7 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
 };
 
 const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
-  const [activeDestination, setActiveDestination] = useState('listDetail');
+  const [activeDestination, setActiveDestination] = useState('supportingPane');
 
   return (
     <Frame
@@ -349,7 +390,7 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
   );
 };
 
-export const TypeA: IStory = {
+export const LayoutA: IStory = {
   render: (props) => <AppLayoutFrameA {...props} />,
   args: {
     ...defaultArgs,
@@ -357,7 +398,7 @@ export const TypeA: IStory = {
   },
 };
 
-export const TypeB: IStory = {
+export const LayoutB: IStory = {
   render: (props) => <AppLayoutFrameB {...props} />,
   args: {
     ...defaultArgs,

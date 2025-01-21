@@ -9,8 +9,6 @@ import { NavigationRail } from '../NavigationRail';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 import { appLayoutTheme } from '../AppLayout/AppLayout.css';
 
-type IModifier = 'disabled';
-
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   container: {
@@ -58,7 +56,6 @@ const classNames = createStyles({
 export type IAppLayoutNavigationRailThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
-  modifier: IModifier;
 }>;
 
 export const appLayoutNavigationRailTheme =

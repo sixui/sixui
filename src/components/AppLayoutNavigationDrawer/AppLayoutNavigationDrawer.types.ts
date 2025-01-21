@@ -17,7 +17,7 @@ export interface IAppLayoutNavigationDrawerOwnProps
 }
 
 export interface IAppLayoutNavigationDrawerProps
-  extends IOmit<IBoxProps, 'children'>,
+  extends IBoxProps,
     IComponentThemeProps<IAppLayoutNavigationDrawerThemeFactory>,
     IAppLayoutNavigationDrawerOwnProps {}
 
