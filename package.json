@@ -102,8 +102,6 @@
     "@storybook/react": "^8.5.0",
     "@storybook/react-vite": "^8.5.0",
     "@storybook/test": "^8.5.0",
-    "@stylexjs/eslint-plugin": "^0.10.1",
-    "@stylexjs/stylex": "^0.10.1",
     "@types/eslint": "^9",
     "@types/node": "^22.10.7",
     "@types/react": "^19",
@@ -144,11 +142,9 @@
     "typescript": "^5.7.3",
     "validate-branch-name": "^1.3.2",
     "vite": "^6",
-    "vite-plugin-dts": "^4.5.0",
-    "vite-plugin-stylex": "^0.13.0"
+    "vite-plugin-dts": "^4.5.0"
   },
   "peerDependencies": {
-    "@stylexjs/stylex": "^0.7.5",
     "react": "^18"
   },
   "packageManager": "pnpm@9.15.4",

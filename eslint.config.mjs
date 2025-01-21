@@ -3,7 +3,6 @@ import { fileURLToPath } from 'node:url';
 import { fixupConfigRules, fixupPluginRules } from '@eslint/compat';
 import { FlatCompat } from '@eslint/eslintrc';
 import js from '@eslint/js';
-import stylexjsEslintPlugin from '@stylexjs/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import cypress from 'eslint-plugin-cypress';
 import fp from 'eslint-plugin-fp';
@@ -38,7 +37,6 @@ export default [
   ),
   {
     plugins: {
-      '@stylexjs': stylexjsEslintPlugin,
       fp,
       tsdoc,
       cypress: fixupPluginRules(cypress),
@@ -77,7 +75,6 @@ export default [
     rules: {
       curly: 'error',
       'tsdoc/syntax': 'warn',
-      '@stylexjs/valid-styles': 'error',
       'import/no-default-export': 'error',
 
       'lines-between-class-members': [
