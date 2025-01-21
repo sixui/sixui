@@ -30,7 +30,7 @@ const AppLayoutHeaderFrame: React.FC<IAppLayoutHeaderProps> = (props) => {
       style={{
         borderWidth: px(1),
         borderStyle: 'dashed',
-        borderColor: themeTokens.colorScheme.outline,
+        borderColor: themeTokens.colorScheme.outlineVariant,
       }}
     >
       <AppLayoutHeader {...props} />

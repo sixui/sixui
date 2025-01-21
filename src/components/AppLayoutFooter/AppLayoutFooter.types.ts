@@ -9,7 +9,7 @@ import type {
 
 export interface IAppLayoutFooterOwnProps extends IPaperOwnProps {
   children?: React.ReactNode;
-  disabled?: boolean;
+  divider?: boolean;
 }
 
 export interface IAppLayoutFooterProps

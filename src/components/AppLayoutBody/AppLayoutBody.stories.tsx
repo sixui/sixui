@@ -29,7 +29,7 @@ const AppLayoutBodyFrame: React.FC<IAppLayoutBodyProps> = (props) => {
       style={{
         borderWidth: px(1),
         borderStyle: 'dashed',
-        borderColor: themeTokens.colorScheme.outline,
+        borderColor: themeTokens.colorScheme.outlineVariant,
       }}
     >
       <AppLayoutBody {...props} />

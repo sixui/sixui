@@ -17,7 +17,7 @@ export const AppLayoutFooter = componentFactory<IAppLayoutFooterFactory>(
       style,
       variant,
       children,
-      disabled,
+      divider,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -30,13 +30,13 @@ export const AppLayoutFooter = componentFactory<IAppLayoutFooterFactory>(
       variant,
       theme: appLayoutFooterTheme,
       modifiers: {
-        disabled,
+        'with-divider': divider,
       },
     });
 
     return (
-      <Paper {...getStyles('root')} ref={forwardedRef} {...other}>
-        <div {...getStyles('label')}>{children}</div>
+      <Paper {...getStyles('root')} as="footer" ref={forwardedRef} {...other}>
+        {children}
       </Paper>
     );
   },

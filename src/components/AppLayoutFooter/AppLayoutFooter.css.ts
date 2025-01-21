@@ -1,4 +1,4 @@
-import { createTheme } from '@vanilla-extract/css';
+import { createTheme, fallbackVar } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
@@ -6,66 +6,38 @@ import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { PaperBase } from '../PaperBase';
 import { cssLayers, themeTokens } from '../ThemeProvider';
+import { appLayoutTheme } from '../AppLayout/AppLayout.css';
 
-type IModifier = 'disabled';
+type IModifier = 'with-divider';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
-  container: {
-    color: {
-      normal: themeTokens.colorScheme.primary,
-      disabled: themeTokens.colorScheme.onSurface,
-    },
-    opacity: {
-      disabled: themeTokens.state.containerOpacity.disabled,
-    },
-  },
-  label: {
-    typography: themeTokens.typeScale.label.md,
-    color: {
-      normal: themeTokens.colorScheme.onPrimary,
-      disabled: themeTokens.colorScheme.onSurface,
-    },
-    opacity: {
-      disabled: themeTokens.state.opacity.disabled,
-    },
+  divider: {
+    width: fallbackVar(
+      appLayoutTheme.tokens.divider.width,
+      themeTokens.outline.width.xs,
+    ),
+    color: fallbackVar(
+      appLayoutTheme.tokens.divider.color,
+      themeTokens.colorScheme.outline,
+    ),
   },
 });
 
 const classNames = createStyles({
   root: {
-    padding: px(space(2)),
-
-    vars: createTokensVars(PaperBase.theme.tokens, {
-      container: {
-        color: tokens.container.color.normal,
-      },
-    }),
+    zIndex: themeTokens.zIndex.app,
+    padding: px(space(6)),
 
     selectors: {
-      [getModifierSelector<IModifier>('disabled')]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
-          container: {
-            color: tokens.container.color.disabled,
-            opacity: tokens.container.opacity.disabled,
-          },
-        }),
+      [getModifierSelector<IModifier>('with-divider')]: {
+        borderTopWidth: tokens.divider.width,
+        borderTopColor: tokens.divider.color,
+        borderTopStyle: 'solid',
       },
     },
   },
-  label: ({ root }) => ({
-    color: tokens.label.color.normal,
-
-    selectors: {
-      [getModifierSelector<IModifier>('disabled', root)]: {
-        color: tokens.label.color.disabled,
-        opacity: tokens.label.opacity.disabled,
-      },
-    },
-  }),
 });
 
 export type IAppLayoutFooterThemeFactory = IComponentThemeFactory<{

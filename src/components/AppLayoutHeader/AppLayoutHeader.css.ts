@@ -6,23 +6,23 @@ import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { AppLayout } from '../AppLayout';
 import { cssLayers, themeTokens } from '../ThemeProvider';
+import { appLayoutTheme } from '../AppLayout/AppLayout.css';
 
 type IModifier = 'with-divider';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   container: {
-    height: fallbackVar(AppLayout.theme.tokens.header.height, px(64)),
+    height: fallbackVar(appLayoutTheme.tokens.header.height, px(64)),
   },
   divider: {
     width: fallbackVar(
-      AppLayout.theme.tokens.divider.width,
+      appLayoutTheme.tokens.divider.width,
       themeTokens.outline.width.xs,
     ),
     color: fallbackVar(
-      AppLayout.theme.tokens.divider.color,
+      appLayoutTheme.tokens.divider.color,
       themeTokens.colorScheme.outline,
     ),
   },
