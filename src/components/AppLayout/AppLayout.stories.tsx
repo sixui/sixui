@@ -220,8 +220,7 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
             </AppLayout.Header>
 
             <Flex direction="row" align="start">
-              <div>SIDESHEET</div>
-              {/* <AppLayout.SideSheet>
+              <AppLayout.SideSheet>
                 <AppLayout.NavigationRail divider>
                   <NavigationRailContentDemo
                     canonicalLayoutType={canonicalLayoutType}
@@ -232,15 +231,15 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
                 <AppLayout.NavigationDrawer divider>
                   <NavigationDrawerContentDemo />
                 </AppLayout.NavigationDrawer>
-              </AppLayout.SideSheet> */}
+              </AppLayout.SideSheet>
 
               <BodyDemo canonicalLayoutType={canonicalLayoutType} />
             </Flex>
           </Flex>
 
-          {/* <AppLayout.Footer divider>
+          <AppLayout.Footer divider>
             <FooterContent />
-          </AppLayout.Footer> */}
+          </AppLayout.Footer>
           <div>FOOTER</div>
         </AppLayout>
       )}
@@ -267,7 +266,7 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
         <AppLayout window={window} {...props}>
           <Flex direction="column">
             <Flex direction="row" align="start">
-              {/* <AppLayout.SideSheet fullHeight>
+              <AppLayout.SideSheet fullHeight>
                 <AppLayout.NavigationRail divider>
                   <NavigationRailContentDemo
                     canonicalLayoutType={canonicalLayoutType}
@@ -279,18 +278,17 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
                   divider
                   headline="App Name"
                   showCloseButton
-                  header={<Placeholder label="Header" corner="none" />}
-                  footer={<Placeholder label="Footer" corner="none" />}
+                  header={<Placeholder label="Header" />}
+                  footer={<Placeholder label="Footer" />}
                 >
                   <NavigationDrawerContentDemo />
                 </AppLayout.NavigationDrawer>
-              </AppLayout.SideSheet> */}
-              <div>SIDESHEET</div>
+              </AppLayout.SideSheet>
 
               <Flex direction="column" align="stretch" grow={1}>
-                {/* <AppLayout.Header divider>
+                <AppLayout.Header divider>
                   <HeaderContentDemo />
-                </AppLayout.Header> */}
+                </AppLayout.Header>
                 <div>HEADER</div>
 
                 <Flex direction="row" align="start">
@@ -300,9 +298,9 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
             </Flex>
           </Flex>
 
-          {/* <AppLayout.Footer divider>
+          <AppLayout.Footer divider>
             <FooterContent />
-          </AppLayout.Footer> */}
+          </AppLayout.Footer>
           <div>FOOTER</div>
         </AppLayout>
       )}
