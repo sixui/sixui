@@ -15,7 +15,7 @@ export type IBottomSheetContentRenderProps = {
 };
 
 export interface IBottomSheetContentOwnProps {
-  onClose?: (event: React.MouseEvent) => void;
+  onClose?: (event?: React.MouseEvent) => void;
   children?:
     | React.ReactNode
     | ((props: IBottomSheetContentRenderProps) => React.ReactNode);

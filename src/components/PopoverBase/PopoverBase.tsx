@@ -149,7 +149,6 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       modifiers: {
         shake: isShaking,
         positioned,
-        modal,
       },
     });
 
@@ -308,81 +307,85 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
               disabled={trapFocus !== undefined ? !trapFocus : !modal}
               {...floatingFocusManagerProps}
             >
-              <div
-                {...getStyles('root')}
-                {...(forwardProps ? undefined : other)}
-              >
+              <>
                 {withScrim && (
+                  <div {...getStyles('scrim')}>
+                    <Motion
+                      status={transitionStatus.status}
+                      pattern="fade"
+                      as={Scrim}
+                      blurred={jail}
+                      {...mergeProps(
+                        {
+                          onClick: () => {
+                            if (jail) {
+                              setIsShaking(true);
+                              clearTimeout(shakingTimeout.current);
+                              shakingTimeout.current = setTimeout(
+                                () => setIsShaking(false),
+                                300,
+                              );
+                            }
+                          },
+                        },
+                        scrimMotionProps,
+                        scrimProps,
+                      )}
+                    />
+                  </div>
+                )}
+                <div
+                  {...getStyles('root')}
+                  {...(forwardProps ? undefined : other)}
+                >
                   <Motion
                     status={transitionStatus.status}
-                    pattern="fade"
-                    as={Scrim}
-                    blurred={jail}
+                    placement={finalPlacement}
+                    origin={transitionOrigin}
+                    customTransformOrigin={cursor.getTransformOrigin(floating)}
+                    pattern={positioned ? 'enterExit' : 'enterExitOffScreen'}
                     {...mergeProps(
-                      {
-                        onClick: () => {
-                          if (jail) {
-                            setIsShaking(true);
-                            clearTimeout(shakingTimeout.current);
-                            shakingTimeout.current = setTimeout(
-                              () => setIsShaking(false),
-                              300,
-                            );
-                          }
-                        },
-                      },
-                      scrimMotionProps,
-                      scrimProps,
-                    )}
-                  />
-                )}
-                <Motion
-                  status={transitionStatus.status}
-                  placement={finalPlacement}
-                  origin={transitionOrigin}
-                  customTransformOrigin={cursor.getTransformOrigin(floating)}
-                  pattern={positioned ? 'enterExit' : 'enterExitOffScreen'}
-                  {...mergeProps(
-                    { ref: floatingHandleRef },
-                    interactions.getFloatingProps(),
-                    getStyles('popover', {
-                      style: positioned
-                        ? {
-                            position: 'absolute',
-                            left: floating.x,
-                            top: floating.y,
-                          }
-                        : undefined,
-                    }),
-                    popoverProps,
-                    floatingMotionProps,
-                  )}
-                >
-                  <RemoveScroll
-                    enabled={withScrim}
-                    {...mergeProps(
-                      getStyles('removeScroll'),
-                      removeScrollProps,
+                      { ref: floatingHandleRef },
+                      interactions.getFloatingProps(),
+                      getStyles('popover', {
+                        style: positioned
+                          ? {
+                              position: 'absolute',
+                              left: floating.x,
+                              top: floating.y,
+                            }
+                          : undefined,
+                      }),
+                      popoverProps,
+                      floatingMotionProps,
                     )}
                   >
-                    {preventAutoFocus && <PreventAutoFocus />}
-                    {isFunction(contentRenderer) ? (
-                      contentRenderer({
-                        parentProps: props,
-                        placement: finalPlacement,
-                        close: () => setOpened(false),
-                        forwardedProps: forwardProps ? other : undefined,
-                        renderCursor: cursorType ? renderCursor : undefined,
-                      })
-                    ) : (
-                      <>
-                        {cursorType && renderCursor()}
-                        {contentRenderer}
-                      </>
-                    )}
-                  </RemoveScroll>
-                </Motion>
-              </div>
+                    <RemoveScroll
+                      enabled={withScrim}
+                      {...mergeProps(
+                        getStyles('removeScroll'),
+                        removeScrollProps,
+                      )}
+                    >
+                      {preventAutoFocus && <PreventAutoFocus />}
+                      {isFunction(contentRenderer) ? (
+                        contentRenderer({
+                          parentProps: props,
+                          placement: finalPlacement,
+                          close: () => setOpened(false),
+                          forwardedProps: forwardProps ? other : undefined,
+                          renderCursor: cursorType ? renderCursor : undefined,
+                        })
+                      ) : (
+                        <>
+                          {cursorType && renderCursor()}
+                          {contentRenderer}
+                        </>
+                      )}
+                    </RemoveScroll>
+                  </Motion>
+                </div>
+              </>
             </FloatingFocusManager>
           </Portal>
         )}

@@ -2,7 +2,6 @@ import { createTheme, keyframes } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { cssLayers, themeTokens } from '../ThemeProvider';
@@ -92,7 +91,6 @@ const classNames = createStyles({
   mark$short: ({ root }) => ({
     // The short end of the checkmark. Initially hidden underneath the
     // indeterminate mark.
-    border: '2px solid red',
     width: tokens.stroke,
     height: tokens.stroke,
     transitionProperty: 'transform, height',

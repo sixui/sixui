@@ -1,6 +1,7 @@
 import { createTheme, fallbackVar } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
@@ -26,7 +27,30 @@ const classNames = createStyles({
     width: '100%',
   },
   wrapper: {
-    //
+    position: 'fixed',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: px(196),
+
+    // FIXME: selectors: {
+    //   [getModifierSelector(['!positioned', '!modal'])]: {
+    //     position: 'fixed',
+    //     top: '50%',
+    //     left: '50%',
+    //     transform: 'translate(-50%, -50%)',
+    //     overflow: 'visible',
+    //     zIndex: themeTokens.zIndex.popover,
+    //   },
+    //   [getModifierSelector(['!positioned', 'modal'])]: {
+    //     position: 'fixed',
+    //     inset: 0,
+    //     display: 'grid',
+    //     placeItems: 'center',
+    //     overflow: 'auto',
+    //     zIndex: themeTokens.zIndex.popover,
+    //   },
+    // },
   },
 });
 
