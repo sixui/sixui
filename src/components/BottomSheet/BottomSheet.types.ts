@@ -11,6 +11,7 @@ export interface IBottomSheetOwnProps extends IBottomSheetContentOwnProps {
   opened?: boolean;
   modal?: boolean;
   detached?: boolean;
+  fullHeight?: boolean;
 }
 
 export interface IBottomSheetProps

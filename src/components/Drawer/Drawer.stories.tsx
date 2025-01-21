@@ -82,6 +82,7 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
           opened={topOpened}
           onClose={topActions.close}
           side="top"
+          fullWidth
         />
         <DrawerDemo
           {...props}
@@ -97,6 +98,7 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
           opened={bottomOpened}
           onClose={bottomActions.close}
           side="bottom"
+          fullWidth
         />
 
         <Flex

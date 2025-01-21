@@ -5,6 +5,7 @@ import type {
   bottomSheetContentTheme,
   IBottomSheetContentThemeFactory,
 } from './BottomSheetContent.css';
+import { IMaybeAsync } from '~/helpers/types';
 
 export const bottomSheetContentVariants = ['standard', 'minimized'] as const;
 export type IBottomSheetContentVariant =
@@ -15,11 +16,13 @@ export type IBottomSheetContentRenderProps = {
 };
 
 export interface IBottomSheetContentOwnProps {
-  onClose?: (event?: React.MouseEvent) => void;
+  onClose?: (event?: React.MouseEvent) => IMaybeAsync<unknown>;
   children?:
     | React.ReactNode
     | ((props: IBottomSheetContentRenderProps) => React.ReactNode);
   draggable?: boolean;
+  showCloseButton?: boolean;
+  closeIcon?: React.ReactNode;
 }
 
 export interface IBottomSheetContentProps

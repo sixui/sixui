@@ -11,7 +11,7 @@ import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 
-type IModifier = 'side' | 'full-height';
+type IModifier = 'side' | 'full-height' | 'full-width';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
@@ -19,34 +19,37 @@ const [tokensClassName, tokens] = createTheme({
 });
 
 const classNames = createStyles({
-  popover: ({ root }) => ({
+  root: {
     position: 'fixed',
     display: 'flex',
-    zIndex: themeTokens.zIndex.modal,
     maxHeight: calc.subtract('100vh', calc.multiply(2, tokens.inset)),
 
     selectors: {
-      [getModifierSelector<IModifier>({ side: 'left' }, root)]: {
+      [getModifierSelector<IModifier>({ side: 'left' })]: {
         left: tokens.inset,
       },
-      [getModifierSelector<IModifier>({ side: 'right' }, root)]: {
+      [getModifierSelector<IModifier>({ side: 'right' })]: {
         right: tokens.inset,
       },
-      [getModifierSelector<IModifier>({ side: 'top' }, root)]: {
-        left: tokens.inset,
-        right: tokens.inset,
+      [getModifierSelector<IModifier>({ side: 'top' })]: {
         top: tokens.inset,
       },
-      [getModifierSelector<IModifier>({ side: 'bottom' }, root)]: {
-        left: tokens.inset,
-        right: tokens.inset,
+      [getModifierSelector<IModifier>({ side: 'bottom' })]: {
         bottom: tokens.inset,
       },
-      [getModifierSelector<IModifier>('full-height', root)]: {
-        height: '100%',
+      [getModifierSelector<IModifier>('full-height')]: {
+        top: tokens.inset,
+        bottom: tokens.inset,
+      },
+      [getModifierSelector<IModifier>('full-width')]: {
+        left: tokens.inset,
+        right: tokens.inset,
       },
     },
-  }),
+  },
+  popover: {
+    zIndex: themeTokens.zIndex.modal,
+  },
 });
 
 export type IDrawerThemeFactory = IComponentThemeFactory<{

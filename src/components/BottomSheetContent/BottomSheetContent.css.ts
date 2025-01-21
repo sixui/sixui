@@ -3,6 +3,7 @@ import { createTheme } from '@vanilla-extract/css';
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import type { IBottomSheetContentVariant } from './BottomSheetContent.types';
 import { px } from '~/helpers/styles/px';
+import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
@@ -40,6 +41,11 @@ const classNames = createStyles({
   dragHandle: {
     paddingTop: tokens.dragHandle.topSpace,
     height: tokens.dragHandle.height,
+  },
+  closeButton: {
+    position: 'absolute',
+    right: px(space(2)),
+    top: px(space(2)),
   },
 });
 

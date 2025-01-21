@@ -22,6 +22,7 @@ export const BottomSheet = componentFactory<IBottomSheetFactory>(
       modal,
       detached,
       onClose,
+      fullHeight,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -35,6 +36,10 @@ export const BottomSheet = componentFactory<IBottomSheetFactory>(
       style,
       variant,
       theme: bottomSheetTheme,
+      modifiers: {
+        'full-height': fullHeight,
+        detached,
+      },
     });
 
     const bottomSheetOpened =
@@ -42,7 +47,7 @@ export const BottomSheet = componentFactory<IBottomSheetFactory>(
 
     return (
       <Drawer
-        {...getStyles('wrapper')}
+        {...getStyles('root')}
         root={appLayoutContext?.root}
         opened={bottomSheetOpened}
         onClose={() => {
@@ -55,9 +60,10 @@ export const BottomSheet = componentFactory<IBottomSheetFactory>(
       >
         {({ close }) => (
           <BottomSheetContent
-            {...getStyles('root')}
+            {...getStyles('bottomSheetContent')}
             onClose={close}
             ref={forwardedRef}
+            variant={detached ? 'standard' : 'minimized'}
             {...other}
           />
         )}

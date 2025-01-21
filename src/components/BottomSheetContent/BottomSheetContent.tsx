@@ -1,10 +1,13 @@
 import type { IBottomSheetContentThemeFactory } from './BottomSheetContent.css';
 import type { IBottomSheetContentFactory } from './BottomSheetContent.types';
+import { iconXMark } from '~/assets/icons';
 import { isFunction } from '~/helpers/isFunction';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { IconButton } from '../IconButton';
 import { Paper } from '../Paper';
+import { SvgIcon } from '../SvgIcon';
 import {
   bottomSheetContentTheme,
   bottomSheetContentThemeVariants,
@@ -23,6 +26,8 @@ export const BottomSheetContent = componentFactory<IBottomSheetContentFactory>(
       onClose,
       children,
       draggable,
+      showCloseButton,
+      closeIcon = <SvgIcon icon={iconXMark} />,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -40,6 +45,13 @@ export const BottomSheetContent = componentFactory<IBottomSheetContentFactory>(
     return (
       <Paper {...getStyles('root')} ref={forwardedRef} {...other}>
         {draggable && <div {...getStyles('dragHandle')} />}
+        {showCloseButton && (
+          <IconButton
+            {...getStyles('closeButton')}
+            icon={closeIcon}
+            onClick={onClose}
+          />
+        )}
         {isFunction(children)
           ? children({ close: (event) => onClose?.(event) })
           : children}

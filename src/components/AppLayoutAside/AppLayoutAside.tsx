@@ -62,7 +62,7 @@ export const AppLayoutAside = componentFactory<IAppLayoutAsideFactory>(
     return (
       <>
         <Drawer
-          {...getStyles('wrapper')}
+          {...getStyles('drawer')}
           root={appLayoutContext?.root}
           opened={modalAsideOpened}
           onClose={appLayoutContext?.aside?.state?.close}

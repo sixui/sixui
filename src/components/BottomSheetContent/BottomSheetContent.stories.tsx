@@ -13,7 +13,10 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {} satisfies Partial<IBottomSheetContentProps>;
+const defaultArgs = {
+  showCloseButton: true,
+  onClose: (...args) => sbHandleEvent('onClick', args, 1000),
+} satisfies Partial<IBottomSheetContentProps>;
 
 const BottomSheetContentShowcase = componentShowcaseFactory(BottomSheetContent);
 

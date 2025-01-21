@@ -1,62 +1,66 @@
-import { createTheme, fallbackVar } from '@vanilla-extract/css';
+import { createTheme } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
+import { getResponsiveContainerQuery } from '~/helpers/styles/getResponsiveContainerQuery';
 import { px } from '~/helpers/styles/px';
+import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { BottomSheetContent } from '../BottomSheetContent';
-import { cssLayers, themeTokens } from '../ThemeProvider';
-import { appLayoutTheme } from '../AppLayout/AppLayout.css';
+import { cssLayers } from '../ThemeProvider';
+
+type IModifier = 'full-height' | 'detached';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
-  // container: {
-  //   width: fallbackVar(appLayoutTheme.tokens.bottomSheet.width, '100%'),
-  //   color: fallbackVar(
-  //     appLayoutTheme.tokens.aside.color,
-  //     themeTokens.colorScheme.surfaceContainerLow,
-  //   ),
-  // },
+  fixedHorizontalSpace: {
+    normal: px(56),
+    compact: px(0),
+    detached: px(space(4)),
+  },
+  fixedTopSpace: px(72),
 });
 
 const classNames = createStyles({
   root: {
-    height: px(196),
-    width: '100%',
-  },
-  wrapper: {
-    position: 'fixed',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: px(196),
+    height: calc.subtract('max-content', tokens.fixedTopSpace),
+    left: tokens.fixedHorizontalSpace.normal,
+    right: tokens.fixedHorizontalSpace.normal,
 
-    // FIXME: selectors: {
-    //   [getModifierSelector(['!positioned', '!modal'])]: {
-    //     position: 'fixed',
-    //     top: '50%',
-    //     left: '50%',
-    //     transform: 'translate(-50%, -50%)',
-    //     overflow: 'visible',
-    //     zIndex: themeTokens.zIndex.popover,
-    //   },
-    //   [getModifierSelector(['!positioned', 'modal'])]: {
-    //     position: 'fixed',
-    //     inset: 0,
-    //     display: 'grid',
-    //     placeItems: 'center',
-    //     overflow: 'auto',
-    //     zIndex: themeTokens.zIndex.popover,
-    //   },
-    // },
+    '@container': {
+      [getResponsiveContainerQuery({ size: 'compact' })]: {
+        left: tokens.fixedHorizontalSpace.compact,
+        right: tokens.fixedHorizontalSpace.compact,
+
+        selectors: {
+          [getModifierSelector<IModifier>('detached')]: {
+            left: tokens.fixedHorizontalSpace.detached,
+            right: tokens.fixedHorizontalSpace.detached,
+          },
+        },
+      },
+    },
+
+    selectors: {
+      [getModifierSelector<IModifier>('full-height')]: {
+        top: tokens.fixedTopSpace,
+      },
+      [getModifierSelector<IModifier>('detached')]: {
+        left: tokens.fixedHorizontalSpace.detached,
+        right: tokens.fixedHorizontalSpace.detached,
+      },
+    },
+  },
+  bottomSheetContent: {
+    flexGrow: 1,
   },
 });
 
 export type IBottomSheetThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
+  modifier: IModifier;
 }>;
 
 export const bottomSheetTheme = componentThemeFactory<IBottomSheetThemeFactory>(

@@ -60,7 +60,7 @@ export const AppLayoutNavigationDrawer =
     return (
       <>
         <Drawer
-          {...getStyles('wrapper')}
+          {...getStyles('drawer')}
           root={appLayoutContext?.root}
           opened={modalNavigationDrawerOpened}
           onClose={appLayoutContext?.navigationDrawer?.state?.close}

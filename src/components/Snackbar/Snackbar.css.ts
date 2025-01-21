@@ -2,6 +2,7 @@ import { createTheme } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
+import { getResponsiveContainerQuery } from '~/helpers/styles/getResponsiveContainerQuery';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
@@ -31,9 +32,8 @@ const classNames = createStyles({
         left: tokens.fixedHorizontalSpace.normal,
         justifyContent: 'start',
 
-        '@media': {
-          // FIXME: use responsive styles
-          '(min-width: 0px) and (max-width: 599px)': {
+        '@container': {
+          [getResponsiveContainerQuery({ size: 'compact' })]: {
             left: tokens.fixedHorizontalSpace.compact,
           },
         },

@@ -24,6 +24,7 @@ export const Drawer = componentFactory<IDrawerFactory>(
       children,
       disabled,
       fullHeight,
+      fullWidth,
       modal,
       jail,
       ...other
@@ -41,12 +42,12 @@ export const Drawer = componentFactory<IDrawerFactory>(
       modifiers: {
         side,
         'full-height': fullHeight,
+        'full-width': fullWidth,
       },
     });
 
     return (
       <PopoverBase
-        {...getStyles('root')}
         classNames={classNames}
         portalProps={{ root }}
         opened={opened}
@@ -61,7 +62,7 @@ export const Drawer = componentFactory<IDrawerFactory>(
         }}
         floatingMotionProps={other}
         middlewares={false}
-        popoverProps={{ ...getStyles('popover'), ...other }}
+        popoverProps={{ ...getStyles('root'), ...other }}
         disabled={disabled}
         preventAutoFocus
         ref={forwardedRef}
