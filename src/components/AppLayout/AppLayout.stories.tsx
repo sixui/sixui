@@ -4,12 +4,14 @@ import {
   faCircle,
   faFolder,
   faHeart,
+  faQuestionCircle,
   faSquare,
 } from '@fortawesome/free-regular-svg-icons';
 import {
   faBars as fasBars,
   faCircle as fasCircle,
   faHeart as fasHeart,
+  faQuestion as fasQuestionCircle,
   faSquare as fasSquare,
   faXmark as fasXmark,
 } from '@fortawesome/free-solid-svg-icons';
@@ -20,7 +22,10 @@ import type { ICanonicalLayoutType } from '~/hooks/useCanonicalLayout';
 import type { IAppLayoutProps } from './AppLayout.types';
 import { px } from '~/helpers/styles/px';
 import { useCanonicalLayout } from '~/hooks/useCanonicalLayout';
+import { useToggle } from '~/hooks/useToggle';
+import { BottomSheet } from '../BottomSheet';
 import { Box } from '../Box';
+import { Button } from '../Button';
 import { Flex } from '../Flex';
 import { Frame } from '../Frame';
 import { IconButton } from '../IconButton';
@@ -86,74 +91,160 @@ type IBodyDemoProps = {
   canonicalLayoutType: ICanonicalLayoutType;
 };
 
-const BodyDemo: React.FC<IBodyDemoProps> = (props) => {
+const CanonicalLayoutBodyDemo: React.FC<IBodyDemoProps> = (props) => {
   const { canonicalLayoutType } = props;
   const canonicalLayout = useCanonicalLayout(canonicalLayoutType);
+  const [bottomSheetOpened, toggleBottomSheet] = useToggle([false, true]);
+  const hasBottomSheet = canonicalLayout.panes.some(
+    (pane) => pane.type === 'bottomSheet',
+  );
 
   return (
-    <Flex direction="row" grow={1}>
-      <AppLayout.Body orientation={canonicalLayout.orientation} pt="$6" pb="$6">
-        {canonicalLayout.panes.map((pane) => (
-          <Box
-            key={pane.name}
-            grow={canonicalLayout.orientation === 'horizontal' ? 1 : 0}
-          >
-            {['list', 'listDetail'].includes(pane.name) && (
-              <Flex direction="column" rowGap="$2">
-                {createSequence(4).map((index) => (
+    <>
+      <Flex direction="row" grow={1}>
+        <AppLayout.Body
+          orientation={canonicalLayout.orientation}
+          pt="$6"
+          pb="$6"
+        >
+          {canonicalLayout.panes
+            .filter((pane) => pane.type === 'body' || !pane.type)
+            .map((pane) => (
+              <Box
+                key={pane.name}
+                grow={canonicalLayout.orientation === 'horizontal' ? 1 : 0}
+              >
+                {['list', 'listDetail'].includes(pane.name) && (
+                  <Flex direction="column" rowGap="$2">
+                    {createSequence(4).map((index) => (
+                      <Placeholder
+                        key={index}
+                        label={pane.name}
+                        shape="$sm"
+                        h="$24"
+                        diagonals
+                      />
+                    ))}
+                  </Flex>
+                )}
+
+                {pane.name === 'detail' && (
                   <Placeholder
-                    key={index}
                     label={pane.name}
                     shape="$sm"
-                    h="$24"
+                    h="$128"
                     diagonals
                   />
-                ))}
-              </Flex>
-            )}
+                )}
 
-            {pane.name === 'detail' && (
-              <Placeholder label={pane.name} shape="$sm" h="$128" diagonals />
-            )}
+                {pane.name === 'focus' && (
+                  <Placeholder label={pane.name} shape="$sm" h="$64" diagonals>
+                    {hasBottomSheet && (
+                      <Button onClick={() => toggleBottomSheet()}>
+                        Toggle Bottom Sheet
+                      </Button>
+                    )}
+                  </Placeholder>
+                )}
 
-            {pane.name === 'focus' && (
-              <Placeholder label={pane.name} shape="$sm" h="$64" diagonals />
-            )}
+                {pane.name === 'supporting' && (
+                  <Flex direction="row" gap="$2">
+                    <Placeholder
+                      label={pane.name}
+                      shape="$sm"
+                      w="$32"
+                      h="$32"
+                      diagonals
+                    />
+                    <Placeholder
+                      label={pane.name}
+                      shape="$sm"
+                      w="$32"
+                      h="$32"
+                      diagonals
+                    />
+                  </Flex>
+                )}
+              </Box>
+            ))}
+        </AppLayout.Body>
 
-            {pane.name === 'supporting' && (
-              <Flex direction="row" gap="$2">
-                <Placeholder
-                  label={pane.name}
-                  shape="$sm"
-                  w="$32"
-                  h="$32"
-                  diagonals
-                />
-                <Placeholder
-                  label={pane.name}
-                  shape="$sm"
-                  w="$32"
-                  h="$32"
-                  diagonals
-                />
-              </Flex>
-            )}
-          </Box>
+        {canonicalLayout.panes
+          .filter((pane) => pane.type === 'aside')
+          .map((pane, index) => (
+            <AppLayout.SideSheet key={index} side="right">
+              <AppLayout.Aside divider>
+                {pane.name === 'supporting' && (
+                  <Flex direction="column" gap="$2" p="$4">
+                    <Placeholder
+                      label={pane.name}
+                      shape="$sm"
+                      h="$32"
+                      diagonals
+                    />
+                    <Placeholder
+                      label={pane.name}
+                      shape="$sm"
+                      h="$32"
+                      diagonals
+                    />
+                  </Flex>
+                )}
+              </AppLayout.Aside>
+            </AppLayout.SideSheet>
+          ))}
+      </Flex>
+
+      {canonicalLayout.panes
+        .filter((pane) => pane.type === 'bottomSheet')
+        .map((pane, index) => (
+          <>
+            <BottomSheet
+              key={index}
+              showCloseButton
+              opened={bottomSheetOpened}
+              modal
+            >
+              {pane.name === 'supporting' && (
+                <Flex direction="column" gap="$2" p="$4">
+                  <Placeholder
+                    label={pane.name}
+                    shape="$sm"
+                    h="$32"
+                    diagonals
+                  />
+                  <Placeholder
+                    label={pane.name}
+                    shape="$sm"
+                    h="$32"
+                    diagonals
+                  />
+                </Flex>
+              )}
+            </BottomSheet>
+          </>
         ))}
-      </AppLayout.Body>
-
-      <AppLayout.SideSheet side="right">
-        <AppLayout.Aside divider>
-          <AsideContent />
-        </AppLayout.Aside>
-      </AppLayout.SideSheet>
-    </Flex>
+    </>
   );
 };
 
+const BodyDemo: React.FC = () => (
+  <Flex direction="row" grow={1}>
+    <AppLayout.Body pt="$6" pb="$6">
+      <Placeholder shape="$sm" grow={1} h="$64" diagonals />
+    </AppLayout.Body>
+
+    <AppLayout.SideSheet side="right">
+      <AppLayout.Aside divider>
+        <AsideContent />
+      </AppLayout.Aside>
+    </AppLayout.SideSheet>
+  </Flex>
+);
+
 type INavigationDrawerContentDemoProps = {
   activeDestination?: string;
-  onClick?: (menu: string) => void;
+  onClick?: (destination?: ICanonicalLayoutType) => void;
 };
 
 const NavigationDrawerContentDemo: React.FC<
@@ -191,6 +282,14 @@ const NavigationDrawerContentDemo: React.FC<
         >
           Feed
         </AppLayout.NavigationDrawer.Section.Destination>
+        <AppLayout.NavigationDrawer.Section.Destination
+          onClick={() => onClick?.(undefined)}
+          active={activeDestination === undefined}
+          leadingIcon={<FontAwesomeIcon icon={faQuestionCircle} />}
+          activeLeadingIcon={<FontAwesomeIcon icon={fasQuestionCircle} />}
+        >
+          Custom
+        </AppLayout.NavigationDrawer.Section.Destination>
       </AppLayout.NavigationDrawer.Section>
 
       <NavigationDrawerSection headline="Labels">
@@ -215,7 +314,7 @@ const NavigationDrawerContentDemo: React.FC<
 
 type INavigationRailContentDemoProps = {
   activeDestination?: string;
-  onClick?: (menu: string) => void;
+  onClick?: (destination?: ICanonicalLayoutType) => void;
 };
 
 const NavigationRailContentDemo: React.FC<INavigationRailContentDemoProps> = (
@@ -269,7 +368,9 @@ const FooterContent: React.FC = () =>
   ));
 
 const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
-  const [activeDestination, setActiveDestination] = useState('supportingPane');
+  const [activeDestination, setActiveDestination] = useState<
+    ICanonicalLayoutType | undefined
+  >('supportingPane');
 
   return (
     <Frame
@@ -310,9 +411,13 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
                 </AppLayout.NavigationDrawer>
               </AppLayout.SideSheet>
 
-              <BodyDemo
-                canonicalLayoutType={activeDestination as ICanonicalLayoutType}
-              />
+              {activeDestination ? (
+                <CanonicalLayoutBodyDemo
+                  canonicalLayoutType={activeDestination}
+                />
+              ) : (
+                <BodyDemo />
+              )}
             </Flex>
           </Flex>
 
@@ -326,7 +431,9 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
 };
 
 const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
-  const [activeDestination, setActiveDestination] = useState('supportingPane');
+  const [activeDestination, setActiveDestination] = useState<
+    ICanonicalLayoutType | undefined
+  >('supportingPane');
 
   return (
     <Frame
@@ -371,11 +478,13 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
                 </AppLayout.Header>
 
                 <Flex direction="row" align="start">
-                  <BodyDemo
-                    canonicalLayoutType={
-                      activeDestination as ICanonicalLayoutType
-                    }
-                  />
+                  {activeDestination ? (
+                    <CanonicalLayoutBodyDemo
+                      canonicalLayoutType={activeDestination}
+                    />
+                  ) : (
+                    <BodyDemo />
+                  )}
                 </Flex>
               </Flex>
             </Flex>

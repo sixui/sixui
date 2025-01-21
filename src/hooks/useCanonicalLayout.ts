@@ -16,7 +16,7 @@ export type ICanonicalLayoutOptions = {
 
 export type ICanonicalLayoutPane = {
   name: 'listDetail' | 'list' | 'detail' | 'focus' | 'supporting' | 'feed';
-  sheet?: boolean;
+  type?: 'body' | 'bottomSheet' | 'aside';
   dismissible?: boolean;
   columns?: number;
 };
@@ -129,7 +129,10 @@ export const useCanonicalLayout = (
           windowSizeClass,
           navigationMode,
           orientation: 'vertical',
-          panes: [{ name: 'focus' }, { name: 'supporting', sheet: true }],
+          panes: [
+            { name: 'focus' },
+            { name: 'supporting', type: 'bottomSheet' },
+          ],
           standardAside,
         };
       }
@@ -149,7 +152,7 @@ export const useCanonicalLayout = (
           windowSizeClass,
           navigationMode,
           orientation: 'horizontal',
-          panes: [{ name: 'focus' }],
+          panes: [{ name: 'focus' }, { name: 'supporting', type: 'aside' }],
           standardAside: { maxWidth: 360 },
         };
       }
@@ -158,7 +161,7 @@ export const useCanonicalLayout = (
         windowSizeClass,
         navigationMode,
         orientation: 'horizontal',
-        panes: [{ name: 'focus' }],
+        panes: [{ name: 'focus' }, { name: 'supporting', type: 'aside' }],
         standardAside: { maxWidth: 360 },
       };
 
