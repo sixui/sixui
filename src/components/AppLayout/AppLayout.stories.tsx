@@ -1,20 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import {
-  faCircle,
   faFolder,
   faHeart,
   faPaperPlane,
-  faSquare,
 } from '@fortawesome/free-regular-svg-icons';
 import {
-  faBars,
-  faInbox,
-  faCircle as fasCircle,
-  faHeart as fasHeart,
-  faSquare as fasSquare,
-  faTrash,
-  faXmark,
+  faBars as fasBars,
+  faInbox as fasInbox,
+  faTrash as fasTrash,
+  faXmark as fasXmark,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { createSequence } from '@olivierpascal/helpers';
@@ -27,7 +22,6 @@ import { Flex } from '../Flex';
 import { Frame } from '../Frame';
 import { IconButton } from '../IconButton';
 import { NavigationDrawerSection } from '../NavigationDrawerSection';
-import { NavigationRailDestination } from '../NavigationRailDestination';
 import { Placeholder } from '../Placeholder';
 import { Text } from '../Text';
 import { themeTokens } from '../ThemeProvider';
@@ -56,8 +50,8 @@ const HeaderContentDemo: React.FC = () => {
               <FontAwesomeIcon
                 icon={
                   appLayoutContext.navigationDrawer?.state?.opened
-                    ? faXmark
-                    : faBars
+                    ? fasXmark
+                    : fasBars
                 }
               />
             }
@@ -72,7 +66,9 @@ const HeaderContentDemo: React.FC = () => {
           <IconButton
             icon={
               <FontAwesomeIcon
-                icon={appLayoutContext.aside?.state?.opened ? faXmark : faBars}
+                icon={
+                  appLayoutContext.aside?.state?.opened ? fasXmark : fasBars
+                }
               />
             }
             onClick={appLayoutContext.aside?.state?.toggle}
@@ -115,7 +111,7 @@ const BodyDemo: React.FC<IBodyDemoProps> = (props) => {
 };
 
 const NavigationDrawerContentDemo: React.FC = () => {
-  const [activeDestination, setActiveDestination] = useState<string>('inbox');
+  const [activeDestination, setActiveDestination] = useState('inbox');
 
   return (
     <Flex direction="column" gap="$6">
@@ -123,7 +119,7 @@ const NavigationDrawerContentDemo: React.FC = () => {
         <AppLayout.NavigationDrawer.Section.Destination
           onClick={() => setActiveDestination('inbox')}
           active={activeDestination === 'inbox'}
-          leadingIcon={<FontAwesomeIcon icon={faInbox} />}
+          leadingIcon={<FontAwesomeIcon icon={fasInbox} />}
           badgeLabel="24"
         >
           Inbox
@@ -146,7 +142,7 @@ const NavigationDrawerContentDemo: React.FC = () => {
         <AppLayout.NavigationDrawer.Section.Destination
           onClick={() => setActiveDestination('trash')}
           active={activeDestination === 'trash'}
-          leadingIcon={<FontAwesomeIcon icon={faTrash} />}
+          leadingIcon={<FontAwesomeIcon icon={fasTrash} />}
         >
           Trash
         </AppLayout.NavigationDrawer.Section.Destination>
@@ -180,30 +176,38 @@ type INavigationRailContentProps = {
 const NavigationRailContentDemo: React.FC<INavigationRailContentProps> = (
   props,
 ) => {
-  const { canonicalLayoutType, setCanonicalLayoutType } = props;
+  const { ...other } = props;
+  const [activeDestination, setActiveDestination] = useState('inbox');
 
   return (
     <>
-      <NavigationRailDestination
-        icon={<FontAwesomeIcon icon={faSquare} />}
-        activeIcon={<FontAwesomeIcon icon={fasSquare} />}
-        label="List-detail"
-        onClick={() => setCanonicalLayoutType('listDetail')}
-        active={canonicalLayoutType === 'listDetail'}
+      <AppLayout.NavigationRail.Destination
+        onClick={() => setActiveDestination('inbox')}
+        active={activeDestination === 'inbox'}
+        icon={<FontAwesomeIcon icon={fasInbox} />}
+        label="Inbox"
+        {...other}
       />
-      <NavigationRailDestination
-        icon={<FontAwesomeIcon icon={faCircle} />}
-        activeIcon={<FontAwesomeIcon icon={fasCircle} />}
-        label="Supporting pane"
-        onClick={() => setCanonicalLayoutType('supportingPane')}
-        active={canonicalLayoutType === 'supportingPane'}
+      <AppLayout.NavigationRail.Destination
+        onClick={() => setActiveDestination('outbox')}
+        active={activeDestination === 'outbox'}
+        icon={<FontAwesomeIcon icon={faPaperPlane} />}
+        label="Outbox"
+        {...other}
       />
-      <NavigationRailDestination
+      <AppLayout.NavigationRail.Destination
+        onClick={() => setActiveDestination('favorites')}
+        active={activeDestination === 'favorites'}
         icon={<FontAwesomeIcon icon={faHeart} />}
-        activeIcon={<FontAwesomeIcon icon={fasHeart} />}
-        label="Feed"
-        onClick={() => setCanonicalLayoutType('feed')}
-        active={canonicalLayoutType === 'feed'}
+        label="Favorites"
+        {...other}
+      />
+      <AppLayout.NavigationRail.Destination
+        onClick={() => setActiveDestination('trash')}
+        active={activeDestination === 'trash'}
+        icon={<FontAwesomeIcon icon={fasTrash} />}
+        label="Trash"
+        {...other}
       />
     </>
   );

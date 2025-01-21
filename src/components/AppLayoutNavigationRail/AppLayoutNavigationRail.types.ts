@@ -6,6 +6,7 @@ import type {
   appLayoutNavigationRailTheme,
   IAppLayoutNavigationRailThemeFactory,
 } from './AppLayoutNavigationRail.css';
+import { NavigationRailDestination } from '../NavigationRailDestination';
 
 export interface IAppLayoutNavigationRailOwnProps
   extends INavigationRailOwnProps {
@@ -21,4 +22,7 @@ export type IAppLayoutNavigationRailFactory = IComponentFactory<{
   props: IAppLayoutNavigationRailProps;
   ref: HTMLDivElement;
   theme: typeof appLayoutNavigationRailTheme;
+  staticComponents: {
+    Destination: typeof NavigationRailDestination;
+  };
 }>;
