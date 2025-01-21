@@ -20,6 +20,7 @@ export const AppLayoutBody = componentFactory<IAppLayoutBodyFactory>(
       children,
       hasHeader: hasHeaderProp,
       hasAside: hasAsideProp,
+      orientation = 'vertical',
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -38,6 +39,7 @@ export const AppLayoutBody = componentFactory<IAppLayoutBodyFactory>(
       variant,
       theme: appLayoutBodyTheme,
       modifiers: {
+        orientation,
         'with-header': hasHeader,
         'with-aside': hasAside,
       },

@@ -9,12 +9,11 @@ import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { appLayoutTheme } from '../AppLayout/AppLayout.css';
 
-type IModifier = 'with-header' | 'with-aside';
+type IModifier = 'orientation' | 'with-header' | 'with-aside';
 
 const classNames = createStyles({
   root: {
     display: 'flex',
-    flexDirection: 'row',
     flexGrow: 1,
     minHeight: '100vh',
 
@@ -30,6 +29,9 @@ const classNames = createStyles({
     },
 
     selectors: {
+      [getModifierSelector<IModifier>({ orientation: 'vertical' })]: {
+        flexDirection: 'column',
+      },
       [getModifierSelector<IModifier>('with-header')]: {
         minHeight: calc.subtract('100vh', appLayoutTheme.tokens.header.height),
       },

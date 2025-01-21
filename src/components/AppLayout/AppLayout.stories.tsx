@@ -25,6 +25,7 @@ import { IconButton } from '../IconButton';
 import { NavigationDrawerDestination } from '../NavigationDrawerDestination';
 import { NavigationDrawerSection } from '../NavigationDrawerSection';
 import { NavigationRailDestination } from '../NavigationRailDestination';
+import { Placeholder } from '../Placeholder';
 import { Text } from '../Text';
 import { themeTokens } from '../ThemeProvider';
 import { AppLayout } from './AppLayout';
@@ -45,8 +46,8 @@ const HeaderContentDemo: React.FC = () => {
 
   return (
     <Flex direction="row" gap="$6" justify="space-between" grow={1}>
-      <Flex direction="row" gap="$2">
-        {appLayoutContext.navigationDrawer?.state?.toggle ? (
+      <Flex direction="row" gap="$2" align="center">
+        {appLayoutContext?.navigationDrawer?.state?.toggle && (
           <IconButton
             icon={
               <FontAwesomeIcon
@@ -59,12 +60,12 @@ const HeaderContentDemo: React.FC = () => {
             }
             onClick={appLayoutContext.navigationDrawer?.state?.toggle}
           />
-        ) : null}
+        )}
         <div>Header</div>
       </Flex>
 
       <Flex direction="row" gap="$2">
-        {appLayoutContext.aside?.state?.toggle ? (
+        {appLayoutContext?.aside?.state?.toggle && (
           <IconButton
             icon={
               <FontAwesomeIcon
@@ -73,7 +74,7 @@ const HeaderContentDemo: React.FC = () => {
             }
             onClick={appLayoutContext.aside?.state?.toggle}
           />
-        ) : null}
+        )}
       </Flex>
     </Flex>
   );
@@ -86,30 +87,28 @@ type IBodyDemoProps = {
 const BodyDemo: React.FC<IBodyDemoProps> = (props) => {
   const { canonicalLayoutType } = props;
   const canonicalLayout = useCanonicalLayout(canonicalLayoutType);
-  const horizontal = canonicalLayout.orientation === 'horizontal';
 
-  return <div>BODY</div>;
-  // <AppLayout.Body horizontal={horizontal}>
-  //   {canonicalLayout.panes.map((pane) => (
-  //     <Placeholder
-  //       key={pane.name}
-  //       corner="none"
-  //       height={200}
-  //       width={pane.fixedWidth}
-  //       sx={[!pane.fixedWidth && styles.placeholder$grow]}
-  //       grow={1}
-  //     >
-  //       {pane.name} {pane.sheet && '(sheet)'}
-  //       {pane.fixedWidth ? `(${pane.fixedWidth}px)` : null}
-  //     </Placeholder>
-  //   ))}
+  return (
+    <AppLayout.Body orientation={canonicalLayout.orientation}>
+      {canonicalLayout.panes.map((pane) => (
+        <Placeholder
+          key={pane.name}
+          h="$48"
+          w={pane.fixedWidth}
+          grow={!pane.fixedWidth ? 1 : 0}
+        >
+          {pane.name} {pane.sheet && '(sheet)'}
+          {pane.fixedWidth && `(${pane.fixedWidth}px)`}
+        </Placeholder>
+      ))}
 
-  //   <AppLayout.SideSheet anchor="right">
-  //     <AppLayout.Aside divider>
-  //       <AsideContent />
-  //     </AppLayout.Aside>
-  //   </AppLayout.SideSheet>
-  // </AppLayout.Body>
+      <AppLayout.SideSheet side="right">
+        <AppLayout.Aside divider>
+          <AsideContent />
+        </AppLayout.Aside>
+      </AppLayout.SideSheet>
+    </AppLayout.Body>
+  );
 };
 
 const NavigationDrawerContentDemo: React.FC = () => (
@@ -216,10 +215,9 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
           {...props}
         >
           <Flex direction="column">
-            {/* <AppLayout.Header divider>
+            <AppLayout.Header divider>
               <HeaderContentDemo />
-            </AppLayout.Header> */}
-            <div>HEADER</div>
+            </AppLayout.Header>
 
             <Flex direction="row" align="start">
               <div>SIDESHEET</div>

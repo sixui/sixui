@@ -1,3 +1,4 @@
+import type { IOrientation } from '~/helpers/types';
 import {
   IUseWindowSizeClassResult,
   useWindowSizeClass,
@@ -24,7 +25,7 @@ export type ICanonicalLayoutPane = {
 export type ICanonicalLayout = {
   windowSizeClass: IUseWindowSizeClassResult | undefined;
   navigationMode: ICanonicalLayoutNavigationMode;
-  orientation: 'horizontal' | 'vertical';
+  orientation: IOrientation;
   panes: Array<ICanonicalLayoutPane>;
   standardAside?: {
     maxWidth?: number;
