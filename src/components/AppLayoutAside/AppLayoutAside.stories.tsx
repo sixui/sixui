@@ -17,17 +17,23 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  children: <Placeholder w="$24" grow={1} expanded diagonals />,
+  children: <Placeholder expanded diagonals />,
 } satisfies Partial<IAppLayoutAsideProps>;
 
 const AppLayoutAsideFrame: React.FC<IAppLayoutAsideProps> = (props) => {
-  const [opened, toggleOpened] = useToggle([false, true]);
+  const [standardOpened, toggleStandardOpened] = useToggle([false, true]);
+  const [modalOpened, toggleModalOpened] = useToggle([false, true]);
 
   return (
-    <Flex direction="column" gap="$2" align="start">
-      <Button onClick={() => toggleOpened()}>
-        {opened ? 'Close' : 'Open'}
-      </Button>
+    <Flex direction="column" gap="$2">
+      <Flex direction="row" gap="$2">
+        <Button onClick={() => toggleStandardOpened()}>
+          {standardOpened ? 'Close' : 'Open'} standard
+        </Button>
+        <Button onClick={() => toggleModalOpened()}>
+          {modalOpened ? 'Close' : 'Open'} modal
+        </Button>
+      </Flex>
       <Frame
         importParentStyles
         w="100%"
@@ -38,7 +44,13 @@ const AppLayoutAsideFrame: React.FC<IAppLayoutAsideProps> = (props) => {
           borderColor: themeTokens.colorScheme.outlineVariant,
         }}
       >
-        <AppLayoutAside standardOpened={opened} {...props} />
+        <AppLayoutSideSheet anchor="right">
+          <AppLayoutAside
+            standardOpened={standardOpened}
+            modalOpened={modalOpened}
+            {...props}
+            />
+          </AppLayout.SideSheet>
       </Frame>
     </Flex>
   );
