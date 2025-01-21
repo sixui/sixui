@@ -11,6 +11,8 @@ import { IOmit } from '~/helpers/types';
 export interface INavigationDrawerDestinationOwnProps
   extends IOmit<IListItemOwnProps, 'selected' | 'trailingSupportingText'> {
   active?: boolean;
+  activeLeadingIcon?: React.ReactNode;
+  activeTrailingIcon?: React.ReactNode;
   badgeLabel?: React.ReactNode;
 }
 

@@ -18,7 +18,11 @@ export const NavigationDrawerDestination =
         styles,
         style,
         variant,
+        leadingIcon: leadingIconProp,
+        trailingIcon: trailingIconProp,
         active,
+        activeLeadingIcon,
+        activeTrailingIcon,
         badgeLabel,
         ...other
       } = useProps({ componentName: COMPONENT_NAME, props });
@@ -34,6 +38,13 @@ export const NavigationDrawerDestination =
           theme: navigationDrawerDestinationTheme,
         });
 
+      const leadingIcon = active
+        ? (activeLeadingIcon ?? leadingIconProp)
+        : leadingIconProp;
+      const trailingIcon = active
+        ? (activeTrailingIcon ?? trailingIconProp)
+        : trailingIconProp;
+
       return (
         <ListItem
           {...getStyles('root')}
@@ -44,6 +55,8 @@ export const NavigationDrawerDestination =
           ref={forwardedRef}
           selected={active}
           trailingSupportingText={badgeLabel}
+          leadingIcon={leadingIcon}
+          trailingIcon={trailingIcon}
           {...other}
         />
       );

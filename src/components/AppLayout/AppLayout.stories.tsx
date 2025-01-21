@@ -1,14 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import {
+  faCircle,
   faFolder,
   faHeart,
-  faPaperPlane,
+  faSquare,
 } from '@fortawesome/free-regular-svg-icons';
 import {
   faBars as fasBars,
-  faInbox as fasInbox,
-  faTrash as fasTrash,
+  faCircle as fasCircle,
+  faHeart as fasHeart,
+  faSquare as fasSquare,
   faXmark as fasXmark,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -111,8 +113,6 @@ const BodyDemo: React.FC<IBodyDemoProps> = (props) => {
 };
 
 type INavigationDrawerContentDemoProps = {
-  canonicalLayoutType: ICanonicalLayoutType;
-  setCanonicalLayoutType: (type: ICanonicalLayoutType) => void;
   activeDestination?: string;
   onClick?: (menu: string) => void;
 };
@@ -124,36 +124,33 @@ const NavigationDrawerContentDemo: React.FC<
 
   return (
     <Flex direction="column" gap="$6">
-      <AppLayout.NavigationDrawer.Section headline="Mail" endDivider>
+      <AppLayout.NavigationDrawer.Section
+        headline="Canonical Layout Type"
+        endDivider
+      >
         <AppLayout.NavigationDrawer.Section.Destination
-          onClick={() => onClick?.('inbox')}
-          active={activeDestination === 'inbox'}
-          leadingIcon={<FontAwesomeIcon icon={fasInbox} />}
-          badgeLabel="24"
+          onClick={() => onClick?.('listDetail')}
+          active={activeDestination === 'listDetail'}
+          leadingIcon={<FontAwesomeIcon icon={faSquare} />}
+          activeLeadingIcon={<FontAwesomeIcon icon={fasSquare} />}
         >
-          Inbox
+          List-detail
         </AppLayout.NavigationDrawer.Section.Destination>
         <AppLayout.NavigationDrawer.Section.Destination
-          onClick={() => onClick?.('outbox')}
-          active={activeDestination === 'outbox'}
-          leadingIcon={<FontAwesomeIcon icon={faPaperPlane} />}
+          onClick={() => onClick?.('supportingPane')}
+          active={activeDestination === 'supportingPane'}
+          leadingIcon={<FontAwesomeIcon icon={faCircle} />}
+          activeLeadingIcon={<FontAwesomeIcon icon={fasCircle} />}
         >
-          Outbox
+          Supporting pane
         </AppLayout.NavigationDrawer.Section.Destination>
         <AppLayout.NavigationDrawer.Section.Destination
-          onClick={() => onClick?.('favorites')}
-          active={activeDestination === 'favorites'}
+          onClick={() => onClick?.('feed')}
+          active={activeDestination === 'feed'}
           leadingIcon={<FontAwesomeIcon icon={faHeart} />}
-          disabled
+          activeLeadingIcon={<FontAwesomeIcon icon={fasHeart} />}
         >
-          Favorites
-        </AppLayout.NavigationDrawer.Section.Destination>
-        <AppLayout.NavigationDrawer.Section.Destination
-          onClick={() => onClick?.('trash')}
-          active={activeDestination === 'trash'}
-          leadingIcon={<FontAwesomeIcon icon={fasTrash} />}
-        >
-          Trash
+          Feed
         </AppLayout.NavigationDrawer.Section.Destination>
       </AppLayout.NavigationDrawer.Section>
 
@@ -176,8 +173,6 @@ const NavigationDrawerContentDemo: React.FC<
 };
 
 type INavigationRailContentDemoProps = {
-  canonicalLayoutType: ICanonicalLayoutType;
-  setCanonicalLayoutType: (type: ICanonicalLayoutType) => void;
   activeDestination?: string;
   onClick?: (menu: string) => void;
 };
@@ -190,28 +185,25 @@ const NavigationRailContentDemo: React.FC<INavigationRailContentDemoProps> = (
   return (
     <>
       <AppLayout.NavigationRail.Destination
-        onClick={() => onClick?.('inbox')}
-        active={activeDestination === 'inbox'}
-        icon={<FontAwesomeIcon icon={fasInbox} />}
-        label="Inbox"
+        onClick={() => onClick?.('listDetail')}
+        active={activeDestination === 'listDetail'}
+        icon={<FontAwesomeIcon icon={faSquare} />}
+        activeIcon={<FontAwesomeIcon icon={fasSquare} />}
+        label="List-detail"
       />
       <AppLayout.NavigationRail.Destination
-        onClick={() => onClick?.('outbox')}
-        active={activeDestination === 'outbox'}
-        icon={<FontAwesomeIcon icon={faPaperPlane} />}
-        label="Outbox"
+        onClick={() => onClick?.('supportingPane')}
+        active={activeDestination === 'supportingPane'}
+        icon={<FontAwesomeIcon icon={faCircle} />}
+        activeIcon={<FontAwesomeIcon icon={fasCircle} />}
+        label="Supporting pane"
       />
       <AppLayout.NavigationRail.Destination
-        onClick={() => onClick?.('favorites')}
-        active={activeDestination === 'favorites'}
+        onClick={() => onClick?.('feed')}
+        active={activeDestination === 'feed'}
         icon={<FontAwesomeIcon icon={faHeart} />}
-        label="Favorites"
-      />
-      <AppLayout.NavigationRail.Destination
-        onClick={() => onClick?.('trash')}
-        active={activeDestination === 'trash'}
-        icon={<FontAwesomeIcon icon={fasTrash} />}
-        label="Trash"
+        activeIcon={<FontAwesomeIcon icon={fasHeart} />}
+        label="Feed"
       />
     </>
   );
@@ -236,9 +228,7 @@ const FooterContent: React.FC = () =>
   ));
 
 const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
-  const [activeDestination, setActiveDestination] = useState('inbox');
-  const [canonicalLayoutType, setCanonicalLayoutType] =
-    useState<ICanonicalLayoutType>('listDetail');
+  const [activeDestination, setActiveDestination] = useState('listDetail');
 
   return (
     <Frame
@@ -266,8 +256,6 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
               <AppLayout.SideSheet>
                 <AppLayout.NavigationRail divider>
                   <NavigationRailContentDemo
-                    canonicalLayoutType={canonicalLayoutType}
-                    setCanonicalLayoutType={setCanonicalLayoutType}
                     activeDestination={activeDestination}
                     onClick={setActiveDestination}
                   />
@@ -275,15 +263,15 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
 
                 <AppLayout.NavigationDrawer divider>
                   <NavigationDrawerContentDemo
-                    canonicalLayoutType={canonicalLayoutType}
-                    setCanonicalLayoutType={setCanonicalLayoutType}
                     activeDestination={activeDestination}
                     onClick={setActiveDestination}
                   />
                 </AppLayout.NavigationDrawer>
               </AppLayout.SideSheet>
 
-              <BodyDemo canonicalLayoutType={canonicalLayoutType} />
+              <BodyDemo
+                canonicalLayoutType={activeDestination as ICanonicalLayoutType}
+              />
             </Flex>
           </Flex>
 
@@ -297,9 +285,7 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
 };
 
 const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
-  const [activeDestination, setActiveDestination] = useState('inbox');
-  const [canonicalLayoutType, setCanonicalLayoutType] =
-    useState<ICanonicalLayoutType>('listDetail');
+  const [activeDestination, setActiveDestination] = useState('listDetail');
 
   return (
     <Frame
@@ -319,8 +305,6 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
               <AppLayout.SideSheet fullHeight>
                 <AppLayout.NavigationRail divider>
                   <NavigationRailContentDemo
-                    canonicalLayoutType={canonicalLayoutType}
-                    setCanonicalLayoutType={setCanonicalLayoutType}
                     activeDestination={activeDestination}
                     onClick={setActiveDestination}
                   />
@@ -334,8 +318,6 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
                   footer={<Placeholder label="Footer" />}
                 >
                   <NavigationDrawerContentDemo
-                    canonicalLayoutType={canonicalLayoutType}
-                    setCanonicalLayoutType={setCanonicalLayoutType}
                     activeDestination={activeDestination}
                     onClick={setActiveDestination}
                   />
@@ -348,7 +330,11 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
                 </AppLayout.Header>
 
                 <Flex direction="row" align="start">
-                  <BodyDemo canonicalLayoutType={canonicalLayoutType} />
+                  <BodyDemo
+                    canonicalLayoutType={
+                      activeDestination as ICanonicalLayoutType
+                    }
+                  />
                 </Flex>
               </Flex>
             </Flex>
