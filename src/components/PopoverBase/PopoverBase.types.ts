@@ -168,7 +168,7 @@ export type IPopoverBaseOwnProps<TForwardedProps extends object = object> =
      * @defaultValue `{ flip: true, shift: true, size: true }`
      * @see https://floating-ui.com/docs/usefloating#middleware
      */
-    middlewares?: IPopoverMiddlewares;
+    middlewares?: IPopoverMiddlewares | false;
 
     /**
      * Additional middlewares to apply to the floating element.
@@ -191,11 +191,13 @@ export type IPopoverBaseOwnProps<TForwardedProps extends object = object> =
     closeEvents?: IPopoverCloseEvents | false;
 
     /**
-     * Modal popovers interrupt interaction with the rest of the page being
-     * inert, while non-modal popovers allow interaction with the rest of
-     * the page.
+     * Modal popovers interrupt interaction with the rest of the page with a
+     * scrim, while non-modal popovers allow interaction with the rest of the
+     * page.
      */
     modal?: boolean;
+
+    jail?: boolean;
 
     keepMounted?: boolean;
     popoverProps?: IBoxProps;

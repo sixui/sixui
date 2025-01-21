@@ -47,13 +47,7 @@ export const Dialog = polymorphicComponentFactory<IDialogFactory>(
           </DialogContent>
         )}
         closeEvents={{ focusOut: false }}
-        trapFocus
-        withScrim
-        middlewares={{
-          flip: false,
-          shift: false,
-          size: false,
-        }}
+        middlewares={false}
         forwardProps
         {...other}
       />

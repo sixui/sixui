@@ -6,7 +6,14 @@ import type {
 } from './AppLayout.types';
 import { createOptionalContext } from '~/helpers/createOptionalContext';
 
-export type IAppLayoutSideSheetState = {
+interface IAppLayoutDisclosureState {
+  opened: boolean;
+  toggle: () => void;
+  open: () => void;
+  close: () => void;
+}
+
+export interface IAppLayoutSideSheetState extends IAppLayoutDisclosureState {
   opened: boolean;
   type: ISideSheetType;
   modalOpened: boolean;
@@ -14,7 +21,7 @@ export type IAppLayoutSideSheetState = {
   toggle: () => void;
   open: () => void;
   close: () => void;
-};
+}
 
 export type IAppLayoutContextValue = Pick<
   IAppLayoutProps,
@@ -25,6 +32,9 @@ export type IAppLayoutContextValue = Pick<
   };
   aside?: IAppLayoutProps['aside'] & {
     state?: IAppLayoutSideSheetState;
+  };
+  bottomSheet?: {
+    state?: IAppLayoutDisclosureState;
   };
   root?: HTMLElement | null;
   navigationMode: IAppLayoutNavigationMode;

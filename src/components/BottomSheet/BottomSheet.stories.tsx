@@ -34,4 +34,20 @@ export const Standard: IStory = {
   args: defaultArgs,
 };
 
+export const Modal: IStory = {
+  render: (props) => <BottomSheetDemoShowcase props={props} />,
+  args: {
+    ...defaultArgs,
+    modal: true,
+  },
+};
+
+export const Detached: IStory = {
+  render: (props) => <BottomSheetDemoShowcase props={props} />,
+  args: {
+    ...defaultArgs,
+    detached: true,
+  },
+};
+
 export default meta;

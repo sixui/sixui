@@ -1,4 +1,4 @@
-import type { IOmit, ISide } from '~/helpers/types';
+import type { ISide } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
@@ -21,6 +21,8 @@ export interface IDrawerOwnProps {
     | ((renderProps: IDrawerChildrenRenderProps) => React.ReactNode)
     | React.ReactNode;
   fullHeight?: boolean;
+  modal?: boolean;
+  jail?: boolean;
 }
 
 export interface IDrawerProps

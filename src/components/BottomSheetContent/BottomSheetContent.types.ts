@@ -6,7 +6,9 @@ import type {
   IBottomSheetContentThemeFactory,
 } from './BottomSheetContent.css';
 
-export type IBottomSheetContentType = 'standard' | 'minimized' | 'modal';
+export const bottomSheetContentVariants = ['standard', 'minimized'] as const;
+export type IBottomSheetContentVariant =
+  (typeof bottomSheetContentVariants)[number];
 
 export type IBottomSheetContentRenderProps = {
   close: (event: React.MouseEvent) => void;

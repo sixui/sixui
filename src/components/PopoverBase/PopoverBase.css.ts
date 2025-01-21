@@ -6,7 +6,7 @@ import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { themeTokens } from '../ThemeProvider';
 
-type IModifier = 'shake' | 'positioned';
+type IModifier = 'shake' | 'positioned' | 'modal';
 
 const shakeKeyframes = keyframes({
   '0%': { transform: 'rotate(0deg)' },
@@ -19,7 +19,15 @@ const shakeKeyframes = keyframes({
 const classNames = createStyles({
   root: {
     selectors: {
-      [getModifierSelector<IModifier>('!positioned')]: {
+      [getModifierSelector<IModifier>(['!positioned', '!modal'])]: {
+        position: 'fixed',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        overflow: 'visible',
+        zIndex: themeTokens.zIndex.popover,
+      },
+      [getModifierSelector<IModifier>(['!positioned', 'modal'])]: {
         position: 'fixed',
         inset: 0,
         display: 'grid',

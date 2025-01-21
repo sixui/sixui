@@ -1,14 +1,11 @@
 import type { IBottomSheetThemeFactory } from './BottomSheet.css';
-import type {
-  IBottomSheetFactory,
-  IBottomSheetOwnProps,
-} from './BottomSheet.types';
+import type { IBottomSheetFactory } from './BottomSheet.types';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
-import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { useAppLayoutContext } from '../AppLayout/AppLayout.context';
 import { BottomSheetContent } from '../BottomSheetContent';
-import { PopoverBase } from '../PopoverBase';
+import { Drawer } from '../Drawer';
 import { bottomSheetTheme } from './BottomSheet.css';
 
 const COMPONENT_NAME = 'BottomSheet';
@@ -21,9 +18,13 @@ export const BottomSheet = componentFactory<IBottomSheetFactory>(
       styles,
       style,
       variant,
-      children,
+      opened,
+      modal,
+      detached,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
+
+    const appLayoutContext = useAppLayoutContext();
 
     const { getStyles } = useComponentTheme<IBottomSheetThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -35,29 +36,28 @@ export const BottomSheet = componentFactory<IBottomSheetFactory>(
       theme: bottomSheetTheme,
     });
 
+    const bottomSheetOpened =
+      opened ?? appLayoutContext?.bottomSheet?.state?.opened;
+
     return (
-      <PopoverBase
-        {...getStyles('root')}
-        contentRenderer={({ close, forwardedProps }) => (
+      <Drawer
+        {...getStyles('wrapper')}
+        root={appLayoutContext?.root}
+        opened={bottomSheetOpened}
+        onClose={appLayoutContext?.aside?.state?.close}
+        side="bottom"
+        modal={modal}
+        variant={detached ? 'detached' : undefined}
+      >
+        {({ close }) => (
           <BottomSheetContent
+            {...getStyles('root')}
+            onClose={close}
             ref={forwardedRef}
-            {...mergeProps(
-              { onClose: close },
-              forwardedProps as IBottomSheetOwnProps,
-            )}
-          >
-            {children}
-          </BottomSheetContent>
+            {...other}
+          />
         )}
-        closeEvents={false}
-        middlewares={{
-          flip: false,
-          shift: false,
-          size: false,
-        }}
-        forwardProps
-        {...other}
-      />
+      </Drawer>
     );
   },
 );

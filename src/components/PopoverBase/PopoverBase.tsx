@@ -83,7 +83,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       role: roleProp,
       trapFocus,
       matchTargetWidth,
-      withScrim,
+      withScrim: withScrimProp,
       floatingFocusManagerProps,
       scrimMotionProps,
       floatingMotionProps,
@@ -96,13 +96,16 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       positioned,
       openEvents: openEventsProp,
       closeEvents: closeEventsProp,
-      modal,
+      modal: modalProp,
+      jail,
       keepMounted,
       popoverProps,
       preventAutoFocus,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
+    const modal = modalProp || jail;
+    const withScrim = withScrimProp ?? modal;
     const openEvents =
       openEventsProp !== false
         ? {
@@ -112,17 +115,25 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
         : {};
 
     const closeEvents =
-      closeEventsProp !== false
+      closeEventsProp === false || jail
+        ? undefined
+        : modal
+          ? {
+              ...defaultCloseEvents,
+              ...closeEventsProp,
+            }
+          : {
+              escapeKey: true,
+              ...closeEventsProp,
+            };
+
+    const middlewares =
+      middlewaresProp !== false
         ? {
-            ...defaultCloseEvents,
-            ...closeEventsProp,
+            ...defaultMiddlewares,
+            ...middlewaresProp,
           }
         : {};
-
-    const middlewares = {
-      ...defaultMiddlewares,
-      ...middlewaresProp,
-    };
     const transitionOrigin = cursorType ? 'custom' : 'corner';
 
     const [isShaking, setIsShaking] = useState(false);
@@ -138,6 +149,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       modifiers: {
         shake: isShaking,
         positioned,
+        modal,
       },
     });
 
@@ -234,8 +246,8 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       visibleOnly: true,
     });
     const dismiss = useDismiss(floating.context, {
-      outsidePress: !modal && !!closeEvents.clickOutside,
-      escapeKey: !modal && closeEvents.escapeKey,
+      outsidePress: !!closeEvents?.clickOutside,
+      escapeKey: !!closeEvents?.escapeKey,
     });
     const role = useRole(floating.context, { role: roleProp });
     const interactions = useInteractions([
@@ -291,9 +303,9 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
           <Portal {...portalProps}>
             <FloatingFocusManager
               context={floating.context}
-              modal={!!trapFocus}
-              closeOnFocusOut={closeEvents.focusOut}
-              disabled={!trapFocus}
+              modal={trapFocus !== undefined ? !!trapFocus : modal}
+              closeOnFocusOut={closeEvents?.focusOut}
+              disabled={trapFocus !== undefined ? !trapFocus : !modal}
               {...floatingFocusManagerProps}
             >
               <div
@@ -305,11 +317,11 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
                     status={transitionStatus.status}
                     pattern="fade"
                     as={Scrim}
-                    blurred={modal}
+                    blurred={jail}
                     {...mergeProps(
                       {
                         onClick: () => {
-                          if (modal) {
+                          if (jail) {
                             setIsShaking(true);
                             clearTimeout(shakingTimeout.current);
                             shakingTimeout.current = setTimeout(

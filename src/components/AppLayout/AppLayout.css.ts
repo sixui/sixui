@@ -24,10 +24,6 @@ const [tokensClassName, tokens] = createTheme({
     width: px(400),
     color: 'initial',
   },
-  bottomSheet: {
-    width: '100%',
-    color: 'initial',
-  },
   footer: {
     height: px(64),
     color: 'initial',

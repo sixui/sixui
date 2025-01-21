@@ -23,11 +23,11 @@ type IStory = StoryObj<IDialogProps>;
 const defaultArgs = {} satisfies Partial<IDialogProps>;
 
 const DialogDemo: React.FC<IDialogProps> = (props) => {
-  const [opened, { open, close }] = useDisclosure(false);
+  const [opened, { close, toggle }] = useDisclosure(false);
 
   return (
     <>
-      <Button onClick={open}>Open</Button>
+      <Button onClick={toggle}>{opened ? 'Close' : 'Open'}</Button>
       <Dialog
         {...props}
         opened={opened}
@@ -71,10 +71,18 @@ export const Modal: IStory = {
   },
 };
 
+export const Jail: IStory = {
+  render: (props) => <DialogDemo {...props} />,
+  args: {
+    ...defaultArgs,
+    jail: true,
+  },
+};
+
 const FormDialogDemo: React.FC<IDialogProps> = (props) => {
   const [name, setName] = useState<string>();
   const formRef = useRef<HTMLFormElement>(null);
-  const [opened, { open, close }] = useDisclosure(false);
+  const [opened, { close, toggle }] = useDisclosure(false);
 
   return (
     <>
@@ -121,7 +129,7 @@ const FormDialogDemo: React.FC<IDialogProps> = (props) => {
       </Dialog>
 
       <Flex direction="row" gap="$4" align="center">
-        <Button onClick={open}>Open</Button>
+        <Button onClick={toggle}>{opened ? 'Close' : 'Open'}</Button>
         {name && (
           <div>
             Hello, <strong>{name}</strong>!
@@ -134,7 +142,10 @@ const FormDialogDemo: React.FC<IDialogProps> = (props) => {
 
 export const WithForm: IStory = {
   render: (props) => <FormDialogDemo {...props} />,
-  args: defaultArgs,
+  args: {
+    ...defaultArgs,
+    jail: true,
+  },
 };
 
 export default meta;

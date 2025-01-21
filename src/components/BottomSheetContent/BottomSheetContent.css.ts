@@ -1,7 +1,7 @@
 import { createTheme } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import type { IBottomSheetContentVariant } from '../BottomSheetContent_OLD';
+import type { IBottomSheetContentVariant } from './BottomSheetContent.types';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
@@ -14,7 +14,7 @@ const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   container: {
     color: themeTokens.colorScheme.surfaceContainerLow,
-    elevation: elevationLevelPreset[0],
+    elevation: elevationLevelPreset[1],
     shape: themeTokens.shape.corner.xl,
   },
   dragHandle: {
@@ -63,15 +63,6 @@ export const bottomSheetContentThemeVariants = {
       vars: createTokensVars(PaperBase.theme.tokens, {
         container: {
           shape: `${themeTokens.shape.corner.xl} ${themeTokens.shape.corner.xl} ${themeTokens.shape.corner.none} ${themeTokens.shape.corner.none}`,
-        },
-      }),
-    },
-  }),
-  modal: createStyles({
-    root: {
-      vars: createTokensVars(PaperBase.theme.tokens, {
-        container: {
-          elevation: elevationLevelPreset[1],
         },
       }),
     },
