@@ -11,9 +11,9 @@ import { useThemeContext } from '~/components/ThemeProvider';
 import { getDataAttributes, IModifiers } from '~/utils/getDataAttributes';
 import { isTruthy } from '~/utils/isTruthy';
 
-export type IComponentThemeProps<
+export interface IComponentThemeProps<
   TPayload extends IComponentThemeFactoryPayload,
-> = {
+> {
   /** The class name to apply to the root selector. */
   className?: Parameters<typeof cx>[0];
 
@@ -30,11 +30,11 @@ export type IComponentThemeProps<
   variant?: TPayload['variant'] | false;
 
   otherProps?: Record<string, unknown>;
-};
+}
 
-export type IUseComponentThemeProps<
+export interface IUseComponentThemeProps<
   TPayload extends IComponentThemeFactoryPayload,
-> = IComponentThemeProps<TPayload> & {
+> extends IComponentThemeProps<TPayload> {
   /** The name of the component. */
   componentName: string;
 
@@ -58,19 +58,24 @@ export type IUseComponentThemeProps<
   modifiers?: TPayload['modifier'] extends string
     ? Partial<IModifiers<TPayload['modifier']>>
     : never;
-};
+}
 
-export type IGetStylesOptions = {
+export interface IGetStylesOptions<
+  TPayload extends IComponentThemeFactoryPayload,
+> {
   className?: string;
   style?: React.CSSProperties;
-};
+  modifiers?: TPayload['modifier'] extends string
+    ? Partial<IModifiers<TPayload['modifier']>>
+    : never;
+}
 
 export type IUseComponentThemeResult<
   TPayload extends IComponentThemeFactoryPayload,
 > = {
   getStyles: (
     styleName: INestedArray<TPayload['styleName'] | false | undefined>,
-    options?: IGetStylesOptions,
+    options?: IGetStylesOptions<TPayload>,
   ) => {
     className?: string;
     style?: React.CSSProperties;
@@ -137,6 +142,7 @@ export const useComponentTheme = <
             ? getDataAttributes({
                 variant,
                 ...modifiers,
+                ...options?.modifiers,
               })
             : undefined),
         };

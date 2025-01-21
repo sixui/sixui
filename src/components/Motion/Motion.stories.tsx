@@ -12,6 +12,7 @@ import { useToggle } from '~/hooks/useToggle';
 import { componentShowcaseFactory } from '../ComponentShowcase';
 import { IconButton } from '../IconButton';
 import { Placeholder } from '../Placeholder';
+import { themeTokens } from '../ThemeProvider';
 import { Motion } from './Motion';
 
 type IMotionDemoProps = IOmit<IMotionProps, 'status'> & {
@@ -59,11 +60,23 @@ const MotionUnpositionedDemo: React.FC<IMotionDemoProps> = (props) => {
         selected={transitioning}
         onClick={() => toggle()}
       />
-      <MotionDemo
-        {...props}
-        transitioning={transitioning}
-        onClose={() => toggle(false)}
-      />
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          display: 'grid',
+          placeItems: 'center',
+          overflow: 'auto',
+          pointerEvents: 'none',
+          zIndex: themeTokens.zIndex.modal,
+        }}
+      >
+        <MotionDemo
+          {...props}
+          transitioning={transitioning}
+          onClose={() => toggle(false)}
+        />
+      </div>
     </>
   );
 };
@@ -79,10 +92,10 @@ const defaultArgs = {
 } satisfies Partial<IMotionProps>;
 
 const sides: Array<IComponentPresentation<IMotionDemoProps>> = [
-  { legend: 'Top', props: { placement: { side: 'top' } } },
-  { legend: 'Left', props: { placement: { side: 'left' } } },
-  { legend: 'Right', props: { placement: { side: 'right' } } },
-  { legend: 'Bottom', props: { placement: { side: 'bottom' } } },
+  { legend: 'From top', props: { placement: { side: 'top' } } },
+  { legend: 'From left', props: { placement: { side: 'left' } } },
+  { legend: 'From right', props: { placement: { side: 'right' } } },
+  { legend: 'From bottom', props: { placement: { side: 'bottom' } } },
 ];
 
 const MotionUnpositionedDemoShowcase = componentShowcaseFactory(

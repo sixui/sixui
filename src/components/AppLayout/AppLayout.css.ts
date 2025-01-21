@@ -21,10 +21,7 @@ const [tokensClassName, tokens] = createTheme({
     },
   },
   aside: {
-    width: {
-      standard: px(400),
-      modal: `min(${px(400)}, 100vw - ${px(48)})`,
-    },
+    width: px(400),
   },
   footer: {
     height: px(64),
