@@ -1,82 +1,75 @@
-import { createTheme } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { PaperBase } from '../PaperBase';
-import { cssLayers, themeTokens } from '../ThemeProvider';
+import { themeTokens } from '../ThemeProvider';
+import { appLayoutTheme } from '../AppLayout/AppLayout.css';
 
-type IModifier = 'disabled';
-
-const [tokensClassName, tokens] = createTheme({
-  '@layer': cssLayers.theme,
-  container: {
-    color: {
-      normal: themeTokens.colorScheme.primary,
-      disabled: themeTokens.colorScheme.onSurface,
-    },
-    opacity: {
-      disabled: themeTokens.state.containerOpacity.disabled,
-    },
-  },
-  label: {
-    typography: themeTokens.typeScale.label.md,
-    color: {
-      normal: themeTokens.colorScheme.onPrimary,
-      disabled: themeTokens.colorScheme.onSurface,
-    },
-    opacity: {
-      disabled: themeTokens.state.opacity.disabled,
-    },
-  },
-});
+type IModifier =
+  | 'full-height'
+  | 'with-header'
+  | 'with-navigation-rail'
+  | 'with-navigation-drawer'
+  | 'with-aside';
 
 const classNames = createStyles({
   root: {
-    padding: px(space(2)),
+    position: 'sticky',
+    left: 0,
+    top: 0,
+    height: '100vh',
+    width: 0,
+    flexShrink: 0,
 
-    vars: createTokensVars(PaperBase.theme.tokens, {
-      container: {
-        color: tokens.container.color.normal,
-      },
-    }),
+    transitionProperty: 'width',
+    transitionDuration: themeTokens.motion.duration.short.$3,
+    transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
 
     selectors: {
-      [getModifierSelector<IModifier>('disabled')]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
-          container: {
-            color: tokens.container.color.disabled,
-            opacity: tokens.container.opacity.disabled,
-          },
-        }),
+      [getModifierSelector<IModifier>('full-height')]: {
+        height: '100vh',
+        top: 0,
+      },
+      [getModifierSelector<IModifier>('with-header')]: {
+        height: calc.subtract('100vh', appLayoutTheme.tokens.header.height),
+        top: appLayoutTheme.tokens.header.height,
+      },
+      [getModifierSelector<IModifier>('with-navigation-rail')]: {
+        width: appLayoutTheme.tokens.navigationRail.width,
+        transitionDuration: themeTokens.motion.duration.long.$3,
+        transitionTimingFunction:
+          themeTokens.motion.easing.emphasized.decelerate,
+      },
+      [getModifierSelector<IModifier>('with-navigation-drawer')]: {
+        width: appLayoutTheme.tokens.navigationDrawer.width,
+        transitionDuration: themeTokens.motion.duration.long.$3,
+        transitionTimingFunction:
+          themeTokens.motion.easing.emphasized.decelerate,
+      },
+      [getModifierSelector<IModifier>('with-aside')]: {
+        width: appLayoutTheme.tokens.aside.width,
+        transitionDuration: themeTokens.motion.duration.long.$3,
+        transitionTimingFunction:
+          themeTokens.motion.easing.emphasized.decelerate,
       },
     },
   },
-  label: ({ root }) => ({
-    color: tokens.label.color.normal,
-
-    selectors: {
-      [getModifierSelector<IModifier>('disabled', root)]: {
-        color: tokens.label.color.disabled,
-        opacity: tokens.label.opacity.disabled,
-      },
-    },
-  }),
+  inner: {
+    position: 'absolute',
+    insetBlock: 0,
+    insetInlineStart: 0,
+  },
 });
 
 export type IAppLayoutSideSheetThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
-  tokens: typeof tokens;
   modifier: IModifier;
 }>;
 
 export const appLayoutSideSheetTheme =
   componentThemeFactory<IAppLayoutSideSheetThemeFactory>({
     classNames,
-    tokensClassName,
-    tokens,
+    tokens: undefined,
   });

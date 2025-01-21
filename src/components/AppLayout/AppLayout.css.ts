@@ -15,10 +15,7 @@ const [tokensClassName, tokens] = createTheme({
     width: px(80),
   },
   navigationDrawer: {
-    width: {
-      standard: px(360),
-      modal: `min(${px(360)}, 100vw - ${px(48)})`,
-    },
+    width: px(360),
   },
   aside: {
     width: px(400),

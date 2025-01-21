@@ -1,8 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IAppLayoutSideSheetProps } from './AppLayoutSideSheet.types';
-import { componentShowcaseFactory } from '../ComponentShowcase';
+import { px } from '~/helpers/styles/px';
+import { Frame } from '../Frame';
+import { Placeholder } from '../Placeholder';
+import { themeTokens } from '../ThemeProvider';
 import { AppLayoutSideSheet } from './AppLayoutSideSheet';
 
 const meta = {
@@ -12,26 +14,40 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  children: 'AppLayoutSideSheet',
+  children: <Placeholder expanded diagonals />,
 } satisfies Partial<IAppLayoutSideSheetProps>;
 
-const variants: Array<IComponentPresentation<IAppLayoutSideSheetProps>> = [
-  { legend: 'None', props: { variant: false } },
-  { legend: 'Primary', props: { variant: 'primary' } },
-];
+const AppLayoutSideSheetFrame: React.FC<IAppLayoutSideSheetProps> = (props) => {
+  return (
+    <Frame
+      importParentStyles
+      w="100%"
+      h="$96"
+      style={{
+        borderWidth: px(1),
+        borderStyle: 'dashed',
+        borderColor: themeTokens.colorScheme.outlineVariant,
+      }}
+    >
+      <AppLayoutSideSheet {...props} />
+    </Frame>
+  );
+};
 
-const states: Array<IComponentPresentation<IAppLayoutSideSheetProps>> = [
-  { legend: 'Normal' },
-  { legend: 'Disabled', props: { disabled: true } },
-];
+export const Left: IStory = {
+  render: (props) => <AppLayoutSideSheetFrame {...props} />,
+  args: {
+    ...defaultArgs,
+    side: 'left',
+  },
+};
 
-const AppLayoutSideSheetShowcase = componentShowcaseFactory(AppLayoutSideSheet);
-
-export const Basic: IStory = {
-  render: (props) => (
-    <AppLayoutSideSheetShowcase props={props} cols={states} rows={variants} />
-  ),
-  args: defaultArgs,
+export const Right: IStory = {
+  render: (props) => <AppLayoutSideSheetFrame {...props} />,
+  args: {
+    ...defaultArgs,
+    side: 'right',
+  },
 };
 
 export default meta;

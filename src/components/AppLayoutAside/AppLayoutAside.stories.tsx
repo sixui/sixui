@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { IAppLayoutAsideProps } from './AppLayoutAside.types';
 import { px } from '~/helpers/styles/px';
 import { useToggle } from '~/hooks/useToggle';
+import { AppLayoutSideSheet } from '../AppLayoutSideSheet';
 import { Button } from '../Button';
 import { Flex } from '../Flex';
 import { Frame } from '../Frame';
@@ -44,13 +45,13 @@ const AppLayoutAsideFrame: React.FC<IAppLayoutAsideProps> = (props) => {
           borderColor: themeTokens.colorScheme.outlineVariant,
         }}
       >
-        <AppLayoutSideSheet anchor="right">
+        <AppLayoutSideSheet side="right">
           <AppLayoutAside
             standardOpened={standardOpened}
             modalOpened={modalOpened}
             {...props}
-            />
-          </AppLayout.SideSheet>
+          />
+        </AppLayoutSideSheet>
       </Frame>
     </Flex>
   );
