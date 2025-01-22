@@ -21,7 +21,7 @@ export interface ISupportingPaneCanonicalLayoutProps {
         props: ISupportingPaneCanonicalLayoutFocusPaneRendererProps,
       ) => React.ReactNode);
   supportingPane: React.ReactNode;
-  supportingPaneAppLayoutAside: React.ReactNode;
+  supportingPaneAside: React.ReactNode;
   supportingPaneBottomSheet: React.ReactNode;
 }
 
@@ -31,7 +31,7 @@ export const SupportingPaneCanonicalLayout: React.FC<
   const {
     focusPane,
     supportingPane,
-    supportingPaneAppLayoutAside,
+    supportingPaneAside,
     supportingPaneBottomSheet,
   } = props;
 
@@ -79,10 +79,10 @@ export const SupportingPaneCanonicalLayout: React.FC<
             ))}
         </AppLayout.Body>
 
-        {hasSupportingPaneAppLayoutAside && supportingPaneAppLayoutAside && (
+        {hasSupportingPaneAppLayoutAside && supportingPaneAside && (
           <AppLayout.SideSheet side="right">
             <AppLayout.Aside side="right" divider>
-              {supportingPaneAppLayoutAside}
+              {supportingPaneAside}
             </AppLayout.Aside>
           </AppLayout.SideSheet>
         )}

@@ -4,7 +4,7 @@ import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { ISideSheetContentOwnProps } from '../SideSheetContent';
 import type {
-  appLayoutAppLayoutAsideTheme,
+  appLayoutAsideTheme,
   IAppLayoutAsideThemeFactory,
 } from './AppLayoutAside.css';
 
@@ -25,5 +25,5 @@ export interface IAppLayoutAsideProps
 export type IAppLayoutAsideFactory = IComponentFactory<{
   props: IAppLayoutAsideProps;
   ref: HTMLDivElement;
-  theme: typeof appLayoutAppLayoutAsideTheme;
+  theme: typeof appLayoutAsideTheme;
 }>;

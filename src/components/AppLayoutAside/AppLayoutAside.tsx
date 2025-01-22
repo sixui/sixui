@@ -29,10 +29,9 @@ export const AppLayoutAside = componentFactory<IAppLayoutAsideFactory>(
     const appLayoutContext = useAppLayoutContext();
 
     const standardOpened =
-      standardOpenedProp ??
-      appLayoutContext?.appLayoutAside?.state?.standardOpened;
+      standardOpenedProp ?? appLayoutContext?.aside?.state?.standardOpened;
     const modalOpened =
-      modalOpenedProp ?? appLayoutContext?.appLayoutAside?.state?.modalOpened;
+      modalOpenedProp ?? appLayoutContext?.aside?.state?.modalOpened;
 
     const { getStyles } = useComponentTheme<IAppLayoutAsideThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -45,7 +44,7 @@ export const AppLayoutAside = componentFactory<IAppLayoutAsideFactory>(
     });
 
     const hasAppLayoutAside =
-      appLayoutContext?.components.includes('appLayoutAside') ?? true;
+      appLayoutContext?.components.includes('aside') ?? true;
     if (!hasAppLayoutAside) {
       return null;
     }
@@ -62,7 +61,7 @@ export const AppLayoutAside = componentFactory<IAppLayoutAsideFactory>(
         side={side}
         onClose={() => {
           onClose?.();
-          appLayoutContext?.appLayoutAside?.state?.close?.();
+          appLayoutContext?.aside?.state?.close?.();
         }}
         ref={forwardedRef}
         {...other}
