@@ -1,8 +1,8 @@
 import { useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
-import type { IAppLayoutNavigationRailThemeFactory } from './AppLayoutNavigationRail.css';
-import type { IAppLayoutNavigationRailFactory } from './AppLayoutNavigationRail.types';
+import type { INavigationRailThemeFactory } from './NavigationRail.css';
+import type { INavigationRailFactory } from './NavigationRail.types';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
@@ -10,27 +10,26 @@ import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { useAppLayoutContext } from '../AppLayout/AppLayout.context';
 import { Motion } from '../Motion';
 import { NavigationRailContent } from '../NavigationRailContent';
-import { appLayoutNavigationRailTheme } from './AppLayoutNavigationRail.css';
+import { navigationRailTheme } from './NavigationRail.css';
 
-const COMPONENT_NAME = 'AppLayoutNavigationRail';
+const COMPONENT_NAME = 'NavigationRail';
 
-export const AppLayoutNavigationRail =
-  componentFactory<IAppLayoutNavigationRailFactory>((props, forwardedRef) => {
+export const NavigationRail = componentFactory<INavigationRailFactory>(
+  (props, forwardedRef) => {
     const { classNames, className, styles, style, variant, opened, ...other } =
       useProps({ componentName: COMPONENT_NAME, props });
 
     const appLayoutContext = useAppLayoutContext();
 
-    const { getStyles } =
-      useComponentTheme<IAppLayoutNavigationRailThemeFactory>({
-        componentName: COMPONENT_NAME,
-        classNames,
-        className,
-        styles,
-        style,
-        variant,
-        theme: appLayoutNavigationRailTheme,
-      });
+    const { getStyles } = useComponentTheme<INavigationRailThemeFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
+      className,
+      styles,
+      style,
+      variant,
+      theme: navigationRailTheme,
+    });
 
     const transitionNodeRef = useRef<HTMLDivElement>(null);
     const transitionNodeHandleRef = useMergeRefs(
@@ -70,8 +69,9 @@ export const AppLayoutNavigationRail =
         )}
       </CSSTransition>
     );
-  });
+  },
+);
 
-AppLayoutNavigationRail.theme = appLayoutNavigationRailTheme;
-AppLayoutNavigationRail.displayName = `@sixui/${COMPONENT_NAME}`;
-AppLayoutNavigationRail.Destination = NavigationRailContent.Destination;
+NavigationRail.theme = navigationRailTheme;
+NavigationRail.displayName = `@sixui/${COMPONENT_NAME}`;
+NavigationRail.Destination = NavigationRailContent.Destination;

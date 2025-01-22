@@ -3,25 +3,25 @@ import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { INavigationRailContentOwnProps } from '../NavigationRailContent';
 import type {
-  appLayoutNavigationRailTheme,
-  IAppLayoutNavigationRailThemeFactory,
-} from './AppLayoutNavigationRail.css';
+  INavigationRailThemeFactory,
+  navigationRailTheme,
+} from './NavigationRail.css';
 import { NavigationRailDestination } from '../NavigationRailDestination';
 
-export interface IAppLayoutNavigationRailOwnProps
+export interface INavigationRailOwnProps
   extends INavigationRailContentOwnProps {
   opened?: boolean;
 }
 
-export interface IAppLayoutNavigationRailProps
+export interface INavigationRailProps
   extends IBoxProps,
-    IComponentThemeProps<IAppLayoutNavigationRailThemeFactory>,
-    IAppLayoutNavigationRailOwnProps {}
+    IComponentThemeProps<INavigationRailThemeFactory>,
+    INavigationRailOwnProps {}
 
-export type IAppLayoutNavigationRailFactory = IComponentFactory<{
-  props: IAppLayoutNavigationRailProps;
+export type INavigationRailFactory = IComponentFactory<{
+  props: INavigationRailProps;
   ref: HTMLDivElement;
-  theme: typeof appLayoutNavigationRailTheme;
+  theme: typeof navigationRailTheme;
   staticComponents: {
     Destination: typeof NavigationRailDestination;
   };

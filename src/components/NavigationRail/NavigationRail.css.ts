@@ -53,13 +53,13 @@ const classNames = createStyles({
   },
 });
 
-export type IAppLayoutNavigationRailThemeFactory = IComponentThemeFactory<{
+export type INavigationRailThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
 }>;
 
-export const appLayoutNavigationRailTheme =
-  componentThemeFactory<IAppLayoutNavigationRailThemeFactory>({
+export const navigationRailTheme =
+  componentThemeFactory<INavigationRailThemeFactory>({
     classNames,
     tokensClassName,
     tokens,
