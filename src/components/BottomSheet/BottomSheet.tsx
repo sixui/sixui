@@ -52,7 +52,7 @@ export const BottomSheet = componentFactory<IBottomSheetFactory>(
         opened={bottomSheetOpened}
         onClose={() => {
           onClose?.();
-          appLayoutContext?.aside?.state?.close();
+          appLayoutContext?.bottomSheet?.state?.close();
         }}
         side="bottom"
         modal={modal}
