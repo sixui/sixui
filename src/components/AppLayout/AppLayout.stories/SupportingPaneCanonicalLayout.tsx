@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 
+import { Aside } from '~/components/Aside';
 import { BottomSheet } from '~/components/BottomSheet';
 import { Box } from '~/components/Box';
 import { Flex } from '~/components/Flex';
@@ -81,7 +82,7 @@ export const SupportingPaneCanonicalLayout: React.FC<
 
         {hasSupportingPaneAside && supportingPaneAside && (
           <AppLayout.SideSheet side="right">
-            <AppLayout.Aside divider>{supportingPaneAside}</AppLayout.Aside>
+            <Aside divider>{supportingPaneAside}</Aside>
           </AppLayout.SideSheet>
         )}
       </Flex>

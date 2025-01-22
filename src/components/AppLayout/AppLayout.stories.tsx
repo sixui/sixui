@@ -12,8 +12,8 @@ import { AppLayout } from './AppLayout';
 import { CanonicalLayout } from './AppLayout.stories/CanonicalLayout';
 import { Footer } from './AppLayout.stories/Footer';
 import { Header } from './AppLayout.stories/Header';
-import { NavigationDrawer } from './AppLayout.stories/NavigationDrawer';
-import { NavigationRail } from './AppLayout.stories/NavigationRail';
+import { MainNavigationDrawer } from './AppLayout.stories/MainNavigationDrawer';
+import { MainNavigationRail } from './AppLayout.stories/MainNavigationRail';
 
 const meta = {
   component: AppLayout,
@@ -28,7 +28,7 @@ const defaultArgs = {
 const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
   const [activeDestination, setActiveDestination] = useState<
     ICanonicalLayoutType | undefined
-  >('feed');
+  >('listDetail');
 
   return (
     <Frame
@@ -52,13 +52,13 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
 
             <Flex direction="row" align="start">
               <AppLayout.SideSheet>
-                <NavigationRail
+                <MainNavigationRail
                   activeDestination={activeDestination}
                   onClick={setActiveDestination}
                   divider
                 />
 
-                <NavigationDrawer
+                <MainNavigationDrawer
                   activeDestination={activeDestination}
                   onClick={setActiveDestination}
                   divider
@@ -79,7 +79,7 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
 const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
   const [activeDestination, setActiveDestination] = useState<
     ICanonicalLayoutType | undefined
-  >('feed');
+  >('listDetail');
 
   return (
     <Frame
@@ -97,13 +97,13 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
           <Flex direction="column">
             <Flex direction="row" align="start">
               <AppLayout.SideSheet fullHeight>
-                <NavigationRail
+                <MainNavigationRail
                   activeDestination={activeDestination}
                   onClick={setActiveDestination}
                   divider
                 />
 
-                <NavigationDrawer
+                <MainNavigationDrawer
                   activeDestination={activeDestination}
                   onClick={setActiveDestination}
                   divider

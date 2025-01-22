@@ -1,5 +1,6 @@
 import { createSequence } from '@olivierpascal/helpers';
 
+import { Aside } from '~/components/Aside';
 import { BottomSheet } from '~/components/BottomSheet';
 import { Button } from '~/components/Button';
 import { Flex } from '~/components/Flex';
@@ -37,9 +38,9 @@ export const CustomLayout: React.FC = () => {
         </AppLayout.Body>
 
         <AppLayout.SideSheet side="right">
-          <AppLayout.Aside divider>
+          <Aside divider>
             <AsideContent />
-          </AppLayout.Aside>
+          </Aside>
         </AppLayout.SideSheet>
       </Flex>
 
