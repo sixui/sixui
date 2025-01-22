@@ -5,7 +5,7 @@ import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { NavigationRail } from '../NavigationRail';
+import { NavigationRailContent } from '../NavigationRailContent';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 import { appLayoutTheme } from '../AppLayout/AppLayout.css';
 
@@ -34,7 +34,7 @@ const classNames = createStyles({
   root: {
     height: '100%',
 
-    vars: createTokensVars(NavigationRail.theme.tokens, {
+    vars: createTokensVars(NavigationRailContent.theme.tokens, {
       container: {
         width: tokens.container.width,
         color: tokens.container.color,

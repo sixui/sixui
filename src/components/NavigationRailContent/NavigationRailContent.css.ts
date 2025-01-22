@@ -86,14 +86,14 @@ const classNames = createStyles({
   },
 });
 
-export type INavigationRailThemeFactory = IComponentThemeFactory<{
+export type INavigationRailContentThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   modifier: IModifier;
 }>;
 
-export const navigationRailTheme =
-  componentThemeFactory<INavigationRailThemeFactory>({
+export const navigationRailContentTheme =
+  componentThemeFactory<INavigationRailContentThemeFactory>({
     classNames,
     tokensClassName,
     tokens,

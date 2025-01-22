@@ -4,11 +4,11 @@ import type { IBoxProps } from '../Box';
 import type { NavigationRailDestination } from '../NavigationRailDestination';
 import type { IPaperBaseOwnProps } from '../PaperBase';
 import type {
-  INavigationRailThemeFactory,
-  navigationRailTheme,
-} from './NavigationRail.css';
+  INavigationRailContentThemeFactory,
+  navigationRailContentTheme,
+} from './NavigationRailContent.css';
 
-export interface INavigationRailOwnProps extends IPaperBaseOwnProps {
+export interface INavigationRailContentOwnProps extends IPaperBaseOwnProps {
   header?: React.ReactNode;
   children?: React.ReactNode;
   footer?: React.ReactNode;
@@ -16,15 +16,15 @@ export interface INavigationRailOwnProps extends IPaperBaseOwnProps {
   divider?: boolean;
 }
 
-export interface INavigationRailProps
+export interface INavigationRailContentProps
   extends IBoxProps,
-    IComponentThemeProps<INavigationRailThemeFactory>,
-    INavigationRailOwnProps {}
+    IComponentThemeProps<INavigationRailContentThemeFactory>,
+    INavigationRailContentOwnProps {}
 
-export type INavigationRailFactory = IComponentFactory<{
-  props: INavigationRailProps;
+export type INavigationRailContentFactory = IComponentFactory<{
+  props: INavigationRailContentProps;
   ref: HTMLDivElement;
-  theme: typeof navigationRailTheme;
+  theme: typeof navigationRailContentTheme;
   staticComponents: {
     Destination: typeof NavigationRailDestination;
   };

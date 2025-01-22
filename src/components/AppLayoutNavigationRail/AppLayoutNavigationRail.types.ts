@@ -1,7 +1,7 @@
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
-import type { INavigationRailOwnProps } from '../NavigationRail';
+import type { INavigationRailContentOwnProps } from '../NavigationRailContent';
 import type {
   appLayoutNavigationRailTheme,
   IAppLayoutNavigationRailThemeFactory,
@@ -9,7 +9,7 @@ import type {
 import { NavigationRailDestination } from '../NavigationRailDestination';
 
 export interface IAppLayoutNavigationRailOwnProps
-  extends INavigationRailOwnProps {
+  extends INavigationRailContentOwnProps {
   opened?: boolean;
 }
 

@@ -9,7 +9,7 @@ import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { useAppLayoutContext } from '../AppLayout/AppLayout.context';
 import { Motion } from '../Motion';
-import { NavigationRail } from '../NavigationRail';
+import { NavigationRailContent } from '../NavigationRailContent';
 import { appLayoutNavigationRailTheme } from './AppLayoutNavigationRail.css';
 
 const COMPONENT_NAME = 'AppLayoutNavigationRail';
@@ -65,7 +65,7 @@ export const AppLayoutNavigationRail =
             {...getStyles('transitionContainer')}
             ref={transitionNodeHandleRef}
           >
-            <NavigationRail {...getStyles('root')} {...other} />
+            <NavigationRailContent {...getStyles('root')} {...other} />
           </Motion>
         )}
       </CSSTransition>
@@ -74,4 +74,4 @@ export const AppLayoutNavigationRail =
 
 AppLayoutNavigationRail.theme = appLayoutNavigationRailTheme;
 AppLayoutNavigationRail.displayName = `@sixui/${COMPONENT_NAME}`;
-AppLayoutNavigationRail.Destination = NavigationRail.Destination;
+AppLayoutNavigationRail.Destination = NavigationRailContent.Destination;

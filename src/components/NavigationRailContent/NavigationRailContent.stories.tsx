@@ -13,15 +13,15 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IOmit } from '~/helpers/types';
-import type { INavigationRailProps } from './NavigationRail.types';
+import type { INavigationRailContentProps } from './NavigationRailContent.types';
 import { Badge } from '../Badge';
 import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Placeholder } from '../Placeholder';
-import { NavigationRail } from './NavigationRail';
+import { NavigationRailContent } from './NavigationRailContent';
 
 const meta = {
-  component: NavigationRail,
-} satisfies Meta<typeof NavigationRail>;
+  component: NavigationRailContent,
+} satisfies Meta<typeof NavigationRailContent>;
 
 type IStory = StoryObj<typeof meta>;
 
@@ -30,16 +30,16 @@ const defaultArgs = {
   footer: <Placeholder label="Trailing" />,
   divider: true,
   h: '$128',
-} satisfies Partial<INavigationRailProps>;
+} satisfies Partial<INavigationRailContentProps>;
 
-const NavigationRailDemo: React.FC<IOmit<INavigationRailProps, 'children'>> = (
-  props,
-) => {
+const NavigationRailContentDemo: React.FC<
+  IOmit<INavigationRailContentProps, 'children'>
+> = (props) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <NavigationRail {...props}>
-      <NavigationRail.Destination
+    <NavigationRailContent {...props}>
+      <NavigationRailContent.Destination
         icon={<FontAwesomeIcon icon={faSquare} />}
         activeIcon={<FontAwesomeIcon icon={fasSquare} />}
         label="First"
@@ -47,7 +47,7 @@ const NavigationRailDemo: React.FC<IOmit<INavigationRailProps, 'children'>> = (
         active={activeIndex === 0}
         badge={<Badge value="3" />}
       />
-      <NavigationRail.Destination
+      <NavigationRailContent.Destination
         icon={<FontAwesomeIcon icon={faCircle} />}
         activeIcon={<FontAwesomeIcon icon={fasCircle} />}
         label="Second"
@@ -55,22 +55,24 @@ const NavigationRailDemo: React.FC<IOmit<INavigationRailProps, 'children'>> = (
         active={activeIndex === 1}
         badge={<Badge dot />}
       />
-      <NavigationRail.Destination
+      <NavigationRailContent.Destination
         icon={<FontAwesomeIcon icon={faHeart} />}
         activeIcon={<FontAwesomeIcon icon={fasHeart} />}
         label="Third"
         onClick={() => setActiveIndex(2)}
         active={activeIndex === 2}
       />
-    </NavigationRail>
+    </NavigationRailContent>
   );
 };
 
-const NavigationRailDemoShowcase = componentShowcaseFactory(NavigationRailDemo);
+const NavigationRailContentDemoShowcase = componentShowcaseFactory(
+  NavigationRailContentDemo,
+);
 
 export const Configurations: IStory = {
   render: (props) => (
-    <NavigationRailDemoShowcase
+    <NavigationRailContentDemoShowcase
       props={props}
       cols={[
         { legend: 'Justify start', props: { justify: 'start' } },
