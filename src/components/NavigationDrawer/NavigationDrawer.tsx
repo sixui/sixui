@@ -1,8 +1,8 @@
 import { useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
-import type { IAppLayoutNavigationDrawerThemeFactory } from './AppLayoutNavigationDrawer.css';
-import type { IAppLayoutNavigationDrawerFactory } from './AppLayoutNavigationDrawer.types';
+import type { INavigationDrawerThemeFactory } from './NavigationDrawer.css';
+import type { INavigationDrawerFactory } from './NavigationDrawer.types';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
@@ -11,13 +11,14 @@ import { useAppLayoutContext } from '../AppLayout/AppLayout.context';
 import { Drawer } from '../Drawer';
 import { Motion } from '../Motion';
 import { NavigationDrawerContent } from '../NavigationDrawerContent';
+import { NavigationDrawerDestination } from '../NavigationDrawerDestination';
 import { NavigationDrawerSection } from '../NavigationDrawerSection';
-import { appLayoutNavigationDrawerTheme } from './AppLayoutNavigationDrawer.css';
+import { navigationDrawerTheme } from './NavigationDrawer.css';
 
-const COMPONENT_NAME = 'AppLayoutNavigationDrawer';
+const COMPONENT_NAME = 'NavigationDrawer';
 
-export const AppLayoutNavigationDrawer =
-  componentFactory<IAppLayoutNavigationDrawerFactory>((props, forwardedRef) => {
+export const NavigationDrawer = componentFactory<INavigationDrawerFactory>(
+  (props, forwardedRef) => {
     const {
       classNames,
       className,
@@ -27,21 +28,21 @@ export const AppLayoutNavigationDrawer =
       detached,
       standardOpened,
       modalOpened,
+      onClose,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
     const appLayoutContext = useAppLayoutContext();
 
-    const { getStyles } =
-      useComponentTheme<IAppLayoutNavigationDrawerThemeFactory>({
-        componentName: COMPONENT_NAME,
-        classNames,
-        className,
-        styles,
-        style,
-        variant,
-        theme: appLayoutNavigationDrawerTheme,
-      });
+    const { getStyles } = useComponentTheme<INavigationDrawerThemeFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
+      className,
+      styles,
+      style,
+      variant,
+      theme: navigationDrawerTheme,
+    });
 
     const transitionNodeRef = useRef<HTMLDivElement>(null);
     const transitionNodeHandleRef = useMergeRefs(
@@ -63,7 +64,10 @@ export const AppLayoutNavigationDrawer =
           {...getStyles('drawer')}
           root={appLayoutContext?.root}
           opened={modalNavigationDrawerOpened}
-          onClose={appLayoutContext?.navigationDrawer?.state?.close}
+          onClose={() => {
+            onClose?.();
+            appLayoutContext?.navigationDrawer?.state?.close();
+          }}
           side={side}
           variant={detached ? 'detached' : undefined}
           modal
@@ -112,8 +116,10 @@ export const AppLayoutNavigationDrawer =
         </CSSTransition>
       </>
     );
-  });
+  },
+);
 
-AppLayoutNavigationDrawer.theme = appLayoutNavigationDrawerTheme;
-AppLayoutNavigationDrawer.displayName = `@sixui/${COMPONENT_NAME}`;
-AppLayoutNavigationDrawer.Section = NavigationDrawerSection;
+NavigationDrawer.theme = navigationDrawerTheme;
+NavigationDrawer.displayName = `@sixui/${COMPONENT_NAME}`;
+NavigationDrawer.Section = NavigationDrawerSection;
+NavigationDrawer.Destination = NavigationDrawerDestination;

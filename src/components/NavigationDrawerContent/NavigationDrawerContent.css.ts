@@ -51,7 +51,7 @@ export const navigationDrawerContentThemeVariants = {
       vars: createTokensVars(tokens, {
         container: {
           color: themeTokens.colorScheme.surfaceContainerLow,
-          elevation: elevationLevelPreset[1],
+          elevation: elevationLevelPreset[0],
         },
       }),
     },
@@ -61,7 +61,7 @@ export const navigationDrawerContentThemeVariants = {
       vars: createTokensVars(tokens, {
         container: {
           color: themeTokens.colorScheme.surfaceContainerLow,
-          elevation: elevationLevelPreset[1],
+          elevation: elevationLevelPreset[0],
         },
       }),
     },

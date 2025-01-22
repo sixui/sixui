@@ -54,14 +54,14 @@ const classNames = createStyles({
   },
 });
 
-export type IAppLayoutNavigationDrawerThemeFactory = IComponentThemeFactory<{
+export type INavigationDrawerThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   modifier: IModifier;
 }>;
 
-export const appLayoutNavigationDrawerTheme =
-  componentThemeFactory<IAppLayoutNavigationDrawerThemeFactory>({
+export const navigationDrawerTheme =
+  componentThemeFactory<INavigationDrawerThemeFactory>({
     classNames,
     tokensClassName,
     tokens,

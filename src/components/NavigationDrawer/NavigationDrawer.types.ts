@@ -2,29 +2,31 @@ import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { INavigationDrawerContentOwnProps } from '../NavigationDrawerContent';
+import type { NavigationDrawerDestination } from '../NavigationDrawerDestination';
 import type { NavigationDrawerSection } from '../NavigationDrawerSection';
 import type {
-  appLayoutNavigationDrawerTheme,
-  IAppLayoutNavigationDrawerThemeFactory,
-} from './AppLayoutNavigationDrawer.css';
+  INavigationDrawerThemeFactory,
+  navigationDrawerTheme,
+} from './NavigationDrawer.css';
 
-export interface IAppLayoutNavigationDrawerOwnProps
+export interface INavigationDrawerOwnProps
   extends INavigationDrawerContentOwnProps {
   detached?: boolean;
   standardOpened?: boolean;
   modalOpened?: boolean;
 }
 
-export interface IAppLayoutNavigationDrawerProps
+export interface INavigationDrawerProps
   extends IBoxProps,
-    IComponentThemeProps<IAppLayoutNavigationDrawerThemeFactory>,
-    IAppLayoutNavigationDrawerOwnProps {}
+    IComponentThemeProps<INavigationDrawerThemeFactory>,
+    INavigationDrawerOwnProps {}
 
-export type IAppLayoutNavigationDrawerFactory = IComponentFactory<{
-  props: IAppLayoutNavigationDrawerProps;
+export type INavigationDrawerFactory = IComponentFactory<{
+  props: INavigationDrawerProps;
   ref: HTMLDivElement;
-  theme: typeof appLayoutNavigationDrawerTheme;
+  theme: typeof navigationDrawerTheme;
   staticComponents: {
     Section: typeof NavigationDrawerSection;
+    Destination: typeof NavigationDrawerDestination;
   };
 }>;
