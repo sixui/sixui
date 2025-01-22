@@ -91,7 +91,6 @@ export const SupportingPaneCanonicalLayout: React.FC<
           showCloseButton
           opened={bottomSheetOpened}
           onClose={() => toggleBottomSheet(false)}
-          modal
         >
           {supportingPaneBottomSheet}
         </BottomSheet>

@@ -28,10 +28,10 @@ const [tokensClassName, tokens] = createTheme({
       normal: px(themeTokens.shape.corner.lg),
       iconOnly: px(themeTokens.shape.corner.full),
     },
+    width: px(56),
   },
   activeIndicator: {
     color: themeTokens.colorScheme.secondaryContainer,
-    width: px(56),
     height: {
       normal: calc.add(px(32), DENSITY),
       iconOnly: calc.add(px(56), DENSITY),
@@ -120,6 +120,7 @@ const classNames = createStyles({
     alignItems: 'center',
     justifyContent: 'center',
     gap: calc.add(tokens.gap, DENSITY),
+    width: tokens.container.width,
 
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {
@@ -183,10 +184,10 @@ const classNames = createStyles({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: tokens.activeIndicator.width,
     height: tokens.activeIndicator.height.normal,
     borderRadius: tokens.activeIndicator.shape.normal,
     backgroundColor: 'unset',
+    width: '100%',
 
     selectors: {
       [getModifierSelector<IModifier>('icon-only', root)]: {

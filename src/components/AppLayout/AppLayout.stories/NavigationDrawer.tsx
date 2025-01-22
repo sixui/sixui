@@ -8,7 +8,7 @@ import {
 import {
   faCircle as fasCircle,
   faHeart as fasHeart,
-  faQuestion as fasQuestionCircle,
+  faQuestionCircle as fasQuestionCircle,
   faSquare as fasSquare,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

@@ -25,6 +25,7 @@ const [tokensClassName, tokens] = createTheme({
 const classNames = createStyles({
   root: {
     height: calc.subtract('max-content', tokens.fixedTopSpace),
+    minHeight: px(56),
     left: tokens.fixedHorizontalSpace.normal,
     right: tokens.fixedHorizontalSpace.normal,
 
