@@ -5,8 +5,9 @@ import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { SideSheet } from '../SideSheet';
+import { ModalSideSheet } from '../ModalSideSheet';
 import { SideSheetContent } from '../SideSheetContent';
+import { StandardSideSheet } from '../StandardSideSheet';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 import { appLayoutTheme } from '../AppLayout/AppLayout.css';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
@@ -25,11 +26,18 @@ const [tokensClassName, tokens] = createTheme({
 
 const classNames = createStyles({
   root: {
-    vars: createTokensVars(SideSheet.theme.tokens, {
-      container: {
-        width: tokens.container.width,
-      },
-    }),
+    vars: {
+      ...createTokensVars(ModalSideSheet.theme.tokens, {
+        container: {
+          width: tokens.container.width,
+        },
+      }),
+      ...createTokensVars(StandardSideSheet.theme.tokens, {
+        container: {
+          width: tokens.container.width,
+        },
+      }),
+    },
   },
   sideSheetContent: {
     vars: createTokensVars(SideSheetContent.theme.tokens, {

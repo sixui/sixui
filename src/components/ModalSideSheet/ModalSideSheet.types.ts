@@ -1,4 +1,3 @@
-import type { IOmit } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
@@ -8,11 +7,9 @@ import type {
   modalSideSheetTheme,
 } from './ModalSideSheet.css';
 
-export interface IModalSideSheetOwnProps
-  extends IOmit<ISideSheetContentOwnProps, 'side'> {
+export interface IModalSideSheetOwnProps extends ISideSheetContentOwnProps {
   opened?: boolean;
   detached?: boolean;
-  side?: 'left' | 'right';
   root?: HTMLElement | null;
 }
 

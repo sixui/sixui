@@ -1,10 +1,10 @@
 import { createSequence } from '@olivierpascal/helpers';
 
+import { Aside } from '~/components/Aside';
 import { BottomSheet } from '~/components/BottomSheet';
 import { Button } from '~/components/Button';
 import { Flex } from '~/components/Flex';
 import { Placeholder } from '~/components/Placeholder';
-import { SideSheet } from '~/components/SideSheet';
 import { Text } from '~/components/Text';
 import { useToggle } from '~/hooks/useToggle';
 import { AppLayout } from '../AppLayout';
@@ -37,9 +37,9 @@ export const CustomLayout: React.FC = () => {
       </AppLayout.Body>
 
       <AppLayout.SideSheet side="right">
-        <SideSheet divider>
+        <Aside divider>
           <AsideContent />
-        </SideSheet>
+        </Aside>
       </AppLayout.SideSheet>
 
       <BottomSheet

@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 
+import { Aside } from '~/components/Aside';
 import { BottomSheet } from '~/components/BottomSheet';
 import { Box } from '~/components/Box';
 import { Flex } from '~/components/Flex';
-import { SideSheet } from '~/components/SideSheet';
 import { isFunction } from '~/helpers/isFunction';
 import { useCanonicalLayout } from '~/hooks/useCanonicalLayout';
 import { useToggle } from '~/hooks/useToggle';
@@ -82,9 +82,9 @@ export const SupportingPaneCanonicalLayout: React.FC<
 
         {hasSupportingPaneAside && supportingPaneAside && (
           <AppLayout.SideSheet side="right">
-            <SideSheet side="right" divider>
+            <Aside side="right" divider>
               {supportingPaneAside}
-            </SideSheet>
+            </Aside>
           </AppLayout.SideSheet>
         )}
       </Flex>

@@ -1,4 +1,3 @@
-import type { IOmit } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
@@ -8,11 +7,8 @@ import type {
   standardSideSheetTheme,
 } from './StandardSideSheet.css';
 
-export interface IStandardSideSheetOwnProps
-  extends IOmit<ISideSheetContentOwnProps, 'side'> {
+export interface IStandardSideSheetOwnProps extends ISideSheetContentOwnProps {
   opened?: boolean;
-  side?: 'left' | 'right';
-  onClose?: () => void;
 }
 
 export interface IStandardSideSheetProps

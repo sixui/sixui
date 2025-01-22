@@ -4,11 +4,11 @@ import { createStyles } from '~/utils/styles/createStyles';
 
 const classNames = createStyles();
 
-export type ISideSheetThemeFactory = IComponentThemeFactory<{
+export type IAsideThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
 }>;
 
-export const sideSheetTheme = componentThemeFactory<ISideSheetThemeFactory>({
+export const asideTheme = componentThemeFactory<IAsideThemeFactory>({
   classNames,
   tokens: undefined,
 });
