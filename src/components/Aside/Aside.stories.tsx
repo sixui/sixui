@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IAppLayoutAsideProps } from './AppLayoutAside.types';
+import type { IAsideProps } from './Aside.types';
 import { px } from '~/helpers/styles/px';
 import { useToggle } from '~/hooks/useToggle';
 import { AppLayoutSideSheet } from '../AppLayoutSideSheet';
@@ -9,21 +9,21 @@ import { Flex } from '../Flex';
 import { Frame } from '../Frame';
 import { Placeholder } from '../Placeholder';
 import { themeTokens } from '../ThemeProvider';
-import { AppLayoutAside } from './AppLayoutAside';
+import { Aside } from './Aside';
 
 const meta = {
-  component: AppLayoutAside,
-} satisfies Meta<typeof AppLayoutAside>;
+  component: Aside,
+} satisfies Meta<typeof Aside>;
 
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  children: <Placeholder expanded diagonals />,
+  children: <Placeholder expanded diagonals label="Aside" />,
   divider: true,
-} satisfies Partial<IAppLayoutAsideProps>;
+} satisfies Partial<IAsideProps>;
 
-const AppLayoutAsideFrame: React.FC<IAppLayoutAsideProps> = (props) => {
-  const [standardOpened, toggleStandardOpened] = useToggle([false, true]);
+const AsideFrame: React.FC<IAsideProps> = (props) => {
+  const [standardOpened, toggleStandardOpened] = useToggle([true, false]);
   const [modalOpened, toggleModalOpened] = useToggle([false, true]);
 
   return (
@@ -46,20 +46,23 @@ const AppLayoutAsideFrame: React.FC<IAppLayoutAsideProps> = (props) => {
           borderColor: themeTokens.colorScheme.outlineVariant,
         }}
       >
-        <AppLayoutSideSheet side="right">
-          <AppLayoutAside
-            standardOpened={standardOpened}
-            modalOpened={modalOpened}
-            {...props}
-          />
-        </AppLayoutSideSheet>
+        <Flex direction="row" h="100%">
+          <Placeholder w="$48" h="100%" diagonals label="Page" />
+          <AppLayoutSideSheet side="right">
+            <Aside
+              standardOpened={standardOpened}
+              modalOpened={modalOpened}
+              {...props}
+            />
+          </AppLayoutSideSheet>
+        </Flex>
       </Frame>
     </Flex>
   );
 };
 
 export const Basic: IStory = {
-  render: (props) => <AppLayoutAsideFrame {...props} />,
+  render: (props) => <AsideFrame {...props} />,
   args: defaultArgs,
 };
 

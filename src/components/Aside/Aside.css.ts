@@ -54,15 +54,14 @@ const classNames = createStyles({
   },
 });
 
-export type IAppLayoutAsideThemeFactory = IComponentThemeFactory<{
+export type IAsideThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   modifier: IModifier;
 }>;
 
-export const appLayoutAsideTheme =
-  componentThemeFactory<IAppLayoutAsideThemeFactory>({
-    classNames,
-    tokensClassName,
-    tokens,
-  });
+export const asideTheme = componentThemeFactory<IAsideThemeFactory>({
+  classNames,
+  tokensClassName,
+  tokens,
+});
