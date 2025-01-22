@@ -18,13 +18,12 @@ export type ICanonicalLayoutPane = {
   name: 'listDetail' | 'list' | 'detail' | 'focus' | 'supporting' | 'feed';
   type?: 'body' | 'bottomSheet' | 'aside';
   dismissible?: boolean;
-  columns?: number;
 };
 
 export type ICanonicalLayout = {
   windowSizeClass: IUseWindowSizeClassResult | undefined;
   navigationMode: ICanonicalLayoutNavigationMode;
-  orientation: IOrientation;
+  orientation?: IOrientation;
   panes: Array<ICanonicalLayoutPane>;
   standardAside?: {
     maxWidth?: number;
@@ -171,7 +170,7 @@ export const useCanonicalLayout = (
           windowSizeClass,
           navigationMode,
           orientation: 'vertical',
-          panes: [{ name: 'feed', columns: 1 }],
+          panes: [{ name: 'feed' }],
           standardAside,
         };
       }
@@ -180,8 +179,7 @@ export const useCanonicalLayout = (
         return {
           windowSizeClass,
           navigationMode,
-          orientation: 'vertical',
-          panes: [{ name: 'feed', columns: 2 }],
+          panes: [{ name: 'feed' }],
           standardAside,
         };
       }
@@ -189,8 +187,7 @@ export const useCanonicalLayout = (
       return {
         windowSizeClass,
         navigationMode,
-        orientation: 'horizontal',
-        panes: [{ name: 'feed', columns: 3 }],
+        panes: [{ name: 'feed' }],
         standardAside,
       };
   }

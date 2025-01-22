@@ -4,9 +4,9 @@ import { useCanonicalLayout } from '~/hooks/useCanonicalLayout';
 import { AppLayout } from '../AppLayout';
 
 export interface IListDetailCanonicalLayoutProps {
-  listPane?: React.ReactNode;
-  detailPane?: React.ReactNode;
-  listDetailPane?: React.ReactNode;
+  listPane: React.ReactNode;
+  detailPane: React.ReactNode;
+  listDetailPane: React.ReactNode;
 }
 
 export const ListDetailCanonicalLayout: React.FC<

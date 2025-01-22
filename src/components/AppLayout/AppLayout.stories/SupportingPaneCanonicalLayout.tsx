@@ -15,14 +15,14 @@ export interface ISupportingPaneCanonicalLayoutFocusPaneRendererProps {
 }
 
 export interface ISupportingPaneCanonicalLayoutProps {
-  focusPane?:
+  focusPane:
     | React.ReactNode
     | ((
         props: ISupportingPaneCanonicalLayoutFocusPaneRendererProps,
       ) => React.ReactNode);
-  supportingPane?: React.ReactNode;
-  supportingPaneAside?: React.ReactNode;
-  supportingPaneBottomSheet?: React.ReactNode;
+  supportingPane: React.ReactNode;
+  supportingPaneAside: React.ReactNode;
+  supportingPaneBottomSheet: React.ReactNode;
 }
 
 export const SupportingPaneCanonicalLayout: React.FC<
