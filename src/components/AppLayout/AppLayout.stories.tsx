@@ -35,6 +35,13 @@ import { Text } from '../Text';
 import { themeTokens } from '../ThemeProvider';
 import { AppLayout } from './AppLayout';
 import { useAppLayoutContext } from './AppLayout.context';
+import { DetailPane } from './AppLayout.stories/DetailPane';
+import { FocusPane } from './AppLayout.stories/FocusPane';
+import { ListDetailCanonicalLayout } from './AppLayout.stories/ListDetailCanonicalLayout';
+import { ListDetailPane } from './AppLayout.stories/ListDetailPane';
+import { ListPane } from './AppLayout.stories/ListPane';
+import { SupportingPane } from './AppLayout.stories/SupportingPane';
+import { SupportingPaneCanonicalLayout } from './AppLayout.stories/SupportingPaneCanonicalLayout';
 
 const meta = {
   component: AppLayout,
@@ -87,13 +94,53 @@ const HeaderContentDemo: React.FC = () => {
   );
 };
 
-type IBodyDemoProps = {
-  canonicalLayoutType: ICanonicalLayoutType;
+const FeedBodyDemo: React.FC = () => {
+  const canonicalLayout = useCanonicalLayout('feed');
+
+  return <div>FeedBodyDemo</div>;
 };
 
-const CanonicalLayoutBodyDemo: React.FC<IBodyDemoProps> = (props) => {
-  const { canonicalLayoutType } = props;
-  const canonicalLayout = useCanonicalLayout(canonicalLayoutType);
+const CustomBodyDemo: React.FC = () => (
+  <Flex direction="row" grow={1}>
+    <AppLayout.Body pt="$6" pb="$6">
+      <Placeholder shape="$sm" grow={1} h="$64" diagonals />
+    </AppLayout.Body>
+
+    <AppLayout.SideSheet side="right">
+      <AppLayout.Aside divider>
+        <AsideContent />
+      </AppLayout.Aside>
+    </AppLayout.SideSheet>
+  </Flex>
+);
+
+type ICanonicalLayoutBodyProps = {
+  activeDestination?: ICanonicalLayoutType;
+};
+
+const CanonicalLayoutBody: React.FC<ICanonicalLayoutBodyProps> = (props) => {
+  const { activeDestination } = props;
+
+  return activeDestination === 'listDetail' ? (
+    <ListDetailCanonicalLayout
+      listPane={<ListPane />}
+      detailPane={<DetailPane />}
+      listDetailPane={<ListDetailPane />}
+    />
+  ) : activeDestination === 'supportingPane' ? (
+    <SupportingPaneCanonicalLayout
+      focusPane={(props) => <FocusPane {...props} />}
+      supportingPane={<SupportingPane />}
+      supportingPaneAside={<SupportingPane />}
+      supportingPaneBottomSheet={<SupportingPane />}
+    />
+  ) : activeDestination === 'feed' ? (
+    <FeedBodyDemo />
+  ) : (
+    <CustomBodyDemo />
+  );
+
+  const canonicalLayout = useCanonicalLayout(activeDestination);
   const [bottomSheetOpened, toggleBottomSheet] = useToggle([false, true]);
   const hasBottomSheet = canonicalLayout.panes.some(
     (pane) => pane.type === 'bottomSheet',
@@ -227,20 +274,6 @@ const CanonicalLayoutBodyDemo: React.FC<IBodyDemoProps> = (props) => {
     </>
   );
 };
-
-const BodyDemo: React.FC = () => (
-  <Flex direction="row" grow={1}>
-    <AppLayout.Body pt="$6" pb="$6">
-      <Placeholder shape="$sm" grow={1} h="$64" diagonals />
-    </AppLayout.Body>
-
-    <AppLayout.SideSheet side="right">
-      <AppLayout.Aside divider>
-        <AsideContent />
-      </AppLayout.Aside>
-    </AppLayout.SideSheet>
-  </Flex>
-);
 
 type INavigationDrawerContentDemoProps = {
   activeDestination?: string;
@@ -411,13 +444,7 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
                 </AppLayout.NavigationDrawer>
               </AppLayout.SideSheet>
 
-              {activeDestination ? (
-                <CanonicalLayoutBodyDemo
-                  canonicalLayoutType={activeDestination}
-                />
-              ) : (
-                <BodyDemo />
-              )}
+              <CanonicalLayoutBody activeDestination={activeDestination} />
             </Flex>
           </Flex>
 
@@ -478,13 +505,7 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
                 </AppLayout.Header>
 
                 <Flex direction="row" align="start">
-                  {activeDestination ? (
-                    <CanonicalLayoutBodyDemo
-                      canonicalLayoutType={activeDestination}
-                    />
-                  ) : (
-                    <BodyDemo />
-                  )}
+                  <CanonicalLayoutBody activeDestination={activeDestination} />
                 </Flex>
               </Flex>
             </Flex>
