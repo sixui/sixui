@@ -36,10 +36,12 @@ const DrawerDemo: React.FC<IDrawerDemoProps> = (props) => {
   return (
     <Drawer {...other}>
       {({ close }) => (
-        <Paper p="$4" surface="$surface" grow={1}>
+        <Paper p="$4" surface="$inverseSurface" grow={1}>
           <Flex direction="column" align="start">
-            <Text>Press escape to close the drawer.</Text>
-            <Button onClick={close} variant="text">
+            <Text color="$inverseOnSurface">
+              Press escape to close the drawer.
+            </Text>
+            <Button onClick={close} variant="snackbar">
               Close
             </Button>
           </Flex>

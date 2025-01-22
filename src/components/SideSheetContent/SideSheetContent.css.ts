@@ -220,14 +220,14 @@ export const sideSheetContentThemeVariants = {
         [getModifierSelector<IModifier>({ side: 'left' })]: {
           vars: createTokensVars(tokens, {
             container: {
-              shape: `0 ${px(themeTokens.shape.corner.lg)} ${px(themeTokens.shape.corner.lg)} 0`,
+              shape: themeTokens.shape.corner.lg,
             },
           }),
         },
         [getModifierSelector<IModifier>({ side: 'right' })]: {
           vars: createTokensVars(tokens, {
             container: {
-              shape: `${px(themeTokens.shape.corner.lg)} 0 0 ${px(themeTokens.shape.corner.lg)}`,
+              shape: themeTokens.shape.corner.lg,
             },
           }),
         },

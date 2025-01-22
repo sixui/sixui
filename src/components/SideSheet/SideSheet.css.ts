@@ -10,7 +10,7 @@ import { SideSheetContent } from '../SideSheetContent';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 import { appLayoutTheme } from '../AppLayout/AppLayout.css';
 
-type IModifier = 'modal';
+type IModifier = 'expanded' | 'detached' | 'modal';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
@@ -24,7 +24,28 @@ const [tokensClassName, tokens] = createTheme({
 });
 
 const classNames = createStyles({
-  root: {
+  standard: {
+    position: 'sticky',
+    left: 0,
+    top: 0,
+    height: '100vh',
+    width: 0,
+    flexShrink: 0,
+
+    transitionProperty: 'width',
+    transitionDuration: themeTokens.motion.duration.short.$3,
+    transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
+
+    selectors: {
+      [getModifierSelector<IModifier>('expanded')]: {
+        width: tokens.container.width,
+        transitionDuration: themeTokens.motion.duration.long.$3,
+        transitionTimingFunction:
+          themeTokens.motion.easing.emphasized.decelerate,
+      },
+    },
+  },
+  sideSheet: {
     height: '100%',
     width: tokens.container.width,
 
@@ -39,12 +60,6 @@ const classNames = createStyles({
         width: `min(${tokens.container.width}, 100vw - ${px(48)})`,
       },
     },
-  },
-  drawer: {
-    position: 'fixed',
-    top: 0,
-    bottom: 0,
-    height: '100%',
   },
   transitionContainer: {
     position: 'absolute',

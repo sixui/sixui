@@ -8,6 +8,7 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { useAppLayoutContext } from '../AppLayout/AppLayout.context';
+import { Box } from '../Box';
 import { Drawer } from '../Drawer';
 import { Motion } from '../Motion';
 import { SideSheetContent } from '../SideSheetContent';
@@ -34,6 +35,11 @@ export const SideSheet = componentFactory<ISideSheetFactory>(
 
     const appLayoutContext = useAppLayoutContext();
 
+    const standardSideSheetOpened =
+      standardOpened ?? appLayoutContext?.aside?.state?.standardOpened;
+    const modalSideSheetOpened =
+      modalOpened ?? appLayoutContext?.aside?.state?.modalOpened;
+
     const { getStyles } = useComponentTheme<ISideSheetThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
@@ -42,6 +48,10 @@ export const SideSheet = componentFactory<ISideSheetFactory>(
       style,
       variant,
       theme: sideSheetTheme,
+      modifiers: {
+        expanded: standardSideSheetOpened,
+        detached,
+      },
     });
 
     const transitionNodeRef = useRef<HTMLDivElement>(null);
@@ -55,15 +65,10 @@ export const SideSheet = componentFactory<ISideSheetFactory>(
       return null;
     }
 
-    const standardSideSheetOpened =
-      standardOpened ?? appLayoutContext?.aside?.state?.standardOpened;
-    const modalSideSheetOpened =
-      modalOpened ?? appLayoutContext?.aside?.state?.modalOpened;
-
     return (
       <>
         <Drawer
-          {...getStyles('drawer')}
+          {...getStyles('root')}
           root={root ?? appLayoutContext?.root}
           opened={modalSideSheetOpened}
           onClose={() => {
@@ -72,11 +77,12 @@ export const SideSheet = componentFactory<ISideSheetFactory>(
           }}
           side={side}
           variant={detached ? 'detached' : undefined}
+          fullHeight
           modal
         >
           {({ close }) => (
             <SideSheetContent
-              {...getStyles('root', {
+              {...getStyles('sideSheet', {
                 modifiers: {
                   modal: true,
                 },
@@ -91,32 +97,34 @@ export const SideSheet = componentFactory<ISideSheetFactory>(
           )}
         </Drawer>
 
-        <CSSTransition
-          nodeRef={transitionNodeRef}
-          in={standardSideSheetOpened}
-          timeout={550} // motionTokens.duration$long3
-          unmountOnExit
-        >
-          {(status) => (
-            <Motion
-              status={status}
-              placement={{ side }}
-              origin="edge"
-              pattern="enterExitOffScreen"
-              {...getStyles('transitionContainer')}
-              ref={transitionNodeHandleRef}
-            >
-              <SideSheetContent
-                {...getStyles('root')}
-                side={side}
-                onClose={appLayoutContext?.aside?.state?.close}
-                variant="standard"
+        <Box {...getStyles(['root', 'standard'])}>
+          <CSSTransition
+            nodeRef={transitionNodeRef}
+            in={standardSideSheetOpened}
+            timeout={550} // motionTokens.duration$long3
+            unmountOnExit
+          >
+            {(status) => (
+              <Motion
+                status={status}
+                placement={{ side }}
+                origin="edge"
+                pattern="enterExitOffScreen"
+                {...getStyles('transitionContainer')}
                 ref={transitionNodeHandleRef}
-                {...other}
-              />
-            </Motion>
-          )}
-        </CSSTransition>
+              >
+                <SideSheetContent
+                  {...getStyles('sideSheet')}
+                  side={side}
+                  onClose={appLayoutContext?.aside?.state?.close}
+                  variant="standard"
+                  ref={transitionNodeHandleRef}
+                  {...other}
+                />
+              </Motion>
+            )}
+          </CSSTransition>
+        </Box>
       </>
     );
   },

@@ -22,7 +22,6 @@ const classNames = createStyles({
   root: {
     position: 'fixed',
     display: 'flex',
-    maxHeight: calc.subtract('100vh', calc.multiply(2, tokens.inset)),
 
     selectors: {
       [getModifierSelector<IModifier>({ side: 'left' })]: {

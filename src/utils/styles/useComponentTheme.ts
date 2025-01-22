@@ -142,8 +142,10 @@ export const useComponentTheme = <
             ? getDataAttributes({
                 variant,
                 ...modifiers,
-                ...options?.modifiers,
               })
+            : undefined),
+          ...(options?.modifiers
+            ? getDataAttributes(options.modifiers)
             : undefined),
         };
       },

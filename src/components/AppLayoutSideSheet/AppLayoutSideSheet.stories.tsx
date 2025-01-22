@@ -20,13 +20,17 @@ const AppLayoutSideSheetFrame: React.FC<IAppLayoutSideSheetFrameProps> = (
   props,
 ) => {
   const { side, ...other } = props;
-  const [opened, toggleOpened] = useToggle([true, false]);
+  const [standardOpened, toggleStandardOpened] = useToggle([true, false]);
+  const [modalOpened, toggleModalOpened] = useToggle([false, true]);
 
   return (
     <Flex direction="column" gap="$2">
       <Flex direction="row" gap="$2">
-        <Button onClick={() => toggleOpened()}>
-          {opened ? 'Close' : 'Open'}
+        <Button onClick={() => toggleStandardOpened()}>
+          {standardOpened ? 'Close' : 'Open'} standard
+        </Button>
+        <Button onClick={() => toggleModalOpened()}>
+          {modalOpened ? 'Close' : 'Open'} modal
         </Button>
       </Flex>
 
@@ -46,50 +50,50 @@ const AppLayoutSideSheetFrame: React.FC<IAppLayoutSideSheetFrameProps> = (
           h="100%"
         >
           <Placeholder label="Page" grow={1} expanded diagonals />
-          <AppLayoutSideSheet
+          {/* <AppLayoutSideSheet
             style={assignInlineVars({
               [AppLayoutSideSheet.theme.tokens.container.width]: '384px',
             })}
             side={side}
-            opened={opened}
+            opened={standardOpened}
             {...other}
-          >
-            <SideSheet
-              w="$96"
-              standardOpened={opened}
-              side={side}
-              divider
-              header={
-                <Placeholder
-                  label="Header"
-                  grow={1}
-                  h="$16"
-                  diagonals
-                  surface="$primaryContainer"
-                  color="$onPrimaryContainer"
-                />
-              }
-              footer={
-                <Placeholder
-                  label="Footer"
-                  grow={1}
-                  h="$16"
-                  diagonals
-                  surface="$primaryContainer"
-                  color="$onPrimaryContainer"
-                />
-              }
-            >
+          > */}
+          <SideSheet
+            standardOpened={standardOpened}
+            modalOpened={modalOpened}
+            side={side}
+            divider
+            header={
               <Placeholder
-                label="Content"
+                label="Header"
                 grow={1}
-                expanded
+                h="$16"
                 diagonals
                 surface="$primaryContainer"
                 color="$onPrimaryContainer"
               />
-            </SideSheet>
-          </AppLayoutSideSheet>
+            }
+            footer={
+              <Placeholder
+                label="Footer"
+                grow={1}
+                h="$16"
+                diagonals
+                surface="$primaryContainer"
+                color="$onPrimaryContainer"
+              />
+            }
+          >
+            <Placeholder
+              label="Content"
+              grow={1}
+              expanded
+              diagonals
+              surface="$primaryContainer"
+              color="$onPrimaryContainer"
+            />
+          </SideSheet>
+          {/* </AppLayoutSideSheet> */}
         </Flex>
       </Frame>
     </Flex>
