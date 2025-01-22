@@ -13,6 +13,7 @@ export interface IAppLayoutSideSheetOwnProps {
   navigationRailOpened?: boolean;
   navigationDrawerOpened?: boolean;
   asideOpened?: boolean;
+  opened?: boolean;
   side: 'left' | 'right';
 }
 

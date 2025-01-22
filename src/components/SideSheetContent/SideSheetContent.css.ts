@@ -1,7 +1,9 @@
 import { createTheme } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import type { ISideSheetContentVariant } from './SideSheetContent.types';
+import { getDensity } from '~/helpers/styles/getDensity';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { px } from '~/helpers/styles/px';
@@ -14,6 +16,8 @@ import { cssLayers, themeTokens } from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
 type IModifier = 'side' | 'with-divider' | 'with-leading-actions';
+
+const DENSITY = px(getDensity({ min: -4, max: 0 }));
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
@@ -124,8 +128,8 @@ const classNames = createStyles({
   content: {
     height: '100%',
     overflowY: 'auto',
-    paddingTop: tokens.content.topSpace,
-    paddingBottom: tokens.content.bottomSpace,
+    paddingTop: calc.add(tokens.content.topSpace, DENSITY),
+    paddingBottom: calc.add(tokens.content.bottomSpace, DENSITY),
   },
   footerContainer: {
     display: 'flex',

@@ -28,7 +28,7 @@ const defaultArgs = {
 const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
   const [activeDestination, setActiveDestination] = useState<
     ICanonicalLayoutType | undefined
-  >('listDetail');
+  >('supportingPane');
 
   return (
     <Frame
@@ -79,7 +79,7 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
 const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
   const [activeDestination, setActiveDestination] = useState<
     ICanonicalLayoutType | undefined
-  >('listDetail');
+  >('supportingPane');
 
   return (
     <Frame

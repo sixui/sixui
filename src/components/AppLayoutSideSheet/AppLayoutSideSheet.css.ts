@@ -1,4 +1,4 @@
-import { createTheme, fallbackVar } from '@vanilla-extract/css';
+import { createTheme } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
@@ -12,9 +12,10 @@ import { appLayoutTheme } from '../AppLayout/AppLayout.css';
 type IModifier =
   | 'full-height'
   | 'with-header'
-  | 'navigation-rail-opened'
-  | 'navigation-drawer-opened'
-  | 'aside-opened';
+  | 'opened'
+  | 'navigation-rail'
+  | 'navigation-drawer'
+  | 'aside';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
@@ -45,32 +46,20 @@ const classNames = createStyles({
         height: calc.subtract('100vh', appLayoutTheme.tokens.header.height),
         top: appLayoutTheme.tokens.header.height,
       },
-      [getModifierSelector<IModifier>('navigation-rail-opened')]: {
-        width: fallbackVar(
-          appLayoutTheme.tokens.navigationRail.width,
-          tokens.container.width,
-        ),
+      [getModifierSelector<IModifier>('opened')]: {
+        width: tokens.container.width,
         transitionDuration: themeTokens.motion.duration.long.$3,
         transitionTimingFunction:
           themeTokens.motion.easing.emphasized.decelerate,
       },
-      [getModifierSelector<IModifier>('navigation-drawer-opened')]: {
-        width: fallbackVar(
-          appLayoutTheme.tokens.navigationDrawer.width,
-          tokens.container.width,
-        ),
-        transitionDuration: themeTokens.motion.duration.long.$3,
-        transitionTimingFunction:
-          themeTokens.motion.easing.emphasized.decelerate,
+      [getModifierSelector<IModifier>(['opened', 'navigation-rail'])]: {
+        width: appLayoutTheme.tokens.navigationRail.width,
       },
-      [getModifierSelector<IModifier>('aside-opened')]: {
-        width: fallbackVar(
-          appLayoutTheme.tokens.aside.width,
-          tokens.container.width,
-        ),
-        transitionDuration: themeTokens.motion.duration.long.$3,
-        transitionTimingFunction:
-          themeTokens.motion.easing.emphasized.decelerate,
+      [getModifierSelector<IModifier>(['opened', 'navigation-drawer'])]: {
+        width: appLayoutTheme.tokens.navigationDrawer.width,
+      },
+      [getModifierSelector<IModifier>(['opened', 'aside'])]: {
+        width: appLayoutTheme.tokens.aside.width,
       },
     },
   },
@@ -78,7 +67,6 @@ const classNames = createStyles({
     position: 'absolute',
     insetBlock: 0,
     insetInlineStart: 0,
-    // FIXME: width: '100%',
   },
 });
 

@@ -50,12 +50,44 @@ const AppLayoutSideSheetFrame: React.FC<IAppLayoutSideSheetFrameProps> = (
             style={assignInlineVars({
               [AppLayoutSideSheet.theme.tokens.container.width]: '384px',
             })}
-            asideOpened={opened}
             side={side}
+            opened={opened}
             {...other}
           >
-            <SideSheet w="100%" standardOpened={opened} side={side} divider>
-              <Placeholder label="SideSheet" grow={1} expanded diagonals />
+            <SideSheet
+              w="$96"
+              standardOpened={opened}
+              side={side}
+              divider
+              header={
+                <Placeholder
+                  label="Header"
+                  grow={1}
+                  h="$16"
+                  diagonals
+                  surface="$primaryContainer"
+                  color="$onPrimaryContainer"
+                />
+              }
+              footer={
+                <Placeholder
+                  label="Footer"
+                  grow={1}
+                  h="$16"
+                  diagonals
+                  surface="$primaryContainer"
+                  color="$onPrimaryContainer"
+                />
+              }
+            >
+              <Placeholder
+                label="Content"
+                grow={1}
+                expanded
+                diagonals
+                surface="$primaryContainer"
+                color="$onPrimaryContainer"
+              />
             </SideSheet>
           </AppLayoutSideSheet>
         </Flex>
