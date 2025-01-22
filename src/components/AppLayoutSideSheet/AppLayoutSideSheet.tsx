@@ -19,11 +19,10 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
       variant,
       children,
       fullHeight,
-      side = 'left',
       hasHeader: hasHeaderProp,
-      hasNavigationRail: hasNavigationRailProp,
-      hasNavigationDrawer: hasNavigationDrawerProp,
-      hasAside: hasAsideProp,
+      navigationRailOpened: navigationRailOpenedProp,
+      navigationDrawerOpened: navigationDrawerOpenedProp,
+      asideOpened: asideOpenedProp,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -33,29 +32,29 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
       hasHeaderProp ?? appLayoutContext?.components.includes('header');
 
     const hasNavigationRail =
-      hasNavigationRailProp ??
+      navigationRailOpenedProp ??
       appLayoutContext?.components.includes('navigationRail');
     const navigationRailOpened =
-      hasNavigationRail &&
-      (appLayoutContext?.navigationMode === 'rail' || !appLayoutContext);
+      navigationRailOpenedProp ??
+      (hasNavigationRail &&
+        (appLayoutContext?.navigationMode === 'rail' || !appLayoutContext));
 
     const hasNavigationDrawer =
-      hasNavigationDrawerProp ??
+      navigationDrawerOpenedProp ??
       appLayoutContext?.components.includes('navigationDrawer');
     const standardNavigationDrawerOpened =
-      hasNavigationDrawer &&
-      ((appLayoutContext?.navigationMode === 'standard' &&
-        appLayoutContext?.navigationDrawer?.state?.standardOpened) ||
-        !appLayoutContext);
+      navigationDrawerOpenedProp ??
+      (hasNavigationDrawer &&
+        ((appLayoutContext?.navigationMode === 'standard' &&
+          appLayoutContext?.navigationDrawer?.state?.standardOpened) ||
+          !appLayoutContext));
 
     const hasAside =
-      hasAsideProp ?? appLayoutContext?.components.includes('aside');
+      asideOpenedProp ?? appLayoutContext?.components.includes('aside');
     const standardAsideOpened =
-      hasAside &&
-      (appLayoutContext?.aside?.state?.standardOpened || !appLayoutContext);
-
-    const isRightSide = side === 'right';
-    const isLeftSide = !isRightSide;
+      asideOpenedProp ??
+      (hasAside &&
+        (appLayoutContext?.aside?.state?.standardOpened || !appLayoutContext));
 
     const { getStyles } = useComponentTheme<IAppLayoutSideSheetThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -68,9 +67,9 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
       modifiers: {
         'full-height': fullHeight,
         'with-header': hasHeader,
-        'with-navigation-rail': isLeftSide && navigationRailOpened,
-        'with-navigation-drawer': isLeftSide && standardNavigationDrawerOpened,
-        'with-aside': isRightSide && standardAsideOpened,
+        'navigation-rail-opened': navigationRailOpened,
+        'navigation-drawer-opened': standardNavigationDrawerOpened,
+        'aside-opened': standardAsideOpened,
       },
     });
 

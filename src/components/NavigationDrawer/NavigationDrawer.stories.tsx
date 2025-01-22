@@ -75,6 +75,7 @@ const NavigationDrawerFrame: React.FC<INavigationDrawerProps> = (props) => {
           {modalOpened ? 'Close' : 'Open'} modal
         </Button>
       </Flex>
+
       <Frame
         importParentStyles
         w="100%"

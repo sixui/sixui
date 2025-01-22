@@ -1,18 +1,27 @@
+import { createTheme, fallbackVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
+import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { themeTokens } from '../ThemeProvider';
+import { cssLayers, themeTokens } from '../ThemeProvider';
 import { appLayoutTheme } from '../AppLayout/AppLayout.css';
 
 type IModifier =
   | 'full-height'
   | 'with-header'
-  | 'with-navigation-rail'
-  | 'with-navigation-drawer'
-  | 'with-aside';
+  | 'navigation-rail-opened'
+  | 'navigation-drawer-opened'
+  | 'aside-opened';
+
+const [tokensClassName, tokens] = createTheme({
+  '@layer': cssLayers.theme,
+  container: {
+    width: px(300),
+  },
+});
 
 const classNames = createStyles({
   root: {
@@ -36,20 +45,29 @@ const classNames = createStyles({
         height: calc.subtract('100vh', appLayoutTheme.tokens.header.height),
         top: appLayoutTheme.tokens.header.height,
       },
-      [getModifierSelector<IModifier>('with-navigation-rail')]: {
-        width: appLayoutTheme.tokens.navigationRail.width,
+      [getModifierSelector<IModifier>('navigation-rail-opened')]: {
+        width: fallbackVar(
+          appLayoutTheme.tokens.navigationRail.width,
+          tokens.container.width,
+        ),
         transitionDuration: themeTokens.motion.duration.long.$3,
         transitionTimingFunction:
           themeTokens.motion.easing.emphasized.decelerate,
       },
-      [getModifierSelector<IModifier>('with-navigation-drawer')]: {
-        width: appLayoutTheme.tokens.navigationDrawer.width,
+      [getModifierSelector<IModifier>('navigation-drawer-opened')]: {
+        width: fallbackVar(
+          appLayoutTheme.tokens.navigationDrawer.width,
+          tokens.container.width,
+        ),
         transitionDuration: themeTokens.motion.duration.long.$3,
         transitionTimingFunction:
           themeTokens.motion.easing.emphasized.decelerate,
       },
-      [getModifierSelector<IModifier>('with-aside')]: {
-        width: appLayoutTheme.tokens.aside.width,
+      [getModifierSelector<IModifier>('aside-opened')]: {
+        width: fallbackVar(
+          appLayoutTheme.tokens.aside.width,
+          tokens.container.width,
+        ),
         transitionDuration: themeTokens.motion.duration.long.$3,
         transitionTimingFunction:
           themeTokens.motion.easing.emphasized.decelerate,
@@ -65,11 +83,13 @@ const classNames = createStyles({
 
 export type IAppLayoutSideSheetThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
+  tokens: typeof tokens;
   modifier: IModifier;
 }>;
 
 export const appLayoutSideSheetTheme =
   componentThemeFactory<IAppLayoutSideSheetThemeFactory>({
     classNames,
-    tokens: undefined,
+    tokensClassName,
+    tokens,
   });

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IAsideProps } from './Aside.types';
+import type { ISideSheetProps } from './SideSheet.types';
 import { px } from '~/helpers/styles/px';
 import { useToggle } from '~/hooks/useToggle';
 import { AppLayoutSideSheet } from '../AppLayoutSideSheet';
@@ -9,20 +9,20 @@ import { Flex } from '../Flex';
 import { Frame } from '../Frame';
 import { Placeholder } from '../Placeholder';
 import { themeTokens } from '../ThemeProvider';
-import { Aside } from './Aside';
+import { SideSheet } from './SideSheet';
 
 const meta = {
-  component: Aside,
-} satisfies Meta<typeof Aside>;
+  component: SideSheet,
+} satisfies Meta<typeof SideSheet>;
 
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  children: <Placeholder expanded diagonals label="Aside" />,
+  children: <Placeholder expanded diagonals label="SideSheet" />,
   divider: true,
-} satisfies Partial<IAsideProps>;
+} satisfies Partial<ISideSheetProps>;
 
-const AsideFrame: React.FC<IAsideProps> = (props) => {
+const SideSheetFrame: React.FC<ISideSheetProps> = (props) => {
   const [standardOpened, toggleStandardOpened] = useToggle([true, false]);
   const [modalOpened, toggleModalOpened] = useToggle([false, true]);
 
@@ -36,6 +36,7 @@ const AsideFrame: React.FC<IAsideProps> = (props) => {
           {modalOpened ? 'Close' : 'Open'} modal
         </Button>
       </Flex>
+
       <Frame
         importParentStyles
         w="100%"
@@ -48,8 +49,8 @@ const AsideFrame: React.FC<IAsideProps> = (props) => {
       >
         <Flex direction="row" h="100%">
           <Placeholder w="$48" h="100%" diagonals label="Page" />
-          <AppLayoutSideSheet side="right">
-            <Aside
+          <AppLayoutSideSheet>
+            <SideSheet
               standardOpened={standardOpened}
               modalOpened={modalOpened}
               {...props}
@@ -62,7 +63,7 @@ const AsideFrame: React.FC<IAsideProps> = (props) => {
 };
 
 export const Basic: IStory = {
-  render: (props) => <AsideFrame {...props} />,
+  render: (props) => <SideSheetFrame {...props} />,
   args: defaultArgs,
 };
 

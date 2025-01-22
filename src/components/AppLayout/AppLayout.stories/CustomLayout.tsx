@@ -1,10 +1,10 @@
 import { createSequence } from '@olivierpascal/helpers';
 
-import { Aside } from '~/components/Aside';
 import { BottomSheet } from '~/components/BottomSheet';
 import { Button } from '~/components/Button';
 import { Flex } from '~/components/Flex';
 import { Placeholder } from '~/components/Placeholder';
+import { SideSheet } from '~/components/SideSheet';
 import { Text } from '~/components/Text';
 import { useToggle } from '~/hooks/useToggle';
 import { AppLayout } from '../AppLayout';
@@ -28,21 +28,19 @@ export const CustomLayout: React.FC = () => {
 
   return (
     <>
-      <Flex direction="row" grow={1}>
-        <AppLayout.Body pt="$6" pb="$6">
-          <Placeholder shape="$sm" grow={1} h="$64" diagonals>
-            <Button onClick={() => toggleBottomSheet()}>
-              Toggle Bottom Sheet
-            </Button>
-          </Placeholder>
-        </AppLayout.Body>
+      <AppLayout.Body pt="$6" pb="$6">
+        <Placeholder shape="$sm" grow={1} h="$64" diagonals>
+          <Button onClick={() => toggleBottomSheet()}>
+            Toggle Bottom Sheet
+          </Button>
+        </Placeholder>
+      </AppLayout.Body>
 
-        <AppLayout.SideSheet side="right">
-          <Aside divider>
-            <AsideContent />
-          </Aside>
-        </AppLayout.SideSheet>
-      </Flex>
+      <AppLayout.SideSheet>
+        <SideSheet divider>
+          <AsideContent />
+        </SideSheet>
+      </AppLayout.SideSheet>
 
       <BottomSheet
         showCloseButton

@@ -10,11 +10,10 @@ import type {
 export interface IAppLayoutSideSheetOwnProps extends IPaperOwnProps {
   children?: React.ReactNode;
   fullHeight?: boolean;
-  side?: 'left' | 'right';
   hasHeader?: boolean;
-  hasNavigationRail?: boolean;
-  hasNavigationDrawer?: boolean;
-  hasAside?: boolean;
+  navigationRailOpened?: boolean;
+  navigationDrawerOpened?: boolean;
+  asideOpened?: boolean;
 }
 
 export interface IAppLayoutSideSheetProps

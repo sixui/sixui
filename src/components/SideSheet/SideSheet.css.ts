@@ -54,13 +54,13 @@ const classNames = createStyles({
   },
 });
 
-export type IAsideThemeFactory = IComponentThemeFactory<{
+export type ISideSheetThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   modifier: IModifier;
 }>;
 
-export const asideTheme = componentThemeFactory<IAsideThemeFactory>({
+export const sideSheetTheme = componentThemeFactory<ISideSheetThemeFactory>({
   classNames,
   tokensClassName,
   tokens,

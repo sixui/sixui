@@ -66,6 +66,7 @@ const NavigationRailFrame: React.FC<INavigationRailProps> = (props) => {
           {opened ? 'Close' : 'Open'}
         </Button>
       </Flex>
+
       <Frame
         importParentStyles
         w="100%"
