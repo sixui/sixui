@@ -11,7 +11,7 @@ import { AppLayout } from '../AppLayout';
 export interface ISupportingPaneCanonicalLayoutFocusPaneRendererProps {
   hasBottomSheet: boolean;
   bottomSheetOpened: boolean;
-  toggleBottomSheet: () => void;
+  toggleBottomSheet: (opened?: boolean) => void;
 }
 
 export interface ISupportingPaneCanonicalLayoutProps {
@@ -87,7 +87,12 @@ export const SupportingPaneCanonicalLayout: React.FC<
       </Flex>
 
       {hasSupportingPaneBottomSheet && supportingPaneBottomSheet && (
-        <BottomSheet showCloseButton opened={bottomSheetOpened} modal>
+        <BottomSheet
+          showCloseButton
+          opened={bottomSheetOpened}
+          onClose={() => toggleBottomSheet(false)}
+          modal
+        >
           {supportingPaneBottomSheet}
         </BottomSheet>
       )}
