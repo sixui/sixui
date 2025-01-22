@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { ISideSheetProps } from './SideSheet.types';
 import { px } from '~/helpers/styles/px';
 import { useToggle } from '~/hooks/useToggle';
-import { AppLayoutSideSheet } from '../AppLayoutSideSheet';
 import { Button } from '../Button';
 import { Flex } from '../Flex';
 import { Frame } from '../Frame';
@@ -18,7 +17,36 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  children: <Placeholder expanded diagonals label="SideSheet" />,
+  header: (
+    <Placeholder
+      label="Header"
+      grow={1}
+      h="$16"
+      diagonals
+      surface="$primaryContainer"
+      color="$onPrimaryContainer"
+    />
+  ),
+  footer: (
+    <Placeholder
+      label="Footer"
+      grow={1}
+      h="$16"
+      diagonals
+      surface="$primaryContainer"
+      color="$onPrimaryContainer"
+    />
+  ),
+  children: (
+    <Placeholder
+      label="Content"
+      grow={1}
+      expanded
+      diagonals
+      surface="$primaryContainer"
+      color="$onPrimaryContainer"
+    />
+  ),
   divider: true,
 } satisfies Partial<ISideSheetProps>;
 
@@ -47,17 +75,33 @@ const SideSheetFrame: React.FC<ISideSheetProps> = (props) => {
           borderColor: themeTokens.colorScheme.outlineVariant,
         }}
       >
-        <Flex direction="row" h="100%">
-          <Placeholder w="$48" h="100%" diagonals label="Page" />
-          <AppLayoutSideSheet side="right">
-            <SideSheet
-              standardOpened={standardOpened}
-              modalOpened={modalOpened}
-              onClose={() => toggleModalOpened(false)}
-              {...props}
+        <SideSheet
+          standardOpened={standardOpened}
+          modalOpened={modalOpened}
+          onClose={() => toggleModalOpened(false)}
+          side="left"
+          header={
+            <Placeholder
+              label="Header"
+              grow={1}
+              h="$16"
+              diagonals
+              surface="$primaryContainer"
+              color="$onPrimaryContainer"
             />
-          </AppLayoutSideSheet>
-        </Flex>
+          }
+          footer={
+            <Placeholder
+              label="Footer"
+              grow={1}
+              h="$16"
+              diagonals
+              surface="$primaryContainer"
+              color="$onPrimaryContainer"
+            />
+          }
+          {...props}
+        />
       </Frame>
     </Flex>
   );

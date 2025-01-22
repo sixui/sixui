@@ -102,9 +102,7 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {
-  children: <Placeholder w="$96" expanded diagonals />,
-} satisfies Partial<IAppLayoutSideSheetProps>;
+const defaultArgs = {} satisfies Partial<IAppLayoutSideSheetProps>;
 
 export const Left: IStory = {
   render: (props) => <AppLayoutSideSheetFrame {...props} />,
