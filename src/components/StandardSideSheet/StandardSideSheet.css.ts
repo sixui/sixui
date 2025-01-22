@@ -10,7 +10,7 @@ import { SideSheetContent } from '../SideSheetContent';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 import { appLayoutTheme } from '../AppLayout/AppLayout.css';
 
-type IModifier = 'expanded' | 'detached' | 'modal';
+type IModifier = 'opened';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
@@ -37,7 +37,7 @@ const classNames = createStyles({
     transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
 
     selectors: {
-      [getModifierSelector<IModifier>('expanded')]: {
+      [getModifierSelector<IModifier>('opened')]: {
         width: tokens.container.width,
         transitionDuration: themeTokens.motion.duration.long.$3,
         transitionTimingFunction:
@@ -54,12 +54,6 @@ const classNames = createStyles({
         color: tokens.container.color,
       },
     }),
-
-    selectors: {
-      [getModifierSelector<IModifier>('modal')]: {
-        width: `min(${tokens.container.width}, 100vw - ${px(48)})`,
-      },
-    },
   },
   transitionContainer: {
     position: 'absolute',
@@ -69,14 +63,15 @@ const classNames = createStyles({
   },
 });
 
-export type ISideSheetThemeFactory = IComponentThemeFactory<{
+export type IStandardSideSheetThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   modifier: IModifier;
 }>;
 
-export const sideSheetTheme = componentThemeFactory<ISideSheetThemeFactory>({
-  classNames,
-  tokensClassName,
-  tokens,
-});
+export const standardSideSheetTheme =
+  componentThemeFactory<IStandardSideSheetThemeFactory>({
+    classNames,
+    tokensClassName,
+    tokens,
+  });

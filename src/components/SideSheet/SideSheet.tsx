@@ -82,7 +82,7 @@ export const SideSheet = componentFactory<ISideSheetFactory>(
         >
           {({ close }) => (
             <SideSheetContent
-              {...getStyles('sideSheet', {
+              {...getStyles('sideSheetContent', {
                 modifiers: {
                   modal: true,
                 },
@@ -114,7 +114,7 @@ export const SideSheet = componentFactory<ISideSheetFactory>(
                 ref={transitionNodeHandleRef}
               >
                 <SideSheetContent
-                  {...getStyles('sideSheet')}
+                  {...getStyles('sideSheetContent')}
                   side={side}
                   onClose={appLayoutContext?.aside?.state?.close}
                   variant="standard"

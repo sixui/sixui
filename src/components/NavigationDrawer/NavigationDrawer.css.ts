@@ -1,16 +1,15 @@
 import { createTheme, fallbackVar } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { PaperBase } from '../PaperBase';
+import { SideSheet } from '../SideSheet';
+import { SideSheetContent } from '../SideSheetContent';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 import { appLayoutTheme } from '../AppLayout/AppLayout.css';
-
-type IModifier = 'modal';
+import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
@@ -20,44 +19,31 @@ const [tokensClassName, tokens] = createTheme({
       appLayoutTheme.tokens.navigationDrawer.color,
       themeTokens.colorScheme.surface,
     ),
+    elevation: elevationLevelPreset[0],
   },
 });
 
 const classNames = createStyles({
   root: {
-    height: '100%',
-    width: tokens.container.width,
-
-    vars: createTokensVars(PaperBase.theme.tokens, {
+    vars: createTokensVars(SideSheet.theme.tokens, {
       container: {
-        color: tokens.container.color,
+        width: tokens.container.width,
       },
     }),
-
-    selectors: {
-      [getModifierSelector<IModifier>('modal')]: {
-        width: `min(${tokens.container.width}, 100vw - ${px(48)})`,
+  },
+  sideSheetContent: {
+    vars: createTokensVars(SideSheetContent.theme.tokens, {
+      container: {
+        color: tokens.container.color,
+        elevation: tokens.container.elevation,
       },
-    },
-  },
-  drawer: {
-    position: 'fixed',
-    top: 0,
-    bottom: 0,
-    height: '100%',
-  },
-  transitionContainer: {
-    position: 'absolute',
-    top: 0,
-    height: '100%',
-    width: tokens.container.width,
+    }),
   },
 });
 
 export type INavigationDrawerThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
-  modifier: IModifier;
 }>;
 
 export const navigationDrawerTheme =

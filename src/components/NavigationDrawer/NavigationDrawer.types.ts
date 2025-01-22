@@ -1,20 +1,15 @@
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
-import type { INavigationDrawerContentOwnProps } from '../NavigationDrawerContent';
 import type { NavigationDrawerDestination } from '../NavigationDrawerDestination';
 import type { NavigationDrawerSection } from '../NavigationDrawerSection';
 import type {
   INavigationDrawerThemeFactory,
   navigationDrawerTheme,
 } from './NavigationDrawer.css';
+import { ISideSheetOwnProps } from '../SideSheet';
 
-export interface INavigationDrawerOwnProps
-  extends INavigationDrawerContentOwnProps {
-  detached?: boolean;
-  standardOpened?: boolean;
-  modalOpened?: boolean;
-}
+export type INavigationDrawerOwnProps = ISideSheetOwnProps;
 
 export interface INavigationDrawerProps
   extends IBoxProps,

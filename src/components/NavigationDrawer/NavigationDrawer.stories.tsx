@@ -15,7 +15,6 @@ import type { INavigationDrawerProps } from './NavigationDrawer.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { px } from '~/helpers/styles/px';
 import { useToggle } from '~/hooks/useToggle';
-import { AppLayoutSideSheet } from '../AppLayoutSideSheet';
 import { Button } from '../Button';
 import { Flex } from '../Flex';
 import { Frame } from '../Frame';
@@ -86,14 +85,12 @@ const NavigationDrawerFrame: React.FC<INavigationDrawerProps> = (props) => {
           borderColor: themeTokens.colorScheme.outlineVariant,
         }}
       >
-        <AppLayoutSideSheet side="right">
-          <NavigationDrawer
-            standardOpened={standardOpened}
-            modalOpened={modalOpened}
-            onClose={() => toggleModalOpened(false)}
-            {...props}
-          />
-        </AppLayoutSideSheet>
+        <NavigationDrawer
+          standardOpened={standardOpened}
+          modalOpened={modalOpened}
+          onClose={() => toggleModalOpened(false)}
+          {...props}
+        />
       </Frame>
     </Flex>
   );

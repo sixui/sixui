@@ -24,27 +24,6 @@ const [tokensClassName, tokens] = createTheme({
 });
 
 const classNames = createStyles({
-  standard: {
-    position: 'sticky',
-    left: 0,
-    top: 0,
-    height: '100vh',
-    width: 0,
-    flexShrink: 0,
-
-    transitionProperty: 'width',
-    transitionDuration: themeTokens.motion.duration.short.$3,
-    transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
-
-    selectors: {
-      [getModifierSelector<IModifier>('expanded')]: {
-        width: tokens.container.width,
-        transitionDuration: themeTokens.motion.duration.long.$3,
-        transitionTimingFunction:
-          themeTokens.motion.easing.emphasized.decelerate,
-      },
-    },
-  },
   sideSheetContent: {
     height: '100%',
     width: tokens.container.width,
@@ -61,22 +40,17 @@ const classNames = createStyles({
       },
     },
   },
-  transitionContainer: {
-    position: 'absolute',
-    top: 0,
-    height: '100%',
-    width: tokens.container.width,
-  },
 });
 
-export type ISideSheetThemeFactory = IComponentThemeFactory<{
+export type IModalSideSheetThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   modifier: IModifier;
 }>;
 
-export const sideSheetTheme = componentThemeFactory<ISideSheetThemeFactory>({
-  classNames,
-  tokensClassName,
-  tokens,
-});
+export const modalSideSheetTheme =
+  componentThemeFactory<IModalSideSheetThemeFactory>({
+    classNames,
+    tokensClassName,
+    tokens,
+  });

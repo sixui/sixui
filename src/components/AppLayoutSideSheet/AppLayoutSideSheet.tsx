@@ -9,6 +9,8 @@ import { appLayoutSideSheetTheme } from './AppLayoutSideSheet.css';
 
 const COMPONENT_NAME = 'AppLayoutSideSheet';
 
+// FIXME: usage?
+
 export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
   (props, forwardedRef) => {
     const {
