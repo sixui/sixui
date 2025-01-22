@@ -9,7 +9,7 @@ const COMPONENT_NAME = 'Portal';
 
 export const Portal = componentFactory<IPortalFactory>((props) => {
   const {
-    target: targetProp,
+    root: rootProp,
     children,
     disabled,
   } = useProps({
@@ -18,12 +18,12 @@ export const Portal = componentFactory<IPortalFactory>((props) => {
   });
 
   const { getRoot } = useThemeContext();
-  const target = targetProp ?? getRoot();
+  const root = rootProp ?? getRoot();
 
-  return disabled || !target ? (
+  return disabled || !root ? (
     children
   ) : (
-    <FloatingPortal root={target}>{children}</FloatingPortal>
+    <FloatingPortal root={root}>{children}</FloatingPortal>
   );
 });
 

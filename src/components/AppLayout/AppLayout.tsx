@@ -147,6 +147,7 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
       asideCallbacks.close,
     ]);
 
+    // FIXME:
     const xxx = `:root { background-color: ${themeTokens.colorScheme.surface}; }`;
 
     return (
