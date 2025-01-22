@@ -53,6 +53,7 @@ const SideSheetFrame: React.FC<ISideSheetProps> = (props) => {
             <SideSheet
               standardOpened={standardOpened}
               modalOpened={modalOpened}
+              onClose={() => toggleModalOpened(false)}
               {...props}
             />
           </AppLayoutSideSheet>

@@ -28,6 +28,7 @@ export const SideSheet = componentFactory<ISideSheetFactory>(
       modalOpened,
       root,
       side = 'right',
+      onClose,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -65,7 +66,10 @@ export const SideSheet = componentFactory<ISideSheetFactory>(
           {...getStyles('drawer')}
           root={root ?? appLayoutContext?.root}
           opened={modalSideSheetOpened}
-          onClose={appLayoutContext?.aside?.state?.close}
+          onClose={() => {
+            onClose?.();
+            appLayoutContext?.aside?.state?.close?.();
+          }}
           side={side}
           variant={detached ? 'detached' : undefined}
           modal

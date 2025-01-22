@@ -12,17 +12,14 @@ import { SideSheet } from '../SideSheet';
 import { themeTokens } from '../ThemeProvider';
 import { AppLayoutSideSheet } from './AppLayoutSideSheet';
 
-const meta = {
-  component: AppLayoutSideSheet,
-} satisfies Meta<typeof AppLayoutSideSheet>;
+interface IAppLayoutSideSheetFrameProps extends IAppLayoutSideSheetProps {
+  side: 'left' | 'right';
+}
 
-type IStory = StoryObj<typeof meta>;
-
-const defaultArgs = {
-  children: <Placeholder w="$96" expanded diagonals />,
-} satisfies Partial<IAppLayoutSideSheetProps>;
-
-const AppLayoutSideSheetFrame: React.FC<IAppLayoutSideSheetProps> = (props) => {
+const AppLayoutSideSheetFrame: React.FC<IAppLayoutSideSheetFrameProps> = (
+  props,
+) => {
+  const { side, ...other } = props;
   const [opened, toggleOpened] = useToggle([true, false]);
 
   return (
@@ -43,16 +40,20 @@ const AppLayoutSideSheetFrame: React.FC<IAppLayoutSideSheetProps> = (props) => {
           borderColor: themeTokens.colorScheme.outlineVariant,
         }}
       >
-        <Flex direction="row" align="start" h="100%">
+        <Flex
+          direction={side === 'right' ? 'row' : 'row-reverse'}
+          align="start"
+          h="100%"
+        >
           <Placeholder label="Page" grow={1} expanded diagonals />
           <AppLayoutSideSheet
             style={assignInlineVars({
               [AppLayoutSideSheet.theme.tokens.container.width]: '384px',
             })}
             asideOpened={opened}
-            {...props}
+            {...other}
           >
-            <SideSheet w="$96" standardOpened={opened} side="right" divider>
+            <SideSheet w="$96" standardOpened={opened} side={side} divider>
               <Placeholder label="SideSheet" grow={1} expanded diagonals />
             </SideSheet>
           </AppLayoutSideSheet>
@@ -62,10 +63,29 @@ const AppLayoutSideSheetFrame: React.FC<IAppLayoutSideSheetProps> = (props) => {
   );
 };
 
+const meta = {
+  component: AppLayoutSideSheetFrame,
+} satisfies Meta<typeof AppLayoutSideSheetFrame>;
+
+type IStory = StoryObj<typeof meta>;
+
+const defaultArgs = {
+  children: <Placeholder w="$96" expanded diagonals />,
+} satisfies Partial<IAppLayoutSideSheetProps>;
+
 export const Left: IStory = {
   render: (props) => <AppLayoutSideSheetFrame {...props} />,
   args: {
     ...defaultArgs,
+    side: 'left',
+  },
+};
+
+export const Right: IStory = {
+  render: (props) => <AppLayoutSideSheetFrame {...props} />,
+  args: {
+    ...defaultArgs,
+    side: 'right',
   },
 };
 
