@@ -11,10 +11,7 @@ import type {
 export interface INavigationRailDestinationOwnProps
   extends IOmit<IButtonBaseOwnProps, 'children'> {
   label?: React.ReactNode;
-
-  /** Whether or not the tab is selected. **/
   active?: boolean;
-
   icon: React.ReactNode;
   activeIcon?: React.ReactNode;
   loading?: boolean;

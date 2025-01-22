@@ -17,7 +17,6 @@ export const NavigationBarContent =
       style,
       variant,
       children,
-      disabled,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -29,14 +28,11 @@ export const NavigationBarContent =
       style,
       variant,
       theme: navigationBarContentTheme,
-      modifiers: {
-        disabled,
-      },
     });
 
     return (
       <Paper {...getStyles('root')} ref={forwardedRef} {...other}>
-        <div {...getStyles('label')}>{children}</div>
+        {children}
       </Paper>
     );
   });

@@ -9,7 +9,6 @@ import type {
 
 export interface INavigationBarContentOwnProps extends IPaperOwnProps {
   children?: React.ReactNode;
-  disabled?: boolean;
 }
 
 export interface INavigationBarContentProps

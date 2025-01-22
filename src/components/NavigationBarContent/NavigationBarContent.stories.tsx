@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { createSequence } from '@olivierpascal/helpers';
 
-import type { IComponentPresentation } from '../ComponentShowcase';
 import type { INavigationBarContentProps } from './NavigationBarContent.types';
 import { componentShowcaseFactory } from '../ComponentShowcase';
+import { Placeholder } from '../Placeholder';
 import { NavigationBarContent } from './NavigationBarContent';
 
 const meta = {
@@ -12,26 +13,19 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  children: 'NavigationBarContent',
+  outline: '$xs',
+  outlineStyle: 'dashed',
+  w: '$96',
+  children: createSequence(4).map((index) => (
+    <Placeholder key={index} w="56px" h="52px" diagonals />
+  )),
 } satisfies Partial<INavigationBarContentProps>;
-
-const variants: Array<IComponentPresentation<INavigationBarContentProps>> = [
-  { legend: 'None', props: { variant: false } },
-  { legend: 'Primary', props: { variant: 'primary' } },
-];
-
-const states: Array<IComponentPresentation<INavigationBarContentProps>> = [
-  { legend: 'Normal' },
-  { legend: 'Disabled', props: { disabled: true } },
-];
 
 const NavigationBarContentShowcase =
   componentShowcaseFactory(NavigationBarContent);
 
 export const Basic: IStory = {
-  render: (props) => (
-    <NavigationBarContentShowcase props={props} cols={states} rows={variants} />
-  ),
+  render: (props) => <NavigationBarContentShowcase props={props} />,
   args: defaultArgs,
 };
 
