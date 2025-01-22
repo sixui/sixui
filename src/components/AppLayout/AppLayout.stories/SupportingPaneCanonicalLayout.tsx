@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 
-import { Aside } from '~/components/Aside';
 import { BottomSheet } from '~/components/BottomSheet';
 import { Box } from '~/components/Box';
 import { Flex } from '~/components/Flex';
@@ -22,7 +21,7 @@ export interface ISupportingPaneCanonicalLayoutProps {
         props: ISupportingPaneCanonicalLayoutFocusPaneRendererProps,
       ) => React.ReactNode);
   supportingPane: React.ReactNode;
-  supportingPaneAside: React.ReactNode;
+  supportingPaneAppLayoutAside: React.ReactNode;
   supportingPaneBottomSheet: React.ReactNode;
 }
 
@@ -32,14 +31,14 @@ export const SupportingPaneCanonicalLayout: React.FC<
   const {
     focusPane,
     supportingPane,
-    supportingPaneAside,
+    supportingPaneAppLayoutAside,
     supportingPaneBottomSheet,
   } = props;
 
   const canonicalLayout = useCanonicalLayout('supportingPane');
 
   const [bottomSheetOpened, toggleBottomSheet] = useToggle([false, true]);
-  const hasSupportingPaneAside = canonicalLayout.panes.some(
+  const hasSupportingPaneAppLayoutAside = canonicalLayout.panes.some(
     (pane) => pane.type === 'aside' && pane.name === 'supporting',
   );
   const hasSupportingPaneBottomSheet = canonicalLayout.panes.some(
@@ -80,11 +79,11 @@ export const SupportingPaneCanonicalLayout: React.FC<
             ))}
         </AppLayout.Body>
 
-        {hasSupportingPaneAside && supportingPaneAside && (
+        {hasSupportingPaneAppLayoutAside && supportingPaneAppLayoutAside && (
           <AppLayout.SideSheet side="right">
-            <Aside side="right" divider>
-              {supportingPaneAside}
-            </Aside>
+            <AppLayout.Aside side="right" divider>
+              {supportingPaneAppLayoutAside}
+            </AppLayout.Aside>
           </AppLayout.SideSheet>
         )}
       </Flex>

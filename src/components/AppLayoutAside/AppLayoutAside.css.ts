@@ -4,11 +4,12 @@ import { createStyles } from '~/utils/styles/createStyles';
 
 const classNames = createStyles();
 
-export type IAsideThemeFactory = IComponentThemeFactory<{
+export type IAppLayoutAsideThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
 }>;
 
-export const asideTheme = componentThemeFactory<IAsideThemeFactory>({
-  classNames,
-  tokens: undefined,
-});
+export const appLayoutAsideTheme =
+  componentThemeFactory<IAppLayoutAsideThemeFactory>({
+    classNames,
+    tokens: undefined,
+  });

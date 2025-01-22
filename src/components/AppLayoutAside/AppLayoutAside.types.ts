@@ -3,9 +3,12 @@ import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { ISideSheetContentOwnProps } from '../SideSheetContent';
-import type { asideTheme, IAsideThemeFactory } from './Aside.css';
+import type {
+  appLayoutAppLayoutAsideTheme,
+  IAppLayoutAsideThemeFactory,
+} from './AppLayoutAside.css';
 
-export interface IAsideOwnProps
+export interface IAppLayoutAsideOwnProps
   extends IOmit<ISideSheetContentOwnProps, 'side'> {
   detached?: boolean;
   standardOpened?: boolean;
@@ -14,13 +17,13 @@ export interface IAsideOwnProps
   root?: HTMLElement | null;
 }
 
-export interface IAsideProps
+export interface IAppLayoutAsideProps
   extends IBoxProps,
-    IComponentThemeProps<IAsideThemeFactory>,
-    IAsideOwnProps {}
+    IComponentThemeProps<IAppLayoutAsideThemeFactory>,
+    IAppLayoutAsideOwnProps {}
 
-export type IAsideFactory = IComponentFactory<{
-  props: IAsideProps;
+export type IAppLayoutAsideFactory = IComponentFactory<{
+  props: IAppLayoutAsideProps;
   ref: HTMLDivElement;
-  theme: typeof asideTheme;
+  theme: typeof appLayoutAppLayoutAsideTheme;
 }>;

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IAsideProps } from './Aside.types';
+import type { IAppLayoutAsideProps } from './AppLayoutAside.types';
 import { px } from '~/helpers/styles/px';
 import { useToggle } from '~/hooks/useToggle';
 import { Button } from '../Button';
@@ -8,11 +8,11 @@ import { Flex } from '../Flex';
 import { Frame } from '../Frame';
 import { Placeholder } from '../Placeholder';
 import { themeTokens } from '../ThemeProvider';
-import { Aside } from './Aside';
+import { AppLayoutAside } from './AppLayoutAside';
 
 const meta = {
-  component: Aside,
-} satisfies Meta<typeof Aside>;
+  component: AppLayoutAside,
+} satisfies Meta<typeof AppLayoutAside>;
 
 type IStory = StoryObj<typeof meta>;
 
@@ -48,9 +48,9 @@ const defaultArgs = {
     />
   ),
   divider: true,
-} satisfies Partial<IAsideProps>;
+} satisfies Partial<IAppLayoutAsideProps>;
 
-const AsideFrame: React.FC<IAsideProps> = (props) => {
+const AppLayoutAsideFrame: React.FC<IAppLayoutAsideProps> = (props) => {
   const { ...other } = props;
   const [standardOpened, toggleStandardOpened] = useToggle([true, false]);
   const [modalOpened, toggleModalOpened] = useToggle([false, true]);
@@ -82,7 +82,7 @@ const AsideFrame: React.FC<IAsideProps> = (props) => {
           h="100%"
         >
           <Placeholder label="Page" grow={1} expanded diagonals />
-          <Aside
+          <AppLayoutAside
             standardOpened={standardOpened}
             modalOpened={modalOpened}
             onClose={() => toggleModalOpened(false)}
@@ -115,7 +115,7 @@ const AsideFrame: React.FC<IAsideProps> = (props) => {
 };
 
 export const Left: IStory = {
-  render: (props) => <AsideFrame {...props} />,
+  render: (props) => <AppLayoutAsideFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'left',
@@ -123,7 +123,7 @@ export const Left: IStory = {
 };
 
 export const LeftDetached: IStory = {
-  render: (props) => <AsideFrame {...props} />,
+  render: (props) => <AppLayoutAsideFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'left',
@@ -132,7 +132,7 @@ export const LeftDetached: IStory = {
 };
 
 export const Right: IStory = {
-  render: (props) => <AsideFrame {...props} />,
+  render: (props) => <AppLayoutAsideFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'right',
@@ -140,7 +140,7 @@ export const Right: IStory = {
 };
 
 export const RightDetached: IStory = {
-  render: (props) => <AsideFrame {...props} />,
+  render: (props) => <AppLayoutAsideFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'right',
