@@ -50,6 +50,7 @@ const classNames = createStyles({
     position: 'absolute',
     top: 0,
     height: '100%',
+    // FIXME: width: '100%',
     width: tokens.container.width,
   },
 });

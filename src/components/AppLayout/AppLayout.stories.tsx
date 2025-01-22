@@ -51,7 +51,7 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
             <Header divider />
 
             <Flex direction="row" align="start">
-              <AppLayout.SideSheet>
+              <AppLayout.SideSheet side="left">
                 <MainNavigationRail
                   activeDestination={activeDestination}
                   onClick={setActiveDestination}
@@ -96,7 +96,7 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
         <AppLayout window={window} {...props}>
           <Flex direction="column">
             <Flex direction="row" align="start">
-              <AppLayout.SideSheet fullHeight>
+              <AppLayout.SideSheet side="left" fullHeight>
                 <MainNavigationRail
                   activeDestination={activeDestination}
                   onClick={setActiveDestination}

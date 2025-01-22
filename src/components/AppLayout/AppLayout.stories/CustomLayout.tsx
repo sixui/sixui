@@ -36,7 +36,7 @@ export const CustomLayout: React.FC = () => {
         </Placeholder>
       </AppLayout.Body>
 
-      <AppLayout.SideSheet>
+      <AppLayout.SideSheet side="right">
         <SideSheet divider>
           <AsideContent />
         </SideSheet>

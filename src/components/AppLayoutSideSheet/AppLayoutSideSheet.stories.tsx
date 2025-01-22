@@ -51,9 +51,10 @@ const AppLayoutSideSheetFrame: React.FC<IAppLayoutSideSheetFrameProps> = (
               [AppLayoutSideSheet.theme.tokens.container.width]: '384px',
             })}
             asideOpened={opened}
+            side={side}
             {...other}
           >
-            <SideSheet w="$96" standardOpened={opened} side={side} divider>
+            <SideSheet w="100%" standardOpened={opened} side={side} divider>
               <Placeholder label="SideSheet" grow={1} expanded diagonals />
             </SideSheet>
           </AppLayoutSideSheet>

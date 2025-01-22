@@ -1,19 +1,19 @@
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
-import type { IPaperOwnProps } from '../Paper';
 import type {
   appLayoutSideSheetTheme,
   IAppLayoutSideSheetThemeFactory,
 } from './AppLayoutSideSheet.css';
 
-export interface IAppLayoutSideSheetOwnProps extends IPaperOwnProps {
+export interface IAppLayoutSideSheetOwnProps {
   children?: React.ReactNode;
   fullHeight?: boolean;
   hasHeader?: boolean;
   navigationRailOpened?: boolean;
   navigationDrawerOpened?: boolean;
   asideOpened?: boolean;
+  side: 'left' | 'right';
 }
 
 export interface IAppLayoutSideSheetProps

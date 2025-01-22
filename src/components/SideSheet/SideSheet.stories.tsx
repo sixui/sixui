@@ -49,7 +49,7 @@ const SideSheetFrame: React.FC<ISideSheetProps> = (props) => {
       >
         <Flex direction="row" h="100%">
           <Placeholder w="$48" h="100%" diagonals label="Page" />
-          <AppLayoutSideSheet>
+          <AppLayoutSideSheet side="right">
             <SideSheet
               standardOpened={standardOpened}
               modalOpened={modalOpened}

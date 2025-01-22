@@ -78,6 +78,7 @@ const classNames = createStyles({
     position: 'absolute',
     insetBlock: 0,
     insetInlineStart: 0,
+    // FIXME: width: '100%',
   },
 });
 

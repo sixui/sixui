@@ -4,7 +4,7 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { useAppLayoutContext } from '../AppLayout/AppLayout.context';
-import { Paper } from '../Paper';
+import { Box } from '../Box';
 import { appLayoutSideSheetTheme } from './AppLayoutSideSheet.css';
 
 const COMPONENT_NAME = 'AppLayoutSideSheet';
@@ -19,6 +19,7 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
       variant,
       children,
       fullHeight,
+      side = 'left',
       hasHeader: hasHeaderProp,
       navigationRailOpened: navigationRailOpenedProp,
       navigationDrawerOpened: navigationDrawerOpenedProp,
@@ -56,6 +57,9 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
       (hasAside &&
         (appLayoutContext?.aside?.state?.standardOpened || !appLayoutContext));
 
+    const isRightSide = side === 'right';
+    const isLeftSide = !isRightSide;
+
     const { getStyles } = useComponentTheme<IAppLayoutSideSheetThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
@@ -67,16 +71,17 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
       modifiers: {
         'full-height': fullHeight,
         'with-header': hasHeader,
-        'navigation-rail-opened': navigationRailOpened,
-        'navigation-drawer-opened': standardNavigationDrawerOpened,
-        'aside-opened': standardAsideOpened,
+        'navigation-rail-opened': isLeftSide && navigationRailOpened,
+        'navigation-drawer-opened':
+          isLeftSide && standardNavigationDrawerOpened,
+        'aside-opened': isRightSide && standardAsideOpened,
       },
     });
 
     return (
-      <Paper {...getStyles('root')} ref={forwardedRef} {...other}>
+      <Box {...getStyles('root')} ref={forwardedRef} {...other}>
         <div {...getStyles('inner')}>{children}</div>
-      </Paper>
+      </Box>
     );
   },
 );
