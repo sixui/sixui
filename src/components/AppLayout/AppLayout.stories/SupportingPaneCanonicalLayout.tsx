@@ -46,7 +46,7 @@ export const SupportingPaneCanonicalLayout: React.FC<
   );
 
   useEffect(() => {
-    if (!hasSupportingPaneBottomSheet) {
+    if (bottomSheetOpened && !hasSupportingPaneBottomSheet) {
       toggleBottomSheet(false);
     }
   });

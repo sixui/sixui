@@ -1,5 +1,12 @@
+import type { IBoxProps } from '~/components/Box';
 import { Placeholder } from '~/components/Placeholder';
 
-export const DetailPane: React.FC = () => (
-  <Placeholder label="detail" shape="$sm" h="$128" diagonals />
-);
+type IDetailPaneProps = IBoxProps;
+
+export const DetailPane: React.FC<IDetailPaneProps> = (props) => {
+  const { ...other } = props;
+
+  return (
+    <Placeholder label="detail" shape="$sm" h="$128" diagonals {...other} />
+  );
+};

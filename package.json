@@ -112,7 +112,7 @@
     "auto": "^11.3.0",
     "babel-plugin-module-resolver": "^5.0.2",
     "cypress": "^14.0.0",
-    "cypress-real-events": "^1.13.0",
+    "cypress-real-events": "^1.14.0",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-import-resolver-typescript": "^3.7.0",

@@ -131,8 +131,8 @@ const CanonicalLayoutBody: React.FC<ICanonicalLayoutBodyProps> = (props) => {
     <SupportingPaneCanonicalLayout
       focusPane={(props) => <FocusPane {...props} />}
       supportingPane={<SupportingPane />}
-      supportingPaneAside={<SupportingPane />}
-      supportingPaneBottomSheet={<SupportingPane />}
+      supportingPaneAside={<SupportingPane pl="$4" pr="$4" />}
+      supportingPaneBottomSheet={<SupportingPane p="$4" />}
     />
   ) : activeDestination === 'feed' ? (
     <FeedBodyDemo />
