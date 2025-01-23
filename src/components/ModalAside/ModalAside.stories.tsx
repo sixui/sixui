@@ -17,26 +17,6 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  header: (
-    <Placeholder
-      label="Header"
-      grow={1}
-      h="$16"
-      diagonals
-      surface="$primaryContainer"
-      color="$onPrimaryContainer"
-    />
-  ),
-  footer: (
-    <Placeholder
-      label="Footer"
-      grow={1}
-      h="$16"
-      diagonals
-      surface="$primaryContainer"
-      color="$onPrimaryContainer"
-    />
-  ),
   children: (
     <Placeholder
       label="Content"
@@ -47,7 +27,6 @@ const defaultArgs = {
       color="$onPrimaryContainer"
     />
   ),
-  divider: true,
 } satisfies Partial<IModalAsideProps>;
 
 const ModalAsideFrame: React.FC<IModalAsideProps> = (props) => {
@@ -81,26 +60,6 @@ const ModalAsideFrame: React.FC<IModalAsideProps> = (props) => {
           <ModalAside
             opened={opened}
             onClose={() => toggleOpened(false)}
-            header={
-              <Placeholder
-                label="Header"
-                grow={1}
-                h="$16"
-                diagonals
-                surface="$primaryContainer"
-                color="$onPrimaryContainer"
-              />
-            }
-            footer={
-              <Placeholder
-                label="Footer"
-                grow={1}
-                h="$16"
-                diagonals
-                surface="$primaryContainer"
-                color="$onPrimaryContainer"
-              />
-            }
             {...other}
           />
         </Flex>
@@ -109,7 +68,7 @@ const ModalAsideFrame: React.FC<IModalAsideProps> = (props) => {
   );
 };
 
-export const Left: IStory = {
+export const FromLeft: IStory = {
   render: (props) => <ModalAsideFrame {...props} />,
   args: {
     ...defaultArgs,
@@ -117,7 +76,7 @@ export const Left: IStory = {
   },
 };
 
-export const LeftDetached: IStory = {
+export const FromLeftDetached: IStory = {
   render: (props) => <ModalAsideFrame {...props} />,
   args: {
     ...defaultArgs,
@@ -126,7 +85,7 @@ export const LeftDetached: IStory = {
   },
 };
 
-export const Right: IStory = {
+export const FromRight: IStory = {
   render: (props) => <ModalAsideFrame {...props} />,
   args: {
     ...defaultArgs,
@@ -134,7 +93,7 @@ export const Right: IStory = {
   },
 };
 
-export const RightDetached: IStory = {
+export const FromRightDetached: IStory = {
   render: (props) => <ModalAsideFrame {...props} />,
   args: {
     ...defaultArgs,

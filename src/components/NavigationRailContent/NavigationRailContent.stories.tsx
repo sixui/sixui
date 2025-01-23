@@ -26,8 +26,8 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  header: <Placeholder label="Leading" />,
-  footer: <Placeholder label="Trailing" />,
+  header: <Placeholder label="Header" />,
+  footer: <Placeholder label="Footer" />,
   divider: true,
   h: '$128',
 } satisfies Partial<INavigationRailContentProps>;

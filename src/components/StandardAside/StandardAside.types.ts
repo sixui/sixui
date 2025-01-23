@@ -1,14 +1,23 @@
+import type { IHorizontalSide } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
-import type { ISideSheetContentOwnProps } from '../SideSheetContent';
 import type {
   IStandardAsideThemeFactory,
   standardAsideTheme,
 } from './StandardAside.css';
 
-export interface IStandardAsideOwnProps extends ISideSheetContentOwnProps {
+export interface IStandardAsideChildrenRenderProps {
+  close?: (event?: React.MouseEvent) => void;
+}
+
+export interface IStandardAsideOwnProps {
+  side?: IHorizontalSide;
   opened?: boolean;
+  onClose?: (event?: React.MouseEvent) => void;
+  children?:
+    | React.ReactNode
+    | ((props: IStandardAsideChildrenRenderProps) => React.ReactNode);
 }
 
 export interface IStandardAsideProps

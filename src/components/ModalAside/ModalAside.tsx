@@ -1,11 +1,11 @@
 import type { IModalAsideThemeFactory } from './ModalAside.css';
 import type { IModalAsideFactory } from './ModalAside.types';
+import { isFunction } from '~/helpers/isFunction';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { useAppLayoutContext } from '../AppLayout/AppLayout.context';
 import { Drawer } from '../Drawer';
-import { SideSheetContent } from '../SideSheetContent';
 import { modalAsideTheme } from './ModalAside.css';
 
 const COMPONENT_NAME = 'ModalAside';
@@ -20,9 +20,10 @@ export const ModalAside = componentFactory<IModalAsideFactory>(
       variant,
       side = 'left',
       opened,
-      detached,
-      root,
       onClose,
+      children,
+      root,
+      detached,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -36,14 +37,11 @@ export const ModalAside = componentFactory<IModalAsideFactory>(
       style,
       variant,
       theme: modalAsideTheme,
-      modifiers: {
-        detached,
-      },
     });
 
     return (
       <Drawer
-        {...getStyles('drawer')}
+        {...getStyles('root')}
         root={root ?? appLayoutContext?.root}
         opened={opened}
         onClose={() => {
@@ -54,18 +52,10 @@ export const ModalAside = componentFactory<IModalAsideFactory>(
         variant={detached ? 'detached' : undefined}
         fullHeight
         modal
+        ref={forwardedRef}
+        {...other}
       >
-        {({ close }) => (
-          <SideSheetContent
-            {...getStyles('root')}
-            side={side}
-            showCloseButton
-            onClose={close}
-            variant={detached ? 'detachedModal' : 'modal'}
-            ref={forwardedRef}
-            {...other}
-          />
-        )}
+        {({ close }) => (isFunction(children) ? children({ close }) : children)}
       </Drawer>
     );
   },

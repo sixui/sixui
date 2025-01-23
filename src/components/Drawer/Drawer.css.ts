@@ -1,5 +1,4 @@
 import { createTheme } from '@vanilla-extract/css';
-import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import type { IDrawerVariant } from './Drawer.types';

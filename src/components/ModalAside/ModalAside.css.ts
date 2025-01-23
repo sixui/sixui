@@ -9,8 +9,6 @@ import { SideSheetContent } from '../SideSheetContent';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 import { appLayoutTheme } from '../AppLayout/AppLayout.css';
 
-type IModifier = 'expanded' | 'detached';
-
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   container: {
@@ -23,9 +21,7 @@ const [tokensClassName, tokens] = createTheme({
 });
 
 const classNames = createStyles({
-  drawer: {},
   root: {
-    height: '100%',
     width: `min(${tokens.container.width}, 100vw - ${px(48)})`,
 
     vars: createTokensVars(SideSheetContent.theme.tokens, {
@@ -39,7 +35,6 @@ const classNames = createStyles({
 export type IModalAsideThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
-  modifier: IModifier;
 }>;
 
 export const modalAsideTheme = componentThemeFactory<IModalAsideThemeFactory>({

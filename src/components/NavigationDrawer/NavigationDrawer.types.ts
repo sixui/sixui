@@ -7,14 +7,18 @@ import type {
   INavigationDrawerThemeFactory,
   navigationDrawerTheme,
 } from './NavigationDrawer.css';
+import { IOmit } from '~/helpers/types';
 import { ISideSheetOwnProps } from '../SideSheet';
+import { IStandardAsideOwnProps } from '../StandardAside';
 
-export type INavigationDrawerOwnProps = ISideSheetOwnProps;
+export interface INavigationRailOwnProps
+  extends IOmit<IStandardAsideOwnProps, 'children'>,
+    ISideSheetOwnProps {}
 
-export interface INavigationDrawerProps
+export interface INavigationRailProps
   extends IBoxProps,
-    IComponentThemeProps<INavigationDrawerThemeFactory>,
-    INavigationDrawerOwnProps {}
+    IComponentThemeProps<INavigationRailThemeFactory>,
+    INavigationRailOwnProps {}
 
 export type INavigationDrawerFactory = IComponentFactory<{
   props: INavigationDrawerProps;

@@ -3,14 +3,13 @@ import { CSSTransition } from 'react-transition-group';
 
 import type { IStandardAsideThemeFactory } from './StandardAside.css';
 import type { IStandardAsideFactory } from './StandardAside.types';
+import { isFunction } from '~/helpers/isFunction';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
-import { extractBoxProps } from '../Box/extractBoxProps';
 import { Motion } from '../Motion';
-import { SideSheetContent } from '../SideSheetContent';
 import { standardAsideTheme } from './StandardAside.css';
 
 const COMPONENT_NAME = 'StandardAside';
@@ -26,9 +25,9 @@ export const StandardAside = componentFactory<IStandardAsideFactory>(
       side = 'left',
       opened,
       onClose,
+      children,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
-    const { boxProps, other: forwardedProps } = extractBoxProps(other);
 
     const { getStyles } = useComponentTheme<IStandardAsideThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -51,7 +50,7 @@ export const StandardAside = componentFactory<IStandardAsideFactory>(
     );
 
     return (
-      <Box {...getStyles('root')} {...boxProps}>
+      <Box {...getStyles('root')} {...other}>
         <CSSTransition
           nodeRef={transitionNodeRef}
           in={opened}
@@ -67,14 +66,7 @@ export const StandardAside = componentFactory<IStandardAsideFactory>(
               pattern="enterExitOffScreen"
               ref={transitionNodeHandleRef}
             >
-              <SideSheetContent
-                {...getStyles('sideSheetContent')}
-                side={side}
-                onClose={onClose}
-                variant="standard"
-                ref={transitionNodeHandleRef}
-                {...forwardedProps}
-              />
+              {isFunction(children) ? children({ close: onClose }) : children}
             </Motion>
           )}
         </CSSTransition>

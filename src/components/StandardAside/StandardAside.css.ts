@@ -6,8 +6,6 @@ import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { SideSheetContent } from '../SideSheetContent';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 
 type IModifier = 'opened' | 'side';
@@ -46,26 +44,13 @@ const classNames = createStyles({
       },
     },
   },
-  sideSheetContent: {
-    height: '100%',
-    width: tokens.container.width,
-
-    vars: createTokensVars(SideSheetContent.theme.tokens, {
-      container: {
-        color: tokens.container.color,
-      },
-    }),
-  },
   transitionContainer: ({ root }) => ({
-    display: 'flex',
-    height: '100%',
+    width: tokens.container.width,
+    float: 'right',
 
     selectors: {
-      [getModifierSelector<IModifier>({ side: 'left' }, root)]: {
-        justifyContent: 'end',
-      },
       [getModifierSelector<IModifier>({ side: 'right' }, root)]: {
-        justifyContent: 'start',
+        float: 'left',
       },
     },
   }),

@@ -1,19 +1,18 @@
-import type { IHorizontalSide } from '~/helpers/types';
+import type { IOmit } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { INavigationRailContentOwnProps } from '../NavigationRailContent';
 import type { NavigationRailDestination } from '../NavigationRailDestination';
+import type { IStandardAsideOwnProps } from '../StandardAside';
 import type {
   INavigationRailThemeFactory,
   navigationRailTheme,
 } from './NavigationRail.css';
 
 export interface INavigationRailOwnProps
-  extends INavigationRailContentOwnProps {
-  side?: IHorizontalSide;
-  opened?: boolean;
-}
+  extends IOmit<IStandardAsideOwnProps, 'children'>,
+    INavigationRailContentOwnProps {}
 
 export interface INavigationRailProps
   extends IBoxProps,
