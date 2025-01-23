@@ -1,4 +1,4 @@
-import { createTheme, fallbackVar } from '@vanilla-extract/css';
+import { createTheme } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { px } from '~/helpers/styles/px';
@@ -9,17 +9,13 @@ import { ModalAside } from '../ModalAside';
 import { SideSheetContent } from '../SideSheetContent';
 import { StandardAside } from '../StandardAside';
 import { cssLayers, themeTokens } from '../ThemeProvider';
-import { appLayoutTheme } from '../AppLayout/AppLayout.css';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   container: {
-    width: fallbackVar(appLayoutTheme.tokens.navigationDrawer.width, px(360)),
-    color: fallbackVar(
-      appLayoutTheme.tokens.navigationDrawer.color,
-      themeTokens.colorScheme.surface,
-    ),
+    width: px(360),
+    color: themeTokens.colorScheme.surface,
     elevation: elevationLevelPreset[0],
   },
 });
@@ -40,6 +36,8 @@ const classNames = createStyles({
     },
   },
   sideSheetContent: {
+    width: '100%',
+
     vars: createTokensVars(SideSheetContent.theme.tokens, {
       container: {
         color: tokens.container.color,

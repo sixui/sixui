@@ -18,6 +18,7 @@ import { useToggle } from '~/hooks/useToggle';
 import { Button } from '../Button';
 import { Flex } from '../Flex';
 import { Frame } from '../Frame';
+import { Placeholder } from '../Placeholder';
 import { themeTokens } from '../ThemeProvider';
 import { NavigationDrawer } from './NavigationDrawer';
 
@@ -61,6 +62,7 @@ const defaultArgs = {
 } satisfies Partial<INavigationDrawerProps>;
 
 const NavigationDrawerFrame: React.FC<INavigationDrawerProps> = (props) => {
+  const { ...other } = props;
   const [standardOpened, toggleStandardOpened] = useToggle([true, false]);
   const [modalOpened, toggleModalOpened] = useToggle([false, true]);
 
@@ -85,20 +87,38 @@ const NavigationDrawerFrame: React.FC<INavigationDrawerProps> = (props) => {
           borderColor: themeTokens.colorScheme.outlineVariant,
         }}
       >
-        <NavigationDrawer
-          standardOpened={standardOpened}
-          modalOpened={modalOpened}
-          onClose={() => toggleModalOpened(false)}
-          {...props}
-        />
+        <Flex
+          direction={other.side === 'right' ? 'row' : 'row-reverse'}
+          align="start"
+          h="100%"
+        >
+          <Placeholder label="Page" grow={1} expanded diagonals />
+          <NavigationDrawer
+            standardOpened={standardOpened}
+            modalOpened={modalOpened}
+            onClose={() => toggleModalOpened(false)}
+            {...other}
+          />
+        </Flex>
       </Frame>
     </Flex>
   );
 };
 
-export const Basic: IStory = {
+export const FromLeft: IStory = {
   render: (props) => <NavigationDrawerFrame {...props} />,
-  args: defaultArgs,
+  args: {
+    ...defaultArgs,
+    side: 'left',
+  },
+};
+
+export const FromRight: IStory = {
+  render: (props) => <NavigationDrawerFrame {...props} />,
+  args: {
+    ...defaultArgs,
+    side: 'right',
+  },
 };
 
 export default meta;

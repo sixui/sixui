@@ -5,9 +5,10 @@ import { useProps } from '~/utils/component/useProps';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { useAppLayoutContext } from '../AppLayout/AppLayout.context';
+import { Aside } from '../Aside';
 import { NavigationDrawerDestination } from '../NavigationDrawerDestination';
 import { NavigationDrawerSection } from '../NavigationDrawerSection';
-import { SideSheet } from '../SideSheet';
+import { SideSheetContent } from '../SideSheetContent';
 import { navigationDrawerTheme } from './NavigationDrawer.css';
 
 const COMPONENT_NAME = 'NavigationDrawer';
@@ -47,7 +48,7 @@ export const NavigationDrawer = componentFactory<INavigationDrawerFactory>(
       modalOpened ?? appLayoutContext?.navigationDrawer?.state?.modalOpened;
 
     return (
-      <SideSheet
+      <Aside
         {...getStyles('root')}
         standardOpened={standardNavigationDrawerOpened}
         classNames={mergeClassNames(classNames, {
@@ -62,7 +63,13 @@ export const NavigationDrawer = componentFactory<INavigationDrawerFactory>(
         }}
         ref={forwardedRef}
         {...other}
-      />
+      >
+        <SideSheetContent
+          side={side}
+          {...getStyles('sideSheetContent')}
+          {...other}
+        />
+      </Aside>
     );
   },
 );

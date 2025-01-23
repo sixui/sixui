@@ -1,4 +1,4 @@
-import { createTheme, fallbackVar } from '@vanilla-extract/css';
+import { createTheme } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { px } from '~/helpers/styles/px';
@@ -7,16 +7,12 @@ import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { SideSheetContent } from '../SideSheetContent';
 import { cssLayers, themeTokens } from '../ThemeProvider';
-import { appLayoutTheme } from '../AppLayout/AppLayout.css';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   container: {
-    width: fallbackVar(appLayoutTheme.tokens.aside.width, px(360)),
-    color: fallbackVar(
-      appLayoutTheme.tokens.aside.color,
-      themeTokens.colorScheme.surface,
-    ),
+    width: px(360),
+    color: themeTokens.colorScheme.surface,
   },
 });
 

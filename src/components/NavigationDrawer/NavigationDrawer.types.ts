@@ -1,23 +1,23 @@
+import type { IOmit } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+import type { IAsideOwnProps } from '../Aside';
 import type { IBoxProps } from '../Box';
 import type { NavigationDrawerDestination } from '../NavigationDrawerDestination';
 import type { NavigationDrawerSection } from '../NavigationDrawerSection';
+import type { ISideSheetContentOwnProps } from '../SideSheetContent';
 import type {
   INavigationDrawerThemeFactory,
   navigationDrawerTheme,
 } from './NavigationDrawer.css';
-import { IOmit } from '~/helpers/types';
-import { ISideSheetOwnProps } from '../SideSheet';
-import { IStandardAsideOwnProps } from '../StandardAside';
 
 export interface INavigationRailOwnProps
-  extends IOmit<IStandardAsideOwnProps, 'children'>,
-    ISideSheetOwnProps {}
+  extends IOmit<IAsideOwnProps, 'children'>,
+    ISideSheetContentOwnProps {}
 
-export interface INavigationRailProps
+export interface INavigationDrawerProps
   extends IBoxProps,
-    IComponentThemeProps<INavigationRailThemeFactory>,
+    IComponentThemeProps<INavigationDrawerThemeFactory>,
     INavigationRailOwnProps {}
 
 export type INavigationDrawerFactory = IComponentFactory<{
