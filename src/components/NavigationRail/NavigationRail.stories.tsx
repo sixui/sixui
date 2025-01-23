@@ -15,7 +15,6 @@ import type { INavigationRailProps } from './NavigationRail.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { px } from '~/helpers/styles/px';
 import { useToggle } from '~/hooks/useToggle';
-import { AppLayoutSideSheet } from '../AppLayoutSideSheet';
 import { Button } from '../Button';
 import { Flex } from '../Flex';
 import { Frame } from '../Frame';
@@ -77,9 +76,7 @@ const NavigationRailFrame: React.FC<INavigationRailProps> = (props) => {
           borderColor: themeTokens.colorScheme.outlineVariant,
         }}
       >
-        <AppLayoutSideSheet side="right">
-          <NavigationRail opened={opened} {...props} />
-        </AppLayoutSideSheet>
+        <NavigationRail opened={opened} {...props} />
       </Frame>
     </Flex>
   );

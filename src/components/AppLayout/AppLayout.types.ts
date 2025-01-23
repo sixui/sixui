@@ -1,9 +1,9 @@
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
-import type { AppLayoutAside } from '../AppLayoutAside';
 import type { AppLayoutBody } from '../AppLayoutBody/AppLayoutBody';
 import type { AppLayoutFooter } from '../AppLayoutFooter';
 import type { AppLayoutHeader } from '../AppLayoutHeader';
+import type { AppLayoutNavigationRail } from '../AppLayoutNavigationRail';
 import type { AppLayoutPane } from '../AppLayoutPane';
 import type { AppLayoutSideSheet } from '../AppLayoutSideSheet';
 import type { IBoxProps } from '../Box';
@@ -47,8 +47,8 @@ export type IAppLayoutFactory = IComponentFactory<{
   staticComponents: {
     Header: typeof AppLayoutHeader;
     Body: typeof AppLayoutBody;
+    NavigationRail: typeof AppLayoutNavigationRail;
     SideSheet: typeof AppLayoutSideSheet;
-    Aside: typeof AppLayoutAside;
     Pane: typeof AppLayoutPane;
     Footer: typeof AppLayoutFooter;
   };

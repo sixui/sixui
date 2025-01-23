@@ -5,8 +5,10 @@ import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { StandardAside } from '../StandardAside';
 import { appLayoutTheme } from '../AppLayout/AppLayout.css';
 
+type IModifier = 'with-header';
+
 const classNames = createStyles({
-  standard$withHeader: {
+  root: {
     vars: createTokensVars(StandardAside.theme.tokens, {
       container: {
         topSpace: appLayoutTheme.tokens.header.height,
@@ -15,12 +17,13 @@ const classNames = createStyles({
   },
 });
 
-export type IAppLayoutSideSheetThemeFactory = IComponentThemeFactory<{
+export type IAppLayoutNavigationRailThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
+  modifier: IModifier;
 }>;
 
-export const appLayoutSideSheetTheme =
-  componentThemeFactory<IAppLayoutSideSheetThemeFactory>({
+export const appLayoutNavigationRailTheme =
+  componentThemeFactory<IAppLayoutNavigationRailThemeFactory>({
     classNames,
     tokens: undefined,
   });

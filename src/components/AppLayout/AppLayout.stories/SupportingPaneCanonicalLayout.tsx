@@ -80,10 +80,8 @@ export const SupportingPaneCanonicalLayout: React.FC<
         </AppLayout.Body>
 
         {hasSupportingPaneAppLayoutAside && supportingPaneAside && (
-          <AppLayout.SideSheet side="right">
-            <AppLayout.Aside side="right" divider>
-              {supportingPaneAside}
-            </AppLayout.Aside>
+          <AppLayout.SideSheet side="right" divider>
+            {supportingPaneAside}
           </AppLayout.SideSheet>
         )}
       </Flex>

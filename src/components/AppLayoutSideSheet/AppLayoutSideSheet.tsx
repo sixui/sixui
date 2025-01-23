@@ -2,14 +2,13 @@ import type { IAppLayoutSideSheetThemeFactory } from './AppLayoutSideSheet.css';
 import type { IAppLayoutSideSheetFactory } from './AppLayoutSideSheet.types';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
+import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { useAppLayoutContext } from '../AppLayout/AppLayout.context';
-import { Box } from '../Box';
+import { Aside } from '../Aside';
 import { appLayoutSideSheetTheme } from './AppLayoutSideSheet.css';
 
 const COMPONENT_NAME = 'AppLayoutSideSheet';
-
-// FIXME: usage?
 
 export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
   (props, forwardedRef) => {
@@ -19,53 +18,17 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
       styles,
       style,
       variant,
-      children,
-      fullHeight,
-      side = 'left',
+      detached,
       hasHeader: hasHeaderProp,
-      navigationRailOpened: navigationRailOpenedProp,
-      navigationDrawerOpened: navigationDrawerOpenedProp,
-      asideOpened: asideOpenedProp,
-      opened: openedProp,
+      standardOpened: standardOpenedProp,
+      modalOpened: modalOpenedProp,
+      root: rootProp,
+      side = 'right',
+      onClose,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
     const appLayoutContext = useAppLayoutContext();
-
-    const hasHeader =
-      hasHeaderProp ?? appLayoutContext?.components.includes('header');
-
-    const isRightSide = side === 'right';
-    const isLeftSide = !isRightSide;
-
-    const hasNavigationRail =
-      navigationRailOpenedProp ??
-      appLayoutContext?.components.includes('navigationRail');
-    const navigationRailOpened =
-      isLeftSide &&
-      hasNavigationRail &&
-      (appLayoutContext?.navigationMode === 'rail' || !appLayoutContext);
-
-    const hasNavigationDrawer =
-      navigationDrawerOpenedProp ??
-      appLayoutContext?.components.includes('navigationDrawer');
-    const navigationDrawerOpened =
-      hasNavigationDrawer &&
-      isLeftSide &&
-      ((appLayoutContext?.navigationMode === 'standard' &&
-        appLayoutContext?.navigationDrawer?.state?.standardOpened) ||
-        !appLayoutContext);
-
-    const hasAside =
-      asideOpenedProp ?? appLayoutContext?.components.includes('aside');
-    const asideOpened =
-      hasAside &&
-      isRightSide &&
-      (appLayoutContext?.aside?.state?.standardOpened || !appLayoutContext);
-
-    const opened =
-      openedProp ??
-      (navigationRailOpened || navigationDrawerOpened || asideOpened);
 
     const { getStyles } = useComponentTheme<IAppLayoutSideSheetThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -75,20 +38,43 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
       style,
       variant,
       theme: appLayoutSideSheetTheme,
-      modifiers: {
-        'full-height': fullHeight,
-        'with-header': hasHeader,
-        'navigation-rail': isLeftSide && navigationRailOpened,
-        'navigation-drawer': isLeftSide && navigationDrawerOpened,
-        aside: isRightSide && asideOpened,
-        opened,
-      },
     });
 
+    const hasAppLayoutSideSheet =
+      appLayoutContext?.components.includes('aside') ?? true;
+    if (!hasAppLayoutSideSheet) {
+      return null;
+    }
+
+    const hasHeader =
+      hasHeaderProp ?? appLayoutContext?.components.includes('header');
+    const standardOpened =
+      standardOpenedProp ?? appLayoutContext?.aside?.state?.standardOpened;
+    const modalOpened =
+      modalOpenedProp ?? appLayoutContext?.aside?.state?.modalOpened;
+    const root = rootProp ?? appLayoutContext?.root;
+
     return (
-      <Box {...getStyles('root')} ref={forwardedRef} {...other}>
-        <div {...getStyles('inner')}>{children}</div>
-      </Box>
+      <Aside
+        {...getStyles('root')}
+        classNames={mergeClassNames(
+          classNames,
+          hasHeader && {
+            standard: getStyles('standard$withHeader').className,
+          },
+        )}
+        root={root}
+        detached={detached}
+        standardOpened={standardOpened}
+        modalOpened={modalOpened}
+        side={side}
+        onClose={() => {
+          onClose?.();
+          appLayoutContext?.aside?.state?.close?.();
+        }}
+        ref={forwardedRef}
+        {...other}
+      />
     );
   },
 );

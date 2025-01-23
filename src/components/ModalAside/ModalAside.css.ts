@@ -1,7 +1,6 @@
 import { createTheme, fallbackVar } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
@@ -10,7 +9,7 @@ import { SideSheetContent } from '../SideSheetContent';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 import { appLayoutTheme } from '../AppLayout/AppLayout.css';
 
-type IModifier = 'expanded' | 'detached' | 'modal';
+type IModifier = 'expanded' | 'detached';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
@@ -24,33 +23,27 @@ const [tokensClassName, tokens] = createTheme({
 });
 
 const classNames = createStyles({
-  sideSheetContent: {
+  drawer: {},
+  root: {
     height: '100%',
-    width: tokens.container.width,
+    width: `min(${tokens.container.width}, 100vw - ${px(48)})`,
 
     vars: createTokensVars(SideSheetContent.theme.tokens, {
       container: {
         color: tokens.container.color,
       },
     }),
-
-    selectors: {
-      [getModifierSelector<IModifier>('modal')]: {
-        width: `min(${tokens.container.width}, 100vw - ${px(48)})`,
-      },
-    },
   },
 });
 
-export type IModalSideSheetThemeFactory = IComponentThemeFactory<{
+export type IModalAsideThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   modifier: IModifier;
 }>;
 
-export const modalSideSheetTheme =
-  componentThemeFactory<IModalSideSheetThemeFactory>({
-    classNames,
-    tokensClassName,
-    tokens,
-  });
+export const modalAsideTheme = componentThemeFactory<IModalAsideThemeFactory>({
+  classNames,
+  tokensClassName,
+  tokens,
+});

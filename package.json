@@ -71,7 +71,7 @@
     "modern-normalize": "^3.0.1",
     "rainbow-sprinkles": "^1.0.0",
     "react-aria": "^3.37.0",
-    "react-remove-scroll": "^2.6.2",
+    "react-remove-scroll": "^2.6.3",
     "react-transition-group": "^4.4.5",
     "type-fest": "^4.33.0"
   },
@@ -101,7 +101,7 @@
     "@storybook/react-vite": "^8.5.0",
     "@storybook/test": "^8.5.0",
     "@types/eslint": "^9",
-    "@types/node": "^22.10.7",
+    "@types/node": "^22.10.8",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/react-transition-group": "^4",

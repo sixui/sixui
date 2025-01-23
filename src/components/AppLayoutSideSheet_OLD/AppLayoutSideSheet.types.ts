@@ -1,18 +1,18 @@
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
-import type { ISideSheetContentOwnProps } from '../SideSheetContent';
 import type {
   appLayoutSideSheetTheme,
   IAppLayoutSideSheetThemeFactory,
 } from './AppLayoutSideSheet.css';
 
-export interface IAppLayoutSideSheetOwnProps extends ISideSheetContentOwnProps {
-  detached?: boolean;
+export interface IAppLayoutSideSheetOwnProps {
+  children?: React.ReactNode;
   hasHeader?: boolean;
-  standardOpened?: boolean;
-  modalOpened?: boolean;
-  root?: HTMLElement | null;
+  navigationRailOpened?: boolean;
+  navigationDrawerOpened?: boolean;
+  opened?: boolean;
+  side: 'left' | 'right';
 }
 
 export interface IAppLayoutSideSheetProps

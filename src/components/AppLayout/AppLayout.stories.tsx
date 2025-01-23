@@ -51,19 +51,19 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
             <Header divider />
 
             <Flex direction="row" align="start">
-              <AppLayout.SideSheet side="left">
-                <MainNavigationRail
-                  activeDestination={activeDestination}
-                  onClick={setActiveDestination}
-                  divider
-                />
+              <MainNavigationRail
+                activeDestination={activeDestination}
+                onClick={setActiveDestination}
+                divider
+              />
 
+              {/* FIXME: <AppLayout.SideSheet side="left">
                 <MainNavigationDrawer
                   activeDestination={activeDestination}
                   onClick={setActiveDestination}
                   divider
                 />
-              </AppLayout.SideSheet>
+              </AppLayout.SideSheet> */}
 
               <CanonicalLayout type={activeDestination} />
             </Flex>
@@ -96,13 +96,13 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
         <AppLayout window={window} {...props}>
           <Flex direction="column">
             <Flex direction="row" align="start">
-              <AppLayout.SideSheet side="left" fullHeight>
-                <MainNavigationRail
-                  activeDestination={activeDestination}
-                  onClick={setActiveDestination}
-                  divider
-                />
+              <MainNavigationRail
+                activeDestination={activeDestination}
+                onClick={setActiveDestination}
+                divider
+              />
 
+              {/* FIXME: <AppLayout.SideSheet side="left" fullHeight>
                 <MainNavigationDrawer
                   activeDestination={activeDestination}
                   onClick={setActiveDestination}
@@ -112,7 +112,7 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
                   header={<Placeholder label="Header" />}
                   footer={<Placeholder label="Footer" />}
                 />
-              </AppLayout.SideSheet>
+              </AppLayout.SideSheet> */}
 
               <Flex direction="column" align="stretch" grow={1}>
                 <Header divider />

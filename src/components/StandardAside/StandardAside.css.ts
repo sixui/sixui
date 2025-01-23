@@ -7,7 +7,7 @@ import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { NavigationRailContent } from '../NavigationRailContent';
+import { SideSheetContent } from '../SideSheetContent';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 import { appLayoutTheme } from '../AppLayout/AppLayout.css';
 
@@ -16,60 +16,47 @@ type IModifier = 'opened' | 'side';
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   container: {
-    width: fallbackVar(appLayoutTheme.tokens.navigationRail.width, px(80)),
+    width: fallbackVar(appLayoutTheme.tokens.aside.width, px(360)),
     color: fallbackVar(
-      appLayoutTheme.tokens.navigationRail.color,
+      appLayoutTheme.tokens.aside.color,
       themeTokens.colorScheme.surface,
     ),
     topSpace: px(0),
     bottomSpace: px(0),
   },
-  divider: {
-    color: fallbackVar(
-      appLayoutTheme.tokens.divider.color,
-      themeTokens.colorScheme.outline,
-    ),
-    width: fallbackVar(
-      appLayoutTheme.tokens.divider.width,
-      themeTokens.outline.width.xs,
-    ),
-  },
 });
 
 const classNames = createStyles({
   root: {
-    // position: 'sticky',
-    // height: calc.subtract(
-    //   '100vh',
-    //   tokens.container.topSpace,
-    //   tokens.container.bottomSpace,
-    // ),
-    // width: 0,
-    // flexShrink: 0,
-    // transitionProperty: 'width',
-    // transitionDuration: themeTokens.motion.duration.short.$3,
-    // transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
-    // selectors: {
-    //   [getModifierSelector<IModifier>('opened')]: {
-    //     width: tokens.container.width,
-    //     transitionDuration: themeTokens.motion.duration.long.$3,
-    //     transitionTimingFunction:
-    //       themeTokens.motion.easing.emphasized.decelerate,
-    //   },
-    // },
+    position: 'sticky',
+    height: calc.subtract(
+      '100vh',
+      tokens.container.topSpace,
+      tokens.container.bottomSpace,
+    ),
+    width: 0,
+    flexShrink: 0,
+
+    transitionProperty: 'width',
+    transitionDuration: themeTokens.motion.duration.short.$3,
+    transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
+
+    selectors: {
+      [getModifierSelector<IModifier>('opened')]: {
+        width: tokens.container.width,
+        transitionDuration: themeTokens.motion.duration.long.$3,
+        transitionTimingFunction:
+          themeTokens.motion.easing.emphasized.decelerate,
+      },
+    },
   },
-  navigationRailContent: {
+  sideSheetContent: {
     height: '100%',
     width: tokens.container.width,
 
-    vars: createTokensVars(NavigationRailContent.theme.tokens, {
+    vars: createTokensVars(SideSheetContent.theme.tokens, {
       container: {
-        width: tokens.container.width,
         color: tokens.container.color,
-      },
-      divider: {
-        color: tokens.divider.color,
-        width: tokens.divider.width,
       },
     }),
   },
@@ -88,13 +75,14 @@ const classNames = createStyles({
   }),
 });
 
-export type INavigationRailThemeFactory = IComponentThemeFactory<{
+export type IStandardAsideThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
+  modifier: IModifier;
 }>;
 
-export const navigationRailTheme =
-  componentThemeFactory<INavigationRailThemeFactory>({
+export const standardAsideTheme =
+  componentThemeFactory<IStandardAsideThemeFactory>({
     classNames,
     tokensClassName,
     tokens,

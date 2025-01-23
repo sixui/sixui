@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IAppLayoutAsideProps } from './AppLayoutAside.types';
+import type { IModalAsideProps } from './ModalAside.types';
 import { px } from '~/helpers/styles/px';
 import { useToggle } from '~/hooks/useToggle';
 import { Button } from '../Button';
@@ -8,11 +8,11 @@ import { Flex } from '../Flex';
 import { Frame } from '../Frame';
 import { Placeholder } from '../Placeholder';
 import { themeTokens } from '../ThemeProvider';
-import { AppLayoutAside } from './AppLayoutAside';
+import { ModalAside } from './ModalAside';
 
 const meta = {
-  component: AppLayoutAside,
-} satisfies Meta<typeof AppLayoutAside>;
+  component: ModalAside,
+} satisfies Meta<typeof ModalAside>;
 
 type IStory = StoryObj<typeof meta>;
 
@@ -48,21 +48,17 @@ const defaultArgs = {
     />
   ),
   divider: true,
-} satisfies Partial<IAppLayoutAsideProps>;
+} satisfies Partial<IModalAsideProps>;
 
-const AppLayoutAsideFrame: React.FC<IAppLayoutAsideProps> = (props) => {
+const ModalAsideFrame: React.FC<IModalAsideProps> = (props) => {
   const { ...other } = props;
-  const [standardOpened, toggleStandardOpened] = useToggle([true, false]);
-  const [modalOpened, toggleModalOpened] = useToggle([false, true]);
+  const [opened, toggleOpened] = useToggle([true, false]);
 
   return (
     <Flex direction="column" gap="$2">
       <Flex direction="row" gap="$2">
-        <Button onClick={() => toggleStandardOpened()}>
-          {standardOpened ? 'Close' : 'Open'} standard
-        </Button>
-        <Button onClick={() => toggleModalOpened()}>
-          {modalOpened ? 'Close' : 'Open'} modal
+        <Button onClick={() => toggleOpened()}>
+          {opened ? 'Close' : 'Open'}
         </Button>
       </Flex>
 
@@ -82,10 +78,9 @@ const AppLayoutAsideFrame: React.FC<IAppLayoutAsideProps> = (props) => {
           h="100%"
         >
           <Placeholder label="Page" grow={1} expanded diagonals />
-          <AppLayoutAside
-            standardOpened={standardOpened}
-            modalOpened={modalOpened}
-            onClose={() => toggleModalOpened(false)}
+          <ModalAside
+            opened={opened}
+            onClose={() => toggleOpened(false)}
             header={
               <Placeholder
                 label="Header"
@@ -115,7 +110,7 @@ const AppLayoutAsideFrame: React.FC<IAppLayoutAsideProps> = (props) => {
 };
 
 export const Left: IStory = {
-  render: (props) => <AppLayoutAsideFrame {...props} />,
+  render: (props) => <ModalAsideFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'left',
@@ -123,7 +118,7 @@ export const Left: IStory = {
 };
 
 export const LeftDetached: IStory = {
-  render: (props) => <AppLayoutAsideFrame {...props} />,
+  render: (props) => <ModalAsideFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'left',
@@ -132,7 +127,7 @@ export const LeftDetached: IStory = {
 };
 
 export const Right: IStory = {
-  render: (props) => <AppLayoutAsideFrame {...props} />,
+  render: (props) => <ModalAsideFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'right',
@@ -140,7 +135,7 @@ export const Right: IStory = {
 };
 
 export const RightDetached: IStory = {
-  render: (props) => <AppLayoutAsideFrame {...props} />,
+  render: (props) => <ModalAsideFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'right',

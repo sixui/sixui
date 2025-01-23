@@ -1,16 +1,16 @@
-import type { IModalSideSheetThemeFactory } from './ModalSideSheet.css';
-import type { IModalSideSheetFactory } from './ModalSideSheet.types';
+import type { IModalAsideThemeFactory } from './ModalAside.css';
+import type { IModalAsideFactory } from './ModalAside.types';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { useAppLayoutContext } from '../AppLayout/AppLayout.context';
 import { Drawer } from '../Drawer';
 import { SideSheetContent } from '../SideSheetContent';
-import { modalSideSheetTheme } from './ModalSideSheet.css';
+import { modalAsideTheme } from './ModalAside.css';
 
-const COMPONENT_NAME = 'ModalSideSheet';
+const COMPONENT_NAME = 'ModalAside';
 
-export const ModalSideSheet = componentFactory<IModalSideSheetFactory>(
+export const ModalAside = componentFactory<IModalAsideFactory>(
   (props, forwardedRef) => {
     const {
       classNames,
@@ -28,14 +28,14 @@ export const ModalSideSheet = componentFactory<IModalSideSheetFactory>(
 
     const appLayoutContext = useAppLayoutContext();
 
-    const { getStyles } = useComponentTheme<IModalSideSheetThemeFactory>({
+    const { getStyles } = useComponentTheme<IModalAsideThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
       className,
       styles,
       style,
       variant,
-      theme: modalSideSheetTheme,
+      theme: modalAsideTheme,
       modifiers: {
         detached,
       },
@@ -43,7 +43,7 @@ export const ModalSideSheet = componentFactory<IModalSideSheetFactory>(
 
     return (
       <Drawer
-        {...getStyles('root')}
+        {...getStyles('drawer')}
         root={root ?? appLayoutContext?.root}
         opened={opened}
         onClose={() => {
@@ -57,11 +57,7 @@ export const ModalSideSheet = componentFactory<IModalSideSheetFactory>(
       >
         {({ close }) => (
           <SideSheetContent
-            {...getStyles('sideSheetContent', {
-              modifiers: {
-                modal: true,
-              },
-            })}
+            {...getStyles('root')}
             side={side}
             showCloseButton
             onClose={close}
@@ -75,5 +71,5 @@ export const ModalSideSheet = componentFactory<IModalSideSheetFactory>(
   },
 );
 
-ModalSideSheet.theme = modalSideSheetTheme;
-ModalSideSheet.displayName = `@sixui/${COMPONENT_NAME}`;
+ModalAside.theme = modalAsideTheme;
+ModalAside.displayName = `@sixui/${COMPONENT_NAME}`;

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IModalSideSheetProps } from './ModalSideSheet.types';
+import type { IAsideProps } from './Aside.types';
 import { px } from '~/helpers/styles/px';
 import { useToggle } from '~/hooks/useToggle';
 import { Button } from '../Button';
@@ -8,11 +8,11 @@ import { Flex } from '../Flex';
 import { Frame } from '../Frame';
 import { Placeholder } from '../Placeholder';
 import { themeTokens } from '../ThemeProvider';
-import { ModalSideSheet } from './ModalSideSheet';
+import { Aside } from './Aside';
 
 const meta = {
-  component: ModalSideSheet,
-} satisfies Meta<typeof ModalSideSheet>;
+  component: Aside,
+} satisfies Meta<typeof Aside>;
 
 type IStory = StoryObj<typeof meta>;
 
@@ -48,17 +48,21 @@ const defaultArgs = {
     />
   ),
   divider: true,
-} satisfies Partial<IModalSideSheetProps>;
+} satisfies Partial<IAsideProps>;
 
-const ModalSideSheetFrame: React.FC<IModalSideSheetProps> = (props) => {
+const AsideFrame: React.FC<IAsideProps> = (props) => {
   const { ...other } = props;
-  const [opened, toggleOpened] = useToggle([true, false]);
+  const [standardOpened, toggleStandardOpened] = useToggle([true, false]);
+  const [modalOpened, toggleModalOpened] = useToggle([false, true]);
 
   return (
     <Flex direction="column" gap="$2">
       <Flex direction="row" gap="$2">
-        <Button onClick={() => toggleOpened()}>
-          {opened ? 'Close' : 'Open'}
+        <Button onClick={() => toggleStandardOpened()}>
+          {standardOpened ? 'Close' : 'Open'} standard
+        </Button>
+        <Button onClick={() => toggleModalOpened()}>
+          {modalOpened ? 'Close' : 'Open'} modal
         </Button>
       </Flex>
 
@@ -78,9 +82,10 @@ const ModalSideSheetFrame: React.FC<IModalSideSheetProps> = (props) => {
           h="100%"
         >
           <Placeholder label="Page" grow={1} expanded diagonals />
-          <ModalSideSheet
-            opened={opened}
-            onClose={() => toggleOpened(false)}
+          <Aside
+            standardOpened={standardOpened}
+            modalOpened={modalOpened}
+            onClose={() => toggleModalOpened(false)}
             header={
               <Placeholder
                 label="Header"
@@ -110,7 +115,7 @@ const ModalSideSheetFrame: React.FC<IModalSideSheetProps> = (props) => {
 };
 
 export const Left: IStory = {
-  render: (props) => <ModalSideSheetFrame {...props} />,
+  render: (props) => <AsideFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'left',
@@ -118,7 +123,7 @@ export const Left: IStory = {
 };
 
 export const LeftDetached: IStory = {
-  render: (props) => <ModalSideSheetFrame {...props} />,
+  render: (props) => <AsideFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'left',
@@ -127,7 +132,7 @@ export const LeftDetached: IStory = {
 };
 
 export const Right: IStory = {
-  render: (props) => <ModalSideSheetFrame {...props} />,
+  render: (props) => <AsideFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'right',
@@ -135,7 +140,7 @@ export const Right: IStory = {
 };
 
 export const RightDetached: IStory = {
-  render: (props) => <ModalSideSheetFrame {...props} />,
+  render: (props) => <AsideFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'right',

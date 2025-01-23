@@ -5,9 +5,9 @@ import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { ModalSideSheet } from '../ModalSideSheet';
+import { ModalAside } from '../ModalAside';
 import { SideSheetContent } from '../SideSheetContent';
-import { StandardSideSheet } from '../StandardSideSheet';
+import { StandardAside } from '../StandardAside';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 import { appLayoutTheme } from '../AppLayout/AppLayout.css';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
@@ -27,12 +27,12 @@ const [tokensClassName, tokens] = createTheme({
 const classNames = createStyles({
   root: {
     vars: {
-      ...createTokensVars(ModalSideSheet.theme.tokens, {
+      ...createTokensVars(ModalAside.theme.tokens, {
         container: {
           width: tokens.container.width,
         },
       }),
-      ...createTokensVars(StandardSideSheet.theme.tokens, {
+      ...createTokensVars(StandardAside.theme.tokens, {
         container: {
           width: tokens.container.width,
         },

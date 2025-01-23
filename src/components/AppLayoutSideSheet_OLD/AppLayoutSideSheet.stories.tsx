@@ -7,51 +7,17 @@ import { Button } from '../Button';
 import { Flex } from '../Flex';
 import { Frame } from '../Frame';
 import { Placeholder } from '../Placeholder';
+import { SideSheet } from '../SideSheet';
 import { themeTokens } from '../ThemeProvider';
-import { AppLayoutSideSheet } from './AppLayoutSideSheet';
 
-const meta = {
-  component: AppLayoutSideSheet,
-} satisfies Meta<typeof AppLayoutSideSheet>;
+interface IAppLayoutSideSheetFrameProps extends IAppLayoutSideSheetProps {
+  side: 'left' | 'right';
+}
 
-type IStory = StoryObj<typeof meta>;
-
-const defaultArgs = {
-  header: (
-    <Placeholder
-      label="Header"
-      grow={1}
-      h="$16"
-      diagonals
-      surface="$primaryContainer"
-      color="$onPrimaryContainer"
-    />
-  ),
-  footer: (
-    <Placeholder
-      label="Footer"
-      grow={1}
-      h="$16"
-      diagonals
-      surface="$primaryContainer"
-      color="$onPrimaryContainer"
-    />
-  ),
-  children: (
-    <Placeholder
-      label="Content"
-      grow={1}
-      expanded
-      diagonals
-      surface="$primaryContainer"
-      color="$onPrimaryContainer"
-    />
-  ),
-  divider: true,
-} satisfies Partial<IAppLayoutSideSheetProps>;
-
-const AppLayoutSideSheetFrame: React.FC<IAppLayoutSideSheetProps> = (props) => {
-  const { ...other } = props;
+const AppLayoutSideSheetFrame: React.FC<IAppLayoutSideSheetFrameProps> = (
+  props,
+) => {
+  const { side, ...other } = props;
   const [standardOpened, toggleStandardOpened] = useToggle([true, false]);
   const [modalOpened, toggleModalOpened] = useToggle([false, true]);
 
@@ -77,15 +43,16 @@ const AppLayoutSideSheetFrame: React.FC<IAppLayoutSideSheetProps> = (props) => {
         }}
       >
         <Flex
-          direction={other.side === 'right' ? 'row' : 'row-reverse'}
+          direction={side === 'right' ? 'row' : 'row-reverse'}
           align="start"
           h="100%"
         >
           <Placeholder label="Page" grow={1} expanded diagonals />
-          <AppLayoutSideSheet
+          <SideSheet
             standardOpened={standardOpened}
             modalOpened={modalOpened}
-            onClose={() => toggleModalOpened(false)}
+            side={side}
+            divider
             header={
               <Placeholder
                 label="Header"
@@ -106,13 +73,29 @@ const AppLayoutSideSheetFrame: React.FC<IAppLayoutSideSheetProps> = (props) => {
                 color="$onPrimaryContainer"
               />
             }
-            {...other}
-          />
+          >
+            <Placeholder
+              label="Content"
+              grow={1}
+              expanded
+              diagonals
+              surface="$primaryContainer"
+              color="$onPrimaryContainer"
+            />
+          </SideSheet>
         </Flex>
       </Frame>
     </Flex>
   );
 };
+
+const meta = {
+  component: AppLayoutSideSheetFrame,
+} satisfies Meta<typeof AppLayoutSideSheetFrame>;
+
+type IStory = StoryObj<typeof meta>;
+
+const defaultArgs = {} satisfies Partial<IAppLayoutSideSheetProps>;
 
 export const Left: IStory = {
   render: (props) => <AppLayoutSideSheetFrame {...props} />,
@@ -122,29 +105,11 @@ export const Left: IStory = {
   },
 };
 
-export const LeftDetached: IStory = {
-  render: (props) => <AppLayoutSideSheetFrame {...props} />,
-  args: {
-    ...defaultArgs,
-    side: 'left',
-    detached: true,
-  },
-};
-
 export const Right: IStory = {
   render: (props) => <AppLayoutSideSheetFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'right',
-  },
-};
-
-export const RightDetached: IStory = {
-  render: (props) => <AppLayoutSideSheetFrame {...props} />,
-  args: {
-    ...defaultArgs,
-    side: 'right',
-    detached: true,
   },
 };
 

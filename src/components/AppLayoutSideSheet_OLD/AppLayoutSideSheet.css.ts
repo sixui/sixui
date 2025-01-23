@@ -1,30 +1,30 @@
-import { createTheme, fallbackVar } from '@vanilla-extract/css';
+import { createTheme } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { SideSheetContent } from '../SideSheetContent';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 import { appLayoutTheme } from '../AppLayout/AppLayout.css';
 
-type IModifier = 'opened';
+type IModifier =
+  | 'with-header'
+  | 'opened'
+  | 'navigation-rail'
+  | 'navigation-drawer'
+  | 'aside';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   container: {
-    width: fallbackVar(appLayoutTheme.tokens.aside.width, px(360)),
-    color: fallbackVar(
-      appLayoutTheme.tokens.aside.color,
-      themeTokens.colorScheme.surface,
-    ),
+    width: px(300),
   },
 });
 
 const classNames = createStyles({
-  standard: {
+  root: {
     position: 'sticky',
     left: 0,
     top: 0,
@@ -37,40 +37,37 @@ const classNames = createStyles({
     transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
 
     selectors: {
+      [getModifierSelector<IModifier>('with-header')]: {
+        height: calc.subtract('100vh', appLayoutTheme.tokens.header.height),
+        top: appLayoutTheme.tokens.header.height,
+      },
       [getModifierSelector<IModifier>('opened')]: {
         width: tokens.container.width,
         transitionDuration: themeTokens.motion.duration.long.$3,
         transitionTimingFunction:
           themeTokens.motion.easing.emphasized.decelerate,
       },
-    },
-  },
-  sideSheetContent: {
-    height: '100%',
-    width: tokens.container.width,
-
-    vars: createTokensVars(SideSheetContent.theme.tokens, {
-      container: {
-        color: tokens.container.color,
+      [getModifierSelector<IModifier>(['opened', 'navigation-rail'])]: {
+        width: appLayoutTheme.tokens.navigationRail.width,
       },
-    }),
-  },
-  transitionContainer: {
-    position: 'absolute',
-    top: 0,
-    height: '100%',
-    width: tokens.container.width,
+      [getModifierSelector<IModifier>(['opened', 'navigation-drawer'])]: {
+        width: appLayoutTheme.tokens.navigationDrawer.width,
+      },
+      [getModifierSelector<IModifier>(['opened', 'aside'])]: {
+        width: appLayoutTheme.tokens.aside.width,
+      },
+    },
   },
 });
 
-export type IStandardSideSheetThemeFactory = IComponentThemeFactory<{
+export type IAppLayoutSideSheetThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   modifier: IModifier;
 }>;
 
-export const standardSideSheetTheme =
-  componentThemeFactory<IStandardSideSheetThemeFactory>({
+export const appLayoutSideSheetTheme =
+  componentThemeFactory<IAppLayoutSideSheetThemeFactory>({
     classNames,
     tokensClassName,
     tokens,

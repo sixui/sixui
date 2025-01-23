@@ -2,14 +2,16 @@ import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactor
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 
-const classNames = createStyles();
+const classNames = createStyles({
+  modal: {},
+  standard: {},
+});
 
-export type IAppLayoutAsideThemeFactory = IComponentThemeFactory<{
+export type IAsideThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
 }>;
 
-export const appLayoutAsideTheme =
-  componentThemeFactory<IAppLayoutAsideThemeFactory>({
-    classNames,
-    tokens: undefined,
-  });
+export const asideTheme = componentThemeFactory<IAsideThemeFactory>({
+  classNames,
+  tokens: undefined,
+});

@@ -14,7 +14,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { INavigationRailProps } from '~/components/NavigationRail';
 import type { ICanonicalLayoutType } from '~/hooks/useCanonicalLayout';
-import { NavigationRail } from '~/components/NavigationRail';
+import { AppLayout } from '../AppLayout';
 
 export interface IMainNavigationRailProps extends INavigationRailProps {
   activeDestination?: ICanonicalLayoutType;
@@ -27,35 +27,35 @@ export const MainNavigationRail: React.FC<IMainNavigationRailProps> = (
   const { activeDestination, onClick, ...other } = props;
 
   return (
-    <NavigationRail {...other}>
-      <NavigationRail.Destination
+    <AppLayout.NavigationRail {...other}>
+      <AppLayout.NavigationRail.Destination
         onClick={() => onClick?.('listDetail')}
         active={activeDestination === 'listDetail'}
         icon={<FontAwesomeIcon icon={faSquare} />}
         activeIcon={<FontAwesomeIcon icon={fasSquare} />}
         label="List-detail"
       />
-      <NavigationRail.Destination
+      <AppLayout.NavigationRail.Destination
         onClick={() => onClick?.('supportingPane')}
         active={activeDestination === 'supportingPane'}
         icon={<FontAwesomeIcon icon={faCircle} />}
         activeIcon={<FontAwesomeIcon icon={fasCircle} />}
         label="Supporting pane"
       />
-      <NavigationRail.Destination
+      <AppLayout.NavigationRail.Destination
         onClick={() => onClick?.('feed')}
         active={activeDestination === 'feed'}
         icon={<FontAwesomeIcon icon={faHeart} />}
         activeIcon={<FontAwesomeIcon icon={fasHeart} />}
         label="Feed"
       />
-      <NavigationRail.Destination
+      <AppLayout.NavigationRail.Destination
         onClick={() => onClick?.(undefined)}
         active={activeDestination === undefined}
         icon={<FontAwesomeIcon icon={faQuestionCircle} />}
         activeIcon={<FontAwesomeIcon icon={fasQuestionCircle} />}
         label="Custom"
       />
-    </NavigationRail>
+    </AppLayout.NavigationRail>
   );
 };

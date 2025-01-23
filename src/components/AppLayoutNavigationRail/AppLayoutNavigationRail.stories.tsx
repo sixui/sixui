@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IStandardSideSheetProps } from './StandardSideSheet.types';
+import type { IAppLayoutNavigationRailProps } from './AppLayoutNavigationRail.types';
 import { px } from '~/helpers/styles/px';
 import { useToggle } from '~/hooks/useToggle';
 import { Button } from '../Button';
@@ -8,11 +8,11 @@ import { Flex } from '../Flex';
 import { Frame } from '../Frame';
 import { Placeholder } from '../Placeholder';
 import { themeTokens } from '../ThemeProvider';
-import { StandardSideSheet } from './StandardSideSheet';
+import { AppLayoutNavigationRail } from './AppLayoutNavigationRail';
 
 const meta = {
-  component: StandardSideSheet,
-} satisfies Meta<typeof StandardSideSheet>;
+  component: AppLayoutNavigationRail,
+} satisfies Meta<typeof AppLayoutNavigationRail>;
 
 type IStory = StoryObj<typeof meta>;
 
@@ -48,17 +48,23 @@ const defaultArgs = {
     />
   ),
   divider: true,
-} satisfies Partial<IStandardSideSheetProps>;
+} satisfies Partial<IAppLayoutNavigationRailProps>;
 
-const StandardSideSheetFrame: React.FC<IStandardSideSheetProps> = (props) => {
+const AppLayoutNavigationRailFrame: React.FC<IAppLayoutNavigationRailProps> = (
+  props,
+) => {
   const { ...other } = props;
-  const [opened, toggleOpened] = useToggle([true, false]);
+  const [standardOpened, toggleStandardOpened] = useToggle([true, false]);
+  const [modalOpened, toggleModalOpened] = useToggle([false, true]);
 
   return (
     <Flex direction="column" gap="$2">
       <Flex direction="row" gap="$2">
-        <Button onClick={() => toggleOpened()}>
-          {opened ? 'Close' : 'Open'}
+        <Button onClick={() => toggleStandardOpened()}>
+          {standardOpened ? 'Close' : 'Open'} standard
+        </Button>
+        <Button onClick={() => toggleModalOpened()}>
+          {modalOpened ? 'Close' : 'Open'} modal
         </Button>
       </Flex>
 
@@ -78,9 +84,10 @@ const StandardSideSheetFrame: React.FC<IStandardSideSheetProps> = (props) => {
           h="100%"
         >
           <Placeholder label="Page" grow={1} expanded diagonals />
-          <StandardSideSheet
-            opened={opened}
-            onClose={() => toggleOpened(false)}
+          <AppLayoutNavigationRail
+            standardOpened={standardOpened}
+            modalOpened={modalOpened}
+            onClose={() => toggleModalOpened(false)}
             header={
               <Placeholder
                 label="Header"
@@ -110,18 +117,36 @@ const StandardSideSheetFrame: React.FC<IStandardSideSheetProps> = (props) => {
 };
 
 export const Left: IStory = {
-  render: (props) => <StandardSideSheetFrame {...props} />,
+  render: (props) => <AppLayoutNavigationRailFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'left',
   },
 };
 
+export const LeftDetached: IStory = {
+  render: (props) => <AppLayoutNavigationRailFrame {...props} />,
+  args: {
+    ...defaultArgs,
+    side: 'left',
+    detached: true,
+  },
+};
+
 export const Right: IStory = {
-  render: (props) => <StandardSideSheetFrame {...props} />,
+  render: (props) => <AppLayoutNavigationRailFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'right',
+  },
+};
+
+export const RightDetached: IStory = {
+  render: (props) => <AppLayoutNavigationRailFrame {...props} />,
+  args: {
+    ...defaultArgs,
+    side: 'right',
+    detached: true,
   },
 };
 

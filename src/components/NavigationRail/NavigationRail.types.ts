@@ -10,6 +10,7 @@ import { NavigationRailDestination } from '../NavigationRailDestination';
 
 export interface INavigationRailOwnProps
   extends INavigationRailContentOwnProps {
+  side?: 'left' | 'right';
   opened?: boolean;
 }
 
