@@ -19,7 +19,7 @@ export type IAppLayoutComponentName =
   | 'header'
   | 'navigationRail'
   | 'navigationDrawer'
-  | 'aside';
+  | 'sideSheet';
 
 export interface IAppLayoutOwnProps {
   children?:
@@ -29,7 +29,7 @@ export interface IAppLayoutOwnProps {
   navigationDrawer?: {
     defaultClosed?: boolean;
   };
-  aside?: {
+  sideSheet?: {
     defaultClosed?: boolean;
   };
   preferredNavigationMode?: IAppLayoutNavigationMode;

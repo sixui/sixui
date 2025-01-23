@@ -38,16 +38,16 @@ export const Header: React.FC<IHeaderProps> = (props) => {
         </Flex>
 
         <Flex direction="row" gap="$2">
-          {appLayoutContext?.aside?.state?.toggle && (
+          {appLayoutContext?.sideSheet?.state?.toggle && (
             <IconButton
               icon={
                 <FontAwesomeIcon
                   icon={
-                    appLayoutContext.aside?.state?.opened ? fasXmark : fasBars
+                    appLayoutContext.sideSheet?.state?.opened ? fasXmark : fasBars
                   }
                 />
               }
-              onClick={appLayoutContext.aside?.state?.toggle}
+              onClick={appLayoutContext.sideSheet?.state?.toggle}
             />
           )}
         </Flex>

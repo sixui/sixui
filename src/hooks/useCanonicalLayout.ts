@@ -16,7 +16,7 @@ export type ICanonicalLayoutOptions = {
 
 export type ICanonicalLayoutPane = {
   name: 'listDetail' | 'list' | 'detail' | 'focus' | 'supporting' | 'feed';
-  type?: 'body' | 'bottomSheet' | 'aside';
+  type?: 'body' | 'bottomSheet' | 'sideSheet';
   dismissible?: boolean;
 };
 
@@ -151,7 +151,7 @@ export const useCanonicalLayout = (
           windowSizeClass,
           navigationMode,
           orientation: 'horizontal',
-          panes: [{ name: 'focus' }, { name: 'supporting', type: 'aside' }],
+          panes: [{ name: 'focus' }, { name: 'supporting', type: 'sideSheet' }],
           standardAside: { maxWidth: 360 },
         };
       }
@@ -160,7 +160,7 @@ export const useCanonicalLayout = (
         windowSizeClass,
         navigationMode,
         orientation: 'horizontal',
-        panes: [{ name: 'focus' }, { name: 'supporting', type: 'aside' }],
+        panes: [{ name: 'focus' }, { name: 'supporting', type: 'sideSheet' }],
         standardAside: { maxWidth: 360 },
       };
 

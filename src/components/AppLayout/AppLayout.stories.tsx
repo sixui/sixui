@@ -131,7 +131,7 @@ export const LayoutA: IStory = {
   render: (props) => <AppLayoutFrameA {...props} />,
   args: {
     ...defaultArgs,
-    components: ['header', 'navigationRail', 'navigationDrawer', 'aside'],
+    components: ['header', 'navigationRail', 'navigationDrawer', 'sideSheet'],
   },
 };
 
@@ -139,7 +139,7 @@ export const LayoutB: IStory = {
   render: (props) => <AppLayoutFrameB {...props} />,
   args: {
     ...defaultArgs,
-    components: ['header', 'navigationRail', 'navigationDrawer', 'aside'],
+    components: ['header', 'navigationRail', 'navigationDrawer', 'sideSheet'],
   },
 };
 

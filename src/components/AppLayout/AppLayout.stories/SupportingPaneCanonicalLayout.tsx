@@ -39,7 +39,7 @@ export const SupportingPaneCanonicalLayout: React.FC<
 
   const [bottomSheetOpened, toggleBottomSheet] = useToggle([false, true]);
   const hasSupportingPaneAppLayoutAside = canonicalLayout.panes.some(
-    (pane) => pane.type === 'aside' && pane.name === 'supporting',
+    (pane) => pane.type === 'sideSheet' && pane.name === 'supporting',
   );
   const hasSupportingPaneBottomSheet = canonicalLayout.panes.some(
     (pane) => pane.type === 'bottomSheet',

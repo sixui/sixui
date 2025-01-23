@@ -43,15 +43,15 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
     });
 
     const hasAppLayoutAside =
-      appLayoutContext?.components.includes('aside') ?? true;
+      appLayoutContext?.components.includes('sideSheet') ?? true;
     if (!hasAppLayoutAside) {
       return null;
     }
 
     const standardOpened =
-      standardOpenedProp ?? appLayoutContext?.aside?.state?.standardOpened;
+      standardOpenedProp ?? appLayoutContext?.sideSheet?.state?.standardOpened;
     const modalOpened =
-      modalOpenedProp ?? appLayoutContext?.aside?.state?.modalOpened;
+      modalOpenedProp ?? appLayoutContext?.sideSheet?.state?.modalOpened;
     const root = rootProp ?? appLayoutContext?.root;
 
     return (

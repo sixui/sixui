@@ -20,7 +20,7 @@ const [tokensClassName, tokens] = createTheme({
     width: px(80),
     color: 'initial',
   },
-  aside: {
+  sideSheet: {
     width: px(400),
     color: 'initial',
   },

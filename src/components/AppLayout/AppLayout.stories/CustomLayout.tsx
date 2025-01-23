@@ -8,7 +8,7 @@ import { Text } from '~/components/Text';
 import { useToggle } from '~/hooks/useToggle';
 import { AppLayout } from '../AppLayout';
 
-const AppLayoutAsideContent: React.FC = () => (
+const AppLayoutSideSheetContent: React.FC = () => (
   <Flex direction="column" rowGap="$2" pl="$4" pr="$4">
     {createSequence(4).map((index) => (
       <Placeholder key={index} label="list" shape="$sm" h="$24" diagonals />
@@ -35,9 +35,9 @@ export const CustomLayout: React.FC = () => {
         </Placeholder>
       </AppLayout.Body>
 
-      {/* FIXME: <AppLayout.SideSheet side="right" divider>
-        <AppLayoutAsideContent />
-      </AppLayout.SideSheet> */}
+      <AppLayout.SideSheet side="right" divider>
+        <AppLayoutSideSheetContent />
+      </AppLayout.SideSheet>
 
       <BottomSheet
         showCloseButton

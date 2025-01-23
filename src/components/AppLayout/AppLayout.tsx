@@ -35,7 +35,7 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
       children,
       window: windowProp,
       navigationDrawer,
-      aside,
+      sideSheet,
       preferredNavigationMode = 'standard',
       components,
       ...other
@@ -63,15 +63,19 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
     });
     const hasNavigationDrawer = components.includes('navigationDrawer');
 
-    const [asideOpened, asideCallbacks] = useDisclosure(!aside?.defaultClosed);
-    const asideType = windowSizeClass?.extraLargeAndUp ? 'standard' : 'modal';
-    const asideState = useSideSheet({
-      opened: asideOpened,
-      type: asideType,
-      onOpen: asideCallbacks.open,
-      onClose: asideCallbacks.close,
+    const [sideSheetOpened, sideSheetCallbacks] = useDisclosure(
+      !sideSheet?.defaultClosed,
+    );
+    const sideSheetType = windowSizeClass?.extraLargeAndUp
+      ? 'standard'
+      : 'modal';
+    const sideSheetState = useSideSheet({
+      opened: sideSheetOpened,
+      type: sideSheetType,
+      onOpen: sideSheetCallbacks.open,
+      onClose: sideSheetCallbacks.close,
     });
-    const hasAside = components.includes('aside');
+    const hasAside = components.includes('sideSheet');
 
     const { getStyles } = useComponentTheme<IAppLayoutThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -101,17 +105,17 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
               }
             : undefined,
         },
-        aside: {
-          ...aside,
+        sideSheet: {
+          ...sideSheet,
           state: hasAside
             ? {
-                opened: asideOpened,
-                type: asideType,
-                modalOpened: asideState.modalOpened,
-                standardOpened: asideState.standardOpened,
-                toggle: asideCallbacks.toggle,
-                open: asideCallbacks.open,
-                close: asideCallbacks.close,
+                opened: sideSheetOpened,
+                type: sideSheetType,
+                modalOpened: sideSheetState.modalOpened,
+                standardOpened: sideSheetState.standardOpened,
+                toggle: sideSheetCallbacks.toggle,
+                open: sideSheetCallbacks.open,
+                close: sideSheetCallbacks.close,
               }
             : undefined,
         },
@@ -135,15 +139,15 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
       navigationDrawerCallbacks.toggle,
       navigationDrawerCallbacks.open,
       navigationDrawerCallbacks.close,
-      aside,
+      sideSheet,
       hasAside,
-      asideOpened,
-      asideType,
-      asideState.modalOpened,
-      asideState.standardOpened,
-      asideCallbacks.toggle,
-      asideCallbacks.open,
-      asideCallbacks.close,
+      sideSheetOpened,
+      sideSheetType,
+      sideSheetState.modalOpened,
+      sideSheetState.standardOpened,
+      sideSheetCallbacks.toggle,
+      sideSheetCallbacks.open,
+      sideSheetCallbacks.close,
     ]);
 
     // FIXME:
