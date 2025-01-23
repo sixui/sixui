@@ -21,6 +21,7 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
       modalOpened: modalOpenedProp,
       hasHeader: hasHeaderProp,
       root: rootProp,
+      onClose,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -54,11 +55,17 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
       modalOpenedProp ?? appLayoutContext?.sideSheet?.state?.modalOpened;
     const root = rootProp ?? appLayoutContext?.root;
 
+    const handleClose = (event?: React.MouseEvent): void => {
+      onClose?.(event);
+      appLayoutContext?.sideSheet?.state?.close();
+    };
+
     return (
       <SideSheet
         {...getStyles('root')}
         standardOpened={standardOpened}
         modalOpened={modalOpened}
+        onClose={handleClose}
         root={root}
         ref={forwardedRef}
         {...other}
