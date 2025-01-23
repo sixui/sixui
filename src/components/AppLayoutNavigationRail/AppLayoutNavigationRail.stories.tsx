@@ -1,11 +1,24 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import {
+  faCircle,
+  faHeart,
+  faSquare,
+} from '@fortawesome/free-regular-svg-icons';
+import {
+  faCircle as fasCircle,
+  faHeart as fasHeart,
+  faSquare as fasSquare,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IAppLayoutNavigationRailProps } from './AppLayoutNavigationRail.types';
+import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { px } from '~/helpers/styles/px';
 import { useToggle } from '~/hooks/useToggle';
 import { Button } from '../Button';
 import { Flex } from '../Flex';
 import { Frame } from '../Frame';
+import { NavigationRail } from '../NavigationRail';
 import { Placeholder } from '../Placeholder';
 import { themeTokens } from '../ThemeProvider';
 import { AppLayoutNavigationRail } from './AppLayoutNavigationRail';
@@ -17,35 +30,29 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  header: (
-    <Placeholder
-      label="Header"
-      grow={1}
-      h="$16"
-      diagonals
-      surface="$primaryContainer"
-      color="$onPrimaryContainer"
-    />
-  ),
-  footer: (
-    <Placeholder
-      label="Footer"
-      grow={1}
-      h="$16"
-      diagonals
-      surface="$primaryContainer"
-      color="$onPrimaryContainer"
-    />
-  ),
   children: (
-    <Placeholder
-      label="Content"
-      grow={1}
-      expanded
-      diagonals
-      surface="$primaryContainer"
-      color="$onPrimaryContainer"
-    />
+    <>
+      <NavigationRail.Destination
+        onClick={(args) => sbHandleEvent('onClick', args, 1000)}
+        icon={<FontAwesomeIcon icon={faSquare} />}
+        activeIcon={<FontAwesomeIcon icon={fasSquare} />}
+        label="Item 1"
+        active
+      />
+      <NavigationRail.Destination
+        onClick={(args) => sbHandleEvent('onClick', args, 1000)}
+        icon={<FontAwesomeIcon icon={faCircle} />}
+        activeIcon={<FontAwesomeIcon icon={fasCircle} />}
+        label="Item 2"
+      />
+      <NavigationRail.Destination
+        onClick={(args) => sbHandleEvent('onClick', args, 1000)}
+        icon={<FontAwesomeIcon icon={faHeart} />}
+        activeIcon={<FontAwesomeIcon icon={fasHeart} />}
+        label="Item 3"
+        disabled
+      />
+    </>
   ),
   divider: true,
 } satisfies Partial<IAppLayoutNavigationRailProps>;
@@ -54,17 +61,13 @@ const AppLayoutNavigationRailFrame: React.FC<IAppLayoutNavigationRailProps> = (
   props,
 ) => {
   const { ...other } = props;
-  const [standardOpened, toggleStandardOpened] = useToggle([true, false]);
-  const [modalOpened, toggleModalOpened] = useToggle([false, true]);
+  const [opened, toggleOpened] = useToggle([true, false]);
 
   return (
     <Flex direction="column" gap="$2">
       <Flex direction="row" gap="$2">
-        <Button onClick={() => toggleStandardOpened()}>
-          {standardOpened ? 'Close' : 'Open'} standard
-        </Button>
-        <Button onClick={() => toggleModalOpened()}>
-          {modalOpened ? 'Close' : 'Open'} modal
+        <Button onClick={() => toggleOpened()}>
+          {opened ? 'Close' : 'Open'}
         </Button>
       </Flex>
 
@@ -84,32 +87,7 @@ const AppLayoutNavigationRailFrame: React.FC<IAppLayoutNavigationRailProps> = (
           h="100%"
         >
           <Placeholder label="Page" grow={1} expanded diagonals />
-          <AppLayoutNavigationRail
-            standardOpened={standardOpened}
-            modalOpened={modalOpened}
-            onClose={() => toggleModalOpened(false)}
-            header={
-              <Placeholder
-                label="Header"
-                grow={1}
-                h="$16"
-                diagonals
-                surface="$primaryContainer"
-                color="$onPrimaryContainer"
-              />
-            }
-            footer={
-              <Placeholder
-                label="Footer"
-                grow={1}
-                h="$16"
-                diagonals
-                surface="$primaryContainer"
-                color="$onPrimaryContainer"
-              />
-            }
-            {...other}
-          />
+          <AppLayoutNavigationRail opened={opened} {...other} />
         </Flex>
       </Frame>
     </Flex>
@@ -124,29 +102,11 @@ export const Left: IStory = {
   },
 };
 
-export const LeftDetached: IStory = {
-  render: (props) => <AppLayoutNavigationRailFrame {...props} />,
-  args: {
-    ...defaultArgs,
-    side: 'left',
-    detached: true,
-  },
-};
-
 export const Right: IStory = {
   render: (props) => <AppLayoutNavigationRailFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'right',
-  },
-};
-
-export const RightDetached: IStory = {
-  render: (props) => <AppLayoutNavigationRailFrame {...props} />,
-  args: {
-    ...defaultArgs,
-    side: 'right',
-    detached: true,
   },
 };
 
