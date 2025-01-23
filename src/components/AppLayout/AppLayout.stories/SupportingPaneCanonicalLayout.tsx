@@ -79,11 +79,11 @@ export const SupportingPaneCanonicalLayout: React.FC<
             ))}
         </AppLayout.Body>
 
-        {/* FIXME: {hasSupportingPaneAppLayoutAside && supportingPaneAside && (
+        {hasSupportingPaneAppLayoutAside && supportingPaneAside && (
           <AppLayout.SideSheet side="right" divider>
             {supportingPaneAside}
           </AppLayout.SideSheet>
-        )} */}
+        )}
       </Flex>
 
       {hasSupportingPaneBottomSheet && supportingPaneBottomSheet && (

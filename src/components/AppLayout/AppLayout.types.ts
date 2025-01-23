@@ -6,6 +6,7 @@ import type { AppLayoutHeader } from '../AppLayoutHeader';
 import type { AppLayoutNavigationDrawer } from '../AppLayoutNavigationDrawer';
 import type { AppLayoutNavigationRail } from '../AppLayoutNavigationRail';
 import type { AppLayoutPane } from '../AppLayoutPane';
+import type { AppLayoutSideSheet } from '../AppLayoutSideSheet';
 import type { IBoxProps } from '../Box';
 import type { IAppLayoutContextValue } from './AppLayout.context';
 import type { appLayoutTheme, IAppLayoutThemeFactory } from './AppLayout.css';
@@ -49,6 +50,7 @@ export type IAppLayoutFactory = IComponentFactory<{
     Body: typeof AppLayoutBody;
     NavigationRail: typeof AppLayoutNavigationRail;
     NavigationDrawer: typeof AppLayoutNavigationDrawer;
+    SideSheet: typeof AppLayoutSideSheet;
     Pane: typeof AppLayoutPane;
     Footer: typeof AppLayoutFooter;
   };

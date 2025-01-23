@@ -1,13 +1,13 @@
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
-import type { ISideSheetContentOwnProps } from '../SideSheetContent';
+import type { ISideSheetOwnProps } from '../SideSheet';
 import type {
   appLayoutSideSheetTheme,
   IAppLayoutSideSheetThemeFactory,
 } from './AppLayoutSideSheet.css';
 
-export interface IAppLayoutSideSheetOwnProps extends ISideSheetContentOwnProps {
+export interface IAppLayoutSideSheetOwnProps extends ISideSheetOwnProps {
   hasHeader?: boolean;
 }
 

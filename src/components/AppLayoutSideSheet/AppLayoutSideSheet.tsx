@@ -5,7 +5,6 @@ import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { useAppLayoutContext } from '../AppLayout/AppLayout.context';
 import { SideSheet } from '../SideSheet';
-import { SideSheetDestination } from '../SideSheetDestination';
 import { appLayoutSideSheetTheme } from './AppLayoutSideSheet.css';
 
 const COMPONENT_NAME = 'AppLayoutSideSheet';
@@ -43,9 +42,9 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
       },
     });
 
-    const hasAppLayoutSideSheet =
-      appLayoutContext?.components.includes('navigationDrawer') ?? true;
-    if (!hasAppLayoutSideSheet) {
+    const hasAppLayoutAside =
+      appLayoutContext?.components.includes('aside') ?? true;
+    if (!hasAppLayoutAside) {
       return null;
     }
 
@@ -70,4 +69,3 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
 
 AppLayoutSideSheet.theme = appLayoutSideSheetTheme;
 AppLayoutSideSheet.displayName = `@sixui/${COMPONENT_NAME}`;
-AppLayoutSideSheet.Destination = SideSheetDestination;
