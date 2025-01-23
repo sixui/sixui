@@ -27,7 +27,7 @@ const classNames = createStyles({
   root: {
     vars: createTokensVars(StandardAside.theme.tokens, {
       container: {
-        width: tokens.container.width,
+        size: tokens.container.width,
       },
     }),
   },

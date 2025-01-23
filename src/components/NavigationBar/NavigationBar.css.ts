@@ -1,29 +1,39 @@
+import { createTheme } from '@vanilla-extract/css';
+
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { StandardAside } from '../StandardAside';
-import { appLayoutTheme } from '../AppLayout/AppLayout.css';
+import { cssLayers } from '../ThemeProvider';
 
-type IModifier = 'with-header';
+const [tokensClassName, tokens] = createTheme({
+  '@layer': cssLayers.theme,
+  container: {
+    height: px(80),
+  },
+});
 
 const classNames = createStyles({
   root: {
     vars: createTokensVars(StandardAside.theme.tokens, {
       container: {
-        startSpace: appLayoutTheme.tokens.header.height,
+        size: tokens.container.height,
       },
     }),
   },
+  navigationBarContent: {},
 });
 
-export type IAppLayoutNavigationRailThemeFactory = IComponentThemeFactory<{
+export type INavigationBarThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
-  modifier: IModifier;
+  tokens: typeof tokens;
 }>;
 
-export const appLayoutNavigationRailTheme =
-  componentThemeFactory<IAppLayoutNavigationRailThemeFactory>({
+export const navigationBarTheme =
+  componentThemeFactory<INavigationBarThemeFactory>({
     classNames,
-    tokens: undefined,
+    tokensClassName,
+    tokens,
   });

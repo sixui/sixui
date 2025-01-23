@@ -97,7 +97,7 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
                 activeDestination={activeDestination}
                 onClick={setActiveDestination}
                 divider
-                fullHeight
+                wide
               />
 
               <MainNavigationDrawer
@@ -106,7 +106,7 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
                 divider
                 headline="App Name"
                 showCloseButton
-                fullHeight
+                wide
               />
 
               <Flex direction="column" align="stretch" grow={1}>

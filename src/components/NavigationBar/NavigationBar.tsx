@@ -1,16 +1,17 @@
-import type { INavigationRailThemeFactory } from './NavigationRail.css';
-import type { INavigationRailFactory } from './NavigationRail.types';
+import type { INavigationBarThemeFactory } from './NavigationBar.css';
+import type { INavigationBarFactory } from './NavigationBar.types';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { extractBoxProps } from '../Box/extractBoxProps';
-import { NavigationRailContent } from '../NavigationRailContent';
+import { NavigationBarContent } from '../NavigationBarContent';
+import { NavigationRailDestination } from '../NavigationRailDestination';
 import { StandardAside } from '../StandardAside';
-import { navigationRailTheme } from './NavigationRail.css';
+import { navigationBarTheme } from './NavigationBar.css';
 
-const COMPONENT_NAME = 'NavigationRail';
+const COMPONENT_NAME = 'NavigationBar';
 
-export const NavigationRail = componentFactory<INavigationRailFactory>(
+export const NavigationBar = componentFactory<INavigationBarFactory>(
   (props, forwardedRef) => {
     const {
       classNames,
@@ -19,34 +20,32 @@ export const NavigationRail = componentFactory<INavigationRailFactory>(
       style,
       variant,
       opened,
-      side = 'left',
       wide: fullHeight,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
     const { boxProps, other: forwardedProps } = extractBoxProps(other);
 
-    const { getStyles } = useComponentTheme<INavigationRailThemeFactory>({
+    const { getStyles } = useComponentTheme<INavigationBarThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
       className,
       styles,
       style,
       variant,
-      theme: navigationRailTheme,
+      theme: navigationBarTheme,
     });
 
     return (
       <StandardAside
         {...getStyles('root')}
         opened={opened}
-        side={side}
+        side="bottom"
         wide={fullHeight}
         ref={forwardedRef}
         {...boxProps}
       >
-        <NavigationRailContent
-          side={side}
-          {...getStyles('navigationRailContent')}
+        <NavigationBarContent
+          {...getStyles('navigationBarContent')}
           {...forwardedProps}
         />
       </StandardAside>
@@ -54,6 +53,6 @@ export const NavigationRail = componentFactory<INavigationRailFactory>(
   },
 );
 
-NavigationRail.theme = navigationRailTheme;
-NavigationRail.displayName = `@sixui/${COMPONENT_NAME}`;
-NavigationRail.Destination = NavigationRailContent.Destination;
+NavigationBar.theme = navigationBarTheme;
+NavigationBar.displayName = `@sixui/${COMPONENT_NAME}`;
+NavigationBar.Destination = NavigationRailDestination;

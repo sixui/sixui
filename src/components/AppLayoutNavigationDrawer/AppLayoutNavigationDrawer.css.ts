@@ -11,7 +11,7 @@ const classNames = createStyles({
   root: {
     vars: createTokensVars(StandardAside.theme.tokens, {
       container: {
-        topSpace: appLayoutTheme.tokens.header.height,
+        startSpace: appLayoutTheme.tokens.header.height,
       },
     }),
   },

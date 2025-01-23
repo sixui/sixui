@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
+import type { IOrientation } from '~/helpers/types';
 import type { IStandardAsideThemeFactory } from './StandardAside.css';
 import type { IStandardAsideFactory } from './StandardAside.types';
 import { isFunction } from '~/helpers/isFunction';
@@ -26,9 +27,13 @@ export const StandardAside = componentFactory<IStandardAsideFactory>(
       opened,
       onClose,
       children,
-      fullHeight,
+      wide,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
+
+    const orientation: IOrientation = ['left', 'right'].includes(side)
+      ? 'horizontal'
+      : 'vertical';
 
     const { getStyles } = useComponentTheme<IStandardAsideThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -41,7 +46,8 @@ export const StandardAside = componentFactory<IStandardAsideFactory>(
       modifiers: {
         opened,
         side,
-        'full-height': fullHeight,
+        wide,
+        orientation,
       },
     });
 

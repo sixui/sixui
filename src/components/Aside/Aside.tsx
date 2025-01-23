@@ -18,7 +18,7 @@ export const Aside = componentFactory<IAsideFactory>((props, forwardedRef) => {
     variant,
     root,
     detached,
-    fullHeight,
+    wide: fullHeight,
     standardOpened,
     modalOpened,
     modalRef,
@@ -49,7 +49,7 @@ export const Aside = componentFactory<IAsideFactory>((props, forwardedRef) => {
       <StandardAside
         {...getStyles(['root', 'standard'])}
         opened={standardOpened}
-        fullHeight={fullHeight}
+        wide={fullHeight}
         ref={forwardedRef}
         {...other}
       />

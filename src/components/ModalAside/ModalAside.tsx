@@ -40,7 +40,7 @@ export const ModalAside = componentFactory<IModalAsideFactory>(
         opened={opened}
         side={side}
         variant={detached ? 'detached' : undefined}
-        fullHeight
+        fullHeight={['left', 'right'].includes(side)}
         modal
         ref={forwardedRef}
         {...other}
