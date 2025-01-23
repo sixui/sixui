@@ -971,11 +971,6 @@ export const fieldBaseTheme = componentThemeFactory<IFieldBaseThemeFactory>({
 export const fieldBaseThemeVariants = {
   filled: createStyles({
     root: {
-      vars: createTokensVars(PaperBase.theme.tokens, {
-        container: {
-          color: themeTokens.colorScheme.surfaceContainerHighest,
-        },
-      }),
       selectors: {
         [getModifierSelector<IModifier>('disabled')]: {
           vars: createTokensVars(PaperBase.theme.tokens, {
@@ -985,6 +980,13 @@ export const fieldBaseThemeVariants = {
           }),
         },
       },
+    },
+    container: {
+      vars: createTokensVars(PaperBase.theme.tokens, {
+        container: {
+          color: themeTokens.colorScheme.surfaceContainerHighest,
+        },
+      }),
     },
     inner: ({ root }) => ({
       selectors: {
@@ -1118,12 +1120,6 @@ export const fieldBaseThemeVariants = {
   }),
   outlined: createStyles({
     root: {
-      vars: createTokensVars(PaperBase.theme.tokens, {
-        container: {
-          shape: px(themeTokens.shape.corner.xs),
-        },
-      }),
-
       selectors: {
         [getModifierSelector<IModifier>('disabled')]: {
           vars: createTokensVars(PaperBase.theme.tokens, {
@@ -1133,6 +1129,14 @@ export const fieldBaseThemeVariants = {
           }),
         },
       },
+    },
+    container: {
+      vars: createTokensVars(PaperBase.theme.tokens, {
+        container: {
+          color: 'transparent',
+          shape: px(themeTokens.shape.corner.xs),
+        },
+      }),
     },
     stateLayer: {
       vars: createTokensVars(StateLayer.theme.tokens, {
