@@ -17,26 +17,6 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  header: (
-    <Placeholder
-      label="Header"
-      grow={1}
-      h="$16"
-      diagonals
-      surface="$primaryContainer"
-      color="$onPrimaryContainer"
-    />
-  ),
-  footer: (
-    <Placeholder
-      label="Footer"
-      grow={1}
-      h="$16"
-      diagonals
-      surface="$primaryContainer"
-      color="$onPrimaryContainer"
-    />
-  ),
   children: (
     <Placeholder
       label="Content"
@@ -47,7 +27,6 @@ const defaultArgs = {
       color="$onPrimaryContainer"
     />
   ),
-  divider: true,
 } satisfies Partial<IAsideProps>;
 
 const AsideFrame: React.FC<IAsideProps> = (props) => {
@@ -86,26 +65,6 @@ const AsideFrame: React.FC<IAsideProps> = (props) => {
             standardOpened={standardOpened}
             modalOpened={modalOpened}
             onClose={() => toggleModalOpened(false)}
-            header={
-              <Placeholder
-                label="Header"
-                grow={1}
-                h="$16"
-                diagonals
-                surface="$primaryContainer"
-                color="$onPrimaryContainer"
-              />
-            }
-            footer={
-              <Placeholder
-                label="Footer"
-                grow={1}
-                h="$16"
-                diagonals
-                surface="$primaryContainer"
-                color="$onPrimaryContainer"
-              />
-            }
             {...other}
           />
         </Flex>
@@ -114,7 +73,7 @@ const AsideFrame: React.FC<IAsideProps> = (props) => {
   );
 };
 
-export const Left: IStory = {
+export const FromLeft: IStory = {
   render: (props) => <AsideFrame {...props} />,
   args: {
     ...defaultArgs,
@@ -122,7 +81,7 @@ export const Left: IStory = {
   },
 };
 
-export const LeftDetached: IStory = {
+export const FromLeftDetached: IStory = {
   render: (props) => <AsideFrame {...props} />,
   args: {
     ...defaultArgs,
@@ -131,7 +90,7 @@ export const LeftDetached: IStory = {
   },
 };
 
-export const Right: IStory = {
+export const FromRight: IStory = {
   render: (props) => <AsideFrame {...props} />,
   args: {
     ...defaultArgs,
@@ -139,7 +98,7 @@ export const Right: IStory = {
   },
 };
 
-export const RightDetached: IStory = {
+export const FromRightDetached: IStory = {
   render: (props) => <AsideFrame {...props} />,
   args: {
     ...defaultArgs,

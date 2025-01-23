@@ -1,14 +1,16 @@
+import type { IOmit } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
-import type { ISideSheetContentOwnProps } from '../SideSheetContent';
+import type { IModalAsideOwnProps } from '../ModalAside';
+import type { IStandardAsideOwnProps } from '../StandardAside';
 import type { asideTheme, IAsideThemeFactory } from './Aside.css';
 
-export interface IAsideOwnProps extends ISideSheetContentOwnProps {
-  detached?: boolean;
+export interface IAsideOwnProps
+  extends IOmit<IStandardAsideOwnProps, 'opened'>,
+    IOmit<IModalAsideOwnProps, 'opened'> {
   standardOpened?: boolean;
   modalOpened?: boolean;
-  root?: HTMLElement | null;
   modalRef?: React.RefObject<HTMLDivElement>;
 }
 
