@@ -26,6 +26,7 @@ export const StandardAside = componentFactory<IStandardAsideFactory>(
       opened,
       onClose,
       children,
+      fullHeight,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -40,6 +41,7 @@ export const StandardAside = componentFactory<IStandardAsideFactory>(
       modifiers: {
         opened,
         side,
+        'full-height': fullHeight,
       },
     });
 

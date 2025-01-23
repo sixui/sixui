@@ -20,6 +20,7 @@ export const NavigationRail = componentFactory<INavigationRailFactory>(
       variant,
       opened,
       side = 'left',
+      fullHeight,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
     const { boxProps, other: forwardedProps } = extractBoxProps(other);
@@ -39,6 +40,7 @@ export const NavigationRail = componentFactory<INavigationRailFactory>(
         {...getStyles('root')}
         opened={opened}
         side={side}
+        fullHeight={fullHeight}
         ref={forwardedRef}
         {...boxProps}
       >

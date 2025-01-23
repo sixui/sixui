@@ -19,6 +19,7 @@ export interface IStandardAsideOwnProps {
   children?:
     | React.ReactNode
     | ((props: IStandardAsideChildrenRenderProps) => React.ReactNode);
+  fullHeight?: boolean;
 }
 
 export interface IStandardAsideProps

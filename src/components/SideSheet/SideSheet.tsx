@@ -22,6 +22,7 @@ export const SideSheet = componentFactory<ISideSheetFactory>(
       modalOpened,
       detached,
       side = 'left',
+      fullHeight,
       onClose,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
@@ -46,6 +47,7 @@ export const SideSheet = componentFactory<ISideSheetFactory>(
         modalOpened={modalOpened}
         detached={detached}
         side={side}
+        fullHeight={fullHeight}
         onClose={onClose}
         ref={forwardedRef}
       >

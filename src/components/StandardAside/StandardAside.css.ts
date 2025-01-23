@@ -8,7 +8,7 @@ import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 
-type IModifier = 'opened' | 'side';
+type IModifier = 'opened' | 'side' | 'full-height';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
@@ -41,6 +41,9 @@ const classNames = createStyles({
         transitionDuration: themeTokens.motion.duration.long.$3,
         transitionTimingFunction:
           themeTokens.motion.easing.emphasized.decelerate,
+      },
+      [getModifierSelector<IModifier>('full-height')]: {
+        height: '100vh',
       },
     },
   },

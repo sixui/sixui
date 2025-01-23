@@ -6,7 +6,6 @@ import type { IAppLayoutProps } from './AppLayout.types';
 import { px } from '~/helpers/styles/px';
 import { Flex } from '../Flex';
 import { Frame } from '../Frame';
-import { Placeholder } from '../Placeholder';
 import { themeTokens } from '../ThemeProvider';
 import { AppLayout } from './AppLayout';
 import { CanonicalLayout } from './AppLayout.stories/CanonicalLayout';
@@ -98,6 +97,7 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
                 activeDestination={activeDestination}
                 onClick={setActiveDestination}
                 divider
+                fullHeight
               />
 
               <MainNavigationDrawer
@@ -106,8 +106,7 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
                 divider
                 headline="App Name"
                 showCloseButton
-                header={<Placeholder label="Header" />}
-                footer={<Placeholder label="Footer" />}
+                fullHeight
               />
 
               <Flex direction="column" align="stretch" grow={1}>
