@@ -4,8 +4,6 @@ import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactor
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { SideSheetContent } from '../SideSheetContent';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 
 const [tokensClassName, tokens] = createTheme({
@@ -19,12 +17,6 @@ const [tokensClassName, tokens] = createTheme({
 const classNames = createStyles({
   root: {
     width: `min(${tokens.container.width}, 100vw - ${px(48)})`,
-
-    vars: createTokensVars(SideSheetContent.theme.tokens, {
-      container: {
-        color: tokens.container.color,
-      },
-    }),
   },
 });
 

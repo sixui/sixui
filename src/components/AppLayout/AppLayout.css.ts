@@ -1,15 +1,22 @@
 import { createTheme } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 
+type IModifier = 'navigation-mode';
+
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   header: {
     height: px(64),
+    color: 'initial',
+  },
+  navigationBar: {
+    height: px(80),
     color: 'initial',
   },
   navigationDrawer: {
@@ -34,11 +41,20 @@ const [tokensClassName, tokens] = createTheme({
   },
 });
 
-const classNames = createStyles();
+const classNames = createStyles({
+  root: {
+    selectors: {
+      [getModifierSelector<IModifier>({ 'navigation-mode': 'bar' })]: {
+        marginBottom: tokens.navigationBar.height,
+      },
+    },
+  },
+});
 
 export type IAppLayoutThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
+  modifier: IModifier;
 }>;
 
 export const appLayoutTheme = componentThemeFactory<IAppLayoutThemeFactory>({

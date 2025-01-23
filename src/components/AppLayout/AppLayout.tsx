@@ -12,6 +12,7 @@ import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { AppLayoutBody } from '../AppLayoutBody/AppLayoutBody';
 import { AppLayoutFooter } from '../AppLayoutFooter';
 import { AppLayoutHeader } from '../AppLayoutHeader';
+import { AppLayoutNavigationBar } from '../AppLayoutNavigationBar/AppLayoutNavigationBar';
 import { AppLayoutNavigationDrawer } from '../AppLayoutNavigationDrawer';
 import { AppLayoutNavigationRail } from '../AppLayoutNavigationRail';
 import { AppLayoutPane } from '../AppLayoutPane';
@@ -75,7 +76,7 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
       onOpen: sideSheetCallbacks.open,
       onClose: sideSheetCallbacks.close,
     });
-    const hasAside = components.includes('sideSheet');
+    const hasSideSheet = components.includes('sideSheet');
 
     const { getStyles } = useComponentTheme<IAppLayoutThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -85,6 +86,9 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
       style,
       variant,
       theme: appLayoutTheme,
+      modifiers: {
+        'navigation-mode': navigationMode,
+      },
     });
 
     const contextValue = useMemo<IAppLayoutContextValue>(() => {
@@ -107,7 +111,7 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
         },
         sideSheet: {
           ...sideSheet,
-          state: hasAside
+          state: hasSideSheet
             ? {
                 opened: sideSheetOpened,
                 type: sideSheetType,
@@ -140,7 +144,7 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
       navigationDrawerCallbacks.open,
       navigationDrawerCallbacks.close,
       sideSheet,
-      hasAside,
+      hasSideSheet,
       sideSheetOpened,
       sideSheetType,
       sideSheetState.modalOpened,
@@ -169,6 +173,7 @@ AppLayout.theme = appLayoutTheme;
 AppLayout.displayName = `@sixui/${COMPONENT_NAME}`;
 AppLayout.Header = AppLayoutHeader;
 AppLayout.Body = AppLayoutBody;
+AppLayout.NavigationBar = AppLayoutNavigationBar;
 AppLayout.NavigationRail = AppLayoutNavigationRail;
 AppLayout.NavigationDrawer = AppLayoutNavigationDrawer;
 AppLayout.SideSheet = AppLayoutSideSheet;

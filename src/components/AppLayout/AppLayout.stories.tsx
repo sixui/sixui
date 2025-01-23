@@ -11,6 +11,7 @@ import { AppLayout } from './AppLayout';
 import { CanonicalLayout } from './AppLayout.stories/CanonicalLayout';
 import { Footer } from './AppLayout.stories/Footer';
 import { Header } from './AppLayout.stories/Header';
+import { MainNavigationBar } from './AppLayout.stories/MainNavigationBar';
 import { MainNavigationDrawer } from './AppLayout.stories/MainNavigationDrawer';
 import { MainNavigationRail } from './AppLayout.stories/MainNavigationRail';
 
@@ -67,6 +68,11 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
           </Flex>
 
           <Footer divider />
+
+          <MainNavigationBar
+            activeDestination={activeDestination}
+            onClick={setActiveDestination}
+          />
         </AppLayout>
       )}
     </Frame>
@@ -130,7 +136,13 @@ export const LayoutA: IStory = {
   render: (props) => <AppLayoutFrameA {...props} />,
   args: {
     ...defaultArgs,
-    components: ['header', 'navigationRail', 'navigationDrawer', 'sideSheet'],
+    components: [
+      'header',
+      'navigationBar',
+      'navigationRail',
+      'navigationDrawer',
+      'sideSheet',
+    ],
   },
 };
 
@@ -138,7 +150,13 @@ export const LayoutB: IStory = {
   render: (props) => <AppLayoutFrameB {...props} />,
   args: {
     ...defaultArgs,
-    components: ['header', 'navigationRail', 'navigationDrawer', 'sideSheet'],
+    components: [
+      'header',
+      'navigationBar',
+      'navigationRail',
+      'navigationDrawer',
+      'sideSheet',
+    ],
   },
 };
 

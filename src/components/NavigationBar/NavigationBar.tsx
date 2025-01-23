@@ -4,25 +4,17 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { extractBoxProps } from '../Box/extractBoxProps';
+import { Drawer } from '../Drawer';
 import { NavigationBarContent } from '../NavigationBarContent';
 import { NavigationRailDestination } from '../NavigationRailDestination';
-import { StandardAside } from '../StandardAside';
 import { navigationBarTheme } from './NavigationBar.css';
 
 const COMPONENT_NAME = 'NavigationBar';
 
 export const NavigationBar = componentFactory<INavigationBarFactory>(
   (props, forwardedRef) => {
-    const {
-      classNames,
-      className,
-      styles,
-      style,
-      variant,
-      opened,
-      wide: fullHeight,
-      ...other
-    } = useProps({ componentName: COMPONENT_NAME, props });
+    const { classNames, className, styles, style, variant, opened, ...other } =
+      useProps({ componentName: COMPONENT_NAME, props });
     const { boxProps, other: forwardedProps } = extractBoxProps(other);
 
     const { getStyles } = useComponentTheme<INavigationBarThemeFactory>({
@@ -36,11 +28,10 @@ export const NavigationBar = componentFactory<INavigationBarFactory>(
     });
 
     return (
-      <StandardAside
+      <Drawer
         {...getStyles('root')}
         opened={opened}
         side="bottom"
-        wide={fullHeight}
         ref={forwardedRef}
         {...boxProps}
       >
@@ -48,7 +39,7 @@ export const NavigationBar = componentFactory<INavigationBarFactory>(
           {...getStyles('navigationBarContent')}
           {...forwardedProps}
         />
-      </StandardAside>
+      </Drawer>
     );
   },
 );

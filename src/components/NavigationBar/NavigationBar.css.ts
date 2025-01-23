@@ -4,8 +4,6 @@ import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactor
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { StandardAside } from '../StandardAside';
 import { cssLayers } from '../ThemeProvider';
 
 const [tokensClassName, tokens] = createTheme({
@@ -17,11 +15,8 @@ const [tokensClassName, tokens] = createTheme({
 
 const classNames = createStyles({
   root: {
-    vars: createTokensVars(StandardAside.theme.tokens, {
-      container: {
-        size: tokens.container.height,
-      },
-    }),
+    width: '100%',
+    height: tokens.container.height,
   },
   navigationBarContent: {},
 });

@@ -31,7 +31,8 @@ export type ICanonicalLayout = {
 };
 
 const defaultOptions = {
-  preferredNavigationMode: 'standard' as 'rail' | 'standard',
+  preferredNavigationMode:
+    'standard' as ICanonicalLayoutPreferredNavigationMode,
 };
 
 const getNavigationMode = (
