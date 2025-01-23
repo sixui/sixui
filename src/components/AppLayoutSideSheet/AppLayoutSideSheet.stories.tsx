@@ -11,7 +11,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import type { INavigationDrawerProps } from './NavigationDrawer.types';
+import type { IAppLayoutSideSheetProps } from './AppLayoutSideSheet.types';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { px } from '~/helpers/styles/px';
 import { useToggle } from '~/hooks/useToggle';
@@ -19,49 +19,50 @@ import { Button } from '../Button';
 import { Flex } from '../Flex';
 import { Frame } from '../Frame';
 import { Placeholder } from '../Placeholder';
+import { SideSheet } from '../SideSheet';
 import { themeTokens } from '../ThemeProvider';
-import { NavigationDrawer } from './NavigationDrawer';
+import { AppLayoutSideSheet } from './AppLayoutSideSheet';
 
 const meta = {
-  component: NavigationDrawer,
-} satisfies Meta<typeof NavigationDrawer>;
+  component: AppLayoutSideSheet,
+} satisfies Meta<typeof AppLayoutSideSheet>;
 
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   children: (
     <>
-      <NavigationDrawer.Section headline="Section">
-        <NavigationDrawer.Destination
+      <SideSheet.Section headline="Section">
+        <SideSheet.Destination
           onClick={(args) => sbHandleEvent('onClick', args, 1000)}
           leadingIcon={<FontAwesomeIcon icon={faSquare} />}
           activeLeadingIcon={<FontAwesomeIcon icon={fasSquare} />}
           active
         >
           Item 1
-        </NavigationDrawer.Destination>
-        <NavigationDrawer.Destination
+        </SideSheet.Destination>
+        <SideSheet.Destination
           onClick={(args) => sbHandleEvent('onClick', args, 1000)}
           leadingIcon={<FontAwesomeIcon icon={faCircle} />}
           activeLeadingIcon={<FontAwesomeIcon icon={fasCircle} />}
         >
           Item 2
-        </NavigationDrawer.Destination>
-        <NavigationDrawer.Destination
+        </SideSheet.Destination>
+        <SideSheet.Destination
           onClick={(args) => sbHandleEvent('onClick', args, 1000)}
           leadingIcon={<FontAwesomeIcon icon={faHeart} />}
           activeLeadingIcon={<FontAwesomeIcon icon={fasHeart} />}
           disabled
         >
           Item 3
-        </NavigationDrawer.Destination>
-      </NavigationDrawer.Section>
+        </SideSheet.Destination>
+      </SideSheet.Section>
     </>
   ),
   divider: true,
-} satisfies Partial<INavigationDrawerProps>;
+} satisfies Partial<IAppLayoutSideSheetProps>;
 
-const NavigationDrawerFrame: React.FC<INavigationDrawerProps> = (props) => {
+const AppLayoutSideSheetFrame: React.FC<IAppLayoutSideSheetProps> = (props) => {
   const { ...other } = props;
   const [standardOpened, toggleStandardOpened] = useToggle([true, false]);
   const [modalOpened, toggleModalOpened] = useToggle([false, true]);
@@ -93,10 +94,9 @@ const NavigationDrawerFrame: React.FC<INavigationDrawerProps> = (props) => {
           h="100%"
         >
           <Placeholder label="Page" grow={1} expanded diagonals />
-          <NavigationDrawer
+          <AppLayoutSideSheet
             standardOpened={standardOpened}
             modalOpened={modalOpened}
-            onClose={() => toggleModalOpened(false)}
             {...other}
           />
         </Flex>
@@ -105,16 +105,16 @@ const NavigationDrawerFrame: React.FC<INavigationDrawerProps> = (props) => {
   );
 };
 
-export const FromLeft: IStory = {
-  render: (props) => <NavigationDrawerFrame {...props} />,
+export const Left: IStory = {
+  render: (props) => <AppLayoutSideSheetFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'left',
   },
 };
 
-export const FromRight: IStory = {
-  render: (props) => <NavigationDrawerFrame {...props} />,
+export const Right: IStory = {
+  render: (props) => <AppLayoutSideSheetFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'right',

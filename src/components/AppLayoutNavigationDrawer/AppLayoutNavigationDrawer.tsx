@@ -4,8 +4,9 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { useAppLayoutContext } from '../AppLayout/AppLayout.context';
-import { NavigationDrawer } from '../NavigationDrawer';
 import { NavigationDrawerDestination } from '../NavigationDrawerDestination';
+import { NavigationDrawerSection } from '../NavigationDrawerSection';
+import { SideSheet } from '../SideSheet';
 import { appLayoutNavigationDrawerTheme } from './AppLayoutNavigationDrawer.css';
 
 const COMPONENT_NAME = 'AppLayoutNavigationDrawer';
@@ -22,6 +23,7 @@ export const AppLayoutNavigationDrawer =
       modalOpened: modalOpenedProp,
       hasHeader: hasHeaderProp,
       root: rootProp,
+      onClose,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -51,16 +53,23 @@ export const AppLayoutNavigationDrawer =
     }
 
     const standardOpened =
-      standardOpenedProp ?? appLayoutContext?.aside?.state?.standardOpened;
+      standardOpenedProp ??
+      appLayoutContext?.navigationDrawer?.state?.standardOpened;
     const modalOpened =
-      modalOpenedProp ?? appLayoutContext?.aside?.state?.modalOpened;
+      modalOpenedProp ?? appLayoutContext?.navigationDrawer?.state?.modalOpened;
     const root = rootProp ?? appLayoutContext?.root;
 
+    const handleClose = (event?: React.MouseEvent): void => {
+      onClose?.(event);
+      appLayoutContext?.navigationDrawer?.state?.close();
+    };
+
     return (
-      <NavigationDrawer
+      <SideSheet
         {...getStyles('root')}
         standardOpened={standardOpened}
         modalOpened={modalOpened}
+        onClose={handleClose}
         root={root}
         ref={forwardedRef}
         {...other}
@@ -70,4 +79,5 @@ export const AppLayoutNavigationDrawer =
 
 AppLayoutNavigationDrawer.theme = appLayoutNavigationDrawerTheme;
 AppLayoutNavigationDrawer.displayName = `@sixui/${COMPONENT_NAME}`;
+AppLayoutNavigationDrawer.Section = NavigationDrawerSection;
 AppLayoutNavigationDrawer.Destination = NavigationDrawerDestination;

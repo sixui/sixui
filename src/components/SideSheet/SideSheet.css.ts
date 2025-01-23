@@ -47,13 +47,13 @@ const classNames = createStyles({
   },
 });
 
-export type INavigationDrawerThemeFactory = IComponentThemeFactory<{
+export type ISideSheetThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
 }>;
 
 export const navigationDrawerTheme =
-  componentThemeFactory<INavigationDrawerThemeFactory>({
+  componentThemeFactory<ISideSheetThemeFactory>({
     classNames,
     tokensClassName,
     tokens,

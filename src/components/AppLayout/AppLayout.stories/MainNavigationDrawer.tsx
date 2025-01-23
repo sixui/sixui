@@ -13,12 +13,12 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import type { INavigationDrawerProps } from '~/components/NavigationDrawer';
+import type { ISideSheetProps } from '~/components/SideSheet';
 import type { ICanonicalLayoutType } from '~/hooks/useCanonicalLayout';
 import { Flex } from '~/components/Flex';
-import { NavigationDrawer } from '~/components/NavigationDrawer';
+import { AppLayout } from '../AppLayout';
 
-export interface IMainNavigationDrawerProps extends INavigationDrawerProps {
+export interface IMainNavigationDrawerProps extends ISideSheetProps {
   activeDestination?: ICanonicalLayoutType;
   onClick?: (destination?: ICanonicalLayoutType) => void;
 }
@@ -29,60 +29,63 @@ export const MainNavigationDrawer: React.FC<IMainNavigationDrawerProps> = (
   const { activeDestination, onClick, ...other } = props;
 
   return (
-    <NavigationDrawer {...other}>
+    <AppLayout.NavigationDrawer {...other}>
       <Flex direction="column" gap="$6">
-        <NavigationDrawer.Section headline="Canonical layouts" endDivider>
-          <NavigationDrawer.Destination
+        <AppLayout.NavigationDrawer.Section
+          headline="Canonical layouts"
+          endDivider
+        >
+          <AppLayout.NavigationDrawer.Destination
             onClick={() => onClick?.('listDetail')}
             active={activeDestination === 'listDetail'}
             leadingIcon={<FontAwesomeIcon icon={faSquare} />}
             activeLeadingIcon={<FontAwesomeIcon icon={fasSquare} />}
           >
             List-detail
-          </NavigationDrawer.Destination>
-          <NavigationDrawer.Destination
+          </AppLayout.NavigationDrawer.Destination>
+          <AppLayout.NavigationDrawer.Destination
             onClick={() => onClick?.('supportingPane')}
             active={activeDestination === 'supportingPane'}
             leadingIcon={<FontAwesomeIcon icon={faCircle} />}
             activeLeadingIcon={<FontAwesomeIcon icon={fasCircle} />}
           >
             Supporting pane
-          </NavigationDrawer.Destination>
-          <NavigationDrawer.Destination
+          </AppLayout.NavigationDrawer.Destination>
+          <AppLayout.NavigationDrawer.Destination
             onClick={() => onClick?.('feed')}
             active={activeDestination === 'feed'}
             leadingIcon={<FontAwesomeIcon icon={faHeart} />}
             activeLeadingIcon={<FontAwesomeIcon icon={fasHeart} />}
           >
             Feed
-          </NavigationDrawer.Destination>
-          <NavigationDrawer.Destination
+          </AppLayout.NavigationDrawer.Destination>
+          <AppLayout.NavigationDrawer.Destination
             onClick={() => onClick?.(undefined)}
             active={activeDestination === undefined}
             leadingIcon={<FontAwesomeIcon icon={faQuestionCircle} />}
             activeLeadingIcon={<FontAwesomeIcon icon={fasQuestionCircle} />}
           >
             Custom
-          </NavigationDrawer.Destination>
-        </NavigationDrawer.Section>
+          </AppLayout.NavigationDrawer.Destination>
+        </AppLayout.NavigationDrawer.Section>
 
-        <NavigationDrawer.Section headline="Labels">
-          <NavigationDrawer.Destination
+        <AppLayout.NavigationDrawer.Section headline="Labels">
+          <AppLayout.NavigationDrawer.Destination
             onClick={() => {}}
             leadingIcon={<FontAwesomeIcon icon={faFolder} />}
             disabled
           >
             Label A
-          </NavigationDrawer.Destination>
-          <NavigationDrawer.Destination
+          </AppLayout.NavigationDrawer.Destination>
+          <AppLayout.NavigationDrawer.Destination
             onClick={() => {}}
             leadingIcon={<FontAwesomeIcon icon={faFolder} />}
             disabled
           >
             Label B
-          </NavigationDrawer.Destination>
-        </NavigationDrawer.Section>
+          </AppLayout.NavigationDrawer.Destination>
+        </AppLayout.NavigationDrawer.Section>
       </Flex>
-    </NavigationDrawer>
+    </AppLayout.NavigationDrawer>
   );
 };

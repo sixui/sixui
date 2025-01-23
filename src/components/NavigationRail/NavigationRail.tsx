@@ -3,7 +3,6 @@ import type { INavigationRailFactory } from './NavigationRail.types';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { useAppLayoutContext } from '../AppLayout/AppLayout.context';
 import { extractBoxProps } from '../Box/extractBoxProps';
 import { NavigationRailContent } from '../NavigationRailContent';
 import { StandardAside } from '../StandardAside';
@@ -19,13 +18,11 @@ export const NavigationRail = componentFactory<INavigationRailFactory>(
       styles,
       style,
       variant,
-      opened: openedProp,
+      opened,
       side = 'left',
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
     const { boxProps, other: forwardedProps } = extractBoxProps(other);
-
-    const appLayoutContext = useAppLayoutContext();
 
     const { getStyles } = useComponentTheme<INavigationRailThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -36,14 +33,6 @@ export const NavigationRail = componentFactory<INavigationRailFactory>(
       variant,
       theme: navigationRailTheme,
     });
-
-    const hasNavigationRail =
-      appLayoutContext?.components.includes('navigationRail') ?? true;
-    if (!hasNavigationRail) {
-      return null;
-    }
-
-    const opened = openedProp ?? appLayoutContext?.navigationMode === 'rail';
 
     return (
       <StandardAside

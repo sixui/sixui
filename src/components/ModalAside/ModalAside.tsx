@@ -4,7 +4,6 @@ import { isFunction } from '~/helpers/isFunction';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { useAppLayoutContext } from '../AppLayout/AppLayout.context';
 import { Drawer } from '../Drawer';
 import { modalAsideTheme } from './ModalAside.css';
 
@@ -20,14 +19,10 @@ export const ModalAside = componentFactory<IModalAsideFactory>(
       variant,
       side = 'left',
       opened,
-      onClose,
       children,
-      root,
       detached,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
-
-    const appLayoutContext = useAppLayoutContext();
 
     const { getStyles } = useComponentTheme<IModalAsideThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -42,12 +37,7 @@ export const ModalAside = componentFactory<IModalAsideFactory>(
     return (
       <Drawer
         {...getStyles('root')}
-        root={root ?? appLayoutContext?.root}
         opened={opened}
-        onClose={() => {
-          onClose?.();
-          appLayoutContext?.aside?.state?.close?.();
-        }}
         side={side}
         variant={detached ? 'detached' : undefined}
         fullHeight
