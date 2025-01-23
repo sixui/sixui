@@ -70,20 +70,16 @@ export const MainNavigationDrawer: React.FC<IMainNavigationDrawerProps> = (
         </AppLayout.NavigationDrawer.Section>
 
         <AppLayout.NavigationDrawer.Section headline="Labels">
-          <AppLayout.NavigationDrawer.Destination
-            onClick={() => {}}
-            leadingIcon={<FontAwesomeIcon icon={faFolder} />}
-            disabled
-          >
-            Label A
-          </AppLayout.NavigationDrawer.Destination>
-          <AppLayout.NavigationDrawer.Destination
-            onClick={() => {}}
-            leadingIcon={<FontAwesomeIcon icon={faFolder} />}
-            disabled
-          >
-            Label B
-          </AppLayout.NavigationDrawer.Destination>
+          {['A', 'B', 'C', 'D', 'E', 'F'].map((label, index) => (
+            <AppLayout.NavigationDrawer.Destination
+              key={index}
+              leadingIcon={<FontAwesomeIcon icon={faFolder} />}
+              supportingText="Supporting text"
+              disabled
+            >
+              Label {label}
+            </AppLayout.NavigationDrawer.Destination>
+          ))}
         </AppLayout.NavigationDrawer.Section>
       </Flex>
     </AppLayout.NavigationDrawer>

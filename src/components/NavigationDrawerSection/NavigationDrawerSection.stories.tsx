@@ -67,19 +67,16 @@ const NavigationDrawerSectionDemo: React.FC<INavigationDrawerSectionProps> = (
     </NavigationDrawerSection>
 
     <NavigationDrawerSection headline="Labels" {...props}>
-      <NavigationDrawerSection.Destination
-        leadingIcon={<FontAwesomeIcon icon={faFolder} />}
-        onClick={(args) => sbHandleEvent('onClick', args, 1000)}
-        supportingText="Supporting text"
-      >
-        Label A
-      </NavigationDrawerSection.Destination>
-      <NavigationDrawerSection.Destination
-        leadingIcon={<FontAwesomeIcon icon={faFolder} />}
-        onClick={(args) => sbHandleEvent('onClick', args, 1000)}
-      >
-        Label B
-      </NavigationDrawerSection.Destination>
+      {['A', 'B', 'C', 'D', 'E', 'F'].map((label, index) => (
+        <NavigationDrawerSection.Destination
+          key={index}
+          leadingIcon={<FontAwesomeIcon icon={faFolder} />}
+          onClick={(args) => sbHandleEvent('onClick', args, 1000)}
+          supportingText="Supporting text"
+        >
+          Label {label}
+        </NavigationDrawerSection.Destination>
+      ))}
     </NavigationDrawerSection>
   </Paper>
 );
