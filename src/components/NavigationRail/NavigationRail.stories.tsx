@@ -18,6 +18,7 @@ import { useToggle } from '~/hooks/useToggle';
 import { Button } from '../Button';
 import { Flex } from '../Flex';
 import { Frame } from '../Frame';
+import { Placeholder } from '../Placeholder';
 import { themeTokens } from '../ThemeProvider';
 import { NavigationRail } from './NavigationRail';
 
@@ -56,6 +57,7 @@ const defaultArgs = {
 } satisfies Partial<INavigationRailProps>;
 
 const NavigationRailFrame: React.FC<INavigationRailProps> = (props) => {
+  const { ...other } = props;
   const [opened, toggleOpened] = useToggle([true, false]);
 
   return (
@@ -76,7 +78,14 @@ const NavigationRailFrame: React.FC<INavigationRailProps> = (props) => {
           borderColor: themeTokens.colorScheme.outlineVariant,
         }}
       >
-        <NavigationRail opened={opened} {...props} />
+        <Flex
+          direction={other.side === 'right' ? 'row' : 'row-reverse'}
+          align="start"
+          h="100%"
+        >
+          <Placeholder label="Page" grow={1} expanded diagonals />
+          <NavigationRail opened={opened} {...other} />
+        </Flex>
       </Frame>
     </Flex>
   );

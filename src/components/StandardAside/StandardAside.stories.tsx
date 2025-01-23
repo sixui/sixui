@@ -17,26 +17,6 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  header: (
-    <Placeholder
-      label="Header"
-      grow={1}
-      h="$16"
-      diagonals
-      surface="$primaryContainer"
-      color="$onPrimaryContainer"
-    />
-  ),
-  footer: (
-    <Placeholder
-      label="Footer"
-      grow={1}
-      h="$16"
-      diagonals
-      surface="$primaryContainer"
-      color="$onPrimaryContainer"
-    />
-  ),
   children: (
     <Placeholder
       label="Content"
@@ -47,7 +27,6 @@ const defaultArgs = {
       color="$onPrimaryContainer"
     />
   ),
-  divider: true,
 } satisfies Partial<IStandardAsideProps>;
 
 const StandardAsideFrame: React.FC<IStandardAsideProps> = (props) => {
@@ -81,26 +60,6 @@ const StandardAsideFrame: React.FC<IStandardAsideProps> = (props) => {
           <StandardAside
             opened={opened}
             onClose={() => toggleOpened(false)}
-            header={
-              <Placeholder
-                label="Header"
-                grow={1}
-                h="$16"
-                diagonals
-                surface="$primaryContainer"
-                color="$onPrimaryContainer"
-              />
-            }
-            footer={
-              <Placeholder
-                label="Footer"
-                grow={1}
-                h="$16"
-                diagonals
-                surface="$primaryContainer"
-                color="$onPrimaryContainer"
-              />
-            }
             {...other}
           />
         </Flex>
@@ -109,7 +68,7 @@ const StandardAsideFrame: React.FC<IStandardAsideProps> = (props) => {
   );
 };
 
-export const Left: IStory = {
+export const FromLeft: IStory = {
   render: (props) => <StandardAsideFrame {...props} />,
   args: {
     ...defaultArgs,
@@ -117,7 +76,7 @@ export const Left: IStory = {
   },
 };
 
-export const Right: IStory = {
+export const FromRight: IStory = {
   render: (props) => <StandardAsideFrame {...props} />,
   args: {
     ...defaultArgs,
