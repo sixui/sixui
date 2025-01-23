@@ -22,7 +22,6 @@ const [tokensClassName, tokens] = createTheme({
 
 const classNames = createStyles({
   root: {
-    position: 'sticky',
     flexShrink: 0,
 
     transitionDuration: themeTokens.motion.duration.short.$3,
@@ -30,6 +29,9 @@ const classNames = createStyles({
 
     selectors: {
       [getModifierSelector<IModifier>({ orientation: 'horizontal' })]: {
+        position: 'sticky',
+        top: tokens.container.startSpace,
+
         height: calc.subtract(
           '100vh',
           tokens.container.startSpace,
@@ -68,6 +70,7 @@ const classNames = createStyles({
         orientation: 'horizontal',
         wide: true,
       })]: {
+        top: 0,
         height: '100vh',
       },
       [getModifierSelector<IModifier>({

@@ -43,7 +43,9 @@ export const Header: React.FC<IHeaderProps> = (props) => {
               icon={
                 <FontAwesomeIcon
                   icon={
-                    appLayoutContext.sideSheet?.state?.opened ? fasXmark : fasBars
+                    appLayoutContext.sideSheet?.state?.opened
+                      ? fasXmark
+                      : fasBars
                   }
                 />
               }
