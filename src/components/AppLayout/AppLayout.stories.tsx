@@ -57,13 +57,11 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
                 divider
               />
 
-              {/* FIXME: <AppLayout.SideSheet side="left">
-                <MainNavigationDrawer
-                  activeDestination={activeDestination}
-                  onClick={setActiveDestination}
-                  divider
-                />
-              </AppLayout.SideSheet> */}
+              <MainNavigationDrawer
+                activeDestination={activeDestination}
+                onClick={setActiveDestination}
+                divider
+              />
 
               <CanonicalLayout type={activeDestination} />
             </Flex>
@@ -102,17 +100,15 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
                 divider
               />
 
-              {/* FIXME: <AppLayout.SideSheet side="left" fullHeight>
-                <MainNavigationDrawer
-                  activeDestination={activeDestination}
-                  onClick={setActiveDestination}
-                  divider
-                  headline="App Name"
-                  showCloseButton
-                  header={<Placeholder label="Header" />}
-                  footer={<Placeholder label="Footer" />}
-                />
-              </AppLayout.SideSheet> */}
+              <MainNavigationDrawer
+                activeDestination={activeDestination}
+                onClick={setActiveDestination}
+                divider
+                headline="App Name"
+                showCloseButton
+                header={<Placeholder label="Header" />}
+                footer={<Placeholder label="Footer" />}
+              />
 
               <Flex direction="column" align="stretch" grow={1}>
                 <Header divider />

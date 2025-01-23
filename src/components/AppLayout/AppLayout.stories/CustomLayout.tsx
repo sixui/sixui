@@ -35,9 +35,9 @@ export const CustomLayout: React.FC = () => {
         </Placeholder>
       </AppLayout.Body>
 
-      <AppLayout.SideSheet side="right" divider>
+      {/* FIXME: <AppLayout.SideSheet side="right" divider>
         <AppLayoutAsideContent />
-      </AppLayout.SideSheet>
+      </AppLayout.SideSheet> */}
 
       <BottomSheet
         showCloseButton

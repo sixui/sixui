@@ -165,6 +165,5 @@ AppLayout.displayName = `@sixui/${COMPONENT_NAME}`;
 AppLayout.Header = AppLayoutHeader;
 AppLayout.Body = AppLayoutBody;
 AppLayout.NavigationRail = AppLayoutNavigationRail;
-AppLayout.SideSheet = AppLayoutSideSheet;
 AppLayout.Pane = AppLayoutPane;
 AppLayout.Footer = AppLayoutFooter;

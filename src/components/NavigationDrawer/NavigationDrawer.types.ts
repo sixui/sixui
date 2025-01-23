@@ -11,14 +11,14 @@ import type {
   navigationDrawerTheme,
 } from './NavigationDrawer.css';
 
-export interface INavigationRailOwnProps
+export interface INavigationDrawerOwnProps
   extends IOmit<IAsideOwnProps, 'children'>,
     ISideSheetContentOwnProps {}
 
 export interface INavigationDrawerProps
   extends IBoxProps,
     IComponentThemeProps<INavigationDrawerThemeFactory>,
-    INavigationRailOwnProps {}
+    INavigationDrawerOwnProps {}
 
 export type INavigationDrawerFactory = IComponentFactory<{
   props: INavigationDrawerProps;

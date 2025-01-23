@@ -62,7 +62,6 @@ export const NavigationDrawer = componentFactory<INavigationDrawerFactory>(
           appLayoutContext?.navigationDrawer?.state?.close();
         }}
         ref={forwardedRef}
-        {...other}
       >
         <SideSheetContent
           side={side}

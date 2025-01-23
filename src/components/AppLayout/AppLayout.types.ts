@@ -48,7 +48,6 @@ export type IAppLayoutFactory = IComponentFactory<{
     Header: typeof AppLayoutHeader;
     Body: typeof AppLayoutBody;
     NavigationRail: typeof AppLayoutNavigationRail;
-    SideSheet: typeof AppLayoutSideSheet;
     Pane: typeof AppLayoutPane;
     Footer: typeof AppLayoutFooter;
   };
