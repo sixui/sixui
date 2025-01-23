@@ -22,6 +22,7 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
       hasHeader: hasHeaderProp,
       root: rootProp,
       onClose,
+      detached,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 

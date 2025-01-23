@@ -66,7 +66,9 @@ export const StandardAside = componentFactory<IStandardAsideFactory>(
               pattern="enterExitOffScreen"
               ref={transitionNodeHandleRef}
             >
-              {isFunction(children) ? children({ close: onClose }) : children}
+              {isFunction(children)
+                ? children({ type: 'standard', close: onClose })
+                : children}
             </Motion>
           )}
         </CSSTransition>

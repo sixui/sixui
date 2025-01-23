@@ -8,6 +8,7 @@ import type {
 } from './StandardAside.css';
 
 export interface IStandardAsideChildrenRenderProps {
+  type: string;
   close?: (event?: React.MouseEvent) => void;
 }
 

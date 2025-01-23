@@ -45,7 +45,9 @@ export const ModalAside = componentFactory<IModalAsideFactory>(
         ref={forwardedRef}
         {...other}
       >
-        {({ close }) => (isFunction(children) ? children({ close }) : children)}
+        {({ close }) =>
+          isFunction(children) ? children({ type: 'modal', close }) : children
+        }
       </Drawer>
     );
   },

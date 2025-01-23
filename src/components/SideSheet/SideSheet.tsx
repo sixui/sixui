@@ -49,11 +49,22 @@ export const SideSheet = componentFactory<ISideSheetFactory>(
         onClose={onClose}
         ref={forwardedRef}
       >
-        <SideSheetContent
-          side={side}
-          {...getStyles('sideSheetContent')}
-          {...other}
-        />
+        {({ close, type }) => (
+          <SideSheetContent
+            side={side}
+            variant={
+              type === 'modal'
+                ? detached
+                  ? 'detachedModal'
+                  : 'modal'
+                : undefined
+            }
+            showCloseButton={type === 'modal'}
+            onClose={close}
+            {...getStyles('sideSheetContent')}
+            {...other}
+          />
+        )}
       </Aside>
     );
   },

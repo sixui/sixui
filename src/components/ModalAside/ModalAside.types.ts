@@ -8,6 +8,7 @@ import type {
 } from './ModalAside.css';
 
 export interface IModalAsideChildrenRenderProps {
+  type: string;
   close?: (event?: React.MouseEvent) => void;
 }
 
