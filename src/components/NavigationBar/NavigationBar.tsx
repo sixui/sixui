@@ -13,8 +13,16 @@ const COMPONENT_NAME = 'NavigationBar';
 
 export const NavigationBar = componentFactory<INavigationBarFactory>(
   (props, forwardedRef) => {
-    const { classNames, className, styles, style, variant, opened, ...other } =
-      useProps({ componentName: COMPONENT_NAME, props });
+    const {
+      classNames,
+      className,
+      styles,
+      style,
+      variant,
+      opened,
+      root,
+      ...other
+    } = useProps({ componentName: COMPONENT_NAME, props });
     const { boxProps, other: forwardedProps } = extractBoxProps(other);
 
     const { getStyles } = useComponentTheme<INavigationBarThemeFactory>({
@@ -33,6 +41,7 @@ export const NavigationBar = componentFactory<INavigationBarFactory>(
         opened={opened}
         side="bottom"
         ref={forwardedRef}
+        root={root}
         {...boxProps}
       >
         <NavigationBarContent

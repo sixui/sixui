@@ -17,17 +17,19 @@ const classNames = createStyles({
     flexDirection: 'row',
     flexGrow: 1,
     minHeight: '100vh',
+    gap: px(space(6)),
+    marginLeft: px(space(6)),
+    marginRight: px(space(6)),
+    paddingTop: px(space(6)),
+    paddingBottom: px(space(6)),
 
     '@container': {
       [getResponsiveContainerQuery({ size: 'compact' })]: {
         gap: px(space(4)),
         marginLeft: px(space(4)),
         marginRight: px(space(4)),
-      },
-      [getResponsiveContainerQuery({ op: '>=', size: 'medium' })]: {
-        gap: px(space(6)),
-        marginLeft: px(space(6)),
-        marginRight: px(space(6)),
+        paddingTop: px(space(4)),
+        paddingBottom: px(space(4)),
       },
     },
 

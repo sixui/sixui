@@ -21,6 +21,7 @@ export const ModalAside = componentFactory<IModalAsideFactory>(
       opened,
       children,
       detached,
+      root,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -41,6 +42,7 @@ export const ModalAside = componentFactory<IModalAsideFactory>(
         side={side}
         variant={detached ? 'detached' : undefined}
         fullHeight={['left', 'right'].includes(side)}
+        root={root}
         modal
         ref={forwardedRef}
         {...other}

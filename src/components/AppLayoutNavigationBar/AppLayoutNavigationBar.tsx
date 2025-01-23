@@ -2,6 +2,7 @@ import type { IAppLayoutNavigationBarThemeFactory } from './AppLayoutNavigationB
 import type { IAppLayoutNavigationBarFactory } from './AppLayoutNavigationBar.types';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
+import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { useAppLayoutContext } from '../AppLayout/AppLayout.context';
 import { NavigationBar } from '../NavigationBar';
@@ -20,6 +21,7 @@ export const AppLayoutNavigationBar =
       variant,
       hasHeader: hasHeaderProp,
       opened: openedProp,
+      root: rootProp,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -49,12 +51,17 @@ export const AppLayoutNavigationBar =
     }
 
     const opened = openedProp ?? appLayoutContext?.navigationMode === 'bar';
+    const root = rootProp ?? appLayoutContext?.root;
 
     return (
       <NavigationBar
         {...getStyles('root')}
+        classNames={mergeClassNames(classNames, {
+          navigationBarContent: getStyles('navigationBarContent').className,
+        })}
         opened={opened}
         ref={forwardedRef}
+        root={root}
         {...other}
       />
     );

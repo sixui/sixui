@@ -21,7 +21,7 @@ export const FeedCanonicalLayout: React.FC<IFeedCanonicalLayoutProps> = (
   const grid = !canonicalLayout.orientation;
 
   return (
-    <AppLayout.Body orientation={canonicalLayout.orientation} pt="$6" pb="$6">
+    <AppLayout.Body orientation={canonicalLayout.orientation}>
       {isFunction(feedPane) ? feedPane({ grid }) : feedPane}
     </AppLayout.Body>
   );

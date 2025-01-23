@@ -16,7 +16,7 @@ export const ListDetailCanonicalLayout: React.FC<
   const canonicalLayout = useCanonicalLayout('listDetail');
 
   return (
-    <AppLayout.Body orientation={canonicalLayout.orientation} pt="$6" pb="$6">
+    <AppLayout.Body orientation={canonicalLayout.orientation}>
       {canonicalLayout.panes
         .filter((pane) => pane.type === 'body' || !pane.type)
         .map((pane) => (

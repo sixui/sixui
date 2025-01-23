@@ -16,11 +16,11 @@ const [tokensClassName, tokens] = createTheme({
     color: 'initial',
   },
   navigationBar: {
-    height: px(80),
+    height: px(40),
     color: 'initial',
   },
   navigationDrawer: {
-    width: px(360),
+    width: px(360), // FIXME: not work
     color: 'initial',
   },
   navigationRail: {
