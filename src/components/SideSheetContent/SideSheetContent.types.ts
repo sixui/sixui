@@ -1,4 +1,4 @@
-import type { IOmit } from '~/helpers/types';
+import type { IHorizontalSide, IOmit } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
@@ -30,7 +30,7 @@ export interface ISideSheetContentOwnProps
   bottomActions?:
     | React.ReactNode
     | ((props: ISideSheetContentRenderProps) => React.ReactNode);
-  side?: 'left' | 'right';
+  side?: IHorizontalSide;
   divider?: boolean;
 }
 

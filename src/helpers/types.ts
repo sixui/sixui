@@ -1,9 +1,4 @@
 import type { Alignment, Side } from '@floating-ui/core';
-import type {
-  CompiledStyles,
-  StyleXStyles,
-  UserAuthoredStyles,
-} from '@stylexjs/stylex/lib/StyleXTypes';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type IAny = any;
@@ -27,32 +22,12 @@ export type IPoint = {
   y: number;
 };
 
-export type IStaticStyles<TKey extends string> = Partial<
-  Record<TKey, UserAuthoredStyles>
->;
-
-/**
- * @deprecated - delete
- */
-export type IStyles<TKey extends string> = Partial<
-  Record<TKey, UserAuthoredStyles | ((...props: IAny) => UserAuthoredStyles)>
->;
-
-export type ICompiledStyles<TKey extends string> = Partial<
-  Record<TKey, CompiledStyles>
->;
-
 export type IZeroOrMore<T> = undefined | T | Array<T | undefined>;
 
 export type IOneOrMore<T> = T | Array<T | undefined>;
 
 export type IArrayElement<TArray> =
   TArray extends ReadonlyArray<infer TElementType> ? TElementType : TArray;
-
-export type IStyleXStyles =
-  | StyleXStyles
-  | CompiledStyles
-  | Array<IStyleXStyles>;
 
 export type IRange = {
   min: number;
@@ -88,7 +63,11 @@ export type INestedObject<T> = {
   [key: string]: T | INestedObject<T>;
 };
 
-export type ISide = Side;
+export type IHorizontalSide = 'left' | 'right';
+
+export type IVerticalSide = 'top' | 'bottom';
+
+export type ISide = IHorizontalSide | IVerticalSide;
 
 export type IPlacement = {
   /**

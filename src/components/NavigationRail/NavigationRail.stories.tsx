@@ -82,9 +82,20 @@ const NavigationRailFrame: React.FC<INavigationRailProps> = (props) => {
   );
 };
 
-export const Basic: IStory = {
+export const FromLeft: IStory = {
   render: (props) => <NavigationRailFrame {...props} />,
-  args: defaultArgs,
+  args: {
+    ...defaultArgs,
+    side: 'left',
+  },
+};
+
+export const FromRight: IStory = {
+  render: (props) => <NavigationRailFrame {...props} />,
+  args: {
+    ...defaultArgs,
+    side: 'right',
+  },
 };
 
 export default meta;

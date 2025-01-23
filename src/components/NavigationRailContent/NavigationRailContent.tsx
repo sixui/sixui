@@ -21,6 +21,7 @@ export const NavigationRailContent =
       children,
       footer,
       justify = 'center',
+      side = 'left',
       divider,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
@@ -36,6 +37,7 @@ export const NavigationRailContent =
         theme: navigationRailContentTheme,
         modifiers: {
           'with-divider': divider,
+          side,
           justify,
         },
       },

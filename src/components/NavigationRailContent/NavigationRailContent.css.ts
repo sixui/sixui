@@ -13,7 +13,7 @@ import { PaperBase } from '../PaperBase';
 import { cssLayers, themeTokens } from '../ThemeProvider';
 import { elevationLevelPreset } from '../Elevation/Elevation.css';
 
-type IModifier = 'with-divider' | 'justify';
+type IModifier = 'with-divider' | 'justify' | 'side';
 
 const DENSITY = px(getDensity({ min: -2, max: 0 }));
 
@@ -49,10 +49,15 @@ const classNames = createStyles({
     }),
 
     selectors: {
-      [getModifierSelector<IModifier>('with-divider')]: {
+      [getModifierSelector<IModifier>(['with-divider', { side: 'left' }])]: {
         borderRightWidth: tokens.divider.width,
         borderRightColor: tokens.divider.color,
         borderRightStyle: 'solid',
+      },
+      [getModifierSelector<IModifier>(['with-divider', { side: 'right' }])]: {
+        borderLeftWidth: tokens.divider.width,
+        borderLeftColor: tokens.divider.color,
+        borderLeftStyle: 'solid',
       },
     },
   },

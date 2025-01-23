@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import type { IHorizontalSide } from '~/helpers/types';
 import type { IAppLayoutSideSheetProps } from './AppLayoutSideSheet.types';
 import { px } from '~/helpers/styles/px';
 import { useToggle } from '~/hooks/useToggle';
@@ -11,7 +12,7 @@ import { SideSheet } from '../SideSheet';
 import { themeTokens } from '../ThemeProvider';
 
 interface IAppLayoutSideSheetFrameProps extends IAppLayoutSideSheetProps {
-  side: 'left' | 'right';
+  side: IHorizontalSide;
 }
 
 const AppLayoutSideSheetFrame: React.FC<IAppLayoutSideSheetFrameProps> = (

@@ -4,6 +4,7 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { useAppLayoutContext } from '../AppLayout/AppLayout.context';
+import { extractBoxProps } from '../Box/extractBoxProps';
 import { NavigationRailContent } from '../NavigationRailContent';
 import { StandardAside } from '../StandardAside';
 import { navigationRailTheme } from './NavigationRail.css';
@@ -22,6 +23,7 @@ export const NavigationRail = componentFactory<INavigationRailFactory>(
       side = 'left',
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
+    const { boxProps, other: forwardedProps } = extractBoxProps(other);
 
     const appLayoutContext = useAppLayoutContext();
 
@@ -49,17 +51,15 @@ export const NavigationRail = componentFactory<INavigationRailFactory>(
         opened={opened}
         side={side}
         ref={forwardedRef}
-        {...other}
-      />
+        {...boxProps}
+      >
+        <NavigationRailContent
+          side={side}
+          {...getStyles('navigationRailContent')}
+          {...forwardedProps}
+        />
+      </StandardAside>
     );
-
-    // FIXME: use as children:
-    // return (
-    //   <NavigationRailContent
-    //     {...getStyles('navigationRailContent')}
-    //     {...forwardedProps}
-    //   />
-    // );
   },
 );
 

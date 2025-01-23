@@ -1,4 +1,4 @@
-import { createTheme, fallbackVar } from '@vanilla-extract/css';
+import { createTheme } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
@@ -9,18 +9,14 @@ import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { SideSheetContent } from '../SideSheetContent';
 import { cssLayers, themeTokens } from '../ThemeProvider';
-import { appLayoutTheme } from '../AppLayout/AppLayout.css';
 
 type IModifier = 'opened' | 'side';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,
   container: {
-    width: fallbackVar(appLayoutTheme.tokens.aside.width, px(360)),
-    color: fallbackVar(
-      appLayoutTheme.tokens.aside.color,
-      themeTokens.colorScheme.surface,
-    ),
+    width: px(360),
+    color: themeTokens.colorScheme.surface,
     topSpace: px(0),
     bottomSpace: px(0),
   },

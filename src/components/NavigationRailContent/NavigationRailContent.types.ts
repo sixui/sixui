@@ -1,3 +1,4 @@
+import type { IHorizontalSide } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
@@ -14,6 +15,7 @@ export interface INavigationRailContentOwnProps extends IPaperBaseOwnProps {
   footer?: React.ReactNode;
   justify?: 'start' | 'center' | 'end';
   divider?: boolean;
+  side?: IHorizontalSide;
 }
 
 export interface INavigationRailContentProps

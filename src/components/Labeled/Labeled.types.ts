@@ -3,6 +3,7 @@ import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
 import type { ILabeledContextValue } from './Labeled.context';
 import type { ILabeledThemeFactory, labeledTheme } from './Labeled.css';
+import { ISide } from '~/helpers/types';
 
 export type ILabeledRenderProps = {
   id: string;
@@ -20,7 +21,7 @@ export interface ILabeledOwnProps extends ILabeledContextValue {
   children?:
     | React.ReactNode
     | ((props: ILabeledRenderProps) => React.ReactNode);
-  labelPosition?: 'top' | 'bottom' | 'left' | 'right';
+  labelPosition?: ISide;
   supportingTextPosition?: 'start' | 'end';
   errorTextPosition?: 'start' | 'end';
   requiredSign?: React.ReactNode;
