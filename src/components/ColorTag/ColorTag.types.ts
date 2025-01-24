@@ -1,15 +1,16 @@
+import type { IBoxProps } from '~/components/Box';
+import type { IButtonBaseOwnProps } from '~/components/ButtonBase';
+import type { IOmit } from '~/helpers/types';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
-import type { IBoxProps } from '../Box';
-import type { IButtonBaseOwnProps } from '../ButtonBase';
+import type { colorTagTheme, IColorTagThemeFactory } from './ColorTag.css';
 import type {
   ColorTagIndicator,
   IColorTagIndicatorOwnProps,
-} from '../ColorTagIndicator';
-import type { colorTagTheme, IColorTagThemeFactory } from './ColorTag.css';
+} from './ColorTagIndicator';
 
 export interface IColorTagOwnProps
-  extends IButtonBaseOwnProps,
+  extends IOmit<IButtonBaseOwnProps, 'children'>,
     IColorTagIndicatorOwnProps {
   selected?: boolean;
   loading?: boolean;

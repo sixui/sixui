@@ -1,15 +1,15 @@
+import type { IBoxProps } from '~/components/Box';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
-import type { AppLayoutBody } from '../AppLayoutBody/AppLayoutBody';
-import type { AppLayoutFooter } from '../AppLayoutFooter';
-import type { AppLayoutHeader } from '../AppLayoutHeader';
-import type { AppLayoutNavigationBar } from '../AppLayoutNavigationBar/AppLayoutNavigationBar';
-import type { AppLayoutNavigationDrawer } from '../AppLayoutNavigationDrawer';
-import type { AppLayoutNavigationRail } from '../AppLayoutNavigationRail';
-import type { AppLayoutSideSheet } from '../AppLayoutSideSheet';
-import type { IBoxProps } from '../Box';
 import type { IAppLayoutContextValue } from './AppLayout.context';
 import type { appLayoutTheme, IAppLayoutThemeFactory } from './AppLayout.css';
+import type { AppLayoutBody } from './AppLayoutBody';
+import type { AppLayoutFooter } from './AppLayoutFooter';
+import type { AppLayoutHeader } from './AppLayoutHeader';
+import type { AppLayoutNavigationBar } from './AppLayoutNavigationBar';
+import type { AppLayoutNavigationDrawer } from './AppLayoutNavigationDrawer';
+import type { AppLayoutNavigationRail } from './AppLayoutNavigationRail';
+import type { AppLayoutSideSheet } from './AppLayoutSideSheet';
 
 export type IAppLayoutRenderProps = IAppLayoutContextValue;
 

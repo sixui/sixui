@@ -1,14 +1,14 @@
 import type { ISwitchThemeFactory } from './Switch.css';
 import type { ISwitchFactory } from './Switch.types';
+import { Box } from '~/components/Box';
+import { FocusRing } from '~/components/FocusRing';
+import { StateLayer, useStateLayer } from '~/components/StateLayer';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { useSwitch } from '~/hooks/useSwitch';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../Box';
-import { FocusRing } from '../FocusRing';
-import { StateLayer, useStateLayer } from '../StateLayer';
-import { SwitchIndicator } from '../SwitchIndicator';
+import { SwitchIndicator } from './SwitchIndicator';
 import { basicTemplateTheme } from './Switch.css';
 
 const COMPONENT_NAME = 'Switch';

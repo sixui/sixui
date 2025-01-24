@@ -1,15 +1,15 @@
-import type { IFilterableListItem } from '../FilterableList';
+import type { IFilterableListItem } from '~/components/FilterableList';
 import type { ISelectFactory } from './Select.types';
+import { areFilterableListItemsEqual } from '~/components/FilterableList/utils/areFilterableListItemsEqual';
+import { filterFilterableList } from '~/components/FilterableList/utils/filterFilterableList';
+import { getFilterableListItemLabel } from '~/components/FilterableList/utils/getFilterableListItemLabel';
+import { isFilterableListItemDisabled } from '~/components/FilterableList/utils/isFilterableListItemDisabled';
+import { isFilterableListItemEmpty } from '~/components/FilterableList/utils/isFilterableListItemEmpty';
+import { renderFilterableListItem } from '~/components/FilterableList/utils/renderFilterableListItem';
+import { ListItem } from '~/components/List/ListItem';
+import { selectBaseFactory } from '~/components/SelectBase';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
-import { areFilterableListItemsEqual } from '../FilterableList/utils/areFilterableListItemsEqual';
-import { filterFilterableList } from '../FilterableList/utils/filterFilterableList';
-import { getFilterableListItemLabel } from '../FilterableList/utils/getFilterableListItemLabel';
-import { isFilterableListItemDisabled } from '../FilterableList/utils/isFilterableListItemDisabled';
-import { isFilterableListItemEmpty } from '../FilterableList/utils/isFilterableListItemEmpty';
-import { renderFilterableListItem } from '../FilterableList/utils/renderFilterableListItem';
-import { ListItem } from '../ListItem';
-import { selectBaseFactory } from '../SelectBase';
 import { useSelect } from './useSelect';
 
 const COMPONENT_NAME = 'Select';

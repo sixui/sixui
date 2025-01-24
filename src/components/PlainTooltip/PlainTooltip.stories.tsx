@@ -2,10 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import type { IComponentPresentation } from '../ComponentShowcase';
+import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IPlainTooltipProps } from './PlainTooltip.types';
-import { componentShowcaseFactory } from '../ComponentShowcase';
-import { IconButton } from '../IconButton';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { IconButton } from '~/components/IconButton';
 import { PlainTooltip } from './PlainTooltip';
 
 const meta = {

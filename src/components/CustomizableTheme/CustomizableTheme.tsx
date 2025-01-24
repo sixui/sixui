@@ -1,19 +1,19 @@
 import { useState } from 'react';
 
-import type { IThemeOverride } from '../ThemeProvider';
+import type { IThemeOverride } from '~/components/ThemeProvider';
 import type { ICustomizableThemeThemeFactory } from './CustomizableTheme.css';
 import type { ICustomizableThemeFactory } from './CustomizableTheme.types';
+import { ColorInputField } from '~/components/ColorInputField';
+import { Flex } from '~/components/Flex';
+import { Paper } from '~/components/Paper';
+import { TextInputField } from '~/components/TextInputField';
+import { ThemeProvider } from '~/components/ThemeProvider';
 import { generateThemeFromSourceColor } from '~/helpers/colors/generateThemeFromSourceColor';
 import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
 import { px } from '~/helpers/styles/px';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { ColorInputField } from '../ColorInputField';
-import { Flex } from '../Flex';
-import { Paper } from '../Paper';
-import { TextInputField } from '../TextInputField';
-import { ThemeProvider } from '../ThemeProvider';
 import { customizableThemeTheme } from './CustomizableTheme.css';
 
 const COMPONENT_NAME = 'CustomizableTheme';

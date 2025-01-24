@@ -1,12 +1,12 @@
 import { createTheme } from '@vanilla-extract/css';
 
+import type { IFieldBaseVariant } from '~/components/FieldBase';
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import type { IFieldBaseVariant } from '../FieldBase';
+import { FieldBase } from '~/components/FieldBase';
+import { cssLayers, themeTokens } from '~/components/ThemeProvider';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { FieldBase } from '../FieldBase';
-import { cssLayers, themeTokens } from '../ThemeProvider';
 
 type IModifier = 'disabled' | 'with-error' | 'no-spinner';
 

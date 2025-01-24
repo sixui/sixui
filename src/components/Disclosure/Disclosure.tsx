@@ -1,12 +1,12 @@
 import type { IDisclosureThemeFactory } from './Disclosure.css';
 import type { IDisclosureFactory } from './Disclosure.types';
+import { Box } from '~/components/Box';
+import { extractBoxProps } from '~/components/Box/extractBoxProps';
+import { Expandable } from '~/components/Expandable';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../Box';
-import { extractBoxProps } from '../Box/extractBoxProps';
-import { DisclosureTrigger } from '../DisclosureTrigger';
-import { Expandable } from '../Expandable';
+import { DisclosureTrigger } from './DisclosureTrigger';
 import { disclosureTheme } from './Disclosure.css';
 
 const COMPONENT_NAME = 'Disclosure';

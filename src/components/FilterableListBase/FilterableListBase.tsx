@@ -5,10 +5,10 @@ import type {
   IFilterableListBaseInternalRenderer,
   IFilterableListItemModifiers,
 } from './FilterableListBase.types';
+import { Box } from '~/components/Box';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
-import { Box } from '../Box';
 import {
   executeFilterableItemsEqual,
   renderFilterableItems,
@@ -196,7 +196,7 @@ export const filterableListBaseFactory = <
             renderItem,
             cols,
           }),
-          handleQueryChange: (event) => handleQueryChange(event.target.value),
+          handleQueryChange: (value) => handleQueryChange(value),
           disabled,
           getInputFilterProps: (userProps) => ({ ...userProps }),
         })}

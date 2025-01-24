@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IPlaceholderProps } from './Placeholder.types';
-import { componentShowcaseFactory } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Placeholder } from './Placeholder';
 
 const meta = {

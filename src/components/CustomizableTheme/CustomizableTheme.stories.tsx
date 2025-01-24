@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { ICustomizableThemeProps } from './CustomizableTheme.types';
-import { Flex } from '../Flex';
-import { Placeholder } from '../Placeholder';
-import { Text } from '../Text';
+import { Flex } from '~/components/Flex';
+import { Placeholder } from '~/components/Placeholder';
+import { Text } from '~/components/Text';
 import { CustomizableTheme } from './CustomizableTheme';
 
 const meta = {

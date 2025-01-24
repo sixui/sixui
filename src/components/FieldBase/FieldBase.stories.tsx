@@ -3,12 +3,12 @@ import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
-import type { IComponentPresentation } from '../ComponentShowcase';
+import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IFieldBaseProps, IFieldBaseVariant } from './FieldBase.types';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { IconButton } from '~/components/IconButton';
+import { Placeholder } from '~/components/Placeholder';
 import { px } from '~/helpers/styles/px';
-import { componentShowcaseFactory } from '../ComponentShowcase';
-import { IconButton } from '../IconButton';
-import { Placeholder } from '../Placeholder';
 import { FieldBase } from './FieldBase';
 
 // https://github.com/material-components/material-web/blob/main/field/demo/stories.ts

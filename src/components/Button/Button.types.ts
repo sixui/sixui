@@ -1,11 +1,11 @@
-import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
-import type { IBoxProps } from '../Box';
+import type { IBoxProps } from '~/components/Box';
 import type {
   IButtonBaseChildrenRendererPops,
   IButtonBaseOwnProps,
-} from '../ButtonBase';
-import type { IPaperOwnProps } from '../Paper';
+} from '~/components/ButtonBase';
+import type { IPaperOwnProps } from '~/components/Paper';
+import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { buttonTheme, IButtonThemeFactory } from './Button.css';
 import { IOmit } from '~/helpers/types';
 

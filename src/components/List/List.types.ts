@@ -1,11 +1,11 @@
+import type { IBoxProps } from '~/components/Box';
+import type { IPaperOwnProps } from '~/components/Paper';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
-import type { IBoxProps } from '../Box';
-import type { ListDivider } from '../ListDivider';
-import type { ListItem } from '../ListItem';
-import type { IPaperOwnProps } from '../Paper';
 import type { IListContextValue } from './List.context';
 import type { IListThemeFactory, listTheme } from './List.css';
+import type { ListDivider } from './ListDivider';
+import type { ListItem } from './ListItem';
 
 export type IListVariant = 'primary';
 

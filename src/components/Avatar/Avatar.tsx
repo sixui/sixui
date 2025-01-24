@@ -3,6 +3,7 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import type { IAvatarThemeFactory } from './Avatar.css';
 import type { IAvatarFactory } from './Avatar.types';
+import { Paper } from '~/components/Paper';
 import { hslColorFromString } from '~/helpers/colors/hslColorFromString';
 import { getHslColor } from '~/helpers/styles/getHslColor';
 import { useImageLoaded } from '~/hooks/useImageLoaded';
@@ -10,8 +11,7 @@ import { polymorphicComponentFactory } from '~/utils/component/polymorphicCompon
 import { useProps } from '~/utils/component/useProps';
 import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Paper } from '../Paper';
-import { paperBaseTheme } from '../PaperBase/PaperBase.css';
+import { paperBaseTheme } from '~/components/PaperBase/PaperBase.css';
 import { avatarTheme } from './Avatar.css';
 
 const COMPONENT_NAME = 'Avatar';

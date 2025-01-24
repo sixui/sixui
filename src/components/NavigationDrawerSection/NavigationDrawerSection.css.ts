@@ -2,15 +2,15 @@ import { createTheme } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { Divider } from '~/components/Divider';
+import { List } from '~/components/List';
+import { cssLayers, themeTokens } from '~/components/ThemeProvider';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { Divider } from '../Divider';
-import { List } from '../List';
-import { cssLayers, themeTokens } from '../ThemeProvider';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,

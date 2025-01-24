@@ -2,13 +2,13 @@ import { createTheme } from '@vanilla-extract/css';
 
 import type { IInteraction } from '~/hooks/useInteractions';
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { Elevation } from '~/components/Elevation';
+import { cssLayers, themeTokens } from '~/components/ThemeProvider';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { Elevation } from '../Elevation';
-import { cssLayers, themeTokens } from '../ThemeProvider';
-import { elevationLevelPreset } from '../Elevation/Elevation.css';
+import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
 
 type IModifier = IInteraction | 'expanded';
 

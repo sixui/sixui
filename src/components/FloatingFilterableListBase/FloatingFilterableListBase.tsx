@@ -20,8 +20,11 @@ import type {
   IFilterableListBaseRenderer,
   IFilterableListItemRenderer,
   IFilterableListItemRendererProps,
-} from '../FilterableListBase';
+} from '~/components/FilterableListBase';
 import type { IFloatingFilterableListBaseFactory } from './FloatingFilterableListBase.types';
+import { filterableListBaseFactory } from '~/components/FilterableListBase';
+import { Motion } from '~/components/Motion';
+import { Portal } from '~/components/Portal';
 import { isFunction } from '~/helpers/isFunction';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
@@ -30,9 +33,6 @@ import { polymorphicComponentFactory } from '~/utils/component/polymorphicCompon
 import { useProps } from '~/utils/component/useProps';
 import { mergeProps } from '~/utils/mergeProps';
 import { objectFromPlacement } from '~/utils/objectFromPlacement';
-import { filterableListBaseFactory } from '../FilterableListBase';
-import { Motion } from '../Motion';
-import { Portal } from '../Portal';
 import { floatingFilterableListBaseClassNames } from './FloatingFilterableListBase.css';
 
 const COMPONENT_NAME = 'FloatingFilterableListBase';

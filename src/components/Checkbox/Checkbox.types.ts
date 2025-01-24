@@ -1,11 +1,11 @@
+import type { IBoxProps } from '~/components/Box';
 import type { IUseCheckboxProps } from '~/hooks/useCheckbox';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
-import type { IBoxProps } from '../Box';
-import type { CheckboxCard } from '../CheckboxCard';
-import type { CheckboxIndicator } from '../CheckboxIndicator';
 import type { checkboxTheme, ICheckboxThemeFactory } from './Checkbox.css';
-import { CheckboxGroup } from '../CheckboxGroup';
+import type { CheckboxCard } from './CheckboxCard';
+import type { CheckboxGroup } from './CheckboxGroup';
+import type { CheckboxIndicator } from './CheckboxIndicator';
 
 export interface ICheckboxOwnProps extends IUseCheckboxProps {
   rootRef?: React.Ref<HTMLDivElement>;

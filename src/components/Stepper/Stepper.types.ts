@@ -1,10 +1,10 @@
+import type { IBoxProps } from '~/components/Box';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
-import type { IBoxProps } from '../Box';
-import type { Step } from '../Step';
-import type { StepConnector } from '../StepConnector';
 import type { IStepperContextValue } from './Stepper.context';
 import type { IStepperThemeFactory, stepperTheme } from './Stepper.css';
+import type { StepperConnector } from './StepperConnector';
+import type { StepperStep } from './StepperStep';
 
 export interface IStepperOwnProps extends IStepperContextValue {
   children: React.ReactNode;
@@ -21,7 +21,7 @@ export type IStepperFactory = IComponentFactory<{
   ref: HTMLDivElement;
   theme: typeof stepperTheme;
   staticComponents: {
-    Step: typeof Step;
-    Connector: typeof StepConnector;
+    Step: typeof StepperStep;
+    Connector: typeof StepperConnector;
   };
 }>;

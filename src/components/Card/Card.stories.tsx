@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
-import type { IComponentPresentation } from '../ComponentShowcase';
+import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { ICardProps, ICardVariant } from './Card.types';
-import { componentShowcaseFactory } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Card } from './Card';
 
 const meta = {

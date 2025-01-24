@@ -1,13 +1,13 @@
-import type { IPlainTooltipContentOwnProps } from '../PlainTooltipContent';
 import type { IPlainTooltipThemeFactory } from './PlainTooltip.css';
 import type { IPlainTooltipFactory } from './PlainTooltip.types';
+import type { IPlainTooltipContentOwnProps } from './PlainTooltipContent';
+import { PopoverBase } from '~/components/PopoverBase';
 import { isFunction } from '~/helpers/isFunction';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { PlainTooltipContent } from '../PlainTooltipContent';
-import { PopoverBase } from '../PopoverBase';
+import { PlainTooltipContent } from './PlainTooltipContent';
 import { plainTooltipTheme } from './PlainTooltip.css';
 
 const COMPONENT_NAME = 'PlainTooltip';

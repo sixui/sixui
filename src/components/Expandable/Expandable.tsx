@@ -6,6 +6,7 @@ import type { ISize } from '~/helpers/types';
 import type { IExpandableContextValue } from './Expandable.context';
 import type { IExpandableThemeFactory } from './Expandable.css';
 import type { IExpandableFactory } from './Expandable.types';
+import { Box } from '~/components/Box';
 import { isFunction } from '~/helpers/isFunction';
 import { px } from '~/helpers/styles/px';
 import { useControlledValue } from '~/hooks/useControlledValue';
@@ -14,7 +15,6 @@ import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../Box';
 import { ExpandableContextProvider } from './Expandable.context';
 import { expandableTheme } from './Expandable.css';
 

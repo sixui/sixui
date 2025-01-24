@@ -1,15 +1,15 @@
 import { createTheme } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { ModalAside } from '~/components/ModalAside';
+import { StandardAside } from '~/components/StandardAside';
+import { cssLayers, themeTokens } from '~/components/ThemeProvider';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { ModalAside } from '../ModalAside';
-import { SideSheetContent } from '../SideSheetContent';
-import { StandardAside } from '../StandardAside';
-import { cssLayers, themeTokens } from '../ThemeProvider';
-import { elevationLevelPreset } from '../Elevation/Elevation.css';
+import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
+import { SideSheetContent } from './SideSheetContent';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,

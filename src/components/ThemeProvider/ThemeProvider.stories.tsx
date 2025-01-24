@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IThemeProviderProps } from './ThemeProvider.types';
+import { ColorInputField } from '~/components/ColorInputField';
+import { ColorScheme } from '~/components/ColorScheme';
+import { Flex } from '~/components/Flex';
+import { Paper } from '~/components/Paper';
 import { generateThemeFromSourceColor } from '~/helpers/colors/generateThemeFromSourceColor';
 import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
-import { ColorInputField } from '../ColorInputField';
-import { ColorScheme } from '../ColorScheme';
-import { Flex } from '../Flex';
-import { Paper } from '../Paper';
 import { ThemeProvider } from './ThemeProvider';
 import { useThemeSetterContext } from './ThemeSetter.context';
 

@@ -1,8 +1,8 @@
+import { PaperBase } from '~/components/PaperBase';
+import { themeTokens } from '~/components/ThemeProvider';
 import { getResponsiveContainerQuery } from '~/helpers/styles/getResponsiveContainerQuery';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { PaperBase } from '../PaperBase';
-import { themeTokens } from '../ThemeProvider';
 
 export const responsiveStoriesClassNames = createStyles({
   root: {

@@ -2,9 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { faBolt, faCloud, faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import type { IComponentPresentation } from '../ComponentShowcase';
+import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IAvatarProps } from './Avatar.types';
-import { componentShowcaseFactory } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Avatar } from './Avatar';
 
 const meta = {

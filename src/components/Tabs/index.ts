@@ -1,3 +1,6 @@
 export * from './Tabs.types';
 export * from './Tabs';
-export * from './Tabs.context';
+
+export * from './TabsList';
+export * from './TabsTab';
+export * from './TabsPanel';

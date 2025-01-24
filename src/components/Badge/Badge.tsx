@@ -2,11 +2,11 @@ import { useMemo } from 'react';
 
 import type { IBadgeThemeFactory } from './Badge.css';
 import type { IBadgeFactory } from './Badge.types';
+import { Paper } from '~/components/Paper';
 import { isNumeric } from '~/helpers/isNumeric';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Paper } from '../Paper';
 import { badgeTheme } from './Badge.css';
 
 const COMPONENT_NAME = 'Badge';

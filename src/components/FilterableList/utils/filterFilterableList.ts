@@ -1,4 +1,4 @@
-import type { IFilterableListPredicate } from '../../FilterableListBase';
+import type { IFilterableListPredicate } from '~/components/FilterableListBase';
 import type { IFilterableListItem } from '../FilterableList.types';
 import { createFilter } from '~/helpers/createFilter';
 

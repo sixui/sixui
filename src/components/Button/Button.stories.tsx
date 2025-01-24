@@ -7,12 +7,12 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
-import type { IComponentPresentation } from '../ComponentShowcase';
+import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IButtonProps, IButtonVariant } from './Button.types';
+import { Badge } from '~/components/Badge';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { Text as SixuiText } from '~/components/Text';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { Badge } from '../Badge';
-import { componentShowcaseFactory } from '../ComponentShowcase';
-import { Text as SixuiText } from '../Text';
 import { Button } from './Button';
 
 // https://m3.material.io/components/buttons/overview

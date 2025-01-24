@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { createSequence } from '@olivierpascal/helpers';
 
 import type { IBreadcrumbsProps } from './Breadcrumbs.types';
-import { componentShowcaseFactory } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Breadcrumbs } from './Breadcrumbs';
 
 const meta = {

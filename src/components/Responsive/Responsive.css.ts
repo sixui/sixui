@@ -1,10 +1,10 @@
 import { createTheme } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { cssLayers } from '~/components/ThemeProvider';
 import { CSS_FALSE } from '~/helpers/styles/constants';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { cssLayers } from '../ThemeProvider';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,

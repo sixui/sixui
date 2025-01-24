@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { ITextProps } from './Text.types';
-import { componentShowcaseFactory } from '../ComponentShowcase';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Text, textTagMap } from './Text';
 import { textStoriesStyles } from './Text.stories.css';
 

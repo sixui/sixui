@@ -2,14 +2,14 @@ import { createTheme, createVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { PaperBase } from '~/components/PaperBase';
+import { cssLayers, themeTokens } from '~/components/ThemeProvider';
 import { getDensity } from '~/helpers/styles/getDensity';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { PaperBase } from '../PaperBase';
-import { cssLayers, themeTokens } from '../ThemeProvider';
 
 const DENSITY = px(getDensity({ min: -3, max: 0 }));
 

@@ -1,16 +1,16 @@
 import type { ICheckboxThemeFactory } from './Checkbox.css';
 import type { ICheckboxFactory } from './Checkbox.types';
+import { Box } from '~/components/Box';
+import { FocusRing } from '~/components/FocusRing';
+import { StateLayer, useStateLayer } from '~/components/StateLayer';
 import { useCheckbox } from '~/hooks/useCheckbox';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../Box';
-import { CheckboxCard } from '../CheckboxCard';
-import { CheckboxGroup } from '../CheckboxGroup';
-import { CheckboxIndicator } from '../CheckboxIndicator';
-import { FocusRing } from '../FocusRing';
-import { StateLayer, useStateLayer } from '../StateLayer';
+import { CheckboxCard } from './CheckboxCard';
+import { CheckboxGroup } from './CheckboxGroup';
+import { CheckboxIndicator } from './CheckboxIndicator';
 import { checkboxTheme } from './Checkbox.css';
 
 const COMPONENT_NAME = 'Checkbox';

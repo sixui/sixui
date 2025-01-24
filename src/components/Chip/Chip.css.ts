@@ -4,6 +4,10 @@ import { calc } from '@vanilla-extract/css-utils';
 import type { IInteraction } from '~/hooks/useInteractions';
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import type { IChipVariant } from './Chip.types';
+import { Avatar } from '~/components/Avatar';
+import { Button } from '~/components/Button';
+import { PaperBase } from '~/components/PaperBase';
+import { cssLayers, themeTokens } from '~/components/ThemeProvider';
 import { getDensity } from '~/helpers/styles/getDensity';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
@@ -11,11 +15,7 @@ import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { Avatar } from '../Avatar';
-import { Button } from '../Button';
-import { PaperBase } from '../PaperBase';
-import { cssLayers, themeTokens } from '../ThemeProvider';
-import { elevationLevelPreset } from '../Elevation/Elevation.css';
+import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
 
 type IModifier =
   | IInteraction

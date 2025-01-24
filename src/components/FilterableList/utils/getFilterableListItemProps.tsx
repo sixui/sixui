@@ -1,5 +1,5 @@
+import type { IListItemProps } from '~/components/List/ListItem';
 import type { IFilterableListItemRendererProps } from '../../FilterableListBase';
-import type { IListItemProps } from '../../ListItem';
 import type { IFilterableListItem } from '../FilterableList.types';
 import { Box } from '~/components/Box';
 import { highlightQueryInText } from './highlightQueryInText';

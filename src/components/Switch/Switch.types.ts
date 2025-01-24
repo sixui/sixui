@@ -1,10 +1,10 @@
+import type { IBoxProps } from '~/components/Box';
+import type { IPaperBaseOwnProps } from '~/components/PaperBase';
 import type { IUseSwitchProps } from '~/hooks/useSwitch';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
-import type { IBoxProps } from '../Box';
-import type { IPaperBaseOwnProps } from '../PaperBase';
-import type { SwitchIndicator } from '../SwitchIndicator';
 import type { basicTemplateTheme, ISwitchThemeFactory } from './Switch.css';
+import type { SwitchIndicator } from './SwitchIndicator';
 
 export interface ISwitchOwnProps extends IUseSwitchProps, IPaperBaseOwnProps {
   checkedIcon?: React.ReactNode | true;

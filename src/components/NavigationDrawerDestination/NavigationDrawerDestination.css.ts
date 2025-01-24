@@ -1,14 +1,14 @@
 import { createTheme } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { Item } from '~/components/Item';
+import { ListItem } from '~/components/List/ListItem';
+import { cssLayers, themeTokens } from '~/components/ThemeProvider';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { Item } from '../Item';
-import { ListItem } from '../ListItem';
-import { cssLayers, themeTokens } from '../ThemeProvider';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,

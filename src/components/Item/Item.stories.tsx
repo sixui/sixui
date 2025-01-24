@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IItemProps } from './Item.types';
-import { componentShowcaseFactory } from '../ComponentShowcase';
-import { Paper } from '../Paper';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { Paper } from '~/components/Paper';
 import { Item } from './Item';
 
 // https://m3.material.io/components/items/overview

@@ -4,6 +4,9 @@ import { calc } from '@vanilla-extract/css-utils';
 import type { IInteraction } from '~/hooks/useInteractions';
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import type { IFieldBaseVariant } from './FieldBase.types';
+import { PaperBase } from '~/components/PaperBase';
+import { StateLayer } from '~/components/StateLayer';
+import { cssLayers, themeTokens } from '~/components/ThemeProvider';
 import { getDensity } from '~/helpers/styles/getDensity';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
@@ -12,9 +15,6 @@ import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { PaperBase } from '../PaperBase';
-import { StateLayer } from '../StateLayer';
-import { cssLayers, themeTokens } from '../ThemeProvider';
 
 type IModifier =
   | IInteraction

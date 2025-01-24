@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IComponentPresentation } from '../ComponentShowcase';
+import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IBadgeProps } from './Badge.types';
-import { Anchored, IAnchoredProps } from '../Anchored';
-import { componentShowcaseFactory } from '../ComponentShowcase';
-import { Placeholder } from '../Placeholder';
+import { Anchored, IAnchoredProps } from '~/components/Anchored';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { Placeholder } from '~/components/Placeholder';
 import { Badge } from './Badge';
 
 // https://m3.material.io/components/badges/overview

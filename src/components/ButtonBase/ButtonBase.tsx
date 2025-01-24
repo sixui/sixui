@@ -1,17 +1,17 @@
 import type { IButtonBaseThemeFactory } from './ButtonBase.css';
 import type { IButtonBaseFactory } from './ButtonBase.types';
+import { FocusRing } from '~/components/FocusRing';
+import { Paper } from '~/components/Paper';
+import { useSixuiContext } from '~/components/SixuiProvider';
+import { StateLayer } from '~/components/StateLayer';
+import { useStateLayer } from '~/components/StateLayer/useStateLayer';
+import { TouchTarget } from '~/components/TouchTarget';
 import { isFunction } from '~/helpers/isFunction';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { FocusRing } from '../FocusRing';
-import { Paper } from '../Paper';
-import { useSixuiContext } from '../SixuiProvider';
-import { StateLayer } from '../StateLayer';
-import { useStateLayer } from '../StateLayer/useStateLayer';
-import { TouchTarget } from '../TouchTarget';
 import { buttonBaseTheme } from './ButtonBase.css';
 
 const COMPONENT_NAME = 'ButtonBase';

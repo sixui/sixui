@@ -2,16 +2,16 @@ import { createTheme } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 import cx from 'clsx';
 
+import type { ICircularProgressIndicatorModifier } from '~/components/CircularProgressIndicator/CircularProgressIndicator.css';
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import type { ICircularProgressIndicatorModifier } from '../CircularProgressIndicator/CircularProgressIndicator.css';
+import { cssLayers, themeTokens } from '~/components/ThemeProvider';
 import { deepMerge } from '~/helpers/deepMerge';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
-import { cssLayers, themeTokens } from '../ThemeProvider';
-import { circularProgressIndicatorTheme } from '../CircularProgressIndicator/CircularProgressIndicator.css';
+import { circularProgressIndicatorTheme } from '~/components/CircularProgressIndicator/CircularProgressIndicator.css';
 
 type IModifier = ICircularProgressIndicatorModifier;
 

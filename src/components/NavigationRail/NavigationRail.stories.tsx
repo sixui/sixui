@@ -12,14 +12,14 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { INavigationRailProps } from './NavigationRail.types';
+import { Button } from '~/components/Button';
+import { Flex } from '~/components/Flex';
+import { Frame } from '~/components/Frame';
+import { Placeholder } from '~/components/Placeholder';
+import { themeTokens } from '~/components/ThemeProvider';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { px } from '~/helpers/styles/px';
 import { useToggle } from '~/hooks/useToggle';
-import { Button } from '../Button';
-import { Flex } from '../Flex';
-import { Frame } from '../Frame';
-import { Placeholder } from '../Placeholder';
-import { themeTokens } from '../ThemeProvider';
 import { NavigationRail } from './NavigationRail';
 
 const meta = {

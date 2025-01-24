@@ -2,9 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
 import type { ISnackbarProps } from './Snackbar.types';
+import { Button } from '~/components/Button';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { Button } from '../Button';
-import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Snackbar } from './Snackbar';
 
 const meta = {

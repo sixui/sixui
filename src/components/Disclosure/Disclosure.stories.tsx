@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IDisclosureTriggerProps } from '../DisclosureTrigger';
+import type { IDisclosureTriggerProps } from '~/components/DisclosureTrigger';
 import type { IDisclosureProps } from './Disclosure.types';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { Text } from '~/components/Text';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { componentShowcaseFactory } from '../ComponentShowcase';
-import { Text } from '../Text';
 import { Disclosure } from './Disclosure';
 
 const meta = {

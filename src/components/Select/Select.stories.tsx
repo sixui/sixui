@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
-import type { IComponentPresentation } from '../ComponentShowcase';
+import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { ISelectProps } from './Select.types';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { emptyItem, fruits } from '~/components/FilterableList/fruits';
+import { Flex } from '~/components/Flex';
+import { ListItem } from '~/components/List/ListItem';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { componentShowcaseFactory } from '../ComponentShowcase';
-import { emptyItem, fruits } from '../FilterableList/fruits';
-import { Flex } from '../Flex';
-import { ListItem } from '../ListItem';
 import { Select } from './Select';
 
 const meta = {

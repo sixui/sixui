@@ -2,11 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { faCheck, faLink } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import type { IComponentPresentation } from '../ComponentShowcase';
+import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { INavigationDrawerDestinationProps } from './NavigationDrawerDestination.types';
+import { Avatar } from '~/components/Avatar';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { Avatar } from '../Avatar';
-import { componentShowcaseFactory } from '../ComponentShowcase';
 import { NavigationDrawerDestination } from './NavigationDrawerDestination';
 
 // https://m3.material.io/components/items/overview

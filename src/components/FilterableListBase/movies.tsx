@@ -5,15 +5,15 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import highlightWords from 'highlight-words';
 
-import type { IListItemProps } from '../ListItem';
+import type { IListItemProps } from '~/components/List/ListItem';
 import type {
   IFilterableCreateNewListItemRenderer,
   IFilterableListItemPredicate,
   IFilterableListItemRenderer,
   IFilterableListItemRendererProps,
 } from './FilterableListBase.types';
-import { ListItem } from '../ListItem';
-import { Text } from '../Text';
+import { ListItem } from '~/components/List/ListItem';
+import { Text } from '~/components/Text';
 
 export type IMovie = {
   /**

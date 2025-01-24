@@ -1,15 +1,15 @@
 import type { FloatingFocusManagerProps, Placement } from '@floating-ui/react';
 
+import type { IBoxProps } from '~/components/Box';
+import type { ListDivider } from '~/components/List/ListDivider';
+import type { IMotionProps } from '~/components/Motion';
+import type { IPortalProps } from '~/components/Portal';
 import type { IOrientation, IPlacement } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
-import type { IBoxProps } from '../Box';
-import type { MenuDivider } from '../MenuDivider';
-import type { MenuItem } from '../MenuItem';
-import type { MenuList } from '../MenuList';
-import type { IMotionProps } from '../Motion';
-import type { IPortalProps } from '../Portal';
+import type { MenuItem } from './MenuItem';
 import type { IMenuLeafThemeFactory, menuLeafTheme } from './MenuLeaf.css';
+import type { MenuList } from './MenuList';
 
 export type IMenuTriggerRenderProps = {
   opened: boolean;
@@ -42,6 +42,6 @@ export type IMenuFactory = IComponentFactory<{
   staticComponents: {
     List: typeof MenuList;
     Item: typeof MenuItem;
-    Divider: typeof MenuDivider;
+    Divider: typeof ListDivider;
   };
 }>;

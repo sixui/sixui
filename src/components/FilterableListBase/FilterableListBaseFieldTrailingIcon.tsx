@@ -1,14 +1,13 @@
 import { iconTriangleDown, iconTriangleUp, iconXMark } from '~/assets/icons';
-import { Flex } from '../Flex';
-import { IconButton } from '../IconButton';
-import { SvgIcon } from '../SvgIcon';
+import { Flex } from '~/components/Flex';
+import { IconButton } from '~/components/IconButton';
+import { SvgIcon } from '~/components/SvgIcon';
 
 export type IFilterableListBaseFieldTrailingIcon = {
   opened?: boolean;
   onClear?: (event?: React.MouseEvent<Element>) => void;
 };
 
-// FIXME:
 export const FilterableListBaseFieldTrailingIcon = (
   props: IFilterableListBaseFieldTrailingIcon,
 ): React.ReactNode => (

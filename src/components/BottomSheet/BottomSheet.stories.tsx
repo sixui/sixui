@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IComponentPresentation } from '../ComponentShowcase';
+import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IBottomSheetProps } from './BottomSheet.types';
+import { Button } from '~/components/Button';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { Text } from '~/components/Text';
 import { useDisclosure } from '~/hooks/useDisclosure';
-import { Button } from '../Button';
-import { componentShowcaseFactory } from '../ComponentShowcase';
-import { Text } from '../Text';
 import { BottomSheet } from './BottomSheet';
 
 const meta = {

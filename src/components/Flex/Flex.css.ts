@@ -1,12 +1,12 @@
 import { createRainbowSprinkles, defineProperties } from 'rainbow-sprinkles';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { cssLayers } from '~/components/ThemeProvider';
 import { getDensity } from '~/helpers/styles/getDensity';
 import { getSpacingValues } from '~/helpers/styles/getSpacingValues';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { cssLayers } from '../ThemeProvider';
 
 const DENSITY = px(getDensity({ min: -9, max: 0 }));
 

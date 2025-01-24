@@ -1,7 +1,7 @@
 import type { IAppLayoutFooterProps } from '~/components/AppLayoutFooter';
+import { AppLayout } from '~/components/AppLayout';
 import { Flex } from '~/components/Flex';
 import { Placeholder } from '~/components/Placeholder';
-import { AppLayout } from '../AppLayout';
 
 export type IFooterProps = IAppLayoutFooterProps;
 

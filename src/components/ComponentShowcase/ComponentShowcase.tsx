@@ -3,11 +3,11 @@ import type {
   IComponentPresentation,
   IComponentShowcaseFactory,
 } from './ComponentShowcase.types';
+import { Box } from '~/components/Box';
 import { deepMerge } from '~/helpers/deepMerge';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../Box';
 import { componentShowcaseTheme } from './ComponentShowcase.css';
 
 const COMPONENT_NAME = 'ComponentShowcase';

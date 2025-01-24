@@ -1,10 +1,10 @@
 import type { IPaperBaseThemeFactory } from './PaperBase.css';
 import type { IPaperBaseFactory } from './PaperBase.types';
+import { Box } from '~/components/Box';
+import { Elevation } from '~/components/Elevation';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../Box';
-import { Elevation } from '../Elevation';
 import { paperBaseTheme } from './PaperBase.css';
 
 const COMPONENT_NAME = 'PaperBase';

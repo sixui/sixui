@@ -2,14 +2,14 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import type { IComponentPresentation } from '../ComponentShowcase';
+import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { ICardProps } from './Card.types';
+import { Avatar } from '~/components/Avatar';
+import { Button } from '~/components/Button';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { IconButton } from '~/components/IconButton';
+import { List } from '~/components/List';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { Avatar } from '../Avatar';
-import { Button } from '../Button';
-import { componentShowcaseFactory } from '../ComponentShowcase';
-import { IconButton } from '../IconButton';
-import { List } from '../List';
 import { Card } from './Card';
 
 const meta = {

@@ -4,14 +4,14 @@ import { renderToString } from 'react-dom/server';
 import type { ICopyableTextThemeFactory } from './CopyableText.css';
 import type { ICopyableTextFactory } from './CopyableText.types';
 import { iconCopyToCliboard } from '~/assets/icons';
+import { Button } from '~/components/Button';
+import { PlainTooltip } from '~/components/PlainTooltip';
+import { SvgIcon } from '~/components/SvgIcon';
 import { copyToClipboard } from '~/helpers/copyToClipboard';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Button } from '../Button';
-import { PlainTooltip } from '../PlainTooltip';
-import { SvgIcon } from '../SvgIcon';
 import { copyableTextTheme } from './CopyableText.css';
 
 const COMPONENT_NAME = 'CopyableText';

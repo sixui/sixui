@@ -1,13 +1,13 @@
-import type { IOmit } from '~/helpers/types';
-import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IBoxProps } from '../Box';
-import type { IUseSingleFilterableListBaseProps } from '../FilterableListBase';
+import type { IBoxProps } from '~/components/Box';
+import type { IUseSingleFilterableListBaseProps } from '~/components/FilterableListBase';
 import type {
   IFloatingFilterableListBaseProps,
   IFloatingFilterableListBaseTriggerRenderProps,
-} from '../FloatingFilterableListBase';
-import type { IMenuListProps } from '../MenuList';
-import type { ITextInputFieldProps } from '../TextInputField';
+} from '~/components/FloatingFilterableListBase';
+import type { IMenuListProps } from '~/components/MenuList';
+import type { ITextInputFieldProps } from '~/components/TextInputField';
+import type { IOmit } from '~/helpers/types';
+import type { IComponentFactory } from '~/utils/component/componentFactory';
 
 export interface ISuggestBaseOwnProps<TItem>
   extends IOmit<

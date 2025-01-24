@@ -1,10 +1,10 @@
+import type { IFieldBaseVariant } from '~/components/FieldBase';
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import type { IFieldBaseVariant } from '../FieldBase';
+import { FieldBase } from '~/components/FieldBase';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
-import { FieldBase } from '../FieldBase';
 
 const classNames = createStyles({
   select: {

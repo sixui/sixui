@@ -1,7 +1,7 @@
+import type { IBoxProps } from '~/components/Box';
 import type { IOrientation } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
-import type { IBoxProps } from '../Box';
 import type { dividerTheme, IDividerThemeFactory } from './Divider.css';
 
 export interface IDividerOwnProps {
@@ -10,17 +10,17 @@ export interface IDividerOwnProps {
   /**
    * Indents the divider with equal padding on both sides.
    */
-  inset?: boolean;
+  indent?: boolean;
 
   /**
    * Indents the divider with padding on the leading side.
    */
-  insetStart?: boolean;
+  indentStart?: boolean;
 
   /**
    * Indents the divider with padding on the trailing side.
    */
-  insetEnd?: boolean;
+  indentEnd?: boolean;
 
   children?: React.ReactNode;
   label?: React.ReactNode;

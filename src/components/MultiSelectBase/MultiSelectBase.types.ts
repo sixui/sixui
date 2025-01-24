@@ -1,14 +1,14 @@
-import type { IOmit } from '~/helpers/types';
-import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IBoxProps } from '../Box';
-import type { IInputChipProps } from '../Chip';
-import type { IUseMultiFilterableListBaseProps } from '../FilterableListBase';
+import type { IBoxProps } from '~/components/Box';
+import type { IInputChipProps } from '~/components/Chip';
+import type { IUseMultiFilterableListBaseProps } from '~/components/FilterableListBase';
 import type {
   IFloatingFilterableListBaseProps,
   IFloatingFilterableListBaseTriggerRenderProps,
-} from '../FloatingFilterableListBase';
-import type { IMenuListProps } from '../MenuList';
-import { ITextInputFieldProps } from '../TextInputField';
+} from '~/components/FloatingFilterableListBase';
+import type { IMenuListProps } from '~/components/Menu/MenuList';
+import type { IOmit } from '~/helpers/types';
+import type { IComponentFactory } from '~/utils/component/componentFactory';
+import { ITextInputFieldProps } from '~/components/TextInputField';
 
 export interface IMultiSelectBaseOwnProps<TItem>
   extends IOmit<

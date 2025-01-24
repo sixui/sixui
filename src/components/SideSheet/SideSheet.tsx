@@ -1,11 +1,11 @@
 import type { ISideSheetThemeFactory } from './SideSheet.css';
 import type { ISideSheetFactory } from './SideSheet.types';
+import { Aside } from '~/components/Aside';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Aside } from '../Aside';
-import { SideSheetContent } from '../SideSheetContent';
+import { SideSheetContent } from './SideSheetContent';
 import { navigationDrawerTheme } from './SideSheet.css';
 
 const COMPONENT_NAME = 'SideSheet';

@@ -8,11 +8,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IOmit } from '~/helpers/types';
-import type { IComponentPresentation } from '../ComponentShowcase';
 import type { ISwitchProps } from './Switch.types';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { componentShowcaseFactory } from '../ComponentShowcase';
 import { Switch } from './Switch';
 
 const meta = {

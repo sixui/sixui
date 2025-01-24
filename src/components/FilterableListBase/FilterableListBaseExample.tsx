@@ -1,9 +1,9 @@
 import type { IOmit } from '~/helpers/types';
 import type { IFilterableListBaseProps } from './FilterableListBase.types';
 import type { IMovie } from './movies';
-import { ListItem } from '../ListItem';
-import { MenuList } from '../MenuList';
-import { TextInputField } from '../TextInputField';
+import { ListItem } from '~/components/List/ListItem';
+import { MenuList } from '~/components/Menu/MenuList';
+import { TextInputField } from '~/components/TextInputField';
 import { filterableListBaseFactory } from './FilterableListBase';
 import {
   areMoviesEqual,
@@ -29,10 +29,7 @@ export type IFilterableListBaseExampleProps = IOmit<
   canCreate?: boolean;
 };
 
-const MovieFilterableListBase = filterableListBaseFactory<
-  IMovie,
-  HTMLDivElement
->();
+const MovieFilterableListBase = filterableListBaseFactory<IMovie>();
 
 export const FilterableListBaseExample: React.FC<
   IFilterableListBaseExampleProps

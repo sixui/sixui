@@ -1,18 +1,18 @@
 import { useRef } from 'react';
 
 import type { IMultiSelectBaseFactory } from './MultiSelectBase.types';
-import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { InputChip } from '../Chip';
+import { InputChip } from '~/components/Chip';
 import {
   FilterableListBaseFieldTrailingIcon,
   useMultiFilterableListBase,
-} from '../FilterableListBase';
-import { floatingFilterableListBaseFactory } from '../FloatingFilterableListBase';
-import { ListItem } from '../ListItem';
-import { MenuList } from '../MenuList';
-import { TextInputField } from '../TextInputField';
+} from '~/components/FilterableListBase';
+import { floatingFilterableListBaseFactory } from '~/components/FloatingFilterableListBase';
+import { ListItem } from '~/components/List/ListItem';
+import { MenuList } from '~/components/Menu/MenuList';
+import { TextInputField } from '~/components/TextInputField';
+import { componentFactory } from '~/utils/component/componentFactory';
+import { useProps } from '~/utils/component/useProps';
+import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import {
   IMultiSelectBaseThemeFactory,
   multiSelectBaseTheme,

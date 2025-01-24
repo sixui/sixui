@@ -4,15 +4,15 @@ import { useFocus } from 'react-aria';
 import type { IHtmlSelectThemeFactory } from './HtmlSelect.css';
 import type { IHtmlSelectFactory, IHtmlSelectOption } from './HtmlSelect.types';
 import { iconTriangleDown } from '~/assets/icons';
+import { FieldBase } from '~/components/FieldBase';
+import { useLabeledContext } from '~/components/Labeled';
+import { SvgIcon } from '~/components/SvgIcon';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { mergeProps } from '~/utils/mergeProps';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { FieldBase } from '../FieldBase';
-import { useLabeledContext } from '../Labeled';
-import { SvgIcon } from '../SvgIcon';
 import { htmlSelectTheme } from './HtmlSelect.css';
 
 const COMPONENT_NAME = 'HtmlSelect';

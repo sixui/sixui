@@ -2,12 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import type { IComponentPresentation } from '../ComponentShowcase';
+import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IRichTooltipProps } from './RichTooltip.types';
+import { Button } from '~/components/Button';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { IconButton } from '~/components/IconButton';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { Button } from '../Button';
-import { componentShowcaseFactory } from '../ComponentShowcase';
-import { IconButton } from '../IconButton';
 import { RichTooltip } from './RichTooltip';
 
 const meta = {

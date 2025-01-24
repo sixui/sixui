@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IComponentPresentation } from '../ComponentShowcase';
-import { componentShowcaseFactory } from '../ComponentShowcase';
-import { FocusRing } from '../FocusRing';
-import { Placeholder } from '../Placeholder';
+import type { IComponentPresentation } from '~/components/ComponentShowcase';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { FocusRing } from '~/components/FocusRing';
+import { Placeholder } from '~/components/Placeholder';
 import { StateLayer } from './StateLayer';
 import { IUseStateLayerProps, useStateLayer } from './useStateLayer';
 

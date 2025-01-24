@@ -1,11 +1,11 @@
 import type { IDialogThemeFactory } from './Dialog.css';
 import type { IDialogFactory } from './Dialog.types';
+import { PopoverBase } from '~/components/PopoverBase';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { DialogContent, IDialogContentOwnProps } from '../DialogContent';
-import { PopoverBase } from '../PopoverBase';
+import { DialogContent, IDialogContentOwnProps } from './DialogContent';
 import { dialogTheme } from './Dialog.css';
 
 const COMPONENT_NAME = 'Dialog';

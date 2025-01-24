@@ -1,5 +1,5 @@
+import type { IBoxProps } from '~/components/Box';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import type { IBoxProps } from '../Box';
 
 // Inspiration:
 // - https://github.com/palantir/blueprint/blob/develop/packages/select/src/common/itemListRenderer.ts
@@ -104,44 +104,43 @@ export type IFilterableListItemFocus = 'icon';
  *
  * @typeParam TItemElement - Type of the DOM element rendered
  */
-export type IFilterableListItemRendererProps<TItemElement extends HTMLElement> =
-  {
-    /**
-     * Click event handler to select this item.
-     */
-    handleClick: React.MouseEventHandler<TItemElement>;
+export type IFilterableListItemRendererProps<TItemElement extends Element> = {
+  /**
+   * Click event handler to select this item.
+   */
+  handleClick: React.MouseEventHandler<TItemElement>;
 
-    /**
-     * Index of the item in the `filteredItems` array.
-     */
-    index: number;
+  /**
+   * Index of the item in the `filteredItems` array.
+   */
+  index: number;
 
-    /**
-     * Modifiers that describe how to render this item, such as `active` or
-     * `disabled`.
-     */
-    modifiers: IFilterableListItemModifiers;
+  /**
+   * Modifiers that describe how to render this item, such as `active` or
+   * `disabled`.
+   */
+  modifiers: IFilterableListItemModifiers;
 
-    /**
-     * The current query string used to filter the items.
-     */
-    query: string;
+  /**
+   * The current query string used to filter the items.
+   */
+  query: string;
 
-    /**
-     * Reference to the button element that renders this item. Use this to focus
-     * the button.
-     */
-    buttonRef?: React.Ref<HTMLButtonElement>;
+  /**
+   * Reference to the button element that renders this item. Use this to focus
+   * the button.
+   */
+  buttonRef?: React.Ref<HTMLButtonElement>;
 
-    /**
-     * Get the attributes to apply to the button element that renders this item.
-     */
-    getButtonAttributes: (
-      userProps?: React.HTMLProps<TItemElement>,
-    ) => Record<string, unknown>;
+  /**
+   * Get the attributes to apply to the button element that renders this item.
+   */
+  getButtonAttributes: (
+    userProps?: React.HTMLProps<TItemElement>,
+  ) => Record<string, unknown>;
 
-    focus?: IFilterableListItemFocus;
-  };
+  focus?: IFilterableListItemFocus;
+};
 
 /**
  * Type alias for a function that receives an item and props and renders a JSX
@@ -150,10 +149,7 @@ export type IFilterableListItemRendererProps<TItemElement extends HTMLElement> =
  * @typeParam TItem - Tist item data type
  * @typeParam TItemElement - Type of the DOM element rendered
  */
-export type IFilterableListItemRenderer<
-  TItem,
-  TItemElement extends HTMLElement,
-> = (
+export type IFilterableListItemRenderer<TItem, TItemElement extends Element> = (
   item: TItem,
   itemProps: IFilterableListItemRendererProps<TItemElement>,
 ) => React.JSX.Element | null;
@@ -164,11 +160,10 @@ export type IFilterableListItemRenderer<
  *
  * @typeParam TItemElement - Type of the DOM element rendered
  */
-export type IFilterableCreateNewListItemRenderer<
-  TItemElement extends HTMLElement,
-> = (
-  itemProps: IFilterableListItemRendererProps<TItemElement>,
-) => React.JSX.Element | undefined;
+export type IFilterableCreateNewListItemRenderer<TItemElement extends Element> =
+  (
+    itemProps: IFilterableListItemRendererProps<TItemElement>,
+  ) => React.JSX.Element | undefined;
 
 // Inspiration:
 // - https://github.com/palantir/blueprint/blob/develop/packages/select/src/common/predicate.ts
@@ -226,7 +221,7 @@ export type IFilterableListBaseRendererProps<TItem> =
      * Change handler for query string. Attach this to an input element to allow
      * `FilterableListBase` to control the query.
      */
-    handleQueryChange: React.ChangeEventHandler<HTMLInputElement>;
+    handleQueryChange: (value: string) => void;
 
     /**
      * Rendered elements returned from `filteredListRenderer` prop.

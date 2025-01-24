@@ -1,13 +1,13 @@
 import { createTheme } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { PaperBase } from '~/components/PaperBase';
+import { cssLayers, themeTokens } from '~/components/ThemeProvider';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { PaperBase } from '../PaperBase';
-import { cssLayers, themeTokens } from '../ThemeProvider';
 
 type IModifier = 'disabled';
 

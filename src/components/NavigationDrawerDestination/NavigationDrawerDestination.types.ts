@@ -1,7 +1,7 @@
+import type { IBoxProps } from '~/components/Box';
+import type { IListItemOwnProps } from '~/components/List';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
-import type { IBoxProps } from '../Box';
-import type { IListItemOwnProps } from '../ListItem';
 import type {
   INavigationDrawerDestinationThemeFactory,
   navigationDrawerDestinationTheme,

@@ -1,12 +1,12 @@
-import type { IRichTooltipContentOwnProps } from '../RichTooltipContent';
 import type { IRichTooltipThemeFactory } from './RichTooltip.css';
 import type { IRichTooltipFactory } from './RichTooltip.types';
+import type { IRichTooltipContentOwnProps } from './RichTooltipContent';
+import { PopoverBase } from '~/components/PopoverBase';
 import { isFunction } from '~/helpers/isFunction';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { PopoverBase } from '../PopoverBase';
-import { RichTooltipContent } from '../RichTooltipContent';
+import { RichTooltipContent } from './RichTooltipContent';
 import { richTooltipTheme } from './RichTooltip.css';
 
 const COMPONENT_NAME = 'RichTooltip';

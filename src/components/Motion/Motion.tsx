@@ -2,10 +2,10 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import type { IMotionThemeFactory } from './Motion.css';
 import type { IMotionFactory } from './Motion.types';
+import { Box } from '~/components/Box';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../Box';
 import { getCornerTransformOriginFromPlacement } from './getCornerTransformOriginFromPlacement';
 import { getEdgeTransformOriginFromPlacement } from './getEdgeTransformOriginFromPlacement';
 import { resolveRtgStatus } from './resolveRtgStatus';

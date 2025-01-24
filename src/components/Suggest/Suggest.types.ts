@@ -1,7 +1,7 @@
+import type { IFilterableListItem } from '~/components/FilterableList';
+import type { ISuggestBaseProps } from '~/components/SuggestBase';
 import type { IOmit } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IFilterableListItem } from '../FilterableList';
-import type { ISuggestBaseProps } from '../SuggestBase';
 
 export type ISuggestOwnProps = {
   value?: string;

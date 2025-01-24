@@ -5,14 +5,14 @@ import { faStar as fasStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CSSTransition } from 'react-transition-group';
 
+import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IOmit } from '~/helpers/types';
-import type { IComponentPresentation } from '../ComponentShowcase';
 import type { IMotionProps } from './Motion.types';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { IconButton } from '~/components/IconButton';
+import { Placeholder } from '~/components/Placeholder';
+import { themeTokens } from '~/components/ThemeProvider';
 import { useToggle } from '~/hooks/useToggle';
-import { componentShowcaseFactory } from '../ComponentShowcase';
-import { IconButton } from '../IconButton';
-import { Placeholder } from '../Placeholder';
-import { themeTokens } from '../ThemeProvider';
 import { Motion } from './Motion';
 
 type IMotionDemoProps = IOmit<IMotionProps, 'status'> & {

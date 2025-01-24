@@ -1,15 +1,15 @@
 import { createRainbowSprinkles, defineProperties } from 'rainbow-sprinkles';
 
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { getResponsiveContainerQuery } from '~/helpers/styles/getResponsiveContainerQuery';
-import { getSpacingValues } from '~/helpers/styles/getSpacingValues';
-import { createStyles } from '~/utils/styles/createStyles';
 import {
   cssLayers,
   IThemeWindowSizeClassName,
   themeTokens,
   windowSizeClassNames,
-} from '../ThemeProvider';
+} from '~/components/ThemeProvider';
+import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
+import { getResponsiveContainerQuery } from '~/helpers/styles/getResponsiveContainerQuery';
+import { getSpacingValues } from '~/helpers/styles/getSpacingValues';
+import { createStyles } from '~/utils/styles/createStyles';
 
 type IModifier = 'scale';
 

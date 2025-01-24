@@ -1,4 +1,4 @@
-import type { IFilterableListBaseProps } from './FilterableListBase.types';
+import type { IFilterableListBaseProps } from '../FilterableListBase.types';
 import { isFunction } from '~/helpers/isFunction';
 
 export const isItemDisabled = <TItem, TElement extends HTMLElement>(

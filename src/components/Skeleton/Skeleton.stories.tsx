@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { ISkeletonProps } from './Skeleton.types';
-import { Avatar } from '../Avatar';
-import { componentShowcaseFactory } from '../ComponentShowcase';
-import { Paper } from '../Paper';
-import { Text } from '../Text';
+import { Avatar } from '~/components/Avatar';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { Paper } from '~/components/Paper';
+import { Text } from '~/components/Text';
 import { Skeleton } from './Skeleton';
 
 const meta = {

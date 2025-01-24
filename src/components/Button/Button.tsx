@@ -2,15 +2,15 @@ import { useCallback, useState } from 'react';
 
 import type { IButtonThemeFactory } from './Button.css';
 import type { IButtonFactory } from './Button.types';
+import { ButtonBase } from '~/components/ButtonBase';
+import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
+import { Overlayable } from '~/components/Overlayable';
 import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 import { isFunction } from '~/helpers/isFunction';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { ButtonBase } from '../ButtonBase';
-import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
-import { Overlayable } from '../Overlayable';
 import { buttonTheme, buttonThemeVariants } from './Button.css';
 
 const COMPONENT_NAME = 'Button';

@@ -1,5 +1,5 @@
+import type { IMovie } from '~/components/FilterableListBase/movies';
 import type { IOmit } from '~/helpers/types';
-import type { IMovie } from '../FilterableListBase/movies';
 import type { ISelectBaseProps } from './SelectBase.types';
 import {
   areMoviesEqual,
@@ -10,7 +10,7 @@ import {
   renderCreateMovieListItem,
   renderMovieListItem,
   TOP_100_MOVIES,
-} from '../FilterableListBase/movies';
+} from '~/components/FilterableListBase/movies';
 import { selectBaseFactory } from './SelectBase';
 
 export type ISelectBaseExampleProps = IOmit<

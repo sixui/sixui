@@ -2,10 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import type { IComponentPresentation } from '../ComponentShowcase';
+import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IButtonBaseProps } from './ButtonBase.types';
-import { Box } from '../Box';
-import { componentShowcaseFactory } from '../ComponentShowcase';
+import { Box } from '~/components/Box';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { ButtonBase } from './ButtonBase';
 
 const meta = {

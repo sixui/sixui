@@ -3,14 +3,14 @@ import { createTheme, fallbackVar } from '@vanilla-extract/css';
 import type { IInteraction } from '~/hooks/useInteractions';
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import type { ICardVariant } from './Card.types';
+import { PaperBase } from '~/components/PaperBase';
+import { cssLayers, themeTokens } from '~/components/ThemeProvider';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { PaperBase } from '../PaperBase';
-import { cssLayers, themeTokens } from '../ThemeProvider';
-import { elevationLevelPreset } from '../Elevation/Elevation.css';
+import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
 
 type IModifier = IInteraction | 'disabled';
 

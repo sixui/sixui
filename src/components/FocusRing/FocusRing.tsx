@@ -1,9 +1,9 @@
 import type { IFocusRingThemeFactory } from './FocusRing.css';
 import type { IFocusRingFactory } from './FocusRing.types';
+import { Box } from '~/components/Box';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../Box';
 import { focusRingTheme } from './FocusRing.css';
 
 const COMPONENT_NAME = 'FocusRing';

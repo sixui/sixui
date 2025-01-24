@@ -1,9 +1,9 @@
+import type { IBoxProps } from '~/components/Box';
+import type { IColorPalette } from '~/components/ColorPickerContent';
+import type { ITextInputFieldOwnProps } from '~/components/TextInputField';
 import type { IMaybeAsync, IOmit, IPlacement } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
-import type { IBoxProps } from '../Box';
-import type { IColorPalette } from '../ColorPickerContent';
-import type { ITextInputFieldOwnProps } from '../TextInputField';
 import type {
   colorInputFieldTheme,
   IColorInputFieldThemeFactory,

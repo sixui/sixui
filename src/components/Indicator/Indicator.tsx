@@ -1,9 +1,9 @@
 import type { IIndicatorThemeFactory } from './Indicator.css';
 import type { IIndicatorFactory } from './Indicator.types';
+import { Box } from '~/components/Box';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../Box';
 import { indicatorTheme } from './Indicator.css';
 
 const COMPONENT_NAME = 'Indicator';

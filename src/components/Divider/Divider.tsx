@@ -1,9 +1,9 @@
 import type { IDividerThemeFactory } from './Divider.css';
 import type { IDividerFactory } from './Divider.types';
+import { Box } from '~/components/Box';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../Box';
 import { dividerTheme } from './Divider.css';
 
 const COMPONENT_NAME = 'Divider';
@@ -19,15 +19,15 @@ export const Divider = componentFactory<IDividerFactory>(
       orientation = 'horizontal',
       labelPosition = 'middle',
       verticalAlign,
-      inset,
-      insetStart,
-      insetEnd,
+      indent,
+      indentStart,
+      indentEnd,
       label,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const hasInsetStart = !!inset || !!insetStart;
-    const hasInsetEnd = !!inset || !!insetEnd;
+    const hasInsetStart = !!indent || !!indentStart;
+    const hasInsetEnd = !!indent || !!indentEnd;
 
     const { getStyles } = useComponentTheme<IDividerThemeFactory>({
       componentName: COMPONENT_NAME,

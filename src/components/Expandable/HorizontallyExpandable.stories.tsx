@@ -6,13 +6,13 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IExpandableProps } from './Expandable.types';
+import { Box } from '~/components/Box';
+import { Flex } from '~/components/Flex';
+import { IconButton } from '~/components/IconButton';
+import { Paper } from '~/components/Paper';
+import { Text } from '~/components/Text';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { px } from '~/helpers/styles/px';
-import { Box } from '../Box';
-import { Flex } from '../Flex';
-import { IconButton } from '../IconButton';
-import { Paper } from '../Paper';
-import { Text } from '../Text';
 import { Expandable } from './Expandable';
 
 const meta = {

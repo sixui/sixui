@@ -1,16 +1,16 @@
 import { createTheme } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { Checkmark } from '~/components/Checkmark';
+import { ColorTagIndicator } from '~/components/ColorTag/ColorTagIndicator';
+import { PaperBase } from '~/components/PaperBase';
+import { StateLayer } from '~/components/StateLayer';
+import { cssLayers, themeTokens } from '~/components/ThemeProvider';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { Checkmark } from '../Checkmark';
-import { ColorTagIndicator } from '../ColorTagIndicator';
-import { PaperBase } from '../PaperBase';
-import { StateLayer } from '../StateLayer';
-import { cssLayers, themeTokens } from '../ThemeProvider';
 
 type IModifier = 'disabled';
 

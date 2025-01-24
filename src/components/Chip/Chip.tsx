@@ -2,15 +2,15 @@ import { useCallback, useRef, useState } from 'react';
 
 import type { IChipFactory } from './Chip.types';
 import { iconCheckmark, iconXMark } from '~/assets/icons';
+import { Avatar } from '~/components/Avatar';
+import { Button } from '~/components/Button';
+import { IconButton } from '~/components/IconButton';
+import { SvgIcon } from '~/components/SvgIcon';
 import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Avatar } from '../Avatar';
-import { Button } from '../Button';
-import { IconButton } from '../IconButton';
-import { SvgIcon } from '../SvgIcon';
 import { chipTheme, IChipThemeFactory } from './Chip.css';
 
 const COMPONENT_NAME = 'Chip';

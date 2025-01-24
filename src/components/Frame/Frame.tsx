@@ -3,14 +3,14 @@ import { createPortal } from 'react-dom';
 
 import type { IFrameThemeFactory } from './Frame.css';
 import type { IFrameFactory } from './Frame.types';
+import { Box } from '~/components/Box';
+import { Responsive } from '~/components/Responsive';
+import { ThemeProvider } from '~/components/ThemeProvider';
 import { isFunction } from '~/helpers/isFunction';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../Box';
-import { Responsive } from '../Responsive';
-import { ThemeProvider } from '../ThemeProvider';
 import { useParentStyles } from './useParentStyles';
 import { frameTheme } from './Frame.css';
 

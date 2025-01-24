@@ -1,9 +1,9 @@
 import type { IBasicTemplateThemeFactory } from './BasicTemplate.css';
 import type { IBasicTemplateFactory } from './BasicTemplate.types';
+import { Paper } from '~/components/Paper';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Paper } from '../Paper';
 import { basicTemplateTheme } from './BasicTemplate.css';
 
 const COMPONENT_NAME = 'BasicTemplate';

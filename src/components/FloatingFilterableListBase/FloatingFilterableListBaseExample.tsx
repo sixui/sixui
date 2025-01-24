@@ -1,12 +1,12 @@
-import type { IFieldBaseProps } from '../FieldBase';
-import type { IUseSingleFilterableListBaseProps } from '../FilterableListBase';
-import type { IMovie } from '../FilterableListBase/movies';
-import type { IFloatingFilterableListBaseProps } from '../FloatingFilterableListBase';
-import { FieldBase } from '../FieldBase';
+import type { IFieldBaseProps } from '~/components/FieldBase';
+import type { IUseSingleFilterableListBaseProps } from '~/components/FilterableListBase';
+import type { IMovie } from '~/components/FilterableListBase/movies';
+import type { IFloatingFilterableListBaseProps } from '~/components/FloatingFilterableListBase';
+import { FieldBase } from '~/components/FieldBase';
 import {
   FilterableListBaseFieldTrailingIcon,
   useSingleFilterableListBase,
-} from '../FilterableListBase';
+} from '~/components/FilterableListBase';
 import {
   areMoviesEqual,
   createMovie,
@@ -15,11 +15,11 @@ import {
   renderCreateMovieListItem,
   renderMovieListItem,
   TOP_100_MOVIES,
-} from '../FilterableListBase/movies';
-import { floatingFilterableListBaseFactory } from '../FloatingFilterableListBase';
-import { ListItem } from '../ListItem';
-import { MenuList } from '../MenuList';
-import { TextInputField } from '../TextInputField';
+} from '~/components/FilterableListBase/movies';
+import { floatingFilterableListBaseFactory } from '~/components/FloatingFilterableListBase';
+import { ListItem } from '~/components/List/ListItem';
+import { MenuList } from '~/components/Menu/MenuList';
+import { TextInputField } from '~/components/TextInputField';
 
 export type IFloatingFilterableListBaseExampleProps = Partial<
   IFloatingFilterableListBaseProps<IMovie, HTMLDivElement>
@@ -30,10 +30,8 @@ export type IFloatingFilterableListBaseExampleProps = Partial<
     canCreate?: boolean;
   };
 
-const MovieFloatingFilterableListBase = floatingFilterableListBaseFactory<
-  IMovie,
-  HTMLDivElement
->();
+const MovieFloatingFilterableListBase =
+  floatingFilterableListBaseFactory<IMovie>();
 
 export const FloatingFilterableListBaseExample: React.FC<
   IFloatingFilterableListBaseExampleProps

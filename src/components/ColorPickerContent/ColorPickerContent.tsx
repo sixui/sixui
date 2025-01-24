@@ -3,13 +3,13 @@ import type {
   IColorPalette,
   IColorPickerContentFactory,
 } from './ColorPickerContent.types';
+import { ColorTag } from '~/components/ColorTag';
+import { Divider } from '~/components/Divider';
+import { Flex } from '~/components/Flex';
+import { PaperBase } from '~/components/PaperBase';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { ColorTag } from '../ColorTag';
-import { Divider } from '../Divider';
-import { Flex } from '../Flex';
-import { PaperBase } from '../PaperBase';
 import { colorPickerContentTheme } from './ColorPickerContent.css';
 
 const COMPONENT_NAME = 'ColorPickerContent';

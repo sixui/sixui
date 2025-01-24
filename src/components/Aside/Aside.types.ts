@@ -1,9 +1,9 @@
+import type { IBoxProps } from '~/components/Box';
+import type { IModalAsideOwnProps } from '~/components/ModalAside';
+import type { IStandardAsideOwnProps } from '~/components/StandardAside';
 import type { IOmit } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
-import type { IBoxProps } from '../Box';
-import type { IModalAsideOwnProps } from '../ModalAside';
-import type { IStandardAsideOwnProps } from '../StandardAside';
 import type { asideTheme, IAsideThemeFactory } from './Aside.css';
 
 export interface IAsideOwnProps

@@ -24,6 +24,9 @@ import type {
   IPopoverMiddlewares,
   IPopoverOpenEvents,
 } from './PopoverBase.types';
+import { Motion } from '~/components/Motion';
+import { Portal } from '~/components/Portal';
+import { Scrim } from '~/components/Scrim';
 import { isFunction } from '~/helpers/isFunction';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
@@ -34,9 +37,6 @@ import { mergeProps } from '~/utils/mergeProps';
 import { objectFromPlacement } from '~/utils/objectFromPlacement';
 import { stringFromPlacement } from '~/utils/stringFromPlacement';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Motion } from '../Motion';
-import { Portal } from '../Portal';
-import { Scrim } from '../Scrim';
 import { PreventAutoFocus } from './PreventAutoFocus';
 import { popoverBaseTheme } from './PopoverBase.css';
 

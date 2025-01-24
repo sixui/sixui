@@ -4,11 +4,11 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 import { CSSTransition } from 'react-transition-group';
 
 import type { IScrimProps } from './Scrim.types';
+import { Button } from '~/components/Button';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { Motion } from '~/components/Motion';
+import { themeTokens } from '~/components/ThemeProvider';
 import { useToggle } from '~/hooks/useToggle';
-import { Button } from '../Button';
-import { componentShowcaseFactory } from '../ComponentShowcase';
-import { Motion } from '../Motion';
-import { themeTokens } from '../ThemeProvider';
 import { Scrim } from './Scrim';
 
 type IScrimDemoProps = IScrimProps;

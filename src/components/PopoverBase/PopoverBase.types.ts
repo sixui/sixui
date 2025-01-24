@@ -12,6 +12,10 @@ import type {
 } from '@floating-ui/react';
 import type { IRemoveScrollSelfProps } from 'react-remove-scroll/dist/es5/types';
 
+import type { IBoxProps } from '~/components/Box';
+import type { IMotionProps } from '~/components/Motion';
+import type { IPortalProps } from '~/components/Portal';
+import type { IScrimProps } from '~/components/Scrim';
 import type {
   IForwardableProps,
   IRendererWithForwardedProps,
@@ -20,10 +24,6 @@ import type { IPlacement } from '~/helpers/types';
 import type { IPopoverCursorType } from '~/hooks/usePopoverCursor';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
-import type { IBoxProps } from '../Box';
-import type { IMotionProps } from '../Motion';
-import type { IPortalProps } from '../Portal';
-import type { IScrimProps } from '../Scrim';
 import type {
   IPopoverBaseThemeFactory,
   popoverBaseTheme,

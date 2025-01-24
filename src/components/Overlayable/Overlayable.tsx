@@ -1,9 +1,9 @@
 import type { IOverlayableThemeFactory } from './Overlayable.css';
 import type { IOverlayableFactory } from './Overlayable.types';
+import { Box } from '~/components/Box';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../Box';
 import { overlayableTheme } from './Overlayable.css';
 
 const COMPONENT_NAME = 'Overlayable';

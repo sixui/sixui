@@ -2,14 +2,14 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import type { IPaperThemeFactory } from './Paper.css';
 import type { IPaperFactory } from './Paper.types';
+import { PaperBase } from '~/components/PaperBase';
+import { themeTokens } from '~/components/ThemeProvider';
 import { px } from '~/helpers/styles/px';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { PaperBase } from '../PaperBase';
-import { themeTokens } from '../ThemeProvider';
-import { elevationLevelPreset } from '../Elevation/Elevation.css';
-import { paperBaseTheme } from '../PaperBase/PaperBase.css';
+import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
+import { paperBaseTheme } from '~/components/PaperBase/PaperBase.css';
 import { paperTheme } from './Paper.css';
 
 const COMPONENT_NAME = 'Paper';

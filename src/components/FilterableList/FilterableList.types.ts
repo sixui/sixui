@@ -1,7 +1,7 @@
+import type { IBoxProps } from '~/components/Box';
+import type { IFilterableListBaseProps } from '~/components/FilterableListBase';
 import type { IOmit } from '~/helpers/types';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import type { IBoxProps } from '../Box';
-import type { IFilterableListBaseProps } from '../FilterableListBase';
 
 export type IFilterableListItem = {
   leading?: React.ReactNode;

@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IElevationProps } from './Elevation.types';
-import { componentShowcaseFactory } from '../ComponentShowcase';
-import { Placeholder } from '../Placeholder';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { Placeholder } from '~/components/Placeholder';
 import { Elevation } from './Elevation';
 
 const meta = {

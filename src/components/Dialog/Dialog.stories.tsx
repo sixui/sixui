@@ -2,12 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useRef, useState } from 'react';
 
 import type { IDialogProps } from './Dialog.types';
+import { Button } from '~/components/Button';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { Flex } from '~/components/Flex';
+import { TextInputField } from '~/components/TextInputField';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { useDisclosure } from '~/hooks/useDisclosure';
-import { Button } from '../Button';
-import { componentShowcaseFactory } from '../ComponentShowcase';
-import { Flex } from '../Flex';
-import { TextInputField } from '../TextInputField';
 import { Dialog } from './Dialog';
 
 // https://m3.material.io/components/dialogs/overview

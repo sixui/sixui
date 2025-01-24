@@ -1,7 +1,7 @@
+import type { IFilterableListItem } from '~/components/FilterableList';
+import type { IMultiSelectBaseProps } from '~/components/MultiSelectBase';
 import type { IOmit } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IFilterableListItem } from '../FilterableList';
-import type { IMultiSelectBaseProps } from '../MultiSelectBase';
 
 export type IMultiSelectOwnProps = {
   value?: Array<string>;

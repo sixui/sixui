@@ -1,10 +1,10 @@
 import type { IAsideThemeFactory } from './Aside.css';
 import type { IAsideFactory } from './Aside.types';
+import { ModalAside } from '~/components/ModalAside';
+import { StandardAside } from '~/components/StandardAside';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { ModalAside } from '../ModalAside';
-import { StandardAside } from '../StandardAside';
 import { asideTheme } from './Aside.css';
 
 const COMPONENT_NAME = 'Aside';

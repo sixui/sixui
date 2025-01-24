@@ -25,6 +25,8 @@ import {
 
 import type { IMenuFactory } from './Menu.types';
 import type { IMenuLeafThemeFactory } from './MenuLeaf.css';
+import { Motion } from '~/components/Motion';
+import { Portal } from '~/components/Portal';
 import { isFunction } from '~/helpers/isFunction';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
@@ -33,10 +35,8 @@ import { mergeProps } from '~/utils/mergeProps';
 import { objectFromPlacement } from '~/utils/objectFromPlacement';
 import { stringFromPlacement } from '~/utils/stringFromPlacement';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { MenuItemContextProvider, useMenuItemContext } from '../MenuItem';
-import { MenuList } from '../MenuList';
-import { Motion } from '../Motion';
-import { Portal } from '../Portal';
+import { MenuItemContextProvider, useMenuItemContext } from './MenuItem';
+import { MenuList } from './MenuList';
 import { menuLeafTheme } from './MenuLeaf.css';
 
 const COMPONENT_NAME = 'MenuLeaf';

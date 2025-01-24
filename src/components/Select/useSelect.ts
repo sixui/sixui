@@ -1,6 +1,6 @@
 import { useMemo, useRef } from 'react';
 
-import type { IFilterableListItem } from '../FilterableList';
+import type { IFilterableListItem } from '~/components/FilterableList';
 
 const DEFAUL_EMPTY_ITEM: IFilterableListItem = {
   label: '',

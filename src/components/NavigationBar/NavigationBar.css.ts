@@ -1,12 +1,12 @@
 import { createTheme } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { NavigationBarContent } from '~/components/NavigationBar/NavigationBarContent';
+import { cssLayers } from '~/components/ThemeProvider';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { NavigationBarContent } from '../NavigationBarContent';
-import { cssLayers } from '../ThemeProvider';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,

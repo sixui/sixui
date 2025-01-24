@@ -1,14 +1,14 @@
-import type { IFilterableListItem } from '../FilterableList';
+import type { IFilterableListItem } from '~/components/FilterableList';
 import type { IMultiSelectFactory } from './MultiSelect.types';
+import { areFilterableListItemsEqual } from '~/components/FilterableList/utils/areFilterableListItemsEqual';
+import { filterFilterableList } from '~/components/FilterableList/utils/filterFilterableList';
+import { getFilterableListItemLabel } from '~/components/FilterableList/utils/getFilterableListItemLabel';
+import { isFilterableListItemDisabled } from '~/components/FilterableList/utils/isFilterableListItemDisabled';
+import { renderFilterableListItem } from '~/components/FilterableList/utils/renderFilterableListItem';
+import { ListItem } from '~/components/List/ListItem';
+import { multiSelectBaseFactory } from '~/components/MultiSelectBase';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
-import { areFilterableListItemsEqual } from '../FilterableList/utils/areFilterableListItemsEqual';
-import { filterFilterableList } from '../FilterableList/utils/filterFilterableList';
-import { getFilterableListItemLabel } from '../FilterableList/utils/getFilterableListItemLabel';
-import { isFilterableListItemDisabled } from '../FilterableList/utils/isFilterableListItemDisabled';
-import { renderFilterableListItem } from '../FilterableList/utils/renderFilterableListItem';
-import { ListItem } from '../ListItem';
-import { multiSelectBaseFactory } from '../MultiSelectBase';
 import { useMultiSelect } from './useMultiSelect';
 
 const COMPONENT_NAME = 'MultiSelect';

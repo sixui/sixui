@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IComponentPresentation } from '../ComponentShowcase';
+import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { ISelectBaseExampleProps } from './SelectBaseExample';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { TOP_100_MOVIES } from '~/components/FilterableListBase/movies';
+import { ListItem } from '~/components/List/ListItem';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { componentShowcaseFactory } from '../ComponentShowcase';
-import { TOP_100_MOVIES } from '../FilterableListBase/movies';
-import { ListItem } from '../ListItem';
 import { SelectBaseExample } from './SelectBaseExample';
 
 const meta = {

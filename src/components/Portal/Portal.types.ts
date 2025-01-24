@@ -1,5 +1,5 @@
+import type { IBoxProps } from '~/components/Box';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IBoxProps } from '../Box';
 
 export interface IPortalOwnProps {
   root?: HTMLElement | null;

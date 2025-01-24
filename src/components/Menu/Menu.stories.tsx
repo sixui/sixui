@@ -8,11 +8,11 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IMenuProps } from './Menu.types';
+import { Button } from '~/components/Button';
+import { InputChip } from '~/components/Chip';
+import { Flex } from '~/components/Flex';
+import { IconButton } from '~/components/IconButton';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { Button } from '../Button';
-import { InputChip } from '../Chip';
-import { Flex } from '../Flex';
-import { IconButton } from '../IconButton';
 import { Menu } from './Menu';
 
 const meta = {

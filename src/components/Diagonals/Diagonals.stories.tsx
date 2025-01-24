@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IDiagonalsProps } from './Diagonals.types';
-import { componentShowcaseFactory } from '../ComponentShowcase';
-import { Paper } from '../Paper';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { Paper } from '~/components/Paper';
 import { Diagonals } from './Diagonals';
 
 const meta = {

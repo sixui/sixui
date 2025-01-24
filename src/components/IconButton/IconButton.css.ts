@@ -3,16 +3,16 @@ import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import type { IIconButtonVariant } from './IconButton.types';
+import { Button } from '~/components/Button';
+import { PaperBase } from '~/components/PaperBase';
+import { StateLayer } from '~/components/StateLayer';
+import { cssLayers, themeTokens } from '~/components/ThemeProvider';
 import { getDensity } from '~/helpers/styles/getDensity';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { Button } from '../Button';
-import { PaperBase } from '../PaperBase';
-import { StateLayer } from '../StateLayer';
-import { cssLayers, themeTokens } from '../ThemeProvider';
 
 type IModifier = 'toggle' | 'selected' | 'disabled';
 

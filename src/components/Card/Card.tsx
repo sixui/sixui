@@ -1,13 +1,13 @@
 import type { ICardThemeFactory } from './Card.css';
 import type { ICardFactory } from './Card.types';
+import { ButtonBase } from '~/components/ButtonBase';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { ButtonBase } from '../ButtonBase';
-import { CardActions } from '../CardActions';
-import { CardContent } from '../CardContent';
-import { CardMedia } from '../CardMedia';
-import { CardTitle } from '../CardTitle';
+import { CardActions } from './CardActions';
+import { CardContent } from './CardContent';
+import { CardMedia } from './CardMedia';
+import { CardTitle } from './CardTitle';
 import { cardTheme, cardThemeVariants } from './Card.css';
 
 const COMPONENT_NAME = 'Card';

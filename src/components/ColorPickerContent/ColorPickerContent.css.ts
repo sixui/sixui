@@ -1,12 +1,12 @@
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { PaperBase } from '~/components/PaperBase';
+import { themeTokens } from '~/components/ThemeProvider';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { PaperBase } from '../PaperBase';
-import { themeTokens } from '../ThemeProvider';
-import { elevationLevelPreset } from '../Elevation/Elevation.css';
+import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
 
 type IModifier = 'disabled';
 

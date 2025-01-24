@@ -11,13 +11,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { createSequence } from '@olivierpascal/helpers';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
-import type { IStepProps } from '../Step';
 import type { IStepperProps } from './Stepper.types';
+import type { IStepperStepProps } from './StepperStep';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { Flex } from '~/components/Flex';
+import { IconButton } from '~/components/IconButton';
 import { isFunction } from '~/helpers/isFunction';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { componentShowcaseFactory } from '../ComponentShowcase';
-import { Flex } from '../Flex';
-import { IconButton } from '../IconButton';
 import { Stepper } from './Stepper';
 
 const meta = {
@@ -31,7 +31,7 @@ const defaultArgs = {} satisfies Partial<IStepperProps>;
 const StepperShowcase = componentShowcaseFactory(Stepper);
 
 const makeSteps = (
-  props?: IStepProps | ((index: number) => IStepProps),
+  props?: IStepperStepProps | ((index: number) => IStepperStepProps),
   count = 4,
 ): Array<React.ReactElement> =>
   createSequence(count).map((index) => (

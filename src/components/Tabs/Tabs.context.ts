@@ -1,4 +1,4 @@
-import type { ITabVariant } from '../Tab/Tab.types';
+import type { ITabsTabVariant } from './TabsTab/TabsTab.types';
 import { createOptionalContext } from '~/helpers/createOptionalContext';
 
 export interface ITabsContextValue {
@@ -6,7 +6,7 @@ export interface ITabsContextValue {
   anchor?: string;
   onTabActivated: (activeTab: HTMLElement, indicator: HTMLElement) => void;
   onChange?: (anchor: string | undefined) => unknown;
-  variant?: ITabVariant | false;
+  variant?: ITabsTabVariant | false;
   disabled?: boolean;
 }
 

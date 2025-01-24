@@ -1,5 +1,5 @@
+import type { ITabVariant } from '~/components/Tab';
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import type { ITabVariant } from '../Tab';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 

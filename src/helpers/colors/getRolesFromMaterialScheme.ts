@@ -1,11 +1,11 @@
 import type { SchemeContent } from '@material/material-color-utilities';
 
-import { IColorScheme } from '~/themes/base';
+import { IThemeColorScheme } from '~/components/ThemeProvider';
 import { getMaterialDynamicSchemeColor } from './getMaterialDynamicSchemeColor';
 
 export const getRolesFromMaterialScheme = (
   scheme: SchemeContent,
-): IColorScheme => {
+): IThemeColorScheme => {
   return {
     primary: getMaterialDynamicSchemeColor('primary', scheme),
     onPrimary: getMaterialDynamicSchemeColor('onPrimary', scheme),

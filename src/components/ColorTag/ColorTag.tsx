@@ -2,16 +2,16 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import type { IColorTagThemeFactory } from './ColorTag.css';
 import type { IColorTagFactory } from './ColorTag.types';
+import { ButtonBase } from '~/components/ButtonBase';
+import { Checkmark } from '~/components/Checkmark';
+import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
 import { getTextContrastColor } from '~/helpers/colors/getTextContrastColor';
 import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { ButtonBase } from '../ButtonBase';
-import { Checkmark } from '../Checkmark';
-import { ColorTagIndicator } from '../ColorTagIndicator';
-import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
+import { ColorTagIndicator } from './ColorTagIndicator';
 import { colorTagTheme } from './ColorTag.css';
 
 const COMPONENT_NAME = 'ColorTag';

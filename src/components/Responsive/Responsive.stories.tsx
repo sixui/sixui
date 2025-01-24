@@ -2,10 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 import clsx from 'clsx';
 
-import type { IPaperProps } from '../Paper';
-import { componentShowcaseFactory } from '../ComponentShowcase';
-import { Paper } from '../Paper';
-import { windowSizeClassNames } from '../ThemeProvider';
+import type { IPaperProps } from '~/components/Paper';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { Paper } from '~/components/Paper';
+import { windowSizeClassNames } from '~/components/ThemeProvider';
 import { responsiveStoriesClassNames } from './Responsive.stories.css';
 
 const meta = {

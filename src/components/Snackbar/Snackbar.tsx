@@ -3,13 +3,13 @@ import { CSSTransition } from 'react-transition-group';
 
 import type { ISnackbarThemeFactory } from './Snackbar.css';
 import type { ISnackbarFactory } from './Snackbar.types';
+import { Motion } from '~/components/Motion';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { useTimeout } from '~/hooks/useTimeout';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Motion } from '../Motion';
-import { SnackbarContent } from '../SnackbarContent';
+import { SnackbarContent } from './SnackbarContent';
 import { snackbarTheme } from './Snackbar.css';
 
 const COMPONENT_NAME = 'Snackbar';

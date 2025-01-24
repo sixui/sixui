@@ -8,10 +8,10 @@ import { faInbox, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { INavigationDrawerSectionProps } from './NavigationDrawerSection.types';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { Flex } from '~/components/Flex';
+import { Paper } from '~/components/Paper';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { componentShowcaseFactory } from '../ComponentShowcase';
-import { Flex } from '../Flex';
-import { Paper } from '../Paper';
 import { NavigationDrawerSection } from './NavigationDrawerSection';
 
 const meta = {

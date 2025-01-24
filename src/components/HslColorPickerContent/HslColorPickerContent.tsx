@@ -2,12 +2,12 @@ import { createSequence } from '@olivierpascal/helpers';
 
 import type { IHslColorPickerContentThemeFactory } from './HslColorPickerContent.css';
 import type { IHslColorPickerContentFactory } from './HslColorPickerContent.types';
+import { ColorPickerContent } from '~/components/ColorPickerContent';
 import { generateAnalogousColorPalette } from '~/helpers/colors/generateAnalogousPalette';
 import { generateAnalogousColorPalettes } from '~/helpers/colors/generateAnalogousPalettes';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { ColorPickerContent } from '../ColorPickerContent';
 import { hslColorPickerContentTheme } from './HslColorPickerContent.css';
 
 const COMPONENT_NAME = 'HslColorPickerContent';

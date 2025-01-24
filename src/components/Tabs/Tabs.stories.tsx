@@ -14,10 +14,10 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { ITabsProps } from './Tabs.types';
+import { Box } from '~/components/Box';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { Text } from '~/components/Text';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { Box } from '../Box';
-import { componentShowcaseFactory } from '../ComponentShowcase';
-import { Text } from '../Text';
 import { Tabs } from './Tabs';
 
 const meta = {
@@ -33,7 +33,7 @@ const defaultArgs = {
 const TabsDemo: React.FC<ITabsProps> = (props) => (
   <Box w="$160">
     <Tabs {...props} defaultAnchor="tab-2">
-      <Tabs.TabList aria-label="Tabs example">
+      <Tabs.List aria-label="Tabs example">
         <Tabs.Tab
           label="Item one"
           anchor="tab-1"
@@ -63,20 +63,20 @@ const TabsDemo: React.FC<ITabsProps> = (props) => (
           onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
           disabled
         />
-      </Tabs.TabList>
+      </Tabs.List>
 
-      <Tabs.TabPanel pt="$2" anchor="tab-1">
+      <Tabs.Panel pt="$2" anchor="tab-1">
         <Text>Content A</Text>
-      </Tabs.TabPanel>
-      <Tabs.TabPanel pt="$2" anchor="tab-2">
+      </Tabs.Panel>
+      <Tabs.Panel pt="$2" anchor="tab-2">
         <Text>Content B</Text>
-      </Tabs.TabPanel>
-      <Tabs.TabPanel pt="$2" anchor="tab-3">
+      </Tabs.Panel>
+      <Tabs.Panel pt="$2" anchor="tab-3">
         <Text>Content C</Text>
-      </Tabs.TabPanel>
-      <Tabs.TabPanel pt="$2" anchor="tab-4">
+      </Tabs.Panel>
+      <Tabs.Panel pt="$2" anchor="tab-4">
         Content D
-      </Tabs.TabPanel>
+      </Tabs.Panel>
     </Tabs>
   </Box>
 );

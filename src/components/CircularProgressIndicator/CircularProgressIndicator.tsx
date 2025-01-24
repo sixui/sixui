@@ -1,7 +1,7 @@
 import type { ICircularProgressIndicatorFactory } from './CircularProgressIndicator.types';
+import { DeterminateCircularProgressIndicator } from '~/components/DeterminateCircularProgressIndicator';
+import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { DeterminateCircularProgressIndicator } from '../DeterminateCircularProgressIndicator';
-import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
 import { circularProgressIndicatorTheme } from './CircularProgressIndicator.css';
 
 const COMPONENT_NAME = 'CircularProgressIndicator';

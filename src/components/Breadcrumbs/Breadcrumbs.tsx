@@ -3,14 +3,14 @@ import { Children, isValidElement, useCallback, useState } from 'react';
 import type { IBreadcrumbsThemeFactory } from './Breadcrumbs.css';
 import type { IBreadcrumbsFactory } from './Breadcrumbs.types';
 import { iconEllipsisHorizontal } from '~/assets/icons';
+import { Box } from '~/components/Box';
+import { IconButton } from '~/components/IconButton';
+import { SvgIcon } from '~/components/SvgIcon';
 import { isProduction } from '~/helpers/isProduction';
 import { isFragment } from '~/helpers/react/isFragment';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../Box';
-import { IconButton } from '../IconButton';
-import { SvgIcon } from '../SvgIcon';
 import { breadcrumbsTheme } from './Breadcrumbs.css';
 
 const COMPONENT_NAME = 'Breadcrumbs';

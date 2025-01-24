@@ -2,12 +2,12 @@ import { useCallback, useMemo } from 'react';
 
 import type { ILabeledThemeFactory } from './Labeled.css';
 import type { ILabeledFactory } from './Labeled.types';
+import { Box } from '~/components/Box';
 import { isFunction } from '~/helpers/isFunction';
 import { useId } from '~/hooks/useId';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../Box';
 import { LabeledContextProvider } from './Labeled.context';
 import { labeledTheme } from './Labeled.css';
 

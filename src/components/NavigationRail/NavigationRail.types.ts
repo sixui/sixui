@@ -1,14 +1,14 @@
+import type { IBoxProps } from '~/components/Box';
+import type { IStandardAsideOwnProps } from '~/components/StandardAside';
 import type { IHorizontalSide, IOmit } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
-import type { IBoxProps } from '../Box';
-import type { INavigationRailContentOwnProps } from '../NavigationRailContent';
-import type { NavigationRailDestination } from '../NavigationRailDestination';
-import type { IStandardAsideOwnProps } from '../StandardAside';
 import type {
   INavigationRailThemeFactory,
   navigationRailTheme,
 } from './NavigationRail.css';
+import type { INavigationRailContentOwnProps } from './NavigationRailContent';
+import type { NavigationRailDestination } from './NavigationRailDestination';
 
 export interface INavigationRailOwnProps
   extends IOmit<IStandardAsideOwnProps, 'children'>,

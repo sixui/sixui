@@ -10,14 +10,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IOmit } from '~/helpers/types';
 import type { IDrawerProps } from './Drawer.types';
+import { Button } from '~/components/Button';
+import { Flex } from '~/components/Flex';
+import { Frame } from '~/components/Frame';
+import { Paper } from '~/components/Paper';
+import { Text } from '~/components/Text';
+import { themeTokens } from '~/components/ThemeProvider';
 import { px } from '~/helpers/styles/px';
 import { useDisclosure } from '~/hooks/useDisclosure';
-import { Button } from '../Button';
-import { Flex } from '../Flex';
-import { Frame } from '../Frame';
-import { Paper } from '../Paper';
-import { Text } from '../Text';
-import { themeTokens } from '../ThemeProvider';
 import { Drawer } from './Drawer';
 
 const meta = {

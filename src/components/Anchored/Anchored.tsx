@@ -2,11 +2,11 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import type { IAnchoredThemeFactory } from './Anchored.css';
 import type { IAnchoredFactory } from './Anchored.types';
+import { Box } from '~/components/Box';
 import { px } from '~/helpers/styles/px';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../Box';
 import { anchoredTheme } from './Anchored.css';
 
 const COMPONENT_NAME = 'Anchored';

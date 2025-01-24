@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IComponentPresentation } from '../ComponentShowcase';
+import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { ILabeledProps } from './Labeled.types';
+import { Checkbox } from '~/components/Checkbox';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { Radio } from '~/components/Radio';
+import { Switch } from '~/components/Switch';
+import { TextInputField } from '~/components/TextInputField';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { Checkbox } from '../Checkbox';
-import { componentShowcaseFactory } from '../ComponentShowcase';
-import { Radio } from '../Radio';
-import { Switch } from '../Switch';
-import { TextInputField } from '../TextInputField';
 import { Labeled } from './Labeled';
 
 const meta = {

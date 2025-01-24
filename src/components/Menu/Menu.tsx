@@ -1,11 +1,11 @@
 import { FloatingTree, useFloatingParentNodeId } from '@floating-ui/react';
 
 import type { IMenuFactory } from './Menu.types';
+import { ListDivider } from '~/components/List/ListDivider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { ListDivider } from '../ListDivider';
-import { MenuItem } from '../MenuItem';
-import { MenuList } from '../MenuList';
+import { MenuItem } from './MenuItem';
 import { MenuLeaf } from './MenuLeaf';
+import { MenuList } from './MenuList';
 import { menuLeafTheme } from './MenuLeaf.css';
 
 const COMPONENT_NAME = 'Menu';

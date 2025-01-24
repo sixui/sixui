@@ -1,9 +1,9 @@
 import type { IPolymorphicTemplateThemeFactory } from './PolymorphicTemplate.css';
 import type { IPolymorphicTemplateFactory } from './PolymorphicTemplate.types';
+import { Paper } from '~/components/Paper';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Paper } from '../Paper';
 import {
   polymorphicTemplateTheme,
   polymorphicTemplateThemeVariants,

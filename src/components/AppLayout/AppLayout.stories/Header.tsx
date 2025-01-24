@@ -4,11 +4,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { IAppLayoutHeaderProps } from '~/components/AppLayoutHeader';
+import { AppLayout } from '~/components/AppLayout';
 import { Flex } from '~/components/Flex';
 import { IconButton } from '~/components/IconButton';
-import { AppLayout } from '../AppLayout';
 import { useAppLayoutContext } from '../AppLayout.context';
+import { IAppLayoutHeaderProps } from '../AppLayoutHeader';
 
 export type IHeaderProps = IAppLayoutHeaderProps;
 

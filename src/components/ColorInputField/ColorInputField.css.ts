@@ -1,5 +1,5 @@
+import type { IFieldBaseVariant } from '~/components/FieldBase';
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import type { IFieldBaseVariant } from '../FieldBase';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 

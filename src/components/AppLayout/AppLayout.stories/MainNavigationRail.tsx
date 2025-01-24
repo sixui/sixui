@@ -14,7 +14,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { INavigationRailProps } from '~/components/NavigationRail';
 import type { ICanonicalLayoutType } from '~/hooks/useCanonicalLayout';
-import { AppLayout } from '../AppLayout';
+import { AppLayout } from '~/components/AppLayout';
 
 export interface IMainNavigationRailProps extends INavigationRailProps {
   activeDestination?: ICanonicalLayoutType;

@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useEffect, useState } from 'react';
 
-import type { IComponentPresentation } from '../ComponentShowcase';
-import type { IPlaceholderProps } from '../Placeholder';
+import type { IComponentPresentation } from '~/components/ComponentShowcase';
+import type { IPlaceholderProps } from '~/components/Placeholder';
 import type { IAnchoredProps } from './Anchored.types';
 import {
   componentShowcaseFactory,
   IComponentShowcaseProps,
-} from '../ComponentShowcase';
-import { Paper } from '../Paper';
-import { Placeholder } from '../Placeholder';
+} from '~/components/ComponentShowcase';
+import { Paper } from '~/components/Paper';
+import { Placeholder } from '~/components/Placeholder';
 import { Anchored } from './Anchored';
 
 const meta = {

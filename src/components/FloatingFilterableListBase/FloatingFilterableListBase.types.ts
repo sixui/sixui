@@ -4,19 +4,19 @@ import type {
   Placement,
 } from '@floating-ui/react';
 
+import type { IBoxProps } from '~/components/Box';
+import type {
+  IFilterableListBaseProps,
+  IFilterableListItemFocus,
+} from '~/components/FilterableListBase';
+import type { IMotionProps } from '~/components/Motion';
+import type { IPortalProps } from '~/components/Portal';
 import type {
   IForwardableProps,
   IRendererWithForwardedProps,
 } from '~/helpers/react/forwardablePropsTypes';
 import type { IOmit, IOrientation } from '~/helpers/types';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import type { IBoxProps } from '../Box';
-import type {
-  IFilterableListBaseProps,
-  IFilterableListItemFocus,
-} from '../FilterableListBase';
-import type { IMotionProps } from '../Motion';
-import type { IPortalProps } from '../Portal';
 
 export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
   /**

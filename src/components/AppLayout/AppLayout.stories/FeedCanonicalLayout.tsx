@@ -1,6 +1,6 @@
+import { AppLayout } from '~/components/AppLayout';
 import { isFunction } from '~/helpers/isFunction';
 import { useCanonicalLayout } from '~/hooks/useCanonicalLayout';
-import { AppLayout } from '../AppLayout';
 
 export interface IFeedCanonicalLayoutFeedPaneRendererProps {
   grid?: boolean;

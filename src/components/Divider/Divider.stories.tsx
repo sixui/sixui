@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IComponentPresentation } from '../ComponentShowcase';
-import type { IFlexProps } from '../Flex';
+import type { IComponentPresentation } from '~/components/ComponentShowcase';
+import type { IFlexProps } from '~/components/Flex';
 import type { IDividerProps } from './Divider.types';
-import { componentShowcaseFactory } from '../ComponentShowcase';
-import { Flex } from '../Flex';
-import { Paper } from '../Paper';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { Flex } from '~/components/Flex';
+import { Paper } from '~/components/Paper';
 import { Divider } from './Divider';
 
 // https://m3.material.io/components/divider/
@@ -22,9 +22,9 @@ const defaultArgs = {} satisfies Partial<IDividerProps>;
 
 const configurations: Array<IComponentPresentation<IDividerProps>> = [
   { legend: 'Normal' },
-  { legend: 'Inset', props: { inset: true } },
-  { legend: 'Inset start', props: { insetStart: true } },
-  { legend: 'Inset end', props: { insetEnd: true } },
+  { legend: 'Inset', props: { indent: true } },
+  { legend: 'Inset start', props: { indentStart: true } },
+  { legend: 'Inset end', props: { indentEnd: true } },
   {
     legend: 'Text on top',
     props: { label: 'Text', labelPosition: 'top' },

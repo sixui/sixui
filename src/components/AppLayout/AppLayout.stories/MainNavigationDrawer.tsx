@@ -15,8 +15,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { ISideSheetProps } from '~/components/SideSheet';
 import type { ICanonicalLayoutType } from '~/hooks/useCanonicalLayout';
+import { AppLayout } from '~/components/AppLayout';
 import { Flex } from '~/components/Flex';
-import { AppLayout } from '../AppLayout';
 
 export interface IMainNavigationDrawerProps extends ISideSheetProps {
   activeDestination?: ICanonicalLayoutType;

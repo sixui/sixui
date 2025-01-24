@@ -2,10 +2,10 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import type { IItemThemeFactory } from './Item.css';
 import type { IItemFactory } from './Item.types';
+import { Box } from '~/components/Box';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../Box';
 import { itemTheme } from './Item.css';
 
 const COMPONENT_NAME = 'Item';

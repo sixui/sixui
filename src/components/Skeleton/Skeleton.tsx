@@ -3,11 +3,11 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import type { ISkeletonThemeFactory } from './Skeleton.css';
 import type { ISkeletonFactory } from './Skeleton.types';
+import { Paper } from '~/components/Paper';
 import { random } from '~/helpers/random';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Paper } from '../Paper';
 import { skeletonTheme, skeletonThemeVariants } from './Skeleton.css';
 
 const COMPONENT_NAME = 'Skeleton';

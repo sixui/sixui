@@ -1,18 +1,18 @@
 import { Children, cloneElement, isValidElement, useMemo } from 'react';
 
-import type { IStepProps } from '../Step';
 import type { IStepperContextValue } from './Stepper.context';
 import type { IStepperThemeFactory } from './Stepper.css';
 import type { IStepperFactory } from './Stepper.types';
+import type { IStepperStepProps } from './StepperStep';
+import { Box } from '~/components/Box';
 import { isElementLike } from '~/helpers/react/isElementLike';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../Box';
-import { Step } from '../Step';
-import { StepConnector } from '../StepConnector';
 import { StepperContextProvider } from './Stepper.context';
+import { StepperConnector } from './StepperConnector';
+import { StepperStep } from './StepperStep';
 import { stepperTheme } from './Stepper.css';
 
 const COMPONENT_NAME = 'Stepper';
@@ -28,7 +28,7 @@ export const Stepper = componentFactory<IStepperFactory>(
       children,
       activeStep,
       loading,
-      connectorRenderer = () => <StepConnector />,
+      connectorRenderer = () => <StepperConnector />,
       orientation = 'horizontal',
       labelPosition: labelPositionProp = 'right',
       completed,
@@ -53,9 +53,10 @@ export const Stepper = componentFactory<IStepperFactory>(
       },
     });
 
-    type IStep = React.ReactElement<IStepProps>;
+    type IStep = React.ReactElement<IStepperStepProps>;
     const isStep = (element: React.ReactElement): element is IStep =>
-      !!Step.displayName && isElementLike<IStep>(element, Step.displayName);
+      !!StepperStep.displayName &&
+      isElementLike<IStep>(element, StepperStep.displayName);
 
     const validChildren = Children.toArray(children)
       .filter(isValidElement)
@@ -106,5 +107,5 @@ export const Stepper = componentFactory<IStepperFactory>(
 
 Stepper.theme = stepperTheme;
 Stepper.displayName = `@sixui/${COMPONENT_NAME}`;
-Stepper.Step = Step;
-Stepper.Connector = StepConnector;
+Stepper.Step = StepperStep;
+Stepper.Connector = StepperConnector;

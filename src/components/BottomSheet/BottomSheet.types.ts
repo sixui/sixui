@@ -1,11 +1,11 @@
+import type { IBoxProps } from '~/components/Box';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
-import type { IBottomSheetContentOwnProps } from '../BottomSheetContent';
-import type { IBoxProps } from '../Box';
 import type {
   bottomSheetTheme,
   IBottomSheetThemeFactory,
 } from './BottomSheet.css';
+import type { IBottomSheetContentOwnProps } from './BottomSheetContent';
 
 export interface IBottomSheetOwnProps extends IBottomSheetContentOwnProps {
   opened?: boolean;

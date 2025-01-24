@@ -3,17 +3,17 @@ import { useCallback, useMemo, useRef } from 'react';
 import type { ITabsContextValue } from './Tabs.context';
 import type { ITabsThemeFactory } from './Tabs.css';
 import type { ITabsFactory } from './Tabs.types';
+import { Box } from '~/components/Box';
 import { shouldReduceMotion } from '~/helpers/shouldReduceAnimations';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useId } from '~/hooks/useId';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../Box';
-import { Tab } from '../Tab';
-import { TabList } from '../TabList';
-import { TabPanel } from '../TabPanel';
 import { TabsContextProvider } from './Tabs.context';
+import { TabsList } from './TabsList';
+import { TabsPanel } from './TabsPanel';
+import { TabsTab } from './TabsTab';
 import { basicTemplateTheme } from './Tabs.css';
 
 const COMPONENT_NAME = 'Tabs';
@@ -133,6 +133,6 @@ export const Tabs = componentFactory<ITabsFactory>((props, forwardedRef) => {
 
 Tabs.theme = basicTemplateTheme;
 Tabs.displayName = `@sixui/${COMPONENT_NAME}`;
-Tabs.Tab = Tab;
-Tabs.TabList = TabList;
-Tabs.TabPanel = TabPanel;
+Tabs.List = TabsList;
+Tabs.Tab = TabsTab;
+Tabs.Panel = TabsPanel;

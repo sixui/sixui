@@ -1,7 +1,7 @@
 import { removeUndefineds } from '@olivierpascal/helpers';
 
 import type { IPaperProps } from './Paper.types';
-import { extractBoxProps } from '../Box/extractBoxProps';
+import { extractBoxProps } from '~/components/Box/extractBoxProps';
 
 export type IUseForwardedPropsResult = {
   paperProps?: IPaperProps;

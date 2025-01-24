@@ -1,12 +1,12 @@
 import type { INavigationDrawerSectionThemeFactory } from './NavigationDrawerSection.css';
 import type { INavigationDrawerSectionFactory } from './NavigationDrawerSection.types';
+import { Box } from '~/components/Box';
+import { Divider } from '~/components/Divider';
+import { List } from '~/components/List';
+import { NavigationDrawerDestination } from '~/components/NavigationDrawerDestination';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../Box';
-import { Divider } from '../Divider';
-import { List } from '../List';
-import { NavigationDrawerDestination } from '../NavigationDrawerDestination';
 import { navigationDrawerSectionTheme } from './NavigationDrawerSection.css';
 
 const COMPONENT_NAME = 'NavigationDrawerSection';

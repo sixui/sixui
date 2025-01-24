@@ -1,7 +1,7 @@
 import type {
   IThemeWindowSizeClassesValues,
   IThemeWindowSizeClassName,
-} from '../ThemeProvider';
+} from '~/components/ThemeProvider';
 import { getBreakpointPlusEpsilon } from './getBreakpointPlusEpsilon';
 
 export interface IWindowSizeClassRange {

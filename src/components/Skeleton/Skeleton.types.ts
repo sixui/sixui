@@ -1,9 +1,9 @@
+import type { IPaperOwnProps } from '~/components/Paper';
 import type { IRange } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
-import type { IPaperOwnProps } from '../Paper';
 import type { ISkeletonThemeFactory, skeletonTheme } from './Skeleton.css';
-import { IBoxProps } from '../Box';
+import { IBoxProps } from '~/components/Box';
 
 export type ISkeletonVariant = 'rectangular' | 'circular' | 'overlay';
 

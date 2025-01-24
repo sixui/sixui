@@ -2,14 +2,14 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import type { IListThemeFactory } from './List.css';
 import type { IListFactory } from './List.types';
+import { Flex } from '~/components/Flex';
+import { Paper } from '~/components/Paper';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Flex } from '../Flex';
-import { ListDivider } from '../ListDivider';
-import { ListItem } from '../ListItem';
-import { Paper } from '../Paper';
 import { ListContextProvider } from './List.context';
+import { ListDivider } from './ListDivider';
+import { ListItem } from './ListItem';
 import { listTheme } from './List.css';
 
 const COMPONENT_NAME = 'List';

@@ -1,11 +1,11 @@
 import type { IBottomSheetThemeFactory } from './BottomSheet.css';
 import type { IBottomSheetFactory } from './BottomSheet.types';
+import { useAppLayoutContext } from '~/components/AppLayout/AppLayout.context';
+import { Drawer } from '~/components/Drawer';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { useAppLayoutContext } from '../AppLayout/AppLayout.context';
-import { BottomSheetContent } from '../BottomSheetContent';
-import { Drawer } from '../Drawer';
+import { BottomSheetContent } from './BottomSheetContent';
 import { bottomSheetTheme } from './BottomSheet.css';
 
 const COMPONENT_NAME = 'BottomSheet';

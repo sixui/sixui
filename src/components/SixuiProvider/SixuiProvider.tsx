@@ -1,6 +1,6 @@
 import type { ISixuiProviderProps } from './SixuiProvider.types';
-import { Responsive } from '../Responsive';
-import { ThemeProvider } from '../ThemeProvider';
+import { Responsive } from '~/components/Responsive';
+import { ThemeProvider } from '~/components/ThemeProvider';
 import { ISixuiContextValue, SixuiContext } from './SixuiProvider.context';
 
 export const SixuiProvider: React.FC<ISixuiProviderProps> = (props) => {

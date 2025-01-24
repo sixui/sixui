@@ -1,7 +1,7 @@
+import type { IFilterableListItem } from '~/components/FilterableList';
+import type { ISelectBaseProps } from '~/components/SelectBase';
 import type { IOmit } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IFilterableListItem } from '../FilterableList';
-import type { ISelectBaseProps } from '../SelectBase';
 
 export type ISelectOwnProps = {
   value?: string;

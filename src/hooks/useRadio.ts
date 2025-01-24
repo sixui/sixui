@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 
 import type { IMaybeAsync } from '~/helpers/types';
 import { useLabeledContext } from '~/components/Labeled';
-import { useRadioGroupContext } from '~/components/RadioGroup';
+import { useRadioGroupContext } from '~/components/Radio/RadioGroup/RadioGroup.context';
 import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 
 export interface IUseRadioProps {

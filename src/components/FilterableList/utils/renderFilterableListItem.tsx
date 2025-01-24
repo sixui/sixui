@@ -1,6 +1,6 @@
-import type { IFilterableListItemRenderer } from '../..//FilterableListBase';
+import type { IFilterableListItemRenderer } from '~/components/FilterableListBase';
 import type { IFilterableListItem } from '../FilterableList.types';
-import { ListItem } from '../../ListItem';
+import { ListItem } from '~/components/List/ListItem';
 import { getFilterableListItemProps } from './getFilterableListItemProps';
 
 /**

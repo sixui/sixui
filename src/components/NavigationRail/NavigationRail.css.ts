@@ -1,13 +1,13 @@
 import { createTheme } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { NavigationRailContent } from '~/components/NavigationRail/NavigationRailContent';
+import { StandardAside } from '~/components/StandardAside';
+import { cssLayers, themeTokens } from '~/components/ThemeProvider';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
-import { NavigationRailContent } from '../NavigationRailContent';
-import { StandardAside } from '../StandardAside';
-import { cssLayers, themeTokens } from '../ThemeProvider';
 
 const [tokensClassName, tokens] = createTheme({
   '@layer': cssLayers.theme,

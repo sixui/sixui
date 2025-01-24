@@ -1,11 +1,11 @@
 import type { INavigationRailThemeFactory } from './NavigationRail.css';
 import type { INavigationRailFactory } from './NavigationRail.types';
+import { extractBoxProps } from '~/components/Box/extractBoxProps';
+import { StandardAside } from '~/components/StandardAside';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { extractBoxProps } from '../Box/extractBoxProps';
-import { NavigationRailContent } from '../NavigationRailContent';
-import { StandardAside } from '../StandardAside';
+import { NavigationRailContent } from './NavigationRailContent';
 import { navigationRailTheme } from './NavigationRail.css';
 
 const COMPONENT_NAME = 'NavigationRail';

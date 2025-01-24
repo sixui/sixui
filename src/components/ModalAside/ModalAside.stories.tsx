@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IModalAsideProps } from './ModalAside.types';
+import { Button } from '~/components/Button';
+import { Flex } from '~/components/Flex';
+import { Frame } from '~/components/Frame';
+import { Placeholder } from '~/components/Placeholder';
+import { themeTokens } from '~/components/ThemeProvider';
 import { px } from '~/helpers/styles/px';
 import { useToggle } from '~/hooks/useToggle';
-import { Button } from '../Button';
-import { Flex } from '../Flex';
-import { Frame } from '../Frame';
-import { Placeholder } from '../Placeholder';
-import { themeTokens } from '../ThemeProvider';
 import { ModalAside } from './ModalAside';
 
 const meta = {

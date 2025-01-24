@@ -1,6 +1,6 @@
+import type { IBoxProps } from '~/components/Box';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
-import type { IBoxProps } from '../Box';
 import type { diagonalsTheme, IDiagonalsThemeFactory } from './Diagonals.css';
 
 export interface IDiagonalsOwnProps {

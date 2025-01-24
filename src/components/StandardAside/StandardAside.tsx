@@ -4,13 +4,13 @@ import { CSSTransition } from 'react-transition-group';
 import type { IOrientation } from '~/helpers/types';
 import type { IStandardAsideThemeFactory } from './StandardAside.css';
 import type { IStandardAsideFactory } from './StandardAside.types';
+import { Box } from '~/components/Box';
+import { Motion } from '~/components/Motion';
 import { isFunction } from '~/helpers/isFunction';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../Box';
-import { Motion } from '../Motion';
 import { standardAsideTheme } from './StandardAside.css';
 
 const COMPONENT_NAME = 'StandardAside';

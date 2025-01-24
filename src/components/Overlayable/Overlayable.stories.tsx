@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IComponentPresentation } from '../ComponentShowcase';
+import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IOverlayableProps } from './Overlayable.types';
-import { componentShowcaseFactory } from '../ComponentShowcase';
-import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
-import { Placeholder } from '../Placeholder';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
+import { Placeholder } from '~/components/Placeholder';
 import { Overlayable } from './Overlayable';
 
 const meta = {

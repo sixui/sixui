@@ -7,17 +7,17 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { createSequence } from '@olivierpascal/helpers';
 
-import type { IListItemProps } from '../ListItem';
 import type { IListProps } from './List.types';
+import type { IListItemProps } from './ListItem';
+import { Avatar } from '~/components/Avatar';
+import { Checkbox } from '~/components/Checkbox';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { Paper } from '~/components/Paper';
+import { Placeholder } from '~/components/Placeholder';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';
 import { px } from '~/helpers/styles/px';
-import { Avatar } from '../Avatar';
-import { Checkbox } from '../Checkbox';
-import { componentShowcaseFactory } from '../ComponentShowcase';
-import { ListItem } from '../ListItem';
-import { Paper } from '../Paper';
-import { Placeholder } from '../Placeholder';
 import { List } from './List';
+import { ListItem } from './ListItem';
 
 // https://m3.material.io/components/lists/overview
 // https://material-web.dev/components/list/

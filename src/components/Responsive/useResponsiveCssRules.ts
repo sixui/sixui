@@ -1,4 +1,4 @@
-import { useThemeContext } from '../ThemeProvider/ThemeProvider.context';
+import { useThemeContext } from '~/components/ThemeProvider/ThemeProvider.context';
 import { getSizesCssStyles } from './getSizesCssStyles';
 import { getVisibilityCssStyles } from './getVisibilityCssStyles';
 import { getWindowSizeClassRanges } from './getWindowSizeClassRanges';

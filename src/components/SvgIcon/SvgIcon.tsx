@@ -1,9 +1,9 @@
 import type { ISvgIconThemeFactory } from './SvgIcon.css';
 import type { ISvgIconFactory } from './SvgIcon.types';
+import { Box } from '~/components/Box';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../Box';
 import { svgIconTheme } from './SvgIcon.css';
 
 const COMPONENT_NAME = 'SvgIcon';

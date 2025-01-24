@@ -1,12 +1,12 @@
+import type { IBoxProps } from '~/components/Box';
+import type { IExpandableOwnProps } from '~/components/Expandable';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
-import type { IBoxProps } from '../Box';
-import type { DisclosureTrigger } from '../DisclosureTrigger';
-import type { IExpandableOwnProps } from '../Expandable';
 import type {
   disclosureTheme,
   IDisclosureThemeFactory,
 } from './Disclosure.css';
+import type { DisclosureTrigger } from './DisclosureTrigger';
 
 export type IDisclosureOwnProps = IExpandableOwnProps;
 

@@ -3,10 +3,10 @@ import { useState } from 'react';
 
 import type { ICanonicalLayoutType } from '~/hooks/useCanonicalLayout';
 import type { IAppLayoutProps } from './AppLayout.types';
+import { Flex } from '~/components/Flex';
+import { Frame } from '~/components/Frame';
+import { themeTokens } from '~/components/ThemeProvider';
 import { px } from '~/helpers/styles/px';
-import { Flex } from '../Flex';
-import { Frame } from '../Frame';
-import { themeTokens } from '../ThemeProvider';
 import { AppLayout } from './AppLayout';
 import { CanonicalLayout } from './AppLayout.stories/CanonicalLayout';
 import { Footer } from './AppLayout.stories/Footer';

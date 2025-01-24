@@ -2,6 +2,12 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import type { IFieldBaseThemeFactory } from './FieldBase.css';
 import type { IFieldBaseFactory } from './FieldBase.types';
+import { Box } from '~/components/Box';
+import { extractBoxProps } from '~/components/Box/extractBoxProps';
+import { CircularProgressIndicator } from '~/components/CircularProgressIndicator';
+import { useLabeledContext } from '~/components/Labeled/Labeled.context';
+import { Paper } from '~/components/Paper';
+import { StateLayer, useStateLayer } from '~/components/StateLayer';
 import { isFunction } from '~/helpers/isFunction';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { usePrevious } from '~/hooks/usePrevious';
@@ -9,12 +15,6 @@ import { polymorphicComponentFactory } from '~/utils/component/polymorphicCompon
 import { useProps } from '~/utils/component/useProps';
 import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../Box';
-import { extractBoxProps } from '../Box/extractBoxProps';
-import { CircularProgressIndicator } from '../CircularProgressIndicator';
-import { useLabeledContext } from '../Labeled/Labeled.context';
-import { Paper } from '../Paper';
-import { StateLayer, useStateLayer } from '../StateLayer';
 import { getLabelKeyframes } from './getLabelKeyframes';
 import { fieldBaseTheme, fieldBaseThemeVariants } from './FieldBase.css';
 

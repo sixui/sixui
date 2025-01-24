@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IBoxProps } from '../Box';
-import type { IPlaceholderOwnProps } from '../Placeholder';
+import type { IBoxProps } from '~/components/Box';
+import type { IPlaceholderOwnProps } from '~/components/Placeholder';
 import type { IFocusRingVariant } from './FocusRing.types';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { Placeholder } from '~/components/Placeholder';
 import { useInteractions } from '~/hooks/useInteractions';
-import { componentShowcaseFactory } from '../ComponentShowcase';
-import { Placeholder } from '../Placeholder';
 import { FocusRing } from './FocusRing';
 
 // https://github.com/material-components/material-web/blob/main/focus/demo/stories.ts

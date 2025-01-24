@@ -1,16 +1,16 @@
 import type { IRadioThemeFactory } from './Radio.css';
 import type { IRadioFactory } from './Radio.types';
+import { Box } from '~/components/Box';
+import { FocusRing } from '~/components/FocusRing';
+import { StateLayer, useStateLayer } from '~/components/StateLayer';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { useRadio } from '~/hooks/useRadio';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { Box } from '../Box';
-import { FocusRing } from '../FocusRing';
-import { RadioCard } from '../RadioCard';
-import { RadioGroup } from '../RadioGroup';
-import { RadioIndicator } from '../RadioIndicator';
-import { StateLayer, useStateLayer } from '../StateLayer';
+import { RadioCard } from './RadioCard';
+import { RadioGroup } from './RadioGroup';
+import { RadioIndicator } from './RadioIndicator';
 import { RadioTheme } from './Radio.css';
 
 const COMPONENT_NAME = 'Radio';

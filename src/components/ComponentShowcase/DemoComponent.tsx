@@ -1,8 +1,8 @@
 import { faShirt, faSocks } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import type { IBoxProps } from '../Box';
-import { Box } from '../Box';
+import type { IBoxProps } from '~/components/Box';
+import { Box } from '~/components/Box';
 
 export type IDemoComponentProps = IBoxProps & {
   size?: 'sm' | 'md' | 'lg';

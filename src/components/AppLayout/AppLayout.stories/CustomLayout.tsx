@@ -1,12 +1,12 @@
 import { createSequence } from '@olivierpascal/helpers';
 
+import { AppLayout } from '~/components/AppLayout';
 import { BottomSheet } from '~/components/BottomSheet';
 import { Button } from '~/components/Button';
 import { Flex } from '~/components/Flex';
 import { Placeholder } from '~/components/Placeholder';
 import { Text } from '~/components/Text';
 import { useToggle } from '~/hooks/useToggle';
-import { AppLayout } from '../AppLayout';
 
 const AppLayoutSideSheetContent: React.FC = () => (
   <Flex direction="column" rowGap="$2" pl="$4" pr="$4">

@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IPlaceholderProps } from '../Placeholder';
+import type { IPlaceholderProps } from '~/components/Placeholder';
 import type { IFlexProps } from './Flex.types';
-import { componentShowcaseFactory } from '../ComponentShowcase';
-import { Divider } from '../Divider';
-import { Paper } from '../Paper';
-import { Placeholder } from '../Placeholder';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { Divider } from '~/components/Divider';
+import { Paper } from '~/components/Paper';
+import { Placeholder } from '~/components/Placeholder';
 import { Flex } from './Flex';
 
 const meta = {

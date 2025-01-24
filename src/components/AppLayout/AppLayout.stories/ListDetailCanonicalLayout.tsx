@@ -1,6 +1,6 @@
+import { AppLayout } from '~/components/AppLayout';
 import { Box } from '~/components/Box';
 import { useCanonicalLayout } from '~/hooks/useCanonicalLayout';
-import { AppLayout } from '../AppLayout';
 
 export interface IListDetailCanonicalLayoutProps {
   listPane: React.ReactNode;
