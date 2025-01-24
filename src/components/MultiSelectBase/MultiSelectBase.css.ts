@@ -7,9 +7,6 @@ const classNames = createStyles({
   chip: {
     marginRight: px(4),
   },
-  contentSlot: {
-    border: '10px solid red',
-  },
 });
 
 export type IMultiSelectBaseThemeFactory = IComponentThemeFactory<{

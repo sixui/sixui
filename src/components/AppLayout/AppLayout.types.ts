@@ -35,6 +35,7 @@ export interface IAppLayoutOwnProps {
   };
   preferredNavigationMode?: IAppLayoutNavigationMode;
   components: Array<IAppLayoutComponentName>;
+  pageBackgroundColor?: string;
 }
 
 export interface IAppLayoutProps

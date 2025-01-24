@@ -8,6 +8,7 @@ import type { IThemeProviderProps } from './ThemeProvider.types';
 import type { IThemeSetterContextValue } from './ThemeSetter.context';
 import { deepMerge } from '~/helpers/deepMerge';
 import { partialAssignInlineVars } from '~/utils/styles/partialAssignInlineVars';
+import { textFromCssProperties } from '~/utils/styles/textFromCssProperties';
 import { defaultTheme } from './defaultTheme';
 import { mergeTheme } from './mergeTheme';
 import { ThemeContext } from './ThemeProvider.context';
@@ -21,7 +22,8 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
     children,
     theme,
     colorSchemeVariant: colorSchemeVariantProp,
-    inherit = true,
+    inherit,
+    stylesTarget,
     ...other
   } = props;
 
@@ -76,19 +78,55 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
     colorSchemeVariant,
   ]);
 
+  const themeVars = partialAssignInlineVars(
+    styles.themeTokens,
+    themeOverrideVars,
+  );
+
+  if (stylesTarget) {
+    stylesTarget.classList.add(
+      ...cx(
+        styles.styles.root,
+        parentTheme ? undefined : styles.themeTokensClassName,
+        className,
+      ).split(' '),
+    );
+
+    const cssText = Object.entries(themeVars)
+      .map(([k, v]) => `${k}: ${v || '""'}`)
+      .join('; ');
+    if (cssText) {
+      stylesTarget.setAttribute(
+        'style',
+        textFromCssProperties({
+          ...style,
+          ...themeVars,
+        }),
+      );
+    }
+  }
+
   return (
     <ThemeContext.Provider value={themeContextValue}>
       <ThemeSetterProvider value={themeSetterContextValue}>
         <div
-          className={cx(
-            styles.styles.root,
-            parentTheme ? undefined : styles.themeTokensClassName,
-            className,
-          )}
-          style={{
-            ...style,
-            ...partialAssignInlineVars(styles.themeTokens, themeOverrideVars),
-          }}
+          className={
+            stylesTarget
+              ? undefined
+              : cx(
+                  styles.styles.root,
+                  parentTheme ? undefined : styles.themeTokensClassName,
+                  className,
+                )
+          }
+          style={
+            stylesTarget
+              ? undefined
+              : {
+                  ...style,
+                  ...themeVars,
+                }
+          }
           ref={rootRef}
           {...other}
         >

@@ -23,6 +23,7 @@ export const FeedPane: React.FC<IFeedPaneProps> = (props) => {
     ));
 
   return grid ? (
+    // TODO: replace by a Grid component
     <div
       style={{
         display: 'grid',
@@ -32,7 +33,6 @@ export const FeedPane: React.FC<IFeedPaneProps> = (props) => {
         height: 'min-content',
       }}
     >
-      {/* FIXME: grid component */}
       {renderContent()}
     </div>
   ) : (

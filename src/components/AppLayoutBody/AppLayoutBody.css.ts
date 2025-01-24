@@ -1,3 +1,4 @@
+import { fallbackVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
@@ -7,6 +8,9 @@ import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
+import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { PaperBase } from '../PaperBase';
+import { themeTokens } from '../ThemeProvider';
 import { appLayoutTheme } from '../AppLayout/AppLayout.css';
 
 type IModifier = 'orientation' | 'with-header';
@@ -32,6 +36,15 @@ const classNames = createStyles({
         paddingBottom: px(space(4)),
       },
     },
+
+    vars: createTokensVars(PaperBase.theme.tokens, {
+      container: {
+        color: fallbackVar(
+          appLayoutTheme.tokens.body.color,
+          themeTokens.colorScheme.surface,
+        ),
+      },
+    }),
 
     selectors: {
       [getModifierSelector<IModifier>({ orientation: 'vertical' })]: {

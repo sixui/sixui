@@ -101,6 +101,7 @@ export const decorators: Array<Decorator> = [
               <ThemeProvider
                 // theme={variantTheme}
                 className={styles.storyWrapper}
+                inherit
               >
                 <Story />
               </ThemeProvider>
@@ -111,6 +112,7 @@ export const decorators: Array<Decorator> = [
                 // theme={variantTheme}
                 colorSchemeVariant="dark"
                 className={styles.storyWrapper}
+                inherit
               >
                 <Story />
               </ThemeProvider>

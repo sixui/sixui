@@ -38,6 +38,7 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
       sideSheet,
       preferredNavigationMode = 'standard',
       components,
+      pageBackgroundColor = themeTokens.colorScheme.surface,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -153,12 +154,14 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
       sideSheetCallbacks.close,
     ]);
 
-    // FIXME:
-    const xxx = `:root { background-color: ${themeTokens.colorScheme.surface}; }`;
+    const globalStyles = `:root { background-color: ${pageBackgroundColor}; }`;
 
     return (
       <AppLayoutProvider value={contextValue}>
-        <style type="text/css" dangerouslySetInnerHTML={{ __html: xxx }} />
+        <style
+          type="text/css"
+          dangerouslySetInnerHTML={{ __html: globalStyles }}
+        />
         <Box {...getStyles('root')} ref={forwardedRef} {...other}>
           <div ref={setRootElement} />
           {isFunction(children) ? children(contextValue) : children}

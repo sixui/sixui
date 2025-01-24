@@ -23,9 +23,7 @@ export const stylesCombinatorFactory =
     styles: IStylesCombinatorStylesProp<TStyleKey>,
   ): IStylesCombinator<TStyleKey> =>
   (...styleKeys) => {
-    const flatStyles = styles.flat() as Array<
-      IOptionalCompiledStyles<TStyleKey> | undefined
-    >;
+    const flatStyles = styles.flat();
 
     return styleKeys
       .map((styleKey) =>

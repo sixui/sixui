@@ -11,7 +11,7 @@ export const SixuiProvider: React.FC<ISixuiProviderProps> = (props) => {
 
   return (
     <SixuiContext.Provider value={contextValue}>
-      <ThemeProvider {...other}>
+      <ThemeProvider stylesTarget={document.body} {...other}>
         <Responsive>{children}</Responsive>
       </ThemeProvider>
     </SixuiContext.Provider>

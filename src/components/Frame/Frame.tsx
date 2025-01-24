@@ -66,7 +66,7 @@ export const Frame = componentFactory<IFrameFactory>((props, forwardedRef) => {
       {iframeContentWindow && iframeDocument && (
         <>
           {createPortal(
-            <ThemeProvider inherit={false}>
+            <ThemeProvider stylesTarget={iframeDocument.documentElement}>
               <Responsive>
                 {isFunction(children)
                   ? children({ window: iframeContentWindow })

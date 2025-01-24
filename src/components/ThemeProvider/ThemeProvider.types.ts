@@ -7,4 +7,5 @@ export interface IThemeProviderProps {
   theme?: IThemeOverride;
   colorSchemeVariant?: IThemeColorSchemeVariant;
   inherit?: boolean;
+  stylesTarget?: HTMLElement | null;
 }
