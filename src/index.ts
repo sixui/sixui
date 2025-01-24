@@ -1,4 +1,3 @@
-// atoms
 export * from './components/Anchored';
 export * from './components/AppLayout';
 export * from './components/Aside';
