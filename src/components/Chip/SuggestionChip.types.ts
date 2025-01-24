@@ -3,5 +3,5 @@ import type { IChipProps } from './Chip.types';
 
 export type ISuggestionChipProps = IOmit<
   IChipProps,
-  'variant' | 'icon' | 'imageUrl' | 'onDelete' | 'avatar' | 'selected'
+  'variant' | 'icon' | 'imageUrl' | 'onTrailingClick' | 'avatar' | 'selected'
 >;

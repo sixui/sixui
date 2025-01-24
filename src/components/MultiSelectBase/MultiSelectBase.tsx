@@ -10,6 +10,7 @@ import { floatingFilterableListBaseFactory } from '~/components/FloatingFilterab
 import { ListItem } from '~/components/List/ListItem';
 import { MenuList } from '~/components/Menu/MenuList';
 import { TextInputField } from '~/components/TextInputField';
+import { IElementProps } from '~/helpers/types';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
@@ -99,8 +100,11 @@ export const multiSelectBaseFactory = <
           {(renderProps) => {
             const isGrid = other.cols !== undefined && other.cols > 1;
             const getInputProps = (
-              userProps?: React.ComponentPropsWithoutRef<'input'>,
-            ): React.ComponentPropsWithoutRef<'input'> => ({
+              userProps?: IElementProps<'input'>,
+            ): IElementProps<
+              'input',
+              'value' | 'defaultValue' | 'onChange'
+            > => ({
               ...userProps,
               onBlur: (event) => {
                 userProps?.onBlur?.(event);

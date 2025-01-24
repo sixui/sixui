@@ -1,10 +1,10 @@
 import type { IBoxProps } from '~/components/Box';
 import type { ICardOwnProps } from '~/components/Card';
-import type { RadioIndicator } from '~/components/RadioIndicator';
 import type { IOmit } from '~/helpers/types';
 import type { IUseRadioProps } from '~/hooks/useRadio';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+import type { RadioIndicator } from '../RadioIndicator';
 import type { IRadioCardThemeFactory, RadioCardTheme } from './RadioCard.css';
 
 export interface IRadioCardOwnProps

@@ -4,7 +4,7 @@ import { calc } from '@vanilla-extract/css-utils';
 import type { IInteraction } from '~/hooks/useInteractions';
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import type { IListItemVariant } from './ListItem.types';
-import { FocusRing } from '~/components/FocusRing';
+import { ButtonBase } from '~/components/ButtonBase';
 import { Item } from '~/components/Item';
 import { PaperBase } from '~/components/PaperBase';
 import { StateLayer } from '~/components/StateLayer';
@@ -131,11 +131,18 @@ const classNames = createStyles({
     borderRadius: tokens.container.shape,
     textAlign: 'start',
 
-    vars: createTokensVars(PaperBase.theme.tokens, {
-      container: {
-        color: tokens.container.color.normal.regular,
-      },
-    }),
+    vars: {
+      ...createTokensVars(ButtonBase.theme.tokens, {
+        container: {
+          shape: tokens.container.shape,
+        },
+      }),
+      ...createTokensVars(PaperBase.theme.tokens, {
+        container: {
+          color: tokens.container.color.normal.regular,
+        },
+      }),
+    },
     selectors: {
       [getModifierSelector<IModifier>('disabled')]: {
         vars: createTokensVars(PaperBase.theme.tokens, {
@@ -156,11 +163,6 @@ const classNames = createStyles({
         }),
       },
     },
-  },
-  focusRing: {
-    vars: createTokensVars(FocusRing.theme.tokens, {
-      shape: tokens.container.shape,
-    }),
   },
   item: ({ root }) => ({
     borderRadius: 'inherit',

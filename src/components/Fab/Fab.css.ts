@@ -71,16 +71,16 @@ const classNames = createStyles({
           elevation: {
             normal: elevationLevelPreset[3],
           },
-        },
-        leadingSpace: {
-          normal: '0',
-          withStartSlot: '0',
-          withEndSlot: '0',
-        },
-        trailingSpace: {
-          normal: '0',
-          withStartSlot: '0',
-          withEndSlot: '0',
+          leadingSpace: {
+            normal: '0',
+            withStartSlot: '0',
+            withEndSlot: '0',
+          },
+          trailingSpace: {
+            normal: '0',
+            withStartSlot: '0',
+            withEndSlot: '0',
+          },
         },
         icon: tokens.icon,
         label: tokens.label,
@@ -92,13 +92,15 @@ const classNames = createStyles({
           minWidth: tokens.container.size,
           width: 'auto',
           ...createTokensVars(Button.theme.tokens, {
-            leadingSpace: {
-              normal: px(space(6)),
-              withStartSlot: px(space(4)),
-            },
-            trailingSpace: {
-              normal: px(space(6)),
-              withStartSlot: px(space(6)),
+            container: {
+              leadingSpace: {
+                normal: px(space(6)),
+                withStartSlot: px(space(4)),
+              },
+              trailingSpace: {
+                normal: px(space(6)),
+                withStartSlot: px(space(6)),
+              },
             },
           }),
         },

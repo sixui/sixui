@@ -37,9 +37,9 @@ export type IUseMultiFilterableListBaseResult<
   handleClear: (
     afterItemsRemove: (
       items: Array<TItem>,
-      event?: React.SyntheticEvent<HTMLElement>,
+      event?: React.SyntheticEvent<Element>,
     ) => void,
-    event?: React.MouseEvent<HTMLElement>,
+    event?: React.MouseEvent<Element>,
   ) => void;
   getFocusedChipIndex: () => number | undefined;
   items: Array<TItem>;
@@ -224,9 +224,9 @@ export const useMultiFilterableListBase = <
   const handleClear = (
     afterItemsRemove: (
       items: Array<TItem>,
-      event?: React.SyntheticEvent<HTMLElement>,
+      event?: React.SyntheticEvent<Element>,
     ) => void,
-    event?: React.MouseEvent<HTMLElement>,
+    event?: React.MouseEvent<Element>,
   ): void => {
     event?.stopPropagation();
 

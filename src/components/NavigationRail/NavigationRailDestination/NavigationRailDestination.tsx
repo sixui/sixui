@@ -76,7 +76,6 @@ export const NavigationRailDestination =
           {...getStyles('root')}
           classNames={mergeClassNames(classNames, {
             stateLayer: getStyles('stateLayer').className,
-            focusRing: getStyles('focusRing').className,
           })}
           ref={forwardedRef}
           variant={false}

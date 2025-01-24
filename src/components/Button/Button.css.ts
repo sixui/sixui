@@ -4,7 +4,6 @@ import { calc } from '@vanilla-extract/css-utils';
 import type { IInteraction } from '~/hooks/useInteractions';
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import type { IButtonVariant } from './Button.types';
-import { FocusRing } from '~/components/FocusRing';
 import { PaperBase } from '~/components/PaperBase';
 import { StateLayer } from '~/components/StateLayer';
 import { cssLayers, themeTokens } from '~/components/ThemeProvider';
@@ -17,6 +16,7 @@ import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
+import { ButtonBase } from '../ButtonBase';
 
 type IModifier =
   | IInteraction
@@ -117,17 +117,24 @@ const halfSpinKeyframes = keyframes({
 
 const classNames = createStyles({
   root: {
-    vars: createTokensVars(PaperBase.theme.tokens, {
-      container: {
-        color: tokens.container.color.normal,
-        elevation: tokens.container.elevation.normal,
-        shape: tokens.container.shape,
-      },
-      outline: {
-        color: tokens.outline.color.normal,
-        width: tokens.outline.width.normal,
-      },
-    }),
+    vars: {
+      ...createTokensVars(ButtonBase.theme.tokens, {
+        container: {
+          shape: tokens.container.shape,
+        },
+      }),
+      ...createTokensVars(PaperBase.theme.tokens, {
+        container: {
+          color: tokens.container.color.normal,
+          elevation: tokens.container.elevation.normal,
+          shape: tokens.container.shape,
+        },
+        outline: {
+          color: tokens.outline.color.normal,
+          width: tokens.outline.width.normal,
+        },
+      }),
+    },
 
     display: 'inline-flex',
     justifyContent: 'center',
@@ -409,11 +416,6 @@ const classNames = createStyles({
   },
   stateLayer: {},
   touchTarget: {},
-  focusRing: {
-    vars: createTokensVars(FocusRing.theme.tokens, {
-      shape: tokens.container.shape,
-    }),
-  },
 });
 
 export type IButtonThemeFactory = IComponentThemeFactory<{

@@ -194,7 +194,6 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
         classNames={mergeClassNames(classNames, {
           stateLayer: getStyles('stateLayer').className,
           touchTarget: getStyles('touchTarget').className,
-          focusRing: getStyles('focusRing').className,
         })}
         disabled={disabled}
         readOnly={readOnly}

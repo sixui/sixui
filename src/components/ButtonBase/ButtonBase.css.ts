@@ -1,9 +1,22 @@
+import { createTheme } from '@vanilla-extract/css';
+
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
+import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { FocusRing } from '../FocusRing';
+import { PaperBase } from '../PaperBase';
+import { cssLayers, themeTokens } from '../ThemeProvider';
 
 type IModifier = 'disabled' | 'non-interactive';
+
+const [tokensClassName, tokens] = createTheme({
+  '@layer': cssLayers.theme,
+  container: {
+    shape: themeTokens.shape.corner.none,
+  },
+});
 
 export const classNames = createStyles({
   root: {
@@ -11,6 +24,12 @@ export const classNames = createStyles({
     textDecoration: 'none',
     cursor: 'pointer',
     userSelect: 'none',
+
+    vars: createTokensVars(PaperBase.theme.tokens, {
+      container: {
+        shape: tokens.container.shape,
+      },
+    }),
 
     selectors: {
       [getModifierSelector<IModifier>('disabled')]: {
@@ -32,15 +51,21 @@ export const classNames = createStyles({
   },
   touchTarget: {},
   stateLayer: {},
-  focusRing: {},
+  focusRing: {
+    vars: createTokensVars(FocusRing.theme.tokens, {
+      shape: tokens.container.shape,
+    }),
+  },
 });
 
 export type IButtonBaseThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   modifier: IModifier;
+  tokens: typeof tokens;
 }>;
 
 export const buttonBaseTheme = componentThemeFactory<IButtonBaseThemeFactory>({
   classNames,
-  tokens: undefined,
+  tokensClassName,
+  tokens,
 });

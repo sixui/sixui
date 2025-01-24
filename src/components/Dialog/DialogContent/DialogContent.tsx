@@ -88,12 +88,12 @@ export const DialogContent = polymorphicComponentFactory<IDialogContentFactory>(
 
       const topAnchorEl = topAnchorRef.current;
       if (topAnchorEl) {
-        observer.observe(topAnchorRef.current);
+        observer.observe(topAnchorEl);
       }
 
       const bottomAnchorEl = bottomAnchorRef.current;
       if (bottomAnchorEl) {
-        observer.observe(bottomAnchorRef.current);
+        observer.observe(bottomAnchorEl);
       }
 
       return () => {

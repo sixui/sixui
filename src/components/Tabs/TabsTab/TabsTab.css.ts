@@ -287,7 +287,7 @@ const classNames = createStyles({
       },
     },
   }),
-  focusRing: {},
+
   label: ({ root }) => ({
     selectors: {
       [getModifierSelector<IModifier>('with-inline-badge', root)]: {

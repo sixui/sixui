@@ -15,7 +15,7 @@ import type {
   IForwardableProps,
   IRendererWithForwardedProps,
 } from '~/helpers/react/forwardablePropsTypes';
-import type { IOmit, IOrientation } from '~/helpers/types';
+import type { IElementProps, IOmit, IOrientation } from '~/helpers/types';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 
 export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
@@ -58,7 +58,7 @@ export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
    * or overwrite one of the Floating UI hooks' handlers.
    */
   getInputFilterProps: (
-    userProps?: React.ComponentPropsWithoutRef<'input'>,
+    userProps?: IElementProps<'input'>,
   ) => Record<string, unknown>;
 
   afterItemsRemove: (
@@ -118,6 +118,7 @@ export interface IFloatingFilterableListBaseOwnProps<
   keepMounted?: boolean;
   cols?: number;
   itemFocus?: IFilterableListItemFocus;
+  onChange?: (value: string) => void;
   onOpenChange?: (
     opened: boolean,
     event?: Event,

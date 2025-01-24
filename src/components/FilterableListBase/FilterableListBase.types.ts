@@ -1,5 +1,6 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import { IElementProps } from '~/helpers/types';
 
 // Inspiration:
 // - https://github.com/palantir/blueprint/blob/develop/packages/select/src/common/itemListRenderer.ts
@@ -248,7 +249,7 @@ export type IFilterableListBaseRendererProps<TItem> =
      * overwritten or overwrite one of the Floating UI hooks' handlers.
      */
     getInputFilterProps: (
-      userProps?: React.ComponentPropsWithoutRef<'input'>,
+      userProps?: IElementProps<'input'>,
     ) => Record<string, unknown>;
   };
 

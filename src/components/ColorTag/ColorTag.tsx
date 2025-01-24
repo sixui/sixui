@@ -29,6 +29,7 @@ export const ColorTag = polymorphicComponentFactory<IColorTagFactory>(
       outlined,
       selected,
       loading,
+      disabled,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -44,7 +45,7 @@ export const ColorTag = polymorphicComponentFactory<IColorTagFactory>(
       variant,
       theme: colorTagTheme,
       modifiers: {
-        outlined,
+        disabled,
       },
     });
 
@@ -58,6 +59,7 @@ export const ColorTag = polymorphicComponentFactory<IColorTagFactory>(
         classNames={mergeClassNames(classNames, {
           stateLayer: getStyles('stateLayer').className,
         })}
+        disabled={disabled}
         ref={forwardedRef}
         {...other}
       >

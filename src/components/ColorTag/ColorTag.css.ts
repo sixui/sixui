@@ -11,6 +11,7 @@ import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { ButtonBase } from '../ButtonBase';
 
 type IModifier = 'disabled';
 
@@ -31,15 +32,21 @@ const classNames = createStyles({
   root: {
     color: tokens.foreground.color,
 
-    vars: createTokensVars(PaperBase.theme.tokens, {
-      container: {
-        color: 'transparent',
-        shape: tokens.container.shape,
-      },
-      outline: {
-        color: tokens.foreground.color,
-      },
-    }),
+    vars: {
+      ...createTokensVars(ButtonBase.theme.tokens, {
+        container: {
+          shape: tokens.container.shape,
+        },
+      }),
+      ...createTokensVars(PaperBase.theme.tokens, {
+        container: {
+          color: 'transparent',
+        },
+        outline: {
+          color: tokens.foreground.color,
+        },
+      }),
+    },
     selectors: {
       [getModifierSelector<IModifier>('disabled')]: {
         opacity: themeTokens.state.opacity.disabled,

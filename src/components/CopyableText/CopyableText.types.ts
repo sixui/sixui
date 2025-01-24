@@ -6,8 +6,11 @@ import type {
   copyableTextTheme,
   ICopyableTextThemeFactory,
 } from './CopyableText.css';
+import { IOmit } from '~/helpers/types';
 
-export interface ICopyableTextOwnProps extends IButtonOwnProps {
+export interface ICopyableTextOwnProps
+  extends IOmit<IButtonOwnProps, 'children'> {
+  children?: React.ReactNode;
   text?: string;
   copySupportingText?: string;
   copiedSupportingText?: string;

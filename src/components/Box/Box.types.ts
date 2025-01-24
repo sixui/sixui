@@ -21,8 +21,3 @@ export interface IBoxProps extends IBoxSprinkles {
   /** Breakpoint below which the component is hidden with `display: none` */
   visibleFrom?: IThemeWindowSizeClassName;
 }
-
-export type IElementProps<
-  TElementType extends React.ElementType,
-  TPropsToOmit extends string = never,
-> = Omit<React.ComponentPropsWithoutRef<TElementType>, TPropsToOmit>;

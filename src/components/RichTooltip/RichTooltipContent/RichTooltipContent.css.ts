@@ -45,12 +45,8 @@ const classNames = createStyles({
   root: {
     vars: createTokensVars(PaperBase.theme.tokens, {
       container: {
-        color: {
-          normal: tokens.container.color,
-        },
-        elevation: {
-          normal: tokens.container.elevation,
-        },
+        color: tokens.container.color,
+        elevation: tokens.container.elevation,
         shape: tokens.container.shape,
       },
     }),

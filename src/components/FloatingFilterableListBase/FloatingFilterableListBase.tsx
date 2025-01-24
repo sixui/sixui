@@ -26,6 +26,7 @@ import { filterableListBaseFactory } from '~/components/FilterableListBase';
 import { Motion } from '~/components/Motion';
 import { Portal } from '~/components/Portal';
 import { isFunction } from '~/helpers/isFunction';
+import { IElementProps } from '~/helpers/types';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { usePrevious } from '~/hooks/usePrevious';
@@ -229,7 +230,7 @@ export const floatingFilterableListBaseFactory = <
 
     const isEnterKeyPressedRef = useRef(false);
     const getInputFilterProps = (
-      userProps?: React.ComponentPropsWithoutRef<'input'>,
+      userProps?: IElementProps<'input'>,
     ): Record<string, unknown> => ({
       ...userProps,
       value: userProps?.value ?? query,

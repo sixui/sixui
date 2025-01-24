@@ -71,7 +71,7 @@ export const Avatar = polymorphicComponentFactory<IAvatarFactory>(
           style: randomColorHsl
             ? {
                 ...assignInlineVars({
-                  [paperBaseTheme.tokens.container.color.normal]:
+                  [paperBaseTheme.tokens.container.color]:
                     getHslColor(randomColorHsl),
                 }),
                 color: '#000',

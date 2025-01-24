@@ -5,7 +5,7 @@ import type {
   IFloatingFilterableListBaseProps,
   IFloatingFilterableListBaseTriggerRenderProps,
 } from '~/components/FloatingFilterableListBase';
-import type { IMenuListProps } from '~/components/MenuList';
+import type { IMenuListProps } from '~/components/Menu/MenuList';
 import type { IOmit } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 

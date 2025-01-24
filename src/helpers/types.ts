@@ -86,3 +86,8 @@ export type IPlacement = {
 };
 
 export type ISixuiSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+
+export type IElementProps<
+  TElementType extends React.ElementType,
+  TPropsToOmit extends string = never,
+> = Omit<React.ComponentPropsWithoutRef<TElementType>, TPropsToOmit>;

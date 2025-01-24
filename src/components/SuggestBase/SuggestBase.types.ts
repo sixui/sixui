@@ -4,7 +4,7 @@ import type {
   IFloatingFilterableListBaseProps,
   IFloatingFilterableListBaseTriggerRenderProps,
 } from '~/components/FloatingFilterableListBase';
-import type { IMenuListProps } from '~/components/MenuList';
+import type { IMenuListProps } from '~/components/Menu/MenuList';
 import type { ITextInputFieldProps } from '~/components/TextInputField';
 import type { IOmit } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';

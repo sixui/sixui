@@ -126,7 +126,6 @@ export const TabsTab = polymorphicComponentFactory<ITabsTabFactory>(
         {...getStyles('root')}
         classNames={mergeClassNames(classNames, {
           stateLayer: getStyles('stateLayer').className,
-          focusRing: getStyles('focusRing').className,
         })}
         ref={activeTabsTabHandleRef}
         variant={false}

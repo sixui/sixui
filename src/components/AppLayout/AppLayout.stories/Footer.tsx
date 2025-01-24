@@ -1,4 +1,4 @@
-import type { IAppLayoutFooterProps } from '~/components/AppLayoutFooter';
+import type { IAppLayoutFooterProps } from '../AppLayoutFooter';
 import { AppLayout } from '~/components/AppLayout';
 import { Flex } from '~/components/Flex';
 import { Placeholder } from '~/components/Placeholder';

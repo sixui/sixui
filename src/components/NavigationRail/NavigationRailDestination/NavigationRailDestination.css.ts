@@ -2,7 +2,7 @@ import { createTheme, fallbackVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { FocusRing } from '~/components/FocusRing';
+import { ButtonBase } from '~/components/ButtonBase';
 import { PaperBase } from '~/components/PaperBase';
 import { StateLayer } from '~/components/StateLayer';
 import { cssLayers, themeTokens } from '~/components/ThemeProvider';
@@ -121,16 +121,23 @@ const classNames = createStyles({
     justifyContent: 'center',
     gap: calc.add(tokens.gap, DENSITY),
 
-    vars: createTokensVars(PaperBase.theme.tokens, {
-      container: {
-        color: 'transparent',
-        shape: tokens.container.shape.normal,
-      },
-    }),
+    vars: {
+      ...createTokensVars(ButtonBase.theme.tokens, {
+        container: {
+          shape: tokens.container.shape.normal,
+        },
+      }),
+      ...createTokensVars(PaperBase.theme.tokens, {
+        container: {
+          color: 'transparent',
+          shape: tokens.container.shape.normal,
+        },
+      }),
+    },
 
     selectors: {
       [getModifierSelector<IModifier>('icon-only')]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+        vars: createTokensVars(ButtonBase.theme.tokens, {
           container: {
             shape: tokens.container.shape.iconOnly,
           },
@@ -161,19 +168,6 @@ const classNames = createStyles({
             hovered: tokens.stateLayer.opacity.active.hovered,
             pressed: tokens.stateLayer.opacity.active.pressed,
           },
-        }),
-      },
-    },
-  }),
-  focusRing: ({ root }) => ({
-    vars: createTokensVars(FocusRing.theme.tokens, {
-      shape: tokens.container.shape.normal,
-    }),
-
-    selectors: {
-      [getModifierSelector<IModifier>('icon-only', root)]: {
-        vars: createTokensVars(FocusRing.theme.tokens, {
-          shape: tokens.container.shape.iconOnly,
         }),
       },
     },
