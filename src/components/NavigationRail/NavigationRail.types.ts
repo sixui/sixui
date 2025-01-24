@@ -1,4 +1,4 @@
-import type { IOmit } from '~/helpers/types';
+import type { IHorizontalSide, IOmit } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IBoxProps } from '../Box';
@@ -12,7 +12,9 @@ import type {
 
 export interface INavigationRailOwnProps
   extends IOmit<IStandardAsideOwnProps, 'children'>,
-    INavigationRailContentOwnProps {}
+    INavigationRailContentOwnProps {
+  side?: IHorizontalSide;
+}
 
 export interface INavigationRailProps
   extends IBoxProps,

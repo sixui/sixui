@@ -12,7 +12,7 @@ export const ListPane: React.FC<IListPaneProps> = (props) => {
   return (
     <Flex direction="column" rowGap="$2" {...other}>
       {createSequence(4).map((index) => (
-        <Placeholder key={index} label="list" shape="$sm" h="$24" diagonals />
+        <Placeholder key={index} label="List" shape="$sm" h="$24" diagonals />
       ))}
     </Flex>
   );

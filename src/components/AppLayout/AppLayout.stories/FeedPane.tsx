@@ -14,7 +14,7 @@ export const FeedPane: React.FC<IFeedPaneProps> = (props) => {
     createSequence(6).map((index) => (
       <Placeholder
         key={index}
-        label="feed"
+        label="Feed"
         shape="$sm"
         h="$32"
         diagonals

@@ -52,6 +52,20 @@ const classNames = createStyles({
       },
     },
   },
+  inner: {
+    maxWidth: 1248,
+    width: '100%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: px(space(4)),
+
+    paddingTop: px(space(4)),
+    paddingBottom: px(space(4)),
+    paddingLeft: px(space(2)),
+    paddingRight: px(space(2)),
+  },
 });
 
 export type IAppLayoutFooterThemeFactory = IComponentThemeFactory<{

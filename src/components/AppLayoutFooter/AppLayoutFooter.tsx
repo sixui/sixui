@@ -36,7 +36,7 @@ export const AppLayoutFooter = componentFactory<IAppLayoutFooterFactory>(
 
     return (
       <Paper {...getStyles('root')} as="footer" ref={forwardedRef} {...other}>
-        {children}
+        <div {...getStyles('inner')}>{children}</div>
       </Paper>
     );
   },

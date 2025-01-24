@@ -2,6 +2,7 @@ import type { IAppLayoutSideSheetThemeFactory } from './AppLayoutSideSheet.css';
 import type { IAppLayoutSideSheetFactory } from './AppLayoutSideSheet.types';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
+import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { useAppLayoutContext } from '../AppLayout/AppLayout.context';
 import { SideSheet } from '../SideSheet';
@@ -63,6 +64,9 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
     return (
       <SideSheet
         {...getStyles('root')}
+        classNames={mergeClassNames(classNames, {
+          sideSheetContent: getStyles('sideSheetContent').className,
+        })}
         standardOpened={standardOpened}
         modalOpened={modalOpened}
         onClose={handleClose}

@@ -14,7 +14,7 @@ export const SupportingPane: React.FC<ISupportingPaneProps> = (props) => {
       {createSequence(2).map((index) => (
         <Placeholder
           key={index}
-          label="supportingPane"
+          label="Supporting"
           shape="$sm"
           w="$32"
           h="$32"

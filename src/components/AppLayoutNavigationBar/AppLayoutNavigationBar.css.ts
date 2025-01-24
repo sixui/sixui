@@ -4,8 +4,8 @@ import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactor
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { NavigationBar } from '../NavigationBar';
 import { NavigationBarContent } from '../NavigationBarContent';
-import { StandardAside } from '../StandardAside';
 import { themeTokens } from '../ThemeProvider';
 import { appLayoutTheme } from '../AppLayout/AppLayout.css';
 
@@ -13,9 +13,9 @@ type IModifier = 'with-header';
 
 const classNames = createStyles({
   root: {
-    vars: createTokensVars(StandardAside.theme.tokens, {
+    vars: createTokensVars(NavigationBar.theme.tokens, {
       container: {
-        startSpace: appLayoutTheme.tokens.header.height,
+        height: appLayoutTheme.tokens.navigationBar.height,
       },
     }),
   },

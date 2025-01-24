@@ -4,6 +4,8 @@ import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactor
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createStyles } from '~/utils/styles/createStyles';
+import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { NavigationBarContent } from '../NavigationBarContent';
 import { cssLayers } from '../ThemeProvider';
 
 const [tokensClassName, tokens] = createTheme({
@@ -18,7 +20,13 @@ const classNames = createStyles({
     width: '100%',
     height: tokens.container.height,
   },
-  navigationBarContent: {},
+  navigationBarContent: {
+    vars: createTokensVars(NavigationBarContent.theme.tokens, {
+      container: {
+        height: tokens.container.height,
+      },
+    }),
+  },
 });
 
 export type INavigationBarThemeFactory = IComponentThemeFactory<{

@@ -1,4 +1,4 @@
-import type { IOmit } from '~/helpers/types';
+import type { IHorizontalSide, IOmit } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IAsideOwnProps } from '../Aside';
@@ -10,8 +10,10 @@ import type {
 } from './SideSheet.css';
 
 export interface ISideSheetOwnProps
-  extends IOmit<IAsideOwnProps, 'children'>,
-    ISideSheetContentOwnProps {}
+  extends IOmit<IAsideOwnProps, 'children' | 'side'>,
+    ISideSheetContentOwnProps {
+  side?: IHorizontalSide;
+}
 
 export interface ISideSheetProps
   extends IBoxProps,
