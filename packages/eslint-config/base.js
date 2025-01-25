@@ -8,6 +8,7 @@ import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 import reactPlugin from 'eslint-plugin-react';
 import storybook from 'eslint-plugin-storybook';
 import tsdocPlugin from 'eslint-plugin-tsdoc';
+import turboPlugin from 'eslint-plugin-turbo';
 import globals from 'globals';
 import tseslint, { configs as tseslintConfig } from 'typescript-eslint';
 
@@ -18,7 +19,9 @@ const compat = new FlatCompat({
   allConfig: eslint.configs.all,
 });
 
-// eslint-disable-next-line import-x/no-default-export
+/**
+ * A shared ESLint configuration for the repository.
+ */
 export default tseslint.config(
   {
     ignores: [
@@ -60,6 +63,7 @@ export default tseslint.config(
       fp: fpPlugin,
       tsdoc: tsdocPlugin,
       'jsx-a11y': jsxA11yPlugin,
+      turbo: turboPlugin,
     },
 
     settings: {
@@ -71,9 +75,6 @@ export default tseslint.config(
 
     rules: {
       curly: 'error',
-      'tsdoc/syntax': 'warn',
-      'import-x/no-default-export': 'error',
-
       'lines-between-class-members': [
         'error',
         'always',
@@ -81,11 +82,9 @@ export default tseslint.config(
           exceptAfterSingleLine: true,
         },
       ],
-
       'no-console': 'error',
       'no-alert': 'error',
       'no-bitwise': 'error',
-
       'no-param-reassign': [
         'error',
         {
@@ -93,16 +92,13 @@ export default tseslint.config(
           ignorePropertyModificationsFor: ['draft'],
         },
       ],
-
       'no-unused-expressions': [
         'error',
         {
           allowTaggedTemplates: true,
         },
       ],
-
       'no-continue': 'error',
-
       'no-warning-comments': [
         'error',
         {
@@ -110,21 +106,50 @@ export default tseslint.config(
           location: 'start',
         },
       ],
-
       'no-nested-ternary': 'off',
       'implicit-arrow-linebreak': 'off',
       'operator-linebreak': 'off',
       'object-curly-newline': 'off',
       'function-paren-newline': 'off',
       'no-confusing-arrow': 'off',
+      'no-restricted-imports': [
+        'error',
+        {
+          paths: [
+            {
+              name: 'react',
+              importNames: ['default'],
+              message: 'Please use named imports instead.',
+            },
+          ],
+        },
+      ],
+
+      'turbo/no-undeclared-env-vars': 'warn',
+
+      'tsdoc/syntax': 'warn',
+
+      'import-x/no-default-export': 'error',
       'import-x/export': 'error',
+
       'react/jsx-one-expression-per-line': 'off',
       'react/no-array-index-key': 'off',
       'react/jsx-wrap-multilines': 'off',
       'react/no-unescaped-entities': 'off',
       'react/jsx-curly-newline': 'off',
+      'react/react-in-jsx-scope': 'off',
+      'react/jsx-filename-extension': [
+        'error',
+        {
+          extensions: ['.tsx'],
+        },
+      ],
+      'react/prop-types': 'off',
+      'react/jsx-fragments': 'error',
+
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
+
       'jsx-a11y/label-has-for': 'off',
       'jsx-a11y/label-has-associated-control': 'off',
       'jsx-a11y/media-has-caption': 'off',
@@ -139,8 +164,6 @@ export default tseslint.config(
           usePrettierrc: true,
         },
       ],
-
-      // typescript
 
       '@typescript-eslint/no-misused-promises': [
         'error',
@@ -157,9 +180,7 @@ export default tseslint.config(
           },
         },
       ],
-
       '@typescript-eslint/no-unsafe-assignment': 'off',
-
       '@typescript-eslint/prefer-nullish-coalescing': [
         'error',
         {
@@ -168,46 +189,17 @@ export default tseslint.config(
           },
         },
       ],
-
       '@typescript-eslint/consistent-type-definitions': 0,
-
-      'no-restricted-imports': [
-        'error',
-        {
-          paths: [
-            {
-              name: 'react',
-              importNames: ['default'],
-              message: 'Please use named imports instead.',
-            },
-          ],
-        },
-      ],
-
-      'react/react-in-jsx-scope': 'off',
-
-      'react/jsx-filename-extension': [
-        'error',
-        {
-          extensions: ['.tsx'],
-        },
-      ],
-
-      'react/prop-types': 'off',
-      'react/jsx-fragments': 'error',
-
       '@typescript-eslint/array-type': [
         'error',
         {
           default: 'generic',
         },
       ],
-
       '@typescript-eslint/no-empty-interface': 'off',
       '@typescript-eslint/indent': 'off',
       '@typescript-eslint/explicit-member-accessibility': 'error',
       '@typescript-eslint/typedef': 'error',
-
       '@typescript-eslint/no-inferrable-types': [
         'error',
         {
@@ -215,9 +207,7 @@ export default tseslint.config(
           ignoreProperties: true,
         },
       ],
-
       '@typescript-eslint/no-empty-function': 'off',
-
       '@typescript-eslint/explicit-function-return-type': [
         'error',
         {
@@ -225,7 +215,6 @@ export default tseslint.config(
           allowConciseArrowFunctionExpressionsStartingWithVoid: true,
         },
       ],
-
       '@typescript-eslint/naming-convention': [
         'error',
         {
@@ -254,7 +243,6 @@ export default tseslint.config(
           format: ['PascalCase'],
         },
       ],
-
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
@@ -265,7 +253,7 @@ export default tseslint.config(
     },
   },
   {
-    files: ['**/*.stories.tsx'],
+    files: ['**/*.stories.tsx', 'eslint.config.js'],
 
     rules: {
       'import-x/no-default-export': 'off',
