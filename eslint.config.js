@@ -1,72 +1,69 @@
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { fixupConfigRules, fixupPluginRules } from '@eslint/compat';
+import { fixupConfigRules } from '@eslint/compat';
 import { FlatCompat } from '@eslint/eslintrc';
-import js from '@eslint/js';
-import tsParser from '@typescript-eslint/parser';
-import cypress from 'eslint-plugin-cypress';
-import fp from 'eslint-plugin-fp';
-import tsdoc from 'eslint-plugin-tsdoc';
+import eslint from '@eslint/js';
+import fpPlugin from 'eslint-plugin-fp';
+import eslintPluginImportX from 'eslint-plugin-import-x';
+import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+import reactPlugin from 'eslint-plugin-react';
+import storybook from 'eslint-plugin-storybook';
+import tsdocPlugin from 'eslint-plugin-tsdoc';
 import globals from 'globals';
+import tseslint, { configs as tseslintConfig } from 'typescript-eslint';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const _dirname = import.meta.dirname;
 const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
+  baseDirectory: _dirname,
+  recommendedConfig: eslint.configs.recommended,
+  allConfig: eslint.configs.all,
 });
 
-export default [
+// eslint-disable-next-line import-x/no-default-export
+export default tseslint.config(
   {
-    ignores: ['**/dist', '!**/.storybook', '**/eslint.config.mjs'],
+    ignores: [
+      '**/node_modules',
+      '**/dist',
+      // 'eslint.config.mjs',
+      // 'packages/eslint-config/*.mjs',
+    ],
   },
-  ...fixupConfigRules(
-    compat.extends(
-      'prettier',
-      'plugin:prettier/recommended',
-      'eslint:recommended',
-      'plugin:import/errors',
-      'plugin:import/warnings',
-      'plugin:react/recommended',
-      'plugin:react-hooks/recommended',
-      'plugin:jsx-a11y/recommended',
-      'plugin:storybook/recommended',
-      'plugin:cypress/recommended',
-    ),
-  ),
+  // https://github.com/prettier/eslint-plugin-prettier?tab=readme-ov-file#configuration-new-eslintconfigjs
+  eslintPluginPrettierRecommended,
+  // https://typescript-eslint.io/getting-started#step-2-configuration
+  eslint.configs.recommended,
+  tseslintConfig.strictTypeChecked,
+  tseslintConfig.stylisticTypeChecked,
+  // https://github.com/un-ts/eslint-plugin-import-x?tab=readme-ov-file#configuration-new-eslintconfigjs
+  eslintPluginImportX.flatConfigs.recommended,
+  eslintPluginImportX.flatConfigs.typescript,
+  // https://github.com/jsx-eslint/eslint-plugin-react/tree/master?tab=readme-ov-file#flat-configs
+  reactPlugin.configs.flat.recommended,
+  reactPlugin.configs.flat['jsx-runtime'],
+  // https://github.com/storybookjs/eslint-plugin-storybook?tab=readme-ov-file#configuration-eslintconfigcmjs
+  ...storybook.configs['flat/recommended'],
+  ...fixupConfigRules(compat.extends('plugin:react-hooks/recommended')),
   {
-    plugins: {
-      fp,
-      tsdoc,
-      cypress: fixupPluginRules(cypress),
-    },
-
     languageOptions: {
-      globals: {
-        ...globals.browser,
+      parserOptions: {
+        projectService: {
+          allowDefaultProject: ['vite.config.ts', 'eslint.config.js'],
+        },
+        tsconfigRootDir: import.meta.dirname,
       },
-
+      globals: globals.browser,
       ecmaVersion: 'latest',
       sourceType: 'module',
     },
 
+    plugins: {
+      fp: fpPlugin,
+      tsdoc: tsdocPlugin,
+      'jsx-a11y': jsxA11yPlugin,
+    },
+
     settings: {
-      'import/extensions': 'always',
-
-      'import/resolver': {
-        typescript: {
-          alwaysTryTypes: true,
-
-          project: [
-            './tsconfig.json',
-            './tsconfig.node.json',
-            './tsconfig.app.json',
-            './cypress/tsconfig.json',
-          ],
-        },
-      },
-
+      'import-x/extensions': 'always',
       react: {
         version: 'detect',
       },
@@ -75,7 +72,7 @@ export default [
     rules: {
       curly: 'error',
       'tsdoc/syntax': 'warn',
-      'import/no-default-export': 'error',
+      'import-x/no-default-export': 'error',
 
       'lines-between-class-members': [
         'error',
@@ -120,7 +117,7 @@ export default [
       'object-curly-newline': 'off',
       'function-paren-newline': 'off',
       'no-confusing-arrow': 'off',
-      'import/export': 'error',
+      'import-x/export': 'error',
       'react/jsx-one-expression-per-line': 'off',
       'react/no-array-index-key': 'off',
       'react/jsx-wrap-multilines': 'off',
@@ -142,45 +139,9 @@ export default [
           usePrettierrc: true,
         },
       ],
-    },
-  },
-  {
-    files: ['**/*.stories.tsx'],
 
-    rules: {
-      'import/no-default-export': 'off',
-    },
-  },
-  ...compat
-    .extends(
-      'plugin:@typescript-eslint/recommended-type-checked',
-      'plugin:@typescript-eslint/stylistic-type-checked',
-    )
-    .map((config) => ({
-      ...config,
-      files: ['**/*.tsx', '**/*.ts'],
-    })),
-  {
-    files: ['**/*.tsx', '**/*.ts'],
+      // typescript
 
-    languageOptions: {
-      parser: tsParser,
-      ecmaVersion: 5,
-      sourceType: 'script',
-
-      parserOptions: {
-        project: [
-          './tsconfig.json',
-          './tsconfig.node.json',
-          './tsconfig.app.json',
-          './cypress/tsconfig.json',
-        ],
-
-        tsconfigRootDir: '/Users/keo/gits/@sixui/sixui',
-      },
-    },
-
-    rules: {
       '@typescript-eslint/no-misused-promises': [
         'error',
         {
@@ -304,10 +265,10 @@ export default [
     },
   },
   {
-    files: ['**/*.test.ts'],
+    files: ['**/*.stories.tsx'],
 
     rules: {
-      '@typescript-eslint/unbound-method': 'off',
+      'import-x/no-default-export': 'off',
     },
   },
-];
+);

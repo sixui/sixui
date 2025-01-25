@@ -6,12 +6,13 @@ import dts from 'vite-plugin-dts';
 
 // https://vitejs.dev/config/
 
+// eslint-disable-next-line import-x/no-default-export
 export default defineConfig({
   plugins: [
     react(),
     vanillaExtractPlugin(),
     dts({
-      tsconfigPath: 'tsconfig.app.build.json',
+      tsconfigPath: 'tsconfig.build.json',
     }),
   ],
   resolve: {
@@ -38,6 +39,7 @@ export default defineConfig({
           react: 'React',
           'react-dom': 'ReactDOM',
         },
+        preserveModules: true,
       },
     },
     cssCodeSplit: true,
