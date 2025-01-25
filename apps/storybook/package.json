@@ -37,7 +37,7 @@
     "lint:check": "eslint src --fix",
     "ts:check": "tsc --pretty --noEmit",
     "check:all": "run-s lint:check ts:check test",
-    "pre-commit": "generate-icons"
+    "pre-commit": "run-s generate-icons"
   },
   "dependencies": {
     "@floating-ui/core": "^1.6.9",

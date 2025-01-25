@@ -35,7 +35,6 @@
     "preinstall": "npx only-allow pnpm",
     "prepack": "pinst --disable",
     "postpack": "pinst --enable",
-    "dev": "BROWSER=none storybook dev -p 6006 --no-open --disable-telemetry",
     "test": "run-s test:cy",
     "build-storybook": "pnpm build:sb",
     "build:sb": "storybook build",
@@ -45,8 +44,9 @@
     "release": "auto shipit",
     "prettify:fix:file": "prettier --write",
     "lint:fix:file": "eslint --fix",
-    "check:all": "turbo check:all",
-    "pre-commit": "turbo pre-commit"
+    "dev": "turbo run dev",
+    "check:all": "turbo run check:all",
+    "pre-commit": "turbo run pre-commit"
   },
   "lint-staged": {
     "**/*.(ts|js)?(x)": [
