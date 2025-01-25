@@ -21,14 +21,19 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
+      formats: ['es'],
+      entry: {
+        main: resolve(__dirname, 'src/main.ts'),
+      },
       name: 'SixUI',
       fileName: 'sixui',
-      formats: ['es'],
     },
     rollupOptions: {
+      // Should replicate peerDependencies
       external: ['react', 'react-dom'],
       output: {
+        dir: 'dist',
+        assetFileNames: 'sixui.[ext]',
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
@@ -36,5 +41,6 @@ export default defineConfig({
       },
     },
     cssCodeSplit: true,
+    sourcemap: true,
   },
 });

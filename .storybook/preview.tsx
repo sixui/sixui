@@ -8,7 +8,7 @@ import { modes } from './modes';
 import * as styles from './preview.css';
 
 import '~/styles/main.css';
-import '~/styles/storybook.css';
+import './storybook.css';
 
 import { Box } from '~/components/Box';
 import { Button } from '~/components/Button';

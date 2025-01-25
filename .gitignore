@@ -22,8 +22,8 @@ yarn-error.log*
 coverage
 
 # production
-dist
-build
+/dist
+/build
 
 # misc
 .DS_Store
@@ -51,7 +51,3 @@ cypress/screenshots
 /playwright-report/
 /blob-report/
 /playwright/.cache/
-
-# managed by crackle
-/dist
-# end managed by crackle
