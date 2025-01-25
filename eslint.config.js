@@ -21,12 +21,7 @@ const compat = new FlatCompat({
 
 export default tseslint.config(
   {
-    ignores: [
-      '**/node_modules',
-      '**/dist',
-      // 'eslint.config.mjs',
-      // 'packages/eslint-config/*.mjs',
-    ],
+    ignores: ['**/node_modules', '**/dist'],
   },
   // https://github.com/prettier/eslint-plugin-prettier?tab=readme-ov-file#configuration-new-eslintconfigjs
   eslintPluginPrettierRecommended,

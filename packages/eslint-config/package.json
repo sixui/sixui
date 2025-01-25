@@ -5,7 +5,8 @@
   "private": true,
   "exports": {
     "./base": "./base.js",
-    "./react-internal": "./react-internal.js"
+    "./react-internal": "./react-internal.js",
+    "./storybook-internal": "./storybook-internal.js"
   },
   "devDependencies": {
     "@eslint/compat": "^1.2.5",
