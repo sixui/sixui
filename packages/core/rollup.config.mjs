@@ -84,7 +84,7 @@ const plugins = [vanillaExtractPlugin(), depsExternal(), esbuild(), json()];
 
 export default [
   {
-    input: 'src/index.ts',
+    input: 'src/main.ts',
     plugins: [...plugins, bundleCssEmits()],
     output: [
       {
@@ -115,7 +115,7 @@ export default [
   },
   // Declaration files
   {
-    input: 'src/index.ts',
+    input: 'src/main.ts',
     plugins: [
       ...plugins,
       dts({
