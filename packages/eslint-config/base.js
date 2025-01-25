@@ -10,9 +10,6 @@ import tseslint, { configs as tseslintConfig } from 'typescript-eslint';
  * A shared ESLint configuration for the repository.
  */
 export default tseslint.config(
-  {
-    ignores: ['**/node_modules', '**/dist'],
-  },
   // https://github.com/prettier/eslint-plugin-prettier?tab=readme-ov-file#configuration-new-eslintconfigjs
   eslintPluginPrettierRecommended,
   // https://typescript-eslint.io/getting-started#step-2-configuration
@@ -23,11 +20,12 @@ export default tseslint.config(
   eslintPluginImportX.flatConfigs.recommended,
   eslintPluginImportX.flatConfigs.typescript,
   {
+    ignores: ['**/dist', '**/eslint.config.js', 'packages/eslint-config/*.js'],
+  },
+  {
     languageOptions: {
       parserOptions: {
-        projectService: {
-          allowDefaultProject: ['vite.config.ts', '*.js', '*.mjs'],
-        },
+        projectService: true,
         tsconfigRootDir: import.meta.dirname,
       },
     },

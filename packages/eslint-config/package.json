@@ -4,9 +4,9 @@
   "type": "module",
   "private": true,
   "exports": {
-    "./base": "./base.js",
-    "./react-internal": "./react-internal.js",
-    "./storybook-internal": "./storybook-internal.js"
+    ".": "./base.js",
+    "./react": "./react.js",
+    "./storybook": "./storybook.js"
   },
   "devDependencies": {
     "@eslint/compat": "^1.2.5",
@@ -18,6 +18,7 @@
     "eslint-import-resolver-typescript": "^3.7.0",
     "eslint-plugin-fp": "^2.3.0",
     "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-import-x": "^4.6.1",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-react": "^7.37.4",
