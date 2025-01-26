@@ -1,4 +1,15 @@
-import base from '@sixui/eslint-config/storybook';
+import base from '@sixui/eslint-config/react';
+import globals from 'globals';
 
-// eslint-disable-next-line import-x/no-default-export
-export default base;
+export default [
+  ...base,
+  {
+    files: ['rollup.config.js'],
+    languageOptions: {
+      globals: globals.node,
+    },
+    rules: {
+      'import-x/no-default-export': 'off',
+    },
+  },
+];

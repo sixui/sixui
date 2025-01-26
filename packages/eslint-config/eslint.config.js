@@ -6,11 +6,9 @@ export default [
   ...base,
   {
     files: ['*.js'],
-
     languageOptions: {
       globals: globals.node,
     },
-
     rules: {
       'import-x/no-default-export': 'off',
     },

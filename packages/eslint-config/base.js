@@ -8,30 +8,26 @@ import turboPlugin from 'eslint-plugin-turbo';
  * A shared ESLint configuration for JS files.
  */
 export default [
-  // https://github.com/prettier/eslint-plugin-prettier?tab=readme-ov-file#configuration-new-eslintconfigjs
-  eslintPluginPrettierRecommended,
   // https://typescript-eslint.io/getting-started#step-2-configuration
   eslint.configs.recommended,
+  // https://github.com/prettier/eslint-plugin-prettier?tab=readme-ov-file#configuration-new-eslintconfigjs
+  eslintPluginPrettierRecommended,
   // https://github.com/un-ts/eslint-plugin-import-x?tab=readme-ov-file#configuration-new-eslintconfigjs
   eslintPluginImportX.flatConfigs.recommended,
-  eslintPluginImportX.flatConfigs.typescript,
   {
     ignores: ['**/dist'],
-  },
-  {
-    languageOptions: {
-      parserOptions: {
-        projectService: {
-          allowDefaultProject: ['*.js', '*.mjs'],
-        },
-      },
-    },
     plugins: {
       fp: fpPlugin,
       turbo: turboPlugin,
     },
+    languageOptions: {
+      parserOptions: {
+        projectService: true,
+      },
+    },
     settings: {
       'import-x/extensions': 'always',
+      'import-x/resolver': { typescript: true },
     },
     rules: {
       curly: 'error',

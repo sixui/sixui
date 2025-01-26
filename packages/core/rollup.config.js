@@ -4,16 +4,19 @@ import { vanillaExtractPlugin } from '@vanilla-extract/rollup-plugin';
 import dts from 'rollup-plugin-dts';
 import esbuild from 'rollup-plugin-esbuild';
 import depsExternal from 'rollup-plugin-node-externals';
-import ts from 'typescript';
+import {
+  parseJsonConfigFileContent,
+  readConfigFile,
+  ScriptTarget,
+  sys,
+} from 'typescript';
 
 const loadCompilerOptions = (tsconfig) => {
-  if (!tsconfig) return {};
-  const configFile = ts.readConfigFile(tsconfig, ts.sys.readFile);
-  const { options } = ts.parseJsonConfigFileContent(
-    configFile.config,
-    ts.sys,
-    './',
-  );
+  if (!tsconfig) {
+    return {};
+  }
+  const configFile = readConfigFile(tsconfig, sys.readFile);
+  const { options } = parseJsonConfigFileContent(configFile.config, sys, './');
   return options;
 };
 
@@ -41,6 +44,7 @@ const bundleCssEmits = () => ({
     const output = allImports.reduce(
       (resultingCode, [importLine, moduleId]) => {
         if (emittedCSSFiles.has(path.posix.join(dirname, moduleId))) {
+          // eslint-disable-next-line no-console
           console.log('Stripping: ' + importLine);
           return resultingCode.replace(importLine, '');
         }
@@ -50,7 +54,7 @@ const bundleCssEmits = () => ({
     );
     return {
       code: output,
-      map: chunkInfo.map ?? null,
+      map: chunkInfo.map || null,
     };
   },
   /**
@@ -126,7 +130,7 @@ export default [
           noEmit: false,
           emitDeclarationOnly: true,
           noEmitOnError: true,
-          target: ts.ScriptTarget.ESNext,
+          target: ScriptTarget.ESNext,
         },
       }),
     ],

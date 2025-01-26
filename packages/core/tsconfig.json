@@ -2,12 +2,12 @@
   "extends": "@sixui/typescript-config/base.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "jsx": "react-jsx",
     "lib": ["es2022", "dom", "dom.iterable"],
     "types": ["node"],
     "paths": {
       "~/*": ["./src/*"]
     },
-    "jsx": "react-jsx"
   },
   "include": [
     "src/**/*.ts",

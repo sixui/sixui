@@ -30,14 +30,13 @@
     "dist/**/*"
   ],
   "scripts": {
-    "build": "rollup -c",
     "build:prod": "NODE_ENV=production rollup -c",
     "generate-icons:convert": "svg-to-ts-files",
     "generate-icons:format": "eslint src/assets/icons --fix",
     "generate-icons": "run-s generate-icons:convert generate-icons:format",
     "lint:check": "eslint src --fix",
     "ts:check": "tsc --pretty --noEmit",
-    "check:all": "run-s lint:check ts:check test",
+    "check:all": "run-s lint:check ts:check",
     "pre-commit": "run-s generate-icons"
   },
   "dependencies": {
@@ -67,6 +66,7 @@
     "@types/react-transition-group": "^4",
     "@vanilla-extract/rollup-plugin": "^1.3.12",
     "eslint": "^9.19.0",
+    "globals": "^15.14.0",
     "npm-run-all": "^4.1.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
