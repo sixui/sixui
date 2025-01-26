@@ -6,11 +6,6 @@ export default [
   {
     languageOptions: {
       globals: globals.node,
-      parserOptions: {
-        projectService: false,
-        project: './tsconfig.eslint.json',
-      },
     },
   },
-  { ignores: ['**/*.{mjs,cjs,js,d.ts,d.mts}'] },
 ];

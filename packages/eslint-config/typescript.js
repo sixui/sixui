@@ -51,9 +51,7 @@ export default tseslint.config(...base, {
     '@typescript-eslint/prefer-nullish-coalescing': [
       'error',
       {
-        ignorePrimitives: {
-          boolean: true,
-        },
+        ignorePrimitives: true,
       },
     ],
     '@typescript-eslint/consistent-type-definitions': 0,

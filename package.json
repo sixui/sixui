@@ -15,12 +15,10 @@
     "prettify:fix:file": "prettier --write",
     "lint:fix:file": "eslint --fix",
     "lint:check": "eslint scripts --fix",
-    "ts:check": "tsc --pretty --noEmit",
-    "check:all": "run-s lint:check ts:check",
     "dev": "turbo run dev",
     "turbo:check:all": "turbo run check:all",
     "pre-commit": "turbo run pre-commit",
-    "build": "tsx scripts/build"
+    "build": "turbo run build"
   },
   "lint-staged": {
     "**/*.(ts|js)?(x)": [
@@ -34,6 +32,7 @@
     "@commitlint/config-conventional": "^19.6.0",
     "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
     "auto": "^11.3.0",
+    "eslint": "^9.19.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.2",
     "npm-run-all": "^4.1.5",

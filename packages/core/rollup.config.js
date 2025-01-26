@@ -1,4 +1,4 @@
-import path from 'path';
+import path from 'node:path';
 import json from '@rollup/plugin-json';
 import { vanillaExtractPlugin } from '@vanilla-extract/rollup-plugin';
 import dts from 'rollup-plugin-dts';
