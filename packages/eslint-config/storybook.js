@@ -11,7 +11,7 @@ export default tseslint.config(
   // https://github.com/storybookjs/eslint-plugin-storybook?tab=readme-ov-file#configuration-eslintconfigcmjs
   storybook.configs['flat/recommended'],
   {
-    files: ['**/*.stories.tsx'],
+    files: ['*.stories.tsx'],
 
     rules: {
       'import-x/no-default-export': 'off',

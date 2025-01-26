@@ -1,9 +1,10 @@
 {
+  "private": true,
   "name": "@sixui/eslint-config",
   "type": "module",
-  "private": true,
   "exports": {
     ".": "./base.js",
+    "./typescript": "./typescript.js",
     "./react": "./react.js",
     "./storybook": "./storybook.js"
   },

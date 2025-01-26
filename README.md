@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://sixui.com" rel="noopener" target="_blank"><img width="150" height="150" src="doc/images/logo-transparent-nomargin.svg" alt="SixUI logo"></a>
+  <a href="https://sixui.com" rel="noopener" target="_blank"><img width="150" height="150" src="doc/images/logo-transparent-nomargin.svg" alt="Sx logo"></a>
 </p>
 
 <h1 align="center">SixUI</h1>
@@ -331,7 +331,7 @@ See https://stylexjs.com/docs/learn/installation/.
 
 'use client';
 
-import { ThemeProvider, baseTheme, Button } from '@sixui/ui';
+import { baseTheme, Button, ThemeProvider } from '@sixui/ui';
 
 const BasicExample: React.FC = () => (
   <ThemeProvider theme={baseTheme}>
@@ -383,8 +383,8 @@ $ yarn add vite-plugin-stylex --dev
 ```js
 // vite.config.ts
 
-import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
 import styleX from 'vite-plugin-stylex';
 
 // https://vitejs.dev/config/
@@ -408,11 +408,11 @@ import '@sixui/ui/styles.css';
 
 ```tsx
 import { forwardRef } from 'react';
+import { Button } from '@sixui/ui';
 import {
   Link as RouterLink,
   LinkProps as RouterLinkProps,
 } from 'react-router-dom';
-import { Button } from '@sixui/ui';
 
 export const LinkBehavior = forwardRef<
   HTMLAnchorElement,
@@ -425,7 +425,7 @@ export const LinkBehavior = forwardRef<
 });
 
 export const Usage: React.FC = () => (
-  <Button component={LinkBehavior} href='/login'>
+  <Button component={LinkBehavior} href="/login">
     Login
   </Button>
 );

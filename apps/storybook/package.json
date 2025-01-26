@@ -37,7 +37,9 @@
     "lint:check": "eslint src --fix",
     "ts:check": "tsc --pretty --noEmit",
     "check:all": "run-s lint:check ts:check test",
-    "pre-commit": "run-s generate-icons"
+    "pre-commit": "run-s generate-icons",
+    "build-storybook": "pnpm build:sb",
+    "build:sb": "storybook build"
   },
   "dependencies": {
     "@floating-ui/core": "^1.6.9",

@@ -8,7 +8,6 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "rewrap.autoWrap.enabled": true,
   "eslint.workingDirectories": [
-    { "pattern": "./apps/*" },
-    { "pattern": "./packages/*" }
+    { "mode": "auto", "changeProcessCWD": true },
   ]
 }
