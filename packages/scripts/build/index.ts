@@ -1,3 +1,4 @@
-import { OutputOptions, rollup, RollupOptions } from 'rollup';
+import { loadCompilerOptions } from './loadCompilerOptions';
 
-console.log('__Hello World!');
+const x = loadCompilerOptions('./tsconfig.eslint.json');
+console.log('___X', x);
