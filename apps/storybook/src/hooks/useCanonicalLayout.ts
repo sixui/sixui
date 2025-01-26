@@ -88,7 +88,7 @@ export const useCanonicalLayout = (
       }
 
       if (windowSizeClass?.medium) {
-        return options?.dense
+        return options.dense
           ? {
               windowSizeClass,
               navigationMode,

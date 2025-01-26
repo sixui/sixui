@@ -5,17 +5,14 @@ export const dataProps = (
   data: IData | undefined,
 ): IDataProps<keyof IData> | undefined =>
   data
-    ? Object.keys(data).reduce(
-        (acc, key) => {
-          const value = data[key];
+    ? Object.keys(data).reduce<IDataProps<keyof IData>>((acc, key) => {
+        const value = data[key];
 
-          return value
-            ? {
-                ...acc,
-                [`data-${key}`]: value,
-              }
-            : acc;
-        },
-        {} as IDataProps<keyof IData>,
-      )
+        return value
+          ? {
+              ...acc,
+              [`data-${key}`]: value,
+            }
+          : acc;
+      }, {})
     : undefined;

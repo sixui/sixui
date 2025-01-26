@@ -28,7 +28,7 @@ export interface IButtonBaseOwnProps {
   target?: React.AnchorHTMLAttributes<HTMLAnchorElement>['target'];
   rel?: string;
   disabled?: boolean;
-  onClick?: (event: React.MouseEvent<Element>) => IMaybeAsync<unknown>;
+  onClick?: (event: React.MouseEvent) => IMaybeAsync<unknown>;
   touchTargetRenderer?: (() => React.ReactNode) | null;
   nonInteractive?: boolean;
 

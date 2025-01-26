@@ -11,7 +11,7 @@ import type { IComponentFactory } from '~/utils/component/componentFactory';
 
 export interface ISuggestBaseOwnProps<TItem>
   extends IOmit<
-      IFloatingFilterableListBaseProps<TItem, HTMLElement>,
+      IFloatingFilterableListBaseProps<TItem>,
       | 'onItemSelect'
       | 'renderer'
       | 'listRenderer'

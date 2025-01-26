@@ -65,7 +65,11 @@ const AppLayoutNavigationBarFrame: React.FC<IAppLayoutNavigationBarProps> = (
   return (
     <Flex direction="column" gap="$2">
       <Flex direction="row" gap="$2">
-        <Button onClick={() => toggleOpened()}>
+        <Button
+          onClick={() => {
+            toggleOpened();
+          }}
+        >
           {opened ? 'Close' : 'Open'}
         </Button>
       </Flex>

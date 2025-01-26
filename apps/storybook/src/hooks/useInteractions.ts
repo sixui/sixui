@@ -93,7 +93,7 @@ export const useInteractions = <TElement extends HTMLElement>(
     disabled,
     clickThrough,
     dragged,
-  } = props ?? {};
+  } = props;
 
   const triggerRef = useRef<TElement>(null);
 
@@ -122,7 +122,9 @@ export const useInteractions = <TElement extends HTMLElement>(
 
         setPressed(false);
       },
-      onPointerLeave: () => setPressed(false),
+      onPointerLeave: () => {
+        setPressed(false);
+      },
       onKeyDown: (event) => {
         // When using a different element than a button, we want to allow the
         // Enter or Space key to trigger the click event for accessibility
@@ -134,7 +136,9 @@ export const useInteractions = <TElement extends HTMLElement>(
           setPressed(true);
         }
       },
-      onKeyUp: () => setPressed(false),
+      onKeyUp: () => {
+        setPressed(false);
+      },
     }),
     [clickThrough],
   );
@@ -186,9 +190,9 @@ export const useInteractions = <TElement extends HTMLElement>(
   // leaves the component, because pointer events are disabled.
   useEffect(() => {
     if (disabled) {
-      activeTriggers.forEach(({ onHoverEnd }) =>
-        onHoverEnd({} as React.PointerEvent),
-      );
+      activeTriggers.forEach(({ onHoverEnd }) => {
+        onHoverEnd({} as React.PointerEvent);
+      });
       activeTriggers.length = 0;
     }
   }, [disabled]);

@@ -7,12 +7,7 @@ export const getDataAttributes = (
   modifiers: IModifiers,
 ): Record<string, string> =>
   Object.entries(modifiers).reduce((acc, [key, value]) => {
-    if (
-      value === undefined ||
-      value === '' ||
-      value === false ||
-      value === null
-    ) {
+    if (value === undefined || value === '' || value === false) {
       return acc;
     }
 

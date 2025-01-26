@@ -40,10 +40,13 @@ export const useDisclosure = (
     });
   }, [onClose]);
 
-  const toggle = useCallback(
-    () => (opened ? close() : open()),
-    [close, open, opened],
-  );
+  const toggle = useCallback(() => {
+    if (opened) {
+      close();
+    } else {
+      open();
+    }
+  }, [close, open, opened]);
 
   return [opened, { open, close, toggle }] as const;
 };

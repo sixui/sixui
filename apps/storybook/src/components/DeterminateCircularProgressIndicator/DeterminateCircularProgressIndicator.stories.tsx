@@ -115,7 +115,7 @@ export const WithLabelFormatter: IStory = {
     ...defaultArgs,
     fz: '2.5rem',
     withLabel: true,
-    labelFormatter: (value) => `[${Math.round(value * 100)}]`,
+    labelFormatter: (value) => `[${String(Math.round(value * 100))}]`,
   },
 };
 
@@ -137,7 +137,7 @@ export const WithRange: IStory = {
     ...defaultArgs,
     fz: '2.5rem',
     withLabel: true,
-    labelFormatter: (value) => `${value}`,
+    labelFormatter: (value) => String(value),
     min: -64,
     max: 128,
   },
@@ -163,7 +163,7 @@ export const ZeroBased: IStory = {
     ...defaultArgs,
     fz: '2.5rem',
     withLabel: true,
-    labelFormatter: (value) => `${value}`,
+    labelFormatter: (value) => String(value),
     min: -100,
     max: 100,
     zeroBased: true,

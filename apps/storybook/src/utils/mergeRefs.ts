@@ -11,7 +11,7 @@ export const mergeRefs = <TInstance>(
         ref(value);
       } else if (ref != null) {
         // eslint-disable-next-line no-param-reassign
-        (ref as React.MutableRefObject<TInstance | null>).current = value;
+        ref.current = value;
       }
     });
   };

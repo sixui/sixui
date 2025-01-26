@@ -52,7 +52,7 @@ export const ColorPickerContent = componentFactory<IColorPickerContentFactory>(
           selected={selectedColor ? color === selectedColor : undefined}
           onClick={
             onClick
-              ? (event: React.MouseEvent<Element>) => onClick(event, color)
+              ? (event: React.MouseEvent) => onClick(event, color)
               : undefined
           }
         />

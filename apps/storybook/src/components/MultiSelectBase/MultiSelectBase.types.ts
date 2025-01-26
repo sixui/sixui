@@ -12,7 +12,7 @@ import { ITextInputFieldProps } from '~/components/TextInputField';
 
 export interface IMultiSelectBaseOwnProps<TItem>
   extends IOmit<
-      IFloatingFilterableListBaseProps<TItem, HTMLElement>,
+      IFloatingFilterableListBaseProps<TItem>,
       'onItemSelect' | 'renderer' | 'children'
     >,
     IUseMultiFilterableListBaseProps<TItem, HTMLElement>,

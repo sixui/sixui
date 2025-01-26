@@ -43,7 +43,9 @@ export const Frame = componentFactory<IFrameFactory>((props, forwardedRef) => {
   );
   const handleRef = useMergeRefs(
     forwardedRef,
-    (element: HTMLIFrameElement | null) => setIframeElement(element),
+    (element: HTMLIFrameElement | null) => {
+      setIframeElement(element);
+    },
   );
   const parentStyles = useParentStyles({
     disabled: !importParentStyles,
@@ -53,7 +55,9 @@ export const Frame = componentFactory<IFrameFactory>((props, forwardedRef) => {
   const iframeContentWindow = iframeElement?.contentWindow;
 
   const [, setLoadedAt] = useState<number>(Date.now());
-  const handleLoad = (): void => setLoadedAt(Date.now());
+  const handleLoad = (): void => {
+    setLoadedAt(Date.now());
+  };
 
   return (
     <Box

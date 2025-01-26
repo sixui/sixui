@@ -81,11 +81,9 @@ export const Expandable = componentFactory<IExpandableFactory>(
         : { height: px(collapsedSizeProp) };
     const expandedSize: Partial<ISize<string>> =
       orientation === 'horizontal'
-        ? { width: contentSize?.width ? `${contentSize?.width}px` : undefined }
+        ? { width: contentSize?.width ? `${contentSize.width}px` : undefined }
         : {
-            height: contentSize?.height
-              ? `${contentSize?.height}px`
-              : undefined,
+            height: contentSize?.height ? `${contentSize.height}px` : undefined,
           };
 
     const expand = (expanded: boolean): void => {

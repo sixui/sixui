@@ -73,7 +73,7 @@ const ControlledCheckbox: React.FC<IOmit<ICheckboxProps, 'checked'>> = (
         const checked = value !== undefined;
 
         return Promise.resolve()
-          .then(() => onChange?.(value))
+          .then(() => onChange(value))
           .then(() => {
             setIndeterminate(false);
             setChecked(checked);

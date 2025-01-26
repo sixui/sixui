@@ -54,7 +54,6 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       loading && (!!loadingText || (!hasStartSlot && !hasEndSlot));
     const iconAnimation =
       (loadingProp || handlingClick || animating) &&
-      loadingAnimation !== undefined &&
       loadingAnimation !== 'progressIndicator' &&
       loadingAnimation !== 'none'
         ? loadingAnimation
@@ -78,10 +77,9 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       },
     });
 
-    const handleAnimationIteration = useCallback(
-      (): void => setAnimating(handlingClick),
-      [handlingClick, setAnimating],
-    );
+    const handleAnimationIteration = useCallback((): void => {
+      setAnimating(handlingClick);
+    }, [handlingClick, setAnimating]);
 
     const handleClick: React.MouseEventHandler = (event) => {
       if (handlingClick || !onClick) {

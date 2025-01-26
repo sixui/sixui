@@ -58,7 +58,9 @@ const MotionUnpositionedDemo: React.FC<IMotionDemoProps> = (props) => {
         selectedIcon={<FontAwesomeIcon icon={fasStar} />}
         toggle
         selected={transitioning}
-        onClick={() => toggle()}
+        onClick={() => {
+          toggle();
+        }}
       />
       <div
         style={{
@@ -74,7 +76,9 @@ const MotionUnpositionedDemo: React.FC<IMotionDemoProps> = (props) => {
         <MotionDemo
           {...props}
           transitioning={transitioning}
-          onClose={() => toggle(false)}
+          onClose={() => {
+            toggle(false);
+          }}
         />
       </div>
     </>

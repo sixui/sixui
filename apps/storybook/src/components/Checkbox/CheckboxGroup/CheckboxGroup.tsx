@@ -74,7 +74,9 @@ export const CheckboxGroup = polymorphicComponentFactory<ICheckboxGroupFactory>(
         void executeLazyPromise(
           () => onChange?.(event, nextValues) as Promise<void>,
           setHandlingChange,
-        ).finally(() => setValues(nextValues));
+        ).finally(() => {
+          setValues(nextValues);
+        });
       },
       [handlingChange, onChange, setValues],
     );

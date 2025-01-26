@@ -117,7 +117,9 @@ export const CheckboxCard = componentFactory<ICheckboxCardFactory>(
         <input
           type="checkbox"
           checked={checked}
-          onClick={(e) => e.stopPropagation()}
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
           onChange={handleChange}
           id={id}
           required={required}

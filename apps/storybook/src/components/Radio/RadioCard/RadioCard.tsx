@@ -166,7 +166,9 @@ export const RadioCard = componentFactory<IRadioCardFactory>(
           name={name}
           type="radio"
           checked={checked}
-          onClick={(e) => e.stopPropagation()}
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
           onChange={handleChange}
           value={value}
           id={id}

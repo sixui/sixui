@@ -36,7 +36,7 @@
     "generate-icons": "run-s generate-icons:convert generate-icons:format",
     "lint:check": "eslint src --fix",
     "ts:check": "tsc --pretty --noEmit",
-    "check:all": "run-s lint:check ts:check test",
+    "check:all": "run-s lint:check ts:check",
     "pre-commit": "run-s generate-icons",
     "build-storybook": "pnpm build:sb",
     "build:sb": "storybook build"

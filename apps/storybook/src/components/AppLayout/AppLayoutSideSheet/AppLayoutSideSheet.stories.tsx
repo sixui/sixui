@@ -70,10 +70,18 @@ const AppLayoutSideSheetFrame: React.FC<IAppLayoutSideSheetProps> = (props) => {
   return (
     <Flex direction="column" gap="$2">
       <Flex direction="row" gap="$2">
-        <Button onClick={() => toggleStandardOpened()}>
+        <Button
+          onClick={() => {
+            toggleStandardOpened();
+          }}
+        >
           {standardOpened ? 'Close' : 'Open'} standard
         </Button>
-        <Button onClick={() => toggleModalOpened()}>
+        <Button
+          onClick={() => {
+            toggleModalOpened();
+          }}
+        >
           {modalOpened ? 'Close' : 'Open'} modal
         </Button>
       </Flex>

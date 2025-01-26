@@ -5,7 +5,7 @@ import { SvgIcon } from '~/components/SvgIcon';
 
 export type IFilterableListBaseFieldTrailingIcon = {
   opened?: boolean;
-  onClear?: (event?: React.MouseEvent<Element>) => void;
+  onClear?: (event?: React.MouseEvent) => void;
 };
 
 export const FilterableListBaseFieldTrailingIcon = (

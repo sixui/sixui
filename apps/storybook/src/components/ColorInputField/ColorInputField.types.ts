@@ -10,10 +10,7 @@ import type {
 } from './ColorInputField.css';
 
 export interface IColorInputFieldColorPickerRendererProps {
-  onClick: (
-    event: React.MouseEvent<Element>,
-    color: string,
-  ) => IMaybeAsync<unknown>;
+  onClick: (event: React.MouseEvent, color: string) => IMaybeAsync<unknown>;
   selectedColor?: string;
   customPalette?: IColorPalette;
 }

@@ -16,10 +16,7 @@ export const suggestBaseFactory = <
   TItem,
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 >() => {
-  const FloatingFilterableListBase = floatingFilterableListBaseFactory<
-    TItem,
-    HTMLElement
-  >();
+  const FloatingFilterableListBase = floatingFilterableListBaseFactory<TItem>();
 
   const SuggestBase = componentFactory<ISuggestBaseFactory<TItem>>(
     (props, forwardedRef) => {
@@ -87,11 +84,12 @@ export const suggestBaseFactory = <
                     clearable &&
                     singleFilterableListBase.selectedItem &&
                     !itemEmpty?.(singleFilterableListBase.selectedItem)
-                      ? (event) =>
+                      ? (event) => {
                           singleFilterableListBase.handleClear(
                             renderProps.afterItemsRemove,
                             event,
-                          )
+                          );
+                        }
                       : undefined
                   }
                   opened={renderProps.opened}

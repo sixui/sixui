@@ -36,7 +36,11 @@ const ModalAsideFrame: React.FC<IModalAsideProps> = (props) => {
   return (
     <Flex direction="column" gap="$2">
       <Flex direction="row" gap="$2">
-        <Button onClick={() => toggleOpened()}>
+        <Button
+          onClick={() => {
+            toggleOpened();
+          }}
+        >
           {opened ? 'Close' : 'Open'}
         </Button>
       </Flex>
@@ -59,7 +63,9 @@ const ModalAsideFrame: React.FC<IModalAsideProps> = (props) => {
           <Placeholder label="Page" grow={1} expanded diagonals />
           <ModalAside
             opened={opened}
-            onClose={() => toggleOpened(false)}
+            onClose={() => {
+              toggleOpened(false);
+            }}
             {...other}
           />
         </Flex>

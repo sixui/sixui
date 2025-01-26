@@ -27,7 +27,9 @@ const TEXT =
 const defaultArgs = {
   trigger: ({ expand, expanded, disabled }) => (
     <IconButton
-      onClick={() => expand(!expanded)}
+      onClick={() => {
+        expand(!expanded);
+      }}
       icon={
         <FontAwesomeIcon
           icon={expanded ? faChevronCircleLeft : faChevronCircleRight}

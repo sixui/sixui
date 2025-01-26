@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
-import clsx from 'clsx';
+import cx from 'clsx';
 
 import type { IPaperProps } from '~/components/Paper';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
@@ -30,7 +30,7 @@ export const ContainerQueries: IStory = {
       cols={windowSizeClassNames.map((windowSizeClassName) => ({
         legend: capitalizeFirstLetter(windowSizeClassName),
         props: {
-          className: clsx(
+          className: cx(
             responsiveStoriesClassNames.root,
             responsiveStoriesClassNames[`root$eq$${windowSizeClassName}`],
           ),

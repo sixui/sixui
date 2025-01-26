@@ -87,7 +87,7 @@ const ControlledSwitch: React.FC<IOmit<ISwitchProps, 'checked'>> = (props) => {
         const checked = value !== undefined;
 
         return Promise.resolve()
-          .then(() => onChange?.(value))
+          .then(() => onChange(value))
           .then(() => {
             setChecked(checked);
           });

@@ -48,7 +48,7 @@ export const Breadcrumbs = componentFactory<IBreadcrumbsFactory>(
 
     const insertSeparators = useCallback(
       (items: Array<React.JSX.Element>): Array<React.JSX.Element> =>
-        items.reduce(
+        items.reduce<Array<React.JSX.Element>>(
           (acc, current, index) =>
             index < items.length - (showTrailingSeparator ? 0 : 1)
               ? [
@@ -63,7 +63,7 @@ export const Breadcrumbs = componentFactory<IBreadcrumbsFactory>(
                   </li>,
                 ]
               : [...acc, current],
-          [] as Array<React.JSX.Element>,
+          [],
         ),
       [getStyles, separator, showTrailingSeparator],
     );
@@ -133,7 +133,7 @@ export const Breadcrumbs = componentFactory<IBreadcrumbsFactory>(
     return (
       <Box as="ol" {...getStyles('root')} ref={forwardedRef} {...other}>
         {insertSeparators(
-          expanded || (maxItems !== undefined && allItems.length <= maxItems)
+          expanded || allItems.length <= maxItems
             ? allItems
             : renderItemsBeforeAndAfter(allItems),
         )}

@@ -29,7 +29,11 @@ export const CustomLayout: React.FC = () => {
     <>
       <AppLayout.Body>
         <Placeholder shape="$sm" grow={1} h="$64" diagonals>
-          <Button onClick={() => toggleBottomSheet()}>
+          <Button
+            onClick={() => {
+              toggleBottomSheet();
+            }}
+          >
             Toggle Bottom Sheet
           </Button>
         </Placeholder>
@@ -42,7 +46,9 @@ export const CustomLayout: React.FC = () => {
       <BottomSheet
         showCloseButton
         opened={bottomSheetOpened}
-        onClose={() => toggleBottomSheet(false)}
+        onClose={() => {
+          toggleBottomSheet(false);
+        }}
         h="$48"
       >
         <BottomSheetContent />

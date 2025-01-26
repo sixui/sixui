@@ -8,7 +8,7 @@ export const copyToClipboard = (text: string): Promise<void> => {
 
   return navigator.clipboard
     .writeText(text)
-    .catch((error) => {
+    .catch((error: unknown) => {
       // eslint-disable-next-line no-console
       console.warn(
         "Clipboard API not found, this copy function will not work. This is likely because you're using an unsupported browser or you're not using HTTPS.",

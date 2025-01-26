@@ -70,7 +70,9 @@ const AnchoredAnimatedShowcase: React.FC<
   const [invisible, setInvisible] = useState(false);
 
   useEffect(() => {
-    setInterval(() => setInvisible((prev) => !prev), 2000);
+    setInterval(() => {
+      setInvisible((prev) => !prev);
+    }, 2000);
   }, []);
 
   return (

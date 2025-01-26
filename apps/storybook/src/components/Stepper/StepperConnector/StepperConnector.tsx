@@ -26,10 +26,9 @@ export const StepperConnector = componentFactory<IStepperConnectorFactory>(
 
     const stepContext = useStepperStepContext();
 
-    const orientation =
-      orientationProp ?? stepContext?.orientation ?? 'horizontal';
+    const orientation = orientationProp ?? stepContext.orientation;
     const stepLabelPosition =
-      stepLabelPositionProp ?? stepContext?.labelPosition ?? 'right';
+      stepLabelPositionProp ?? stepContext.labelPosition;
     const contentPosition =
       (orientation === 'horizontal' ? contentPositionProp : undefined) ??
       'middle';
@@ -45,7 +44,7 @@ export const StepperConnector = componentFactory<IStepperConnectorFactory>(
       modifiers: {
         orientation,
         'step-label-position': stepLabelPosition,
-        completed: stepContext?.completed,
+        completed: stepContext.completed,
       },
     });
 

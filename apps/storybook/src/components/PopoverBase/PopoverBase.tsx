@@ -187,7 +187,9 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
               ? undefined
               : typeof middlewares.offset === 'number'
                 ? { mainAxis: middlewares.offset }
-                : middlewares.offset),
+                : !isFunction(middlewares.offset)
+                  ? middlewares.offset
+                  : undefined),
           }),
         !!middlewares.flip &&
           flip({
@@ -280,8 +282,12 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
           placement: objectFromPlacement(floating.placement),
           getProps: (props) => interactions.getReferenceProps(props),
           setRef: floating.refs.setReference,
-          open: () => setOpened(true),
-          close: () => setOpened(false),
+          open: () => {
+            setOpened(true);
+          },
+          close: () => {
+            setOpened(false);
+          },
         })
       : children;
 
@@ -321,10 +327,9 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
                             if (jail) {
                               setIsShaking(true);
                               clearTimeout(shakingTimeout.current);
-                              shakingTimeout.current = setTimeout(
-                                () => setIsShaking(false),
-                                300,
-                              );
+                              shakingTimeout.current = setTimeout(() => {
+                                setIsShaking(false);
+                              }, 300);
                             }
                           },
                         },
@@ -372,7 +377,9 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
                         contentRenderer({
                           parentProps: props,
                           placement: finalPlacement,
-                          close: () => setOpened(false),
+                          close: () => {
+                            setOpened(false);
+                          },
                           forwardedProps: forwardProps ? other : undefined,
                           renderCursor: cursorType ? renderCursor : undefined,
                         })

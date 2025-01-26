@@ -17,7 +17,7 @@ export const useMultiSelect = (props: IUseSelectProps): IUseSelectResult => {
   const { items, defaultValue, value: values } = props;
   const defaultItemsRef = useRef(
     defaultValue
-      ? items.filter((item) => defaultValue?.includes(item.value))
+      ? items.filter((item) => defaultValue.includes(item.value))
       : undefined,
   );
   const selectedItems = useMemo(

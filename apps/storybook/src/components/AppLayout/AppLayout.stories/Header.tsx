@@ -25,13 +25,13 @@ export const Header: React.FC<IHeaderProps> = (props) => {
               icon={
                 <FontAwesomeIcon
                   icon={
-                    appLayoutContext.navigationDrawer?.state?.opened
+                    appLayoutContext.navigationDrawer.state.opened
                       ? fasXmark
                       : fasBars
                   }
                 />
               }
-              onClick={appLayoutContext.navigationDrawer?.state?.toggle}
+              onClick={appLayoutContext.navigationDrawer.state.toggle}
             />
           )}
           <div>Header</div>
@@ -43,13 +43,11 @@ export const Header: React.FC<IHeaderProps> = (props) => {
               icon={
                 <FontAwesomeIcon
                   icon={
-                    appLayoutContext.sideSheet?.state?.opened
-                      ? fasXmark
-                      : fasBars
+                    appLayoutContext.sideSheet.state.opened ? fasXmark : fasBars
                   }
                 />
               }
-              onClick={appLayoutContext.sideSheet?.state?.toggle}
+              onClick={appLayoutContext.sideSheet.state.toggle}
             />
           )}
         </Flex>

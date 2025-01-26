@@ -25,10 +25,7 @@ export const multiSelectBaseFactory = <
   TItem,
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 >() => {
-  const FloatingFilterableListBase = floatingFilterableListBaseFactory<
-    TItem,
-    HTMLElement
-  >();
+  const FloatingFilterableListBase = floatingFilterableListBaseFactory<TItem>();
 
   const MultiSelectBase = componentFactory<IMultiSelectBaseFactory<TItem>>(
     (props, forwardedRef) => {
@@ -244,11 +241,12 @@ export const multiSelectBaseFactory = <
                   <FilterableListBaseFieldTrailingIcon
                     onClear={
                       clearable && multiFilterableListBase.selectedItems.length
-                        ? (event) =>
+                        ? (event) => {
                             multiFilterableListBase.handleClear(
                               renderProps.afterItemsRemove,
                               event,
-                            )
+                            );
+                          }
                         : undefined
                     }
                     opened={renderProps.opened}

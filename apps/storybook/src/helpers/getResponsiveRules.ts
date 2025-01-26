@@ -21,27 +21,30 @@ export type IResponsiveRule = {
 export const getResponsiveRules = (
   classes: IThemeWindowSizeClassesValues,
 ): Array<IResponsiveRule> =>
-  Object.entries(classes).reduce((acc, [key, breakpoint], index) => {
-    const windowClassName = key as IThemeWindowSizeClassName;
-    const previousRule = index > 0 ? acc[index - 1] : undefined;
-    const containerNames: Array<IWindowSizeClassContainerName> = previousRule
-      ? [
-          ...previousRule.containerNames.slice(0, -1),
-          `${windowClassName}AndUp`,
-          windowClassName,
-        ]
-      : [`${windowClassName}AndUp`, windowClassName];
-    const minWidth = previousRule?.maxWidth ?? '0';
-    const maxWidth = breakpoint;
-    const query = serializeResponsiveRuleQuery({
-      minWidth,
-      maxWidth: breakpoint,
-    });
+  Object.entries(classes).reduce<Array<IResponsiveRule>>(
+    (acc, [key, breakpoint], index) => {
+      const windowClassName = key as IThemeWindowSizeClassName;
+      const previousRule = index > 0 ? acc[index - 1] : undefined;
+      const containerNames: Array<IWindowSizeClassContainerName> = previousRule
+        ? [
+            ...previousRule.containerNames.slice(0, -1),
+            `${windowClassName}AndUp`,
+            windowClassName,
+          ]
+        : [`${windowClassName}AndUp`, windowClassName];
+      const minWidth = previousRule?.maxWidth ?? '0';
+      const maxWidth = breakpoint;
+      const query = serializeResponsiveRuleQuery({
+        minWidth,
+        maxWidth: breakpoint,
+      });
 
-    return [...acc, { containerNames, minWidth, maxWidth, query }];
+      return [...acc, { containerNames, minWidth, maxWidth, query }];
 
-    return acc;
-  }, [] as Array<IResponsiveRule>);
+      return acc;
+    },
+    [],
+  );
 
 export const getResponsiveRules2 = (
   classes: IThemeWindowSizeClassesValues,

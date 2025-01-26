@@ -37,9 +37,9 @@ export type IUseMultiFilterableListBaseResult<
   handleClear: (
     afterItemsRemove: (
       items: Array<TItem>,
-      event?: React.SyntheticEvent<Element>,
+      event?: React.SyntheticEvent,
     ) => void,
-    event?: React.MouseEvent<Element>,
+    event?: React.MouseEvent,
   ) => void;
   getFocusedChipIndex: () => number | undefined;
   items: Array<TItem>;
@@ -147,9 +147,7 @@ export const useMultiFilterableListBase = <
 
     if (isItemSelected(selectedItem)) {
       const selectedIndex = getSelectedItemIndex(selectedItem);
-      if (selectedIndex !== undefined) {
-        onItemsChange?.(deselectItemAtIndex(selectedIndex));
-      }
+      onItemsChange?.(deselectItemAtIndex(selectedIndex));
     } else {
       onItemsChange?.(selectItem(selectedItem));
     }
@@ -219,14 +217,16 @@ export const useMultiFilterableListBase = <
     return focusedSelectedItemIndex !== undefined;
   };
 
-  const handleQueryChange = (): void => setFocusedSelectedItemIndex(undefined);
+  const handleQueryChange = (): void => {
+    setFocusedSelectedItemIndex(undefined);
+  };
 
   const handleClear = (
     afterItemsRemove: (
       items: Array<TItem>,
-      event?: React.SyntheticEvent<Element>,
+      event?: React.SyntheticEvent,
     ) => void,
-    event?: React.MouseEvent<Element>,
+    event?: React.MouseEvent,
   ): void => {
     event?.stopPropagation();
 

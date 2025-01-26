@@ -125,7 +125,7 @@ const classNames = createStyles({
     display: 'none',
 
     selectors: {
-      [`${getModifierSelector<IModifier>('empty', root)}`]: {
+      [getModifierSelector<IModifier>('empty', root)]: {
         display: 'block',
 
         vars: createTokensVars(Diagonals.theme.tokens, {
@@ -134,7 +134,7 @@ const classNames = createStyles({
           opacity: tokens.diagonals.opacity.empty,
         }),
       },
-      [`${getModifierSelector<IModifier>(['invalid', '!empty'], root)}`]: {
+      [getModifierSelector<IModifier>(['invalid', '!empty'], root)]: {
         display: 'block',
 
         vars: createTokensVars(Diagonals.theme.tokens, {

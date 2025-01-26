@@ -98,22 +98,20 @@ export const Tabs = componentFactory<ITabsFactory>((props, forwardedRef) => {
           return;
         }
 
-        indicator?.getAnimations().forEach((animation) => animation.cancel());
+        indicator.getAnimations().forEach((animation) => {
+          animation.cancel();
+        });
 
-        if (activeTab) {
-          const previousTab = previousTabRef.current;
-          if (previousTab && indicator) {
-            indicatorAnimationRef.current = indicator.animate(
-              getIndicatorKeyframes(previousTab, activeTab),
-              {
-                duration: 150,
-                easing: 'cubic-bezier(0.2, 0, 0, 1)',
-              },
-            );
-          }
+        const previousTab = previousTabRef.current;
+        indicatorAnimationRef.current = indicator.animate(
+          getIndicatorKeyframes(previousTab, activeTab),
+          {
+            duration: 150,
+            easing: 'cubic-bezier(0.2, 0, 0, 1)',
+          },
+        );
 
-          previousTabRef.current = activeTab;
-        }
+        previousTabRef.current = activeTab;
       },
       onChange(anchor) {
         setAnchor(anchor);

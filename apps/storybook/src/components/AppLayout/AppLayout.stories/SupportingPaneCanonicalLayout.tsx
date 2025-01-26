@@ -90,7 +90,9 @@ export const SupportingPaneCanonicalLayout: React.FC<
         <BottomSheet
           showCloseButton
           opened={bottomSheetOpened}
-          onClose={() => toggleBottomSheet(false)}
+          onClose={() => {
+            toggleBottomSheet(false);
+          }}
         >
           {supportingPaneBottomSheet}
         </BottomSheet>

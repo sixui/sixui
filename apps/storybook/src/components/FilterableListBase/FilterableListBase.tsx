@@ -121,7 +121,7 @@ export const filterableListBaseFactory = <
       createNewItem: TItem | Array<TItem>,
     ): boolean =>
       canCreateItems &&
-      !!query?.length &&
+      !!query.length &&
       // this check is unfortunately O(N) on the number of items, but
       // alas, hiding the "Create Item" option when it exactly matches an
       // existing item is much clearer.
@@ -161,7 +161,9 @@ export const filterableListBaseFactory = <
         index: filteredItems.length,
         modifiers,
         query: trimmedQuery,
-        handleClick: (event) => onItemSelect(createNewItem, event),
+        handleClick: (event) => {
+          onItemSelect(createNewItem, event);
+        },
         getButtonAttributes: (userProps) => ({ ...userProps }),
       });
     };
@@ -178,7 +180,9 @@ export const filterableListBaseFactory = <
         index,
         modifiers,
         query,
-        handleClick: (event) => onItemSelect(item, event),
+        handleClick: (event) => {
+          onItemSelect(item, event);
+        },
         getButtonAttributes: (userProps) => ({ ...userProps }),
       });
     };
@@ -196,7 +200,9 @@ export const filterableListBaseFactory = <
             renderItem,
             cols,
           }),
-          handleQueryChange: (value) => handleQueryChange(value),
+          handleQueryChange: (value) => {
+            handleQueryChange(value);
+          },
           disabled,
           getInputFilterProps: (userProps) => ({ ...userProps }),
         })}

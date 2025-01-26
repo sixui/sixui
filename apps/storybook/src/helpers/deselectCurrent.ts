@@ -19,7 +19,7 @@ export const deselectCurrent = (): (() => void) | undefined => {
   switch (activeElement.tagName.toLowerCase()) {
     case 'input':
     case 'textarea':
-      (activeElement as HTMLElement).blur?.();
+      (activeElement as HTMLElement).blur();
       break;
   }
 
@@ -41,7 +41,7 @@ export const deselectCurrent = (): (() => void) | undefined => {
     switch (activeElement.tagName.toLowerCase()) {
       case 'input':
       case 'textarea':
-        (activeElement as HTMLElement).focus?.();
+        (activeElement as HTMLElement).focus();
         break;
     }
   };

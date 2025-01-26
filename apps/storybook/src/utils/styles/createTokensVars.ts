@@ -12,28 +12,25 @@ export const createTokensVars = <TTokens extends ITokens>(
   tokens: TTokens,
   values: IThemeValues<TTokens>,
 ): Record<string, string> =>
-  Object.entries(values).reduce(
-    (acc, [key, value]) => {
-      const tokenValue = tokens[key as keyof TTokens];
+  Object.entries(values).reduce<Record<string, string>>((acc, [key, value]) => {
+    const tokenValue = tokens[key as keyof TTokens];
 
-      if (typeof value === 'string') {
-        if (!tokenValue) {
-          return acc;
-        }
-
-        return {
-          ...acc,
-          [tokenValue as string]: value,
-        };
+    if (typeof value === 'string') {
+      if (!tokenValue) {
+        return acc;
       }
 
       return {
         ...acc,
-        ...createTokensVars(
-          tokenValue as ITokens,
-          value as IThemeValues<ITokens>,
-        ),
+        [tokenValue as string]: value,
       };
-    },
-    {} as Record<string, string>,
-  );
+    }
+
+    return {
+      ...acc,
+      ...createTokensVars(
+        tokenValue as ITokens,
+        value as IThemeValues<ITokens>,
+      ),
+    };
+  }, {});

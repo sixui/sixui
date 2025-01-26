@@ -129,12 +129,12 @@ export const useComponentTheme = <
           ),
           style: {
             ...(includesRoot ? style : undefined),
-            ...styleNames.reduce(
+            ...styleNames.reduce<React.CSSProperties>(
               (acc, styleName) => ({
                 ...acc,
                 ...(styleName ? styles?.[styleName] : undefined),
               }),
-              {} as React.CSSProperties,
+              {},
             ),
             ...options?.style,
           },

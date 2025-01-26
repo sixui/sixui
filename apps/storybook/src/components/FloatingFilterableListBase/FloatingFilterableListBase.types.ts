@@ -61,10 +61,7 @@ export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
     userProps?: IElementProps<'input'>,
   ) => Record<string, unknown>;
 
-  afterItemsRemove: (
-    items: Array<TItem>,
-    event?: React.SyntheticEvent<Element>,
-  ) => void;
+  afterItemsRemove: (items: Array<TItem>, event?: React.SyntheticEvent) => void;
 
   /** The current query string. */
   query: string;

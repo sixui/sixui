@@ -201,7 +201,7 @@ export const floatingFilterableListBaseFactory = <
 
     const handleAfterItemsRemove = (): void => {
       if (inputFilterRef.current) {
-        inputFilterRef.current?.focus();
+        inputFilterRef.current.focus();
       } else {
         buttonRef.current?.focus();
       }
@@ -308,7 +308,7 @@ export const floatingFilterableListBaseFactory = <
             role: 'option',
             tabIndex: active ? 0 : -1,
             'aria-selected': active,
-            onClick: (event: React.MouseEvent<TItemElement, MouseEvent>) => {
+            onClick: (event: React.MouseEvent<TItemElement>) => {
               userProps?.onClick?.(event);
               itemProps.handleClick(event);
             },
@@ -343,7 +343,9 @@ export const floatingFilterableListBaseFactory = <
       setQuery,
     ]);
 
-    const handleFocus = (): void => setHasFocus(true);
+    const handleFocus = (): void => {
+      setHasFocus(true);
+    };
     const handleBlur = (): void => {
       setHasFocus(false);
 

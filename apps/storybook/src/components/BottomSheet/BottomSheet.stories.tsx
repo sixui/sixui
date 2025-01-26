@@ -28,7 +28,13 @@ const BottomSheetDemo: React.FC<IBottomSheetProps> = (props) => {
 
   return (
     <>
-      <Button onClick={() => toggle()}>{opened ? 'Close' : 'Open'}</Button>
+      <Button
+        onClick={() => {
+          toggle();
+        }}
+      >
+        {opened ? 'Close' : 'Open'}
+      </Button>
       <BottomSheet {...props} opened={opened} onClose={close}>
         <Text p="$6">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum

@@ -80,7 +80,9 @@ export const RadioGroup = polymorphicComponentFactory<IRadioGroupFactory>(
         void executeLazyPromise(
           () => onChange?.(nextValue) as Promise<void>,
           setHandlingChange,
-        ).finally(() => setValue(nextValue));
+        ).finally(() => {
+          setValue(nextValue);
+        });
       },
       [handlingChange, onChange, setValue, value],
     );

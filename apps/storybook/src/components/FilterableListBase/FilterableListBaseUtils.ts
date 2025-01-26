@@ -54,7 +54,7 @@ export const renderFilterableItems = (
   noResults?: React.ReactNode,
   initialContent?: React.ReactNode | null,
 ): React.ReactNode => {
-  if (!props.query?.length && initialContent !== undefined) {
+  if (!props.query.length && initialContent !== undefined) {
     return initialContent;
   }
 

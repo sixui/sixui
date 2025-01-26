@@ -26,10 +26,16 @@ const SnackbarDemo: React.FC<ISnackbarProps> = (props: ISnackbarProps) => {
         opened={opened}
         {...props}
         onClose={(...args) =>
-          sbHandleEvent('onClose', args, 1000).then(() => setOpened(false))
+          sbHandleEvent('onClose', args, 1000).then(() => {
+            setOpened(false);
+          })
         }
       />
-      <Button onClick={() => setOpened((opened) => !opened)}>
+      <Button
+        onClick={() => {
+          setOpened((opened) => !opened);
+        }}
+      >
         {opened ? 'Close' : 'Open'}
       </Button>
     </>

@@ -209,7 +209,13 @@ const StatefulChip: React.FC<IChipProps> = (props) => {
     <Chip
       {...props}
       selected={selected}
-      onClick={props.onClick ? () => setSelected(!selected) : undefined}
+      onClick={
+        props.onClick
+          ? () => {
+              setSelected(!selected);
+            }
+          : undefined
+      }
     />
   );
 };

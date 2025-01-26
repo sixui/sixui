@@ -84,32 +84,31 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
         icon
       );
 
-    const handleClick: React.MouseEventHandler<Element> = useCallback(
+    const handleClick: React.MouseEventHandler = useCallback(
       (event) => {
         if (handlingClick || !onClick) {
           return;
         }
 
-        void executeLazyPromise(
-          () => onClick?.(event) as void,
-          setHandlingClick,
-        );
+        void executeLazyPromise(() => onClick(event), setHandlingClick);
       },
       [handlingClick, onClick],
     );
 
     const handleTrailingClick = useCallback(
-      (event: React.MouseEvent<Element>) => {
+      (event: React.MouseEvent) => {
         if (handlingDelete) {
           return;
         }
         setHandlingDelete(true);
         Promise.resolve()
           .then(() => onTrailingClick?.(event))
-          .catch((error: Error) => {
+          .catch((error: unknown) => {
             throw error;
           })
-          .finally(() => setHandlingDelete(false));
+          .finally(() => {
+            setHandlingDelete(false);
+          });
       },
       [onTrailingClick, handlingDelete],
     );
@@ -133,8 +132,8 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
         }
 
         // Check if moving forwards or backwards.
-        const isPrimaryFocused = primaryActionEl?.matches(':focus');
-        const isTrailingFocused = trailingActionEl?.matches(':focus');
+        const isPrimaryFocused = primaryActionEl.matches(':focus');
+        const isTrailingFocused = trailingActionEl.matches(':focus');
 
         if (
           (forwards && isTrailingFocused) ||

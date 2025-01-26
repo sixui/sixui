@@ -46,10 +46,12 @@ const InteractiveStepper: React.FC<IStepperProps> = (props) => {
   const stepCount = 4;
 
   const [activeStep, setActiveStep] = useState(0);
-  const nextStep = (): void =>
+  const nextStep = (): void => {
     setActiveStep((current) => Math.min(current + 1, stepCount));
-  const prevStep = (): void =>
+  };
+  const prevStep = (): void => {
     setActiveStep((current) => Math.max(current - 1, 0));
+  };
   const completed = activeStep === stepCount;
 
   return (

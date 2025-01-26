@@ -415,7 +415,7 @@ export const useRippleEffect = <TElement extends HTMLElement>(
       }
 
       if (stateRef.current === IState.WaitingForClick) {
-        void endPressAnimation();
+        endPressAnimation();
 
         return;
       }
@@ -423,7 +423,7 @@ export const useRippleEffect = <TElement extends HTMLElement>(
       if (stateRef.current === IState.Inactive) {
         // Keyboard synthesized click event
         startPressAnimation(event);
-        void endPressAnimation();
+        endPressAnimation();
       }
     },
     [disabled, startPressAnimation, endPressAnimation, clickThrough],
@@ -435,7 +435,7 @@ export const useRippleEffect = <TElement extends HTMLElement>(
     }
 
     checkBoundsAfterContextMenuRef.current = true;
-    void endPressAnimation();
+    endPressAnimation();
   }, [disabled, endPressAnimation]);
 
   const triggerProps = useMemo(

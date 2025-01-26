@@ -88,7 +88,9 @@ export const ColorInputField = componentFactory<IColorInputFieldFactory>(
                 onColorsQuantized?.(quantizedPalette);
                 colorPaletteGroupContext?.setQuantizedPalette(quantizedPalette);
               })
-              .finally(() => setQuantizing(false));
+              .finally(() => {
+                setQuantizing(false);
+              });
           };
           fileReader.readAsDataURL(file);
         },

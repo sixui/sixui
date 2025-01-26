@@ -68,7 +68,13 @@ export const Stepper = componentFactory<IStepperFactory>(
         last: index + 1 >= validChildren.length,
         loading: loading && activeStep === index,
         ...mergeProps(
-          { onClick: onStepClick ? () => onStepClick(index) : undefined },
+          {
+            onClick: onStepClick
+              ? () => {
+                  onStepClick(index);
+                }
+              : undefined,
+          },
           child.props,
         ),
       }),

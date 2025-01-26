@@ -33,9 +33,9 @@ export type IUseSingleFilterableListBaseResult<
   handleClear: (
     afterItemsRemove: (
       items: Array<TItem>,
-      event?: React.SyntheticEvent<Element>,
+      event?: React.SyntheticEvent,
     ) => void,
-    event?: React.MouseEvent<Element>,
+    event?: React.MouseEvent,
   ) => void;
   items: Array<TItem>;
   selectedItem?: TItem;
@@ -117,9 +117,9 @@ export const useSingleFilterableListBase = <
     (
       afterItemsRemove?: (
         items: Array<TItem>,
-        event?: React.SyntheticEvent<Element>,
+        event?: React.SyntheticEvent,
       ) => void,
-      event?: React.MouseEvent<Element>,
+      event?: React.MouseEvent,
     ): void => {
       event?.stopPropagation();
 

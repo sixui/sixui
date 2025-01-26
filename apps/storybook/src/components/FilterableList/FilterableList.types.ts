@@ -14,7 +14,7 @@ export type IFilterableListItem = {
   trailingSupportingText?: string;
   value: string;
   disabled?: boolean;
-  onClick?: (event: React.MouseEvent<Element, MouseEvent>) => void;
+  onClick?: (event: React.MouseEvent) => void;
   href?: string;
 };
 
@@ -25,7 +25,7 @@ export interface IFilterableListOwnProps {
 export interface IFilterableListProps
   extends IBoxProps,
     IOmit<
-      IFilterableListBaseProps<IFilterableListItem, HTMLElement>,
+      IFilterableListBaseProps<IFilterableListItem>,
       'renderer' | 'itemRenderer'
     >,
     IFilterableListOwnProps {}

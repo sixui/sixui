@@ -112,7 +112,7 @@ export const DisclosureTrigger = componentFactory<IDisclosureTriggerFactory>(
     );
 
     const handleClick = useCallback(
-      async (event: React.MouseEvent<Element>): Promise<void> => {
+      async (event: React.MouseEvent): Promise<void> => {
         await onClick?.(event);
         expandableContext?.expand(!expanded);
       },

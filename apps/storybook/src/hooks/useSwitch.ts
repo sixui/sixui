@@ -56,9 +56,11 @@ export const useSwitch = (props: IUseSwitchProps): IUseSwitchResult => {
         () =>
           props.onChange?.(
             event.target.checked ? event.target.value : undefined,
-          ) as void,
+          ),
         setHandlingChange,
-      ).finally(() => setChecked(!event.target.checked));
+      ).finally(() => {
+        setChecked(!event.target.checked);
+      });
     },
     [props, handlingChange, setChecked],
   );

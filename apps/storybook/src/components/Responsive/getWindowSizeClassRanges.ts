@@ -17,22 +17,25 @@ export const getWindowSizeClassRanges = (
     windowSizeClasses,
   ) as Array<IThemeWindowSizeClassName>;
 
-  const ranges = windowSizeClassNames.reduce((acc, windowSizeClassName) => {
-    const previousRange: IWindowSizeClassRange | undefined =
-      acc[acc.length - 1];
-    const breakpoint = windowSizeClasses[windowSizeClassName];
+  const ranges = windowSizeClassNames.reduce<Array<IWindowSizeClassRange>>(
+    (acc, windowSizeClassName) => {
+      const previousRange: IWindowSizeClassRange | undefined =
+        acc[acc.length - 1];
+      const breakpoint = windowSizeClasses[windowSizeClassName];
 
-    return [
-      ...acc,
-      {
-        name: windowSizeClassName,
-        minBreakpointWidth: previousRange?.maxBreakpointWidth
-          ? getBreakpointPlusEpsilon(previousRange.maxBreakpointWidth)
-          : '0',
-        maxBreakpointWidth: breakpoint,
-      },
-    ];
-  }, [] as Array<IWindowSizeClassRange>);
+      return [
+        ...acc,
+        {
+          name: windowSizeClassName,
+          minBreakpointWidth: previousRange?.maxBreakpointWidth
+            ? getBreakpointPlusEpsilon(previousRange.maxBreakpointWidth)
+            : '0',
+          maxBreakpointWidth: breakpoint,
+        },
+      ];
+    },
+    [],
+  );
 
   return ranges;
 };

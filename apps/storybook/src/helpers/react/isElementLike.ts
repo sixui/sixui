@@ -3,10 +3,10 @@ import { isProduction } from '@olivierpascal/helpers';
 import { getDisplayName } from '~/helpers/react/getDisplayName';
 import { isFragment } from './isFragment';
 
-export const isElementLike = <TElement extends React.ReactElement>(
+export const isElementLike = (
   element: React.ReactElement,
   expectedDisplayName: string,
-): element is TElement => {
+): element is React.ReactElement => {
   if (!isProduction() && isFragment(element)) {
     // eslint-disable-next-line no-console
     console.error(

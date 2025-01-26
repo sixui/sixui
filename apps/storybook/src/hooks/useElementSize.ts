@@ -57,7 +57,9 @@ export const useElementSize = (
       });
       resizeObserver.observe(element);
 
-      return () => resizeObserver.disconnect();
+      return () => {
+        resizeObserver.disconnect();
+      };
     }
   }, [elementRef, observe, orientation]);
 

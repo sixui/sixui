@@ -12,10 +12,7 @@ export type IColorPalette = Array<string>;
 
 export interface IColorPickerContentOwnProps {
   selectedColor?: string;
-  onClick?: (
-    event: React.MouseEvent<Element>,
-    color: string,
-  ) => IMaybeAsync<unknown>;
+  onClick?: (event: React.MouseEvent, color: string) => IMaybeAsync<unknown>;
   customPalette?: IColorPalette;
   palettes: Array<IColorPalette>;
   children?: React.ReactNode;

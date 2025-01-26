@@ -58,7 +58,9 @@ export const CopyableText = componentFactory<ICopyableTextFactory>(
       setCopied(true);
     };
 
-    const handleOpen = (): void => setCopied(false);
+    const handleOpen = (): void => {
+      setCopied(false);
+    };
 
     return (
       <PlainTooltip

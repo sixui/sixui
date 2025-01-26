@@ -83,11 +83,7 @@ export const TabsTab = polymorphicComponentFactory<ITabsTabFactory>(
 
     const renderIcon = (): React.ReactNode =>
       hasIcon &&
-      (hasAnchoredBadge ? (
-        <Anchored content={!disabled && badge}>{icon}</Anchored>
-      ) : (
-        icon
-      ));
+      (hasAnchoredBadge ? <Anchored content={badge}>{icon}</Anchored> : icon);
 
     const renderActiveIndicator = (): React.ReactNode => (
       <div {...getStyles('activeIndicator')} ref={activeIndicatorRef} />
@@ -105,7 +101,7 @@ export const TabsTab = polymorphicComponentFactory<ITabsTabFactory>(
       }
     }, [active, anchor, tabsContext, forwardedRef]);
 
-    const handleClick: React.MouseEventHandler<Element> = useCallback(
+    const handleClick: React.MouseEventHandler = useCallback(
       (event) => {
         if (handlingClick) {
           return;
@@ -116,7 +112,9 @@ export const TabsTab = polymorphicComponentFactory<ITabsTabFactory>(
         void Promise.resolve()
           .then(() => onClick?.(event))
           .then(() => tabsContext?.onChange?.(anchor))
-          .finally(() => setHandlingClick(false));
+          .finally(() => {
+            setHandlingClick(false);
+          });
       },
       [onClick, tabsContext, anchor, handlingClick, setHandlingClick],
     );

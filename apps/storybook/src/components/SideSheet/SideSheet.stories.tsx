@@ -57,10 +57,18 @@ const SideSheetFrame: React.FC<ISideSheetProps> = (props) => {
   return (
     <Flex direction="column" gap="$2">
       <Flex direction="row" gap="$2">
-        <Button onClick={() => toggleStandardOpened()}>
+        <Button
+          onClick={() => {
+            toggleStandardOpened();
+          }}
+        >
           {standardOpened ? 'Close' : 'Open'} standard
         </Button>
-        <Button onClick={() => toggleModalOpened()}>
+        <Button
+          onClick={() => {
+            toggleModalOpened();
+          }}
+        >
           {modalOpened ? 'Close' : 'Open'} modal
         </Button>
       </Flex>
@@ -84,7 +92,9 @@ const SideSheetFrame: React.FC<ISideSheetProps> = (props) => {
           <SideSheet
             standardOpened={standardOpened}
             modalOpened={modalOpened}
-            onClose={() => toggleModalOpened(false)}
+            onClose={() => {
+              toggleModalOpened(false);
+            }}
             {...other}
           />
         </Flex>

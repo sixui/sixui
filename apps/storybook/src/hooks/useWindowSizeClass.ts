@@ -43,7 +43,7 @@ const getInitialValue = (
     (rule) => container.matchMedia(rule.query).matches,
   );
 
-  return matchingRule ? arrayToMap(matchingRule?.containerNames) : undefined;
+  return matchingRule ? arrayToMap(matchingRule.containerNames) : undefined;
 };
 
 export const useWindowSizeClass = (
@@ -94,9 +94,9 @@ export const useWindowSizeClass = (
     });
 
     return () =>
-      listenersRef.current?.forEach((query) =>
-        query.query.removeEventListener('change', query.callback),
-      );
+      listenersRef.current?.forEach((query) => {
+        query.query.removeEventListener('change', query.callback);
+      });
   }, [rules, container]);
 
   return matches;

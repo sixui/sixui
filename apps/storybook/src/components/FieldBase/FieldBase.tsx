@@ -187,7 +187,9 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
       if (refreshErrorAlert) {
         // The past render cycle removed the role="alert" from the error
         // message. Re-add it after an animation frame to re-announce the error.
-        requestAnimationFrame(() => setRefreshErrorAlert(false));
+        requestAnimationFrame(() => {
+          setRefreshErrorAlert(false);
+        });
       }
 
       if (disableTransitionsRef.current) {
@@ -248,15 +250,14 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
     );
 
     const getCounterText = useCallback(() => {
-      const countAsNumber = count ?? -1;
       const maxLengthAsNumber = Number(maxLength) || -1;
       // Counter does not show if count is negative or 0, or max is negative or
       // 0.
-      if (countAsNumber <= 0 || maxLengthAsNumber <= 0) {
+      if (count <= 0 || maxLengthAsNumber <= 0) {
         return undefined;
       }
 
-      return `${countAsNumber} / ${maxLengthAsNumber}`;
+      return `${count} / ${maxLengthAsNumber}`;
     }, [count, maxLength]);
 
     const renderSupportingText = useCallback((): React.JSX.Element | null => {

@@ -53,8 +53,8 @@ export const Box = createPolymorphicComponent<'div', IBoxProps>(
         ...modifiers,
       }),
       className: cx(classNames.root, className, sprinkles.className, {
-        [`sixui-hidden-from-${hiddenFrom}`]: hiddenFrom,
-        [`sixui-visible-from-${visibleFrom}`]: visibleFrom,
+        [`sixui-hidden-from-${String(hiddenFrom)}`]: hiddenFrom,
+        [`sixui-visible-from-${String(visibleFrom)}`]: visibleFrom,
       }),
       style: {
         ...style,

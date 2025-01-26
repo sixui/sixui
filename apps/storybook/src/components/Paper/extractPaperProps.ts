@@ -8,8 +8,8 @@ export type IUseForwardedPropsResult = {
   other?: Record<string, unknown>;
 };
 
-export const extractPaperProps = <TProps extends IPaperProps>(
-  props: TProps,
+export const extractPaperProps = (
+  props: IPaperProps,
 ): IUseForwardedPropsResult => {
   const { shape, outline, outlineStyle, elevation, surface, ...other } = props;
 

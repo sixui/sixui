@@ -93,9 +93,7 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
             {...getStyles('focusRing')}
             interactions={stateLayer.interactionsContext.state}
           />
-          {!disabled && (
-            <StateLayer {...getStyles('stateLayer')} context={stateLayer} />
-          )}
+          <StateLayer {...getStyles('stateLayer')} context={stateLayer} />
         </>
       )}
 

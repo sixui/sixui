@@ -7,9 +7,7 @@ export type IUseForwardedPropsResult = {
   other?: Record<string, unknown>;
 };
 
-export const extractBoxProps = <TProps extends IBoxProps>(
-  props: TProps,
-): IUseForwardedPropsResult => {
+export const extractBoxProps = (props: IBoxProps): IUseForwardedPropsResult => {
   const {
     className,
     style,

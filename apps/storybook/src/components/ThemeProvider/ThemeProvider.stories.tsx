@@ -22,7 +22,7 @@ const DynamicThemeProviderDemo: React.FC = () => {
   const themeSetterContext = useThemeSetterContext();
 
   const handleChange = (color: string): void => {
-    themeSetterContext?.setTheme({
+    themeSetterContext.setTheme({
       tokens: {
         colorScheme: isValidHexColor(color)
           ? generateThemeFromSourceColor(color)

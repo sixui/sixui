@@ -123,12 +123,14 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
         inputRef.current.focus();
 
         // Place the cursor at the end of the input.
-        const currentPosition = inputRef.current?.selectionStart;
+        const currentPosition = inputRef.current.selectionStart;
         inputRef.current.setSelectionRange(currentPosition, currentPosition);
       }
 
       // Execute in the next tick to prevent the cursor to reset to the start.
-      setTimeout(() => setUnmasked((unmasked) => !unmasked), 0);
+      setTimeout(() => {
+        setUnmasked((unmasked) => !unmasked);
+      }, 0);
     };
 
     const renderEndSection = (): React.ReactNode =>

@@ -60,13 +60,16 @@ export const Flex = polymorphicComponentFactory<IFlexFactory>(
         {...other}
       >
         {divider
-          ? filteredChildren.reduce((acc, child, index) => {
-              if (index === 0) {
-                return [child];
-              }
+          ? filteredChildren.reduce<Array<React.ReactNode>>(
+              (acc, child, index) => {
+                if (index === 0) {
+                  return [child];
+                }
 
-              return [...acc, divider, child];
-            }, [] as Array<React.ReactNode>)
+                return [...acc, divider, child];
+              },
+              [],
+            )
           : filteredChildren}
       </Box>
     );

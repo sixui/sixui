@@ -43,7 +43,9 @@ const NavigationRailContentDemo: React.FC<
         icon={<FontAwesomeIcon icon={faSquare} />}
         activeIcon={<FontAwesomeIcon icon={fasSquare} />}
         label="First"
-        onClick={() => setActiveIndex(0)}
+        onClick={() => {
+          setActiveIndex(0);
+        }}
         active={activeIndex === 0}
         badge={<Badge value="3" />}
       />
@@ -51,7 +53,9 @@ const NavigationRailContentDemo: React.FC<
         icon={<FontAwesomeIcon icon={faCircle} />}
         activeIcon={<FontAwesomeIcon icon={fasCircle} />}
         label="Second"
-        onClick={() => setActiveIndex(1)}
+        onClick={() => {
+          setActiveIndex(1);
+        }}
         active={activeIndex === 1}
         badge={<Badge dot />}
       />
@@ -59,7 +63,9 @@ const NavigationRailContentDemo: React.FC<
         icon={<FontAwesomeIcon icon={faHeart} />}
         activeIcon={<FontAwesomeIcon icon={fasHeart} />}
         label="Third"
-        onClick={() => setActiveIndex(2)}
+        onClick={() => {
+          setActiveIndex(2);
+        }}
         active={activeIndex === 2}
       />
     </NavigationRailContent>

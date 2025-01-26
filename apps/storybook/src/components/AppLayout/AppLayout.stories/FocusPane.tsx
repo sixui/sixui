@@ -17,7 +17,13 @@ export const FocusPane: React.FC<IFocusPaneProps> = (props) => {
   return (
     <Placeholder label="Focus" shape="$sm" h="$64" diagonals {...other}>
       {hasBottomSheet && (
-        <Button onClick={() => toggleBottomSheet()}>Toggle Bottom Sheet</Button>
+        <Button
+          onClick={() => {
+            toggleBottomSheet();
+          }}
+        >
+          Toggle Bottom Sheet
+        </Button>
       )}
     </Placeholder>
   );

@@ -17,7 +17,7 @@ export const getSizesCssStyles = (
     const responsiveVars = assignInlineVars({
       [tokens[range.name].on]: CSS_TRUE,
 
-      ...windowSizeClassNames.reduce(
+      ...windowSizeClassNames.reduce<Record<string, string | undefined | null>>(
         (acc, key, index) =>
           index <= rangeIndex
             ? {
@@ -25,15 +25,15 @@ export const getSizesCssStyles = (
                 [tokens[key].gte]: CSS_TRUE,
               }
             : acc,
-        {} as Record<string, string | undefined | null>,
+        {},
       ),
     });
 
     const mediaQuery = [
-      `@media ${`(min-width: ${range.minBreakpointWidth})`}${range.maxBreakpointWidth !== undefined ? ` and (max-width: ${range.maxBreakpointWidth})` : ''} {`,
+      `@media (min-width: ${range.minBreakpointWidth})${range.maxBreakpointWidth !== undefined ? ` and (max-width: ${range.maxBreakpointWidth})` : ''} {`,
       `  .${responsiveTheme.classNames.root} {`,
       ...Object.entries(responsiveVars).map(
-        ([key, value]) => `    ${key}: ${value ?? '""'};`,
+        ([key, value]) => `    ${key}: ${value};`,
       ),
       `  }`,
       `}`,

@@ -19,10 +19,21 @@ const ScrimDemo: React.FC<IScrimDemoProps> = (props) => {
 
   return (
     <>
-      <Button onClick={() => toggleIsVisible()}>
+      <Button
+        onClick={() => {
+          toggleIsVisible();
+        }}
+      >
         {isVisible ? 'Click on the scrim to dismiss' : 'Show scrim'}
       </Button>
-      {isVisible && <Scrim {...other} onClick={() => toggleIsVisible(false)} />}
+      {isVisible && (
+        <Scrim
+          {...other}
+          onClick={() => {
+            toggleIsVisible(false);
+          }}
+        />
+      )}
     </>
   );
 };
@@ -36,7 +47,11 @@ const AnimatedScrimDemo: React.FC<IAnimatedScrimDemoProps> = (props) => {
 
   return (
     <>
-      <Button onClick={() => toggleIsVisible()}>
+      <Button
+        onClick={() => {
+          toggleIsVisible();
+        }}
+      >
         {isVisible ? 'Click on the scrim to dismiss' : 'Show scrim'}
       </Button>
 
@@ -48,7 +63,12 @@ const AnimatedScrimDemo: React.FC<IAnimatedScrimDemoProps> = (props) => {
       >
         {(status) => (
           <Motion status={status} ref={transitionNodeRef} pattern="fade">
-            <Scrim {...other} onClick={() => toggleIsVisible(false)} />
+            <Scrim
+              {...other}
+              onClick={() => {
+                toggleIsVisible(false);
+              }}
+            />
           </Motion>
         )}
       </CSSTransition>

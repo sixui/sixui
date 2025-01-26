@@ -38,9 +38,7 @@ export const Motion = polymorphicComponentFactory<IMotionFactory>(
       ((origin !== 'center' && !alignment) || origin === 'edge'
         ? side === 'top' || side === 'bottom'
           ? 'vertical'
-          : side === 'left' || side === 'right'
-            ? 'horizontal'
-            : undefined
+          : 'horizontal'
         : undefined);
     const resolvedStatus = resolveRtgStatus(status);
 
