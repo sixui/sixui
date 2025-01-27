@@ -1,3 +1,5 @@
-import { buildTest } from '@sixui/build-tools';
+import { build } from '@sixui/toolchain';
 
-buildTest();
+build({
+  tsconfig: 'tsconfig.build.json',
+});

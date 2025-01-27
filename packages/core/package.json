@@ -30,7 +30,6 @@
     "dist/**/*"
   ],
   "scripts": {
-    "build:prod": "NODE_ENV=production rollup -c",
     "generate-icons:convert": "svg-to-ts-files",
     "generate-icons:format": "eslint src/assets/icons --fix",
     "generate-icons": "run-s generate-icons:convert generate-icons:format",
@@ -38,6 +37,7 @@
     "ts:check": "tsc --pretty --noEmit",
     "check:all": "run-s lint:check ts:check",
     "pre-commit": "run-s generate-icons",
+    "clean": "rm -rf dist",
     "build": "tsx scripts/build.ts"
   },
   "dependencies": {
@@ -58,8 +58,7 @@
   },
   "devDependencies": {
     "@react-types/shared": "^3.27.0",
-    "@rollup/plugin-json": "^6.1.0",
-    "@sixui/build-tools": "workspace:*",
+    "@sixui/toolchain": "workspace:*",
     "@sixui/eslint-config": "workspace:*",
     "@sixui/typescript-config": "workspace:*",
     "@types/node": "^22.10.10",
@@ -67,7 +66,6 @@
     "@types/react-dom": "^19",
     "@types/react-transition-group": "^4",
     "eslint": "^9.19.0",
-    "globals": "^15.14.0",
     "npm-run-all": "^4.1.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

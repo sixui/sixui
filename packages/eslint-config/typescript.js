@@ -54,6 +54,7 @@ export default tseslint.config(...base, {
         ignorePrimitives: true,
       },
     ],
+    '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/consistent-type-definitions': 0,
     '@typescript-eslint/array-type': [
       'error',

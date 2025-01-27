@@ -1,11 +1,12 @@
 {
   "private": true,
-  "name": "@sixui/build-tools",
+  "name": "@sixui/toolchain",
   "type": "module",
   "scripts": {
     "lint:check": "eslint . --fix",
     "ts:check": "tsc --pretty --noEmit",
     "check:all": "run-s lint:check ts:check",
+    "clean": "rm -rf dist",
     "build": "tsc --project tsconfig.build.json"
   },
   "files": [
@@ -15,14 +16,14 @@
   "exports": {
     ".": {
       "import": {
-        "types": "./dist/main.d.ts",
-        "default": "./dist/main.js"
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
       }
     },
     "./package.json": "./package.json"
   },
-  "types": "./dist/main.d.ts",
-  "module": "./dist/main.js",
+  "types": "./dist/index.d.ts",
+  "module": "./dist/index.js",
   "devDependencies": {
     "@rollup/plugin-json": "^6.1.0",
     "@sixui/eslint-config": "workspace:*",
@@ -39,8 +40,6 @@
     "rollup-plugin-esbuild": "^6.1.1",
     "rollup-plugin-node-externals": "^8.0.0",
     "signale": "^1.4.0",
-    "tsx": "^4.19.2",
-    "typescript": "^5.7.3",
-    "yargs": "^17.7.2"
+    "typescript": "^5.7.3"
   }
 }
