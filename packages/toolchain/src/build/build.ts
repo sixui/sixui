@@ -61,5 +61,5 @@ export const build = async (
 
   await compile(buildOptions, firstCompilerOptions.data);
 
-  logger.success('COMPILED');
+  logger.success('Done.');
 };

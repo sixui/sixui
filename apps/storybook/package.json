@@ -66,6 +66,7 @@
     "@react-types/shared": "^3.27.0",
     "@sixui/eslint-config": "workspace:*",
     "@sixui/typescript-config": "workspace:*",
+    "@sixui/core": "workspace:*",
     "@storybook/addon-actions": "^8.5.1",
     "@storybook/addon-essentials": "^8.5.1",
     "@storybook/blocks": "^8.5.1",

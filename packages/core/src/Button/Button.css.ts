@@ -1,10 +1,20 @@
-import { style } from '@vanilla-extract/css';
+import { createVar, style } from '@vanilla-extract/css';
+
+export const buttonVars = {
+  container: {
+    color: createVar(),
+  },
+};
 
 export const buttonClassNames = {
   root: style({
+    vars: {
+      [buttonVars.container.color]: 'blue',
+    },
+
     borderWidth: 2,
     borderStyle: 'solid',
-    borderColor: 'blue',
+    borderColor: buttonVars.container.color,
     borderRadius: 4,
     height: 40,
     minWidth: 80,

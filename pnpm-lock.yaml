@@ -108,6 +108,9 @@ importers:
       '@react-types/shared':
         specifier: ^3.27.0
         version: 3.27.0(react@19.0.0)
+      '@sixui/core':
+        specifier: workspace:*
+        version: link:../../packages/core
       '@sixui/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config

@@ -1,17 +1,14 @@
 import type { Decorator, Preview } from '@storybook/react';
 
-import { Avatar } from '~/components/Avatar';
 import { SixuiProvider } from '~/components/SixuiProvider';
 import { ThemeProvider } from '~/components/ThemeProvider';
 import { modes } from './modes';
-// import variantTheme from '~/themes/variant/theme.json';
-import * as styles from './preview.css';
+import { classNames } from './preview.css';
 
 import '~/styles/main.css';
 import './storybook.css';
 
 import { Box } from '~/components/Box';
-import { Button } from '~/components/Button';
 import { CustomizableTheme } from '~/components/CustomizableTheme';
 
 const preview: Preview = {
@@ -48,70 +45,19 @@ export const decorators: Array<Decorator> = [
     const showDarkMode = !context.tags.includes('light-mode-only');
 
     return (
-      <SixuiProvider
-        // FIXME: delete
-        theme={{
-          tokens: {
-            colorScheme: {
-              light: {
-                // primaryContainer: 'blue',
-                // onPrimaryContainer: 'white',
-              },
-              dark: {
-                // primaryContainer: 'green',
-                // onPrimaryContainer: 'white',
-              },
-            },
-          },
-          components: {
-            // IndeterminateCircularProgressIndicator:
-            //   IndeterminateCircularProgressIndicator.extend({
-            //     classNames: {
-            //       // root: styles.testBorder,
-            //     },
-            //   }),
-            Avatar: Avatar.extend({
-              // defaultProps: {
-              //   children: '☀️',
-              //   outline: '$md',
-              //   outlineStyle: 'solid',
-              //   outlineColor: '$primary',
-              // },
-              classNames: {
-                root: styles.avatarTheme,
-              },
-            }),
-            Button: Button.extend({
-              classNames: {
-                root: styles.buttonTheme,
-              },
-            }),
-            // StateLayer: StateLayer.extend({
-            //   classNames: {
-            //     // root: styles.testBorder,
-            //   },
-            // }),
-          },
-        }}
-        colorSchemeVariant="light"
-      >
+      <SixuiProvider colorSchemeVariant="light">
         <CustomizableTheme>
           <Box w="100%">
             {showLightMode && (
-              <ThemeProvider
-                // theme={variantTheme}
-                className={styles.storyWrapper}
-                inherit
-              >
+              <ThemeProvider className={classNames.storyWrapper} inherit>
                 <Story />
               </ThemeProvider>
             )}
 
             {showDarkMode && (
               <ThemeProvider
-                // theme={variantTheme}
                 colorSchemeVariant="dark"
-                className={styles.storyWrapper}
+                className={classNames.storyWrapper}
                 inherit
               >
                 <Story />
@@ -124,4 +70,5 @@ export const decorators: Array<Decorator> = [
   },
 ];
 
+// eslint-disable-next-line import-x/no-default-export
 export default preview;

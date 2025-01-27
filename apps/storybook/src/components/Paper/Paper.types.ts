@@ -14,6 +14,7 @@ export interface IPaperOwnProps extends IPaperBaseOwnProps {
   shape?: `$${IThemeShapeCornerSize}`;
   outline?: `$${IThemeOutlineSize}`;
   outlineStyle?: 'solid' | 'dashed' | 'dotted';
+  outlineColor?: `$${keyof IThemeColorScheme}`;
   elevation?: `$${IThemeElevationLevel}`;
   surface?: `$${keyof IThemeColorScheme | 'transparent'}`;
 }

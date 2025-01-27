@@ -1,8 +1,9 @@
+import type { PartialDeep } from 'type-fest/source/partial-deep';
 import { useContext, useMemo, useRef, useState } from 'react';
 import { FloatingDelayGroup } from '@floating-ui/react';
 import cx from 'clsx';
 
-import type { IThemeOverride } from './theme.types';
+import type { ITheme, IThemeOverride } from './theme.types';
 import type { IThemeContextValue } from './ThemeProvider.context';
 import type { IThemeProviderProps } from './ThemeProvider.types';
 import type { IThemeSetterContextValue } from './ThemeSetter.context';
@@ -10,7 +11,7 @@ import { deepMerge } from '~/helpers/deepMerge';
 import { partialAssignInlineVars } from '~/utils/styles/partialAssignInlineVars';
 import { textFromCssProperties } from '~/utils/styles/textFromCssProperties';
 import { defaultTheme } from './defaultTheme';
-import { mergeTheme } from './mergeTheme';
+import { mergeThemeOverrides } from './mergeThemeOverrides';
 import { ThemeContext } from './ThemeProvider.context';
 import { ThemeSetterProvider } from './ThemeSetter.context';
 import * as styles from './ThemeProvider.css';
@@ -37,8 +38,7 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
     IThemeOverride | undefined
   >();
   const mergedTheme = useMemo(
-    () =>
-      mergeTheme(mergeTheme(parentTheme ?? defaultTheme, theme), dynamicTheme),
+    () => mergeThemeOverrides(parentTheme ?? defaultTheme, theme, dynamicTheme),
     [parentTheme, theme, dynamicTheme],
   );
 
@@ -58,7 +58,10 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
   );
 
   const themeOverrideVars = useMemo(() => {
-    const tokensOverride = deepMerge(theme?.tokens ?? {}, dynamicTheme?.tokens);
+    const tokensOverride = deepMerge(
+      dynamicTheme?.tokens ?? ({} as PartialDeep<ITheme['tokens']>),
+      theme?.tokens,
+    );
     const themeTokensOverride = {
       ...tokensOverride,
       colorScheme:
@@ -92,18 +95,13 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
       ).split(' '),
     );
 
-    const cssText = Object.entries(themeVars)
-      .map(([k, v]) => `${k}: ${v || '""'}`)
-      .join('; ');
-    if (cssText) {
-      stylesTarget.setAttribute(
-        'style',
-        textFromCssProperties({
-          ...style,
-          ...themeVars,
-        }),
-      );
-    }
+    stylesTarget.setAttribute(
+      'style',
+      textFromCssProperties({
+        ...style,
+        ...themeVars,
+      }),
+    );
   }
 
   return (

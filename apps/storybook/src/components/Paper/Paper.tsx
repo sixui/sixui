@@ -47,6 +47,7 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
       surface,
       shape,
       outlineStyle,
+      outlineColor,
       outline,
       elevation,
       ...other
@@ -91,6 +92,11 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
             ...createThemeSprinkle(
               paperBaseTheme.tokens.outline.style,
               outlineStyle,
+            ),
+            ...createThemeSprinkle(
+              paperBaseTheme.tokens.outline.color,
+              outlineColor,
+              themeTokens.colorScheme,
             ),
             ...createThemeSprinkle(
               paperBaseTheme.tokens.outline.width,

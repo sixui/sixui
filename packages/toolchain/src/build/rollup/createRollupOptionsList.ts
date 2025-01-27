@@ -18,7 +18,14 @@ export const createRollupOptionsList = (
 ): Array<RollupOptions> => {
   const emittedCssFiles = new Set<string>();
 
-  const plugins = [vanillaExtractPlugin(), depsExternal(), esbuild(), json()];
+  const plugins = [
+    vanillaExtractPlugin({
+      // Waiting for https://github.com/vanilla-extract-css/vanilla-extract/discussions/1534
+    }),
+    depsExternal(),
+    esbuild(),
+    json(),
+  ];
 
   const commonOutputOptions: OutputOptions = {
     dir: buildOptions.outDir,

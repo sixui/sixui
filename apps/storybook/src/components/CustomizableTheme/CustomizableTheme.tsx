@@ -63,7 +63,7 @@ export const CustomizableTheme = componentFactory<ICustomizableThemeFactory>(
     };
 
     return (
-      <ThemeProvider theme={theme} stylesTarget={document.body} inherit>
+      <ThemeProvider theme={theme} inherit>
         <Paper
           as={Flex}
           direction="column"
