@@ -1,15 +1,17 @@
 import type { Decorator, Preview } from '@storybook/react';
 
-import { SixuiProvider } from '~/components/SixuiProvider';
-import { ThemeProvider } from '~/components/ThemeProvider';
 import { modes } from './modes';
 import { classNames } from './preview.css';
 
-import '~/styles/main.css';
+import '@sixui/core/index.css';
 import './storybook.css';
 
-import { Box } from '~/components/Box';
-import { CustomizableTheme } from '~/components/CustomizableTheme';
+import {
+  Box,
+  CustomizableTheme,
+  SixuiProvider,
+  ThemeProvider,
+} from '@sixui/core';
 
 const preview: Preview = {
   parameters: {

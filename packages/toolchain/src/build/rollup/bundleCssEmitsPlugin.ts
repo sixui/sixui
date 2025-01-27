@@ -30,7 +30,8 @@ export const bundleCssEmitsPlugin = (
     const output = allImports.reduce(
       (resultingCode, [importLine, moduleId]) => {
         if (
-          pluginOptions.shouldStrip(path.posix.join(dirname, moduleId ?? ''))
+          moduleId &&
+          pluginOptions.shouldStrip(path.posix.join(dirname, moduleId))
         ) {
           return resultingCode.replace(importLine, '');
         }

@@ -2,6 +2,7 @@ import type { OutputOptions, RollupOptions } from 'rollup';
 import type { CompilerOptions } from 'typescript';
 import path from 'node:path';
 import json from '@rollup/plugin-json';
+import typescript from '@rollup/plugin-typescript';
 import { vanillaExtractPlugin } from '@vanilla-extract/rollup-plugin';
 import { dts } from 'rollup-plugin-dts';
 import esbuild from 'rollup-plugin-esbuild';
@@ -12,15 +13,26 @@ import type { IBuildOptions } from '../build';
 import { getPath } from '../../utils/getPath';
 import { bundleCssEmitsPlugin } from './bundleCssEmitsPlugin';
 
+// Change `.css.js` files to something else so that they don't get re-processed
+// by consumer's setup.
+const renameCss = (name: string, ext: string): string =>
+  `${name.replace(/\.css$/, '.css.vanilla')}${ext}`;
+
 export const createRollupOptionsList = (
   buildOptions: IBuildOptions,
   compilerOptions: CompilerOptions,
 ): Array<RollupOptions> => {
   const emittedCssFiles = new Set<string>();
 
+  const tsconfigPath = getPath(buildOptions.tsconfig, buildOptions.cwd);
+  const outDirPath = getPath(buildOptions.outDir, buildOptions.cwd);
+
   const plugins = [
     vanillaExtractPlugin({
       // Waiting for https://github.com/vanilla-extract-css/vanilla-extract/discussions/1534
+    }),
+    typescript({
+      tsconfig: tsconfigPath,
     }),
     depsExternal(),
     esbuild(),
@@ -28,15 +40,15 @@ export const createRollupOptionsList = (
   ];
 
   const commonOutputOptions: OutputOptions = {
-    dir: buildOptions.outDir,
+    dir: outDirPath,
     format: 'esm',
     preserveModules: true,
   };
 
-  const input = getPath(buildOptions.entryPoint, buildOptions.cwd);
+  const inputPath = getPath(buildOptions.entryPoint, buildOptions.cwd);
 
   const mainOptions: RollupOptions = {
-    input,
+    input: inputPath,
     plugins: [
       ...plugins,
       bundleCssEmitsPlugin({
@@ -55,11 +67,7 @@ export const createRollupOptionsList = (
       {
         ...commonOutputOptions,
         sourcemap: true,
-        // Change `.css.js` files to something else so that they don't get
-        // re-processed by consumer's setup.
-        entryFileNames({ name }) {
-          return `${name.replace(/\.css$/, '.css.vanilla')}.js`;
-        },
+        entryFileNames: ({ name }) => renameCss(name, '.js'),
         // Apply preserveModulesRoot to asset names.
         assetFileNames(assetInfo) {
           const name = assetInfo.names[0] ?? '';
@@ -80,13 +88,14 @@ export const createRollupOptionsList = (
   };
 
   const declarationsOptions: RollupOptions = {
-    input,
+    input: inputPath,
     plugins: [
       ...plugins,
       dts({
         compilerOptions: {
           ...compilerOptions,
           declaration: true,
+          declarationDir: outDirPath,
           noEmit: false,
           emitDeclarationOnly: true,
           noEmitOnError: true,
@@ -98,11 +107,7 @@ export const createRollupOptionsList = (
       {
         ...commonOutputOptions,
         preserveModulesRoot: buildOptions.rootDir,
-        // Change .css.js files to something else so that they don't get
-        // re-processed by consumer's setup.
-        entryFileNames({ name }) {
-          return `${name.replace(/\.css$/, '.css.vanilla')}.d.ts`;
-        },
+        entryFileNames: ({ name }) => renameCss(name, '.d.ts'),
         ...buildOptions.outputOptions,
       },
     ],

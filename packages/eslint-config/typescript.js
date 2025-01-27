@@ -108,6 +108,10 @@ export default tseslint.config(...base, {
         selector: 'class',
         format: ['PascalCase'],
       },
+      {
+        selector: 'enum',
+        format: ['PascalCase'],
+      },
     ],
     '@typescript-eslint/no-unused-vars': [
       'error',

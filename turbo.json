@@ -7,7 +7,7 @@
     },
     "build": {
       "dependsOn": ["clean", "^build"],
-      "outputs": ["dist/**"]
+      "outputs": ["dist/**", "storybook-static/**"]
     },
     "dev": {
       "persistent": true,

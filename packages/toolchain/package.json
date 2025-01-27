@@ -26,6 +26,7 @@
   "module": "./dist/index.js",
   "devDependencies": {
     "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-typescript": "^12.1.2",
     "@sixui/eslint-config": "workspace:*",
     "@sixui/typescript-config": "workspace:*",
     "@types/fs-extra": "^11.0.4",
@@ -40,6 +41,7 @@
     "rollup-plugin-esbuild": "^6.1.1",
     "rollup-plugin-node-externals": "^8.0.0",
     "signale": "^1.4.0",
+    "tslib": "^2.8.1",
     "typescript": "^5.7.3"
   }
 }
