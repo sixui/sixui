@@ -3,7 +3,7 @@ import type { Decorator, Preview } from '@storybook/react';
 import { modes } from './modes';
 import { classNames } from './preview.css';
 
-import '@sixui/core/index.css';
+import '../src/styles/main.css';
 import './storybook.css';
 
 import {
@@ -11,7 +11,7 @@ import {
   CustomizableTheme,
   SixuiProvider,
   ThemeProvider,
-} from '@sixui/core';
+} from '../src/components';
 
 const preview: Preview = {
   parameters: {

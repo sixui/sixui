@@ -1,5 +1,7 @@
-import { px, themeTokens } from '@sixui/core';
 import { style } from '@vanilla-extract/css';
+
+import { themeTokens } from '~/components';
+import { px } from '~/helpers';
 
 export const classNames = {
   storyWrapper: style({

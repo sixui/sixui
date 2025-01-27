@@ -238,6 +238,21 @@ importers:
         specifier: ^4.4.5
         version: 4.4.5(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
     devDependencies:
+      '@chromatic-com/storybook':
+        specifier: ^3
+        version: 3.2.4(react@19.0.0)(storybook@8.5.1(prettier@3.4.2))
+      '@fortawesome/fontawesome-svg-core':
+        specifier: ^6.7.2
+        version: 6.7.2
+      '@fortawesome/free-regular-svg-icons':
+        specifier: ^6.7.2
+        version: 6.7.2
+      '@fortawesome/free-solid-svg-icons':
+        specifier: ^6.7.2
+        version: 6.7.2
+      '@fortawesome/react-fontawesome':
+        specifier: ^0.2.2
+        version: 0.2.2(@fortawesome/fontawesome-svg-core@6.7.2)(react@19.0.0)
       '@react-types/shared':
         specifier: ^3.27.0
         version: 3.27.0(react@19.0.0)
@@ -253,6 +268,21 @@ importers:
       '@storybook/addon-actions':
         specifier: ^8.5.1
         version: 8.5.1(storybook@8.5.1(prettier@3.4.2))
+      '@storybook/addon-essentials':
+        specifier: ^8.5.1
+        version: 8.5.1(@types/react@19.0.8)(storybook@8.5.1(prettier@3.4.2))
+      '@storybook/blocks':
+        specifier: ^8.5.1
+        version: 8.5.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(storybook@8.5.1(prettier@3.4.2))
+      '@storybook/react':
+        specifier: ^8.5.1
+        version: 8.5.1(@storybook/test@8.5.1(storybook@8.5.1(prettier@3.4.2)))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(storybook@8.5.1(prettier@3.4.2))(typescript@5.7.3)
+      '@storybook/react-vite':
+        specifier: ^8.5.1
+        version: 8.5.1(@storybook/test@8.5.1(storybook@8.5.1(prettier@3.4.2)))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(rollup@4.32.0)(storybook@8.5.1(prettier@3.4.2))(typescript@5.7.3)(vite@6.0.11(@types/node@22.10.10)(jiti@2.4.2)(tsx@4.19.2)(yaml@2.7.0))
+      '@storybook/test':
+        specifier: ^8.5.1
+        version: 8.5.1(storybook@8.5.1(prettier@3.4.2))
       '@types/node':
         specifier: ^22.10.10
         version: 22.10.10
@@ -262,6 +292,12 @@ importers:
       '@types/react-transition-group':
         specifier: ^4
         version: 4.4.12(@types/react@19.0.8)
+      '@vanilla-extract/vite-plugin':
+        specifier: ^4.0.19
+        version: 4.0.19(@types/node@22.10.10)(vite@6.0.11(@types/node@22.10.10)(jiti@2.4.2)(tsx@4.19.2)(yaml@2.7.0))
+      '@vitejs/plugin-react':
+        specifier: ^4.3.4
+        version: 4.3.4(vite@6.0.11(@types/node@22.10.10)(jiti@2.4.2)(tsx@4.19.2)(yaml@2.7.0))
       eslint:
         specifier: ^9.19.0
         version: 9.19.0(jiti@2.4.2)
@@ -271,6 +307,9 @@ importers:
       react:
         specifier: ^19.0.0
         version: 19.0.0
+      storybook:
+        specifier: ^8.5.1
+        version: 8.5.1(prettier@3.4.2)
       svg-to-ts:
         specifier: ^12.0.0
         version: 12.0.0
@@ -283,6 +322,15 @@ importers:
       typescript:
         specifier: ^5.7.3
         version: 5.7.3
+      vite:
+        specifier: ^6.0.11
+        version: 6.0.11(@types/node@22.10.10)(jiti@2.4.2)(tsx@4.19.2)(yaml@2.7.0)
+      vite-plugin-dts:
+        specifier: ^4.5.0
+        version: 4.5.0(@types/node@22.10.10)(rollup@4.32.0)(typescript@5.7.3)(vite@6.0.11(@types/node@22.10.10)(jiti@2.4.2)(tsx@4.19.2)(yaml@2.7.0))
+      vite-tsconfig-paths:
+        specifier: ^5.1.4
+        version: 5.1.4(typescript@5.7.3)(vite@6.0.11(@types/node@22.10.10)(jiti@2.4.2)(tsx@4.19.2)(yaml@2.7.0))
 
   packages/eslint-config:
     devDependencies:

@@ -3,8 +3,6 @@
   "compilerOptions": {
     "outDir": "dist"
   },
-  "exclude": [
-    "src/**/*.test.ts*",
-    "src/**/*.stories*"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.json"],
+  "exclude": ["src/**/*.test.ts*", "src/**/*.stories*"]
 }

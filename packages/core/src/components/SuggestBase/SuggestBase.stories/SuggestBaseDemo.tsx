@@ -1,6 +1,6 @@
 import type { IMovie } from '~/components/FilterableListBase/FilterableListBase.stories/movies';
 import type { IOmit } from '~/helpers/types';
-import type { ISuggestBaseProps } from './SuggestBase.types';
+import type { ISuggestBaseProps } from '../SuggestBase.types';
 import {
   areMoviesEqual,
   createMovie,
@@ -11,7 +11,7 @@ import {
   renderMovieListItem,
   TOP_100_MOVIES,
 } from '~/components/FilterableListBase/FilterableListBase.stories/movies';
-import { suggestBaseFactory } from './SuggestBase';
+import { suggestBaseFactory } from '../SuggestBase';
 
 export type ISuggestBaseDemoProps = IOmit<
   ISuggestBaseProps<IMovie>,
