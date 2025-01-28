@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-pnpm pre-commit
 pnpm lint-staged
-pnpm check:all
+pnpm turbo check:all
+pnpm turbo pre-commit
 # pnpm test

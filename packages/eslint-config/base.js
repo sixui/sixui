@@ -16,6 +16,8 @@ export default [
   eslintPluginImportX.flatConfigs.recommended,
   {
     ignores: ['**/dist'],
+  },
+  {
     plugins: {
       fp: fpPlugin,
       turbo: turboPlugin,

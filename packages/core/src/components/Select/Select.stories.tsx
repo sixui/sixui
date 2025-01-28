@@ -81,7 +81,7 @@ export const DefaultValue: IStory = {
   render: (props) => <SelectDemoShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
-    defaultValue: fruits[1].value,
+    defaultValue: fruits[1]!.value,
   },
 };
 
@@ -89,7 +89,7 @@ export const Clearable: IStory = {
   render: (props) => <SelectDemoShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
-    defaultValue: fruits[1].value,
+    defaultValue: fruits[1]!.value,
     clearable: true,
   },
 };
@@ -98,7 +98,7 @@ export const ClearableWithEmptyItem: IStory = {
   render: (props) => <SelectDemoShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
-    defaultValue: fruits[1].value,
+    defaultValue: fruits[1]!.value,
     clearable: true,
     items: [emptyItem, ...fruits],
   },
@@ -181,7 +181,7 @@ export const ControlledAndClearable: IStory = {
   render: (props) => <ControlledSelectDemoShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
-    defaultValue: fruits[1].value,
+    defaultValue: fruits[1]!.value,
     clearable: true,
   },
 };
@@ -190,7 +190,7 @@ export const ControlledAndClearableWithEmptyItem: IStory = {
   render: (props) => <ControlledSelectDemoShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
-    defaultValue: fruits[1].value,
+    defaultValue: fruits[1]!.value,
     clearable: true,
     items: [emptyItem, ...fruits],
   },

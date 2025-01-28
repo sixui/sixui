@@ -10,7 +10,7 @@ import base from './typescript.js';
  * A custom ESLint configuration for libraries that use React.
  */
 export default tseslint.config(...base, {
-  files: ['**/*.tsx'],
+  files: ['**/*.ts', '**/*.tsx'],
   extends: [
     // https://github.com/jsx-eslint/eslint-plugin-react/tree/master?tab=readme-ov-file#flat-configs
     reactPlugin.configs.flat.recommended,

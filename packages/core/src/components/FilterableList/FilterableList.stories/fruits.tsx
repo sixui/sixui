@@ -7,7 +7,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import type { IFilterableListItem } from './FilterableList.types';
+import type { IFilterableListItem } from '../FilterableList.types';
 
 export const emptyItem = {
   label: '—',

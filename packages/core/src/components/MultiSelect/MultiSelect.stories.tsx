@@ -78,7 +78,7 @@ export const Clearable: IStory = {
   render: (props) => <MultiSelectDemoShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
-    defaultValue: [fruits[1].value, fruits[3].value],
+    defaultValue: [fruits[1]!.value, fruits[3]!.value],
     clearable: true,
   },
 };
@@ -143,7 +143,7 @@ export const ControlledAndClearable: IStory = {
   ),
   args: {
     ...defaultArgs,
-    defaultValue: [fruits[1].value],
+    defaultValue: [fruits[1]!.value],
     clearable: true,
   },
 };
