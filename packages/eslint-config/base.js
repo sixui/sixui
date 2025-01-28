@@ -84,7 +84,7 @@ export default [
     },
   },
   {
-    files: ['eslint.config.js'],
+    files: ['eslint.config.*', 'vite.config.*', 'prettier.config/*'],
     rules: {
       'import-x/no-default-export': 'off',
     },

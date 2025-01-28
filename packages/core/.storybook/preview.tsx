@@ -3,7 +3,7 @@ import type { Decorator, Preview } from '@storybook/react';
 import { modes } from './modes';
 import { classNames } from './preview.css';
 
-import '../src/styles/main.css';
+import '~/styles/main.css';
 import './storybook.css';
 
 import {
@@ -72,5 +72,4 @@ export const decorators: Array<Decorator> = [
   },
 ];
 
-// eslint-disable-next-line import-x/no-default-export
 export default preview;

@@ -6,6 +6,7 @@
     "src/**/*.json",
     "scripts/**/*.ts",
     ".storybook/**/*.ts",
-    ".storybook/**/*.tsx"
+    ".storybook/**/*.tsx",
+    "vite.config.ts",
   ]
 }

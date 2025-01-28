@@ -7,7 +7,7 @@ import base from './react.js';
  * A custom ESLint configuration for libraries that use Storybook.
  */
 export default tseslint.config(...base, {
-  files: ['**/*.stories.tsx'],
+  files: ['**/*.stories.tsx', '.storybook/main.ts', '.storybook/preview.tsx*'],
   extends: [
     // https://github.com/storybookjs/eslint-plugin-storybook?tab=readme-ov-file#configuration-eslintconfigcmjs
     storybook.configs['flat/recommended'],
