@@ -52,7 +52,7 @@ const rows: Array<IComponentPresentation<IFieldBaseProps>> = [
       count: 2,
       max: 10,
       leadingIcon: <FontAwesomeIcon icon={faMagnifyingGlass} />,
-      end: <IconButton icon={<FontAwesomeIcon icon={faXmark} />} />,
+      endSlot: <IconButton icon={<FontAwesomeIcon icon={faXmark} />} />,
       prefixText: '$',
       suffixText: '.00',
     },

@@ -17,8 +17,8 @@ export interface IFieldBaseOwnProps extends IForwardableProps {
   readOnly?: boolean;
   hasError?: boolean;
   errorText?: React.ReactNode;
-  start?: React.ReactNode;
-  end?: React.ReactNode;
+  startSlot?: React.ReactNode;
+  endSlot?: React.ReactNode;
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
   prefixText?: React.ReactNode;

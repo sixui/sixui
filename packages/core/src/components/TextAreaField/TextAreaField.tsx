@@ -71,7 +71,7 @@ export const TextAreaField = componentFactory<ITextAreaFieldFactory>(
     const clearable = clearableProp && !disabledOrReadOnly && populated;
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
     const textAreaHandleRef = useMergeRefs(textAreaRef, forwardedRef);
-    const hasEnd = !!other.end || clearable;
+    const hasEnd = !!other.endSlot || clearable;
 
     const [focused, setFocused] = useState(false);
     const focus = useFocus({ onFocusChange: setFocused });
@@ -113,7 +113,7 @@ export const TextAreaField = componentFactory<ITextAreaFieldFactory>(
     const renderEndSection = (): React.ReactNode =>
       hasEnd && (
         <>
-          {other.end}
+          {other.endSlot}
           {clearable && (
             <IconButton
               data-cy="clearButton"
@@ -135,7 +135,7 @@ export const TextAreaField = componentFactory<ITextAreaFieldFactory>(
         disabled={disabled}
         readOnly={readOnly}
         variant={variant}
-        end={renderEndSection()}
+        endSlot={renderEndSection()}
         forwardProps
         withoutRippleEffect
         managedFocus

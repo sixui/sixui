@@ -95,9 +95,6 @@ const classNames = createStyles({
   root: {
     minWidth: 'unset',
     height: calc.add(tokens.height, DENSITY),
-    transitionProperty: 'border-radius',
-    transitionDuration: themeTokens.motion.duration.medium.$4,
-    transitionTimingFunction: themeTokens.motion.easing.emphasized.decelerate,
 
     vars: createTokensVars(Button.theme.tokens, {
       container: {

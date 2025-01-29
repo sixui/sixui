@@ -31,8 +31,8 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
       variant = 'filled',
       forwardProps,
       children,
-      start,
-      end,
+      startSlot,
+      endSlot,
       leadingIcon,
       trailingIcon,
       readOnly: readOnlyProp,
@@ -70,8 +70,8 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
     const loading = loadingProp ?? labeledContext?.loading;
 
     const disabledOrReadOnly = disabled || readOnly;
-    const hasStartSection = !!leadingIcon || !!start;
-    const hasEndSection = !!loading || !!trailingIcon || !!end;
+    const hasStart = !!leadingIcon || !!startSlot;
+    const hasEnd = !!loading || !!trailingIcon || !!endSlot;
     const hasLabel = !!label;
     const populated = populatedProp;
 
@@ -98,8 +98,8 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
         resizable,
         populated,
         disabled: disabledOrReadOnly,
-        'with-start-section': hasStartSection,
-        'with-end-section': hasEndSection,
+        'with-start-section': hasStart,
+        'with-end-section': hasEnd,
         'with-label': hasLabel,
         'with-error': hasError,
         multiline,
@@ -406,14 +406,14 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
           {variant === 'outlined' && renderOutline()}
 
           <div {...getStyles('inner')}>
-            {hasStartSection && (
+            {hasStart && (
               <div {...getStyles(['section', 'section$start'])}>
                 {leadingIcon && (
                   <span {...getStyles(['icon', 'icon$leading'])}>
                     {leadingIcon}
                   </span>
                 )}
-                {start}
+                {startSlot}
               </div>
             )}
 
@@ -447,9 +447,9 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
               </div>
             </div>
 
-            {hasEndSection && (
+            {hasEnd && (
               <div {...getStyles(['section', 'section$end'])}>
-                {end}
+                {endSlot}
                 {(loading || trailingIcon) && (
                   <span {...getStyles(['icon', 'icon$trailing'])}>
                     {loading ? <CircularProgressIndicator /> : trailingIcon}

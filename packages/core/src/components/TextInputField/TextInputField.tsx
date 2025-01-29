@@ -78,7 +78,7 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
       typeProp === 'password' ? (unmasked ? 'text' : 'password') : typeProp;
     const inputRef = useRef<HTMLInputElement>(null);
     const inputHandleRef = useMergeRefs(inputRef, forwardedRef);
-    const hasEnd = !!other.end || clearable || unmaskable;
+    const hasEnd = !!other.endSlot || clearable || unmaskable;
 
     const [focused, setFocused] = useState(false);
     const focus = useFocus({
@@ -136,7 +136,7 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
     const renderEndSection = (): React.ReactNode =>
       hasEnd && (
         <>
-          {other.end}
+          {other.endSlot}
           {clearable && (
             <IconButton
               data-cy="clearButton"
@@ -168,7 +168,7 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
         disabled={disabled}
         readOnly={readOnly}
         variant={variant}
-        end={renderEndSection()}
+        endSlot={renderEndSection()}
         forwardProps
         withoutRippleEffect
         managedFocus

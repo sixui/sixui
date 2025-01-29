@@ -28,6 +28,7 @@ export const Motion = polymorphicComponentFactory<IMotionFactory>(
       pattern = 'enterExit',
       orientation: orientationProp,
       disabled,
+      keepMounted,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -41,6 +42,10 @@ export const Motion = polymorphicComponentFactory<IMotionFactory>(
           : 'horizontal'
         : undefined);
     const resolvedStatus = resolveRtgStatus(status);
+
+    if (!keepMounted && status === 'exited') {
+      return null;
+    }
 
     const { getStyles } = useComponentTheme<IMotionThemeFactory>({
       componentName: COMPONENT_NAME,

@@ -15,6 +15,9 @@ const classNames = createStyles({
   },
   content: ({ root }) => ({
     borderRadius: 'inherit',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
 
     selectors: {
       [getModifierSelector<IModifier>(
@@ -36,7 +39,6 @@ const classNames = createStyles({
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     textAlign: 'center',
-    justifyContent: 'center',
     borderRadius: 'inherit',
   },
 });

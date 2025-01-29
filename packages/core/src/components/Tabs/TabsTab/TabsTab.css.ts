@@ -146,11 +146,9 @@ const classNames = createStyles({
         leadingSpace: {
           normal: px(space(4)),
           withStartSlot: px(space(4)),
-          withEndSlot: px(space(4)),
         },
         trailingSpace: {
           normal: px(space(4)),
-          withStartSlot: px(space(4)),
           withEndSlot: px(space(4)),
         },
       },

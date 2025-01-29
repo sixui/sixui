@@ -1,5 +1,5 @@
 import { build } from '@sixui/toolchain';
 
-build({
+void build({
   tsconfig: 'tsconfig.build.json',
 });

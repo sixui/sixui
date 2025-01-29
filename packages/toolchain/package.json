@@ -30,7 +30,7 @@
     "@sixui/eslint-config": "workspace:*",
     "@sixui/typescript-config": "workspace:*",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^22.10.10",
+    "@types/node": "^22.12.0",
     "@types/signale": "^1.4.7",
     "@types/yargs": "^17.0.33",
     "@vanilla-extract/rollup-plugin": "^1.3.12",

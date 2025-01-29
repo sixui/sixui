@@ -6,12 +6,10 @@ import { classNames } from './preview.css';
 import '~/styles/main.css';
 import './storybook.css';
 
-import {
-  Box,
-  CustomizableTheme,
-  SixuiProvider,
-  ThemeProvider,
-} from '../src/components';
+import { Box } from '~/components/Box';
+import { CustomizableTheme } from '~/components/CustomizableTheme';
+import { SixuiProvider } from '~/components/SixuiProvider';
+import { ThemeProvider } from '~/components/ThemeProvider';
 
 const preview: Preview = {
   parameters: {

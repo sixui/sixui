@@ -17,7 +17,7 @@ export type IExpandableTriggerRenderProps = {
 export interface IExpandableOwnProps
   extends IOmit<IExpandableContextValue, 'expand'> {
   children?: React.ReactNode;
-  trigger:
+  trigger?:
     | React.ReactNode
     | ((renderProps: IExpandableTriggerRenderProps) => React.ReactNode);
   onChange?: (expanded: boolean) => void;

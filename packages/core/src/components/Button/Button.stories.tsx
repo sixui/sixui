@@ -85,13 +85,13 @@ const rows: Array<IComponentPresentation<IButtonProps>> = [
     legend: 'With leading icon and end slot',
     props: {
       leadingIcon: <FontAwesomeIcon icon={faPlus} />,
-      end: <Badge value="2" />,
+      endSlot: <Badge value="2" />,
     },
   },
   {
     legend: 'With start slot and trailing icon',
     props: {
-      start: <Badge value="2" />,
+      startSlot: <Badge value="2" />,
       trailingIcon: <FontAwesomeIcon icon={faChevronRight} />,
     },
   },

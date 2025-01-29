@@ -7,7 +7,14 @@ import { Chip } from './Chip';
 export const FilterChip = createPolymorphicComponent<'div', IFilterChipProps>(
   forwardRef<HTMLButtonElement, IFilterChipProps>(
     function FilterChip(props, forwardedRef) {
-      return <Chip {...props} ref={forwardedRef} variant="filter" />;
+      return (
+        <Chip
+          {...props}
+          ref={forwardedRef}
+          variant="filter"
+          animatedIconSlots
+        />
+      );
     },
   ),
 );

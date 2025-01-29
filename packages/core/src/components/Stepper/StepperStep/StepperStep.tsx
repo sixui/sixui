@@ -148,7 +148,7 @@ export const StepperStep = componentFactory<IStepperStepFactory>(
                 disabled={disabled}
                 variant={false}
                 ref={forwardedRef}
-                start={
+                startSlot={
                   <StepperStepIndicator
                     {...getStyles('indicator')}
                     label={index + 1}

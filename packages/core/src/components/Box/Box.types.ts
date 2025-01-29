@@ -9,9 +9,11 @@ import type { IBoxSprinkles } from './Box.css';
 export interface IBoxProps extends IBoxSprinkles {
   className?: Parameters<typeof cx>[0];
   style?: React.CSSProperties;
-  // FIXME: not in box
-  interactions?: IInteractions;
   modifiers?: IModifiers;
+
+  /** Special modifiers that are specific to interactions */
+  interactions?: IInteractions;
+
   scale?: ISixuiSize;
   density?: number;
 

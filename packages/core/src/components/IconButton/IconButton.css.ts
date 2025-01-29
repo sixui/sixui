@@ -66,14 +66,12 @@ const classNames = createStyles({
           disabled: 'transparent',
         },
         leadingSpace: {
-          normal: '0px',
-          withStartSlot: '0px',
-          withEndSlot: '0px',
+          normal: px(0),
+          withStartSlot: px(0),
         },
         trailingSpace: {
-          normal: '0px',
-          withStartSlot: '0px',
-          withEndSlot: '0px',
+          normal: px(0),
+          withEndSlot: px(0),
         },
         minWidth: tokens.size,
         height: tokens.size,

@@ -7,6 +7,7 @@ import type { IButtonVariant } from './Button.types';
 import { PaperBase } from '~/components/PaperBase';
 import { StateLayer } from '~/components/StateLayer';
 import { themeTokens } from '~/components/ThemeProvider';
+import { em } from '~/helpers/styles/em';
 import { getDensity } from '~/helpers/styles/getDensity';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
@@ -23,8 +24,9 @@ type IModifier =
   | IInteraction
   | 'disabled'
   | 'loading'
-  | 'with-start-slot'
-  | 'with-end-slot'
+  | 'with-children'
+  | 'with-leading'
+  | 'with-trailing'
   | 'icon-animation';
 
 const DENSITY = px(getDensity({ min: -4, max: 0 }));
@@ -37,11 +39,9 @@ const [tokensClassName, tokens] = createTheme({
     leadingSpace: {
       normal: px(space(6)),
       withStartSlot: px(space(4)),
-      withEndSlot: px(space(6)),
     },
     trailingSpace: {
       normal: px(space(6)),
-      withStartSlot: px(space(6)),
       withEndSlot: px(space(4)),
     },
     color: {
@@ -147,8 +147,12 @@ const classNames = createStyles({
     // other if one button has an icon and the other does not.
     verticalAlign: 'top',
 
-    paddingInlineStart: tokens.container.leadingSpace.normal,
-    paddingInlineEnd: tokens.container.trailingSpace.normal,
+    transitionProperty: 'border-radius',
+    transitionDuration: themeTokens.motion.duration.short.$2,
+    transitionTimingFunction: themeTokens.motion.easing.linear,
+
+    paddingLeft: tokens.container.leadingSpace.normal,
+    paddingRight: tokens.container.trailingSpace.normal,
     minHeight: calc.add(tokens.container.height, DENSITY),
     // Add extra space between label and the edge for if the label text wraps.
     // The padding added should be relative to the height of the container and
@@ -266,17 +270,11 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>('with-start-slot')]: {
-        paddingInlineStart: tokens.container.leadingSpace.withStartSlot,
-        paddingInlineEnd: tokens.container.trailingSpace.withStartSlot,
+      [getModifierSelector<IModifier>('with-leading')]: {
+        paddingLeft: tokens.container.leadingSpace.withStartSlot,
       },
-      [getModifierSelector<IModifier>('with-end-slot')]: {
-        paddingInlineStart: tokens.container.leadingSpace.withEndSlot,
-        paddingInlineEnd: tokens.container.trailingSpace.withEndSlot,
-      },
-      [getModifierSelector<IModifier>(['with-start-slot', 'with-end-slot'])]: {
-        paddingInlineStart: tokens.container.leadingSpace.withStartSlot,
-        paddingInlineEnd: tokens.container.trailingSpace.withEndSlot,
+      [getModifierSelector<IModifier>('with-trailing')]: {
+        paddingRight: tokens.container.trailingSpace.withEndSlot,
       },
     },
   },
@@ -319,6 +317,7 @@ const classNames = createStyles({
     },
   }),
   icon: ({ root }) => ({
+    color: fallbackVar(tokens.icon.color.normal, tokens.label.color.normal),
     pointerEvents: 'none',
     display: 'inline-flex',
     alignItems: 'center',
@@ -374,43 +373,113 @@ const classNames = createStyles({
     },
   }),
   slot: {
+    position: 'relative',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    position: 'relative',
-  },
-  slot$start: {
-    marginInlineEnd: tokens.icon.labelSpace,
-  },
-  slot$end: {
-    marginInlineStart: tokens.icon.labelSpace,
   },
   slot$icon: {
-    color: fallbackVar(tokens.icon.color.normal, tokens.label.color.normal),
     width: tokens.icon.size,
+  },
+  slot$icon$start: {
+    marginRight: tokens.icon.labelSpace,
+  },
+  slot$icon$end: {
+    marginLeft: tokens.icon.labelSpace,
+  },
+  slot$icon$animated: {
     opacity: 1,
 
-    transitionProperty: 'opacity, width',
-    transitionDuration: themeTokens.motion.duration.medium.$4,
-    transitionTimingFunction: themeTokens.motion.easing.emphasized.decelerate,
-  },
-  // FIXME: collapse animation due to Overlayable component - use animatedSlots
-  slot$icon$collapsed: {
-    marginInlineStart: 0,
-    marginInlineEnd: 0,
-    width: 0,
-    opacity: 0,
-    color: 'transparent',
+    [getModifierSelector({ 'animation-status': 'initial' })]: {
+      opacity: 0,
+    },
+    [getModifierSelector({ 'animation-status': 'entering' })]: {
+      opacity: 1,
 
-    transitionProperty: 'opacity, width',
-    transitionDuration: themeTokens.motion.duration.short.$2,
-    transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
+      transitionProperty: 'width, opacity',
+      transitionDuration: themeTokens.motion.duration.medium.$4,
+      transitionTimingFunction: themeTokens.motion.easing.emphasized.decelerate,
+    },
+    [getModifierSelector({ 'animation-status': 'exiting' })]: {
+      opacity: 0,
+
+      transitionProperty: 'width, opacity',
+      transitionDuration: themeTokens.motion.duration.short.$2,
+      transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
+    },
+    [getModifierSelector({ 'animation-status': 'exited' })]: {
+      opacity: 0,
+    },
+  },
+  slot$icon$animated$start: {
+    marginLeft: 0,
 
     selectors: {
-      '&::before': {
-        // Important for correct alignment when root `vertical-align` is
-        // `baseline`.
-        content: 'x',
+      [getModifierSelector({ 'animation-status': 'initial' })]: {
+        marginLeft: calc.subtract(
+          tokens.container.leadingSpace.withStartSlot,
+          tokens.container.leadingSpace.normal,
+        ),
+        width: calc.subtract(
+          tokens.container.leadingSpace.normal,
+          tokens.container.leadingSpace.withStartSlot,
+        ),
+      },
+      [getModifierSelector({ 'animation-status': 'exiting' })]: {
+        marginLeft: calc.subtract(
+          tokens.container.leadingSpace.withStartSlot,
+          tokens.container.leadingSpace.normal,
+        ),
+        width: 0,
+      },
+      [getModifierSelector({ 'animation-status': 'exited' })]: {
+        width: calc.subtract(
+          tokens.container.leadingSpace.normal,
+          tokens.container.leadingSpace.withStartSlot,
+        ),
+      },
+    },
+  },
+  // DEV:
+  slot$end: {
+    selectors: {
+      [getModifierSelector({ 'animation-status': 'initial' })]: {
+        marginRight: calc.subtract(
+          tokens.container.trailingSpace.withEndSlot,
+          tokens.container.trailingSpace.normal,
+        ),
+        width: calc.subtract(
+          tokens.container.trailingSpace.withEndSlot,
+          tokens.container.trailingSpace.normal,
+        ),
+      },
+      [getModifierSelector({ 'animation-status': 'entering' })]: {
+        marginRight: 0,
+      },
+      [getModifierSelector({ 'animation-status': 'entered' })]: {
+        marginRight: 0,
+      },
+      [getModifierSelector({ 'animation-status': 'exiting' })]: {
+        marginRight: calc.subtract(
+          tokens.container.trailingSpace.withEndSlot,
+          tokens.container.trailingSpace.normal,
+        ),
+        width: calc.subtract(
+          tokens.container.trailingSpace.withEndSlot,
+          tokens.container.trailingSpace.normal,
+        ),
+        opacity: 0,
+      },
+      [getModifierSelector({ 'animation-status': 'exited' })]: {
+        marginRight: calc.subtract(
+          tokens.container.trailingSpace.withEndSlot,
+          tokens.container.trailingSpace.normal,
+        ),
+        width: calc.subtract(
+          tokens.container.trailingSpace.withEndSlot,
+          tokens.container.trailingSpace.normal,
+        ),
+        opacity: 0,
       },
     },
   },
@@ -578,11 +647,9 @@ export const buttonThemeVariants = {
           leadingSpace: {
             normal: px(space(3)),
             withStartSlot: px(space(3)),
-            withEndSlot: px(space(4)),
           },
           trailingSpace: {
             normal: px(space(3)),
-            withStartSlot: px(space(4)),
             withEndSlot: px(space(3)),
           },
         },
@@ -649,11 +716,9 @@ export const buttonThemeVariants = {
             leadingSpace: {
               normal: px(space(4)),
               withStartSlot: px(space(3)),
-              withEndSlot: px(space(4)),
             },
             trailingSpace: {
               normal: px(space(4)),
-              withStartSlot: px(space(4)),
               withEndSlot: px(space(3)),
             },
             height: px(32),
@@ -692,22 +757,20 @@ export const buttonThemeVariants = {
             color: {
               disabled: 'unset',
             },
-            height: '1em',
-            minWidth: '1em',
+            height: em(1),
+            minWidth: em(1),
             leadingSpace: {
-              normal: '0',
-              withStartSlot: '0',
-              withEndSlot: '0',
+              normal: px(0),
+              withStartSlot: px(0),
             },
             trailingSpace: {
-              normal: '0',
-              withStartSlot: '0',
-              withEndSlot: '0',
+              normal: px(0),
+              withEndSlot: px(0),
             },
           },
           icon: {
-            size: '1em',
-            labelSpace: '0.25em',
+            size: em(1),
+            labelSpace: em(0.25),
           },
           label: {
             color: {
@@ -727,10 +790,10 @@ export const buttonThemeVariants = {
       },
     }),
     stateLayer: {
-      inset: 'calc(-0.5 * max(1em, 16px))',
+      inset: calc.multiply(-0.5, `max(1em, 16px)`),
     },
     focusRing: {
-      inset: 'calc(-0.5 * max(1em, 16px) - 3px)',
+      inset: calc.subtract(calc.multiply(-0.5, `max(1em, 16px)`), '3px'),
     },
   }),
 };

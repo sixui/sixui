@@ -34,12 +34,11 @@ export interface IButtonOwnProps
   loadingText?: React.ReactNode;
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
-  hasLeading?: boolean;
-  hasTrailing?: boolean;
-  start?: React.ReactNode;
-  end?: React.ReactNode;
-  // FIXME: animated slots
-  animatedSlots?: boolean;
+  hasStartSlot?: boolean;
+  hasEndSlot?: boolean;
+  startSlot?: React.ReactNode;
+  endSlot?: React.ReactNode;
+  animatedIconSlots?: boolean;
 }
 
 export interface IButtonProps

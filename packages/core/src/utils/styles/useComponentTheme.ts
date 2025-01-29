@@ -60,14 +60,10 @@ export interface IUseComponentThemeProps<
     : never;
 }
 
-export interface IGetStylesOptions<
-  TPayload extends IComponentThemeFactoryPayload,
-> {
+export interface IGetStylesOptions {
   className?: string;
   style?: React.CSSProperties;
-  modifiers?: TPayload['modifier'] extends string
-    ? Partial<IModifiers<TPayload['modifier']>>
-    : never;
+  modifiers?: IModifiers;
 }
 
 export type IUseComponentThemeResult<
@@ -75,7 +71,7 @@ export type IUseComponentThemeResult<
 > = {
   getStyles: (
     styleName: INestedArray<TPayload['styleName'] | false | undefined>,
-    options?: IGetStylesOptions<TPayload>,
+    options?: IGetStylesOptions,
   ) => {
     className?: string;
     style?: React.CSSProperties;

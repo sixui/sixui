@@ -81,7 +81,7 @@ export const selectBaseFactory = <
         >
           {(renderProps) => (
             <FieldBase
-              end={
+              endSlot={
                 <FilterableListBaseFieldTrailingIcon
                   onClear={
                     clearable &&

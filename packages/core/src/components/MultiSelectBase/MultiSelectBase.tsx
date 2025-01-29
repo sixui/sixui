@@ -237,7 +237,7 @@ export const multiSelectBaseFactory = <
 
             return (
               <TextInputField
-                end={
+                endSlot={
                   <FilterableListBaseFieldTrailingIcon
                     onClear={
                       clearable && multiFilterableListBase.selectedItems.length

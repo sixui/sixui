@@ -71,14 +71,12 @@ const classNames = createStyles({
             normal: elevationLevelPreset[3],
           },
           leadingSpace: {
-            normal: '0',
-            withStartSlot: '0',
-            withEndSlot: '0',
+            normal: px(0),
+            withStartSlot: px(0),
           },
           trailingSpace: {
-            normal: '0',
-            withStartSlot: '0',
-            withEndSlot: '0',
+            normal: px(0),
+            withEndSlot: px(0),
           },
         },
         icon: tokens.icon,
@@ -98,7 +96,7 @@ const classNames = createStyles({
               },
               trailingSpace: {
                 normal: px(space(6)),
-                withStartSlot: px(space(6)),
+                withEndSlot: px(space(6)),
               },
             },
           }),
