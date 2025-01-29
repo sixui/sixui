@@ -12,7 +12,7 @@ export const FilterChip = createPolymorphicComponent<'div', IFilterChipProps>(
           {...props}
           ref={forwardedRef}
           variant="filter"
-          animatedIconSlots
+          animatedLeadingIconSlot
         />
       );
     },

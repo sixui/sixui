@@ -2,16 +2,16 @@
   "$schema": "https://turbo.build/schema.json",
   "globalEnv": ["NODE_ENV"],
   "tasks": {
+    "dev": {
+      "persistent": true,
+      "cache": false
+    },
     "clean": {
       "cache": false
     },
     "build": {
       "dependsOn": ["clean", "^build"],
       "outputs": ["dist/**", "storybook-static/**"]
-    },
-    "dev": {
-      "persistent": true,
-      "cache": false
     },
     "check:all": {
       "dependsOn": ["^check:all"]

@@ -39,7 +39,7 @@ export const DefaultValue: IStory = {
   render: (props) => <MultiSelectBaseDemoShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
-    defaultItems: [TOP_100_MOVIES[2], TOP_100_MOVIES[5]],
+    defaultItems: [TOP_100_MOVIES[2]!, TOP_100_MOVIES[5]!],
   },
 };
 
@@ -47,7 +47,7 @@ export const Clearable: IStory = {
   render: (props) => <MultiSelectBaseDemoShowcase props={props} rows={rows} />,
   args: {
     ...defaultArgs,
-    defaultItems: [TOP_100_MOVIES[2], TOP_100_MOVIES[5]],
+    defaultItems: [TOP_100_MOVIES[2]!, TOP_100_MOVIES[5]!],
     clearable: true,
   },
 };

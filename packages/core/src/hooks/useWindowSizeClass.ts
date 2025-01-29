@@ -15,7 +15,7 @@ export type IUseWindowSizeClassProps = {
   window?: Window;
 };
 
-// FIXME:
+// TODO: test
 
 type IMediaQueryCallback = (event: { matches: boolean; media: string }) => void;
 

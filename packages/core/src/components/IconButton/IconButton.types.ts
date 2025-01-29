@@ -19,7 +19,7 @@ export type IIconButtonVariant =
 export interface IIconButtonOwnProps
   extends IOmit<
     IButtonOwnProps,
-    'start' | 'end' | 'leadingIcon' | 'trailingIcon' | 'loadingText'
+    'startSlot' | 'endSlot' | 'leadingIcon' | 'trailingIcon' | 'loadingText'
   > {
   toggle?: boolean;
   selected?: boolean;

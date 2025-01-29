@@ -201,7 +201,6 @@ export const ModalStyle: IStory = {
     positioned: false,
     withScrim: true,
     trapFocus: true,
-    lockScroll: true,
   },
 };
 

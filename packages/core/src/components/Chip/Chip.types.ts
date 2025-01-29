@@ -11,7 +11,7 @@ export type IChipVariant = 'assist' | 'filter' | 'input' | 'suggestion';
 export interface IChipOwnProps
   extends IOmit<
     IButtonOwnProps,
-    'leadingIcon' | 'trailingIcon' | 'start' | 'end' | 'children'
+    'leadingIcon' | 'trailingIcon' | 'startSlot' | 'endSlot' | 'children'
   > {
   onTrailingClick?: (event: React.MouseEvent) => IMaybeAsync<unknown>;
   trailingLoading?: boolean;

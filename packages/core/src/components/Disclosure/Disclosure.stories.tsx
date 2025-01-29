@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IDisclosureTriggerProps } from '~/components/DisclosureTrigger';
 import type { IDisclosureProps } from './Disclosure.types';
+import type { IDisclosureTriggerProps } from './DisclosureTrigger';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Text } from '~/components/Text';
 import { sbHandleEvent } from '~/helpers/sbHandleEvent';

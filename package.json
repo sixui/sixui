@@ -11,8 +11,7 @@
     "prepare": "node .husky/install.mjs",
     "preinstall": "npx only-allow pnpm",
     "release": "auto shipit",
-    "prettify:fix:file": "prettier --write",
-    "lint:fix:file": "eslint --fix",
+    "prettier:fix:file": "prettier --write",
     "lint:check": "eslint scripts --fix",
     "dev": "turbo run dev",
     "turbo:check:all": "turbo run check:all",
@@ -22,8 +21,7 @@
   },
   "lint-staged": {
     "**/*.(ts|js)?(x)": [
-      "pnpm prettify:fix:file",
-      "pnpm lint:fix:file"
+      "pnpm prettier:fix:file"
     ]
   },
   "devDependencies": {

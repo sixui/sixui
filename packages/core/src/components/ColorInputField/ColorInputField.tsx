@@ -136,7 +136,9 @@ export const ColorInputField = componentFactory<IColorInputFieldFactory>(
         >
           {({ getProps, setRef, open }) => (
             <TextInputField
-              startSlot={<ColorTag color={value} outlined mr="$2" onClick={open} />}
+              startSlot={
+                <ColorTag color={value} outlined mr="$2" onClick={open} />
+              }
               endSlot={
                 <IconButton
                   icon={<SvgIcon icon={iconPhoto} />}
