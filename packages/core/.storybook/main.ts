@@ -8,7 +8,9 @@ const config: StorybookConfig = {
     reactDocgen: false,
   },
   core: {
+    disableWhatsNewNotifications: true,
     disableTelemetry: true,
+    enableCrashReports: false,
   },
 };
 
