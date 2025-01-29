@@ -12,6 +12,7 @@ import { polymorphicComponentFactory } from '~/utils/component/polymorphicCompon
 import { useProps } from '~/utils/component/useProps';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { Slot } from '../Slot';
 import { buttonTheme, buttonThemeVariants } from './Button.css';
 
 const COMPONENT_NAME = 'Button';
@@ -96,21 +97,8 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
     };
 
     const startSlotTransitionNodeRef = useRef<HTMLDivElement>(null);
-    const renderStartSlot = (): React.ReactNode =>
-      startSlot ? (
-        !!leadingIcon || !trailingIcon ? (
-          <Overlayable
-            overlay={
-              <IndeterminateCircularProgressIndicator {...getStyles('icon')} />
-            }
-            visible={loading}
-          >
-            <div {...getStyles('slot')}>{startSlot}</div>
-          </Overlayable>
-        ) : (
-          <div {...getStyles('slot')}>{startSlot}</div>
-        )
-      ) : animatedIconSlots ? (
+    const renderStartSlot2 = (): React.ReactNode =>
+      animatedIconSlots ? (
         <CSSTransition
           nodeRef={startSlotTransitionNodeRef}
           in={loading || !!leadingIcon}
@@ -167,26 +155,52 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
             }
             visible={loading}
           >
-            <div {...getStyles(['slot', 'slot$icon', 'slot$icon$start'])}>
+            {startSlot ? (
+              <div {...getStyles('slot')}>{startSlot}</div>
+            ) : (
+              <div {...getStyles(['slot', 'slot$icon', 'slot$icon$start'])}>
+                <div
+                  {...getStyles('icon')}
+                  onAnimationIteration={handleAnimationIteration}
+                >
+                  {leadingIcon}
+                </div>
+              </div>
+            )}
+          </Overlayable>
+        ) : (
+          <div {...getStyles(['slot', 'slot$icon', 'slot$icon$start'])}>
+            {startSlot ? (
+              <div {...getStyles('slot')}>{startSlot}</div>
+            ) : (
               <div
                 {...getStyles('icon')}
                 onAnimationIteration={handleAnimationIteration}
               >
                 {leadingIcon}
               </div>
-            </div>
-          </Overlayable>
-        ) : (
-          <div {...getStyles(['slot', 'slot$icon', 'slot$icon$start'])}>
-            <div
-              {...getStyles('icon')}
-              onAnimationIteration={handleAnimationIteration}
-            >
-              {leadingIcon}
-            </div>
+            )}
           </div>
         ))
       );
+
+    const renderStartSlot = (): React.ReactNode => (
+      <Slot
+        {...getStyles(['slot', 'slot$icon', 'slot$icon$start'])}
+        animated={animatedIconSlots}
+        opened={loading || !!leadingIcon}
+        loading={loading && (!!leadingIcon || !trailingIcon)}
+      >
+        {startSlot ?? (
+          <div
+            {...getStyles('icon')}
+            onAnimationIteration={handleAnimationIteration}
+          >
+            {leadingIcon}
+          </div>
+        )}
+      </Slot>
+    );
 
     // DEV:
     // const renderEndSlot = (children: React.ReactNode): React.ReactNode =>

@@ -1,35 +1,35 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
-import type { IAnimatedSlotProps } from './AnimatedSlot.types';
+import type { ISlotProps } from './Slot.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
-import { AnimatedSlot } from './AnimatedSlot';
+import { Slot } from './Slot';
 
 const meta = {
-  component: AnimatedSlot,
-} satisfies Meta<typeof AnimatedSlot>;
+  component: Slot,
+} satisfies Meta<typeof Slot>;
 
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  children: 'AnimatedSlot',
-} satisfies Partial<IAnimatedSlotProps>;
+  children: 'Slot',
+} satisfies Partial<ISlotProps>;
 
-const variants: Array<IComponentPresentation<IAnimatedSlotProps>> = [
+const variants: Array<IComponentPresentation<ISlotProps>> = [
   { legend: 'None', props: { variant: false } },
   { legend: 'Primary', props: { variant: 'primary' } },
 ];
 
-const states: Array<IComponentPresentation<IAnimatedSlotProps>> = [
+const states: Array<IComponentPresentation<ISlotProps>> = [
   { legend: 'Normal' },
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const AnimatedSlotShowcase = componentShowcaseFactory(AnimatedSlot);
+const SlotShowcase = componentShowcaseFactory(Slot);
 
 export const Basic: IStory = {
   render: (props) => (
-    <AnimatedSlotShowcase props={props} cols={states} rows={variants} />
+    <SlotShowcase props={props} cols={states} rows={variants} />
   ),
   args: defaultArgs,
 };

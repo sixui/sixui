@@ -19,6 +19,7 @@ import { createTheme } from '~/utils/styles/createTheme';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
 import { ButtonBase } from '../ButtonBase';
+import { Slot } from '../Slot';
 
 type IModifier =
   | IInteraction
@@ -379,67 +380,87 @@ const classNames = createStyles({
     justifyContent: 'center',
   },
   slot$icon: {
-    width: tokens.icon.size,
+    vars: createTokensVars(Slot.theme.tokens, {
+      container: {
+        width: tokens.icon.size,
+      },
+    }),
   },
   slot$icon$start: {
-    marginRight: tokens.icon.labelSpace,
-  },
-  slot$icon$end: {
-    marginLeft: tokens.icon.labelSpace,
-  },
-  slot$icon$animated: {
-    opacity: 1,
-
-    [getModifierSelector({ 'animation-status': 'initial' })]: {
-      opacity: 0,
-    },
-    [getModifierSelector({ 'animation-status': 'entering' })]: {
-      opacity: 1,
-
-      transitionProperty: 'width, opacity',
-      transitionDuration: themeTokens.motion.duration.medium.$4,
-      transitionTimingFunction: themeTokens.motion.easing.emphasized.decelerate,
-    },
-    [getModifierSelector({ 'animation-status': 'exiting' })]: {
-      opacity: 0,
-
-      transitionProperty: 'width, opacity',
-      transitionDuration: themeTokens.motion.duration.short.$2,
-      transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
-    },
-    [getModifierSelector({ 'animation-status': 'exited' })]: {
-      opacity: 0,
-    },
-  },
-  slot$icon$animated$start: {
-    marginLeft: 0,
-
-    selectors: {
-      [getModifierSelector({ 'animation-status': 'initial' })]: {
-        marginLeft: calc.subtract(
-          tokens.container.leadingSpace.withStartSlot,
-          tokens.container.leadingSpace.normal,
-        ),
-        width: calc.subtract(
-          tokens.container.leadingSpace.normal,
-          tokens.container.leadingSpace.withStartSlot,
-        ),
+    vars: createTokensVars(Slot.theme.tokens, {
+      container: {
+        leadingSpace: {
+          compensated: calc.subtract(
+            tokens.container.leadingSpace.withStartSlot,
+            tokens.container.leadingSpace.normal,
+          ),
+        },
+        trailingSpace: {
+          normal: tokens.icon.labelSpace,
+        },
       },
-      [getModifierSelector({ 'animation-status': 'exiting' })]: {
-        marginLeft: calc.subtract(
-          tokens.container.leadingSpace.withStartSlot,
-          tokens.container.leadingSpace.normal,
-        ),
-        width: 0,
-      },
-      [getModifierSelector({ 'animation-status': 'exited' })]: {
-        width: calc.subtract(
-          tokens.container.leadingSpace.normal,
-          tokens.container.leadingSpace.withStartSlot,
-        ),
-      },
-    },
+    }),
   },
+  // slot$icon$end: {
+  //   marginLeft: tokens.icon.labelSpace,
+  // },
+  // slot$icon$animated: {
+  //   opacity: 1,
+
+  //   selectors: {
+  //     [getModifierSelector({ 'animation-status': 'initial' })]: {
+  //       opacity: 0,
+  //     },
+  //     [getModifierSelector({ 'animation-status': 'entering' })]: {
+  //       opacity: 1,
+
+  //       transitionProperty: 'width, opacity',
+  //       transitionDuration: themeTokens.motion.duration.medium.$4,
+  //       transitionTimingFunction:
+  //         themeTokens.motion.easing.emphasized.decelerate,
+  //     },
+  //     [getModifierSelector({ 'animation-status': 'exiting' })]: {
+  //       opacity: 0,
+
+  //       transitionProperty: 'width, opacity',
+  //       transitionDuration: themeTokens.motion.duration.short.$2,
+  //       transitionTimingFunction:
+  //         themeTokens.motion.easing.emphasized.accelerate,
+  //     },
+  //     [getModifierSelector({ 'animation-status': 'exited' })]: {
+  //       opacity: 0,
+  //     },
+  //   },
+  // },
+  // slot$icon$animated$start: {
+  //   marginLeft: 0,
+
+  //   selectors: {
+  //     [getModifierSelector({ 'animation-status': 'initial' })]: {
+  //       marginLeft: calc.subtract(
+  //         tokens.container.leadingSpace.withStartSlot,
+  //         tokens.container.leadingSpace.normal,
+  //       ),
+  //       width: calc.subtract(
+  //         tokens.container.leadingSpace.normal,
+  //         tokens.container.leadingSpace.withStartSlot,
+  //       ),
+  //     },
+  //     [getModifierSelector({ 'animation-status': 'exiting' })]: {
+  //       marginLeft: calc.subtract(
+  //         tokens.container.leadingSpace.withStartSlot,
+  //         tokens.container.leadingSpace.normal,
+  //       ),
+  //       width: 0,
+  //     },
+  //     [getModifierSelector({ 'animation-status': 'exited' })]: {
+  //       width: calc.subtract(
+  //         tokens.container.leadingSpace.normal,
+  //         tokens.container.leadingSpace.withStartSlot,
+  //       ),
+  //     },
+  //   },
+  // },
   // DEV:
   slot$end: {
     selectors: {
