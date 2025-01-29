@@ -122,11 +122,11 @@ const classNames = createStyles({
         },
         leadingSpace: {
           normal: tokens.container.leadingSpace,
-          withStartSlot: tokens.container.leadingSpace,
+          withStart: tokens.container.leadingSpace,
         },
         trailingSpace: {
           normal: tokens.container.trailingSpace,
-          withEndSlot: tokens.container.leadingSpace,
+          withEnd: tokens.container.leadingSpace,
         },
       },
       icon: {

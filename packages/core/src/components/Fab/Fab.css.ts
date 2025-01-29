@@ -72,11 +72,11 @@ const classNames = createStyles({
           },
           leadingSpace: {
             normal: px(0),
-            withStartSlot: px(0),
+            withStart: px(0),
           },
           trailingSpace: {
             normal: px(0),
-            withEndSlot: px(0),
+            withEnd: px(0),
           },
         },
         icon: tokens.icon,
@@ -92,11 +92,11 @@ const classNames = createStyles({
             container: {
               leadingSpace: {
                 normal: px(space(6)),
-                withStartSlot: px(space(4)),
+                withStart: px(space(4)),
               },
               trailingSpace: {
                 normal: px(space(6)),
-                withEndSlot: px(space(6)),
+                withEnd: px(space(6)),
               },
             },
           }),

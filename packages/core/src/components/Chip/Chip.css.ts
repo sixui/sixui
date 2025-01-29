@@ -31,13 +31,11 @@ const DENSITY = px(getDensity({ min: -2, max: 0 }));
 const [tokensClassName, tokens] = createTheme({
   leadingSpace: {
     normal: px(space(4)),
-    withStartSlot: px(space(2)),
-    withEndSlot: px(space(4)),
+    withStart: px(space(2)),
   },
   trailingSpace: {
     normal: px(space(4)),
-    withStartSlot: px(space(4)),
-    withEndSlot: px(space(2)),
+    withEnd: px(space(2)),
   },
   height: px(32),
   icon: {
@@ -99,8 +97,14 @@ const classNames = createStyles({
     vars: createTokensVars(Button.theme.tokens, {
       container: {
         shape: px(themeTokens.shape.corner.sm),
-        leadingSpace: tokens.leadingSpace,
-        trailingSpace: tokens.trailingSpace,
+        leadingSpace: {
+          normal: tokens.leadingSpace.normal,
+          withStart: tokens.leadingSpace.withStart,
+        },
+        trailingSpace: {
+          normal: tokens.trailingSpace.normal,
+          withEnd: tokens.trailingSpace.withEnd,
+        },
         height: tokens.height,
         color: {
           normal: themeTokens.colorScheme.surfaceContainerLow,
@@ -187,21 +191,15 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>({
         avatar: true,
       })]: {
-        vars: {
-          ...createTokensVars(PaperBase.theme.tokens, {
-            container: {
-              shape: px(themeTokens.shape.corner.full),
+        vars: createTokensVars(Button.theme.tokens, {
+          container: {
+            shape: px(themeTokens.shape.corner.full),
+            leadingSpace: {
+              withStart: px(space(1)),
             },
-          }),
-          ...createTokensVars(Button.theme.tokens, {
-            container: {
-              leadingSpace: {
-                withStartSlot: px(space(1)),
-              },
-            },
-            icon: tokens.icon$avatar,
-          }),
-        },
+          },
+          icon: tokens.icon$avatar,
+        }),
       },
       [getModifierSelector<IModifier>({
         disabled: true,

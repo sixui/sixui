@@ -7,6 +7,7 @@ export interface ISlotOwnProps {
   children?: React.ReactNode;
   opened?: boolean;
   loading?: boolean;
+  loadingOverlay?: React.ReactNode;
   animated?: boolean;
 }
 

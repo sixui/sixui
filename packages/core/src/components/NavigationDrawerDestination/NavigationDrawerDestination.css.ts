@@ -24,11 +24,11 @@ const classNames = createStyles({
       container: {
         leadingSpace: {
           normal: px(space(6)),
-          withStartSlot: px(space(4)),
+          withStart: px(space(4)),
         },
         trailingSpace: {
           normal: px(space(6)),
-          withEndSlot: px(space(4)),
+          withEnd: px(space(4)),
         },
         shape: px(themeTokens.shape.corner.full),
         color: {

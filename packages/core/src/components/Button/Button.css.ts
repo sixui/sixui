@@ -26,8 +26,8 @@ type IModifier =
   | 'disabled'
   | 'loading'
   | 'with-children'
-  | 'with-leading'
-  | 'with-trailing'
+  | 'with-start'
+  | 'with-end'
   | 'icon-animation';
 
 const DENSITY = px(getDensity({ min: -4, max: 0 }));
@@ -39,11 +39,11 @@ const [tokensClassName, tokens] = createTheme({
     minWidth: px(64),
     leadingSpace: {
       normal: px(space(6)),
-      withStartSlot: px(space(4)),
+      withStart: px(space(4)),
     },
     trailingSpace: {
       normal: px(space(6)),
-      withEndSlot: px(space(4)),
+      withEnd: px(space(4)),
     },
     color: {
       normal: 'unset',
@@ -271,11 +271,11 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>('with-leading')]: {
-        paddingLeft: tokens.container.leadingSpace.withStartSlot,
+      [getModifierSelector<IModifier>('with-start')]: {
+        paddingLeft: tokens.container.leadingSpace.withStart,
       },
-      [getModifierSelector<IModifier>('with-trailing')]: {
-        paddingRight: tokens.container.trailingSpace.withEndSlot,
+      [getModifierSelector<IModifier>('with-end')]: {
+        paddingRight: tokens.container.trailingSpace.withEnd,
       },
     },
   },
@@ -379,6 +379,12 @@ const classNames = createStyles({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  slot$start: {
+    marginRight: tokens.icon.labelSpace,
+  },
+  slot$end: {
+    marginLeft: tokens.icon.labelSpace,
+  },
   slot$icon: {
     vars: createTokensVars(Slot.theme.tokens, {
       container: {
@@ -391,7 +397,7 @@ const classNames = createStyles({
       container: {
         leadingSpace: {
           compensated: calc.subtract(
-            tokens.container.leadingSpace.withStartSlot,
+            tokens.container.leadingSpace.withStart,
             tokens.container.leadingSpace.normal,
           ),
         },
@@ -401,108 +407,20 @@ const classNames = createStyles({
       },
     }),
   },
-  // slot$icon$end: {
-  //   marginLeft: tokens.icon.labelSpace,
-  // },
-  // slot$icon$animated: {
-  //   opacity: 1,
-
-  //   selectors: {
-  //     [getModifierSelector({ 'animation-status': 'initial' })]: {
-  //       opacity: 0,
-  //     },
-  //     [getModifierSelector({ 'animation-status': 'entering' })]: {
-  //       opacity: 1,
-
-  //       transitionProperty: 'width, opacity',
-  //       transitionDuration: themeTokens.motion.duration.medium.$4,
-  //       transitionTimingFunction:
-  //         themeTokens.motion.easing.emphasized.decelerate,
-  //     },
-  //     [getModifierSelector({ 'animation-status': 'exiting' })]: {
-  //       opacity: 0,
-
-  //       transitionProperty: 'width, opacity',
-  //       transitionDuration: themeTokens.motion.duration.short.$2,
-  //       transitionTimingFunction:
-  //         themeTokens.motion.easing.emphasized.accelerate,
-  //     },
-  //     [getModifierSelector({ 'animation-status': 'exited' })]: {
-  //       opacity: 0,
-  //     },
-  //   },
-  // },
-  // slot$icon$animated$start: {
-  //   marginLeft: 0,
-
-  //   selectors: {
-  //     [getModifierSelector({ 'animation-status': 'initial' })]: {
-  //       marginLeft: calc.subtract(
-  //         tokens.container.leadingSpace.withStartSlot,
-  //         tokens.container.leadingSpace.normal,
-  //       ),
-  //       width: calc.subtract(
-  //         tokens.container.leadingSpace.normal,
-  //         tokens.container.leadingSpace.withStartSlot,
-  //       ),
-  //     },
-  //     [getModifierSelector({ 'animation-status': 'exiting' })]: {
-  //       marginLeft: calc.subtract(
-  //         tokens.container.leadingSpace.withStartSlot,
-  //         tokens.container.leadingSpace.normal,
-  //       ),
-  //       width: 0,
-  //     },
-  //     [getModifierSelector({ 'animation-status': 'exited' })]: {
-  //       width: calc.subtract(
-  //         tokens.container.leadingSpace.normal,
-  //         tokens.container.leadingSpace.withStartSlot,
-  //       ),
-  //     },
-  //   },
-  // },
-  // DEV:
-  slot$end: {
-    selectors: {
-      [getModifierSelector({ 'animation-status': 'initial' })]: {
-        marginRight: calc.subtract(
-          tokens.container.trailingSpace.withEndSlot,
-          tokens.container.trailingSpace.normal,
-        ),
-        width: calc.subtract(
-          tokens.container.trailingSpace.withEndSlot,
-          tokens.container.trailingSpace.normal,
-        ),
+  slot$icon$end: {
+    vars: createTokensVars(Slot.theme.tokens, {
+      container: {
+        leadingSpace: {
+          normal: tokens.icon.labelSpace,
+        },
+        trailingSpace: {
+          compensated: calc.subtract(
+            tokens.container.trailingSpace.withEnd,
+            tokens.container.trailingSpace.normal,
+          ),
+        },
       },
-      [getModifierSelector({ 'animation-status': 'entering' })]: {
-        marginRight: 0,
-      },
-      [getModifierSelector({ 'animation-status': 'entered' })]: {
-        marginRight: 0,
-      },
-      [getModifierSelector({ 'animation-status': 'exiting' })]: {
-        marginRight: calc.subtract(
-          tokens.container.trailingSpace.withEndSlot,
-          tokens.container.trailingSpace.normal,
-        ),
-        width: calc.subtract(
-          tokens.container.trailingSpace.withEndSlot,
-          tokens.container.trailingSpace.normal,
-        ),
-        opacity: 0,
-      },
-      [getModifierSelector({ 'animation-status': 'exited' })]: {
-        marginRight: calc.subtract(
-          tokens.container.trailingSpace.withEndSlot,
-          tokens.container.trailingSpace.normal,
-        ),
-        width: calc.subtract(
-          tokens.container.trailingSpace.withEndSlot,
-          tokens.container.trailingSpace.normal,
-        ),
-        opacity: 0,
-      },
-    },
+    }),
   },
   stateLayer: {},
   touchTarget: {},
@@ -667,11 +585,11 @@ export const buttonThemeVariants = {
           },
           leadingSpace: {
             normal: px(space(3)),
-            withStartSlot: px(space(3)),
+            withStart: px(space(3)),
           },
           trailingSpace: {
             normal: px(space(3)),
-            withEndSlot: px(space(3)),
+            withEnd: px(space(3)),
           },
         },
         label: {
@@ -736,11 +654,11 @@ export const buttonThemeVariants = {
             },
             leadingSpace: {
               normal: px(space(4)),
-              withStartSlot: px(space(3)),
+              withStart: px(space(3)),
             },
             trailingSpace: {
               normal: px(space(4)),
-              withEndSlot: px(space(3)),
+              withEnd: px(space(3)),
             },
             height: px(32),
           },
@@ -782,11 +700,11 @@ export const buttonThemeVariants = {
             minWidth: em(1),
             leadingSpace: {
               normal: px(0),
-              withStartSlot: px(0),
+              withStart: px(0),
             },
             trailingSpace: {
               normal: px(0),
-              withEndSlot: px(0),
+              withEnd: px(0),
             },
           },
           icon: {

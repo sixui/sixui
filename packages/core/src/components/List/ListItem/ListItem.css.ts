@@ -58,11 +58,11 @@ const [tokensClassName, tokens] = createTheme({
   container: {
     leadingSpace: {
       normal: px(space(4)),
-      withStartSlot: px(space(2)),
+      withStart: px(space(2)),
     },
     trailingSpace: {
       normal: px(space(4)),
-      withEndSlot: px(space(2)),
+      withEnd: px(space(2)),
     },
     topSpace: calc.add(px(space(2)), DENSITY),
     bottomSpace: calc.add(px(space(2)), DENSITY),
@@ -205,10 +205,10 @@ const classNames = createStyles({
 
     selectors: {
       [getModifierSelector<IModifier>('with-start-slot', root)]: {
-        paddingInlineStart: tokens.container.leadingSpace.withStartSlot,
+        paddingInlineStart: tokens.container.leadingSpace.withStart,
       },
       [getModifierSelector<IModifier>('with-end-slot', root)]: {
-        paddingInlineEnd: tokens.container.trailingSpace.withEndSlot,
+        paddingInlineEnd: tokens.container.trailingSpace.withEnd,
       },
       [getModifierSelector<IModifier>('with-leading', root)]: {
         paddingInlineStart: '0px',

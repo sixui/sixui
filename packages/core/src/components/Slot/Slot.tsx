@@ -8,7 +8,6 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
-import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
 import { Overlayable } from '../Overlayable';
 import { slotTheme } from './Slot.css';
 
@@ -24,6 +23,7 @@ export const Slot = componentFactory<ISlotFactory>((props, forwardedRef) => {
     children,
     opened,
     loading,
+    loadingOverlay,
     animated,
     ...other
   } = useProps({ componentName: COMPONENT_NAME, props });
@@ -56,14 +56,7 @@ export const Slot = componentFactory<ISlotFactory>((props, forwardedRef) => {
           ref={transitionNodeHandleRef}
           {...other}
         >
-          <Overlayable
-            overlay={
-              <IndeterminateCircularProgressIndicator
-                {...getStyles('progressIndicator')}
-              />
-            }
-            visible={loading}
-          >
+          <Overlayable overlay={loadingOverlay} visible={loading}>
             {children}
           </Overlayable>
         </Box>
@@ -73,11 +66,7 @@ export const Slot = componentFactory<ISlotFactory>((props, forwardedRef) => {
     opened && (
       <Overlayable
         {...getStyles('root')}
-        overlay={
-          <IndeterminateCircularProgressIndicator
-            {...getStyles('progressIndicator')}
-          />
-        }
+        overlay={loadingOverlay}
         visible={loading}
         {...other}
       >

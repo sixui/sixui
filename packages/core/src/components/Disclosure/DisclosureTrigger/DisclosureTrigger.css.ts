@@ -129,7 +129,7 @@ const classNames = createStyles({
                 .add(px(18))
                 .add(tokens.toggle.trailingSpace)
                 .toString(),
-              withStartSlot: calc(tokens.toggle.leadingSpace)
+              withStart: calc(tokens.toggle.leadingSpace)
                 // CheckboxIndicator.theme.tokens.container.size
                 .add(px(16))
                 .add(tokens.toggle.trailingSpace)
@@ -147,7 +147,7 @@ const classNames = createStyles({
                 .add(px(52))
                 .add(tokens.toggle.trailingSpace)
                 .toString(),
-              withStartSlot: calc(tokens.toggle.leadingSpace)
+              withStart: calc(tokens.toggle.leadingSpace)
                 // SwitchIndicator.theme.tokens.container.width
                 .add(px(50))
                 .add(tokens.toggle.trailingSpace)

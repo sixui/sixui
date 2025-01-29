@@ -27,6 +27,8 @@ const [tokensClassName, tokens] = createTheme({
 const classNames = createStyles({
   root: {
     width: tokens.container.width,
+    marginLeft: tokens.container.leadingSpace.normal,
+    marginRight: tokens.container.trailingSpace.normal,
 
     selectors: {
       [getModifierSelector({ 'animation-status': 'initial' })]: {
@@ -87,7 +89,6 @@ const classNames = createStyles({
       },
     },
   },
-  progressIndicator: {},
 });
 
 export type ISlotThemeFactory = IComponentThemeFactory<{

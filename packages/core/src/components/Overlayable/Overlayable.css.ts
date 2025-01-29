@@ -30,6 +30,8 @@ const classNames = createStyles({
   }),
   overlay: {
     display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     position: 'absolute',
     left: 0,
     right: 0,
@@ -38,7 +40,6 @@ const classNames = createStyles({
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
-    textAlign: 'center',
     borderRadius: 'inherit',
   },
 });

@@ -38,7 +38,8 @@ export interface IButtonOwnProps
   hasEndSlot?: boolean;
   startSlot?: React.ReactNode;
   endSlot?: React.ReactNode;
-  animatedIconSlots?: boolean;
+  animatedLeadingIconSlot?: boolean;
+  animatedTrailingIconSlot?: boolean;
 }
 
 export interface IButtonProps

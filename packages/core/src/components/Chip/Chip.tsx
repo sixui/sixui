@@ -27,7 +27,7 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
       elevated: elevatedProp,
       loading: loadingProp,
       trailingLoading: trailingLoadingProp,
-      animatedIconSlots: animatedIconSlotsProp,
+      animatedLeadingIconSlot: animatedLeadingIconSlotProp,
       trailingIcon,
       onTrailingClick,
       imageUrl,
@@ -53,13 +53,11 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
     const trailingActionRef = useRef<HTMLDivElement>(null);
 
     const elevated = variant !== 'input' && elevatedProp;
-    const hasIcon = !!imageUrl || !!icon;
     const selectable = variant === 'filter' || variant === 'input';
     const selected = selectable && selectedProp;
-    const hasLeading =
-      (variant === 'filter' && (loading || selected)) || hasIcon;
     const isAvatar = !!imageUrl && avatarProp;
-    const animatedIconSlots = animatedIconSlotsProp ?? variant === 'filter';
+    const animatedLeadingIconSlot =
+      animatedLeadingIconSlotProp ?? variant === 'filter';
 
     const { getStyles } = useComponentTheme<IChipThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -209,12 +207,11 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
         onClick={handleClick}
         loading={loading}
         ref={primaryHandleRef}
-        hasStartSlot={hasLeading}
         endSlot={hasTrailingAction && renderActionButton()}
         trailingIcon={!hasTrailingAction && trailingIcon}
         onKeyDown={handleKeyDown}
         readOnly={readOnly}
-        animatedIconSlots={animatedIconSlots}
+        animatedLeadingIconSlot={animatedLeadingIconSlot}
         {...other}
       />
     );
