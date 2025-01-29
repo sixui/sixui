@@ -1,7 +1,7 @@
 import type { IBoxProps } from '~/components/Box';
-import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { ISlotThemeFactory, slotTheme } from './Slot.css';
+import { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 
 export interface ISlotOwnProps {
   children?: React.ReactNode;
@@ -16,8 +16,9 @@ export interface ISlotProps
     IComponentThemeProps<ISlotThemeFactory>,
     ISlotOwnProps {}
 
-export type ISlotFactory = IComponentFactory<{
+export type ISlotFactory = IPolymorphicComponentFactory<{
   props: ISlotProps;
-  ref: HTMLDivElement;
+  defaultRef: HTMLDivElement;
+  defaultRoot: 'div';
   theme: typeof slotTheme;
 }>;

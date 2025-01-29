@@ -1,8 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { faSmile } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { ISlotProps } from './Slot.types';
-import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { px } from '~/helpers';
+import { useToggle } from '~/hooks';
+import { Box } from '../Box';
+import { Button } from '../Button';
+import { Flex } from '../Flex';
+import { themeTokens } from '../ThemeProvider';
 import { Slot } from './Slot';
 
 const meta = {
@@ -12,26 +18,52 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  children: 'Slot',
+  children: <FontAwesomeIcon icon={faSmile} />,
 } satisfies Partial<ISlotProps>;
 
-const variants: Array<IComponentPresentation<ISlotProps>> = [
-  { legend: 'None', props: { variant: false } },
-  { legend: 'Primary', props: { variant: 'primary' } },
-];
+const SlotDemo: React.FC<ISlotProps> = (props) => {
+  const [opened, toggleOpened] = useToggle([false, true]);
 
-const states: Array<IComponentPresentation<ISlotProps>> = [
-  { legend: 'Normal' },
-  { legend: 'Disabled', props: { disabled: true } },
-];
+  return (
+    <Flex direction="row" gap="$2">
+      <Button
+        onClick={() => {
+          toggleOpened();
+        }}
+      >
+        {opened ? 'Close' : 'Open'}
+      </Button>
 
-const SlotShowcase = componentShowcaseFactory(Slot);
+      <Box w="$10" h="$10">
+        <Slot
+          as={Flex}
+          opened={opened}
+          h="$10"
+          align="center"
+          justify="center"
+          style={{
+            borderWidth: px(themeTokens.outline.width.xs),
+            borderColor: themeTokens.colorScheme.outlineVariant,
+            borderStyle: 'dashed',
+          }}
+          {...props}
+        />
+      </Box>
+    </Flex>
+  );
+};
 
 export const Basic: IStory = {
-  render: (props) => (
-    <SlotShowcase props={props} cols={states} rows={variants} />
-  ),
+  render: (props) => <SlotDemo {...props} />,
   args: defaultArgs,
+};
+
+export const Animated: IStory = {
+  render: (props) => <SlotDemo {...props} />,
+  args: {
+    ...defaultArgs,
+    animated: true,
+  },
 };
 
 export default meta;
