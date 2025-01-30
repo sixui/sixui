@@ -3,6 +3,7 @@ import type { Decorator, Preview } from '@storybook/react';
 import { modes } from './modes';
 import { classNames } from './preview.css';
 
+import '~/styles/index.css';
 import './storybook.css';
 
 import { Box } from '~/components/Box';

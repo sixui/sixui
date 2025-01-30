@@ -5,6 +5,9 @@
     "baseUrl": ".",
     "lib": ["es2022"],
     "types": ["node"],
+    "paths": {
+      "~/*": ["./src/*"]
+    }
   },
   "include": ["src/**/*.ts"]
 }

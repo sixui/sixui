@@ -11,7 +11,7 @@ import autoprefixer from 'autoprefixer';
 import postcss from 'postcss';
 import postcssNested from 'postcss-nested';
 
-import { createLogger } from '../../utils/createLogger';
+import { createLogger } from '~/utils/createLogger';
 
 const PLUGIN_NAME = 'bundle-css-emits-plugin';
 

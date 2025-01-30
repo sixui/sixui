@@ -13,8 +13,8 @@ import postcssPlugin from 'rollup-plugin-postcss';
 import { ScriptTarget } from 'typescript';
 
 import type { IBuildOptions } from '../build';
-import { getCssFileName } from '../../utils/getCssFileName';
-import { getPath } from '../../utils/getPath';
+import { getCssFileName } from '~/utils/getCssFileName';
+import { getPath } from '~/utils/getPath';
 import { bundleCssEmitsPlugin } from './bundleCssEmitsPlugin';
 import { shouldPrependUseClient } from './shouldPrependUseClient';
 
@@ -136,7 +136,6 @@ export const createRollupOptionsList = (
         ...buildOptions.outputOptions,
       },
     ],
-    external: (source) => source.endsWith('.css'),
   };
 
   return [mainOptions, declarationsOptions];
