@@ -4,9 +4,8 @@ import { Box } from '~/components/Box';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './CardContent.constants';
 import { CardContentTheme } from './CardContent.css';
-
-const COMPONENT_NAME = 'CardContent';
 
 export const CardContent = polymorphicComponentFactory<ICardContentFactory>(
   (props, forwardedRef) => {

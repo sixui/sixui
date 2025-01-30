@@ -1,16 +1,17 @@
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createComponentTheme } from '~/utils/styles/createComponentTheme';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTheme } from '~/utils/styles/createTheme';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { FocusRing } from '../FocusRing';
 import { PaperBase } from '../PaperBase';
 import { themeTokens } from '../ThemeProvider';
+import { COMPONENT_NAME } from './ButtonBase.constants';
 
 type IModifier = 'disabled' | 'non-interactive';
 
-const [tokensClassName, tokens] = createTheme({
+const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
     shape: themeTokens.shape.corner.none,
   },

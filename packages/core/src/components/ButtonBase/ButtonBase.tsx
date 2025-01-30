@@ -12,9 +12,8 @@ import { polymorphicComponentFactory } from '~/utils/component/polymorphicCompon
 import { useProps } from '~/utils/component/useProps';
 import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './ButtonBase.constants';
 import { buttonBaseTheme } from './ButtonBase.css';
-
-const COMPONENT_NAME = 'ButtonBase';
 
 export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
   (props, forwardedRef) => {

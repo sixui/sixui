@@ -4,9 +4,8 @@ import { Paper } from '~/components/Paper';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './BasicTemplate.constants';
 import { basicTemplateTheme } from './BasicTemplate.css';
-
-const COMPONENT_NAME = 'BasicTemplate';
 
 export const BasicTemplate = componentFactory<IBasicTemplateFactory>(
   (props, forwardedRef) => {

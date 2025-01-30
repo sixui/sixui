@@ -1,13 +1,14 @@
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createComponentTheme } from '~/utils/styles/createComponentTheme';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTheme } from '~/utils/styles/createTheme';
 import { cardTheme } from '~/components/Card/Card.css';
+import { COMPONENT_NAME } from './CardMedia.constants';
 
 type IModifier = 'type';
 
-const [tokensClassName, tokens] = createTheme();
+const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME);
 
 const classNames = createStyles({
   root: {

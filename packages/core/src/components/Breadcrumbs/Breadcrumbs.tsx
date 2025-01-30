@@ -11,9 +11,8 @@ import { isFragment } from '~/helpers/react/isFragment';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './Breadcrumbs.constants';
 import { breadcrumbsTheme } from './Breadcrumbs.css';
-
-const COMPONENT_NAME = 'Breadcrumbs';
 
 export const Breadcrumbs = componentFactory<IBreadcrumbsFactory>(
   (props, forwardedRef) => {

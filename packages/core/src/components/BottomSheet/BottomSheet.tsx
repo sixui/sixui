@@ -5,10 +5,9 @@ import { Drawer } from '~/components/Drawer';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './BottomSheet.constants';
 import { BottomSheetContent } from './BottomSheetContent';
 import { bottomSheetTheme } from './BottomSheet.css';
-
-const COMPONENT_NAME = 'BottomSheet';
 
 export const BottomSheet = componentFactory<IBottomSheetFactory>(
   (props, forwardedRef) => {

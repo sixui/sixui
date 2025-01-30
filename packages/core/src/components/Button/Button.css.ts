@@ -20,6 +20,7 @@ import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
 import { ButtonBase } from '../ButtonBase';
 import { Slot } from '../Slot';
+import { COMPONENT_NAME } from './Button.constants';
 
 type IModifier =
   | IInteraction
@@ -32,7 +33,7 @@ type IModifier =
 
 const DENSITY = px(getDensity({ min: -4, max: 0 }));
 
-const [tokensClassName, tokens] = createComponentTheme('button', {
+const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
     shape: px(themeTokens.shape.corner.full),
     height: px(40),

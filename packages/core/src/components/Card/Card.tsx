@@ -4,13 +4,12 @@ import { ButtonBase } from '~/components/ButtonBase';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './Card.constants';
 import { CardActions } from './CardActions';
 import { CardContent } from './CardContent';
 import { CardMedia } from './CardMedia';
 import { CardTitle } from './CardTitle';
 import { cardTheme, cardThemeVariants } from './Card.css';
-
-const COMPONENT_NAME = 'Card';
 
 export const Card = polymorphicComponentFactory<ICardFactory>(
   (props, forwardedRef) => {

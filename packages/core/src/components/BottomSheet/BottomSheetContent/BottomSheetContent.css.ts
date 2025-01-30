@@ -5,12 +5,13 @@ import { themeTokens } from '~/components/ThemeProvider';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createComponentTheme } from '~/utils/styles/createComponentTheme';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTheme } from '~/utils/styles/createTheme';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
+import { COMPONENT_NAME } from './BottomSheetContent.constants';
 
-const [tokensClassName, tokens] = createTheme({
+const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
     color: themeTokens.colorScheme.surfaceContainerLow,
     elevation: elevationLevelPreset[1],

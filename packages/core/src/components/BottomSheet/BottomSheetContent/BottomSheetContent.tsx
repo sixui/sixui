@@ -8,12 +8,11 @@ import { isFunction } from '~/helpers/isFunction';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './BottomSheetContent.constants';
 import {
   bottomSheetContentTheme,
   bottomSheetContentThemeVariants,
 } from './BottomSheetContent.css';
-
-const COMPONENT_NAME = 'BottomSheetContent';
 
 export const BottomSheetContent = componentFactory<IBottomSheetContentFactory>(
   (props, forwardedRef) => {

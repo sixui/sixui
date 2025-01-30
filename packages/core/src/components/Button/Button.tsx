@@ -12,9 +12,8 @@ import { useProps } from '~/utils/component/useProps';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Slot } from '../Slot';
+import { COMPONENT_NAME } from './Button.constants';
 import { buttonTheme, buttonThemeVariants } from './Button.css';
-
-const COMPONENT_NAME = 'Button';
 
 export const Button = polymorphicComponentFactory<IButtonFactory>(
   (props, forwardedRef) => {

@@ -4,9 +4,8 @@ import { Box } from '~/components/Box';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './CardMedia.constants';
 import { cardMediaTheme } from './CardMedia.css';
-
-const COMPONENT_NAME = 'CardMedia';
 
 export const CardMedia = componentFactory<ICardMediaFactory>(
   (props, forwardedRef) => {

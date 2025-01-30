@@ -12,9 +12,8 @@ import { useProps } from '~/utils/component/useProps';
 import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { paperBaseTheme } from '~/components/PaperBase/PaperBase.css';
+import { COMPONENT_NAME } from './Avatar.constants';
 import { avatarTheme } from './Avatar.css';
-
-const COMPONENT_NAME = 'Avatar';
 
 export const Avatar = polymorphicComponentFactory<IAvatarFactory>(
   (props, forwardedRef) => {

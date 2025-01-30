@@ -5,9 +5,8 @@ import { StandardAside } from '~/components/StandardAside';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './Aside.constants';
 import { asideTheme } from './Aside.css';
-
-const COMPONENT_NAME = 'Aside';
 
 export const Aside = componentFactory<IAsideFactory>((props, forwardedRef) => {
   const {
