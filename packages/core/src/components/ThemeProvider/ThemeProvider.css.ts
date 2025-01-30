@@ -10,7 +10,8 @@ import type {
   ITheme,
   IThemeColorSchemeVariant,
 } from './theme.types';
-import { getDefaultTheme } from './defaultTheme';
+import { getCssVarName } from '~/utils/styles/getCssVarName';
+import { getDefaultTheme } from './getDefaultTheme';
 
 const RESET_CSS_LAYER = 'reset';
 
@@ -36,8 +37,7 @@ const getRuntimeThemeTokens = (
 
 export const themeTokens = createGlobalThemeContract(
   getRuntimeThemeTokens(getDefaultTheme()),
-  // DEV:
-  (_value, path) => `sixui-${path.join('-').replaceAll('$', '-')}`,
+  (_value, path) => getCssVarName(path),
 );
 
 export const defaultTheme = getDefaultTheme(themeTokens);
