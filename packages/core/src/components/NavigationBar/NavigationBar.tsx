@@ -5,11 +5,10 @@ import { Drawer } from '~/components/Drawer';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './NavigationBar.constants';
 import { NavigationBarContent } from './NavigationBarContent';
 import { NavigationBarDestination } from './NavigationBarDestination';
 import { navigationBarTheme } from './NavigationBar.css';
-
-const COMPONENT_NAME = 'NavigationBar';
 
 export const NavigationBar = componentFactory<INavigationBarFactory>(
   (props, forwardedRef) => {

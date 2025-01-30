@@ -4,11 +4,12 @@ import { StandardAside } from '~/components/StandardAside';
 import { themeTokens } from '~/components/ThemeProvider';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createComponentTheme } from '~/utils/styles/createComponentTheme';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTheme } from '~/utils/styles/createTheme';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { COMPONENT_NAME } from './NavigationRail.constants';
 
-const [tokensClassName, tokens] = createTheme({
+const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
     width: px(80),
     color: themeTokens.colorScheme.surface,

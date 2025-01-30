@@ -9,9 +9,8 @@ import { ListItem } from '~/components/List/ListItem';
 import { multiSelectBaseFactory } from '~/components/MultiSelectBase';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
+import { COMPONENT_NAME } from './MultiSelect.constants';
 import { useMultiSelect } from './useMultiSelect';
-
-const COMPONENT_NAME = 'MultiSelect';
 
 const MultiSelectBase = multiSelectBaseFactory<IFilterableListItem>();
 

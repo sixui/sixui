@@ -7,9 +7,8 @@ import { NavigationDrawerDestination } from '~/components/NavigationDrawerDestin
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './NavigationDrawerSection.constants';
 import { navigationDrawerSectionTheme } from './NavigationDrawerSection.css';
-
-const COMPONENT_NAME = 'NavigationDrawerSection';
 
 export const NavigationDrawerSection =
   componentFactory<INavigationDrawerSectionFactory>((props, forwardedRef) => {

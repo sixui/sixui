@@ -10,9 +10,8 @@ import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
 import { paperBaseTheme } from '~/components/PaperBase/PaperBase.css';
+import { COMPONENT_NAME } from './Paper.constants';
 import { paperTheme } from './Paper.css';
-
-const COMPONENT_NAME = 'Paper';
 
 const getValue = <TKey extends string>(
   // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents

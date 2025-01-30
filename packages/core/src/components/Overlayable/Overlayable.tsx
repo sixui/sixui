@@ -4,9 +4,8 @@ import { Box } from '~/components/Box';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './Overlayable.constants';
 import { overlayableTheme } from './Overlayable.css';
-
-const COMPONENT_NAME = 'Overlayable';
 
 export const Overlayable = polymorphicComponentFactory<IOverlayableFactory>(
   (props, forwardedRef) => {

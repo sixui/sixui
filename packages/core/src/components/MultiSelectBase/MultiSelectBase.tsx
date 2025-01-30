@@ -14,12 +14,11 @@ import { IElementProps } from '~/helpers/types';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './MultiSelectBase.constants';
 import {
   IMultiSelectBaseThemeFactory,
   multiSelectBaseTheme,
 } from './MultiSelectBase.css';
-
-const COMPONENT_NAME = 'MultiSelectBase';
 
 export const multiSelectBaseFactory = <
   TItem,

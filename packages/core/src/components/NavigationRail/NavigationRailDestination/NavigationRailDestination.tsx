@@ -10,9 +10,8 @@ import { polymorphicComponentFactory } from '~/utils/component/polymorphicCompon
 import { useProps } from '~/utils/component/useProps';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './NavigationRailDestination.constants';
 import { navigationRailDestinationTheme } from './NavigationRailDestination.css';
-
-const COMPONENT_NAME = 'NavigationRailDestination';
 
 export const NavigationRailDestination =
   polymorphicComponentFactory<INavigationRailDestinationFactory>(

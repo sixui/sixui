@@ -4,9 +4,8 @@ import { Paper } from '~/components/Paper';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './NavigationBarContent.constants';
 import { navigationBarContentTheme } from './NavigationBarContent.css';
-
-const COMPONENT_NAME = 'NavigationBarContent';
 
 export const NavigationBarContent =
   componentFactory<INavigationBarContentFactory>((props, forwardedRef) => {

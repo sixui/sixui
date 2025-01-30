@@ -5,9 +5,8 @@ import { Elevation } from '~/components/Elevation';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './PaperBase.constants';
 import { paperBaseTheme } from './PaperBase.css';
-
-const COMPONENT_NAME = 'PaperBase';
 
 export const PaperBase = polymorphicComponentFactory<IPaperBaseFactory>(
   (props, forwardedRef) => {

@@ -13,15 +13,16 @@ import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { IInteraction } from '~/hooks/useInteractions';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createComponentTheme } from '~/utils/styles/createComponentTheme';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTheme } from '~/utils/styles/createTheme';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { COMPONENT_NAME } from './NavigationRailDestination.constants';
 
 type IModifier = IInteraction | 'disabled' | 'active' | 'icon-only';
 
 const DENSITY = px(getDensity({ min: -1, max: 0 }));
 
-const [tokensClassName, tokens] = createTheme({
+const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   gap: px(space(1)),
   container: {
     shape: {

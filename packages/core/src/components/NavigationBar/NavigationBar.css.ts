@@ -2,11 +2,12 @@ import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactor
 import { NavigationBarContent } from '~/components/NavigationBar/NavigationBarContent';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createComponentTheme } from '~/utils/styles/createComponentTheme';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTheme } from '~/utils/styles/createTheme';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { COMPONENT_NAME } from './NavigationBar.constants';
 
-const [tokensClassName, tokens] = createTheme({
+const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
     height: px(80),
   },

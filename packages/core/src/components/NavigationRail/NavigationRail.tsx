@@ -5,10 +5,9 @@ import { StandardAside } from '~/components/StandardAside';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './NavigationRail.constants';
 import { NavigationRailContent } from './NavigationRailContent';
 import { navigationRailTheme } from './NavigationRail.css';
-
-const COMPONENT_NAME = 'NavigationRail';
 
 export const NavigationRail = componentFactory<INavigationRailFactory>(
   (props, forwardedRef) => {

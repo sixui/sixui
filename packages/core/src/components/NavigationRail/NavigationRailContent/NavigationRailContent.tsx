@@ -5,9 +5,8 @@ import { PaperBase } from '~/components/PaperBase';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './NavigationRailContent.constants';
 import { navigationRailContentTheme } from './NavigationRailContent.css';
-
-const COMPONENT_NAME = 'NavigationRailContent';
 
 export const NavigationRailContent =
   componentFactory<INavigationRailContentFactory>((props, forwardedRef) => {

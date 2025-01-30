@@ -5,11 +5,12 @@ import { themeTokens } from '~/components/ThemeProvider';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createComponentTheme } from '~/utils/styles/createComponentTheme';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTheme } from '~/utils/styles/createTheme';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { COMPONENT_NAME } from './NavigationDrawerDestination.constants';
 
-const [tokensClassName, tokens] = createTheme({
+const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   label: {
     typography: themeTokens.typeScale.label.lg,
   },

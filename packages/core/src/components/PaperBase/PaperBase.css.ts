@@ -5,13 +5,14 @@ import { themeTokens } from '~/components/ThemeProvider';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createComponentTheme } from '~/utils/styles/createComponentTheme';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTheme } from '~/utils/styles/createTheme';
 import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
+import { COMPONENT_NAME } from './PaperBase.constants';
 
 type IModifier = IInteraction | 'expanded';
 
-export const [tokensClassName, tokens] = createTheme({
+export const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
     color: 'transparent',
     opacity: '1',

@@ -4,9 +4,8 @@ import { NavigationRailDestination } from '~/components/NavigationRail/Navigatio
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './NavigationBarDestination.constants';
 import { navigationBarDestinationTheme } from './NavigationBarDestination.css';
-
-const COMPONENT_NAME = 'NavigationBarDestination';
 
 export const NavigationBarDestination =
   polymorphicComponentFactory<INavigationBarDestinationFactory>(
