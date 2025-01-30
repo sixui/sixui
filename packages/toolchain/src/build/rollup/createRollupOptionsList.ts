@@ -5,6 +5,7 @@ import json from '@rollup/plugin-json';
 import typescript from '@rollup/plugin-typescript';
 import { vanillaExtractPlugin } from '@vanilla-extract/rollup-plugin';
 import postcssImport from 'postcss-import';
+import banner from 'rollup-plugin-banner2';
 import { dts } from 'rollup-plugin-dts';
 import esbuild from 'rollup-plugin-esbuild';
 import depsExternal from 'rollup-plugin-node-externals';
@@ -15,6 +16,7 @@ import type { IBuildOptions } from '../build';
 import { getCssFileName } from '../../utils/getCssFileName';
 import { getPath } from '../../utils/getPath';
 import { bundleCssEmitsPlugin } from './bundleCssEmitsPlugin';
+import { shouldPrependUseClient } from './shouldPrependUseClient';
 
 const BUNDLE_CSS_KEY = '__bundle.css';
 const TMP_DIR = 'tmp';
@@ -30,9 +32,7 @@ export const createRollupOptionsList = (
 
   const plugins = [
     vanillaExtractPlugin(),
-    typescript({
-      tsconfig: tsconfigPath,
-    }),
+    typescript({ tsconfig: tsconfigPath }),
     depsExternal(),
     esbuild(),
     json(),
@@ -67,6 +67,13 @@ export const createRollupOptionsList = (
         },
       }),
       ...plugins,
+      banner((chunk) => {
+        if (shouldPrependUseClient(chunk.fileName)) {
+          return "'use client';\n\n";
+        }
+
+        return undefined;
+      }),
       bundleCssEmitsPlugin({
         cssBundleKey: BUNDLE_CSS_KEY,
         shouldStrip: (assetPath) => emittedCssFiles.has(assetPath),

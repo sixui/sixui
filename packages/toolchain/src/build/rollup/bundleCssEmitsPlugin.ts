@@ -8,9 +8,14 @@ import type {
 } from 'rollup';
 import path from 'node:path';
 import autoprefixer from 'autoprefixer';
-import cssnano from 'cssnano';
 import postcss from 'postcss';
 import postcssNested from 'postcss-nested';
+
+import { createLogger } from '../../utils/createLogger';
+
+const PLUGIN_NAME = 'bundle-css-emits-plugin';
+
+const logger = createLogger(PLUGIN_NAME);
 
 export type IBuidleCssEmitsPluginOptions = {
   cssBundleKey: string;
@@ -22,7 +27,7 @@ export type IBuidleCssEmitsPluginOptions = {
 export const bundleCssEmitsPlugin = (
   pluginOptions: IBuidleCssEmitsPluginOptions,
 ): Plugin => ({
-  name: 'bundle-css-emits-plugin',
+  name: PLUGIN_NAME,
   buildStart() {
     pluginOptions.onReset();
   },
@@ -68,16 +73,17 @@ export const bundleCssEmitsPlugin = (
       })
       .join('\n\n');
 
-    const minifiedBundleCode = await postcss([
+    const postprocessedBundleCode = await postcss([
       postcssNested(),
       autoprefixer(),
-      cssnano({ preset: 'default' }),
-    ]).process(bundleCode);
+    ]).process(bundleCode, { from: undefined });
+
+    logger.success('CSS bundle generated.');
 
     this.emitFile({
       type: 'asset',
       name: pluginOptions.cssBundleKey,
-      source: minifiedBundleCode.css,
+      source: postprocessedBundleCode.css,
     });
   },
 });
