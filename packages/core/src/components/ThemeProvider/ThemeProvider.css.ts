@@ -1,7 +1,7 @@
 import {
   createGlobalThemeContract,
   createTheme,
-  layer,
+  globalLayer,
   style,
 } from '@vanilla-extract/css';
 
@@ -13,13 +13,12 @@ import type {
 import { getCssVarName } from '~/utils/styles/getCssVarName';
 import { getDefaultTheme } from './getDefaultTheme';
 
-const RESET_CSS_LAYER = 'reset';
-
 export const cssLayers = {
-  base: layer({ parent: RESET_CSS_LAYER }, 'base'),
-  theme: layer('theme'),
-  components: layer('components'),
-  sprinkles: layer('sprinkles'),
+  reset: globalLayer('sixui-reset'),
+  base: globalLayer('sixui-base'),
+  theme: globalLayer('sixui-theme'),
+  components: globalLayer('sixui-components'),
+  sprinkles: globalLayer('sixui-sprinkles'),
 };
 
 const getRuntimeThemeTokens = (

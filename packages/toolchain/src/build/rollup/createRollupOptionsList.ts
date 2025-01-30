@@ -4,19 +4,20 @@ import path from 'node:path';
 import json from '@rollup/plugin-json';
 import typescript from '@rollup/plugin-typescript';
 import { vanillaExtractPlugin } from '@vanilla-extract/rollup-plugin';
+import postcssImport from 'postcss-import';
 import { dts } from 'rollup-plugin-dts';
 import esbuild from 'rollup-plugin-esbuild';
 import depsExternal from 'rollup-plugin-node-externals';
+import postcssPlugin from 'rollup-plugin-postcss';
 import { ScriptTarget } from 'typescript';
 
 import type { IBuildOptions } from '../build';
+import { getCssFileName } from '../../utils/getCssFileName';
 import { getPath } from '../../utils/getPath';
 import { bundleCssEmitsPlugin } from './bundleCssEmitsPlugin';
 
-// Change `.css.js` files to something else so that they don't get re-processed
-// by consumer's setup.
-const renameCss = (name: string, ext: string): string =>
-  `${name.replace(/\.css$/, '.css.vanilla')}${ext}`;
+const BUNDLE_CSS_KEY = '__bundle.css';
+const TMP_DIR = 'tmp';
 
 export const createRollupOptionsList = (
   buildOptions: IBuildOptions,
@@ -48,12 +49,26 @@ export const createRollupOptionsList = (
   const mainOptions: RollupOptions = {
     input: inputPath,
     plugins: [
+      postcssPlugin({
+        plugins: [postcssImport()],
+        extract: path.join(TMP_DIR, 'extracted.css'),
+        onExtract: (args) => {
+          // https://github.com/egoist/rollup-plugin-postcss/issues/329
+          const getExtracted = args as unknown as () => Readonly<{
+            code: unknown;
+            map: unknown;
+            codeFileName: string;
+            mapFileName: string;
+          }>;
+          const { codeFileName } = getExtracted();
+          emittedCssFiles.add(codeFileName);
+
+          return true;
+        },
+      }),
       ...plugins,
       bundleCssEmitsPlugin({
-        cssBundle: path.join(
-          buildOptions.rootDir,
-          buildOptions.cssOutputBundleName,
-        ),
+        cssBundleKey: BUNDLE_CSS_KEY,
         shouldStrip: (assetPath) => emittedCssFiles.has(assetPath),
         onReset: () => {
           emittedCssFiles.clear();
@@ -65,15 +80,20 @@ export const createRollupOptionsList = (
       {
         ...commonOutputOptions,
         sourcemap: true,
-        entryFileNames: ({ name }) => renameCss(name, '.js'),
+        entryFileNames: ({ name }) => getCssFileName(name, '.js'),
         // Apply preserveModulesRoot to asset names.
         assetFileNames(assetInfo) {
           const name = assetInfo.names[0] ?? '';
           const assetPath = path.join(
-            'assets',
+            TMP_DIR,
             path.relative(buildOptions.rootDir, name),
           );
-          if (/\.css$/.exec(assetPath)) {
+
+          if (name === BUNDLE_CSS_KEY) {
+            return buildOptions.cssOutputBundleName;
+          }
+
+          if (assetPath.endsWith('.css')) {
             emittedCssFiles.add(assetPath);
           }
 
@@ -105,10 +125,11 @@ export const createRollupOptionsList = (
       {
         ...commonOutputOptions,
         preserveModulesRoot: buildOptions.rootDir,
-        entryFileNames: ({ name }) => renameCss(name, '.d.ts'),
+        entryFileNames: ({ name }) => getCssFileName(name, '.d.ts'),
         ...buildOptions.outputOptions,
       },
     ],
+    external: (source) => source.endsWith('.css'),
   };
 
   return [mainOptions, declarationsOptions];

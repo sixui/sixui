@@ -1,5 +1,3 @@
-import { calc } from '@vanilla-extract/css-utils';
-
 import { themeTokens } from '~/components/ThemeProvider';
 import { getNumericPixelValue } from './getNumericPixelValue';
 
@@ -18,8 +16,8 @@ export const px = (value: number | string): string => {
   }
 
   if (numericValue === undefined) {
-    return calc.multiply(value, themeTokens.scale);
+    return `calc(${value} * ${themeTokens.scale})`;
   }
 
-  return calc.multiply(`${numericValue}px`, themeTokens.scale);
+  return `calc(${numericValue}px * ${themeTokens.scale})`;
 };
