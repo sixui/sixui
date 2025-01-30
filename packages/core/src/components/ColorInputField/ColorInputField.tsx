@@ -132,6 +132,7 @@ export const ColorInputField = componentFactory<IColorInputFieldFactory>(
           floatingMotionProps={{
             orientation: 'vertical',
           }}
+          modal
           positioned
         >
           {({ getProps, setRef, open }) => (

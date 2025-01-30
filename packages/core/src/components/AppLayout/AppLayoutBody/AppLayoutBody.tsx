@@ -5,9 +5,8 @@ import { Paper } from '~/components/Paper';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './AppLayoutBody.constants';
 import { appLayoutBodyTheme } from './AppLayoutBody.css';
-
-const COMPONENT_NAME = 'AppLayoutBody';
 
 export const AppLayoutBody = componentFactory<IAppLayoutBodyFactory>(
   (props, forwardedRef) => {

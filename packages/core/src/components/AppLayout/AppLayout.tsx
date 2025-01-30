@@ -11,6 +11,7 @@ import { useWindowSizeClass } from '~/hooks/useWindowSizeClass';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './AppLayout.constants';
 import { AppLayoutProvider, IAppLayoutContextValue } from './AppLayout.context';
 import { AppLayoutBody } from './AppLayoutBody';
 import { AppLayoutFooter } from './AppLayoutFooter';
@@ -21,8 +22,6 @@ import { AppLayoutNavigationRail } from './AppLayoutNavigationRail';
 import { AppLayoutSideSheet } from './AppLayoutSideSheet';
 import { resolveNavigationMode } from './resolveNavigationMode';
 import { appLayoutTheme } from './AppLayout.css';
-
-const COMPONENT_NAME = 'AppLayout';
 
 export const AppLayout = componentFactory<IAppLayoutFactory>(
   (props, forwardedRef) => {

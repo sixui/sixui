@@ -14,7 +14,7 @@ type IModifier = 'visible' | 'variant';
 const [tokensClassName, tokens] = createTheme({
   color: themeTokens.colorScheme.secondary,
   shape: 'inherit',
-  animationDuration: themeTokens.motion.duration.long.$4,
+  animationDuration: themeTokens.motion.duration.long4,
   offset: {
     inward: px(0),
     outward: px(2),

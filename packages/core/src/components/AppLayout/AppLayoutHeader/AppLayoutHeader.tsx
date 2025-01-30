@@ -4,9 +4,8 @@ import { Paper } from '~/components/Paper';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './AppLayoutHeader.constants';
 import { appLayoutHeaderTheme } from './AppLayoutHeader.css';
-
-const COMPONENT_NAME = 'AppLayoutHeader';
 
 export const AppLayoutHeader = componentFactory<IAppLayoutHeaderFactory>(
   (props, forwardedRef) => {

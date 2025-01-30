@@ -7,9 +7,8 @@ import { px } from '~/helpers/styles/px';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './Anchored.constants';
 import { anchoredTheme } from './Anchored.css';
-
-const COMPONENT_NAME = 'Anchored';
 
 export const Anchored = componentFactory<IAnchoredFactory>(
   (props, forwardedRef) => {

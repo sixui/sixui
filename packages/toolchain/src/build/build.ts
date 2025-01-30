@@ -27,7 +27,7 @@ const defaultBuildOptions = {
   tsconfig: ['tsconfig.build.json', 'tsconfig.json'],
   rootDir: 'src',
   entryPoint: 'src/index.ts',
-  cssOutputBundleName: 'index.css',
+  cssOutputBundleName: 'styles.css',
 };
 
 export const build = async (

@@ -186,7 +186,7 @@ const classNames = createStyles({
     },
   }),
   circle: {
-    transitionDuration: themeTokens.motion.duration.short.$1,
+    transitionDuration: themeTokens.motion.duration.short1,
     transitionTimingFunction: 'linear',
   },
   circle$inner: ({ root }) => ({
@@ -197,7 +197,7 @@ const classNames = createStyles({
     selectors: {
       [getModifierSelector<IModifier>({ checked: true }, root)]: {
         animationName: innerCircleGrowKeyframes,
-        animationDuration: themeTokens.motion.duration.medium.$2,
+        animationDuration: themeTokens.motion.duration.medium2,
         animationTimingFunction:
           themeTokens.motion.easing.emphasized.decelerate,
         opacity: 1,

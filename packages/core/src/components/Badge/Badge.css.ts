@@ -39,7 +39,7 @@ const classNames = createStyles({
     height: tokens.minSize,
     padding: px(space(1)),
     transitionProperty: 'transform',
-    transitionDuration: themeTokens.motion.duration.short.$3,
+    transitionDuration: themeTokens.motion.duration.short3,
     transitionTimingFunction: themeTokens.motion.easing.standard.normal,
     whiteSpace: 'nowrap',
   },

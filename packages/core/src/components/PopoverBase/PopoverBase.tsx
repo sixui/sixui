@@ -84,7 +84,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       role: roleProp,
       trapFocus,
       matchTargetWidth,
-      withScrim: withScrimProp,
+      scrim: scrimProp,
       floatingFocusManagerProps,
       scrimMotionProps,
       floatingMotionProps,
@@ -106,7 +106,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
     } = useProps({ componentName: COMPONENT_NAME, props });
 
     const modal = modalProp || jail;
-    const withScrim = withScrimProp ?? modal;
+    const scrim = scrimProp ?? jail;
     const openEvents =
       openEventsProp !== false
         ? {
@@ -321,7 +321,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
               {...floatingFocusManagerProps}
             >
               <>
-                {withScrim && (
+                {scrim && (
                   <div {...getStyles('scrim')}>
                     <Motion
                       status={transitionStatus.status}
@@ -373,7 +373,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
                     )}
                   >
                     <RemoveScroll
-                      enabled={withScrim}
+                      enabled={scrim}
                       {...mergeProps(
                         getStyles('removeScroll'),
                         removeScrollProps,

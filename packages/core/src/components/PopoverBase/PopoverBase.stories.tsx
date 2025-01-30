@@ -72,7 +72,7 @@ const rows: Array<IComponentPresentation<IPopoverBaseProps>> = [
   { legend: 'Basic' },
   { legend: 'With arrow', props: { cursor: 'arrow' } },
   { legend: 'With dot', props: { cursor: 'dot' } },
-  { legend: 'With scrim', props: { withScrim: true } },
+  { legend: 'With scrim', props: { scrim: true } },
 ];
 
 const PopoverBaseShowcase = componentShowcaseFactory(PopoverBase);
@@ -199,7 +199,7 @@ export const ModalStyle: IStory = {
       pattern: 'enterExitOffScreen',
     },
     positioned: false,
-    withScrim: true,
+    scrim: true,
     trapFocus: true,
   },
 };

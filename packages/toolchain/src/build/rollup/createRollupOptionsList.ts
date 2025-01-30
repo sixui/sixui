@@ -28,9 +28,7 @@ export const createRollupOptionsList = (
   const outDirPath = getPath(buildOptions.outDir, buildOptions.cwd);
 
   const plugins = [
-    vanillaExtractPlugin({
-      // Waiting for https://github.com/vanilla-extract-css/vanilla-extract/discussions/1534
-    }),
+    vanillaExtractPlugin(),
     typescript({
       tsconfig: tsconfigPath,
     }),

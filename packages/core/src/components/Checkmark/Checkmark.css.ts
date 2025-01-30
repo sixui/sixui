@@ -42,9 +42,9 @@ const classNames = createStyles({
     fill: tokens.color,
   },
   mark: ({ root }) => ({
-    animationDuration: themeTokens.motion.duration.short.$3,
+    animationDuration: themeTokens.motion.duration.short3,
     animationTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
-    transitionDuration: themeTokens.motion.duration.short.$3,
+    transitionDuration: themeTokens.motion.duration.short3,
     transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
     transform: 'scale(0)',
     vectorEffect: 'non-scaling-stroke',
@@ -52,7 +52,7 @@ const classNames = createStyles({
     selectors: {
       [getModifierSelector<IModifier>('on', root)]: {
         // Enter duration and easing.
-        animationDuration: themeTokens.motion.duration.medium.$3,
+        animationDuration: themeTokens.motion.duration.medium3,
         animationTimingFunction:
           themeTokens.motion.easing.emphasized.decelerate,
       },

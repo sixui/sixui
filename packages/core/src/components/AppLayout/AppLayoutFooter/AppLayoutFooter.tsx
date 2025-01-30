@@ -4,9 +4,8 @@ import { Paper } from '~/components/Paper';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './AppLayoutFooter.constants';
 import { appLayoutFooterTheme } from './AppLayoutFooter.css';
-
-const COMPONENT_NAME = 'AppLayoutFooter';
 
 export const AppLayoutFooter = componentFactory<IAppLayoutFooterFactory>(
   (props, forwardedRef) => {

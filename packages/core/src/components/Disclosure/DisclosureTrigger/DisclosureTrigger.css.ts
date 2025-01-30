@@ -167,7 +167,7 @@ const classNames = createStyles({
   },
   icon: ({ root }) => ({
     transitionProperty: 'transform',
-    transitionDuration: themeTokens.motion.duration.short.$2,
+    transitionDuration: themeTokens.motion.duration.short2,
     transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
     transformOrigin: 'center',
     transform: 'rotate(0)',
@@ -175,7 +175,7 @@ const classNames = createStyles({
     selectors: {
       [getModifierSelector<IModifier>('expanded', root)]: {
         transform: 'rotate(180deg)',
-        transitionDuration: themeTokens.motion.duration.long.$2,
+        transitionDuration: themeTokens.motion.duration.long2,
         transitionTimingFunction:
           themeTokens.motion.easing.emphasized.decelerate,
       },

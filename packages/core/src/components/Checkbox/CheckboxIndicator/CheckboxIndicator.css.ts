@@ -128,7 +128,7 @@ const classNames = createStyles({
     borderRadius: 'inherit',
     backgroundColor: 'unset',
     transitionProperty: 'transform, opacity',
-    transitionDuration: `${themeTokens.motion.duration.short.$3}, ${themeTokens.motion.duration.short.$1}`,
+    transitionDuration: `${themeTokens.motion.duration.short3}, ${themeTokens.motion.duration.short1}`,
     transitionTimingFunction: `${themeTokens.motion.easing.emphasized.accelerate}, linear`,
     transform: 'scale(0.6)',
 
@@ -154,7 +154,7 @@ const classNames = createStyles({
         opacity: tokens.container$off.opacity.disabled,
       },
       [getModifierSelector<IModifier>('on', root)]: {
-        transitionDuration: `${themeTokens.motion.duration.medium.$3}, ${themeTokens.motion.duration.short.$1}`,
+        transitionDuration: `${themeTokens.motion.duration.medium3}, ${themeTokens.motion.duration.short1}`,
         transitionTimingFunction: `${themeTokens.motion.easing.emphasized.decelerate}, linear`,
         transform: 'scale(1)',
         opacity: 1,
@@ -212,7 +212,7 @@ const classNames = createStyles({
     height: tokens.icon.size,
     fill: tokens.icon.color.normal,
     transitionProperty: 'transform, opacity',
-    transitionDuration: `${themeTokens.motion.duration.short.$3}, ${themeTokens.motion.duration.short.$1}`,
+    transitionDuration: `${themeTokens.motion.duration.short3}, ${themeTokens.motion.duration.short1}`,
     transitionTimingFunction: `${themeTokens.motion.easing.emphasized.accelerate}, linear`,
     transform: 'scale(0.6)',
     opacity: 0,
@@ -224,7 +224,7 @@ const classNames = createStyles({
 
     selectors: {
       [getModifierSelector<IModifier>('on', root)]: {
-        transitionDuration: `${themeTokens.motion.duration.medium.$3}, ${themeTokens.motion.duration.short.$1}`,
+        transitionDuration: `${themeTokens.motion.duration.medium3}, ${themeTokens.motion.duration.short1}`,
         transitionTimingFunction: `${themeTokens.motion.easing.emphasized.decelerate}, linear`,
         transform: 'scale(1)',
         opacity: 1,

@@ -1,5 +1,7 @@
 import type { PartialDeep } from 'type-fest';
 
+import type { IOmit } from '~/helpers/types';
+
 export type IThemeColorSchemeVariant = 'light' | 'dark';
 
 export type IThemeColorScheme = {
@@ -156,33 +158,32 @@ export type IThemeMotionEasingValues = {
   linear: string;
 };
 
-export type IThemeMotionDurationValueSet = {
-  $1: string;
-  $2: string;
-  $3: string;
-  $4: string;
-};
+export type IThemeMotionDurationKeySet<TName extends string> =
+  | `${TName}1`
+  | `${TName}2`
+  | `${TName}3`
+  | `${TName}4`;
 
-export type IThemeMotionDurationValues = {
+export type IThemeMotionDurationKey =
   /**
    * Short durations. These are used for small utility-focused transitions.
    * @see https://m3.material.io/styles/motion/easing-and-duration/tokens-specs#97194be9-de1c-41b9-90d4-21ae2b8d3f38
    */
-  short: IThemeMotionDurationValueSet;
+  | IThemeMotionDurationKeySet<'short'>
 
   /**
    * Medium durations. These are used for transitions that traverse a medium
    * area of the screen.
    * @see https://m3.material.io/styles/motion/easing-and-duration/tokens-specs#e08d2356-1831-4375-bc2f-6d45230c6d98
    */
-  medium: IThemeMotionDurationValueSet;
+  | IThemeMotionDurationKeySet<'medium'>
 
   /**
    * Long durations. These durations are often paired with Emphasized easing.
    * They're used for large expressive transitions.
    * @see https://m3.material.io/styles/motion/easing-and-duration/tokens-specs#48bf653e-46f9-48f5-87e0-eaf8ea3fe716
    */
-  long: IThemeMotionDurationValueSet;
+  | IThemeMotionDurationKeySet<'long'>
 
   /**
    * Extra long durations. Though rare, some transitions use durations above
@@ -190,8 +191,7 @@ export type IThemeMotionDurationValues = {
    * user input.
    * @see https://m3.material.io/styles/motion/easing-and-duration/tokens-specs#ee9dbe95-70fa-4804-8347-c4fd58c60fe2
    */
-  extraLong: IThemeMotionDurationValueSet;
-};
+  | IThemeMotionDurationKeySet<'extraLong'>;
 
 export type IThemeMotionValues = {
   /**
@@ -208,7 +208,7 @@ export type IThemeMotionValues = {
    * @see https://m3.material.io/styles/motion/easing-and-duration/applying-easing-and-duration#569498ab-3e78-4e1a-bf59-c3fc7b1a187b
    * @see https://m3.material.io/styles/motion/easing-and-duration/tokens-specs#c009dec6-f29b-4503-b9f0-482af14a8bbd
    */
-  duration: IThemeMotionDurationValues;
+  duration: Record<IThemeMotionDurationKey, string>;
 };
 
 export type IThemeOutlineSize = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -317,7 +317,7 @@ export type IThemeComponentsValues = Record<string, IThemeComponentValues>;
 
 export type ITheme = {
   name: string;
-  source: {
+  seed: {
     color: string;
     schemeVariant: string;
     contrast: number;
@@ -387,3 +387,7 @@ export type ITheme = {
 };
 
 export type IThemeOverride = PartialDeep<ITheme>;
+
+export type IRuntimeThemeTokens = IOmit<ITheme['tokens'], 'colorScheme'> & {
+  colorScheme: IThemeColorScheme;
+};

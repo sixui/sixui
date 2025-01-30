@@ -1,11 +1,17 @@
 import {
+  createGlobalThemeContract,
   createTheme,
   createThemeContract,
   layer,
   style,
 } from '@vanilla-extract/css';
 
-import { defaultTheme } from './defaultTheme';
+import type {
+  IRuntimeThemeTokens,
+  ITheme,
+  IThemeColorSchemeVariant,
+} from './theme.types';
+import { getDefaultTheme } from './defaultTheme';
 
 const RESET_CSS_LAYER = 'reset';
 
@@ -16,17 +22,30 @@ export const cssLayers = {
   sprinkles: layer('sprinkles'),
 };
 
-const { colorScheme, ...otherTokens } = defaultTheme.tokens;
-const defaultThemeTokens = {
-  ...otherTokens,
-  colorScheme: colorScheme.light,
+const getRuntimeThemeTokens = (
+  theme: ITheme,
+  colorSchemeVariant: IThemeColorSchemeVariant = 'light',
+): IRuntimeThemeTokens => {
+  const { colorScheme, ...otherTokens } = theme.tokens;
+  const runtimeThemeTokens = {
+    ...otherTokens,
+    colorScheme: colorScheme[colorSchemeVariant],
+  };
+
+  return runtimeThemeTokens;
 };
 
-export const themeTokens = createThemeContract(defaultThemeTokens);
+export const themeTokens = createGlobalThemeContract(
+  getRuntimeThemeTokens(getDefaultTheme()),
+  // DEV:
+  (_value, path) => `sixui-${path.join('-').replaceAll('$', '-')}`,
+);
+
+export const defaultTheme = getDefaultTheme(themeTokens);
 
 export const themeTokensClassName = createTheme(themeTokens, {
   '@layer': cssLayers.theme,
-  ...defaultThemeTokens,
+  ...getRuntimeThemeTokens(defaultTheme),
 });
 
 export const styles = {

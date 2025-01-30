@@ -5,14 +5,15 @@ import { SideSheetContent } from '~/components/SideSheet/SideSheetContent';
 import { StandardAside } from '~/components/StandardAside';
 import { themeTokens } from '~/components/ThemeProvider';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createComponentTheme } from '~/utils/styles/createComponentTheme';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTheme } from '~/utils/styles/createTheme';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { appLayoutTheme } from '~/components/AppLayout/AppLayout.css';
+import { COMPONENT_NAME } from './AppLayoutSideSheet.constants';
 
 type IModifier = 'with-header';
 
-const [tokensClassName, tokens] = createTheme();
+const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME);
 
 const classNames = createStyles({
   root: {

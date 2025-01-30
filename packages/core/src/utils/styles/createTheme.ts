@@ -1,20 +1,14 @@
 import { createTheme as veCreateTheme } from '@vanilla-extract/css';
 
+import type { IVeTokens, IVeWithOptionalLayer } from '../vanillaExtract.types';
 import { cssLayers } from '~/components/ThemeProvider';
 
-type ITokens = {
-  [key: string]: string | ITokens;
-};
-
-type IWithOptionalLayer<T extends ITokens> = T & {
-  '@layer'?: string;
-};
-
-export const createTheme = <TThemeTokens extends ITokens>(
+/** @deprecated - use createComponentTheme() **/
+export const createTheme = <TThemeTokens extends IVeTokens>(
   theme?: TThemeTokens,
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 ) =>
   veCreateTheme({
     '@layer': cssLayers.theme,
     ...theme,
-  } as IWithOptionalLayer<TThemeTokens>);
+  } as IVeWithOptionalLayer<TThemeTokens>);

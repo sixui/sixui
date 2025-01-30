@@ -23,7 +23,7 @@ const classNames = createStyles({
   root: {
     flexShrink: 0,
 
-    transitionDuration: themeTokens.motion.duration.short.$3,
+    transitionDuration: themeTokens.motion.duration.short3,
     transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
 
     selectors: {
@@ -49,7 +49,7 @@ const classNames = createStyles({
         transitionProperty: 'height',
       },
       [getModifierSelector<IModifier>('opened')]: {
-        transitionDuration: themeTokens.motion.duration.long.$3,
+        transitionDuration: themeTokens.motion.duration.long3,
         transitionTimingFunction:
           themeTokens.motion.easing.emphasized.decelerate,
       },

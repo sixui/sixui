@@ -211,7 +211,7 @@ const classNames = createStyles({
     // This easing is custom to perform the "overshoot" animation.
     transitionProperty: 'margin',
     transitionTimingFunction: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-    transitionDuration: themeTokens.motion.duration.medium.$2,
+    transitionDuration: themeTokens.motion.duration.medium2,
 
     marginInlineEnd: `calc(${tokens.container.width} - ${tokens.container.height})`,
     marginInlineStart: 0,
@@ -231,7 +231,7 @@ const classNames = createStyles({
     transformOrigin: 'center',
     transitionProperty: 'width, height',
     transitionTimingFunction: themeTokens.motion.easing.standard.normal,
-    transitionDuration: themeTokens.motion.duration.medium.$2,
+    transitionDuration: themeTokens.motion.duration.medium2,
     width: calc.add(tokens.handle$off.width.normal, DENSITY),
     height: calc.add(tokens.handle$off.height.normal, DENSITY),
 
@@ -286,7 +286,7 @@ const classNames = createStyles({
         width: calc.add(tokens.handle$off.width.pressed, DENSITY),
         height: calc.add(tokens.handle$off.height.normal, DENSITY),
         transitionTimingFunction: themeTokens.motion.easing.standard.normal,
-        transitionDuration: themeTokens.motion.duration.short.$3,
+        transitionDuration: themeTokens.motion.duration.short3,
 
         vars: createTokensVars(PaperBase.theme.tokens, {
           container: {
@@ -376,7 +376,7 @@ const classNames = createStyles({
         width: calc.add(tokens.handle$on.width.pressed, DENSITY),
         height: calc.add(tokens.handle$on.height.pressed, DENSITY),
         transitionTimingFunction: themeTokens.motion.easing.standard.normal,
-        transitionDuration: themeTokens.motion.duration.short.$3,
+        transitionDuration: themeTokens.motion.duration.short3,
 
         vars: createTokensVars(PaperBase.theme.tokens, {
           container: {

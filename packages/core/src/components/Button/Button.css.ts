@@ -14,8 +14,8 @@ import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createComponentTheme } from '~/utils/styles/createComponentTheme';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTheme } from '~/utils/styles/createTheme';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
 import { ButtonBase } from '../ButtonBase';
@@ -32,7 +32,7 @@ type IModifier =
 
 const DENSITY = px(getDensity({ min: -4, max: 0 }));
 
-const [tokensClassName, tokens] = createTheme({
+const [tokensClassName, tokens] = createComponentTheme('button', {
   container: {
     shape: px(themeTokens.shape.corner.full),
     height: px(40),
@@ -149,7 +149,7 @@ const classNames = createStyles({
     verticalAlign: 'top',
 
     transitionProperty: 'border-radius',
-    transitionDuration: themeTokens.motion.duration.short.$2,
+    transitionDuration: themeTokens.motion.duration.short2,
     transitionTimingFunction: themeTokens.motion.easing.linear,
 
     paddingLeft: tokens.container.leadingSpace.normal,
@@ -367,7 +367,7 @@ const classNames = createStyles({
       [getModifierSelector<IModifier>({ 'icon-animation': 'halfSpin' }, root)]:
         {
           animationName: halfSpinKeyframes,
-          animationDuration: themeTokens.motion.duration.long.$2,
+          animationDuration: themeTokens.motion.duration.long2,
           animationTimingFunction: 'linear',
           animationIterationCount: 'infinite',
         },

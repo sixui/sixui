@@ -6,12 +6,13 @@ import { themeTokens } from '~/components/ThemeProvider';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createComponentTheme } from '~/utils/styles/createComponentTheme';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTheme } from '~/utils/styles/createTheme';
+import { COMPONENT_NAME } from './Anchored.constants';
 
 type IModifier = 'position' | 'invisible';
 
-const [tokensClassName, tokens] = createTheme({
+const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   offset: {
     x: px(0),
     y: px(0),
@@ -62,7 +63,7 @@ const classNames = createStyles({
     position: 'absolute',
     display: 'flex',
     transitionProperty: 'transform',
-    transitionDuration: themeTokens.motion.duration.short.$3,
+    transitionDuration: themeTokens.motion.duration.short3,
     transitionTimingFunction: themeTokens.motion.easing.standard.normal,
     transform: `scale(${vars.scale}) translate(${vars.translate.x}, ${vars.translate.y})`,
     transformOrigin: `${vars.transformOrigin.x} ${vars.transformOrigin.y}`,

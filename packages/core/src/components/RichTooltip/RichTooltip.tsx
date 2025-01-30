@@ -65,7 +65,7 @@ export const RichTooltip = componentFactory<IRichTooltipFactory>(
         }}
         positioned
         trapFocus={persistent}
-        withScrim={persistent}
+        scrim={persistent}
         closeEvents={{
           clickOutside: !persistent,
           focusOut: !persistent,

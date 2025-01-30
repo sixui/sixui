@@ -7,9 +7,8 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './AppLayoutNavigationBar.constants';
 import { appLayoutNavigationBarTheme } from './AppLayoutNavigationBar.css';
-
-const COMPONENT_NAME = 'AppLayoutNavigationBar';
 
 export const AppLayoutNavigationBar =
   componentFactory<IAppLayoutNavigationBarFactory>((props, forwardedRef) => {

@@ -52,7 +52,7 @@ const classNames = createStyles({
         opacity: 1,
 
         transitionProperty: 'width, opacity',
-        transitionDuration: themeTokens.motion.duration.medium.$4,
+        transitionDuration: themeTokens.motion.duration.medium4,
         transitionTimingFunction:
           themeTokens.motion.easing.emphasized.decelerate,
       },
@@ -74,7 +74,7 @@ const classNames = createStyles({
         width: 0,
 
         transitionProperty: 'width, opacity',
-        transitionDuration: themeTokens.motion.duration.short.$2,
+        transitionDuration: themeTokens.motion.duration.short2,
         transitionTimingFunction:
           themeTokens.motion.easing.emphasized.accelerate,
       },

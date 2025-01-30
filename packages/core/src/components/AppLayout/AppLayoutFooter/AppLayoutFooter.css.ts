@@ -7,14 +7,15 @@ import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createComponentTheme } from '~/utils/styles/createComponentTheme';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTheme } from '~/utils/styles/createTheme';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { appLayoutTheme } from '~/components/AppLayout/AppLayout.css';
+import { COMPONENT_NAME } from './AppLayoutFooter.constants';
 
 type IModifier = 'with-divider';
 
-const [tokensClassName, tokens] = createTheme({
+const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
     color: fallbackVar(
       appLayoutTheme.tokens.footer.color,

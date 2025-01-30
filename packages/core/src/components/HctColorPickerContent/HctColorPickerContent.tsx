@@ -26,7 +26,7 @@ export const HctColorPickerContent =
     } = useProps({ componentName: COMPONENT_NAME, props });
     const themeContext = useThemeContext();
 
-    const sourceColor = sourceColorProp ?? themeContext.theme.source.color;
+    const sourceColor = sourceColorProp ?? themeContext.theme.seed.color;
     const palettes = generateTonalColorPalettes(
       sourceColor,
       hueCount,

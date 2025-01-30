@@ -144,7 +144,7 @@ export type IPopoverBaseOwnProps<TForwardedProps extends object = object> =
      * If set, a temporary overlay will be rendered behind the popover to make
      * it more prominent.
      */
-    withScrim?: boolean;
+    scrim?: boolean;
 
     /**
      * Contains the props for all slots within the component.

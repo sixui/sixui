@@ -8,9 +8,8 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './AppLayoutNavigationDrawer.constants';
 import { appLayoutNavigationDrawerTheme } from './AppLayoutNavigationDrawer.css';
-
-const COMPONENT_NAME = 'AppLayoutNavigationDrawer';
 
 export const AppLayoutNavigationDrawer =
   componentFactory<IAppLayoutNavigationDrawerFactory>((props, forwardedRef) => {

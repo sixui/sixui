@@ -10,11 +10,15 @@ import type { IThemeSetterContextValue } from './ThemeSetter.context';
 import { deepMerge } from '~/helpers/deepMerge';
 import { partialAssignInlineVars } from '~/utils/styles/partialAssignInlineVars';
 import { textFromCssProperties } from '~/utils/styles/textFromCssProperties';
-import { defaultTheme } from './defaultTheme';
 import { mergeThemeOverrides } from './mergeThemeOverrides';
 import { ThemeContext } from './ThemeProvider.context';
 import { ThemeSetterProvider } from './ThemeSetter.context';
-import * as styles from './ThemeProvider.css';
+import {
+  defaultTheme,
+  styles,
+  themeTokens,
+  themeTokensClassName,
+} from './ThemeProvider.css';
 
 export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
   const {
@@ -81,16 +85,13 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
     colorSchemeVariant,
   ]);
 
-  const themeVars = partialAssignInlineVars(
-    styles.themeTokens,
-    themeOverrideVars,
-  );
+  const themeVars = partialAssignInlineVars(themeTokens, themeOverrideVars);
 
   if (stylesTarget) {
     stylesTarget.classList.add(
       ...cx(
-        styles.styles.root,
-        parentTheme ? undefined : styles.themeTokensClassName,
+        styles.root,
+        parentTheme ? undefined : themeTokensClassName,
         className,
       ).split(' '),
     );
@@ -112,8 +113,8 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
             stylesTarget
               ? undefined
               : cx(
-                  styles.styles.root,
-                  parentTheme ? undefined : styles.themeTokensClassName,
+                  styles.root,
+                  parentTheme ? undefined : themeTokensClassName,
                   className,
                 )
           }

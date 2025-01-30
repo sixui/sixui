@@ -6,9 +6,8 @@ import { NavigationRailDestination } from '~/components/NavigationRail/Navigatio
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './AppLayoutNavigationRail.constants';
 import { appLayoutNavigationRailTheme } from './AppLayoutNavigationRail.css';
-
-const COMPONENT_NAME = 'AppLayoutNavigationRail';
 
 export const AppLayoutNavigationRail =
   componentFactory<IAppLayoutNavigationRailFactory>((props, forwardedRef) => {

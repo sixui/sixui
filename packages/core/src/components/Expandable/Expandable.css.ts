@@ -42,7 +42,7 @@ const classNames = createStyles({
     width: tokens.expandedWidth,
     height: tokens.expandedHeight,
     transitionProperty: tokens.transitionProperty,
-    transitionDuration: themeTokens.motion.duration.long.$3,
+    transitionDuration: themeTokens.motion.duration.long3,
     transitionTimingFunction: themeTokens.motion.easing.emphasized.decelerate,
   },
   motion$entered: {
@@ -53,7 +53,7 @@ const classNames = createStyles({
     width: tokens.collapsedWidth,
     height: tokens.collapsedHeight,
     transitionProperty: tokens.transitionProperty,
-    transitionDuration: themeTokens.motion.duration.short.$3,
+    transitionDuration: themeTokens.motion.duration.short3,
     transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
   },
   motion$exited: {

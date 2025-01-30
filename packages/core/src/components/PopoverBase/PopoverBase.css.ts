@@ -36,7 +36,7 @@ const classNames = createStyles({
     selectors: {
       [getModifierSelector<IModifier>('shake', root)]: {
         animationName: shakeKeyframes,
-        animationDuration: themeTokens.motion.duration.short.$2,
+        animationDuration: themeTokens.motion.duration.short2,
         animationTimingFunction: themeTokens.motion.easing.standard.normal,
         animationIterationCount: 'infinite',
       },

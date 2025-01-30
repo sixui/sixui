@@ -28,7 +28,7 @@ type IModifier =
   | 'multiline';
 
 // Duration of the label animation.
-const LABEL_ANIMATION_DURATION = themeTokens.motion.duration.short.$3;
+const LABEL_ANIMATION_DURATION = themeTokens.motion.duration.short3;
 // Duration of the content's visibility animation.
 const CONTENT_ANIMATION_DURATION = calc.divide(
   calc.multiply(LABEL_ANIMATION_DURATION, 5),
@@ -791,7 +791,7 @@ const classNames = createStyles({
   }),
   outlineSection$panel$active: ({ root }) => ({
     transitionProperty: 'opacity',
-    transitionDuration: themeTokens.motion.duration.short.$3,
+    transitionDuration: themeTokens.motion.duration.short3,
     transitionTimingFunction: themeTokens.motion.easing.standard.normal,
     borderWidth: tokens.outline.width.focused,
     opacity: 0,
@@ -839,7 +839,7 @@ const classNames = createStyles({
   }),
   outlineBorder$active$startEnd: ({ root }) => ({
     transitionProperty: 'opacity',
-    transitionDuration: themeTokens.motion.duration.short.$3,
+    transitionDuration: themeTokens.motion.duration.short3,
     transitionTimingFunction: themeTokens.motion.easing.standard.normal,
     borderWidth: tokens.outline.width.focused,
     opacity: 0,
@@ -861,7 +861,7 @@ const classNames = createStyles({
     borderBottomStyle: 'unset',
     bottom: 'auto',
     transitionProperty: 'transform',
-    transitionDuration: themeTokens.motion.duration.short.$3,
+    transitionDuration: themeTokens.motion.duration.short3,
     transitionTimingFunction: themeTokens.motion.easing.standard.normal,
     transform: 'scaleX(1)',
 
@@ -1051,7 +1051,7 @@ export const fieldBaseThemeVariants = {
       width: '100%',
       borderBottomStyle: 'solid',
       transitionProperty: 'opacity',
-      transitionDuration: themeTokens.motion.duration.short.$3,
+      transitionDuration: themeTokens.motion.duration.short3,
       transitionTimingFunction: themeTokens.motion.easing.standard.normal,
       borderBottomWidth: tokens.activeIndicator.height.focused,
       borderBottomColor: tokens.activeIndicator.color.focused.regular,
