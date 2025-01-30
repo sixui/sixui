@@ -6,9 +6,8 @@ import { Box } from '~/components/Box';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './Text.constants';
 import { textTheme } from './Text.css';
-
-const COMPONENT_NAME = 'Text';
 
 export const textTagMap: Record<
   ITextVariant,

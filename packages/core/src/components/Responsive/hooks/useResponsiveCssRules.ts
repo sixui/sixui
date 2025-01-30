@@ -1,7 +1,7 @@
 import { useThemeContext } from '~/components/ThemeProvider/ThemeProvider.context';
-import { getSizesCssStyles } from './getSizesCssStyles';
-import { getVisibilityCssStyles } from './getVisibilityCssStyles';
-import { getWindowSizeClassRanges } from './getWindowSizeClassRanges';
+import { getSizesCssStyles } from '../utils/getSizesCssStyles';
+import { getVisibilityCssStyles } from '../utils/getVisibilityCssStyles';
+import { getWindowSizeClassRanges } from '../utils/getWindowSizeClassRanges';
 
 export const useResponsiveCssRules = (): string => {
   const { theme } = useThemeContext();

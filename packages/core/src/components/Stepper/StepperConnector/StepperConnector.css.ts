@@ -6,14 +6,15 @@ import { themeTokens } from '~/components/ThemeProvider';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createComponentTheme } from '~/utils/styles/createComponentTheme';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTheme } from '~/utils/styles/createTheme';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { stepperStepTheme } from '../StepperStep/StepperStep.css';
+import { COMPONENT_NAME } from './StepperConnector.constants';
 
 type IModifier = 'orientation' | 'step-label-position' | 'completed';
 
-const [tokensClassName, tokens] = createTheme({
+const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   stroke: px(themeTokens.outline.width.xs),
   shape: px(themeTokens.shape.corner.none),
   color: {

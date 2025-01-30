@@ -4,13 +4,14 @@ import { StandardAside } from '~/components/StandardAside';
 import { themeTokens } from '~/components/ThemeProvider';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createComponentTheme } from '~/utils/styles/createComponentTheme';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTheme } from '~/utils/styles/createTheme';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
+import { COMPONENT_NAME } from './SideSheet.constants';
 import { SideSheetContent } from './SideSheetContent';
 
-const [tokensClassName, tokens] = createTheme({
+const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
     width: px(360),
     color: themeTokens.colorScheme.surface,

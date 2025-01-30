@@ -5,9 +5,8 @@ import { Divider } from '~/components/Divider';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './TabsList.constants';
 import { tabsListTheme } from './TabsList.css';
-
-const COMPONENT_NAME = 'TabList';
 
 export const TabsList = componentFactory<ITabsListFactory>(
   (props, forwardedRef) => {

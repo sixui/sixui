@@ -7,10 +7,10 @@ import { isFilterableListItemDisabled } from '~/components/FilterableList/utils/
 import { renderFilterableListItem } from '~/components/FilterableList/utils/renderFilterableListItem';
 import { ListItem } from '~/components/List/ListItem';
 import { multiSelectBaseFactory } from '~/components/MultiSelectBase';
+import { useMultiSelect } from '~/hooks/useMultiSelect';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { COMPONENT_NAME } from './MultiSelect.constants';
-import { useMultiSelect } from './useMultiSelect';
 
 const MultiSelectBase = multiSelectBaseFactory<IFilterableListItem>();
 

@@ -6,10 +6,9 @@ import { isFunction } from '~/helpers/isFunction';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './RichTooltip.constants';
 import { RichTooltipContent } from './RichTooltipContent';
 import { richTooltipTheme } from './RichTooltip.css';
-
-const COMPONENT_NAME = 'RichTooltip';
 
 export const RichTooltip = componentFactory<IRichTooltipFactory>(
   (props, forwardedRef) => {

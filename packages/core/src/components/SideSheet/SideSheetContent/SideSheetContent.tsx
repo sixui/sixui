@@ -8,12 +8,11 @@ import { isFunction } from '~/helpers/isFunction';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './SideSheetContent.constants';
 import {
   sideSheetContentTheme,
   sideSheetContentThemeVariants,
 } from './SideSheetContent.css';
-
-const COMPONENT_NAME = 'SideSheetContent';
 
 export const SideSheetContent = componentFactory<ISideSheetContentFactory>(
   (props, forwardedRef) => {

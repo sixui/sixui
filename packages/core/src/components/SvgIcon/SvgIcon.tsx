@@ -4,9 +4,8 @@ import { Box } from '~/components/Box';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './SvgIcon.constants';
 import { svgIconTheme } from './SvgIcon.css';
-
-const COMPONENT_NAME = 'SvgIcon';
 
 export const SvgIcon = componentFactory<ISvgIconFactory>(
   (props, forwardedRef) => {

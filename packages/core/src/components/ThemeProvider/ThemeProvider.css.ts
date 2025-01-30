@@ -1,7 +1,6 @@
 import {
   createGlobalThemeContract,
   createTheme,
-  createThemeContract,
   layer,
   style,
 } from '@vanilla-extract/css';

@@ -3,10 +3,9 @@ import type { IResponsiveFactory } from './Responsive.types';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { useResponsiveCssRules } from './useResponsiveCssRules';
+import { useResponsiveCssRules } from './hooks/useResponsiveCssRules';
+import { COMPONENT_NAME } from './Responsive.constants';
 import { responsiveTheme } from './Responsive.css';
-
-const COMPONENT_NAME = 'Responsive';
 
 export const Responsive = componentFactory<IResponsiveFactory>(
   (props, forwardedRef) => {

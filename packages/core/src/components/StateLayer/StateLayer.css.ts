@@ -5,8 +5,9 @@ import { themeTokens } from '~/components/ThemeProvider';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createComponentTheme } from '~/utils/styles/createComponentTheme';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTheme } from '~/utils/styles/createTheme';
+import { COMPONENT_NAME } from './StateLayer.constants';
 
 type IModifier =
   | 'hovered'
@@ -16,7 +17,7 @@ type IModifier =
   | 'no-ripple-effect'
   | 'disabled';
 
-const [tokensClassName, tokens] = createTheme({
+const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   color: {
     hovered: themeTokens.colorScheme.onSurface,
     pressed: 'inherit',

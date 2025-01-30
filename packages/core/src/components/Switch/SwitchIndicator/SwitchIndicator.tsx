@@ -7,9 +7,8 @@ import { SvgIcon } from '~/components/SvgIcon';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './SwitchIndicator.constants';
 import { basicTemplateTheme } from './SwitchIndicator.css';
-
-const COMPONENT_NAME = 'SwitchIndicator';
 
 export const SwitchIndicator = componentFactory<ISwitchIndicatorFactory>(
   (props, forwardedRef) => {

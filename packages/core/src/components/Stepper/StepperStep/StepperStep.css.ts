@@ -10,17 +10,18 @@ import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createComponentTheme } from '~/utils/styles/createComponentTheme';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTheme } from '~/utils/styles/createTheme';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { stepperTheme } from '../Stepper.css';
+import { COMPONENT_NAME } from './StepperStep.constants';
 import { StepperStepIndicator } from './StepperStepIndicator';
 
 type IModifier = 'orientation' | 'label-position';
 
 const DENSITY = px(getDensity({ min: -2, max: 0 }));
 
-const [tokensClassName, tokens] = createTheme({
+const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
     leadingSpace: px(space(2)),
     trailingSpace: px(space(2)),

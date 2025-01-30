@@ -5,9 +5,8 @@ import { useTabsContext } from '~/components/Tabs/Tabs.context';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './TabsPanel.constants';
 import { tabsPanelTheme } from './TabsPanel.css';
-
-const COMPONENT_NAME = 'TabsPanel';
 
 export const TabsPanel = componentFactory<ITabsPanelFactory>(
   (props, forwardedRef) => {

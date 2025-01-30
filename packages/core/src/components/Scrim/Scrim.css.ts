@@ -3,12 +3,13 @@ import { themeTokens } from '~/components/ThemeProvider';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createComponentTheme } from '~/utils/styles/createComponentTheme';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTheme } from '~/utils/styles/createTheme';
+import { COMPONENT_NAME } from './Scrim.constants';
 
 type IModifier = 'fixed' | 'center' | 'blurred';
 
-const [tokensClassName, tokens] = createTheme({
+const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
     shape: px(themeTokens.shape.corner.none),
     filter: 'none',

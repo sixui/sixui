@@ -6,9 +6,8 @@ import { isFunction } from '~/helpers/isFunction';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './RichTooltipContent.constants';
 import { richTooltipContentTheme } from './RichTooltipContent.css';
-
-const COMPONENT_NAME = 'RichTooltipContent';
 
 export const RichTooltipContent = componentFactory<IRichTooltipContentFactory>(
   (props, forwardedRef) => {

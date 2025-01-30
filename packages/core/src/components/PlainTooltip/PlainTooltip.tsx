@@ -7,10 +7,9 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './PlainTooltip.constants';
 import { PlainTooltipContent } from './PlainTooltipContent';
 import { plainTooltipTheme } from './PlainTooltip.css';
-
-const COMPONENT_NAME = 'PlainTooltip';
 
 export const PlainTooltip = componentFactory<IPlainTooltipFactory>(
   (props, forwardedRef) => {

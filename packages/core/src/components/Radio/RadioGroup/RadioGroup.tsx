@@ -15,9 +15,8 @@ import { useId } from '~/hooks/useId';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
+import { COMPONENT_NAME } from './RadioGroup.constants';
 import { RadioGroupContextProvider } from './RadioGroup.context';
-
-const COMPONENT_NAME = 'RadioGroup';
 
 export const RadioGroup = polymorphicComponentFactory<IRadioGroupFactory>(
   (props, forwardedRef) => {

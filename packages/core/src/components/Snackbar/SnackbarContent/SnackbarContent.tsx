@@ -9,9 +9,8 @@ import { SvgIcon } from '~/components/SvgIcon';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './SnackbarContent.constants';
 import { snackbarContentTheme } from './SnackbarContent.css';
-
-const COMPONENT_NAME = 'SnackbarContent';
 
 export const SnackbarContent = componentFactory<ISnackbarContentFactory>(
   (props, forwardedRef) => {

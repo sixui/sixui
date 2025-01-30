@@ -10,8 +10,7 @@ import { MenuList } from '~/components/Menu/MenuList';
 import { TextInputField } from '~/components/TextInputField';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
-
-const COMPONENT_NAME = 'SelectBase';
+import { COMPONENT_NAME } from './SelectBase.constants';
 
 export const selectBaseFactory = <
   TItem,

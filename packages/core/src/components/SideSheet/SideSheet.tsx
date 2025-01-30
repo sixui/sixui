@@ -5,10 +5,9 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './SideSheet.constants';
 import { SideSheetContent } from './SideSheetContent';
 import { navigationDrawerTheme } from './SideSheet.css';
-
-const COMPONENT_NAME = 'SideSheet';
 
 export const SideSheet = componentFactory<ISideSheetFactory>(
   (props, forwardedRef) => {

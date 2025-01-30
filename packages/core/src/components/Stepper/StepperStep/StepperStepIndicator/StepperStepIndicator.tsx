@@ -8,9 +8,8 @@ import { SvgIcon } from '~/components/SvgIcon';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './StepperStepIndicator.constants';
 import { stepperStepIndicatorTheme } from './StepperStepIndicator.css';
-
-const COMPONENT_NAME = 'StepperStepIndicator';
 
 export const StepperStepIndicator =
   componentFactory<IStepperStepIndicatorFactory>((props, forwardedRef) => {

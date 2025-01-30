@@ -8,11 +8,10 @@ import { isFilterableListItemEmpty } from '~/components/FilterableList/utils/isF
 import { renderFilterableListItem } from '~/components/FilterableList/utils/renderFilterableListItem';
 import { ListItem } from '~/components/List/ListItem';
 import { selectBaseFactory } from '~/components/SelectBase';
+import { useSelect } from '~/hooks/useSelect';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
-import { useSelect } from './useSelect';
-
-const COMPONENT_NAME = 'Select';
+import { COMPONENT_NAME } from './Select.constants';
 
 const SelectBase = selectBaseFactory<IFilterableListItem>();
 

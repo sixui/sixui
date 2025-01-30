@@ -10,12 +10,11 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './Stepper.constants';
 import { StepperContextProvider } from './Stepper.context';
 import { StepperConnector } from './StepperConnector';
 import { StepperStep } from './StepperStep';
 import { stepperTheme } from './Stepper.css';
-
-const COMPONENT_NAME = 'Stepper';
 
 export const Stepper = componentFactory<IStepperFactory>(
   (props, forwardedRef) => {

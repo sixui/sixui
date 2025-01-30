@@ -11,9 +11,8 @@ import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './StandardAside.constants';
 import { standardAsideTheme } from './StandardAside.css';
-
-const COMPONENT_NAME = 'StandardAside';
 
 export const StandardAside = componentFactory<IStandardAsideFactory>(
   (props, forwardedRef) => {

@@ -38,6 +38,7 @@ import { mergeProps } from '~/utils/mergeProps';
 import { objectFromPlacement } from '~/utils/objectFromPlacement';
 import { stringFromPlacement } from '~/utils/stringFromPlacement';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './PopoverBase.constants';
 import { PreventAutoFocus } from './PreventAutoFocus';
 import { popoverBaseTheme } from './PopoverBase.css';
 
@@ -60,8 +61,6 @@ const defaultMiddlewares: IPopoverMiddlewares = {
   flip: true,
   size: true,
 };
-
-const COMPONENT_NAME = 'PopoverBase';
 
 export const PopoverBase = componentFactory<IPopoverBaseFactory>(
   (props, forwardedRef) => {

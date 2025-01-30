@@ -8,9 +8,8 @@ import { random } from '~/helpers/random';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './Skeleton.constants';
 import { skeletonTheme, skeletonThemeVariants } from './Skeleton.css';
-
-const COMPONENT_NAME = 'Skeleton';
 
 export const Skeleton = componentFactory<ISkeletonFactory>(
   (props, forwardedRef) => {

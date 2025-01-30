@@ -5,9 +5,8 @@ import { Paper } from '~/components/Paper';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './Placeholder.constants';
 import { placeholderTheme } from './Placeholder.css';
-
-const COMPONENT_NAME = 'Placeholder';
 
 export const Placeholder = polymorphicComponentFactory<IPlaceholderFactory>(
   (props, forwardedRef) => {

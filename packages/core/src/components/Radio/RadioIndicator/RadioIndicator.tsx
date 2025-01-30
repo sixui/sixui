@@ -5,9 +5,8 @@ import { PaperBase } from '~/components/PaperBase';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './RadioIndicator.constants';
 import { RadioIndicatorTheme } from './RadioIndicator.css';
-
-const COMPONENT_NAME = 'RadioIndicator';
 
 export const RadioIndicator = componentFactory<IRadioIndicatorFactory>(
   (props, forwardedRef) => {

@@ -9,10 +9,9 @@ import { useTimeout } from '~/hooks/useTimeout';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './Snackbar.constants';
 import { SnackbarContent } from './SnackbarContent';
 import { snackbarTheme } from './Snackbar.css';
-
-const COMPONENT_NAME = 'Snackbar';
 
 export const Snackbar = componentFactory<ISnackbarFactory>(
   (props, forwardedRef) => {

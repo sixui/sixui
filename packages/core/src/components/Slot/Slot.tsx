@@ -9,9 +9,8 @@ import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
 import { Overlayable } from '../Overlayable';
+import { COMPONENT_NAME } from './Slot.constants';
 import { slotTheme } from './Slot.css';
-
-const COMPONENT_NAME = 'Slot';
 
 export const Slot = polymorphicComponentFactory<ISlotFactory>(
   (props, forwardedRef) => {

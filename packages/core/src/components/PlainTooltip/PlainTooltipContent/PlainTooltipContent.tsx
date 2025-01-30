@@ -4,9 +4,8 @@ import { Paper } from '~/components/Paper';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './PlainTooltipContent.constants';
 import { plainTooltipContentTheme } from './PlainTooltipContent.css';
-
-const COMPONENT_NAME = 'PlainTooltipContent';
 
 export const PlainTooltipContent =
   componentFactory<IPlainTooltipContentFactory>((props, forwardedRef) => {

@@ -4,9 +4,8 @@ import { Box } from '~/components/Box';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './Scrim.constants';
 import { scrimTheme } from './Scrim.css';
-
-const COMPONENT_NAME = 'Scrim';
 
 export const Scrim = polymorphicComponentFactory<IScrimFactory>(
   (props, forwardedRef) => {

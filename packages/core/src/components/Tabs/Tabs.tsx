@@ -10,13 +10,12 @@ import { useId } from '~/hooks/useId';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './Tabs.constants';
 import { TabsContextProvider } from './Tabs.context';
 import { TabsList } from './TabsList';
 import { TabsPanel } from './TabsPanel';
 import { TabsTab } from './TabsTab';
 import { basicTemplateTheme } from './Tabs.css';
-
-const COMPONENT_NAME = 'Tabs';
 
 export const Tabs = componentFactory<ITabsFactory>((props, forwardedRef) => {
   const {

@@ -8,14 +8,15 @@ import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createComponentTheme } from '~/utils/styles/createComponentTheme';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTheme } from '~/utils/styles/createTheme';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
 import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
+import { COMPONENT_NAME } from './RichTooltipContent.constants';
 
 type IModifier = 'with-actions';
 
-const [tokensClassName, tokens] = createTheme({
+const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
     color: themeTokens.colorScheme.surfaceContainer,
     shape: px(themeTokens.shape.corner.md),

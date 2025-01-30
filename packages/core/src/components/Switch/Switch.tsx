@@ -8,10 +8,9 @@ import { useSwitch } from '~/hooks/useSwitch';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './Switch.constants';
 import { SwitchIndicator } from './SwitchIndicator';
 import { basicTemplateTheme } from './Switch.css';
-
-const COMPONENT_NAME = 'Switch';
 
 export const Switch = componentFactory<ISwitchFactory>(
   (props, forwardedRef) => {

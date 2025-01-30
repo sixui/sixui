@@ -9,8 +9,7 @@ import { MenuList } from '~/components/Menu/MenuList';
 import { TextInputField } from '~/components/TextInputField';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
-
-const COMPONENT_NAME = 'SuggestBase';
+import { COMPONENT_NAME } from './SuggestBase.constants';
 
 export const suggestBaseFactory = <
   TItem,

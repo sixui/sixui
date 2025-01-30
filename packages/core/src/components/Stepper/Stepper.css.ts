@@ -3,12 +3,13 @@ import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createComponentTheme } from '~/utils/styles/createComponentTheme';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTheme } from '~/utils/styles/createTheme';
+import { COMPONENT_NAME } from './Stepper.constants';
 
 type IModifier = 'orientation' | 'label-position';
 
-const [tokensClassName, tokens] = createTheme({
+const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   connector: {
     space: px(space(2)),
   },

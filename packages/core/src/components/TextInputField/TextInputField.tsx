@@ -15,9 +15,8 @@ import { useProps } from '~/utils/component/useProps';
 import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { triggerChangeEvent } from '~/utils/triggerChangeEvent';
+import { COMPONENT_NAME } from './TextInputField.constants';
 import { textInputFieldTheme } from './TextInputField.css';
-
-const COMPONENT_NAME = 'TextInputField';
 
 export const TextInputField = componentFactory<ITextInputFieldFactory>(
   (props, forwardedRef) => {

@@ -4,12 +4,11 @@ import { Paper } from '~/components/Paper';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './PolymorphicTemplate.constants';
 import {
   polymorphicTemplateTheme,
   polymorphicTemplateThemeVariants,
 } from './PolymorphicTemplate.css';
-
-const COMPONENT_NAME = 'PolymorphicTemplate';
 
 export const PolymorphicTemplate =
   polymorphicComponentFactory<IPolymorphicTemplateFactory>(

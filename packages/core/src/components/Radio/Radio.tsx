@@ -8,12 +8,11 @@ import { useRadio } from '~/hooks/useRadio';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './Radio.constants';
 import { RadioCard } from './RadioCard';
 import { RadioGroup } from './RadioGroup';
 import { RadioIndicator } from './RadioIndicator';
 import { RadioTheme } from './Radio.css';
-
-const COMPONENT_NAME = 'Radio';
 
 export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
   const {

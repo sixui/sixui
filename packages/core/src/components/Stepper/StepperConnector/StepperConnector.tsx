@@ -5,9 +5,8 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { useStepperStepContext } from '../StepperStep/StepperStep.context';
+import { COMPONENT_NAME } from './StepperConnector.constants';
 import { dividerTheme } from './StepperConnector.css';
-
-const COMPONENT_NAME = 'StepperConnector';
 
 export const StepperConnector = componentFactory<IStepperConnectorFactory>(
   (props, forwardedRef) => {

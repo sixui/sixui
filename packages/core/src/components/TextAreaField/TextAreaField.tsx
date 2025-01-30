@@ -16,9 +16,8 @@ import { useProps } from '~/utils/component/useProps';
 import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { triggerChangeEvent } from '~/utils/triggerChangeEvent';
+import { COMPONENT_NAME } from './TextAreaField.constants';
 import { textAreaFieldTheme } from './TextAreaField.css';
-
-const COMPONENT_NAME = 'TextAreaField';
 
 export const TextAreaField = componentFactory<ITextAreaFieldFactory>(
   (props, forwardedRef) => {

@@ -4,9 +4,8 @@ import { Box } from '~/components/Box';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './TouchTarget.constants';
 import { touchTargetTheme } from './TouchTarget.css';
-
-const COMPONENT_NAME = 'TouchTarget';
 
 export const TouchTarget = componentFactory<ITouchTargetFactory>(
   (props, forwardedRef) => {

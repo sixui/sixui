@@ -7,12 +7,11 @@ import { isFilterableListItemDisabled } from '~/components/FilterableList/utils/
 import { isFilterableListItemEmpty } from '~/components/FilterableList/utils/isFilterableListItemEmpty';
 import { renderFilterableListItem } from '~/components/FilterableList/utils/renderFilterableListItem';
 import { ListItem } from '~/components/List/ListItem';
-import { useSelect } from '~/components/Select/useSelect';
 import { suggestBaseFactory } from '~/components/SuggestBase';
+import { useSelect } from '~/hooks/useSelect';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
-
-const COMPONENT_NAME = 'Suggest';
+import { COMPONENT_NAME } from './Suggest.constants';
 
 const SuggestBase = suggestBaseFactory<IFilterableListItem>();
 
