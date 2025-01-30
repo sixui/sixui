@@ -132,7 +132,7 @@ const classNames = createStyles({
     vars: createTokensVars(Button.theme.tokens, {
       container: {
         shape: tokens.container.shape,
-        height: calc.add(tokens.container.height.normal, DENSITY),
+        minHeight: calc.add(tokens.container.height.normal, DENSITY),
         elevation: {
           normal: tokens.container.elevation.normal,
           disabled: tokens.container.elevation.disabled,
@@ -217,9 +217,11 @@ const classNames = createStyles({
         }),
       },
       [getModifierSelector<IModifier>(['with-icon', 'with-label'])]: {
+        height: calc.add(tokens.container.height.withIconAndLabel, DENSITY),
+
         vars: createTokensVars(Button.theme.tokens, {
           container: {
-            height: calc.add(tokens.container.height.withIconAndLabel, DENSITY),
+            minHeight: 'unset',
           },
         }),
       },

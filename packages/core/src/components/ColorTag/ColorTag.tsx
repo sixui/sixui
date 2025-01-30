@@ -62,18 +62,27 @@ export const ColorTag = polymorphicComponentFactory<IColorTagFactory>(
         ref={forwardedRef}
         {...other}
       >
-        <ColorTagIndicator
-          {...getStyles('indicator')}
-          color={color}
-          outlined={outlined}
-        >
-          {loading ? (
-            <IndeterminateCircularProgressIndicator />
-          ) : (
-            <Checkmark {...getStyles('checkmark')} checked={selected} />
-          )}
-          {children}
-        </ColorTagIndicator>
+        {({ renderFocusRing, renderStateLayer, renderTouchTarget }) => (
+          <>
+            {renderFocusRing()}
+
+            <ColorTagIndicator
+              {...getStyles('indicator')}
+              color={color}
+              outlined={outlined}
+            >
+              {loading ? (
+                <IndeterminateCircularProgressIndicator />
+              ) : (
+                <Checkmark {...getStyles('checkmark')} checked={selected} />
+              )}
+              {children}
+            </ColorTagIndicator>
+
+            {renderStateLayer()}
+            {renderTouchTarget()}
+          </>
+        )}
       </ButtonBase>
     );
   },

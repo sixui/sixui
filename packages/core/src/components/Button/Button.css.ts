@@ -36,7 +36,7 @@ const DENSITY = px(getDensity({ min: -4, max: 0 }));
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
     shape: px(themeTokens.shape.corner.full),
-    height: px(40),
+    minHeight: px(40),
     minWidth: px(64),
     leadingSpace: {
       normal: px(space(6)),
@@ -155,7 +155,7 @@ const classNames = createStyles({
 
     paddingLeft: tokens.container.leadingSpace.normal,
     paddingRight: tokens.container.trailingSpace.normal,
-    minHeight: calc.add(tokens.container.height, DENSITY),
+    minHeight: calc.add(tokens.container.minHeight, DENSITY),
     // Add extra space between label and the edge for if the label text wraps.
     // The padding added should be relative to the height of the container and
     // the height of its content on a single line (label or icon, whichever is
@@ -163,7 +163,7 @@ const classNames = createStyles({
     paddingBlock: calc.add(
       calc.divide(
         calc.subtract(
-          tokens.container.height,
+          tokens.container.minHeight,
           tokens.label.typography.lineHeight,
         ),
         2,
@@ -661,7 +661,7 @@ export const buttonThemeVariants = {
               normal: px(space(4)),
               withEnd: px(space(3)),
             },
-            height: px(32),
+            minHeight: px(32),
           },
           icon: {
             color: {
@@ -697,7 +697,7 @@ export const buttonThemeVariants = {
             color: {
               disabled: 'unset',
             },
-            height: em(1),
+            minHeight: em(1),
             minWidth: em(1),
             leadingSpace: {
               normal: px(0),

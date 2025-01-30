@@ -106,7 +106,7 @@ const classNames = createStyles({
           normal: tokens.trailingSpace.normal,
           withEnd: tokens.trailingSpace.withEnd,
         },
-        height: tokens.height,
+        minHeight: tokens.height,
         color: {
           normal: themeTokens.colorScheme.surfaceContainerLow,
           disabled: 'unset',

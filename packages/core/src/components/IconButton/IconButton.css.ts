@@ -75,7 +75,7 @@ const classNames = createStyles({
           withEnd: px(0),
         },
         minWidth: tokens.size,
-        height: tokens.size,
+        minHeight: tokens.size,
       },
       label: {
         typography: {
