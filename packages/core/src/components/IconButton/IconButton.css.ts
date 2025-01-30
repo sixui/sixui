@@ -13,12 +13,13 @@ import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { createComponentTheme } from '~/utils/styles/createComponentTheme';
 import { createStyles } from '~/utils/styles/createStyles';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { COMPONENT_NAME } from './IconButton.constants';
 
 type IModifier = 'toggle' | 'selected' | 'disabled';
 
 const DENSITY = px(getDensity({ min: -4, max: 0 }));
 
-const [tokensClassName, tokens] = createComponentTheme('iconButton', {
+const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   size: px(40),
   icon: {
     labelSpace: px(0),

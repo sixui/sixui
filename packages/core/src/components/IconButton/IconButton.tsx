@@ -5,9 +5,8 @@ import { polymorphicComponentFactory } from '~/utils/component/polymorphicCompon
 import { useProps } from '~/utils/component/useProps';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './IconButton.constants';
 import { iconButtonTheme, iconButtonThemeVariants } from './IconButton.css';
-
-const COMPONENT_NAME = 'IconButton';
 
 export const IconButton = polymorphicComponentFactory<IIconButtonFactory>(
   (props, forwardedRef) => {

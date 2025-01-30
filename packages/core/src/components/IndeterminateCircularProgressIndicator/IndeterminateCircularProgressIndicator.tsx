@@ -4,9 +4,8 @@ import { Box } from '~/components/Box';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './IndeterminateCircularProgressIndicator.constants';
 import { indeterminateCircularProgressIndicatorTheme } from './IndeterminateCircularProgressIndicator.css';
-
-const COMPONENT_NAME = 'IndeterminateCircularProgressIndicator';
 
 export const IndeterminateCircularProgressIndicator =
   componentFactory<IIndeterminateCircularProgressIndicatorFactory>(

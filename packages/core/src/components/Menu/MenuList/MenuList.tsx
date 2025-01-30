@@ -4,9 +4,8 @@ import { List } from '~/components/List';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './MenuList.constants';
 import { menuListTheme } from './MenuList.css';
-
-const COMPONENT_NAME = 'MenuList';
 
 export const MenuList = polymorphicComponentFactory<IMenuListFactory>(
   (props, forwardedRef) => {

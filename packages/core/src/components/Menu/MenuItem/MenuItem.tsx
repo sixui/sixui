@@ -9,9 +9,8 @@ import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { mergeProps } from '~/utils/mergeProps';
+import { COMPONENT_NAME } from './MenuItem.constants';
 import { useMenuItemContext } from './MenuItem.context';
-
-const COMPONENT_NAME = 'MenuItem';
 
 export const MenuItem = polymorphicComponentFactory<IMenuItemFactory>(
   (props, forwardedRef) => {

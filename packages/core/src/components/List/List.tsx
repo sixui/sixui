@@ -7,12 +7,11 @@ import { Paper } from '~/components/Paper';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './List.constants';
 import { ListContextProvider } from './List.context';
 import { ListDivider } from './ListDivider';
 import { ListItem } from './ListItem';
 import { listTheme } from './List.css';
-
-const COMPONENT_NAME = 'List';
 
 export const List = componentFactory<IListFactory>((props, forwardedRef) => {
   const {

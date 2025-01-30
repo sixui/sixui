@@ -13,9 +13,8 @@ import { useProps } from '~/utils/component/useProps';
 import { mergeProps } from '~/utils/mergeProps';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './HtmlSelect.constants';
 import { htmlSelectTheme } from './HtmlSelect.css';
-
-const COMPONENT_NAME = 'HtmlSelect';
 
 export const HtmlSelect = componentFactory<IHtmlSelectFactory>(
   (props, forwardedRef) => {

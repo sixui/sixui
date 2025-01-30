@@ -8,10 +8,9 @@ import { useId } from '~/hooks/useId';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './Labeled.constants';
 import { LabeledContextProvider } from './Labeled.context';
 import { labeledTheme } from './Labeled.css';
-
-const COMPONENT_NAME = 'Labeled';
 
 export const Labeled = componentFactory<ILabeledFactory>(
   (props, forwardedRef) => {

@@ -23,8 +23,8 @@ import {
   useTypeahead,
 } from '@floating-ui/react';
 
-import type { IMenuFactory } from './Menu.types';
 import type { IMenuLeafThemeFactory } from './MenuLeaf.css';
+import type { IMenuLeafFactory } from './MenuLeaf.types';
 import { Motion } from '~/components/Motion';
 import { Portal } from '~/components/Portal';
 import { isFunction } from '~/helpers/isFunction';
@@ -38,13 +38,13 @@ import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import {
   MenuItemContextProvider,
   useMenuItemContext,
-} from './MenuItem/MenuItem.context';
-import { MenuList } from './MenuList';
+} from '../MenuItem/MenuItem.context';
+import { MenuList } from '../MenuList';
 import { menuLeafTheme } from './MenuLeaf.css';
 
 const COMPONENT_NAME = 'MenuLeaf';
 
-export const MenuLeaf = componentFactory<IMenuFactory>(
+export const MenuLeaf = componentFactory<IMenuLeafFactory>(
   (props, forwardedRef) => {
     const {
       classNames,

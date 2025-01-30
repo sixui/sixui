@@ -8,10 +8,9 @@ import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { getCornerTransformOriginFromPlacement } from './getCornerTransformOriginFromPlacement';
 import { getEdgeTransformOriginFromPlacement } from './getEdgeTransformOriginFromPlacement';
+import { COMPONENT_NAME } from './Motion.constants';
 import { resolveRtgStatus } from './resolveRtgStatus';
 import { motionTheme } from './Motion.css';
-
-const COMPONENT_NAME = 'Motion';
 
 export const Motion = polymorphicComponentFactory<IMotionFactory>(
   (props, forwardedRef) => {

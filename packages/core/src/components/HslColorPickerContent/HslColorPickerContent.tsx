@@ -8,9 +8,8 @@ import { generateAnalogousColorPalettes } from '~/helpers/colors/generateAnalogo
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './HslColorPickerContent.constants';
 import { hslColorPickerContentTheme } from './HslColorPickerContent.css';
-
-const COMPONENT_NAME = 'HslColorPickerContent';
 
 export const HslColorPickerContent =
   componentFactory<IHslColorPickerContentFactory>((props, forwardedRef) => {

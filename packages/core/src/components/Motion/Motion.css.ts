@@ -2,12 +2,13 @@ import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactor
 import { themeTokens } from '~/components/ThemeProvider';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createComponentTheme } from '~/utils/styles/createComponentTheme';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTheme } from '~/utils/styles/createTheme';
+import { COMPONENT_NAME } from './Motion.constants';
 
 type IModifier = 'status' | 'orientation' | 'pattern' | 'side' | 'alignment';
 
-const [tokensClassName, tokens] = createTheme({
+const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   transformOrigin: 'unset',
 });
 

@@ -7,8 +7,8 @@ import type { IPortalProps } from '~/components/Portal';
 import type { IOrientation, IPlacement } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+import type { IMenuThemeFactory, menuTheme } from './Menu.css';
 import type { MenuItem } from './MenuItem';
-import type { IMenuLeafThemeFactory, menuLeafTheme } from './MenuLeaf.css';
 import type { MenuList } from './MenuList';
 
 export type IMenuTriggerRenderProps = {
@@ -32,13 +32,13 @@ export interface IMenuOwnProps {
 
 export interface IMenuProps
   extends IBoxProps,
-    IComponentThemeProps<IMenuLeafThemeFactory>,
+    IComponentThemeProps<IMenuThemeFactory>,
     IMenuOwnProps {}
 
 export type IMenuFactory = IComponentFactory<{
   props: IMenuProps;
   ref: HTMLDivElement;
-  theme: typeof menuLeafTheme;
+  theme: typeof menuTheme;
   staticComponents: {
     List: typeof MenuList;
     Item: typeof MenuItem;

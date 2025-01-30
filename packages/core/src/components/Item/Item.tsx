@@ -6,9 +6,8 @@ import { Box } from '~/components/Box';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './Item.constants';
 import { itemTheme } from './Item.css';
-
-const COMPONENT_NAME = 'Item';
 
 export const Item = polymorphicComponentFactory<IItemFactory>(
   (props, forwardedRef) => {

@@ -5,9 +5,8 @@ import { isFunction } from '~/helpers/isFunction';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './ModalAside.constants';
 import { modalAsideTheme } from './ModalAside.css';
-
-const COMPONENT_NAME = 'ModalAside';
 
 export const ModalAside = componentFactory<IModalAsideFactory>(
   (props, forwardedRef) => {

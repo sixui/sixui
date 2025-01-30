@@ -6,9 +6,8 @@ import { generateTonalColorPalettes } from '~/helpers/colors/generateTonalColorP
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './HctColorPickerContent.constants';
 import { hctColorPickerContentTheme } from './HctColorPickerContent.css';
-
-const COMPONENT_NAME = 'HctColorPickerContent';
 
 export const HctColorPickerContent =
   componentFactory<IHctColorPickerContentFactory>((props, forwardedRef) => {
