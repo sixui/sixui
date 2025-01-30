@@ -11,10 +11,9 @@ import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './Frame.constants';
 import { useParentStyles } from './useParentStyles';
 import { frameTheme } from './Frame.css';
-
-const COMPONENT_NAME = 'Frame';
 
 export const Frame = componentFactory<IFrameFactory>((props, forwardedRef) => {
   const {

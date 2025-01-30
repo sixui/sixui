@@ -9,14 +9,13 @@ import { Box } from '~/components/Box';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
+import { COMPONENT_NAME } from './FilterableListBase.constants';
 import {
   executeFilterableItemsEqual,
   renderFilterableItems,
 } from './FilterableListBaseUtils';
 import { getFilterableItems } from './utils/getFilterableItems';
 import { isItemDisabled } from './utils/isItemDisabled';
-
-const COMPONENT_NAME = 'FilterableListBase';
 
 export const filterableListBaseFactory = <
   TItem,

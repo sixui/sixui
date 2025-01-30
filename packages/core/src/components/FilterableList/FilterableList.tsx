@@ -8,11 +8,10 @@ import { MenuList } from '~/components/Menu/MenuList';
 import { TextInputField } from '~/components/TextInputField';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
+import { COMPONENT_NAME } from './FilterableList.constants';
 import { areFilterableListItemsEqual } from './utils/areFilterableListItemsEqual';
 import { filterFilterableList } from './utils/filterFilterableList';
 import { renderFilterableListItem } from './utils/renderFilterableListItem';
-
-const COMPONENT_NAME = 'FilterableList';
 
 const FilterableListBase = filterableListBaseFactory<IFilterableListItem>();
 

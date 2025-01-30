@@ -5,9 +5,8 @@ import { filterFalsyChildren } from '~/helpers/react/filterFalsyChildren';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './Flex.constants';
 import { flexSprinkles, flexTheme } from './Flex.css';
-
-const COMPONENT_NAME = 'Flex';
 
 export const Flex = polymorphicComponentFactory<IFlexFactory>(
   (props, forwardedRef) => {

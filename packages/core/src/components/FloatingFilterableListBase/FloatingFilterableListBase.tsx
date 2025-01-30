@@ -35,9 +35,8 @@ import { polymorphicComponentFactory } from '~/utils/component/polymorphicCompon
 import { useProps } from '~/utils/component/useProps';
 import { mergeProps } from '~/utils/mergeProps';
 import { objectFromPlacement } from '~/utils/objectFromPlacement';
+import { COMPONENT_NAME } from './FloatingFilterableListBase.constants';
 import { floatingFilterableListBaseClassNames } from './FloatingFilterableListBase.css';
-
-const COMPONENT_NAME = 'FloatingFilterableListBase';
 
 export const floatingFilterableListBaseFactory = <
   TItem,

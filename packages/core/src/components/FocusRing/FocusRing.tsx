@@ -4,9 +4,8 @@ import { Box } from '~/components/Box';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './FocusRing.constants';
 import { focusRingTheme } from './FocusRing.css';
-
-const COMPONENT_NAME = 'FocusRing';
 
 export const FocusRing = componentFactory<IFocusRingFactory>(
   (props, forwardedRef) => {
