@@ -1,11 +1,12 @@
 import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createComponentTheme } from '~/utils/styles/createComponentTheme';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTheme } from '~/utils/styles/createTheme';
+import { COMPONENT_NAME } from './CopyableText.constants';
 
 type IModifier = 'disabled';
 
-const [tokensClassName, tokens] = createTheme();
+const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME);
 
 const classNames = createStyles({
   label: {

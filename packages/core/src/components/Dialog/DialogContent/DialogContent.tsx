@@ -9,9 +9,8 @@ import { isFunction } from '~/helpers/isFunction';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './DiagonalContent.constants';
 import { dialogContentTheme } from './DialogContent.css';
-
-const COMPONENT_NAME = 'DialogContent';
 
 export const DialogContent = polymorphicComponentFactory<IDialogContentFactory>(
   (props, forwardedRef) => {

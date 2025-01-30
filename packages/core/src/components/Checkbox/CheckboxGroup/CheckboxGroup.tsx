@@ -14,9 +14,8 @@ import { useControlledValue } from '~/hooks/useControlledValue';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
+import { COMPONENT_NAME } from './CheckboxGroup.constants';
 import { CheckboxGroupContextProvider } from './CheckboxGroup.context';
-
-const COMPONENT_NAME = 'CheckboxGroup';
 
 export const CheckboxGroup = polymorphicComponentFactory<ICheckboxGroupFactory>(
   (props, forwardedRef) => {

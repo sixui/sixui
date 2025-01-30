@@ -6,10 +6,9 @@ import { Expandable } from '~/components/Expandable';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './Disclosure.constants';
 import { DisclosureTrigger } from './DisclosureTrigger';
 import { disclosureTheme } from './Disclosure.css';
-
-const COMPONENT_NAME = 'Disclosure';
 
 export const Disclosure = componentFactory<IDisclosureFactory>(
   (props, forwardedRef) => {

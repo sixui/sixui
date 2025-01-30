@@ -11,10 +11,9 @@ import { polymorphicComponentFactory } from '~/utils/component/polymorphicCompon
 import { useProps } from '~/utils/component/useProps';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './ColorTag.constants';
 import { ColorTagIndicator } from './ColorTagIndicator';
 import { colorTagTheme } from './ColorTag.css';
-
-const COMPONENT_NAME = 'ColorTag';
 
 export const ColorTag = polymorphicComponentFactory<IColorTagFactory>(
   (props, forwardedRef) => {

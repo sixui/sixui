@@ -4,9 +4,8 @@ import { Box } from '~/components/Box';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './Divider.constants';
 import { dividerTheme } from './Divider.css';
-
-const COMPONENT_NAME = 'Divider';
 
 export const Divider = componentFactory<IDividerFactory>(
   (props, forwardedRef) => {

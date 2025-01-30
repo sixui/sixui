@@ -9,15 +9,16 @@ import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { space } from '~/helpers/styles/space';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createComponentTheme } from '~/utils/styles/createComponentTheme';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTheme } from '~/utils/styles/createTheme';
 import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { COMPONENT_NAME } from './ColorTagIndicator.constants';
 
 type IModifier = 'empty' | 'invalid' | 'outlined';
 
 const DENSITY = px(getDensity({ min: -3, max: 0 }));
 
-const [tokensClassName, tokens] = createTheme({
+const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
     width: px(40),
     height: px(40),

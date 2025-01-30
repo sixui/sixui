@@ -10,9 +10,8 @@ import { PaperBase } from '~/components/PaperBase';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './ColorPickerContent.constants';
 import { colorPickerContentTheme } from './ColorPickerContent.css';
-
-const COMPONENT_NAME = 'ColorPickerContent';
 
 export const ColorPickerContent = componentFactory<IColorPickerContentFactory>(
   (props, forwardedRef) => {

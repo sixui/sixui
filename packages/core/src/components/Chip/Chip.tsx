@@ -11,9 +11,8 @@ import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './Chip.constants';
 import { chipTheme, IChipThemeFactory } from './Chip.css';
-
-const COMPONENT_NAME = 'Chip';
 
 export const Chip = polymorphicComponentFactory<IChipFactory>(
   (props, forwardedRef) => {

@@ -5,9 +5,8 @@ import { polymorphicComponentFactory } from '~/utils/component/polymorphicCompon
 import { useProps } from '~/utils/component/useProps';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './Fab.constants';
 import { fabTheme, fabThemeVariants } from './Fab.css';
-
-const COMPONENT_NAME = 'Fab';
 
 export const Fab = polymorphicComponentFactory<IFabFactory>(
   (props, forwardedRef) => {

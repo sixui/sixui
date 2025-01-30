@@ -8,9 +8,9 @@ import { deepMerge } from '~/helpers/deepMerge';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './ComponentShowcase.constants';
 import { componentShowcaseTheme } from './ComponentShowcase.css';
 
-const COMPONENT_NAME = 'ComponentShowcase';
 const DUMMY_TEXT = '.';
 
 export const componentShowcaseFactory = <TComponentProps extends object>(

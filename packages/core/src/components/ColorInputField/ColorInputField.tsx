@@ -18,9 +18,8 @@ import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
+import { COMPONENT_NAME } from './ColorInputField.constants';
 import { colorInputFieldTheme } from './ColorInputField.css';
-
-const COMPONENT_NAME = 'ColorInputField';
 
 const defaultColorPickerRenderer = (
   props: IColorInputFieldColorPickerRendererProps,

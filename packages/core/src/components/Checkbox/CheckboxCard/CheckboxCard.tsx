@@ -10,9 +10,8 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { CheckboxIndicator } from '../CheckboxIndicator';
+import { COMPONENT_NAME } from './CheckboxCard.constants';
 import { checkboxCardTheme } from './CheckboxCard.css';
-
-const COMPONENT_NAME = 'CheckboxCard';
 
 export const CheckboxCard = componentFactory<ICheckboxCardFactory>(
   (props, forwardedRef) => {

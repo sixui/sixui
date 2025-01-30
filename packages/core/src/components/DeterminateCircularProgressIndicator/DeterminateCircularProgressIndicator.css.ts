@@ -8,16 +8,17 @@ import { deepMerge } from '~/helpers/deepMerge';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createComponentTheme } from '~/utils/styles/createComponentTheme';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTheme } from '~/utils/styles/createTheme';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { circularProgressIndicatorTheme } from '~/components/CircularProgressIndicator/CircularProgressIndicator.css';
+import { COMPONENT_NAME } from './DeterminateCircularProgressIndicator.constants';
 
 type IModifier = ICircularProgressIndicatorModifier;
 
 const parentStyles = circularProgressIndicatorTheme;
 
-const [tokensClassName, tokens] = createTheme({
+const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   label: {
     color: {
       normal: themeTokens.colorScheme.onSurface,

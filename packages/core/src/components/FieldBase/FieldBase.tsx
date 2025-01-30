@@ -15,10 +15,10 @@ import { polymorphicComponentFactory } from '~/utils/component/polymorphicCompon
 import { useProps } from '~/utils/component/useProps';
 import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './FieldBase.constants';
 import { getLabelKeyframes } from './getLabelKeyframes';
 import { fieldBaseTheme, fieldBaseThemeVariants } from './FieldBase.css';
 
-const COMPONENT_NAME = 'FieldBase';
 const EASING_STANDARD = 'cubic-bezier(0.2, 0, 0, 1)';
 
 export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(

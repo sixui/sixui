@@ -9,9 +9,8 @@ import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './ColorTagIndicator.constants';
 import { colorTagIndicatorTheme } from './ColorTagIndicator.css';
-
-const COMPONENT_NAME = 'ColorTagIndicator';
 
 export const ColorTagIndicator =
   polymorphicComponentFactory<IColorTagIndicatorFactory>(

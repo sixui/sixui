@@ -4,9 +4,8 @@ import { Paper } from '~/components/Paper';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './ColorSchemeRole.constants';
 import { colorSchemeRoleTheme } from './ColorSchemeRole.css';
-
-const COMPONENT_NAME = 'ColorSchemeRole';
 
 export const ColorSchemeRole = componentFactory<IColorSchemeRoleFactory>(
   (props, forwardedRef) => {

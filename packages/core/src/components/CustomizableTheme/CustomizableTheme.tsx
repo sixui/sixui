@@ -14,9 +14,8 @@ import { px } from '~/helpers/styles/px';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './CustomizableTheme.constants';
 import { customizableThemeTheme } from './CustomizableTheme.css';
-
-const COMPONENT_NAME = 'CustomizableTheme';
 
 export const CustomizableTheme = componentFactory<ICustomizableThemeFactory>(
   (props, forwardedRef) => {

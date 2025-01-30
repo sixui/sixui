@@ -8,12 +8,11 @@ import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './Checkbox.constants';
 import { CheckboxCard } from './CheckboxCard';
 import { CheckboxGroup } from './CheckboxGroup';
 import { CheckboxIndicator } from './CheckboxIndicator';
 import { checkboxTheme } from './Checkbox.css';
-
-const COMPONENT_NAME = 'Checkbox';
 
 export const Checkbox = componentFactory<ICheckboxFactory>(
   (props, forwardedRef) => {

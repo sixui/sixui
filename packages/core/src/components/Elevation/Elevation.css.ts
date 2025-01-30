@@ -4,8 +4,9 @@ import { themeTokens } from '~/components/ThemeProvider';
 import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
 import { px } from '~/helpers/styles/px';
 import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import { createComponentTheme } from '~/utils/styles/createComponentTheme';
 import { createStyles } from '~/utils/styles/createStyles';
-import { createTheme } from '~/utils/styles/createTheme';
+import { COMPONENT_NAME } from './Elevation.constants';
 
 type IModifier = 'level' | 'disabled';
 
@@ -44,7 +45,7 @@ export const elevationLevelPreset = {
   5: getBoxShadow(themeTokens.elevation.level[5]),
 };
 
-const [tokensClassName, tokens] = createTheme({
+const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   transitionDuration: themeTokens.motion.duration.short3,
   transitionTimingFunction: themeTokens.motion.easing.standard.normal,
   level: elevationLevelPreset[0],

@@ -15,10 +15,9 @@ import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './Expandable.constants';
 import { ExpandableContextProvider } from './Expandable.context';
 import { expandableTheme } from './Expandable.css';
-
-const COMPONENT_NAME = 'Expandable';
 
 export const Expandable = componentFactory<IExpandableFactory>(
   (props, forwardedRef) => {

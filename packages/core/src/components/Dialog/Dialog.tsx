@@ -5,10 +5,9 @@ import { polymorphicComponentFactory } from '~/utils/component/polymorphicCompon
 import { useProps } from '~/utils/component/useProps';
 import { mergeProps } from '~/utils/mergeProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './Dialog.constants';
 import { DialogContent, IDialogContentOwnProps } from './DialogContent';
 import { dialogTheme } from './Dialog.css';
-
-const COMPONENT_NAME = 'Dialog';
 
 export const Dialog = polymorphicComponentFactory<IDialogFactory>(
   (props, forwardedRef) => {

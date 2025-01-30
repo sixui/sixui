@@ -12,9 +12,8 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { mergeClassNames } from '~/utils/styles/mergeClassNames';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './CopyableText.constants';
 import { copyableTextTheme } from './CopyableText.css';
-
-const COMPONENT_NAME = 'CopyableText';
 
 export const CopyableText = componentFactory<ICopyableTextFactory>(
   (props, forwardedRef) => {

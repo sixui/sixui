@@ -4,10 +4,9 @@ import { Flex } from '~/components/Flex';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './ColorScheme.constants';
 import { ColorSchemeRole } from './ColorSchemeRole';
 import { colorSchemeTheme } from './ColorScheme.css';
-
-const COMPONENT_NAME = 'ColorScheme';
 
 export const ColorScheme = componentFactory<IColorSchemeFactory>(
   (props, forwardedRef) => {

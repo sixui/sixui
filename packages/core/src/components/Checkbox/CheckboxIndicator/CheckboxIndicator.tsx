@@ -7,9 +7,8 @@ import { usePrevious } from '~/hooks/usePrevious';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useProps } from '~/utils/component/useProps';
 import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { COMPONENT_NAME } from './CheckboxIndicator.constants';
 import { checkboxIndicatorTheme } from './CheckboxIndicator.css';
-
-const COMPONENT_NAME = 'CheckboxIndicator';
 
 export const CheckboxIndicator = componentFactory<ICheckboxIndicatorFactory>(
   (props, forwardedRef) => {
