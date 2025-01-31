@@ -193,8 +193,6 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
           }),
         !!middlewares.flip &&
           flip({
-            crossAxis: !!placement.alignment,
-            fallbackAxisSideDirection: 'start',
             padding: 4,
             ...(typeof middlewares.flip === 'boolean'
               ? undefined
@@ -372,7 +370,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
                     )}
                   >
                     <RemoveScroll
-                      enabled={scrim}
+                      enabled={!!scrim}
                       {...mergeProps(
                         getStyles('removeScroll'),
                         removeScrollProps,

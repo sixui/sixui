@@ -9,7 +9,7 @@ export type ITranslationCoordinates = {
 export const getTranslationCoordinates = (
   triggerElement: HTMLElement,
   surfaceElement: HTMLElement,
-  event: React.PointerEvent | React.MouseEvent,
+  event: React.PointerEvent | React.MouseEvent | React.KeyboardEvent,
   initialSize: number,
 ): ITranslationCoordinates => {
   const triggerRect = triggerElement.getBoundingClientRect();

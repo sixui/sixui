@@ -215,7 +215,9 @@ export const useRippleEffect = <TElement extends HTMLElement>(
   ]);
 
   const startPressAnimation = useCallback(
-    (event: React.PointerEvent | React.MouseEvent): void => {
+    (
+      event: React.PointerEvent | React.MouseEvent | React.KeyboardEvent,
+    ): void => {
       if (!surfaceRef.current) {
         return;
       }
@@ -406,7 +408,8 @@ export const useRippleEffect = <TElement extends HTMLElement>(
     (event) => {
       // Click is a MouseEvent in Firefox and Safari, so we cannot use
       // `shouldReactToEvent`.
-      if (disabled) {
+      const isFromKeyboard = event.detail === 0;
+      if (disabled || isFromKeyboard) {
         return;
       }
 
@@ -421,13 +424,41 @@ export const useRippleEffect = <TElement extends HTMLElement>(
       }
 
       if (stateRef.current === IState.Inactive) {
-        // Keyboard synthesized click event
         startPressAnimation(event);
         endPressAnimation();
       }
     },
     [disabled, startPressAnimation, endPressAnimation, clickThrough],
   );
+
+  const handleKeyDown: React.KeyboardEventHandler = useCallback(
+    (event) => {
+      if (disabled) {
+        return;
+      }
+
+      if (!clickThrough) {
+        event.stopPropagation();
+      }
+
+      const canSynthesizeClick =
+        (event.target as HTMLElement).tagName !== 'INPUT' &&
+        (event.key === 'Enter' || event.key === ' ') &&
+        !event.repeat;
+      if (canSynthesizeClick && stateRef.current === IState.Inactive) {
+        startPressAnimation(event);
+      }
+    },
+    [disabled, clickThrough, startPressAnimation],
+  );
+
+  const handleKeyUp: React.KeyboardEventHandler = useCallback(() => {
+    endPressAnimation();
+  }, [endPressAnimation]);
+
+  const handleBlur: React.KeyboardEventHandler = useCallback(() => {
+    endPressAnimation();
+  }, [endPressAnimation]);
 
   const handleContextMenu = useCallback(() => {
     if (disabled) {
@@ -448,6 +479,9 @@ export const useRippleEffect = <TElement extends HTMLElement>(
             onPointerLeave: handlePointerLeave,
             onPointerCancel: handlePointerCancel,
             onClick: handleClick,
+            onKeyDown: handleKeyDown,
+            onKeyUp: handleKeyUp,
+            onBlur: handleBlur,
             onContextMenu: handleContextMenu,
           },
     [
@@ -457,6 +491,9 @@ export const useRippleEffect = <TElement extends HTMLElement>(
       handlePointerLeave,
       handlePointerCancel,
       handleClick,
+      handleKeyDown,
+      handleKeyUp,
+      handleBlur,
       handleContextMenu,
     ],
   );

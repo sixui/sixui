@@ -126,17 +126,21 @@ export const useInteractions = <TElement extends HTMLElement>(
         setPressed(false);
       },
       onKeyDown: (event) => {
-        // When using a different element than a button, we want to allow the
+        // When using a different element than an input, we want to allow the
         // Enter or Space key to trigger the click event for accessibility
         // purpose.
-        if (
+        const canSynthesizeClick =
           (event.target as HTMLElement).tagName !== 'INPUT' &&
-          (event.key === 'Enter' || event.key === ' ')
-        ) {
+          (event.key === 'Enter' || event.key === ' ') &&
+          !event.repeat;
+        if (canSynthesizeClick) {
           setPressed(true);
         }
       },
       onKeyUp: () => {
+        setPressed(false);
+      },
+      onBlur: () => {
         setPressed(false);
       },
     }),
