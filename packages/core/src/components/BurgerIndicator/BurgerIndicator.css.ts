@@ -42,6 +42,7 @@ const classNames = createStyles({
     transitionProperty: 'background-color, transform',
     transitionDuration: themeTokens.motion.duration.medium2,
     transitionTimingFunction: themeTokens.motion.easing.standard.normal,
+    borderRadius: '999px',
 
     '::before': {
       display: 'block',
@@ -54,6 +55,7 @@ const classNames = createStyles({
       transitionProperty: 'background-color, transform',
       transitionDuration: themeTokens.motion.duration.medium2,
       transitionTimingFunction: themeTokens.motion.easing.standard.normal,
+      borderRadius: '999px',
 
       position: 'absolute',
       content: '',
@@ -73,6 +75,7 @@ const classNames = createStyles({
       transitionProperty: 'background-color, transform',
       transitionDuration: themeTokens.motion.duration.medium2,
       transitionTimingFunction: themeTokens.motion.easing.standard.normal,
+      borderRadius: '999px',
 
       position: 'absolute',
       content: '',
