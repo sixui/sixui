@@ -1,9 +1,8 @@
 import type { IColorSchemeThemeFactory } from './ColorScheme.css';
 import type { IColorSchemeFactory } from './ColorScheme.types';
 import { Flex } from '~/components/Flex';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { COMPONENT_NAME } from './ColorScheme.constants';
 import { ColorSchemeRole } from './ColorSchemeRole';
 import { colorSchemeTheme } from './ColorScheme.css';

@@ -1,16 +1,16 @@
 import { calc } from '@vanilla-extract/css-utils';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { PaperBase } from '~/components/PaperBase';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { px } from '~/utils/css/px';
+import { space } from '~/utils/css/space';
+import { typography } from '~/utils/css/typography';
 import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
 import { COMPONENT_NAME } from './DiagonalContent.constants';
 
@@ -69,7 +69,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
 
 const classNames = createStyles({
   root: {
-    vars: createTokensVars(PaperBase.theme.tokens, {
+    vars: overrideTokens(PaperBase.theme.tokens, {
       container: {
         color: tokens.container.color,
         shape: tokens.container.shape,
@@ -81,19 +81,19 @@ const classNames = createStyles({
     maxWidth: calc.subtract('100vw', px(space(8))),
 
     selectors: {
-      [getModifierSelector<IModifier>({ size: 'xs' })]: {
+      [modifierSelector<IModifier>({ size: 'xs' })]: {
         width: tokens.container.width.xs,
       },
-      [getModifierSelector<IModifier>({ size: 'sm' })]: {
+      [modifierSelector<IModifier>({ size: 'sm' })]: {
         width: tokens.container.width.sm,
       },
-      [getModifierSelector<IModifier>({ size: 'md' })]: {
+      [modifierSelector<IModifier>({ size: 'md' })]: {
         width: tokens.container.width.md,
       },
-      [getModifierSelector<IModifier>({ size: 'lg' })]: {
+      [modifierSelector<IModifier>({ size: 'lg' })]: {
         width: tokens.container.width.lg,
       },
-      [getModifierSelector<IModifier>({ size: 'xl' })]: {
+      [modifierSelector<IModifier>({ size: 'xl' })]: {
         width: tokens.container.width.xl,
       },
     },
@@ -106,7 +106,7 @@ const classNames = createStyles({
     color: tokens.headline.color,
 
     selectors: {
-      [getModifierSelector<IModifier>('!with-headline', root)]: {
+      [modifierSelector<IModifier>('!with-headline', root)]: {
         paddingTop: px(space(6)),
       },
     },
@@ -129,13 +129,13 @@ const classNames = createStyles({
     paddingBottom: 0,
     paddingLeft: px(space(6)),
     paddingRight: px(space(6)),
-    ...getTypographyStyles(tokens.headline.typography),
+    ...typography(tokens.headline.typography),
 
     selectors: {
-      [getModifierSelector<IModifier>('scrollable', root)]: {
+      [modifierSelector<IModifier>('scrollable', root)]: {
         paddingBottom: px(space(4)),
       },
-      [getModifierSelector<IModifier>('with-icon', root)]: {
+      [modifierSelector<IModifier>('with-icon', root)]: {
         justifyContent: 'center',
         paddingBottom: px(space(4)),
       },
@@ -154,7 +154,7 @@ const classNames = createStyles({
     zIndex: 1,
 
     selectors: {
-      [getModifierSelector<IModifier>('scrollable', root)]: {
+      [modifierSelector<IModifier>('scrollable', root)]: {
         // Only add scrollbars if the content is overflowing. This prevents
         // extra space from appearing on platforms that reserve scrollbar space.
         // Note: we only scroll vertically. Horizontal scrolling should be
@@ -168,20 +168,20 @@ const classNames = createStyles({
     paddingTop: px(space(6)),
     paddingRight: px(space(6)),
     color: tokens.supportingText.color,
-    ...getTypographyStyles(tokens.supportingText.typography),
+    ...typography(tokens.supportingText.typography),
     height: 'min-content', // Needed for Safari
     position: 'relative',
 
     selectors: {
-      [getModifierSelector<IModifier>('with-headline', root)]: {
+      [modifierSelector<IModifier>('with-headline', root)]: {
         paddingTop: px(space(4)),
         paddingBottom: px(space(2)),
       },
-      [getModifierSelector<IModifier>('scrollable', root)]: {
+      [modifierSelector<IModifier>('scrollable', root)]: {
         paddingTop: 0,
         paddingBottom: px(space(2)),
       },
-      [getModifierSelector<IModifier>(['scrollable', 'with-headline'], root)]: {
+      [modifierSelector<IModifier>(['scrollable', 'with-headline'], root)]: {
         paddingBottom: px(space(2)),
       },
     },
@@ -191,7 +191,7 @@ const classNames = createStyles({
     paddingBottom: px(space(6)),
 
     selectors: {
-      [getModifierSelector<IModifier>('with-actions', root)]: {
+      [modifierSelector<IModifier>('with-actions', root)]: {
         paddingBottom: 0,
       },
     },

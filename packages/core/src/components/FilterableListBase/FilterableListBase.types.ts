@@ -1,6 +1,6 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { IElementProps } from '~/helpers/types';
+import { IElementProps } from '~/utils/types';
 
 // Inspiration:
 // - https://github.com/palantir/blueprint/blob/develop/packages/select/src/common/itemListRenderer.ts

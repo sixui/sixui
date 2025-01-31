@@ -1,12 +1,12 @@
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { PaperBase } from '~/components/PaperBase';
 import { themeTokens } from '~/components/ThemeProvider';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { px } from '~/utils/css/px';
+import { space } from '~/utils/css/space';
 import { COMPONENT_NAME } from './CustomizableTheme.constants';
 
 type IModifier = 'disabled';
@@ -19,7 +19,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
 
 const classNames = createStyles({
   root: {
-    vars: createTokensVars(PaperBase.theme.tokens, {
+    vars: overrideTokens(PaperBase.theme.tokens, {
       container: {
         color: tokens.container.color,
       },

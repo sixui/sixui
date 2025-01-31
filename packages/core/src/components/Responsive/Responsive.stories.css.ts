@@ -1,12 +1,12 @@
 import { PaperBase } from '~/components/PaperBase';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getResponsiveContainerQuery } from '~/helpers/styles/getResponsiveContainerQuery';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { createStyles } from '~/utils/css/createStyles';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { responsiveContainerQuery } from '~/utils/css/responsiveContainerQuery';
 
 export const responsiveStoriesClassNames = createStyles({
   root: {
-    vars: createTokensVars(PaperBase.theme.tokens, {
+    vars: overrideTokens(PaperBase.theme.tokens, {
       container: {
         color: themeTokens.colorScheme.onSurface,
         opacity: themeTokens.state.containerOpacity.disabled,
@@ -15,8 +15,8 @@ export const responsiveStoriesClassNames = createStyles({
   },
   root$eq$compact: {
     '@container': {
-      [getResponsiveContainerQuery({ size: 'compact' })]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [responsiveContainerQuery({ size: 'compact' })]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: themeTokens.colorScheme.primary,
             opacity: '1',
@@ -27,8 +27,8 @@ export const responsiveStoriesClassNames = createStyles({
   },
   root$eq$medium: {
     '@container': {
-      [getResponsiveContainerQuery({ size: 'medium' })]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [responsiveContainerQuery({ size: 'medium' })]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: themeTokens.colorScheme.primary,
             opacity: '1',
@@ -39,8 +39,8 @@ export const responsiveStoriesClassNames = createStyles({
   },
   root$eq$expanded: {
     '@container': {
-      [getResponsiveContainerQuery({ size: 'expanded' })]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [responsiveContainerQuery({ size: 'expanded' })]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: themeTokens.colorScheme.primary,
             opacity: '1',
@@ -51,8 +51,8 @@ export const responsiveStoriesClassNames = createStyles({
   },
   root$eq$large: {
     '@container': {
-      [getResponsiveContainerQuery({ size: 'large' })]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [responsiveContainerQuery({ size: 'large' })]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: themeTokens.colorScheme.primary,
             opacity: '1',
@@ -63,8 +63,8 @@ export const responsiveStoriesClassNames = createStyles({
   },
   root$eq$extraLarge: {
     '@container': {
-      [getResponsiveContainerQuery({ size: 'extraLarge' })]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [responsiveContainerQuery({ size: 'extraLarge' })]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: themeTokens.colorScheme.primary,
             opacity: '1',

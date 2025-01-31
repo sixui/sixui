@@ -1,9 +1,8 @@
 import type { ITouchTargetThemeFactory } from './TouchTarget.css';
 import type { ITouchTargetFactory } from './TouchTarget.types';
 import { Box } from '~/components/Box';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { COMPONENT_NAME } from './TouchTarget.constants';
 import { touchTargetTheme } from './TouchTarget.css';
 

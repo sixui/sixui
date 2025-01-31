@@ -1,4 +1,4 @@
-import type { IOrientation } from '~/helpers/types';
+import type { IOrientation } from '~/utils/types';
 import {
   IUseWindowSizeClassResult,
   useWindowSizeClass,

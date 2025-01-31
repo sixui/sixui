@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 
-import type { IAny } from '~/helpers/types';
+import type { IAny } from '../types';
 import type {
   IComponentFactoryPayload,
   IFactoryComponentStaticComponents,

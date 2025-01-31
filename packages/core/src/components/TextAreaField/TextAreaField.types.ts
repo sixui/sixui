@@ -1,8 +1,8 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IFieldBaseOwnProps } from '~/components/FieldBase';
-import type { IElementProps, IMaybeAsync } from '~/helpers/types';
+import type { IComponentThemeProps } from '~/components/ThemeProvider';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+import type { IElementProps, IMaybeAsync } from '~/utils/types';
 import type {
   ITextAreaFieldThemeFactory,
   textAreaFieldTheme,

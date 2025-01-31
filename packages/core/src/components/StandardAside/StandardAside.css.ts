@@ -1,12 +1,12 @@
 import { calc } from '@vanilla-extract/css-utils';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { px } from '~/helpers/styles/px';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { px } from '~/utils/css/px';
 import { COMPONENT_NAME } from './StandardAside.constants';
 
 type IModifier = 'opened' | 'side' | 'wide' | 'orientation';
@@ -28,7 +28,7 @@ const classNames = createStyles({
     transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
 
     selectors: {
-      [getModifierSelector<IModifier>({ orientation: 'horizontal' })]: {
+      [modifierSelector<IModifier>({ orientation: 'horizontal' })]: {
         position: 'sticky',
         top: tokens.container.startSpace,
 
@@ -40,7 +40,7 @@ const classNames = createStyles({
         width: 0,
         transitionProperty: 'width',
       },
-      [getModifierSelector<IModifier>({ orientation: 'vertical' })]: {
+      [modifierSelector<IModifier>({ orientation: 'vertical' })]: {
         width: calc.subtract(
           '100vw',
           tokens.container.startSpace,
@@ -49,31 +49,31 @@ const classNames = createStyles({
         height: 0,
         transitionProperty: 'height',
       },
-      [getModifierSelector<IModifier>('opened')]: {
+      [modifierSelector<IModifier>('opened')]: {
         transitionDuration: themeTokens.motion.duration.long3,
         transitionTimingFunction:
           themeTokens.motion.easing.emphasized.decelerate,
       },
-      [getModifierSelector<IModifier>({
+      [modifierSelector<IModifier>({
         orientation: 'horizontal',
         opened: true,
       })]: {
         width: tokens.container.size,
       },
-      [getModifierSelector<IModifier>({
+      [modifierSelector<IModifier>({
         orientation: 'vertical',
         opened: true,
       })]: {
         height: tokens.container.size,
       },
-      [getModifierSelector<IModifier>({
+      [modifierSelector<IModifier>({
         orientation: 'horizontal',
         wide: true,
       })]: {
         top: 0,
         height: '100vh',
       },
-      [getModifierSelector<IModifier>({
+      [modifierSelector<IModifier>({
         orientation: 'vertical',
         wide: true,
       })]: {
@@ -83,16 +83,16 @@ const classNames = createStyles({
   },
   transitionContainer: ({ root }) => ({
     selectors: {
-      [getModifierSelector<IModifier>({ orientation: 'horizontal' })]: {
+      [modifierSelector<IModifier>({ orientation: 'horizontal' })]: {
         width: tokens.container.size,
       },
-      [getModifierSelector<IModifier>({ orientation: 'vertical' })]: {
+      [modifierSelector<IModifier>({ orientation: 'vertical' })]: {
         height: tokens.container.size,
       },
-      [getModifierSelector<IModifier>({ side: 'left' }, root)]: {
+      [modifierSelector<IModifier>({ side: 'left' }, root)]: {
         float: 'right',
       },
-      [getModifierSelector<IModifier>({ side: 'right' }, root)]: {
+      [modifierSelector<IModifier>({ side: 'right' }, root)]: {
         float: 'left',
       },
     },

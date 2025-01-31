@@ -4,7 +4,7 @@ import type { IMenuListProps } from './MenuList.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { List } from '~/components/List';
 import { Placeholder } from '~/components/Placeholder';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { MenuList } from './MenuList';
 
 const meta = {

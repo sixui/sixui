@@ -4,8 +4,8 @@ import type {
   IListItemThemeFactory,
   listItemTheme,
 } from '~/components/List/ListItem/ListItem.css';
+import type { IComponentThemeProps } from '~/components/ThemeProvider';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 
 export interface IMenuItemOwnProps extends IListItemOwnProps {
   label: React.ReactNode;

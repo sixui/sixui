@@ -1,6 +1,6 @@
 import type { PartialDeep } from 'type-fest';
 
-import type { IOmit } from '~/helpers/types';
+import type { IOmit } from '~/utils/types';
 
 export type IThemeColorSchemeVariant = 'light' | 'dark';
 

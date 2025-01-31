@@ -1,9 +1,8 @@
 import type { IColorSchemeRoleThemeFactory } from './ColorSchemeRole.css';
 import type { IColorSchemeRoleFactory } from './ColorSchemeRole.types';
 import { Paper } from '~/components/Paper';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { COMPONENT_NAME } from './ColorSchemeRole.constants';
 import { colorSchemeRoleTheme } from './ColorSchemeRole.css';
 

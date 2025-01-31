@@ -2,9 +2,8 @@ import type { ITabsListThemeFactory } from './TabsList.css';
 import type { ITabsListFactory } from './TabsList.types';
 import { Box } from '~/components/Box';
 import { Divider } from '~/components/Divider';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { COMPONENT_NAME } from './TabsList.constants';
 import { tabsListTheme } from './TabsList.css';
 

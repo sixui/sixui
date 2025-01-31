@@ -2,22 +2,22 @@ import { fallbackVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IInteraction } from '~/hooks/useInteractions';
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { Checkmark } from '~/components/Checkmark';
 import { PaperBase } from '~/components/PaperBase';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getDensity } from '~/helpers/styles/getDensity';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { px } from '~/helpers/styles/px';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { density } from '~/utils/css/density';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { px } from '~/utils/css/px';
 import { COMPONENT_NAME } from './CheckboxIndicator.constants';
 
 type IModifier = IInteraction | 'disabled' | 'on' | 'was-disabled' | 'loading';
 
-const DENSITY = px(getDensity({ min: -1, max: 0 }));
+const DENSITY = px(density({ min: -1, max: 0 }));
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
@@ -74,7 +74,7 @@ const classNames = createStyles({
     placeContent: 'center',
     placeItems: 'center',
 
-    vars: createTokensVars(PaperBase.theme.tokens, {
+    vars: overrideTokens(PaperBase.theme.tokens, {
       container: {
         shape: tokens.container.shape,
         color: tokens.container$off.color.normal,
@@ -86,25 +86,25 @@ const classNames = createStyles({
     }),
 
     selectors: {
-      [getModifierSelector<IModifier>({ loading: true })]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [modifierSelector<IModifier>({ loading: true })]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           outline: {
             width: px(themeTokens.outline.width.none),
           },
         }),
       },
-      [getModifierSelector<IModifier>({ hovered: true })]: {
+      [modifierSelector<IModifier>({ hovered: true })]: {
         zIndex: 1,
       },
-      [getModifierSelector<IModifier>({ on: true, disabled: true })]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [modifierSelector<IModifier>({ on: true, disabled: true })]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           outline: {
             width: px(themeTokens.outline.width.none),
           },
         }),
       },
-      [getModifierSelector<IModifier>({ disabled: true })]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [modifierSelector<IModifier>({ disabled: true })]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             opacity: themeTokens.state.opacity.disabled,
           },
@@ -134,52 +134,52 @@ const classNames = createStyles({
     transform: 'scale(0.6)',
 
     selectors: {
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         // Don't animate to/from disabled states because the outline is hidden
         // when selected. Without this, there'd be a FOUC if the
         // checkboxIndicator state is programmatically changed while disabled.
         animationDuration: '0s',
         transitionDuration: '0s',
       },
-      [getModifierSelector<IModifier>('focused', root)]: {
+      [modifierSelector<IModifier>('focused', root)]: {
         backgroundColor: tokens.container$off.color.focused,
       },
-      [getModifierSelector<IModifier>('hovered', root)]: {
+      [modifierSelector<IModifier>('hovered', root)]: {
         backgroundColor: tokens.container$off.color.hovered,
       },
-      [getModifierSelector<IModifier>('pressed', root)]: {
+      [modifierSelector<IModifier>('pressed', root)]: {
         backgroundColor: tokens.container$off.color.pressed,
       },
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         backgroundColor: tokens.container$off.color.disabled,
         opacity: tokens.container$off.opacity.disabled,
       },
-      [getModifierSelector<IModifier>('on', root)]: {
+      [modifierSelector<IModifier>('on', root)]: {
         transitionDuration: `${themeTokens.motion.duration.medium3}, ${themeTokens.motion.duration.short1}`,
         transitionTimingFunction: `${themeTokens.motion.easing.emphasized.decelerate}, linear`,
         transform: 'scale(1)',
         opacity: 1,
         backgroundColor: tokens.container$on.color.normal,
       },
-      [getModifierSelector<IModifier>(['on', 'focused'], root)]: {
+      [modifierSelector<IModifier>(['on', 'focused'], root)]: {
         backgroundColor: fallbackVar(
           tokens.container$on.color.focused,
           tokens.container$on.color.normal,
         ),
       },
-      [getModifierSelector<IModifier>(['on', 'hovered'], root)]: {
+      [modifierSelector<IModifier>(['on', 'hovered'], root)]: {
         backgroundColor: fallbackVar(
           tokens.container$on.color.hovered,
           tokens.container$on.color.normal,
         ),
       },
-      [getModifierSelector<IModifier>(['on', 'pressed'], root)]: {
+      [modifierSelector<IModifier>(['on', 'pressed'], root)]: {
         backgroundColor: fallbackVar(
           tokens.container$on.color.pressed,
           tokens.container$on.color.normal,
         ),
       },
-      [getModifierSelector<IModifier>(['on', 'disabled'], root)]: {
+      [modifierSelector<IModifier>(['on', 'disabled'], root)]: {
         animationDuration: '0s',
         transitionDuration: '0s',
         // Set disabled opacity only when selected since opacity is used to show
@@ -190,7 +190,7 @@ const classNames = createStyles({
         ),
         opacity: tokens.container$on.opacity.disabled,
       },
-      [getModifierSelector<IModifier>('was-disabled', root)]: {
+      [modifierSelector<IModifier>('was-disabled', root)]: {
         // Don't animate to/from disabled states because the outline is hidden
         // when selected. Without this, there'd be a FOUC if the checkbox state
         // is programmatically changed while disabled.
@@ -218,28 +218,28 @@ const classNames = createStyles({
     transform: 'scale(0.6)',
     opacity: 0,
 
-    vars: createTokensVars(Checkmark.theme.tokens, {
+    vars: overrideTokens(Checkmark.theme.tokens, {
       color: tokens.icon.color.normal,
       stroke: tokens.mark.stroke,
     }),
 
     selectors: {
-      [getModifierSelector<IModifier>('on', root)]: {
+      [modifierSelector<IModifier>('on', root)]: {
         transitionDuration: `${themeTokens.motion.duration.medium3}, ${themeTokens.motion.duration.short1}`,
         transitionTimingFunction: `${themeTokens.motion.easing.emphasized.decelerate}, linear`,
         transform: 'scale(1)',
         opacity: 1,
       },
-      [getModifierSelector<IModifier>('focused', root)]: {
+      [modifierSelector<IModifier>('focused', root)]: {
         fill: fallbackVar(tokens.icon.color.focused, tokens.icon.color.normal),
       },
-      [getModifierSelector<IModifier>('hovered', root)]: {
+      [modifierSelector<IModifier>('hovered', root)]: {
         fill: fallbackVar(tokens.icon.color.hovered, tokens.icon.color.normal),
       },
-      [getModifierSelector<IModifier>('pressed', root)]: {
+      [modifierSelector<IModifier>('pressed', root)]: {
         fill: fallbackVar(tokens.icon.color.pressed, tokens.icon.color.normal),
       },
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         // Don't animate to/from disabled states because the outline is hidden
         // when selected. Without this, there'd be a FOUC if the
         // checkboxIndicator state is programmatically changed while disabled.
@@ -249,7 +249,7 @@ const classNames = createStyles({
         fill: fallbackVar(tokens.icon.color.disabled, tokens.icon.color.normal),
         opacity: tokens.icon.opacity.disabled,
       },
-      [getModifierSelector<IModifier>('was-disabled', root)]: {
+      [modifierSelector<IModifier>('was-disabled', root)]: {
         // Don't animate to/from disabled states because the outline is hidden
         // when selected. Without this, there'd be a FOUC if the checkbox state
         // is programmatically changed while disabled.

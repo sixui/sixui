@@ -8,7 +8,7 @@ import { ColorPaletteGroupProvider } from '~/components/ColorPaletteGroup';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Flex } from '~/components/Flex';
 import { HctColorPickerContent } from '~/components/HctColorPickerContent';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { ColorInputField } from './ColorInputField';
 
 const meta = {

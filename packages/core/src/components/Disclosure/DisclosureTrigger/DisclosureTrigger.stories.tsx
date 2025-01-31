@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IDisclosureTriggerProps } from './DisclosureTrigger.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { DisclosureTrigger } from './DisclosureTrigger';
 
 const meta = {

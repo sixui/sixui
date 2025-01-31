@@ -1,13 +1,13 @@
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import type { IDrawerVariant } from './Drawer.types';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { px } from '~/utils/css/px';
+import { space } from '~/utils/css/space';
 import { COMPONENT_NAME } from './Drawer.constants';
 
 type IModifier = 'side' | 'full-height' | 'full-width';
@@ -22,23 +22,23 @@ const classNames = createStyles({
     display: 'flex',
 
     selectors: {
-      [getModifierSelector<IModifier>({ side: 'left' })]: {
+      [modifierSelector<IModifier>({ side: 'left' })]: {
         left: tokens.inset,
       },
-      [getModifierSelector<IModifier>({ side: 'right' })]: {
+      [modifierSelector<IModifier>({ side: 'right' })]: {
         right: tokens.inset,
       },
-      [getModifierSelector<IModifier>({ side: 'top' })]: {
+      [modifierSelector<IModifier>({ side: 'top' })]: {
         top: tokens.inset,
       },
-      [getModifierSelector<IModifier>({ side: 'bottom' })]: {
+      [modifierSelector<IModifier>({ side: 'bottom' })]: {
         bottom: tokens.inset,
       },
-      [getModifierSelector<IModifier>('full-height')]: {
+      [modifierSelector<IModifier>('full-height')]: {
         top: tokens.inset,
         bottom: tokens.inset,
       },
-      [getModifierSelector<IModifier>('full-width')]: {
+      [modifierSelector<IModifier>('full-width')]: {
         left: tokens.inset,
         right: tokens.inset,
       },
@@ -66,7 +66,7 @@ export const drawerThemeVariants = {
   standard: createStyles(),
   detached: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
+      vars: overrideTokens(tokens, {
         inset: px(space(4)),
       }),
     },

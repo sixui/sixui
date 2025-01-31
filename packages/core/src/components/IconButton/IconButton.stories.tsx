@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IIconButtonProps, IIconButtonVariant } from './IconButton.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { IconButton } from './IconButton';
 
 // https://m3.material.io/components/icon-buttons/overview

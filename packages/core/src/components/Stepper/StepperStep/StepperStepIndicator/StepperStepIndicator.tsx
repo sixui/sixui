@@ -5,9 +5,8 @@ import { Checkmark } from '~/components/Checkmark';
 import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
 import { Paper } from '~/components/Paper';
 import { SvgIcon } from '~/components/SvgIcon';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { COMPONENT_NAME } from './StepperStepIndicator.constants';
 import { stepperStepIndicatorTheme } from './StepperStepIndicator.css';
 

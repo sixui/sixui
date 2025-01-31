@@ -2,9 +2,8 @@ import type { IAppLayoutBodyThemeFactory } from './AppLayoutBody.css';
 import type { IAppLayoutBodyFactory } from './AppLayoutBody.types';
 import { useAppLayoutContext } from '~/components/AppLayout/AppLayout.context';
 import { Paper } from '~/components/Paper';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { COMPONENT_NAME } from './AppLayoutBody.constants';
 import { appLayoutBodyTheme } from './AppLayoutBody.css';
 

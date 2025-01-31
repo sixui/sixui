@@ -1,6 +1,6 @@
 import type { Placement } from '@floating-ui/core';
 
-import type { IPlacement } from '~/helpers/types';
+import type { IPlacement } from '~/utils/types';
 
 export const stringFromPlacement = (
   placement: Placement | IPlacement,

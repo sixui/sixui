@@ -1,4 +1,4 @@
-import type { IPoint } from '~/helpers/types';
+import type { IPoint } from '~/utils/types';
 import { getNormalizedPointerEventCoords } from './getNormalizedPointerEventCoords';
 
 export type ITranslationCoordinates = {

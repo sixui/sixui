@@ -1,9 +1,9 @@
 import type { IBoxProps } from '~/components/Box';
 import type { ICardOwnProps } from '~/components/Card';
-import type { IOmit } from '~/helpers/types';
+import type { IComponentThemeProps } from '~/components/ThemeProvider';
 import type { IUseRadioProps } from '~/hooks/useRadio';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+import type { IOmit } from '~/utils/types';
 import type { RadioIndicator } from '../RadioIndicator';
 import type { IRadioCardThemeFactory, RadioCardTheme } from './RadioCard.css';
 

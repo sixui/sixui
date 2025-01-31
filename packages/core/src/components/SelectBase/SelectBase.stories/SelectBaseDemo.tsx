@@ -1,5 +1,5 @@
 import type { IMovie } from '~/components/FilterableListBase/FilterableListBase.stories/movies';
-import type { IOmit } from '~/helpers/types';
+import type { IOmit } from '~/utils/types';
 import type { ISelectBaseProps } from '../SelectBase.types';
 import {
   areMoviesEqual,

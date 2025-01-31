@@ -1,12 +1,12 @@
 import { fallbackVar } from '@vanilla-extract/css';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { px } from '~/helpers/styles/px';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { px } from '~/utils/css/px';
 import { COMPONENT_NAME } from './StateLayer.constants';
 
 type IModifier =
@@ -65,44 +65,44 @@ const classNames = createStyles({
       transitionTimingFunction: 'linear',
     },
     selectors: {
-      [getModifierSelector<IModifier>('disabled')]: {
+      [modifierSelector<IModifier>('disabled')]: {
         pointerEvents: 'none',
       },
-      [`${getModifierSelector<IModifier>('hovered')}::before`]: {
+      [`${modifierSelector<IModifier>('hovered')}::before`]: {
         backgroundColor: tokens.color.hovered,
         opacity: tokens.opacity.hovered,
       },
-      [`${getModifierSelector<IModifier>('animating')}::before`]: {
+      [`${modifierSelector<IModifier>('animating')}::before`]: {
         backgroundColor: tokens.color.hovered,
         opacity: tokens.opacity.hovered,
       },
-      [`${getModifierSelector<IModifier>('animating')}::after`]: {
+      [`${modifierSelector<IModifier>('animating')}::after`]: {
         opacity: tokens.opacity.pressed,
         transitionDuration: '105ms',
       },
-      [`${getModifierSelector<IModifier>('static-pressed')}::before`]: {
+      [`${modifierSelector<IModifier>('static-pressed')}::before`]: {
         backgroundColor: tokens.color.hovered,
         opacity: tokens.opacity.hovered,
       },
-      [`${getModifierSelector<IModifier>('static-pressed')}::after`]: {
+      [`${modifierSelector<IModifier>('static-pressed')}::after`]: {
         backgroundColor: fallbackVar(
           tokens.color.pressed,
           tokens.color.hovered,
         ),
         opacity: tokens.opacity.pressed,
       },
-      [`${getModifierSelector<IModifier>('no-ripple-effect')}::after`]: {
+      [`${modifierSelector<IModifier>('no-ripple-effect')}::after`]: {
         backgroundImage: 'none',
         transition: 'none',
       },
-      [`${getModifierSelector<IModifier>('dragged')}::before`]: {
+      [`${modifierSelector<IModifier>('dragged')}::before`]: {
         backgroundColor: fallbackVar(
           tokens.color.dragged,
           tokens.color.hovered,
         ),
         opacity: tokens.opacity.dragged,
       },
-      [`${getModifierSelector<IModifier>('dragged')}::after`]: {
+      [`${modifierSelector<IModifier>('dragged')}::after`]: {
         display: 'none',
       },
     },

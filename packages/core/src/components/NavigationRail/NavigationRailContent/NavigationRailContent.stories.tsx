@@ -12,7 +12,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import type { IOmit } from '~/helpers/types';
+import type { IOmit } from '~/utils/types';
 import type { INavigationRailContentProps } from './NavigationRailContent.types';
 import { Badge } from '~/components/Badge';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';

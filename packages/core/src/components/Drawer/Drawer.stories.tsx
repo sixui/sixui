@@ -8,7 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import type { IOmit } from '~/helpers/types';
+import type { IOmit } from '~/utils/types';
 import type { IDrawerProps } from './Drawer.types';
 import { Button } from '~/components/Button';
 import { Flex } from '~/components/Flex';
@@ -16,8 +16,8 @@ import { Frame } from '~/components/Frame';
 import { Paper } from '~/components/Paper';
 import { Text } from '~/components/Text';
 import { themeTokens } from '~/components/ThemeProvider';
-import { px } from '~/helpers/styles/px';
 import { useDisclosure } from '~/hooks/useDisclosure';
+import { px } from '~/utils/css/px';
 import { Drawer } from './Drawer';
 
 const meta = {

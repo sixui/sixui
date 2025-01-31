@@ -1,9 +1,9 @@
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
 import { COMPONENT_NAME } from './Expandable.constants';
 
 type IModifier = 'disabled' | 'expanded' | 'orientation';
@@ -22,7 +22,7 @@ const classNames = createStyles({
     overflow: 'hidden',
 
     selectors: {
-      [getModifierSelector<IModifier>('expanded')]: {
+      [modifierSelector<IModifier>('expanded')]: {
         overflow: 'visible',
       },
     },
@@ -33,7 +33,7 @@ const classNames = createStyles({
     height: tokens.expandedHeight,
 
     selectors: {
-      [getModifierSelector<IModifier>('expanded', root)]: {
+      [modifierSelector<IModifier>('expanded', root)]: {
         overflow: 'visible',
       },
     },

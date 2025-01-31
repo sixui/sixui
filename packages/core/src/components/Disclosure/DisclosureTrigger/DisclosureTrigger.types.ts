@@ -1,10 +1,10 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IListItemOwnProps } from '~/components/List/ListItem';
-import type { IOmit } from '~/helpers/types';
+import type { IComponentThemeProps } from '~/components/ThemeProvider';
 import type { IUseCheckboxProps } from '~/hooks/useCheckbox';
 import type { IUseSwitchProps } from '~/hooks/useSwitch';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+import type { IOmit } from '~/utils/types';
 import type {
   disclosureTriggerTheme,
   IDisclosureTriggerThemeFactory,

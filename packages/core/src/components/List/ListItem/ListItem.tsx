@@ -8,11 +8,10 @@ import { Item } from '~/components/Item';
 import { useListContext } from '~/components/List/List.context';
 import { Overlayable } from '~/components/Overlayable';
 import { Paper } from '~/components/Paper';
-import { executeLazyPromise } from '~/helpers/executeLazyPromise';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { mergeClassNames } from '~/utils/styles/mergeClassNames';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { mergeClassNames } from '~/utils/css/mergeClassNames';
+import { executeLazyPromise } from '~/utils/executeLazyPromise';
 import { COMPONENT_NAME } from './ListItem.constants';
 import { listItemTheme, listItemVariants } from './ListItem.css';
 

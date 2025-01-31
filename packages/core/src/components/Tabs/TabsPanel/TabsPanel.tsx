@@ -2,9 +2,8 @@ import type { ITabsPanelThemeFactory } from './TabsPanel.css';
 import type { ITabsPanelFactory } from './TabsPanel.types';
 import { Box } from '~/components/Box';
 import { useTabsContext } from '~/components/Tabs/Tabs.context';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { COMPONENT_NAME } from './TabsPanel.constants';
 import { tabsPanelTheme } from './TabsPanel.css';
 

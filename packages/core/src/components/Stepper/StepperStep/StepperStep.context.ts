@@ -1,4 +1,4 @@
-import { createSafeContext } from '~/helpers/createSafeContext';
+import { createSafeContext } from '~/utils/react/createSafeContext';
 
 export type IStepperStepContextValue = {
   orientation: 'horizontal' | 'vertical';

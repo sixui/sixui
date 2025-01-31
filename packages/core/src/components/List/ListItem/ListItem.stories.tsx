@@ -12,7 +12,7 @@ import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IListItemProps, IListItemVariant } from './ListItem.types';
 import { Avatar } from '~/components/Avatar';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { ListItem } from './ListItem';
 
 // https://m3.material.io/components/items/overview

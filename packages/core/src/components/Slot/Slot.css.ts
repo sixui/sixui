@@ -1,12 +1,12 @@
 import { calc } from '@vanilla-extract/css-utils';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { px } from '~/helpers/styles/px';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { px } from '~/utils/css/px';
 import { COMPONENT_NAME } from './Slot.constants';
 
 type IModifier = 'animation-status';
@@ -32,7 +32,7 @@ const classNames = createStyles({
     marginRight: tokens.container.trailingSpace.normal,
 
     selectors: {
-      [getModifierSelector({ 'animation-status': 'initial' })]: {
+      [modifierSelector({ 'animation-status': 'initial' })]: {
         opacity: 0,
         marginLeft: calc.add(
           tokens.container.leadingSpace.normal,
@@ -47,7 +47,7 @@ const classNames = createStyles({
           calc.negate(tokens.container.trailingSpace.compensated),
         ),
       },
-      [getModifierSelector({ 'animation-status': 'entering' })]: {
+      [modifierSelector({ 'animation-status': 'entering' })]: {
         marginLeft: tokens.container.leadingSpace.normal,
         marginRight: tokens.container.trailingSpace.normal,
         opacity: 1,
@@ -57,12 +57,12 @@ const classNames = createStyles({
         transitionTimingFunction:
           themeTokens.motion.easing.emphasized.decelerate,
       },
-      [getModifierSelector({ 'animation-status': 'entered' })]: {
+      [modifierSelector({ 'animation-status': 'entered' })]: {
         marginLeft: tokens.container.leadingSpace.normal,
         marginRight: tokens.container.trailingSpace.normal,
         opacity: 1,
       },
-      [getModifierSelector({ 'animation-status': 'exiting' })]: {
+      [modifierSelector({ 'animation-status': 'exiting' })]: {
         opacity: 0,
         marginLeft: calc.add(
           tokens.container.leadingSpace.normal,
@@ -79,7 +79,7 @@ const classNames = createStyles({
         transitionTimingFunction:
           themeTokens.motion.easing.emphasized.accelerate,
       },
-      [getModifierSelector({ 'animation-status': 'exited' })]: {
+      [modifierSelector({ 'animation-status': 'exited' })]: {
         marginLeft: tokens.container.leadingSpace.normal,
         marginRight: tokens.container.trailingSpace.normal,
         opacity: 0,

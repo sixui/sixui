@@ -1,8 +1,8 @@
 import { themeTokens } from '~/components/ThemeProvider';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
-import { createStyles } from '~/utils/styles/createStyles';
+import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { px } from '~/utils/css/px';
+import { space } from '~/utils/css/space';
 
 const classNames = createStyles({
   container: {
@@ -11,13 +11,13 @@ const classNames = createStyles({
     borderColor: themeTokens.colorScheme.outline,
     padding: px(space(4)),
     selectors: {
-      [getModifierSelector('size="sm"')]: {
+      [modifierSelector('size="sm"')]: {
         maxWidth: px(150),
       },
-      [getModifierSelector('size="md"')]: {
+      [modifierSelector('size="md"')]: {
         maxWidth: px(300),
       },
-      [getModifierSelector('size="lg"')]: {
+      [modifierSelector('size="lg"')]: {
         maxWidth: px(600),
       },
     },

@@ -6,8 +6,8 @@ import type { IDialogContentProps } from './DialogContent.types';
 import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Text } from '~/components/Text';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { px } from '~/helpers/styles/px';
+import { px } from '~/utils/css/px';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { DialogContent } from './DialogContent';
 
 // https://m3.material.io/components/dialogs/overview

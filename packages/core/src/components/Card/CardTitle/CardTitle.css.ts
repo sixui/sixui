@@ -1,17 +1,17 @@
 import { calc } from '@vanilla-extract/css-utils';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getDensity } from '~/helpers/styles/getDensity';
-import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { density } from '~/utils/css/density';
+import { px } from '~/utils/css/px';
+import { space } from '~/utils/css/space';
+import { typography } from '~/utils/css/typography';
 import { COMPONENT_NAME } from './CardTitle.constants';
 
-const DENSITY = px(getDensity({ min: -2, max: 0 }));
+const DENSITY = px(density({ min: -2, max: 0 }));
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   headline: {
@@ -36,15 +36,15 @@ const classNames = createStyles({
   },
   headline: {
     color: tokens.headline.color,
-    ...getTypographyStyles(tokens.headline.typography),
+    ...typography(tokens.headline.typography),
   },
   subhead: {
     color: tokens.subhead.color,
-    ...getTypographyStyles(tokens.subhead.typography),
+    ...typography(tokens.subhead.typography),
   },
   supportingText: {
     color: tokens.supportingText.color,
-    ...getTypographyStyles(tokens.supportingText.typography),
+    ...typography(tokens.supportingText.typography),
   },
 });
 

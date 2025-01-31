@@ -1,17 +1,17 @@
 import { fallbackVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { PaperBase } from '~/components/PaperBase';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { getResponsiveContainerQuery } from '~/helpers/styles/getResponsiveContainerQuery';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { px } from '~/utils/css/px';
+import { responsiveContainerQuery } from '~/utils/css/responsiveContainerQuery';
+import { space } from '~/utils/css/space';
 import { appLayoutTheme } from '~/components/AppLayout/AppLayout.css';
 import { COMPONENT_NAME } from './AppLayoutBody.constants';
 
@@ -32,7 +32,7 @@ const classNames = createStyles({
     paddingBottom: px(space(6)),
 
     '@container': {
-      [getResponsiveContainerQuery({ size: 'compact' })]: {
+      [responsiveContainerQuery({ size: 'compact' })]: {
         gap: px(space(4)),
         marginLeft: px(space(4)),
         marginRight: px(space(4)),
@@ -41,7 +41,7 @@ const classNames = createStyles({
       },
     },
 
-    vars: createTokensVars(PaperBase.theme.tokens, {
+    vars: overrideTokens(PaperBase.theme.tokens, {
       container: {
         color: fallbackVar(
           appLayoutTheme.tokens.body.color,
@@ -51,10 +51,10 @@ const classNames = createStyles({
     }),
 
     selectors: {
-      [getModifierSelector<IModifier>({ orientation: 'vertical' })]: {
+      [modifierSelector<IModifier>({ orientation: 'vertical' })]: {
         flexDirection: 'column',
       },
-      [getModifierSelector<IModifier>('with-header')]: {
+      [modifierSelector<IModifier>('with-header')]: {
         minHeight: calc.subtract('100vh', appLayoutTheme.tokens.header.height),
       },
     },

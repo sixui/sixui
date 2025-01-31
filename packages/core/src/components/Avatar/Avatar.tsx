@@ -4,13 +4,12 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 import type { IAvatarThemeFactory } from './Avatar.css';
 import type { IAvatarFactory } from './Avatar.types';
 import { Paper } from '~/components/Paper';
-import { hslColorFromString } from '~/helpers/colors/hslColorFromString';
-import { getHslColor } from '~/helpers/styles/getHslColor';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { useImageLoaded } from '~/hooks/useImageLoaded';
+import { hslColorFromString } from '~/utils/colors/hslColorFromString';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { useProps } from '~/utils/component/useProps';
+import { hslColor } from '~/utils/css/hslColor';
 import { mergeProps } from '~/utils/mergeProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { paperBaseTheme } from '~/components/PaperBase/PaperBase.css';
 import { COMPONENT_NAME } from './Avatar.constants';
 import { avatarTheme } from './Avatar.css';
@@ -71,7 +70,7 @@ export const Avatar = polymorphicComponentFactory<IAvatarFactory>(
             ? {
                 ...assignInlineVars({
                   [paperBaseTheme.tokens.container.color]:
-                    getHslColor(randomColorHsl),
+                    hslColor(randomColorHsl),
                 }),
                 color: '#000',
               }

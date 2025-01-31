@@ -1,9 +1,9 @@
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
 import { COMPONENT_NAME } from './Motion.constants';
 
 type IModifier = 'status' | 'orientation' | 'pattern' | 'side' | 'alignment';
@@ -24,36 +24,36 @@ const classNames = createStyles({
     transitionTimingFunction: themeTokens.motion.easing.emphasized.decelerate,
 
     selectors: {
-      [getModifierSelector<IModifier>({ pattern: 'fade' })]: {
+      [modifierSelector<IModifier>({ pattern: 'fade' })]: {
         opacity: 1,
       },
-      [getModifierSelector<IModifier>({ pattern: 'enterExit' })]: {
+      [modifierSelector<IModifier>({ pattern: 'enterExit' })]: {
         opacity: 1,
         transform: 'scale(1)',
       },
-      [getModifierSelector<IModifier>({ pattern: 'enterExitOffScreen' })]: {
+      [modifierSelector<IModifier>({ pattern: 'enterExitOffScreen' })]: {
         opacity: 1,
         transform: 'translate(0)',
       },
-      [getModifierSelector<IModifier>({
+      [modifierSelector<IModifier>({
         orientation: 'horizontal',
         pattern: 'enterExit',
       })]: {
         transform: 'scaleX(1)',
       },
-      [getModifierSelector<IModifier>({
+      [modifierSelector<IModifier>({
         orientation: 'vertical',
         pattern: 'enterExit',
       })]: {
         transform: 'scaleY(1)',
       },
-      [getModifierSelector<IModifier>({
+      [modifierSelector<IModifier>({
         orientation: 'horizontal',
         pattern: 'enterExitOffScreen',
       })]: {
         transform: 'translateX(0)',
       },
-      [getModifierSelector<IModifier>({
+      [modifierSelector<IModifier>({
         orientation: 'vertical',
         pattern: 'enterExitOffScreen',
       })]: {
@@ -67,51 +67,51 @@ const classNames = createStyles({
     transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
 
     selectors: {
-      [getModifierSelector<IModifier>({ pattern: 'fade' })]: {
+      [modifierSelector<IModifier>({ pattern: 'fade' })]: {
         opacity: 0,
       },
-      [getModifierSelector<IModifier>({ pattern: 'enterExit' })]: {
+      [modifierSelector<IModifier>({ pattern: 'enterExit' })]: {
         opacity: 0,
         transform: 'scale(0.5)',
       },
-      [getModifierSelector<IModifier>({ pattern: 'enterExitOffScreen' })]: {
+      [modifierSelector<IModifier>({ pattern: 'enterExitOffScreen' })]: {
         opacity: 0,
         transform: 'translate(-30%, -30%)',
       },
-      [getModifierSelector<IModifier>({
+      [modifierSelector<IModifier>({
         orientation: 'horizontal',
         pattern: 'enterExit',
       })]: {
         transform: 'scaleX(0.5)',
       },
-      [getModifierSelector<IModifier>({
+      [modifierSelector<IModifier>({
         orientation: 'horizontal',
         pattern: 'enterExitOffScreen',
         side: 'left',
       })]: {
         transform: 'translateX(-30%)',
       },
-      [getModifierSelector<IModifier>({
+      [modifierSelector<IModifier>({
         orientation: 'horizontal',
         pattern: 'enterExitOffScreen',
         side: 'right',
       })]: {
         transform: 'translateX(30%)',
       },
-      [getModifierSelector<IModifier>({
+      [modifierSelector<IModifier>({
         orientation: 'vertical',
         pattern: 'enterExit',
       })]: {
         transform: 'scaleY(0.75)',
       },
-      [getModifierSelector<IModifier>({
+      [modifierSelector<IModifier>({
         orientation: 'vertical',
         pattern: 'enterExitOffScreen',
         side: 'top',
       })]: {
         transform: 'translateY(-30%)',
       },
-      [getModifierSelector<IModifier>({
+      [modifierSelector<IModifier>({
         orientation: 'vertical',
         pattern: 'enterExitOffScreen',
         side: 'bottom',

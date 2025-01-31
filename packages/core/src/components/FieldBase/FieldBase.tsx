@@ -8,13 +8,12 @@ import { CircularProgressIndicator } from '~/components/CircularProgressIndicato
 import { useLabeledContext } from '~/components/Labeled/Labeled.context';
 import { Paper } from '~/components/Paper';
 import { StateLayer, useStateLayer } from '~/components/StateLayer';
-import { isFunction } from '~/helpers/isFunction';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { usePrevious } from '~/hooks/usePrevious';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { useProps } from '~/utils/component/useProps';
+import { isFunction } from '~/utils/isFunction';
 import { mergeProps } from '~/utils/mergeProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { COMPONENT_NAME } from './FieldBase.constants';
 import { getLabelKeyframes } from './getLabelKeyframes';
 import { fieldBaseTheme, fieldBaseThemeVariants } from './FieldBase.css';

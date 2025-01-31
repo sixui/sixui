@@ -1,7 +1,7 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IButtonBaseOwnProps } from '~/components/ButtonBase';
+import type { IComponentThemeProps } from '~/components/ThemeProvider';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { cardTheme, ICardThemeFactory } from './Card.css';
 import type { CardActions } from './CardActions';
 import type { CardContent } from './CardContent';

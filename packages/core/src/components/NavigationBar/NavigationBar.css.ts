@@ -1,10 +1,10 @@
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { NavigationBarContent } from '~/components/NavigationBar/NavigationBarContent';
-import { px } from '~/helpers/styles/px';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { px } from '~/utils/css/px';
 import { COMPONENT_NAME } from './NavigationBar.constants';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
@@ -19,7 +19,7 @@ const classNames = createStyles({
     height: tokens.container.height,
   },
   navigationBarContent: {
-    vars: createTokensVars(NavigationBarContent.theme.tokens, {
+    vars: overrideTokens(NavigationBarContent.theme.tokens, {
       container: {
         height: tokens.container.height,
       },

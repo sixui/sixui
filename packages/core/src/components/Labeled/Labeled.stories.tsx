@@ -7,7 +7,7 @@ import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Radio } from '~/components/Radio';
 import { Switch } from '~/components/Switch';
 import { TextInputField } from '~/components/TextInputField';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { Labeled } from './Labeled';
 
 const meta = {

@@ -4,10 +4,10 @@ import type {
   IButtonBaseOwnProps,
 } from '~/components/ButtonBase';
 import type { IPaperOwnProps } from '~/components/Paper';
+import type { IComponentThemeProps } from '~/components/ThemeProvider';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { buttonTheme, IButtonThemeFactory } from './Button.css';
-import { IOmit } from '~/helpers/types';
+import { IOmit } from '~/utils/types';
 
 export type IButtonVariant =
   | 'elevated'

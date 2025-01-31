@@ -3,10 +3,9 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 import type { IAnchoredThemeFactory } from './Anchored.css';
 import type { IAnchoredFactory } from './Anchored.types';
 import { Box } from '~/components/Box';
-import { px } from '~/helpers/styles/px';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { px } from '~/utils/css/px';
 import { COMPONENT_NAME } from './Anchored.constants';
 import { anchoredTheme } from './Anchored.css';
 

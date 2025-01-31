@@ -6,11 +6,10 @@ import { Avatar } from '~/components/Avatar';
 import { Button } from '~/components/Button';
 import { IconButton } from '~/components/IconButton';
 import { SvgIcon } from '~/components/SvgIcon';
-import { executeLazyPromise } from '~/helpers/executeLazyPromise';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { executeLazyPromise } from '~/utils/executeLazyPromise';
 import { COMPONENT_NAME } from './Chip.constants';
 import { chipTheme, IChipThemeFactory } from './Chip.css';
 

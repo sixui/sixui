@@ -3,11 +3,13 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 import type { IPaperThemeFactory } from './Paper.css';
 import type { IPaperFactory } from './Paper.types';
 import { PaperBase } from '~/components/PaperBase';
-import { themeTokens } from '~/components/ThemeProvider';
-import { px } from '~/helpers/styles/px';
+import {
+  themeTokens,
+  useComponentTheme,
+  useProps,
+} from '~/components/ThemeProvider';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { px } from '~/utils/css/px';
 import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
 import { paperBaseTheme } from '~/components/PaperBase/PaperBase.css';
 import { COMPONENT_NAME } from './Paper.constants';

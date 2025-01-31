@@ -1,16 +1,16 @@
 import { createRainbowSprinkles, defineProperties } from 'rainbow-sprinkles';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { cssLayers } from '~/components/ThemeProvider';
-import { getDensity } from '~/helpers/styles/getDensity';
-import { getSpacingValues } from '~/helpers/styles/getSpacingValues';
-import { px } from '~/helpers/styles/px';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { density } from '~/utils/css/density';
+import { getSpacingValues } from '~/utils/css/getSpacingValues';
+import { px } from '~/utils/css/px';
 import { COMPONENT_NAME } from './Flex.constants';
 
-const DENSITY = px(getDensity({ min: -9, max: 0 }));
+const DENSITY = px(density({ min: -9, max: 0 }));
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME);
 

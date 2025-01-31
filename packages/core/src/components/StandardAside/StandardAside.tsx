@@ -1,16 +1,15 @@
 import { useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
-import type { IOrientation } from '~/helpers/types';
+import type { IOrientation } from '~/utils/types';
 import type { IStandardAsideThemeFactory } from './StandardAside.css';
 import type { IStandardAsideFactory } from './StandardAside.types';
 import { Box } from '~/components/Box';
 import { Motion } from '~/components/Motion';
-import { isFunction } from '~/helpers/isFunction';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { isFunction } from '~/utils/isFunction';
 import { COMPONENT_NAME } from './StandardAside.constants';
 import { standardAsideTheme } from './StandardAside.css';
 

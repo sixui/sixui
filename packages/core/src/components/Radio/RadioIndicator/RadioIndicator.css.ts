@@ -2,21 +2,21 @@ import { keyframes } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IInteraction } from '~/hooks/useInteractions';
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { PaperBase } from '~/components/PaperBase';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getDensity } from '~/helpers/styles/getDensity';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { px } from '~/helpers/styles/px';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { density } from '~/utils/css/density';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { px } from '~/utils/css/px';
 import { COMPONENT_NAME } from './RadioIndicator.constants';
 
 type IModifier = IInteraction | 'disabled' | 'loading' | 'checked';
 
-const DENSITY = px(getDensity({ min: -1, max: 0 }));
+const DENSITY = px(density({ min: -1, max: 0 }));
 
 const innerCircleGrowKeyframes = keyframes({
   '0%': { transform: 'scale(0)' },
@@ -64,7 +64,7 @@ const classNames = createStyles({
     placeItems: 'center',
     color: themeTokens.colorScheme.onSurfaceVariant,
 
-    vars: createTokensVars(PaperBase.theme.tokens, {
+    vars: overrideTokens(PaperBase.theme.tokens, {
       container: {
         color: tokens.container.color,
         shape: tokens.container.shape,
@@ -76,21 +76,21 @@ const classNames = createStyles({
     }),
 
     selectors: {
-      [getModifierSelector<IModifier>('loading')]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [modifierSelector<IModifier>('loading')]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           outline: {
             width: px(themeTokens.outline.width.none),
           },
         }),
       },
-      [getModifierSelector<IModifier>('disabled')]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [modifierSelector<IModifier>('disabled')]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           outline: {
             opacity: themeTokens.state.opacity.disabled,
           },
         }),
       },
-      [getModifierSelector<IModifier>('hovered')]: {
+      [modifierSelector<IModifier>('hovered')]: {
         zIndex: 1,
       },
     },
@@ -104,10 +104,10 @@ const classNames = createStyles({
     position: 'absolute',
 
     selectors: {
-      [getModifierSelector<IModifier>({ checked: false }, root)]: {
+      [modifierSelector<IModifier>({ checked: false }, root)]: {
         fill: tokens.icon.color.normal,
       },
-      [getModifierSelector<IModifier>(
+      [modifierSelector<IModifier>(
         {
           checked: false,
           focused: true,
@@ -116,7 +116,7 @@ const classNames = createStyles({
       )]: {
         fill: tokens.icon.color.focused,
       },
-      [getModifierSelector<IModifier>(
+      [modifierSelector<IModifier>(
         {
           checked: false,
           hovered: true,
@@ -125,7 +125,7 @@ const classNames = createStyles({
       )]: {
         fill: tokens.icon.color.hovered,
       },
-      [getModifierSelector<IModifier>(
+      [modifierSelector<IModifier>(
         {
           checked: false,
           pressed: true,
@@ -134,7 +134,7 @@ const classNames = createStyles({
       )]: {
         fill: tokens.icon.color.pressed,
       },
-      [getModifierSelector<IModifier>(
+      [modifierSelector<IModifier>(
         {
           checked: false,
           disabled: true,
@@ -144,10 +144,10 @@ const classNames = createStyles({
         fill: tokens.icon.color.disabled,
         opacity: tokens.icon.opacity.disabled,
       },
-      [getModifierSelector<IModifier>({ checked: true }, root)]: {
+      [modifierSelector<IModifier>({ checked: true }, root)]: {
         fill: tokens.icon$checked.color.normal,
       },
-      [getModifierSelector<IModifier>(
+      [modifierSelector<IModifier>(
         {
           checked: true,
           focused: true,
@@ -156,7 +156,7 @@ const classNames = createStyles({
       )]: {
         fill: tokens.icon$checked.color.focused,
       },
-      [getModifierSelector<IModifier>(
+      [modifierSelector<IModifier>(
         {
           checked: true,
           hovered: true,
@@ -165,7 +165,7 @@ const classNames = createStyles({
       )]: {
         fill: tokens.icon$checked.color.hovered,
       },
-      [getModifierSelector<IModifier>(
+      [modifierSelector<IModifier>(
         {
           checked: true,
           pressed: true,
@@ -174,7 +174,7 @@ const classNames = createStyles({
       )]: {
         fill: tokens.icon$checked.color.pressed,
       },
-      [getModifierSelector<IModifier>(
+      [modifierSelector<IModifier>(
         {
           checked: true,
           disabled: true,
@@ -196,7 +196,7 @@ const classNames = createStyles({
     transitionProperty: 'opacity',
 
     selectors: {
-      [getModifierSelector<IModifier>({ checked: true }, root)]: {
+      [modifierSelector<IModifier>({ checked: true }, root)]: {
         animationName: innerCircleGrowKeyframes,
         animationDuration: themeTokens.motion.duration.medium2,
         animationTimingFunction:

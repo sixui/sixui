@@ -1,8 +1,8 @@
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
 import { COMPONENT_NAME } from './Overlayable.constants';
 
 type IModifier = 'visible' | 'keep-content-visible';
@@ -21,12 +21,10 @@ const classNames = createStyles({
     justifyContent: 'center',
 
     selectors: {
-      [getModifierSelector<IModifier>(
-        ['visible', '!keep-content-visible'],
-        root,
-      )]: {
-        visibility: 'hidden',
-      },
+      [modifierSelector<IModifier>(['visible', '!keep-content-visible'], root)]:
+        {
+          visibility: 'hidden',
+        },
     },
   }),
   overlay: {

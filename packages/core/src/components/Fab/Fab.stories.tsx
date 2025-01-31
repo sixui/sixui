@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IFabProps } from './Fab.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { Fab } from './Fab';
 
 // https://m3.material.io/components/floating-action-button/overview

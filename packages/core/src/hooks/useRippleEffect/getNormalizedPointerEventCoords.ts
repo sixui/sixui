@@ -1,4 +1,4 @@
-import type { IPoint } from '~/helpers/types';
+import type { IPoint } from '~/utils/types';
 
 export const getNormalizedPointerEventCoords = (
   surfaceElement: HTMLElement,

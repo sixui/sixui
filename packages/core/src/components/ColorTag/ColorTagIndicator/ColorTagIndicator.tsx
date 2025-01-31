@@ -4,11 +4,10 @@ import type { IColorTagIndicatorThemeFactory } from './ColorTagIndicator.css';
 import type { IColorTagIndicatorFactory } from './ColorTagIndicator.types';
 import { Diagonals } from '~/components/Diagonals';
 import { Paper } from '~/components/Paper';
-import { getTextContrastColor } from '~/helpers/colors/getTextContrastColor';
-import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { getTextContrastColor } from '~/utils/colors/getTextContrastColor';
+import { isValidHexColor } from '~/utils/colors/isValidHexColor';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { COMPONENT_NAME } from './ColorTagIndicator.constants';
 import { colorTagIndicatorTheme } from './ColorTagIndicator.css';
 

@@ -1,19 +1,19 @@
 import { createVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { PaperBase } from '~/components/PaperBase';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getDensity } from '~/helpers/styles/getDensity';
-import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
-import { px } from '~/helpers/styles/px';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { density } from '~/utils/css/density';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { px } from '~/utils/css/px';
+import { typography } from '~/utils/css/typography';
 import { COMPONENT_NAME } from './Avatar.constants';
 
-const DENSITY = px(getDensity({ min: -3, max: 0 }));
+const DENSITY = px(density({ min: -3, max: 0 }));
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   size: px(40),
@@ -31,7 +31,7 @@ const classNames = createStyles({
   root: {
     vars: {
       [vars.size]: calc.add(tokens.size, DENSITY),
-      ...createTokensVars(PaperBase.theme.tokens, {
+      ...overrideTokens(PaperBase.theme.tokens, {
         container: {
           color: themeTokens.colorScheme.primaryContainer,
           shape: px(themeTokens.shape.corner.circle),
@@ -68,7 +68,7 @@ const classNames = createStyles({
     alignItems: 'center',
     justifyContent: 'center',
     flexShrink: 0,
-    ...getTypographyStyles(tokens.label.typography),
+    ...typography(tokens.label.typography),
   },
 });
 

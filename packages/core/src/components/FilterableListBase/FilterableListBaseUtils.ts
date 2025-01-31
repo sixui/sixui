@@ -1,9 +1,9 @@
-import type { IAny } from '~/helpers/types';
+import type { IAny } from '~/utils/types';
 import type {
   IFilterableListBaseInternalRendererProps,
   IFilterableListItemsEqualProp,
 } from './FilterableListBase.types';
-import { isFunction } from '~/helpers/isFunction';
+import { isFunction } from '~/utils/isFunction';
 
 /**
  * Utility function for executing the {@link IFilterableListBaseProps#itemsEqual} prop

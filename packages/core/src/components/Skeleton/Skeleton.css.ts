@@ -1,15 +1,15 @@
 import { keyframes } from '@vanilla-extract/css';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import type { ISkeletonVariant } from './Skeleton.types';
 import { PaperBase } from '~/components/PaperBase';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { px } from '~/helpers/styles/px';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { px } from '~/utils/css/px';
 import { COMPONENT_NAME } from './Skeleton.constants';
 
 type IModifier = 'animation';
@@ -83,14 +83,14 @@ const classNames = createStyles({
       borderRadius: 'inherit',
     },
 
-    vars: createTokensVars(PaperBase.theme.tokens, {
+    vars: overrideTokens(PaperBase.theme.tokens, {
       container: {
         color: tokens.container.color,
       },
     }),
 
     selectors: {
-      [`${getModifierSelector<IModifier>({ animation: 'pulse' })}::after`]: {
+      [`${modifierSelector<IModifier>({ animation: 'pulse' })}::after`]: {
         opacity: 0,
         animationName: pulseKeyframes,
         animationDuration: tokens.animation.duration,
@@ -99,7 +99,7 @@ const classNames = createStyles({
         animationIterationCount: 'infinite',
         backgroundColor: tokens.animation.targetColor,
       },
-      [`${getModifierSelector<IModifier>({ animation: 'wave' })}::after`]: {
+      [`${modifierSelector<IModifier>({ animation: 'wave' })}::after`]: {
         opacity: tokens.animation$wave.maxOpacity,
         animationName: waveKeyframes,
         animationDuration: tokens.animation.duration,
@@ -135,7 +135,7 @@ export const skeletonThemeVariants = {
     root: {
       height: 'auto',
 
-      vars: createTokensVars(PaperBase.theme.tokens, {
+      vars: overrideTokens(PaperBase.theme.tokens, {
         container: {
           shape: tokens.container.shape,
         },
@@ -148,7 +148,7 @@ export const skeletonThemeVariants = {
       flexGrow: 0,
       flexShrink: 0,
 
-      vars: createTokensVars(PaperBase.theme.tokens, {
+      vars: overrideTokens(PaperBase.theme.tokens, {
         container: {
           shape: px(themeTokens.shape.corner.circle),
         },

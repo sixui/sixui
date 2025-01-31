@@ -1,25 +1,25 @@
 import { calc } from '@vanilla-extract/css-utils';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import type { IFabVariant } from './Fab.types';
 import { Button } from '~/components/Button';
 import { PaperBase } from '~/components/PaperBase';
 import { StateLayer } from '~/components/StateLayer';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getDensity } from '~/helpers/styles/getDensity';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { density } from '~/utils/css/density';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { px } from '~/utils/css/px';
+import { space } from '~/utils/css/space';
 import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
 import { COMPONENT_NAME } from './Fab.constants';
 
 type IModifier = 'extended' | 'lowered';
 
-const DENSITY = px(getDensity({ min: -4, max: 0 }));
+const DENSITY = px(density({ min: -4, max: 0 }));
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
@@ -61,12 +61,12 @@ const classNames = createStyles({
     height: calc.add(tokens.container.size, DENSITY),
 
     vars: {
-      ...createTokensVars(PaperBase.theme.tokens, {
+      ...overrideTokens(PaperBase.theme.tokens, {
         container: {
           shape: px(themeTokens.shape.corner.lg),
         },
       }),
-      ...createTokensVars(Button.theme.tokens, {
+      ...overrideTokens(Button.theme.tokens, {
         container: {
           elevation: {
             normal: elevationLevelPreset[3],
@@ -85,11 +85,11 @@ const classNames = createStyles({
       }),
     },
     selectors: {
-      [getModifierSelector<IModifier>('extended')]: {
+      [modifierSelector<IModifier>('extended')]: {
         vars: {
           minWidth: tokens.container.size,
           width: 'auto',
-          ...createTokensVars(Button.theme.tokens, {
+          ...overrideTokens(Button.theme.tokens, {
             container: {
               leadingSpace: {
                 normal: px(space(6)),
@@ -103,8 +103,8 @@ const classNames = createStyles({
           }),
         },
       },
-      [getModifierSelector<IModifier>('lowered')]: {
-        vars: createTokensVars(Button.theme.tokens, {
+      [modifierSelector<IModifier>('lowered')]: {
+        vars: overrideTokens(Button.theme.tokens, {
           container: {
             elevation: {
               normal: elevationLevelPreset[1],
@@ -118,7 +118,7 @@ const classNames = createStyles({
     },
   },
   stateLayer: {
-    vars: createTokensVars(StateLayer.theme.tokens, {
+    vars: overrideTokens(StateLayer.theme.tokens, {
       color: {
         hovered: themeTokens.colorScheme.onSurface,
         pressed: themeTokens.colorScheme.onSurface,
@@ -148,14 +148,14 @@ export const fabThemeVariants = {
   surface: createStyles({
     root: {
       vars: {
-        ...createTokensVars(Button.theme.tokens, {
+        ...overrideTokens(Button.theme.tokens, {
           container: {
             color: {
               normal: themeTokens.colorScheme.surfaceContainerHigh,
             },
           },
         }),
-        ...createTokensVars(tokens, {
+        ...overrideTokens(tokens, {
           label: {
             color: {
               normal: themeTokens.colorScheme.primary,
@@ -164,8 +164,8 @@ export const fabThemeVariants = {
         }),
       },
       selectors: {
-        [getModifierSelector<IModifier>('lowered')]: {
-          vars: createTokensVars(Button.theme.tokens, {
+        [modifierSelector<IModifier>('lowered')]: {
+          vars: overrideTokens(Button.theme.tokens, {
             container: {
               color: {
                 normal: themeTokens.colorScheme.surfaceContainerLow,
@@ -179,14 +179,14 @@ export const fabThemeVariants = {
   primary: createStyles({
     root: {
       vars: {
-        ...createTokensVars(Button.theme.tokens, {
+        ...overrideTokens(Button.theme.tokens, {
           container: {
             color: {
               normal: themeTokens.colorScheme.primaryContainer,
             },
           },
         }),
-        ...createTokensVars(tokens, {
+        ...overrideTokens(tokens, {
           label: {
             color: {
               normal: themeTokens.colorScheme.onPrimaryContainer,
@@ -199,14 +199,14 @@ export const fabThemeVariants = {
   secondary: createStyles({
     root: {
       vars: {
-        ...createTokensVars(Button.theme.tokens, {
+        ...overrideTokens(Button.theme.tokens, {
           container: {
             color: {
               normal: themeTokens.colorScheme.secondaryContainer,
             },
           },
         }),
-        ...createTokensVars(tokens, {
+        ...overrideTokens(tokens, {
           label: {
             color: {
               normal: themeTokens.colorScheme.onSecondaryContainer,
@@ -219,14 +219,14 @@ export const fabThemeVariants = {
   tertiary: createStyles({
     root: {
       vars: {
-        ...createTokensVars(Button.theme.tokens, {
+        ...overrideTokens(Button.theme.tokens, {
           container: {
             color: {
               normal: themeTokens.colorScheme.tertiaryContainer,
             },
           },
         }),
-        ...createTokensVars(tokens, {
+        ...overrideTokens(tokens, {
           label: {
             color: {
               normal: themeTokens.colorScheme.onTertiaryContainer,
@@ -239,14 +239,14 @@ export const fabThemeVariants = {
   branded: createStyles({
     root: {
       vars: {
-        ...createTokensVars(Button.theme.tokens, {
+        ...overrideTokens(Button.theme.tokens, {
           container: {
             color: {
               normal: themeTokens.colorScheme.surfaceContainerHigh,
             },
           },
         }),
-        ...createTokensVars(tokens, {
+        ...overrideTokens(tokens, {
           label: {
             color: {
               normal: themeTokens.colorScheme.primary,
@@ -258,8 +258,8 @@ export const fabThemeVariants = {
         }),
       },
       selectors: {
-        [getModifierSelector<IModifier>('lowered')]: {
-          vars: createTokensVars(Button.theme.tokens, {
+        [modifierSelector<IModifier>('lowered')]: {
+          vars: overrideTokens(Button.theme.tokens, {
             container: {
               color: {
                 normal: themeTokens.colorScheme.surfaceContainerLow,

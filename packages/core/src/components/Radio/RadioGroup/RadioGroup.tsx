@@ -9,12 +9,12 @@ import {
 import type { IRadioGroupContextValue } from './RadioGroup.context';
 import type { IRadioGroupFactory } from './RadioGroup.types';
 import { Box } from '~/components/Box';
-import { executeLazyPromise } from '~/helpers/executeLazyPromise';
+import { useProps } from '~/components/ThemeProvider';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useId } from '~/hooks/useId';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { useProps } from '~/utils/component/useProps';
+import { executeLazyPromise } from '~/utils/executeLazyPromise';
 import { COMPONENT_NAME } from './RadioGroup.constants';
 import { RadioGroupContextProvider } from './RadioGroup.context';
 

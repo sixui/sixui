@@ -8,13 +8,12 @@ import { FieldBase } from '~/components/FieldBase';
 import { IconButton } from '~/components/IconButton';
 import { useLabeledContext } from '~/components/Labeled';
 import { SvgIcon } from '~/components/SvgIcon';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
 import { mergeProps } from '~/utils/mergeProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
-import { triggerChangeEvent } from '~/utils/triggerChangeEvent';
+import { triggerChangeEvent } from '~/utils/react';
 import { COMPONENT_NAME } from './TextInputField.constants';
 import { textInputFieldTheme } from './TextInputField.css';
 

@@ -3,4 +3,7 @@ export * from './ThemeProvider.css';
 export * from './ThemeProvider';
 export * from './ThemeProvider.context';
 export * from './ThemeSetter.context';
+
 export * from './theme.types';
+export * from './hooks/useProps';
+export * from './hooks/useComponentTheme';

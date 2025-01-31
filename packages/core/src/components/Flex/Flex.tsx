@@ -1,10 +1,9 @@
 import type { IFlexThemeFactory } from './Flex.css';
 import type { IFlexFactory } from './Flex.types';
 import { Box } from '~/components/Box';
-import { filterFalsyChildren } from '~/helpers/react/filterFalsyChildren';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { filterFalsyChildren } from '~/utils/react/filterFalsyChildren';
 import { COMPONENT_NAME } from './Flex.constants';
 import { flexSprinkles, flexTheme } from './Flex.css';
 

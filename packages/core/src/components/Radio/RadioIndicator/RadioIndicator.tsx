@@ -2,9 +2,8 @@ import type { IRadioIndicatorThemeFactory } from './RadioIndicator.css';
 import type { IRadioIndicatorFactory } from './RadioIndicator.types';
 import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
 import { PaperBase } from '~/components/PaperBase';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { COMPONENT_NAME } from './RadioIndicator.constants';
 import { RadioIndicatorTheme } from './RadioIndicator.css';
 

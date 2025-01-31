@@ -2,11 +2,11 @@ import type { IBoxProps } from '~/components/Box';
 import type { IButtonBaseOwnProps } from '~/components/ButtonBase';
 import type { IItemOwnProps } from '~/components/Item';
 import type { IPaperOwnProps } from '~/components/Paper';
+import type { IComponentThemeProps } from '~/components/ThemeProvider';
 import type { IInteractionsMergeStrategy } from '~/hooks/useInteractions';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IListItemThemeFactory, listItemTheme } from './ListItem.css';
-import { IOmit } from '~/helpers/types';
+import { IOmit } from '~/utils/types';
 
 export type IListItemVariant = 'standard' | 'danger';
 

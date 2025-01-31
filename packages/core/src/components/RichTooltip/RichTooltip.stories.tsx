@@ -7,7 +7,7 @@ import type { IRichTooltipProps } from './RichTooltip.types';
 import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { IconButton } from '~/components/IconButton';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { RichTooltip } from './RichTooltip';
 
 const meta = {

@@ -1,8 +1,8 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IPaperOwnProps } from '~/components/Paper';
-import type { IMaybeAsync, ISixuiSize } from '~/helpers/types';
+import type { IComponentThemeProps } from '~/components/ThemeProvider';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+import type { IMaybeAsync, ISixuiSize } from '~/utils/types';
 import type {
   dialogContentTheme,
   IDialogContentThemeFactory,

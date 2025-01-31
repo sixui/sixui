@@ -4,7 +4,7 @@ import type { IAppLayoutFooterProps } from './AppLayoutFooter.types';
 import { Frame } from '~/components/Frame';
 import { Placeholder } from '~/components/Placeholder';
 import { themeTokens } from '~/components/ThemeProvider';
-import { px } from '~/helpers/styles/px';
+import { px } from '~/utils/css/px';
 import { AppLayoutFooter } from './AppLayoutFooter';
 
 const meta = {

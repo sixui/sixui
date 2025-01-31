@@ -1,12 +1,12 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IPaperProps } from '~/components/Paper';
+import type { IComponentThemeProps } from '~/components/ThemeProvider';
+import type { IInteractionsMergeStrategy } from '~/hooks/useInteractions';
+import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type {
   IForwardableProps,
   IRendererWithForwardedProps,
-} from '~/helpers/react/forwardablePropsTypes';
-import type { IInteractionsMergeStrategy } from '~/hooks/useInteractions';
-import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+} from '~/utils/react/forwardablePropsTypes';
 import type { fieldBaseTheme, IFieldBaseThemeFactory } from './FieldBase.css';
 
 export type IFieldBaseVariant = 'filled' | 'outlined';

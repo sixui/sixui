@@ -1,10 +1,9 @@
 import type { INavigationDrawerDestinationThemeFactory } from './NavigationDrawerDestination.css';
 import type { INavigationDrawerDestinationFactory } from './NavigationDrawerDestination.types';
 import { ListItem } from '~/components/List/ListItem';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { mergeClassNames } from '~/utils/styles/mergeClassNames';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { COMPONENT_NAME } from './NavigationDrawerDestination.constants';
 import { navigationDrawerDestinationTheme } from './NavigationDrawerDestination.css';
 

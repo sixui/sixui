@@ -3,10 +3,9 @@ import { useMemo } from 'react';
 import type { IBadgeThemeFactory } from './Badge.css';
 import type { IBadgeFactory } from './Badge.types';
 import { Paper } from '~/components/Paper';
-import { isNumeric } from '~/helpers/isNumeric';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { isNumeric } from '~/utils/isNumeric';
 import { COMPONENT_NAME } from './Badge.constants';
 import { badgeTheme } from './Badge.css';
 

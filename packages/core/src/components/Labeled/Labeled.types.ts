@@ -1,9 +1,9 @@
 import type { IBoxProps } from '~/components/Box';
+import type { IComponentThemeProps } from '~/components/ThemeProvider';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { ILabeledContextValue } from './Labeled.context';
 import type { ILabeledThemeFactory, labeledTheme } from './Labeled.css';
-import { ISide } from '~/helpers/types';
+import { ISide } from '~/utils/types';
 
 export type ILabeledRenderProps = {
   id: string;

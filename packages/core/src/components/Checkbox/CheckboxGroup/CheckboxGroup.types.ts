@@ -1,6 +1,6 @@
 import type { IBoxProps } from '~/components/Box';
-import type { IOmit } from '~/helpers/types';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import type { IOmit } from '~/utils/types';
 import type { ICheckboxGroupContextValue } from './CheckboxGroup.context';
 
 export interface ICheckboxGroupOwnProps

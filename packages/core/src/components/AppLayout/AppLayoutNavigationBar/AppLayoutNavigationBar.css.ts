@@ -1,13 +1,13 @@
 import { fallbackVar } from '@vanilla-extract/css';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { NavigationBar } from '~/components/NavigationBar';
 import { NavigationBarContent } from '~/components/NavigationBar/NavigationBarContent';
 import { themeTokens } from '~/components/ThemeProvider';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { overrideTokens } from '~/utils/css/overrideTokens';
 import { appLayoutTheme } from '~/components/AppLayout/AppLayout.css';
 import { COMPONENT_NAME } from './AppLayoutNavigationBar.constants';
 
@@ -17,14 +17,14 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME);
 
 const classNames = createStyles({
   root: {
-    vars: createTokensVars(NavigationBar.theme.tokens, {
+    vars: overrideTokens(NavigationBar.theme.tokens, {
       container: {
         height: appLayoutTheme.tokens.navigationBar.height,
       },
     }),
   },
   navigationBarContent: {
-    vars: createTokensVars(NavigationBarContent.theme.tokens, {
+    vars: overrideTokens(NavigationBarContent.theme.tokens, {
       container: {
         color: fallbackVar(
           appLayoutTheme.tokens.navigationBar.color,

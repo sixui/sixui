@@ -6,10 +6,10 @@ import {
   themeTokens,
   windowSizeClassNames,
 } from '~/components/ThemeProvider';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { getResponsiveContainerQuery } from '~/helpers/styles/getResponsiveContainerQuery';
-import { getSpacingValues } from '~/helpers/styles/getSpacingValues';
-import { createStyles } from '~/utils/styles/createStyles';
+import { createStyles } from '~/utils/css/createStyles';
+import { getSpacingValues } from '~/utils/css/getSpacingValues';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { responsiveContainerQuery } from '~/utils/css/responsiveContainerQuery';
 
 type IModifier = 'scale';
 
@@ -18,22 +18,22 @@ export const classNames = createStyles({
     '@layer': {
       [cssLayers.components]: {
         selectors: {
-          [getModifierSelector<IModifier>({ scale: 'xs' })]: {
+          [modifierSelector<IModifier>({ scale: 'xs' })]: {
             vars: {
               [themeTokens.scale]: '0.6',
             },
           },
-          [getModifierSelector<IModifier>({ scale: 'sm' })]: {
+          [modifierSelector<IModifier>({ scale: 'sm' })]: {
             vars: {
               [themeTokens.scale]: '0.8',
             },
           },
-          [getModifierSelector<IModifier>({ scale: 'lg' })]: {
+          [modifierSelector<IModifier>({ scale: 'lg' })]: {
             vars: {
               [themeTokens.scale]: '1.2',
             },
           },
-          [getModifierSelector<IModifier>({ scale: 'xl' })]: {
+          [modifierSelector<IModifier>({ scale: 'xl' })]: {
             vars: {
               [themeTokens.scale]: '1.4',
             },
@@ -54,7 +54,7 @@ const sprinklesProps = defineProperties({
       (acc, size) => ({
         ...acc,
         [size]: {
-          '@container': getResponsiveContainerQuery({ size }),
+          '@container': responsiveContainerQuery({ size }),
         },
       }),
       {} as Record<

@@ -1,4 +1,4 @@
-import { createOptionalContext } from '~/helpers/createOptionalContext';
+import { createOptionalContext } from '~/utils/react/createOptionalContext';
 
 export type ILabeledContextValue = {
   id?: string;

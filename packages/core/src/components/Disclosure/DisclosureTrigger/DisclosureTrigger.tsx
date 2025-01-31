@@ -10,11 +10,10 @@ import { useExpandableContext } from '~/components/Expandable';
 import { ListItem } from '~/components/List/ListItem';
 import { SvgIcon } from '~/components/SvgIcon';
 import { Switch } from '~/components/Switch';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { mergeClassNames } from '~/utils/styles/mergeClassNames';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { COMPONENT_NAME } from './DisclosureTrigger.constants';
 import { disclosureTriggerTheme } from './DisclosureTrigger.css';
 

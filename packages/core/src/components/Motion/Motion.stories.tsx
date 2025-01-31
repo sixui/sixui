@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CSSTransition } from 'react-transition-group';
 
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
-import type { IOmit } from '~/helpers/types';
+import type { IOmit } from '~/utils/types';
 import type { IMotionProps } from './Motion.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { IconButton } from '~/components/IconButton';

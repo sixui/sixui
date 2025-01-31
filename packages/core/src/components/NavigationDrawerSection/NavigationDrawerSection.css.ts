@@ -1,16 +1,16 @@
 import { calc } from '@vanilla-extract/css-utils';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { Divider } from '~/components/Divider';
 import { List } from '~/components/List';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { px } from '~/utils/css/px';
+import { space } from '~/utils/css/space';
+import { typography } from '~/utils/css/typography';
 import { COMPONENT_NAME } from './NavigationDrawerSection.constants';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
@@ -35,17 +35,17 @@ const classNames = createStyles({
     marginLeft: calc.negate(px(space(4))),
     marginRight: calc.negate(px(space(4))),
 
-    vars: createTokensVars(List.theme.tokens, {
+    vars: overrideTokens(List.theme.tokens, {
       topSpace: px(0),
       bottomSpace: px(0),
     }),
   },
   headline: {
     color: tokens.headline.color,
-    ...getTypographyStyles(tokens.headline.typography),
+    ...typography(tokens.headline.typography),
   },
   divider: {
-    vars: createTokensVars(Divider.theme.tokens, {
+    vars: overrideTokens(Divider.theme.tokens, {
       color: tokens.divider.color,
     }),
     marginTop: px(space(1)),

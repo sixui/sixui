@@ -3,9 +3,9 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import type {
   IResponsiveRule,
   IWindowSizeClassContainerName,
-} from '~/helpers/getResponsiveRules';
+} from '~/utils/css/getResponsiveRules';
 import { useThemeContext } from '~/components/ThemeProvider';
-import { getResponsiveRules } from '~/helpers/getResponsiveRules';
+import { getResponsiveRules } from '~/utils/css/getResponsiveRules';
 
 export type IUseWindowSizeClassResult = Partial<
   Record<IWindowSizeClassContainerName, true>

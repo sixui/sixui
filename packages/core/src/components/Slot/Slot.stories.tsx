@@ -3,8 +3,8 @@ import { faSmile } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { ISlotProps } from './Slot.types';
-import { px } from '~/helpers';
 import { useToggle } from '~/hooks';
+import { px } from '~/utils/css/px';
 import { Box } from '../Box';
 import { Button } from '../Button';
 import { Flex } from '../Flex';

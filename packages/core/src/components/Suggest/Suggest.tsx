@@ -8,9 +8,9 @@ import { isFilterableListItemEmpty } from '~/components/FilterableList/utils/isF
 import { renderFilterableListItem } from '~/components/FilterableList/utils/renderFilterableListItem';
 import { ListItem } from '~/components/List/ListItem';
 import { suggestBaseFactory } from '~/components/SuggestBase';
+import { useProps } from '~/components/ThemeProvider';
 import { useSelect } from '~/hooks/useSelect';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
 import { COMPONENT_NAME } from './Suggest.constants';
 
 const SuggestBase = suggestBaseFactory<IFilterableListItem>();

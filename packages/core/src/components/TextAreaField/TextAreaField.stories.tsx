@@ -5,8 +5,8 @@ import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IFieldBaseVariant } from '~/components/FieldBase';
 import type { ITextAreaFieldProps } from './TextAreaField.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
-import { px } from '~/helpers/styles/px';
+import { px } from '~/utils/css/px';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { TextAreaField } from './TextAreaField';
 
 const meta = {

@@ -2,10 +2,9 @@ import type { IRichTooltipContentThemeFactory } from './RichTooltipContent.css';
 import type { IRichTooltipContentFactory } from './RichTooltipContent.types';
 import { Flex } from '~/components/Flex';
 import { Paper } from '~/components/Paper';
-import { isFunction } from '~/helpers/isFunction';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { isFunction } from '~/utils/isFunction';
 import { COMPONENT_NAME } from './RichTooltipContent.constants';
 import { richTooltipContentTheme } from './RichTooltipContent.css';
 

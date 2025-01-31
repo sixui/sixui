@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import type { IOrientation, ISize } from '~/helpers/types';
+import type { IOrientation, ISize } from '~/utils/types';
 
 export type IUseElementSizeProps = {
   ref: React.RefObject<HTMLElement | null>;

@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-import type { IColorPalette } from '~/components/ColorPickerContent';
+import { IColorPalette } from '~/utils/types';
 
 export type IColorPaletteGroupContextValue = {
   customPalette?: IColorPalette;

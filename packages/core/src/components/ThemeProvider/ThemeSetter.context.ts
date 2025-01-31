@@ -1,6 +1,6 @@
 import type { PartialDeep } from 'type-fest';
 
-import { createSafeContext } from '~/helpers/createSafeContext';
+import { createSafeContext } from '~/utils/react/createSafeContext';
 import { ITheme } from './theme.types';
 
 export type IThemeSetterContextValue = {

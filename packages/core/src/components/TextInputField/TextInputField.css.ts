@@ -1,11 +1,11 @@
 import type { IFieldBaseVariant } from '~/components/FieldBase';
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { FieldBase } from '~/components/FieldBase';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
 import { COMPONENT_NAME } from './TextInputField.constants';
 
 type IModifier = 'disabled' | 'with-error' | 'no-spinner';
@@ -110,19 +110,19 @@ const classNames = createStyles({
       '&::-webkit-search-cancel-button': {
         display: 'none',
       },
-      [getModifierSelector<IModifier>('with-error', root)]: {
+      [modifierSelector<IModifier>('with-error', root)]: {
         caretColor: tokens.caret.color.error,
       },
-      [`${getModifierSelector<IModifier>('disabled', root)}::placeholder`]: {
+      [`${modifierSelector<IModifier>('disabled', root)}::placeholder`]: {
         WebkitTextFillColor: tokens.placeholder.color.disabled,
         color: tokens.placeholder.color.disabled,
         opacity: tokens.placeholder.opacity.disabled,
       },
-      [`${getModifierSelector<IModifier>('no-spinner', root)}::-webkit-inner-spin-button`]:
+      [`${modifierSelector<IModifier>('no-spinner', root)}::-webkit-inner-spin-button`]:
         {
           display: 'none',
         },
-      [`${getModifierSelector<IModifier>('no-spinner', root)}::-webkit-outer-spin-button`]:
+      [`${modifierSelector<IModifier>('no-spinner', root)}::-webkit-outer-spin-button`]:
         {
           display: 'none',
         },

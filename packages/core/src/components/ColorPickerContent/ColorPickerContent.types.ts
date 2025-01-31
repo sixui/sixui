@@ -1,14 +1,12 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IPaperBaseOwnProps } from '~/components/PaperBase';
-import type { IMaybeAsync } from '~/helpers/types';
+import type { IComponentThemeProps } from '~/components/ThemeProvider';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+import type { IColorPalette, IMaybeAsync } from '~/utils/types';
 import type {
   colorPickerContentTheme,
   IColorPickerContentThemeFactory,
 } from './ColorPickerContent.css';
-
-export type IColorPalette = Array<string>;
 
 export interface IColorPickerContentOwnProps {
   selectedColor?: string;

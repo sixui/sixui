@@ -11,7 +11,7 @@ import type { INavigationDrawerSectionProps } from './NavigationDrawerSection.ty
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Flex } from '~/components/Flex';
 import { Paper } from '~/components/Paper';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { NavigationDrawerSection } from './NavigationDrawerSection';
 
 const meta = {

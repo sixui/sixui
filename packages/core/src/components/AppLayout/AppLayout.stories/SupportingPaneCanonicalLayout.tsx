@@ -4,9 +4,9 @@ import { AppLayout } from '~/components/AppLayout';
 import { BottomSheet } from '~/components/BottomSheet';
 import { Box } from '~/components/Box';
 import { Flex } from '~/components/Flex';
-import { isFunction } from '~/helpers/isFunction';
 import { useCanonicalLayout } from '~/hooks/useCanonicalLayout';
 import { useToggle } from '~/hooks/useToggle';
+import { isFunction } from '~/utils/isFunction';
 
 export interface ISupportingPaneCanonicalLayoutFocusPaneRendererProps {
   hasBottomSheet: boolean;

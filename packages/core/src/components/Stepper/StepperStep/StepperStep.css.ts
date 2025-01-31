@@ -1,25 +1,25 @@
 import { fallbackVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { Button } from '~/components/Button';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getDensity } from '~/helpers/styles/getDensity';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { density } from '~/utils/css/density';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { px } from '~/utils/css/px';
+import { space } from '~/utils/css/space';
+import { typography } from '~/utils/css/typography';
 import { stepperTheme } from '../Stepper.css';
 import { COMPONENT_NAME } from './StepperStep.constants';
 import { StepperStepIndicator } from './StepperStepIndicator';
 
 type IModifier = 'orientation' | 'label-position';
 
-const DENSITY = px(getDensity({ min: -2, max: 0 }));
+const DENSITY = px(density({ min: -2, max: 0 }));
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
@@ -83,7 +83,7 @@ const classNames = createStyles({
     position: 'relative',
 
     selectors: {
-      [getModifierSelector<IModifier>({ 'label-position': 'bottom' }, root)]: {
+      [modifierSelector<IModifier>({ 'label-position': 'bottom' }, root)]: {
         flexGrow: 1,
         justifyContent: 'center',
       },
@@ -102,7 +102,7 @@ const classNames = createStyles({
     ),
 
     selectors: {
-      [getModifierSelector<IModifier>({ 'label-position': 'bottom' }, root)]: {
+      [modifierSelector<IModifier>({ 'label-position': 'bottom' }, root)]: {
         flexDirection: 'column',
       },
     },
@@ -115,7 +115,7 @@ const classNames = createStyles({
     gap: px(space(2)),
     textAlign: 'start',
 
-    vars: createTokensVars(Button.theme.tokens, {
+    vars: overrideTokens(Button.theme.tokens, {
       container: {
         shape: tokens.container.shape,
         color: {
@@ -136,7 +136,7 @@ const classNames = createStyles({
     }),
 
     selectors: {
-      [getModifierSelector<IModifier>({ 'label-position': 'bottom' }, root)]: {
+      [modifierSelector<IModifier>({ 'label-position': 'bottom' }, root)]: {
         flexDirection: 'column',
         gap: calc.add(px(space(1)), DENSITY),
         textAlign: 'center',
@@ -144,14 +144,14 @@ const classNames = createStyles({
     },
   }),
   indicator: {
-    vars: createTokensVars(StepperStepIndicator.theme.tokens, {
+    vars: overrideTokens(StepperStepIndicator.theme.tokens, {
       container: {
         size: tokens.indicator.size,
       },
     }),
   },
   supportingText: {
-    ...getTypographyStyles(tokens.supportingText.typography),
+    ...typography(tokens.supportingText.typography),
     color: tokens.supportingText.color.normal,
   },
   extensibleConnectorContainer: ({ root }) => ({
@@ -161,11 +161,11 @@ const classNames = createStyles({
     flexShrink: 0,
 
     selectors: {
-      [getModifierSelector<IModifier>({ orientation: 'horizontal' }, root)]: {
+      [modifierSelector<IModifier>({ orientation: 'horizontal' }, root)]: {
         alignItems: 'center',
         minWidth: tokens.connector.minLength,
       },
-      [getModifierSelector<IModifier>({ orientation: 'vertical' }, root)]: {
+      [modifierSelector<IModifier>({ orientation: 'vertical' }, root)]: {
         alignItems: 'stretch',
         minHeight: tokens.connector.minLength,
       },
@@ -179,7 +179,7 @@ const classNames = createStyles({
     borderRadius: 'inherit',
 
     selectors: {
-      [getModifierSelector<IModifier>(
+      [modifierSelector<IModifier>(
         {
           orientation: 'horizontal',
         },
@@ -188,7 +188,7 @@ const classNames = createStyles({
         flexDirection: 'row',
         borderRadius: tokens.connector.shape,
       },
-      [getModifierSelector<IModifier>(
+      [modifierSelector<IModifier>(
         {
           orientation: 'horizontal',
           'label-position': 'right',
@@ -222,7 +222,7 @@ const classNames = createStyles({
           tokens.connector.space,
         ),
       },
-      [getModifierSelector<IModifier>(
+      [modifierSelector<IModifier>(
         {
           orientation: 'horizontal',
           'label-position': 'bottom',
@@ -343,7 +343,7 @@ const classNames = createStyles({
   },
   contentText: {
     color: tokens.content.color,
-    ...getTypographyStyles(tokens.content.typography),
+    ...typography(tokens.content.typography),
     paddingLeft: calc.add(
       tokens.container.leadingSpace,
       tokens.indicator.size,

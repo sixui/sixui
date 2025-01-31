@@ -1,9 +1,8 @@
 import type { IScrimThemeFactory } from './Scrim.css';
 import type { IScrimFactory } from './Scrim.types';
 import { Box } from '~/components/Box';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { COMPONENT_NAME } from './Scrim.constants';
 import { scrimTheme } from './Scrim.css';
 

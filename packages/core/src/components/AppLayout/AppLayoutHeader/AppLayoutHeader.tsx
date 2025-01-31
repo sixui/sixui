@@ -1,9 +1,8 @@
 import type { IAppLayoutHeaderThemeFactory } from './AppLayoutHeader.css';
 import type { IAppLayoutHeaderFactory } from './AppLayoutHeader.types';
 import { Paper } from '~/components/Paper';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { COMPONENT_NAME } from './AppLayoutHeader.constants';
 import { appLayoutHeaderTheme } from './AppLayoutHeader.css';
 

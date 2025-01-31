@@ -1,10 +1,9 @@
 import type { IFabThemeFactory } from './Fab.css';
 import type { IFabFactory } from './Fab.types';
 import { Button } from '~/components/Button';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { mergeClassNames } from '~/utils/styles/mergeClassNames';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { COMPONENT_NAME } from './Fab.constants';
 import { fabTheme, fabThemeVariants } from './Fab.css';
 

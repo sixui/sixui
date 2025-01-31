@@ -3,10 +3,9 @@ import type { ICheckboxIndicatorFactory } from './CheckboxIndicator.types';
 import { Checkmark } from '~/components/Checkmark';
 import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
 import { PaperBase } from '~/components/PaperBase';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { usePrevious } from '~/hooks/usePrevious';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { COMPONENT_NAME } from './CheckboxIndicator.constants';
 import { checkboxIndicatorTheme } from './CheckboxIndicator.css';
 

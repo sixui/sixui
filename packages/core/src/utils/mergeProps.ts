@@ -1,7 +1,7 @@
 import cx from 'clsx';
 import { UnionToIntersection } from 'type-fest';
 
-import type { IAny } from '~/helpers/types';
+import type { IAny } from '~/utils/types';
 import { chain } from './chain';
 import { mergeRefs } from './mergeRefs';
 

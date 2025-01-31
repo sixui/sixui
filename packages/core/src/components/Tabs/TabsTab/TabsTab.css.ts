@@ -1,20 +1,20 @@
 import { fallbackVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import type { ITabsTabVariant } from './TabsTab.types';
 import { Button } from '~/components/Button';
 import { FocusRing } from '~/components/FocusRing';
 import { StateLayer } from '~/components/StateLayer';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getDensity } from '~/helpers/styles/getDensity';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { density } from '~/utils/css/density';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { px } from '~/utils/css/px';
+import { space } from '~/utils/css/space';
 import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
 import { COMPONENT_NAME } from './TabsTab.constants';
 
@@ -26,7 +26,7 @@ type IModifier =
   | 'with-anchored-badge'
   | 'active';
 
-const DENSITY = px(getDensity({ min: -4, max: 0 }));
+const DENSITY = px(density({ min: -4, max: 0 }));
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
@@ -129,7 +129,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
 
 const classNames = createStyles({
   root: {
-    vars: createTokensVars(Button.theme.tokens, {
+    vars: overrideTokens(Button.theme.tokens, {
       container: {
         shape: tokens.container.shape,
         minHeight: calc.add(tokens.container.height.normal, DENSITY),
@@ -181,8 +181,8 @@ const classNames = createStyles({
     }),
 
     selectors: {
-      [getModifierSelector<IModifier>('active')]: {
-        vars: createTokensVars(Button.theme.tokens, {
+      [modifierSelector<IModifier>('active')]: {
+        vars: overrideTokens(Button.theme.tokens, {
           container: {
             color: {
               normal: fallbackVar(
@@ -216,10 +216,10 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>(['with-icon', 'with-label'])]: {
+      [modifierSelector<IModifier>(['with-icon', 'with-label'])]: {
         height: calc.add(tokens.container.height.withIconAndLabel, DENSITY),
 
-        vars: createTokensVars(Button.theme.tokens, {
+        vars: overrideTokens(Button.theme.tokens, {
           container: {
             minHeight: 'unset',
           },
@@ -228,7 +228,7 @@ const classNames = createStyles({
     },
   },
   stateLayer: ({ root }) => ({
-    vars: createTokensVars(StateLayer.theme.tokens, {
+    vars: overrideTokens(StateLayer.theme.tokens, {
       color: {
         hovered: tokens.stateLayer.color.hovered,
         pressed: tokens.stateLayer.color.pressed,
@@ -240,8 +240,8 @@ const classNames = createStyles({
     }),
 
     selectors: {
-      [getModifierSelector<IModifier>('active', root)]: {
-        vars: createTokensVars(StateLayer.theme.tokens, {
+      [modifierSelector<IModifier>('active', root)]: {
+        vars: overrideTokens(StateLayer.theme.tokens, {
           color: {
             hovered: fallbackVar(
               tokens.stateLayer$active.color.hovered,
@@ -277,13 +277,13 @@ const classNames = createStyles({
     opacity: 0,
 
     selectors: {
-      [getModifierSelector<IModifier>('active', root)]: {
+      [modifierSelector<IModifier>('active', root)]: {
         opacity: 1,
       },
-      [getModifierSelector<IModifier>(['active', 'disabled'], root)]: {
+      [modifierSelector<IModifier>(['active', 'disabled'], root)]: {
         opacity: tokens.activeIndicator.opacity.disabled,
       },
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         backgroundColor: tokens.activeIndicator.color.disabled,
       },
     },
@@ -291,7 +291,7 @@ const classNames = createStyles({
 
   label: ({ root }) => ({
     selectors: {
-      [getModifierSelector<IModifier>('with-inline-badge', root)]: {
+      [modifierSelector<IModifier>('with-inline-badge', root)]: {
         marginRight: px(space(1)),
         verticalAlign: 'middle',
       },
@@ -318,7 +318,7 @@ export const tabsTabThemeVariants = {
       flexDirection: 'column',
       gap: px(space(1)),
 
-      vars: createTokensVars(tokens, {
+      vars: overrideTokens(tokens, {
         container: {
           height: {
             withIconAndLabel: px(64),
@@ -340,7 +340,7 @@ export const tabsTabThemeVariants = {
       marginRight: px(space(4)),
     },
     focusRing: {
-      vars: createTokensVars(FocusRing.theme.tokens, {
+      vars: overrideTokens(FocusRing.theme.tokens, {
         shape: px(themeTokens.shape.corner.sm),
         offset: {
           inward: `0 0 ${px(calc.add(themeTokens.outline.width.md, '1px'))} 0`,
@@ -350,7 +350,7 @@ export const tabsTabThemeVariants = {
   }),
   secondary: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
+      vars: overrideTokens(tokens, {
         icon$active: {
           color: {
             normal: themeTokens.colorScheme.onSurface,
@@ -364,8 +364,8 @@ export const tabsTabThemeVariants = {
       }),
 
       selectors: {
-        [getModifierSelector<IModifier>(['with-icon', 'with-label'])]: {
-          vars: createTokensVars(Button.theme.tokens, {
+        [modifierSelector<IModifier>(['with-icon', 'with-label'])]: {
+          vars: overrideTokens(Button.theme.tokens, {
             icon: {
               labelSpace: px(space(2)),
             },
@@ -374,7 +374,7 @@ export const tabsTabThemeVariants = {
       },
     },
     focusRing: {
-      vars: createTokensVars(FocusRing.theme.tokens, {
+      vars: overrideTokens(FocusRing.theme.tokens, {
         shape: px(themeTokens.shape.corner.sm),
         offset: {
           inward: `0 0 ${px(calc.add(themeTokens.outline.width.sm, '1px'))} 0`,

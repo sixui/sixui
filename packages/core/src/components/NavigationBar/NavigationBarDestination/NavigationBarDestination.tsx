@@ -1,9 +1,8 @@
 import type { INavigationBarDestinationThemeFactory } from './NavigationBarDestination.css';
 import type { INavigationBarDestinationFactory } from './NavigationBarDestination.types';
 import { NavigationRailDestination } from '~/components/NavigationRail/NavigationRailDestination';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { COMPONENT_NAME } from './NavigationBarDestination.constants';
 import { navigationBarDestinationTheme } from './NavigationBarDestination.css';
 

@@ -27,14 +27,13 @@ import type { IMenuLeafThemeFactory } from './MenuLeaf.css';
 import type { IMenuLeafFactory } from './MenuLeaf.types';
 import { Motion } from '~/components/Motion';
 import { Portal } from '~/components/Portal';
-import { isFunction } from '~/helpers/isFunction';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
+import { isFunction } from '~/utils/isFunction';
 import { mergeProps } from '~/utils/mergeProps';
 import { objectFromPlacement } from '~/utils/objectFromPlacement';
 import { stringFromPlacement } from '~/utils/stringFromPlacement';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import {
   MenuItemContextProvider,
   useMenuItemContext,

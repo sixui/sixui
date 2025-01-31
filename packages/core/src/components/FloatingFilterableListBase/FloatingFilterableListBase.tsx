@@ -26,15 +26,15 @@ import type { IFloatingFilterableListBaseFactory } from './FloatingFilterableLis
 import { filterableListBaseFactory } from '~/components/FilterableListBase';
 import { Motion } from '~/components/Motion';
 import { Portal } from '~/components/Portal';
-import { isFunction } from '~/helpers/isFunction';
-import { IElementProps } from '~/helpers/types';
+import { useProps } from '~/components/ThemeProvider';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { usePrevious } from '~/hooks/usePrevious';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { useProps } from '~/utils/component/useProps';
+import { isFunction } from '~/utils/isFunction';
 import { mergeProps } from '~/utils/mergeProps';
 import { objectFromPlacement } from '~/utils/objectFromPlacement';
+import { IElementProps } from '~/utils/types';
 import { COMPONENT_NAME } from './FloatingFilterableListBase.constants';
 import { floatingFilterableListBaseClassNames } from './FloatingFilterableListBase.css';
 

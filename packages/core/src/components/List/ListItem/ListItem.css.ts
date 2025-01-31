@@ -2,21 +2,21 @@ import { fallbackVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IInteraction } from '~/hooks/useInteractions';
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import type { IListItemVariant } from './ListItem.types';
 import { ButtonBase } from '~/components/ButtonBase';
 import { Item } from '~/components/Item';
 import { PaperBase } from '~/components/PaperBase';
 import { StateLayer } from '~/components/StateLayer';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getDensity } from '~/helpers/styles/getDensity';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { density } from '~/utils/css/density';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { px } from '~/utils/css/px';
+import { space } from '~/utils/css/space';
 import { COMPONENT_NAME } from './ListItem.constants';
 
 type IModifier =
@@ -28,7 +28,7 @@ type IModifier =
   | 'with-start-slot'
   | 'with-end-slot';
 
-const DENSITY = px(getDensity({ min: -6, max: 2 }));
+const DENSITY = px(density({ min: -6, max: 2 }));
 
 const slotTokens = {
   color: {
@@ -133,28 +133,28 @@ const classNames = createStyles({
     textAlign: 'start',
 
     vars: {
-      ...createTokensVars(ButtonBase.theme.tokens, {
+      ...overrideTokens(ButtonBase.theme.tokens, {
         container: {
           shape: tokens.container.shape,
         },
       }),
-      ...createTokensVars(PaperBase.theme.tokens, {
+      ...overrideTokens(PaperBase.theme.tokens, {
         container: {
           color: tokens.container.color.normal.regular,
         },
       }),
     },
     selectors: {
-      [getModifierSelector<IModifier>('disabled')]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [modifierSelector<IModifier>('disabled')]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: tokens.container.color.disabled,
             opacity: tokens.container.opacity.disabled,
           },
         }),
       },
-      [getModifierSelector<IModifier>('selected')]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [modifierSelector<IModifier>('selected')]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: fallbackVar(
               tokens.container.color.normal.selected,
@@ -174,7 +174,7 @@ const classNames = createStyles({
     paddingInlineEnd: tokens.container.trailingSpace.normal,
     WebkitTapHighlightColor: 'transparent',
 
-    vars: createTokensVars(Item.theme.tokens, {
+    vars: overrideTokens(Item.theme.tokens, {
       nonText: {
         color: fallbackVar(
           tokens.nonText.color.normal.regular,
@@ -205,20 +205,20 @@ const classNames = createStyles({
     }),
 
     selectors: {
-      [getModifierSelector<IModifier>('with-start-slot', root)]: {
+      [modifierSelector<IModifier>('with-start-slot', root)]: {
         paddingInlineStart: tokens.container.leadingSpace.withStart,
       },
-      [getModifierSelector<IModifier>('with-end-slot', root)]: {
+      [modifierSelector<IModifier>('with-end-slot', root)]: {
         paddingInlineEnd: tokens.container.trailingSpace.withEnd,
       },
-      [getModifierSelector<IModifier>('with-leading', root)]: {
+      [modifierSelector<IModifier>('with-leading', root)]: {
         paddingInlineStart: '0px',
       },
-      [getModifierSelector<IModifier>('with-trailing', root)]: {
+      [modifierSelector<IModifier>('with-trailing', root)]: {
         paddingInlineEnd: '0px',
       },
-      [getModifierSelector<IModifier>('selected', root)]: {
-        vars: createTokensVars(Item.theme.tokens, {
+      [modifierSelector<IModifier>('selected', root)]: {
+        vars: overrideTokens(Item.theme.tokens, {
           nonText: {
             color: fallbackVar(
               tokens.nonText.color.normal.selected,
@@ -248,8 +248,8 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>('disabled', root)]: {
-        vars: createTokensVars(Item.theme.tokens, {
+      [modifierSelector<IModifier>('disabled', root)]: {
+        vars: overrideTokens(Item.theme.tokens, {
           nonText: {
             color: fallbackVar(
               tokens.nonText.color.disabled,
@@ -297,8 +297,8 @@ const classNames = createStyles({
         }),
       },
 
-      [getModifierSelector<IModifier>('focused', root)]: {
-        vars: createTokensVars(Item.theme.tokens, {
+      [modifierSelector<IModifier>('focused', root)]: {
+        vars: overrideTokens(Item.theme.tokens, {
           nonText: {
             color: fallbackVar(
               tokens.nonText.color.focused.regular,
@@ -339,8 +339,8 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>(['focused', 'selected'], root)]: {
-        vars: createTokensVars(Item.theme.tokens, {
+      [modifierSelector<IModifier>(['focused', 'selected'], root)]: {
+        vars: overrideTokens(Item.theme.tokens, {
           nonText: {
             color: fallbackVar(
               tokens.nonText.color.focused.selected,
@@ -382,8 +382,8 @@ const classNames = createStyles({
         }),
       },
 
-      [getModifierSelector<IModifier>('hovered', root)]: {
-        vars: createTokensVars(Item.theme.tokens, {
+      [modifierSelector<IModifier>('hovered', root)]: {
+        vars: overrideTokens(Item.theme.tokens, {
           nonText: {
             color: fallbackVar(
               tokens.nonText.color.hovered.regular,
@@ -424,8 +424,8 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>(['hovered', 'selected'], root)]: {
-        vars: createTokensVars(Item.theme.tokens, {
+      [modifierSelector<IModifier>(['hovered', 'selected'], root)]: {
+        vars: overrideTokens(Item.theme.tokens, {
           nonText: {
             color: fallbackVar(
               tokens.nonText.color.hovered.selected,
@@ -467,8 +467,8 @@ const classNames = createStyles({
         }),
       },
 
-      [getModifierSelector<IModifier>('pressed', root)]: {
-        vars: createTokensVars(Item.theme.tokens, {
+      [modifierSelector<IModifier>('pressed', root)]: {
+        vars: overrideTokens(Item.theme.tokens, {
           nonText: {
             color: fallbackVar(
               tokens.nonText.color.pressed.regular,
@@ -509,8 +509,8 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>(['pressed', 'selected'], root)]: {
-        vars: createTokensVars(Item.theme.tokens, {
+      [modifierSelector<IModifier>(['pressed', 'selected'], root)]: {
+        vars: overrideTokens(Item.theme.tokens, {
           nonText: {
             color: fallbackVar(
               tokens.nonText.color.pressed.selected,
@@ -554,7 +554,7 @@ const classNames = createStyles({
     },
   }),
   stateLayer: ({ root }) => ({
-    vars: createTokensVars(StateLayer.theme.tokens, {
+    vars: overrideTokens(StateLayer.theme.tokens, {
       color: {
         hovered: tokens.stateLayer.color.hovered.regular,
         pressed: tokens.stateLayer.color.pressed.regular,
@@ -566,8 +566,8 @@ const classNames = createStyles({
     }),
 
     selectors: {
-      [getModifierSelector<IModifier>('selected', root)]: {
-        vars: createTokensVars(StateLayer.theme.tokens, {
+      [modifierSelector<IModifier>('selected', root)]: {
+        vars: overrideTokens(StateLayer.theme.tokens, {
           color: {
             hovered: tokens.stateLayer.color.hovered.selected,
             pressed: tokens.stateLayer.color.pressed.selected,
@@ -596,21 +596,21 @@ const classNames = createStyles({
     blockSize: tokens.leadingIcon.size,
 
     selectors: {
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         color: fallbackVar(
           tokens.leadingIcon.color.disabled,
           tokens.nonText.color.disabled,
         ),
       },
 
-      [getModifierSelector<IModifier>('selected', root)]: {
+      [modifierSelector<IModifier>('selected', root)]: {
         color: fallbackVar(
           tokens.leadingIcon.color.normal.selected,
           tokens.nonText.color.normal.selected,
         ),
       },
 
-      [getModifierSelector<IModifier>('focused', root)]: {
+      [modifierSelector<IModifier>('focused', root)]: {
         color: fallbackVar(
           tokens.leadingIcon.color.focused.regular,
           tokens.leadingIcon.color.normal.regular,
@@ -618,7 +618,7 @@ const classNames = createStyles({
           tokens.nonText.color.normal.regular,
         ),
       },
-      [getModifierSelector<IModifier>(['focused', 'selected'], root)]: {
+      [modifierSelector<IModifier>(['focused', 'selected'], root)]: {
         color: fallbackVar(
           tokens.leadingIcon.color.focused.selected,
           tokens.leadingIcon.color.normal.selected,
@@ -627,7 +627,7 @@ const classNames = createStyles({
         ),
       },
 
-      [getModifierSelector<IModifier>('hovered', root)]: {
+      [modifierSelector<IModifier>('hovered', root)]: {
         color: fallbackVar(
           tokens.leadingIcon.color.hovered.regular,
           tokens.leadingIcon.color.normal.regular,
@@ -635,7 +635,7 @@ const classNames = createStyles({
           tokens.nonText.color.normal.regular,
         ),
       },
-      [getModifierSelector<IModifier>(['hovered', 'selected'], root)]: {
+      [modifierSelector<IModifier>(['hovered', 'selected'], root)]: {
         color: fallbackVar(
           tokens.leadingIcon.color.hovered.selected,
           tokens.leadingIcon.color.normal.selected,
@@ -644,7 +644,7 @@ const classNames = createStyles({
         ),
       },
 
-      [getModifierSelector<IModifier>('pressed', root)]: {
+      [modifierSelector<IModifier>('pressed', root)]: {
         color: fallbackVar(
           tokens.leadingIcon.color.pressed.regular,
           tokens.leadingIcon.color.normal.regular,
@@ -652,7 +652,7 @@ const classNames = createStyles({
           tokens.nonText.color.normal.regular,
         ),
       },
-      [getModifierSelector<IModifier>(['pressed', 'selected'], root)]: {
+      [modifierSelector<IModifier>(['pressed', 'selected'], root)]: {
         color: fallbackVar(
           tokens.leadingIcon.color.pressed.selected,
           tokens.leadingIcon.color.normal.selected,
@@ -675,21 +675,21 @@ const classNames = createStyles({
     blockSize: tokens.trailingIcon.size,
 
     selectors: {
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         color: fallbackVar(
           tokens.trailingIcon.color.disabled,
           tokens.nonText.color.disabled,
         ),
       },
 
-      [getModifierSelector<IModifier>('selected', root)]: {
+      [modifierSelector<IModifier>('selected', root)]: {
         color: fallbackVar(
           tokens.trailingIcon.color.normal.selected,
           tokens.nonText.color.normal.selected,
         ),
       },
 
-      [getModifierSelector<IModifier>('focused', root)]: {
+      [modifierSelector<IModifier>('focused', root)]: {
         color: fallbackVar(
           tokens.trailingIcon.color.focused.regular,
           tokens.trailingIcon.color.normal.regular,
@@ -697,7 +697,7 @@ const classNames = createStyles({
           tokens.nonText.color.normal.regular,
         ),
       },
-      [getModifierSelector<IModifier>(['focused', 'selected'], root)]: {
+      [modifierSelector<IModifier>(['focused', 'selected'], root)]: {
         color: fallbackVar(
           tokens.trailingIcon.color.focused.selected,
           tokens.trailingIcon.color.normal.selected,
@@ -706,7 +706,7 @@ const classNames = createStyles({
         ),
       },
 
-      [getModifierSelector<IModifier>('hovered', root)]: {
+      [modifierSelector<IModifier>('hovered', root)]: {
         color: fallbackVar(
           tokens.trailingIcon.color.hovered.regular,
           tokens.trailingIcon.color.normal.regular,
@@ -714,7 +714,7 @@ const classNames = createStyles({
           tokens.nonText.color.normal.regular,
         ),
       },
-      [getModifierSelector<IModifier>(['hovered', 'selected'], root)]: {
+      [modifierSelector<IModifier>(['hovered', 'selected'], root)]: {
         color: fallbackVar(
           tokens.trailingIcon.color.hovered.selected,
           tokens.trailingIcon.color.normal.selected,
@@ -723,7 +723,7 @@ const classNames = createStyles({
         ),
       },
 
-      [getModifierSelector<IModifier>('pressed', root)]: {
+      [modifierSelector<IModifier>('pressed', root)]: {
         color: fallbackVar(
           tokens.trailingIcon.color.pressed.regular,
           tokens.trailingIcon.color.normal.regular,
@@ -731,7 +731,7 @@ const classNames = createStyles({
           tokens.nonText.color.normal.regular,
         ),
       },
-      [getModifierSelector<IModifier>(['pressed', 'selected'], root)]: {
+      [modifierSelector<IModifier>(['pressed', 'selected'], root)]: {
         color: fallbackVar(
           tokens.trailingIcon.color.pressed.selected,
           tokens.trailingIcon.color.normal.selected,
@@ -770,7 +770,7 @@ export const listItemTheme = componentThemeFactory<IListItemThemeFactory>({
 export const listItemVariants = {
   standard: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
+      vars: overrideTokens(tokens, {
         container: {
           color: {
             normal: {
@@ -807,7 +807,7 @@ export const listItemVariants = {
   }),
   danger: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
+      vars: overrideTokens(tokens, {
         container: {
           color: {
             normal: {

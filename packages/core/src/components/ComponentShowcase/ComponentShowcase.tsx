@@ -4,10 +4,9 @@ import type {
   IComponentShowcaseFactory,
 } from './ComponentShowcase.types';
 import { Box } from '~/components/Box';
-import { deepMerge } from '~/helpers/deepMerge';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { deepMerge } from '~/utils/deepMerge';
 import { COMPONENT_NAME } from './ComponentShowcase.constants';
 import { componentShowcaseTheme } from './ComponentShowcase.css';
 

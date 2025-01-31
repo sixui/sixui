@@ -5,13 +5,12 @@ import { Paper } from '~/components/Paper';
 import { useSixuiContext } from '~/components/SixuiProvider';
 import { StateLayer } from '~/components/StateLayer';
 import { useStateLayer } from '~/components/StateLayer/useStateLayer';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { TouchTarget } from '~/components/TouchTarget';
-import { isFunction } from '~/helpers/isFunction';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { useProps } from '~/utils/component/useProps';
+import { isFunction } from '~/utils/isFunction';
 import { mergeProps } from '~/utils/mergeProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { COMPONENT_NAME } from './ButtonBase.constants';
 import { buttonBaseTheme } from './ButtonBase.css';
 

@@ -1,9 +1,8 @@
 import { FloatingPortal } from '@floating-ui/react';
 
 import type { IPortalFactory } from './Portal.types';
-import { useThemeContext } from '~/components/ThemeProvider';
+import { useProps, useThemeContext } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
 import { COMPONENT_NAME } from './Portal.constants';
 
 export const Portal = componentFactory<IPortalFactory>((props) => {

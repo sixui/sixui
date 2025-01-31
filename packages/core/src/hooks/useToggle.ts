@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
 
-import type { IAny } from '~/helpers/types';
+import type { IAny } from '~/utils/types';
 
 export type IUseToggleResult<T = boolean> = readonly [
   T,

@@ -1,9 +1,8 @@
 import type { IDrawerThemeFactory } from './Drawer.css';
 import type { IDrawerFactory } from './Drawer.types';
 import { PopoverBase } from '~/components/PopoverBase';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { COMPONENT_NAME } from './Drawer.constants';
 import { drawerTheme, drawerThemeVariants } from './Drawer.css';
 

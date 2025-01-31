@@ -1,9 +1,9 @@
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { px } from '~/utils/css/px';
+import { space } from '~/utils/css/space';
 import { COMPONENT_NAME } from './CardActions.constants';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME);

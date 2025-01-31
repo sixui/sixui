@@ -7,11 +7,10 @@ import { iconCopyToCliboard } from '~/assets/icons';
 import { Button } from '~/components/Button';
 import { PlainTooltip } from '~/components/PlainTooltip';
 import { SvgIcon } from '~/components/SvgIcon';
-import { copyToClipboard } from '~/helpers/copyToClipboard';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { mergeClassNames } from '~/utils/styles/mergeClassNames';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { copyToClipboard } from '~/utils/copyToClipboard';
+import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { COMPONENT_NAME } from './CopyableText.constants';
 import { copyableTextTheme } from './CopyableText.css';
 

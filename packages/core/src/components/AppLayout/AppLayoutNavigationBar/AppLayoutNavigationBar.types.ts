@@ -1,8 +1,8 @@
 import type { IBoxProps } from '~/components/Box';
 import type { INavigationBarOwnProps } from '~/components/NavigationBar';
 import type { NavigationBarDestination } from '~/components/NavigationBar/NavigationBarDestination';
+import type { IComponentThemeProps } from '~/components/ThemeProvider';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type {
   appLayoutNavigationBarTheme,
   IAppLayoutNavigationBarThemeFactory,

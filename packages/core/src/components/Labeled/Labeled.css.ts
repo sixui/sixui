@@ -1,21 +1,21 @@
 import { fallbackVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getDensity } from '~/helpers/styles/getDensity';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { density } from '~/utils/css/density';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { px } from '~/utils/css/px';
+import { space } from '~/utils/css/space';
+import { typography } from '~/utils/css/typography';
 import { COMPONENT_NAME } from './Labeled.constants';
 
 type IModifier = 'disabled' | 'has-error' | 'horizontal';
 
-const DENSITY = px(getDensity({ min: -1, max: 0 }));
+const DENSITY = px(density({ min: -1, max: 0 }));
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   label: {
@@ -70,12 +70,12 @@ const classNames = createStyles({
     gap: calc.add(px(space(1)), DENSITY),
 
     selectors: {
-      [getModifierSelector<IModifier>('horizontal')]: {
+      [modifierSelector<IModifier>('horizontal')]: {
         flexDirection: 'row',
         alignItems: 'center',
         gap: px(space(3)),
       },
-      [getModifierSelector<IModifier>('disabled')]: {
+      [modifierSelector<IModifier>('disabled')]: {
         pointerEvents: 'none',
       },
     },
@@ -110,15 +110,15 @@ const classNames = createStyles({
     flexGrow: 1,
   },
   label: ({ root }) => ({
-    ...getTypographyStyles(tokens.label.typography),
+    ...typography(tokens.label.typography),
     color: tokens.label.color.normal,
     cursor: 'pointer',
 
     selectors: {
-      [getModifierSelector<IModifier>('has-error', root)]: {
+      [modifierSelector<IModifier>('has-error', root)]: {
         color: fallbackVar(tokens.label.color.error, tokens.label.color.normal),
       },
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         color: tokens.label.color.disabled,
         opacity: tokens.label.opacity.disabled,
         cursor: 'unset',
@@ -127,13 +127,13 @@ const classNames = createStyles({
   }),
   action: ({ root }) => ({
     flexGrow: 0,
-    ...getTypographyStyles(tokens.trailingAction.typography),
+    ...typography(tokens.trailingAction.typography),
     color: tokens.trailingAction.color.normal,
     display: 'flex',
     alignItems: 'center',
 
     selectors: {
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         color: tokens.trailingAction.color.disabled,
         opacity: tokens.trailingAction.opacity.disabled,
       },
@@ -141,17 +141,17 @@ const classNames = createStyles({
   }),
   supportingText: ({ root }) => ({
     flexGrow: 0,
-    ...getTypographyStyles(tokens.supportingText.typography),
+    ...typography(tokens.supportingText.typography),
     color: tokens.supportingText.color.normal,
 
     selectors: {
-      [getModifierSelector<IModifier>('has-error', root)]: {
+      [modifierSelector<IModifier>('has-error', root)]: {
         color: fallbackVar(
           tokens.supportingText.color.error,
           tokens.supportingText.color.normal,
         ),
       },
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         color: tokens.supportingText.color.disabled,
         opacity: tokens.supportingText.opacity.disabled,
       },
@@ -159,11 +159,11 @@ const classNames = createStyles({
   }),
   errorText: ({ root }) => ({
     flexGrow: 0,
-    ...getTypographyStyles(tokens.errorText.typography),
+    ...typography(tokens.errorText.typography),
     color: tokens.errorText.color.normal,
 
     selectors: {
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         color: tokens.errorText.color.disabled,
         opacity: tokens.errorText.opacity.disabled,
       },

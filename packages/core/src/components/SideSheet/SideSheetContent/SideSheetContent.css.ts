@@ -1,24 +1,24 @@
 import { calc } from '@vanilla-extract/css-utils';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import type { ISideSheetContentVariant } from './SideSheetContent.types';
 import { PaperBase } from '~/components/PaperBase';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getDensity } from '~/helpers/styles/getDensity';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { density } from '~/utils/css/density';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { px } from '~/utils/css/px';
+import { space } from '~/utils/css/space';
+import { typography } from '~/utils/css/typography';
 import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
 import { COMPONENT_NAME } from './SideSheetContent.constants';
 
 type IModifier = 'side' | 'with-divider' | 'with-leading-actions';
 
-const DENSITY = px(getDensity({ min: -4, max: 0 }));
+const DENSITY = px(density({ min: -4, max: 0 }));
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
@@ -61,7 +61,7 @@ const classNames = createStyles({
   root: {
     flexShrink: 0,
 
-    vars: createTokensVars(PaperBase.theme.tokens, {
+    vars: overrideTokens(PaperBase.theme.tokens, {
       container: {
         color: tokens.container.color,
         shape: tokens.container.shape,
@@ -70,12 +70,12 @@ const classNames = createStyles({
     }),
 
     selectors: {
-      [getModifierSelector<IModifier>(['with-divider', { side: 'left' }])]: {
+      [modifierSelector<IModifier>(['with-divider', { side: 'left' }])]: {
         borderRightWidth: tokens.divider.width,
         borderRightColor: tokens.divider.color,
         borderRightStyle: 'solid',
       },
-      [getModifierSelector<IModifier>(['with-divider', { side: 'right' }])]: {
+      [modifierSelector<IModifier>(['with-divider', { side: 'right' }])]: {
         borderLeftWidth: tokens.divider.width,
         borderLeftColor: tokens.divider.color,
         borderLeftStyle: 'solid',
@@ -107,7 +107,7 @@ const classNames = createStyles({
     gap: tokens.topElements.gap,
 
     selectors: {
-      [getModifierSelector<IModifier>('with-leading-actions', root)]: {
+      [modifierSelector<IModifier>('with-leading-actions', root)]: {
         paddingLeft: tokens.header.leadingSpace.withIcons,
       },
     },
@@ -123,7 +123,7 @@ const classNames = createStyles({
   headline: {
     flexGrow: 1,
     color: tokens.headline.color,
-    ...getTypographyStyles(tokens.headline.typography),
+    ...typography(tokens.headline.typography),
   },
   content: {
     height: '100%',
@@ -166,7 +166,7 @@ export const sideSheetContentThemeVariants = {
   standard: createStyles(),
   modal: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
+      vars: overrideTokens(tokens, {
         container: {
           color: themeTokens.colorScheme.surfaceContainerLow,
           elevation: elevationLevelPreset[1],
@@ -182,15 +182,15 @@ export const sideSheetContentThemeVariants = {
       }),
 
       selectors: {
-        [getModifierSelector<IModifier>({ side: 'left' })]: {
-          vars: createTokensVars(tokens, {
+        [modifierSelector<IModifier>({ side: 'left' })]: {
+          vars: overrideTokens(tokens, {
             container: {
               shape: `0 ${px(themeTokens.shape.corner.lg)} ${px(themeTokens.shape.corner.lg)} 0`,
             },
           }),
         },
-        [getModifierSelector<IModifier>({ side: 'right' })]: {
-          vars: createTokensVars(tokens, {
+        [modifierSelector<IModifier>({ side: 'right' })]: {
+          vars: overrideTokens(tokens, {
             container: {
               shape: `${px(themeTokens.shape.corner.lg)} 0 0 ${px(themeTokens.shape.corner.lg)}`,
             },
@@ -201,7 +201,7 @@ export const sideSheetContentThemeVariants = {
   }),
   detachedModal: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
+      vars: overrideTokens(tokens, {
         container: {
           color: themeTokens.colorScheme.surfaceContainerLow,
           elevation: elevationLevelPreset[1],
@@ -217,15 +217,15 @@ export const sideSheetContentThemeVariants = {
       }),
 
       selectors: {
-        [getModifierSelector<IModifier>({ side: 'left' })]: {
-          vars: createTokensVars(tokens, {
+        [modifierSelector<IModifier>({ side: 'left' })]: {
+          vars: overrideTokens(tokens, {
             container: {
               shape: themeTokens.shape.corner.lg,
             },
           }),
         },
-        [getModifierSelector<IModifier>({ side: 'right' })]: {
-          vars: createTokensVars(tokens, {
+        [modifierSelector<IModifier>({ side: 'right' })]: {
+          vars: overrideTokens(tokens, {
             container: {
               shape: themeTokens.shape.corner.lg,
             },

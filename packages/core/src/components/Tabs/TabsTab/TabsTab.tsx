@@ -5,11 +5,10 @@ import type { ITabsTabFactory } from './TabsTab.types';
 import { Anchored } from '~/components/Anchored';
 import { Button } from '~/components/Button';
 import { useTabsContext } from '~/components/Tabs/Tabs.context';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { mergeClassNames } from '~/utils/styles/mergeClassNames';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { COMPONENT_NAME } from './TabsTab.constants';
 import { tabsTabTheme, tabsTabThemeVariants } from './TabsTab.css';
 

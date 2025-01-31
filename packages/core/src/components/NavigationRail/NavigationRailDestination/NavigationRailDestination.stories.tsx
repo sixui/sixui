@@ -7,7 +7,7 @@ import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { INavigationRailDestinationProps } from './NavigationRailDestination.types';
 import { Badge } from '~/components/Badge';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { NavigationRailDestination } from './NavigationRailDestination';
 
 const meta = {

@@ -1,16 +1,16 @@
 import { fallbackVar } from '@vanilla-extract/css';
 
 import type { IInteraction } from '~/hooks/useInteractions';
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import type { ICardVariant } from './Card.types';
 import { PaperBase } from '~/components/PaperBase';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { px } from '~/helpers/styles/px';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { px } from '~/utils/css/px';
 import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
 import { COMPONENT_NAME } from './Card.constants';
 
@@ -64,7 +64,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
 
 const classNames = createStyles({
   root: {
-    vars: createTokensVars(PaperBase.theme.tokens, {
+    vars: overrideTokens(PaperBase.theme.tokens, {
       container: {
         shape: tokens.container.shape,
         color: tokens.container.color.normal,
@@ -76,8 +76,8 @@ const classNames = createStyles({
       },
     }),
     selectors: {
-      [getModifierSelector<IModifier>('focused')]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [modifierSelector<IModifier>('focused')]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: fallbackVar(
               tokens.container.color.focused,
@@ -100,8 +100,8 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>('hovered')]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [modifierSelector<IModifier>('hovered')]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: fallbackVar(
               tokens.container.color.hovered,
@@ -124,8 +124,8 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>('pressed')]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [modifierSelector<IModifier>('pressed')]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: fallbackVar(
               tokens.container.color.pressed,
@@ -148,8 +148,8 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>('dragged')]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [modifierSelector<IModifier>('dragged')]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: fallbackVar(
               tokens.container.color.dragged,
@@ -172,8 +172,8 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>('disabled')]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [modifierSelector<IModifier>('disabled')]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: tokens.container.color.disabled,
             elevation: tokens.container.elevation.disabled,
@@ -206,7 +206,7 @@ export const cardTheme = componentThemeFactory<ICardThemeFactory>({
 export const cardThemeVariants = {
   filled: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
+      vars: overrideTokens(tokens, {
         container: {
           color: {
             normal: themeTokens.colorScheme.surfaceContainerHighest,
@@ -225,7 +225,7 @@ export const cardThemeVariants = {
   }),
   elevated: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
+      vars: overrideTokens(tokens, {
         container: {
           color: {
             normal: themeTokens.colorScheme.surfaceContainerLow,
@@ -244,7 +244,7 @@ export const cardThemeVariants = {
   }),
   outlined: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
+      vars: overrideTokens(tokens, {
         container: {
           color: {
             normal: themeTokens.colorScheme.surface,

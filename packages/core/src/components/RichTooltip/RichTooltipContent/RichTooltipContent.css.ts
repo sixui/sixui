@@ -1,16 +1,16 @@
 import { calc } from '@vanilla-extract/css-utils';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { PaperBase } from '~/components/PaperBase';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { px } from '~/utils/css/px';
+import { space } from '~/utils/css/space';
+import { typography } from '~/utils/css/typography';
 import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
 import { COMPONENT_NAME } from './RichTooltipContent.constants';
 
@@ -43,7 +43,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
 
 const classNames = createStyles({
   root: {
-    vars: createTokensVars(PaperBase.theme.tokens, {
+    vars: overrideTokens(PaperBase.theme.tokens, {
       container: {
         color: tokens.container.color,
         elevation: tokens.container.elevation,
@@ -64,18 +64,18 @@ const classNames = createStyles({
     paddingBottom: tokens.container.bottomSpace.normal,
 
     selectors: {
-      [getModifierSelector<IModifier>('with-actions', root)]: {
+      [modifierSelector<IModifier>('with-actions', root)]: {
         paddingBottom: tokens.container.bottomSpace.withActions,
       },
     },
   }),
   subhead: {
     color: tokens.subhead.color,
-    ...getTypographyStyles(tokens.subhead.typography),
+    ...typography(tokens.subhead.typography),
   },
   supportingText: {
     color: tokens.supportingText.color,
-    ...getTypographyStyles(tokens.supportingText.typography),
+    ...typography(tokens.supportingText.typography),
   },
   actions: {
     paddingBottom: tokens.container.actionsBottomSpace,

@@ -1,13 +1,13 @@
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import type { ITextVariant } from './Text.types';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { px } from '~/utils/css/px';
+import { space } from '~/utils/css/space';
+import { typography } from '~/utils/css/typography';
 import { COMPONENT_NAME } from './Text.constants';
 
 type IModifier =
@@ -27,54 +27,54 @@ const classNames = createStyles({
     margin: 0,
 
     selectors: {
-      [getModifierSelector<IModifier>('dimmed')]: {
+      [modifierSelector<IModifier>('dimmed')]: {
         color: themeTokens.colorScheme.onSurfaceVariant,
       },
-      [getModifierSelector<IModifier>('truncate')]: {
+      [modifierSelector<IModifier>('truncate')]: {
         overflow: 'hidden',
         textOverflow: 'ellipsis',
         whiteSpace: 'nowrap',
       },
-      [getModifierSelector<IModifier>('line-clamp')]: {
+      [modifierSelector<IModifier>('line-clamp')]: {
         overflow: 'hidden',
         display: '-webkit-box',
         WebkitBoxOrient: 'vertical',
         hyphens: 'auto',
         WebkitLineClamp: tokens.lineClamp,
       },
-      [getModifierSelector<IModifier>('gutter-bottom')]: {
+      [modifierSelector<IModifier>('gutter-bottom')]: {
         marginBottom: px(space(1)),
       },
-      [getModifierSelector<IModifier>({ variant: 'display', size: 'lg' })]:
-        getTypographyStyles(themeTokens.typeScale.display.lg),
-      [getModifierSelector<IModifier>({ variant: 'display', size: 'md' })]:
-        getTypographyStyles(themeTokens.typeScale.display.md),
-      [getModifierSelector<IModifier>({ variant: 'display', size: 'sm' })]:
-        getTypographyStyles(themeTokens.typeScale.display.sm),
-      [getModifierSelector<IModifier>({ variant: 'headline', size: 'lg' })]:
-        getTypographyStyles(themeTokens.typeScale.headline.lg),
-      [getModifierSelector<IModifier>({ variant: 'headline', size: 'md' })]:
-        getTypographyStyles(themeTokens.typeScale.headline.md),
-      [getModifierSelector<IModifier>({ variant: 'headline', size: 'sm' })]:
-        getTypographyStyles(themeTokens.typeScale.headline.sm),
-      [getModifierSelector<IModifier>({ variant: 'title', size: 'lg' })]:
-        getTypographyStyles(themeTokens.typeScale.title.lg),
-      [getModifierSelector<IModifier>({ variant: 'title', size: 'md' })]:
-        getTypographyStyles(themeTokens.typeScale.title.md),
-      [getModifierSelector<IModifier>({ variant: 'title', size: 'sm' })]:
-        getTypographyStyles(themeTokens.typeScale.title.sm),
-      [getModifierSelector<IModifier>({ variant: 'body', size: 'lg' })]:
-        getTypographyStyles(themeTokens.typeScale.body.lg),
-      [getModifierSelector<IModifier>({ variant: 'body', size: 'md' })]:
-        getTypographyStyles(themeTokens.typeScale.body.md),
-      [getModifierSelector<IModifier>({ variant: 'body', size: 'sm' })]:
-        getTypographyStyles(themeTokens.typeScale.body.sm),
-      [getModifierSelector<IModifier>({ variant: 'label', size: 'lg' })]:
-        getTypographyStyles(themeTokens.typeScale.label.lg),
-      [getModifierSelector<IModifier>({ variant: 'label', size: 'md' })]:
-        getTypographyStyles(themeTokens.typeScale.label.md),
-      [getModifierSelector<IModifier>({ variant: 'label', size: 'sm' })]:
-        getTypographyStyles(themeTokens.typeScale.label.sm),
+      [modifierSelector<IModifier>({ variant: 'display', size: 'lg' })]:
+        typography(themeTokens.typeScale.display.lg),
+      [modifierSelector<IModifier>({ variant: 'display', size: 'md' })]:
+        typography(themeTokens.typeScale.display.md),
+      [modifierSelector<IModifier>({ variant: 'display', size: 'sm' })]:
+        typography(themeTokens.typeScale.display.sm),
+      [modifierSelector<IModifier>({ variant: 'headline', size: 'lg' })]:
+        typography(themeTokens.typeScale.headline.lg),
+      [modifierSelector<IModifier>({ variant: 'headline', size: 'md' })]:
+        typography(themeTokens.typeScale.headline.md),
+      [modifierSelector<IModifier>({ variant: 'headline', size: 'sm' })]:
+        typography(themeTokens.typeScale.headline.sm),
+      [modifierSelector<IModifier>({ variant: 'title', size: 'lg' })]:
+        typography(themeTokens.typeScale.title.lg),
+      [modifierSelector<IModifier>({ variant: 'title', size: 'md' })]:
+        typography(themeTokens.typeScale.title.md),
+      [modifierSelector<IModifier>({ variant: 'title', size: 'sm' })]:
+        typography(themeTokens.typeScale.title.sm),
+      [modifierSelector<IModifier>({ variant: 'body', size: 'lg' })]:
+        typography(themeTokens.typeScale.body.lg),
+      [modifierSelector<IModifier>({ variant: 'body', size: 'md' })]:
+        typography(themeTokens.typeScale.body.md),
+      [modifierSelector<IModifier>({ variant: 'body', size: 'sm' })]:
+        typography(themeTokens.typeScale.body.sm),
+      [modifierSelector<IModifier>({ variant: 'label', size: 'lg' })]:
+        typography(themeTokens.typeScale.label.lg),
+      [modifierSelector<IModifier>({ variant: 'label', size: 'md' })]:
+        typography(themeTokens.typeScale.label.md),
+      [modifierSelector<IModifier>({ variant: 'label', size: 'sm' })]:
+        typography(themeTokens.typeScale.label.sm),
     },
   },
 });

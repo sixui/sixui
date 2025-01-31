@@ -7,7 +7,7 @@ import { Button } from '~/components/Button';
 import { Checkbox } from '~/components/Checkbox';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Flex } from '~/components/Flex';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { CheckboxGroup } from './CheckboxGroup';
 
 interface ICheckboxGroupDemoProps extends ICheckboxGroupProps {

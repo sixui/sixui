@@ -1,7 +1,7 @@
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import type { IWindowSizeClassRange } from './getWindowSizeClassRanges';
-import { CSS_TRUE } from '~/helpers/styles/constants';
+import { CSS_TRUE } from '~/utils/css/constants';
 import { responsiveTheme } from '../Responsive.css';
 
 export const getSizesCssStyles = (

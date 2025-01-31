@@ -17,7 +17,7 @@ import type { ITabsProps } from './Tabs.types';
 import { Box } from '~/components/Box';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Text } from '~/components/Text';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { Tabs } from './Tabs';
 
 const meta = {

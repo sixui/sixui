@@ -8,7 +8,7 @@ import type { IFieldBaseProps, IFieldBaseVariant } from './FieldBase.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { IconButton } from '~/components/IconButton';
 import { Placeholder } from '~/components/Placeholder';
-import { px } from '~/helpers/styles/px';
+import { px } from '~/utils/css/px';
 import { FieldBase } from './FieldBase';
 
 // https://github.com/material-components/material-web/blob/main/field/demo/stories.ts

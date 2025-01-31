@@ -15,7 +15,7 @@ import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { ITabsTabProps } from '../TabsTab';
 import type { ITabsListProps } from './TabsList.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { TabsTab } from '../TabsTab';
 import { TabsList } from './TabsList';
 

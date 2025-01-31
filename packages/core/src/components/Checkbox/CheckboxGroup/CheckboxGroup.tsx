@@ -9,11 +9,11 @@ import {
 import type { ICheckboxGroupContextValue } from './CheckboxGroup.context';
 import type { ICheckboxGroupFactory } from './CheckboxGroup.types';
 import { Box } from '~/components/Box';
-import { executeLazyPromise } from '~/helpers/executeLazyPromise';
+import { useProps } from '~/components/ThemeProvider';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { useProps } from '~/utils/component/useProps';
+import { executeLazyPromise } from '~/utils/executeLazyPromise';
 import { COMPONENT_NAME } from './CheckboxGroup.constants';
 import { CheckboxGroupContextProvider } from './CheckboxGroup.context';
 

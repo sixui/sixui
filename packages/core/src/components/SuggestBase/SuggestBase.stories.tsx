@@ -5,7 +5,7 @@ import type { ISuggestBaseDemoProps } from './SuggestBase.stories/SuggestBaseDem
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { TOP_100_MOVIES } from '~/components/FilterableListBase/FilterableListBase.stories/movies';
 import { ListItem } from '~/components/List/ListItem';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { SuggestBaseDemo } from './SuggestBase.stories/SuggestBaseDemo';
 
 const meta = {

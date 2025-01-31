@@ -1,8 +1,8 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IButtonOwnProps } from '~/components/Button';
-import type { IOmit } from '~/helpers/types';
+import type { IComponentThemeProps } from '~/components/ThemeProvider';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+import type { IOmit } from '~/utils/types';
 import type {
   iconButtonTheme,
   IIconButtonThemeFactory,

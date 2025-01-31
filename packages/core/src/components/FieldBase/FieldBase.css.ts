@@ -1,20 +1,20 @@
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IInteraction } from '~/hooks/useInteractions';
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import type { IFieldBaseVariant } from './FieldBase.types';
 import { PaperBase } from '~/components/PaperBase';
 import { StateLayer } from '~/components/StateLayer';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getDensity } from '~/helpers/styles/getDensity';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { density } from '~/utils/css/density';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { px } from '~/utils/css/px';
+import { space } from '~/utils/css/space';
+import { typography } from '~/utils/css/typography';
 import { COMPONENT_NAME } from './FieldBase.constants';
 
 type IModifier =
@@ -42,7 +42,7 @@ const ENTER_DELAY = calc.subtract(
   CONTENT_ANIMATION_DURATION,
 );
 
-const DENSITY = px(getDensity({ min: -2, max: 0 }));
+const DENSITY = px(density({ min: -2, max: 0 }));
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   minHeight: px(56),
@@ -280,11 +280,11 @@ const classNames = createStyles({
     maxWidth: '100%',
 
     selectors: {
-      [getModifierSelector<IModifier>('disabled')]: {
+      [modifierSelector<IModifier>('disabled')]: {
         cursor: 'default',
         pointerEvents: 'none',
       },
-      [getModifierSelector<IModifier>('hovered')]: {
+      [modifierSelector<IModifier>('hovered')]: {
         cursor: 'pointer',
       },
     },
@@ -296,15 +296,15 @@ const classNames = createStyles({
     display: 'flex',
     height: '100%',
 
-    vars: createTokensVars(PaperBase.theme.tokens, {
+    vars: overrideTokens(PaperBase.theme.tokens, {
       container: {
         color: 'inherit',
         shape: `${px(themeTokens.shape.corner.xs)} ${px(themeTokens.shape.corner.xs)} 0 0`,
       },
     }),
     selectors: {
-      [getModifierSelector<IModifier>('disabled', root)]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [modifierSelector<IModifier>('disabled', root)]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: themeTokens.colorScheme.onSurface,
             opacity: themeTokens.state.containerOpacity.disabled,
@@ -326,7 +326,7 @@ const classNames = createStyles({
     position: 'relative',
 
     selectors: {
-      [getModifierSelector<IModifier>(['resizable', '!disabled'], root)]: {
+      [modifierSelector<IModifier>(['resizable', '!disabled'], root)]: {
         // `resize` is inherited from the host, but only applies to the
         // container when resizable.
         resize: 'inherit',
@@ -335,7 +335,7 @@ const classNames = createStyles({
         // overflowing content due to `resize` not allowing it.
         overflow: 'hidden',
       },
-      [getModifierSelector<IModifier>('disabled')]: {
+      [modifierSelector<IModifier>('disabled')]: {
         resize: 'none',
         overflow: 'visible',
       },
@@ -356,22 +356,22 @@ const classNames = createStyles({
     minWidth: tokens.leadingContent.minWidth,
 
     selectors: {
-      [getModifierSelector<IModifier>('with-error', root)]: {
+      [modifierSelector<IModifier>('with-error', root)]: {
         color: tokens.leadingContent.color.normal.error,
       },
-      [getModifierSelector<IModifier>('focused', root)]: {
+      [modifierSelector<IModifier>('focused', root)]: {
         color: tokens.leadingContent.color.focused.regular,
       },
-      [getModifierSelector<IModifier>(['focused', 'with-error'], root)]: {
+      [modifierSelector<IModifier>(['focused', 'with-error'], root)]: {
         color: tokens.leadingContent.color.focused.error,
       },
-      [getModifierSelector<IModifier>('hovered', root)]: {
+      [modifierSelector<IModifier>('hovered', root)]: {
         color: tokens.leadingContent.color.hovered.regular,
       },
-      [getModifierSelector<IModifier>(['hovered', 'with-error'], root)]: {
+      [modifierSelector<IModifier>(['hovered', 'with-error'], root)]: {
         color: tokens.leadingContent.color.hovered.error,
       },
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         color: tokens.leadingContent.color.disabled,
         opacity: tokens.leadingContent.opacity.disabled,
       },
@@ -385,22 +385,22 @@ const classNames = createStyles({
     minWidth: tokens.trailingContent.minWidth,
 
     selectors: {
-      [getModifierSelector<IModifier>('with-error', root)]: {
+      [modifierSelector<IModifier>('with-error', root)]: {
         color: tokens.trailingContent.color.normal.error,
       },
-      [getModifierSelector<IModifier>('focused', root)]: {
+      [modifierSelector<IModifier>('focused', root)]: {
         color: tokens.trailingContent.color.focused.regular,
       },
-      [getModifierSelector<IModifier>(['focused', 'with-error'], root)]: {
+      [modifierSelector<IModifier>(['focused', 'with-error'], root)]: {
         color: tokens.trailingContent.color.focused.error,
       },
-      [getModifierSelector<IModifier>('hovered', root)]: {
+      [modifierSelector<IModifier>('hovered', root)]: {
         color: tokens.trailingContent.color.hovered.regular,
       },
-      [getModifierSelector<IModifier>(['hovered', 'with-error'], root)]: {
+      [modifierSelector<IModifier>(['hovered', 'with-error'], root)]: {
         color: tokens.trailingContent.color.hovered.error,
       },
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         color: tokens.trailingContent.color.disabled,
         opacity: tokens.trailingContent.opacity.disabled,
       },
@@ -446,27 +446,27 @@ const classNames = createStyles({
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     zIndex: 1,
-    ...getTypographyStyles(tokens.label.typography.resting),
+    ...typography(tokens.label.typography.resting),
     width: 'min-content',
     color: tokens.label.color.normal.regular,
 
     selectors: {
-      [getModifierSelector<IModifier>('with-error', root)]: {
+      [modifierSelector<IModifier>('with-error', root)]: {
         color: tokens.label.color.normal.error,
       },
-      [getModifierSelector<IModifier>('hovered', root)]: {
+      [modifierSelector<IModifier>('hovered', root)]: {
         color: tokens.label.color.hovered.regular,
       },
-      [getModifierSelector<IModifier>(['hovered', 'with-error'], root)]: {
+      [modifierSelector<IModifier>(['hovered', 'with-error'], root)]: {
         color: tokens.label.color.hovered.error,
       },
-      [getModifierSelector<IModifier>('focused', root)]: {
+      [modifierSelector<IModifier>('focused', root)]: {
         color: tokens.label.color.focused.regular,
       },
-      [getModifierSelector<IModifier>(['focused', 'with-error'], root)]: {
+      [modifierSelector<IModifier>(['focused', 'with-error'], root)]: {
         color: tokens.label.color.focused.error,
       },
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         color: tokens.label.color.disabled,
         opacity: tokens.label.opacity.disabled,
       },
@@ -478,7 +478,7 @@ const classNames = createStyles({
     transform: 'translateY(-50%)',
   },
   label$floating: {
-    ...getTypographyStyles(tokens.label.typography.floating),
+    ...typography(tokens.label.typography.floating),
     transformOrigin: 'top left',
   },
   label$invisible: {
@@ -498,37 +498,37 @@ const classNames = createStyles({
     transitionDelay: 'unset',
 
     selectors: {
-      [getModifierSelector<IModifier>('with-error', root)]: {
+      [modifierSelector<IModifier>('with-error', root)]: {
         color: tokens.content.color.focused.error,
         WebkitTextFillColor: tokens.content.color.focused.error,
       },
-      [getModifierSelector<IModifier>('hovered', root)]: {
+      [modifierSelector<IModifier>('hovered', root)]: {
         color: tokens.content.color.hovered.regular,
         WebkitTextFillColor: tokens.content.color.hovered.regular,
       },
-      [getModifierSelector<IModifier>(['hovered', 'with-error'], root)]: {
+      [modifierSelector<IModifier>(['hovered', 'with-error'], root)]: {
         color: tokens.content.color.hovered.error,
         WebkitTextFillColor: tokens.content.color.hovered.error,
       },
-      [getModifierSelector<IModifier>('focused', root)]: {
+      [modifierSelector<IModifier>('focused', root)]: {
         color: tokens.content.color.focused.regular,
         WebkitTextFillColor: tokens.content.color.focused.regular,
       },
-      [getModifierSelector<IModifier>(['focused', 'with-error'], root)]: {
+      [modifierSelector<IModifier>(['focused', 'with-error'], root)]: {
         color: tokens.content.color.focused.error,
         WebkitTextFillColor: tokens.content.color.focused.error,
       },
       [[
-        getModifierSelector<IModifier>('focused', root),
-        getModifierSelector<IModifier>('!with-label', root),
-        getModifierSelector<IModifier>('populated', root),
+        modifierSelector<IModifier>('focused', root),
+        modifierSelector<IModifier>('!with-label', root),
+        modifierSelector<IModifier>('populated', root),
       ].join(', ')]: {
         opacity: 1,
         transitionDelay: ENTER_DELAY,
       },
       [[
-        getModifierSelector<IModifier>(['!with-label', 'disabled'], root),
-        getModifierSelector<IModifier>(['populated', 'disabled'], root),
+        modifierSelector<IModifier>(['!with-label', 'disabled'], root),
+        modifierSelector<IModifier>(['populated', 'disabled'], root),
       ].join(', ')]: {
         opacity: tokens.content.opacity.disabled,
       },
@@ -540,7 +540,7 @@ const classNames = createStyles({
     // below.
     display: 'flex',
     color: 'currentColor',
-    ...getTypographyStyles(tokens.content.typography),
+    ...typography(tokens.content.typography),
     width: '100%',
     // Reverting values before "all: unset"
     overflowWrap: 'revert', // Needed to break words in textarea
@@ -549,23 +549,23 @@ const classNames = createStyles({
     flexWrap: 'wrap', // To make the input/textarea go to new line when needed
 
     selectors: {
-      [getModifierSelector<IModifier>('!multiline', root)]: {
+      [modifierSelector<IModifier>('!multiline', root)]: {
         paddingTop: tokens.topSpace.normal,
         paddingBottom: tokens.bottomSpace.normal,
       },
-      [getModifierSelector<IModifier>('multiline', root)]: {
+      [modifierSelector<IModifier>('multiline', root)]: {
         // Use margin for textareas since they will scroll over the label if
         // not.
         marginTop: tokens.topSpace.normal,
         marginBottom: tokens.bottomSpace.normal,
       },
-      [getModifierSelector<IModifier>('!with-end-section', root)]: {
+      [modifierSelector<IModifier>('!with-end-section', root)]: {
         paddingInlineEnd: tokens.trailingSpace,
       },
     },
   }),
   stateLayer: ({ root }) => ({
-    vars: createTokensVars(StateLayer.theme.tokens, {
+    vars: overrideTokens(StateLayer.theme.tokens, {
       color: {
         hovered: tokens.stateLayer.color.hovered.regular,
         pressed: tokens.stateLayer.color.pressed.regular,
@@ -577,8 +577,8 @@ const classNames = createStyles({
     }),
 
     selectors: {
-      [getModifierSelector<IModifier>('with-error', root)]: {
-        vars: createTokensVars(StateLayer.theme.tokens, {
+      [modifierSelector<IModifier>('with-error', root)]: {
+        vars: overrideTokens(StateLayer.theme.tokens, {
           color: {
             hovered: tokens.stateLayer.color.hovered.error,
             pressed: tokens.stateLayer.color.pressed.error,
@@ -596,7 +596,7 @@ const classNames = createStyles({
   activeIndicatorFocus: {},
   supportingText: ({ root }) => ({
     display: 'flex',
-    ...getTypographyStyles(tokens.supportingText.typography),
+    ...typography(tokens.supportingText.typography),
     gap: px(space(4)),
     justifyContent: 'space-between',
     paddingInlineStart: tokens.supportingText.leadingSpace,
@@ -605,22 +605,22 @@ const classNames = createStyles({
     color: tokens.supportingText.color.normal.regular,
 
     selectors: {
-      [getModifierSelector<IModifier>('with-error', root)]: {
+      [modifierSelector<IModifier>('with-error', root)]: {
         color: tokens.supportingText.color.normal.error,
       },
-      [getModifierSelector<IModifier>('hovered', root)]: {
+      [modifierSelector<IModifier>('hovered', root)]: {
         color: tokens.supportingText.color.hovered.regular,
       },
-      [getModifierSelector<IModifier>(['hovered', 'with-error'], root)]: {
+      [modifierSelector<IModifier>(['hovered', 'with-error'], root)]: {
         color: tokens.supportingText.color.hovered.error,
       },
-      [getModifierSelector<IModifier>('focused', root)]: {
+      [modifierSelector<IModifier>('focused', root)]: {
         color: tokens.supportingText.color.focused.regular,
       },
-      [getModifierSelector<IModifier>(['focused', 'with-error'], root)]: {
+      [modifierSelector<IModifier>(['focused', 'with-error'], root)]: {
         color: tokens.supportingText.color.focused.error,
       },
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         color: tokens.supportingText.color.disabled,
         opacity: tokens.supportingText.opacity.disabled,
       },
@@ -659,7 +659,7 @@ const classNames = createStyles({
     alignItems: 'center',
 
     selectors: {
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         color: 'inherit',
       },
     },
@@ -676,7 +676,7 @@ const classNames = createStyles({
     alignItems: 'center',
 
     selectors: {
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         color: 'inherit',
       },
     },
@@ -709,35 +709,35 @@ const classNames = createStyles({
     color: tokens.outline.color.normal.regular,
 
     selectors: {
-      [getModifierSelector<IModifier>('with-error', root)]: {
+      [modifierSelector<IModifier>('with-error', root)]: {
         borderColor: tokens.outline.color.normal.error,
         color: tokens.outline.color.normal.error,
       },
-      [getModifierSelector<IModifier>('hovered', root)]: {
+      [modifierSelector<IModifier>('hovered', root)]: {
         borderColor: tokens.outline.color.hovered.regular,
         color: tokens.outline.color.hovered.regular,
       },
-      [getModifierSelector<IModifier>(['hovered', 'with-error'], root)]: {
+      [modifierSelector<IModifier>(['hovered', 'with-error'], root)]: {
         borderColor: tokens.outline.color.hovered.error,
         color: tokens.outline.color.hovered.error,
       },
-      [getModifierSelector<IModifier>('focused', root)]: {
+      [modifierSelector<IModifier>('focused', root)]: {
         borderColor: tokens.outline.color.focused.regular,
         color: tokens.outline.color.focused.regular,
       },
-      [getModifierSelector<IModifier>(['focused', 'with-error'], root)]: {
+      [modifierSelector<IModifier>(['focused', 'with-error'], root)]: {
         borderColor: tokens.outline.color.focused.error,
         color: tokens.outline.color.focused.error,
       },
-      [getModifierSelector<IModifier>('pressed', root)]: {
+      [modifierSelector<IModifier>('pressed', root)]: {
         borderColor: tokens.outline.color.focused.regular,
         color: tokens.outline.color.focused.regular,
       },
-      [getModifierSelector<IModifier>(['pressed', 'with-error'], root)]: {
+      [modifierSelector<IModifier>(['pressed', 'with-error'], root)]: {
         borderColor: tokens.outline.color.focused.error,
         color: tokens.outline.color.focused.error,
       },
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         borderColor: tokens.outline.color.disabled,
         color: tokens.outline.color.disabled,
       },
@@ -751,7 +751,7 @@ const classNames = createStyles({
     position: 'relative',
 
     selectors: {
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         opacity: tokens.outline.opacity.disabled,
       },
     },
@@ -781,10 +781,10 @@ const classNames = createStyles({
     borderWidth: tokens.outline.width.normal,
 
     selectors: {
-      [getModifierSelector<IModifier>('hovered', root)]: {
+      [modifierSelector<IModifier>('hovered', root)]: {
         borderWidth: tokens.outline.width.hovered,
       },
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         borderWidth: tokens.outline.width.disabled,
         opacity: tokens.outline.opacity.disabled,
       },
@@ -798,10 +798,10 @@ const classNames = createStyles({
     opacity: 0,
 
     selectors: {
-      [getModifierSelector<IModifier>('focused', root)]: {
+      [modifierSelector<IModifier>('focused', root)]: {
         opacity: 1,
       },
-      [getModifierSelector<IModifier>('pressed', root)]: {
+      [modifierSelector<IModifier>('pressed', root)]: {
         opacity: 1,
       },
     },
@@ -830,10 +830,10 @@ const classNames = createStyles({
     borderWidth: tokens.outline.width.normal,
 
     selectors: {
-      [getModifierSelector<IModifier>('hovered', root)]: {
+      [modifierSelector<IModifier>('hovered', root)]: {
         borderWidth: tokens.outline.width.hovered,
       },
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         borderWidth: tokens.outline.width.disabled,
       },
     },
@@ -846,10 +846,10 @@ const classNames = createStyles({
     opacity: 0,
 
     selectors: {
-      [getModifierSelector<IModifier>('focused', root)]: {
+      [modifierSelector<IModifier>('focused', root)]: {
         opacity: 1,
       },
-      [getModifierSelector<IModifier>('pressed', root)]: {
+      [modifierSelector<IModifier>('pressed', root)]: {
         opacity: 1,
       },
     },
@@ -868,8 +868,8 @@ const classNames = createStyles({
 
     selectors: {
       [[
-        getModifierSelector<IModifier>('focused', root),
-        getModifierSelector<IModifier>('populated', root),
+        modifierSelector<IModifier>('focused', root),
+        modifierSelector<IModifier>('populated', root),
       ].join(', ')]: {
         transform: 'scaleX(0)',
       },
@@ -888,13 +888,13 @@ const classNames = createStyles({
     borderWidth: tokens.outline.width.normal,
 
     selectors: {
-      [getModifierSelector<IModifier>('hovered', root)]: {
+      [modifierSelector<IModifier>('hovered', root)]: {
         borderWidth: tokens.outline.width.hovered,
       },
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         borderWidth: tokens.outline.width.disabled,
       },
-      [getModifierSelector<IModifier>('populated', root)]: {
+      [modifierSelector<IModifier>('populated', root)]: {
         transform: 'scaleX(0)',
       },
     },
@@ -909,7 +909,7 @@ const classNames = createStyles({
     borderWidth: tokens.outline.width.normal,
 
     selectors: {
-      [getModifierSelector<IModifier>('hovered', root)]: {
+      [modifierSelector<IModifier>('hovered', root)]: {
         borderWidth: tokens.outline.width.hovered,
       },
     },
@@ -942,7 +942,7 @@ const classNames = createStyles({
     position: 'relative',
 
     selectors: {
-      [getModifierSelector<IModifier>('!with-label', root)]: {
+      [modifierSelector<IModifier>('!with-label', root)]: {
         display: 'none',
       },
     },
@@ -972,8 +972,8 @@ export const fieldBaseThemeVariants = {
   filled: createStyles({
     root: {
       selectors: {
-        [getModifierSelector<IModifier>('disabled')]: {
-          vars: createTokensVars(PaperBase.theme.tokens, {
+        [modifierSelector<IModifier>('disabled')]: {
+          vars: overrideTokens(PaperBase.theme.tokens, {
             container: {
               opacity: '0.04',
             },
@@ -982,7 +982,7 @@ export const fieldBaseThemeVariants = {
       },
     },
     container: {
-      vars: createTokensVars(PaperBase.theme.tokens, {
+      vars: overrideTokens(PaperBase.theme.tokens, {
         container: {
           color: themeTokens.colorScheme.surfaceContainerHighest,
         },
@@ -990,7 +990,7 @@ export const fieldBaseThemeVariants = {
     },
     inner: ({ root }) => ({
       selectors: {
-        [getModifierSelector<IModifier>('resizable', root)]: {
+        [modifierSelector<IModifier>('resizable', root)]: {
           // Move the container up so that the resize handle doesn't overlap the
           // focus indicator. Content is moved back the opposite direction.
           bottom: tokens.activeIndicator.height.focused,
@@ -1002,7 +1002,7 @@ export const fieldBaseThemeVariants = {
     }),
     section: ({ root }) => ({
       selectors: {
-        [getModifierSelector<IModifier>('resizable', root)]: {
+        [modifierSelector<IModifier>('resizable', root)]: {
           top: tokens.activeIndicator.height.focused,
         },
       },
@@ -1026,20 +1026,20 @@ export const fieldBaseThemeVariants = {
       borderBottomColor: tokens.activeIndicator.color.normal.regular,
 
       selectors: {
-        [getModifierSelector<IModifier>(['!focused', 'hovered'], root)]: {
+        [modifierSelector<IModifier>(['!focused', 'hovered'], root)]: {
           borderBottomWidth: tokens.activeIndicator.height.hovered,
           borderBottomColor: tokens.activeIndicator.color.hovered.regular,
         },
-        [getModifierSelector<IModifier>(['with-error'], root)]: {
+        [modifierSelector<IModifier>(['with-error'], root)]: {
           borderBottomColor: tokens.activeIndicator.color.normal.error,
         },
-        [getModifierSelector<IModifier>(
+        [modifierSelector<IModifier>(
           ['with-error', '!focused', 'hovered'],
           root,
         )]: {
           borderBottomColor: tokens.activeIndicator.color.hovered.error,
         },
-        [getModifierSelector<IModifier>('disabled', root)]: {
+        [modifierSelector<IModifier>('disabled', root)]: {
           borderBottomWidth: tokens.activeIndicator.height.disabled,
           borderBottomColor: tokens.activeIndicator.color.disabled,
           opacity: tokens.activeIndicator.opacity.disabled,
@@ -1059,39 +1059,39 @@ export const fieldBaseThemeVariants = {
       opacity: 0,
 
       selectors: {
-        [getModifierSelector<IModifier>('focused', root)]: {
+        [modifierSelector<IModifier>('focused', root)]: {
           opacity: 1,
         },
-        [getModifierSelector<IModifier>('pressed', root)]: {
+        [modifierSelector<IModifier>('pressed', root)]: {
           opacity: 1,
         },
-        [getModifierSelector<IModifier>(['focused', 'with-error'], root)]: {
+        [modifierSelector<IModifier>(['focused', 'with-error'], root)]: {
           borderBottomColor: tokens.activeIndicator.color.focused.error,
         },
-        [getModifierSelector<IModifier>(['pressed', 'with-error'], root)]: {
+        [modifierSelector<IModifier>(['pressed', 'with-error'], root)]: {
           borderBottomColor: tokens.activeIndicator.color.focused.error,
         },
       },
     }),
     labelWrapper: ({ root }) => ({
       selectors: {
-        [getModifierSelector<IModifier>('!with-start-section', root)]: {
+        [modifierSelector<IModifier>('!with-start-section', root)]: {
           marginInlineStart: tokens.leadingSpace,
         },
-        [getModifierSelector<IModifier>('!with-end-section', root)]: {
+        [modifierSelector<IModifier>('!with-end-section', root)]: {
           marginInlineEnd: tokens.trailingSpace,
         },
       },
     }),
     contentSlot: ({ root }) => ({
       selectors: {
-        [getModifierSelector<IModifier>('!with-start-section', root)]: {
+        [modifierSelector<IModifier>('!with-start-section', root)]: {
           paddingInlineStart: tokens.leadingSpace,
         },
-        [getModifierSelector<IModifier>('!with-end-section', root)]: {
+        [modifierSelector<IModifier>('!with-end-section', root)]: {
           paddingInlineEnd: tokens.trailingSpace,
         },
-        [getModifierSelector<IModifier>(['with-label', '!multiline'], root)]: {
+        [modifierSelector<IModifier>(['with-label', '!multiline'], root)]: {
           paddingTop: calc.add(
             tokens.topSpace.withLabel,
             calc.multiply(
@@ -1101,7 +1101,7 @@ export const fieldBaseThemeVariants = {
           ),
           paddingBottom: tokens.bottomSpace.withLabel,
         },
-        [getModifierSelector<IModifier>(['with-label', 'multiline'], root)]: {
+        [modifierSelector<IModifier>(['with-label', 'multiline'], root)]: {
           marginTop: calc.add(
             tokens.topSpace.withLabel,
             calc.multiply(
@@ -1121,8 +1121,8 @@ export const fieldBaseThemeVariants = {
   outlined: createStyles({
     root: {
       selectors: {
-        [getModifierSelector<IModifier>('disabled')]: {
-          vars: createTokensVars(PaperBase.theme.tokens, {
+        [modifierSelector<IModifier>('disabled')]: {
+          vars: overrideTokens(PaperBase.theme.tokens, {
             container: {
               color: 'unset',
             },
@@ -1131,7 +1131,7 @@ export const fieldBaseThemeVariants = {
       },
     },
     container: {
-      vars: createTokensVars(PaperBase.theme.tokens, {
+      vars: overrideTokens(PaperBase.theme.tokens, {
         container: {
           color: 'transparent',
           shape: px(themeTokens.shape.corner.xs),
@@ -1139,7 +1139,7 @@ export const fieldBaseThemeVariants = {
       }),
     },
     stateLayer: {
-      vars: createTokensVars(StateLayer.theme.tokens, {
+      vars: overrideTokens(StateLayer.theme.tokens, {
         color: {
           hovered: 'unset',
           pressed: 'unset',
@@ -1148,7 +1148,7 @@ export const fieldBaseThemeVariants = {
     },
     inner: ({ root }) => ({
       selectors: {
-        [getModifierSelector<IModifier>('resizable', root)]: {
+        [modifierSelector<IModifier>('resizable', root)]: {
           // Move the container up and to the left so that the resize handle doesn't
           // overlap the focus outline. Content is moved back the opposite direction.
           bottom: tokens.outline.width.focused,
@@ -1160,14 +1160,14 @@ export const fieldBaseThemeVariants = {
     }),
     section: ({ root }) => ({
       selectors: {
-        [getModifierSelector<IModifier>('resizable', root)]: {
+        [modifierSelector<IModifier>('resizable', root)]: {
           top: tokens.outline.width.focused,
           insetInlineStart: tokens.outline.width.focused,
         },
       },
     }),
     outline: {
-      vars: createTokensVars(tokens.outline, {
+      vars: overrideTokens(tokens.outline, {
         leadingSpace: tokens.leadingSpace,
         trailingSpace: tokens.trailingSpace,
         label: {
@@ -1177,14 +1177,14 @@ export const fieldBaseThemeVariants = {
     },
     contentSlot: ({ root }) => ({
       selectors: {
-        [getModifierSelector<IModifier>('!with-start-section', root)]: {
+        [modifierSelector<IModifier>('!with-start-section', root)]: {
           paddingInlineStart: `max(${tokens.leadingSpace}, ${tokens.label.padding})`,
         },
       },
     }),
     labelWrapper: ({ root }) => ({
       selectors: {
-        [getModifierSelector<IModifier>('!with-start-section', root)]: {
+        [modifierSelector<IModifier>('!with-start-section', root)]: {
           paddingInlineStart: `max(${tokens.leadingSpace}, ${tokens.label.padding})`,
         },
       },

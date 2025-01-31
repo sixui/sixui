@@ -1,7 +1,7 @@
 import type { IPaperOwnProps } from '~/components/Paper';
-import type { IRange } from '~/helpers/types';
+import type { IComponentThemeProps } from '~/components/ThemeProvider';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+import type { IRange } from '~/utils/types';
 import type { ISkeletonThemeFactory, skeletonTheme } from './Skeleton.css';
 import { IBoxProps } from '~/components/Box';
 

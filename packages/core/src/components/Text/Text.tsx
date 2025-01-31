@@ -3,9 +3,8 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 import type { ITextThemeFactory } from './Text.css';
 import type { ITextFactory, ITextSize, ITextVariant } from './Text.types';
 import { Box } from '~/components/Box';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { COMPONENT_NAME } from './Text.constants';
 import { textTheme } from './Text.css';
 

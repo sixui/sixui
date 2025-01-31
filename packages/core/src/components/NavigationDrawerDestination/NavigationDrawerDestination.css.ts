@@ -1,13 +1,13 @@
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { Item } from '~/components/Item';
 import { ListItem } from '~/components/List/ListItem';
 import { themeTokens } from '~/components/ThemeProvider';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { px } from '~/utils/css/px';
+import { space } from '~/utils/css/space';
 import { COMPONENT_NAME } from './NavigationDrawerDestination.constants';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
@@ -21,7 +21,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
 
 const classNames = createStyles({
   root: {
-    vars: createTokensVars(ListItem.theme.tokens, {
+    vars: overrideTokens(ListItem.theme.tokens, {
       container: {
         leadingSpace: {
           normal: px(space(6)),
@@ -94,7 +94,7 @@ const classNames = createStyles({
     }),
   },
   item: {
-    vars: createTokensVars(Item.theme.tokens, {
+    vars: overrideTokens(Item.theme.tokens, {
       label: {
         typography: tokens.label.typography,
       },

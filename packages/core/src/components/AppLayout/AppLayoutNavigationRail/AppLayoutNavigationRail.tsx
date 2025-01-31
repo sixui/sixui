@@ -3,9 +3,8 @@ import type { IAppLayoutNavigationRailFactory } from './AppLayoutNavigationRail.
 import { useAppLayoutContext } from '~/components/AppLayout/AppLayout.context';
 import { NavigationRail } from '~/components/NavigationRail';
 import { NavigationRailDestination } from '~/components/NavigationRail/NavigationRailDestination';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { COMPONENT_NAME } from './AppLayoutNavigationRail.constants';
 import { appLayoutNavigationRailTheme } from './AppLayoutNavigationRail.css';
 

@@ -3,11 +3,10 @@ import { createSequence } from '@olivierpascal/helpers';
 import type { IHslColorPickerContentThemeFactory } from './HslColorPickerContent.css';
 import type { IHslColorPickerContentFactory } from './HslColorPickerContent.types';
 import { ColorPickerContent } from '~/components/ColorPickerContent';
-import { generateAnalogousColorPalette } from '~/helpers/colors/generateAnalogousPalette';
-import { generateAnalogousColorPalettes } from '~/helpers/colors/generateAnalogousPalettes';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { generateAnalogousColorPalette } from '~/utils/colors/generateAnalogousColorPalette';
+import { generateAnalogousColorPalettes } from '~/utils/colors/generateAnalogousColorPalettes';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { COMPONENT_NAME } from './HslColorPickerContent.constants';
 import { hslColorPickerContentTheme } from './HslColorPickerContent.css';
 

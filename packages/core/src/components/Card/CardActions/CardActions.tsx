@@ -1,9 +1,8 @@
 import type { ICardActionsThemeFactory } from './CardActions.css';
 import type { ICardActionsFactory } from './CardActions.types';
 import { Box } from '~/components/Box';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { COMPONENT_NAME } from './CardActions.constants';
 import { cardActionsTheme } from './CardActions.css';
 

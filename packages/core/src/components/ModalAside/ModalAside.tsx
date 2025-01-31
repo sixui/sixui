@@ -1,10 +1,9 @@
 import type { IModalAsideThemeFactory } from './ModalAside.css';
 import type { IModalAsideFactory } from './ModalAside.types';
 import { Drawer } from '~/components/Drawer';
-import { isFunction } from '~/helpers/isFunction';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { isFunction } from '~/utils/isFunction';
 import { COMPONENT_NAME } from './ModalAside.constants';
 import { modalAsideTheme } from './ModalAside.css';
 

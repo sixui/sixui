@@ -3,10 +3,9 @@ import { CSSTransition } from 'react-transition-group';
 
 import type { ISlotThemeFactory } from './Slot.css';
 import type { ISlotFactory } from './Slot.types';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { useMergeRefs } from '~/hooks';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { Box } from '../Box';
 import { Overlayable } from '../Overlayable';
 import { COMPONENT_NAME } from './Slot.constants';

@@ -7,13 +7,15 @@ import { ColorInputField } from '~/components/ColorInputField';
 import { Flex } from '~/components/Flex';
 import { Paper } from '~/components/Paper';
 import { TextInputField } from '~/components/TextInputField';
-import { ThemeProvider } from '~/components/ThemeProvider';
-import { generateThemeFromSourceColor } from '~/helpers/colors/generateThemeFromSourceColor';
-import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
-import { px } from '~/helpers/styles/px';
+import {
+  ThemeProvider,
+  useComponentTheme,
+  useProps,
+} from '~/components/ThemeProvider';
+import { generateThemeFromSourceColor } from '~/utils/colors/generateThemeFromSourceColor';
+import { isValidHexColor } from '~/utils/colors/isValidHexColor';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { px } from '~/utils/css/px';
 import { COMPONENT_NAME } from './CustomizableTheme.constants';
 import { customizableThemeTheme } from './CustomizableTheme.css';
 

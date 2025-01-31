@@ -1,10 +1,10 @@
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { px } from '~/utils/css/px';
+import { space } from '~/utils/css/space';
 import { COMPONENT_NAME } from './List.constants';
 
 type IModifier = 'grid' | 'empty';
@@ -47,14 +47,14 @@ const classNames = createStyles({
     overflow: 'auto',
 
     selectors: {
-      [getModifierSelector<IModifier>('grid', root)]: {
+      [modifierSelector<IModifier>('grid', root)]: {
         display: 'grid',
         gridAutoRows: '1fr',
         gap: tokens.grid.space,
         gridTemplateColumns: tokens.grid.templateColumns,
       },
 
-      [getModifierSelector<IModifier>('empty', root)]: {
+      [modifierSelector<IModifier>('empty', root)]: {
         paddingTop: 0,
         paddingBottom: 0,
       },

@@ -1,9 +1,8 @@
 import type { IStepperConnectorThemeFactory } from './StepperConnector.css';
 import type { IStepperConnectorFactory } from './StepperConnector.types';
 import { Divider } from '~/components/Divider';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { useStepperStepContext } from '../StepperStep/StepperStep.context';
 import { COMPONENT_NAME } from './StepperConnector.constants';
 import { dividerTheme } from './StepperConnector.css';

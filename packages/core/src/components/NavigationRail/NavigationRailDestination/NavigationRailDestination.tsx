@@ -5,11 +5,10 @@ import type { INavigationRailDestinationFactory } from './NavigationRailDestinat
 import { Anchored } from '~/components/Anchored';
 import { ButtonBase } from '~/components/ButtonBase';
 import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
-import { executeLazyPromise } from '~/helpers/executeLazyPromise';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { mergeClassNames } from '~/utils/styles/mergeClassNames';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { mergeClassNames } from '~/utils/css/mergeClassNames';
+import { executeLazyPromise } from '~/utils/executeLazyPromise';
 import { COMPONENT_NAME } from './NavigationRailDestination.constants';
 import { navigationRailDestinationTheme } from './NavigationRailDestination.css';
 

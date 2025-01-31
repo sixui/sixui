@@ -1,7 +1,7 @@
 import type { IBoxProps } from '~/components/Box';
-import type { ISide } from '~/helpers/types';
+import type { IComponentThemeProps } from '~/components/ThemeProvider';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+import type { ISide } from '~/utils/types';
 import type {
   IModalAsideThemeFactory,
   modalAsideTheme,

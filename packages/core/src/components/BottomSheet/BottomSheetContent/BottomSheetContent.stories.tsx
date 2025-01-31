@@ -3,7 +3,7 @@ import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { IBottomSheetContentProps } from './BottomSheetContent.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { BottomSheetContent } from './BottomSheetContent';
 import { bottomSheetContentVariants } from './BottomSheetContent.types';
 

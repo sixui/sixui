@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IFilterableListProps } from './FilterableList.types';
 import { ListItem } from '~/components/List/ListItem';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { FilterableList } from './FilterableList';
 import { fruits } from './FilterableList.stories/fruits';
 

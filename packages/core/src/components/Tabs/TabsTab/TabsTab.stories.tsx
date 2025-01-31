@@ -7,7 +7,7 @@ import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { ITabsTabProps } from './TabsTab.types';
 import { Badge } from '~/components/Badge';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { TabsTab } from './TabsTab';
 
 const meta = {

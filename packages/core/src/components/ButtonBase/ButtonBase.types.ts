@@ -2,10 +2,10 @@ import type { IBoxProps } from '~/components/Box';
 import type { IFocusRingProps } from '~/components/FocusRing';
 import type { IPaperOwnProps } from '~/components/Paper';
 import type { IUseStateLayerResult } from '~/components/StateLayer';
-import type { IMaybeAsync, IOmit } from '~/helpers/types';
+import type { IComponentThemeProps } from '~/components/ThemeProvider';
 import type { IInteractionsMergeStrategy } from '~/hooks/useInteractions';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+import type { IMaybeAsync, IOmit } from '~/utils/types';
 import type {
   buttonBaseTheme,
   IButtonBaseThemeFactory,

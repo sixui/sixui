@@ -2,21 +2,21 @@ import { fallbackVar, keyframes } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IInteraction } from '~/hooks/useInteractions';
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import type { IButtonVariant } from './Button.types';
 import { PaperBase } from '~/components/PaperBase';
 import { StateLayer } from '~/components/StateLayer';
 import { themeTokens } from '~/components/ThemeProvider';
-import { em } from '~/helpers/styles/em';
-import { getDensity } from '~/helpers/styles/getDensity';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { density } from '~/utils/css/density';
+import { em } from '~/utils/css/em';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { px } from '~/utils/css/px';
+import { space } from '~/utils/css/space';
+import { typography } from '~/utils/css/typography';
 import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
 import { ButtonBase } from '../ButtonBase';
 import { Slot } from '../Slot';
@@ -31,7 +31,7 @@ type IModifier =
   | 'with-end'
   | 'icon-animation';
 
-const DENSITY = px(getDensity({ min: -4, max: 0 }));
+const DENSITY = px(density({ min: -4, max: 0 }));
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
@@ -120,12 +120,12 @@ const halfSpinKeyframes = keyframes({
 const classNames = createStyles({
   root: {
     vars: {
-      ...createTokensVars(ButtonBase.theme.tokens, {
+      ...overrideTokens(ButtonBase.theme.tokens, {
         container: {
           shape: tokens.container.shape,
         },
       }),
-      ...createTokensVars(PaperBase.theme.tokens, {
+      ...overrideTokens(PaperBase.theme.tokens, {
         container: {
           color: tokens.container.color.normal,
           elevation: tokens.container.elevation.normal,
@@ -143,7 +143,7 @@ const classNames = createStyles({
     alignItems: 'center',
     justifyItems: 'center',
     position: 'relative',
-    ...getTypographyStyles(tokens.label.typography),
+    ...typography(tokens.label.typography),
     // Override vertical-align with shortest value "top". Vertical-align's
     // default "baseline" value causes buttons to be misaligned next to each
     // other if one button has an icon and the other does not.
@@ -177,8 +177,8 @@ const classNames = createStyles({
     ),
 
     selectors: {
-      [getModifierSelector<IModifier>('focused')]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [modifierSelector<IModifier>('focused')]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: fallbackVar(
               tokens.container.color.focused,
@@ -201,8 +201,8 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>('hovered')]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [modifierSelector<IModifier>('hovered')]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: fallbackVar(
               tokens.container.color.hovered,
@@ -225,8 +225,8 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>('pressed')]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [modifierSelector<IModifier>('pressed')]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: fallbackVar(
               tokens.container.color.pressed,
@@ -249,10 +249,10 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>('disabled')]: {
+      [modifierSelector<IModifier>('disabled')]: {
         cursor: 'default',
 
-        vars: createTokensVars(PaperBase.theme.tokens, {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: tokens.container.color.disabled,
             elevation: tokens.container.elevation.disabled,
@@ -265,17 +265,17 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>('loading')]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [modifierSelector<IModifier>('loading')]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             elevation: tokens.container.elevation.pressed,
           },
         }),
       },
-      [getModifierSelector<IModifier>('with-start')]: {
+      [modifierSelector<IModifier>('with-start')]: {
         paddingLeft: tokens.container.leadingSpace.withStart,
       },
-      [getModifierSelector<IModifier>('with-end')]: {
+      [modifierSelector<IModifier>('with-end')]: {
         paddingRight: tokens.container.trailingSpace.withEnd,
       },
     },
@@ -291,25 +291,25 @@ const classNames = createStyles({
     color: tokens.label.color.normal,
 
     selectors: {
-      [getModifierSelector<IModifier>('focused', root)]: {
+      [modifierSelector<IModifier>('focused', root)]: {
         color: fallbackVar(
           tokens.label.color.focused,
           tokens.label.color.normal,
         ),
       },
-      [getModifierSelector<IModifier>('hovered', root)]: {
+      [modifierSelector<IModifier>('hovered', root)]: {
         color: fallbackVar(
           tokens.label.color.hovered,
           tokens.label.color.normal,
         ),
       },
-      [getModifierSelector<IModifier>('pressed', root)]: {
+      [modifierSelector<IModifier>('pressed', root)]: {
         color: fallbackVar(
           tokens.label.color.pressed,
           tokens.label.color.normal,
         ),
       },
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         color: fallbackVar(
           tokens.label.color.disabled,
           tokens.label.color.normal,
@@ -332,7 +332,7 @@ const classNames = createStyles({
     blockSize: tokens.icon.size,
 
     selectors: {
-      [getModifierSelector<IModifier>('focused', root)]: {
+      [modifierSelector<IModifier>('focused', root)]: {
         color: fallbackVar(
           tokens.icon.color.focused,
           tokens.icon.color.normal,
@@ -340,7 +340,7 @@ const classNames = createStyles({
           tokens.label.color.normal,
         ),
       },
-      [getModifierSelector<IModifier>('hovered', root)]: {
+      [modifierSelector<IModifier>('hovered', root)]: {
         color: fallbackVar(
           tokens.icon.color.hovered,
           tokens.icon.color.normal,
@@ -348,7 +348,7 @@ const classNames = createStyles({
           tokens.label.color.normal,
         ),
       },
-      [getModifierSelector<IModifier>('pressed', root)]: {
+      [modifierSelector<IModifier>('pressed', root)]: {
         color: fallbackVar(
           tokens.icon.color.pressed,
           tokens.icon.color.normal,
@@ -356,7 +356,7 @@ const classNames = createStyles({
           tokens.label.color.normal,
         ),
       },
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         color: fallbackVar(
           tokens.icon.color.disabled,
           tokens.icon.color.normal,
@@ -365,13 +365,12 @@ const classNames = createStyles({
         ),
         opacity: tokens.icon.opacity.disabled,
       },
-      [getModifierSelector<IModifier>({ 'icon-animation': 'halfSpin' }, root)]:
-        {
-          animationName: halfSpinKeyframes,
-          animationDuration: themeTokens.motion.duration.long2,
-          animationTimingFunction: 'linear',
-          animationIterationCount: 'infinite',
-        },
+      [modifierSelector<IModifier>({ 'icon-animation': 'halfSpin' }, root)]: {
+        animationName: halfSpinKeyframes,
+        animationDuration: themeTokens.motion.duration.long2,
+        animationTimingFunction: 'linear',
+        animationIterationCount: 'infinite',
+      },
     },
   }),
   slot: {
@@ -387,14 +386,14 @@ const classNames = createStyles({
     marginLeft: tokens.icon.labelSpace,
   },
   slot$icon: {
-    vars: createTokensVars(Slot.theme.tokens, {
+    vars: overrideTokens(Slot.theme.tokens, {
       container: {
         width: tokens.icon.size,
       },
     }),
   },
   slot$icon$start: {
-    vars: createTokensVars(Slot.theme.tokens, {
+    vars: overrideTokens(Slot.theme.tokens, {
       container: {
         leadingSpace: {
           compensated: calc.subtract(
@@ -409,7 +408,7 @@ const classNames = createStyles({
     }),
   },
   slot$icon$end: {
-    vars: createTokensVars(Slot.theme.tokens, {
+    vars: overrideTokens(Slot.theme.tokens, {
       container: {
         leadingSpace: {
           normal: tokens.icon.labelSpace,
@@ -444,7 +443,7 @@ export const buttonThemeVariants = {
   elevated: createStyles({
     root: {
       vars: {
-        ...createTokensVars(tokens, {
+        ...overrideTokens(tokens, {
           container: {
             color: {
               normal: themeTokens.colorScheme.surfaceContainerLow,
@@ -467,7 +466,7 @@ export const buttonThemeVariants = {
       },
     },
     stateLayer: {
-      vars: createTokensVars(StateLayer.theme.tokens, {
+      vars: overrideTokens(StateLayer.theme.tokens, {
         color: {
           hovered: themeTokens.colorScheme.primary,
           pressed: themeTokens.colorScheme.primary,
@@ -478,7 +477,7 @@ export const buttonThemeVariants = {
   filled: createStyles({
     root: {
       vars: {
-        ...createTokensVars(tokens, {
+        ...overrideTokens(tokens, {
           container: {
             color: {
               normal: themeTokens.colorScheme.primary,
@@ -498,7 +497,7 @@ export const buttonThemeVariants = {
       },
     },
     stateLayer: {
-      vars: createTokensVars(StateLayer.theme.tokens, {
+      vars: overrideTokens(StateLayer.theme.tokens, {
         color: {
           hovered: themeTokens.colorScheme.onPrimary,
           pressed: themeTokens.colorScheme.onPrimary,
@@ -509,7 +508,7 @@ export const buttonThemeVariants = {
   filledTonal: createStyles({
     root: {
       vars: {
-        ...createTokensVars(tokens, {
+        ...overrideTokens(tokens, {
           container: {
             color: {
               normal: themeTokens.colorScheme.secondaryContainer,
@@ -528,7 +527,7 @@ export const buttonThemeVariants = {
       },
     },
     stateLayer: {
-      vars: createTokensVars(StateLayer.theme.tokens, {
+      vars: overrideTokens(StateLayer.theme.tokens, {
         color: {
           hovered: themeTokens.colorScheme.onSecondaryContainer,
           pressed: themeTokens.colorScheme.onSecondaryContainer,
@@ -538,7 +537,7 @@ export const buttonThemeVariants = {
   }),
   outlined: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
+      vars: overrideTokens(tokens, {
         container: {
           color: {
             disabled: 'unset',
@@ -569,7 +568,7 @@ export const buttonThemeVariants = {
       }),
     },
     stateLayer: {
-      vars: createTokensVars(StateLayer.theme.tokens, {
+      vars: overrideTokens(StateLayer.theme.tokens, {
         color: {
           hovered: themeTokens.colorScheme.primary,
           pressed: themeTokens.colorScheme.primary,
@@ -579,7 +578,7 @@ export const buttonThemeVariants = {
   }),
   text: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
+      vars: overrideTokens(tokens, {
         container: {
           color: {
             disabled: 'unset',
@@ -602,7 +601,7 @@ export const buttonThemeVariants = {
       }),
     },
     stateLayer: {
-      vars: createTokensVars(StateLayer.theme.tokens, {
+      vars: overrideTokens(StateLayer.theme.tokens, {
         color: {
           hovered: themeTokens.colorScheme.primary,
           pressed: themeTokens.colorScheme.primary,
@@ -613,7 +612,7 @@ export const buttonThemeVariants = {
   danger: createStyles({
     root: {
       vars: {
-        ...createTokensVars(tokens, {
+        ...overrideTokens(tokens, {
           container: {
             color: {
               normal: themeTokens.colorScheme.errorContainer,
@@ -632,7 +631,7 @@ export const buttonThemeVariants = {
       },
     },
     stateLayer: {
-      vars: createTokensVars(StateLayer.theme.tokens, {
+      vars: overrideTokens(StateLayer.theme.tokens, {
         color: {
           hovered: themeTokens.colorScheme.onErrorContainer,
           pressed: themeTokens.colorScheme.onErrorContainer,
@@ -643,12 +642,12 @@ export const buttonThemeVariants = {
   snackbar: createStyles({
     root: {
       vars: {
-        ...createTokensVars(PaperBase.theme.tokens, {
+        ...overrideTokens(PaperBase.theme.tokens, {
           container: {
             shape: px(themeTokens.shape.corner.xs),
           },
         }),
-        ...createTokensVars(tokens, {
+        ...overrideTokens(tokens, {
           container: {
             color: {
               disabled: 'unset',
@@ -678,7 +677,7 @@ export const buttonThemeVariants = {
       },
     },
     stateLayer: {
-      vars: createTokensVars(StateLayer.theme.tokens, {
+      vars: overrideTokens(StateLayer.theme.tokens, {
         color: {
           hovered: themeTokens.colorScheme.inversePrimary,
           pressed: themeTokens.colorScheme.inversePrimary,
@@ -689,10 +688,10 @@ export const buttonThemeVariants = {
   inline: createStyles({
     root: {
       verticalAlign: 'baseline',
-      ...getTypographyStyles(null),
+      ...typography(null),
 
       vars: {
-        ...createTokensVars(tokens, {
+        ...overrideTokens(tokens, {
           container: {
             color: {
               disabled: 'unset',
@@ -724,7 +723,7 @@ export const buttonThemeVariants = {
       textDecoration: 'underline',
 
       selectors: {
-        [getModifierSelector<IModifier>('disabled', root)]: {
+        [modifierSelector<IModifier>('disabled', root)]: {
           textDecoration: 'none',
         },
       },

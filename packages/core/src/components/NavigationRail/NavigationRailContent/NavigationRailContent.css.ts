@@ -1,22 +1,22 @@
 import { calc } from '@vanilla-extract/css-utils';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { PaperBase } from '~/components/PaperBase';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getDensity } from '~/helpers/styles/getDensity';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { density } from '~/utils/css/density';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { px } from '~/utils/css/px';
+import { space } from '~/utils/css/space';
 import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
 import { COMPONENT_NAME } from './NavigationRailContent.constants';
 
 type IModifier = 'with-divider' | 'justify' | 'side';
 
-const DENSITY = px(getDensity({ min: -2, max: 0 }));
+const DENSITY = px(density({ min: -2, max: 0 }));
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   verticalSpace: px(40),
@@ -40,7 +40,7 @@ const classNames = createStyles({
     justifyContent: 'space-between',
     gap: calc.add(tokens.verticalSpace, DENSITY),
 
-    vars: createTokensVars(PaperBase.theme.tokens, {
+    vars: overrideTokens(PaperBase.theme.tokens, {
       container: {
         color: tokens.container.color,
         shape: tokens.container.shape,
@@ -49,12 +49,12 @@ const classNames = createStyles({
     }),
 
     selectors: {
-      [getModifierSelector<IModifier>(['with-divider', { side: 'left' }])]: {
+      [modifierSelector<IModifier>(['with-divider', { side: 'left' }])]: {
         borderRightWidth: tokens.divider.width,
         borderRightColor: tokens.divider.color,
         borderRightStyle: 'solid',
       },
-      [getModifierSelector<IModifier>(['with-divider', { side: 'right' }])]: {
+      [modifierSelector<IModifier>(['with-divider', { side: 'right' }])]: {
         borderLeftWidth: tokens.divider.width,
         borderLeftColor: tokens.divider.color,
         borderLeftStyle: 'solid',
@@ -75,13 +75,13 @@ const classNames = createStyles({
     paddingBottom: calc.add(px(space(3)), DENSITY),
 
     selectors: {
-      [getModifierSelector<IModifier>({ justify: 'start' }, root)]: {
+      [modifierSelector<IModifier>({ justify: 'start' }, root)]: {
         justifyContent: 'start',
       },
-      [getModifierSelector<IModifier>({ justify: 'center' }, root)]: {
+      [modifierSelector<IModifier>({ justify: 'center' }, root)]: {
         justifyContent: 'center',
       },
-      [getModifierSelector<IModifier>({ justify: 'end' }, root)]: {
+      [modifierSelector<IModifier>({ justify: 'end' }, root)]: {
         justifyContent: 'end',
       },
     },

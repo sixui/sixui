@@ -1,12 +1,12 @@
 import { calc } from '@vanilla-extract/css-utils';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { px } from '~/helpers/styles/px';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { px } from '~/utils/css/px';
 import { COMPONENT_NAME } from './CircularProgressIndicator.constants';
 
 export type ICircularProgressIndicatorModifier = 'disabled' | 'negative';
@@ -39,7 +39,7 @@ const classNames = createStyles({
     height: tokens.size,
 
     selectors: {
-      [getModifierSelector<ICircularProgressIndicatorModifier>('negative')]: {
+      [modifierSelector<ICircularProgressIndicatorModifier>('negative')]: {
         color: tokens.color.negative,
       },
     },

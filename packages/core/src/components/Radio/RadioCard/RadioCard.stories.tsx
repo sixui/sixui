@@ -6,7 +6,7 @@ import type { IRadioCardProps } from './RadioCard.types';
 import { Card } from '~/components/Card';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Flex } from '~/components/Flex';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { RadioCard } from './RadioCard';
 
 const meta = {

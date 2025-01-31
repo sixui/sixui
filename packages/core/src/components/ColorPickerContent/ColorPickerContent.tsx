@@ -1,15 +1,12 @@
+import type { IColorPalette } from '~/utils/types';
 import type { IColorPickerContentThemeFactory } from './ColorPickerContent.css';
-import type {
-  IColorPalette,
-  IColorPickerContentFactory,
-} from './ColorPickerContent.types';
+import type { IColorPickerContentFactory } from './ColorPickerContent.types';
 import { ColorTag } from '~/components/ColorTag';
 import { Divider } from '~/components/Divider';
 import { Flex } from '~/components/Flex';
 import { PaperBase } from '~/components/PaperBase';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { COMPONENT_NAME } from './ColorPickerContent.constants';
 import { colorPickerContentTheme } from './ColorPickerContent.css';
 

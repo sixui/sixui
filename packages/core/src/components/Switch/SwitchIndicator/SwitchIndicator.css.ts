@@ -2,16 +2,16 @@ import { fallbackVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IInteraction } from '~/hooks/useInteractions';
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { PaperBase } from '~/components/PaperBase';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getDensity } from '~/helpers/styles/getDensity';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { px } from '~/helpers/styles/px';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { density } from '~/utils/css/density';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { px } from '~/utils/css/px';
 import { COMPONENT_NAME } from './SwitchIndicator.constants';
 
 type IModifier =
@@ -22,7 +22,7 @@ type IModifier =
   | 'with-icon'
   | 'loading';
 
-const DENSITY = px(getDensity({ min: -2, max: 0 }));
+const DENSITY = px(density({ min: -2, max: 0 }));
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
@@ -143,7 +143,7 @@ const classNames = createStyles({
     width: tokens.container.width,
     height: calc.add(tokens.container.height, DENSITY),
 
-    vars: createTokensVars(PaperBase.theme.tokens, {
+    vars: overrideTokens(PaperBase.theme.tokens, {
       container: {
         color: tokens.container$off.color.normal,
         shape: px(themeTokens.shape.corner.full),
@@ -155,8 +155,8 @@ const classNames = createStyles({
     }),
 
     selectors: {
-      [getModifierSelector<IModifier>('disabled')]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [modifierSelector<IModifier>('disabled')]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: tokens.container$off.color.disabled,
             opacity: tokens.container$off.opacity.disabled,
@@ -166,8 +166,8 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>('on')]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [modifierSelector<IModifier>('on')]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: tokens.container$on.color.normal,
           },
@@ -176,8 +176,8 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>(['on', 'disabled'])]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [modifierSelector<IModifier>(['on', 'disabled'])]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: tokens.container$on.color.disabled,
             opacity: tokens.container$on.opacity.disabled,
@@ -187,7 +187,7 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>('hovered')]: {
+      [modifierSelector<IModifier>('hovered')]: {
         zIndex: 1,
       },
     },
@@ -218,11 +218,11 @@ const classNames = createStyles({
     marginInlineStart: 0,
 
     selectors: {
-      [getModifierSelector<IModifier>('checked', root)]: {
+      [modifierSelector<IModifier>('checked', root)]: {
         marginInlineStart: `calc(${tokens.container.width} - ${tokens.container.height})`,
         marginInlineEnd: 0,
       },
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         transitionProperty: 'none',
       },
     },
@@ -237,7 +237,7 @@ const classNames = createStyles({
     height: calc.add(tokens.handle$off.height.normal, DENSITY),
 
     vars: {
-      ...createTokensVars(PaperBase.theme.tokens, {
+      ...overrideTokens(PaperBase.theme.tokens, {
         container: {
           color: tokens.handle$off.color.normal,
           shape: px(themeTokens.shape.corner.full),
@@ -245,14 +245,14 @@ const classNames = createStyles({
       }),
     },
     selectors: {
-      [getModifierSelector<IModifier>(
+      [modifierSelector<IModifier>(
         {
           on: false,
           focused: true,
         },
         root,
       )]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: fallbackVar(
               tokens.handle$off.color.focused,
@@ -261,14 +261,14 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>(
+      [modifierSelector<IModifier>(
         {
           on: false,
           hovered: true,
         },
         root,
       )]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: fallbackVar(
               tokens.handle$off.color.hovered,
@@ -277,7 +277,7 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>(
+      [modifierSelector<IModifier>(
         {
           on: false,
           pressed: true,
@@ -289,7 +289,7 @@ const classNames = createStyles({
         transitionTimingFunction: themeTokens.motion.easing.standard.normal,
         transitionDuration: themeTokens.motion.duration.short3,
 
-        vars: createTokensVars(PaperBase.theme.tokens, {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: fallbackVar(
               tokens.handle$off.color.pressed,
@@ -298,7 +298,7 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>(
+      [modifierSelector<IModifier>(
         {
           on: false,
           disabled: true,
@@ -307,14 +307,14 @@ const classNames = createStyles({
       )]: {
         cursor: 'default',
 
-        vars: createTokensVars(PaperBase.theme.tokens, {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: tokens.handle$off.color.disabled,
             opacity: tokens.handle$off.opacity.disabled,
           },
         }),
       },
-      [getModifierSelector<IModifier>(
+      [modifierSelector<IModifier>(
         {
           on: false,
           pressed: false,
@@ -325,24 +325,24 @@ const classNames = createStyles({
         width: calc.add(tokens.handle$off.width.withIcon, DENSITY),
         height: calc.add(tokens.handle$off.height.withIcon, DENSITY),
       },
-      [getModifierSelector<IModifier>({ on: true }, root)]: {
+      [modifierSelector<IModifier>({ on: true }, root)]: {
         width: calc.add(tokens.handle$on.width.normal, DENSITY),
         height: calc.add(tokens.handle$on.height.normal, DENSITY),
 
-        vars: createTokensVars(PaperBase.theme.tokens, {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: tokens.handle$on.color.normal,
           },
         }),
       },
-      [getModifierSelector<IModifier>(
+      [modifierSelector<IModifier>(
         {
           on: true,
           focused: true,
         },
         root,
       )]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: fallbackVar(
               tokens.handle$on.color.focused,
@@ -351,14 +351,14 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>(
+      [modifierSelector<IModifier>(
         {
           on: true,
           hovered: true,
         },
         root,
       )]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: fallbackVar(
               tokens.handle$on.color.hovered,
@@ -367,7 +367,7 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>(
+      [modifierSelector<IModifier>(
         {
           on: true,
           pressed: true,
@@ -379,7 +379,7 @@ const classNames = createStyles({
         transitionTimingFunction: themeTokens.motion.easing.standard.normal,
         transitionDuration: themeTokens.motion.duration.short3,
 
-        vars: createTokensVars(PaperBase.theme.tokens, {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: fallbackVar(
               tokens.handle$on.color.pressed,
@@ -388,7 +388,7 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>(
+      [modifierSelector<IModifier>(
         {
           on: true,
           disabled: true,
@@ -397,14 +397,14 @@ const classNames = createStyles({
       )]: {
         cursor: 'default',
 
-        vars: createTokensVars(PaperBase.theme.tokens, {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: tokens.handle$on.color.disabled,
             opacity: tokens.handle$on.opacity.disabled,
           },
         }),
       },
-      [getModifierSelector<IModifier>(
+      [modifierSelector<IModifier>(
         {
           on: true,
           pressed: false,
@@ -435,7 +435,7 @@ const classNames = createStyles({
     transitionTimingFunction: `linear, linear, ${themeTokens.motion.easing.standard.normal}`,
 
     selectors: {
-      [getModifierSelector<IModifier>('on', root)]: {
+      [modifierSelector<IModifier>('on', root)]: {
         fontSize: fallbackVar(tokens.icon$checked.size, tokens.icon.size),
         width: fallbackVar(tokens.icon$checked.size, tokens.icon.size),
         height: fallbackVar(tokens.icon$checked.size, tokens.icon.size),
@@ -444,21 +444,21 @@ const classNames = createStyles({
           tokens.icon.color.normal,
         ),
       },
-      [getModifierSelector<IModifier>('loading', root)]: {
+      [modifierSelector<IModifier>('loading', root)]: {
         opacity: 1,
       },
-      [getModifierSelector<IModifier>(['on', 'disabled'], root)]: {
+      [modifierSelector<IModifier>(['on', 'disabled'], root)]: {
         color: themeTokens.colorScheme.outlineVariant,
       },
     },
   }),
   icon$checked: ({ root }) => ({
     selectors: {
-      [getModifierSelector<IModifier>('checked', root)]: {
+      [modifierSelector<IModifier>('checked', root)]: {
         transform: 'rotate(0)',
         opacity: 1,
       },
-      [getModifierSelector<IModifier>('!checked', root)]: {
+      [modifierSelector<IModifier>('!checked', root)]: {
         transform: 'rotate(-180deg)',
         opacity: 0,
       },
@@ -466,11 +466,11 @@ const classNames = createStyles({
   }),
   icon$unchecked: ({ root }) => ({
     selectors: {
-      [getModifierSelector<IModifier>('checked', root)]: {
+      [modifierSelector<IModifier>('checked', root)]: {
         transform: 'rotate(180deg)',
         opacity: 0,
       },
-      [getModifierSelector<IModifier>('!checked', root)]: {
+      [modifierSelector<IModifier>('!checked', root)]: {
         transform: 'rotate(0)',
         opacity: 1,
       },

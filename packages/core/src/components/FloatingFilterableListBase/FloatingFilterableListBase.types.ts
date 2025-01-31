@@ -11,12 +11,12 @@ import type {
 } from '~/components/FilterableListBase';
 import type { IMotionProps } from '~/components/Motion';
 import type { IPortalProps } from '~/components/Portal';
+import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type {
   IForwardableProps,
   IRendererWithForwardedProps,
-} from '~/helpers/react/forwardablePropsTypes';
-import type { IElementProps, IOmit, IOrientation } from '~/helpers/types';
-import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+} from '~/utils/react/forwardablePropsTypes';
+import type { IElementProps, IOmit, IOrientation } from '~/utils/types';
 
 export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
   /**

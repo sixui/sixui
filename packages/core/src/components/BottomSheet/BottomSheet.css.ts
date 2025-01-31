@@ -1,13 +1,13 @@
 import { calc } from '@vanilla-extract/css-utils';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { getResponsiveContainerQuery } from '~/helpers/styles/getResponsiveContainerQuery';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { px } from '~/utils/css/px';
+import { responsiveContainerQuery } from '~/utils/css/responsiveContainerQuery';
+import { space } from '~/utils/css/space';
 import { COMPONENT_NAME } from './BottomSheet.constants';
 
 type IModifier = 'full-height' | 'detached';
@@ -29,12 +29,12 @@ const classNames = createStyles({
     right: tokens.fixedHorizontalSpace.normal,
 
     '@container': {
-      [getResponsiveContainerQuery({ size: 'compact' })]: {
+      [responsiveContainerQuery({ size: 'compact' })]: {
         left: tokens.fixedHorizontalSpace.compact,
         right: tokens.fixedHorizontalSpace.compact,
 
         selectors: {
-          [getModifierSelector<IModifier>('detached')]: {
+          [modifierSelector<IModifier>('detached')]: {
             left: tokens.fixedHorizontalSpace.detached,
             right: tokens.fixedHorizontalSpace.detached,
           },
@@ -43,10 +43,10 @@ const classNames = createStyles({
     },
 
     selectors: {
-      [getModifierSelector<IModifier>('full-height')]: {
+      [modifierSelector<IModifier>('full-height')]: {
         top: tokens.fixedTopSpace,
       },
-      [getModifierSelector<IModifier>('detached')]: {
+      [modifierSelector<IModifier>('detached')]: {
         left: tokens.fixedHorizontalSpace.detached,
         right: tokens.fixedHorizontalSpace.detached,
       },

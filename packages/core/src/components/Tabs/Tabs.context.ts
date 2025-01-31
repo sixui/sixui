@@ -1,5 +1,5 @@
 import type { ITabsTabVariant } from './TabsTab/TabsTab.types';
-import { createOptionalContext } from '~/helpers/createOptionalContext';
+import { createOptionalContext } from '~/utils/react/createOptionalContext';
 
 export interface ITabsContextValue {
   id?: string;

@@ -1,13 +1,13 @@
 import { fallbackVar } from '@vanilla-extract/css';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { NavigationRail } from '~/components/NavigationRail';
 import { StandardAside } from '~/components/StandardAside';
 import { themeTokens } from '~/components/ThemeProvider';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { overrideTokens } from '~/utils/css/overrideTokens';
 import { appLayoutTheme } from '~/components/AppLayout/AppLayout.css';
 import { COMPONENT_NAME } from './AppLayoutNavigationRail.constants';
 
@@ -18,13 +18,13 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME);
 const classNames = createStyles({
   root: {
     vars: {
-      ...createTokensVars(StandardAside.theme.tokens, {
+      ...overrideTokens(StandardAside.theme.tokens, {
         container: {
           startSpace: appLayoutTheme.tokens.header.height,
           size: appLayoutTheme.tokens.navigationRail.width,
         },
       }),
-      ...createTokensVars(NavigationRail.theme.tokens, {
+      ...overrideTokens(NavigationRail.theme.tokens, {
         container: {
           width: appLayoutTheme.tokens.navigationRail.width,
           color: fallbackVar(

@@ -12,7 +12,7 @@ import { Button } from '~/components/Button';
 import { InputChip } from '~/components/Chip';
 import { Flex } from '~/components/Flex';
 import { IconButton } from '~/components/IconButton';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { Menu } from './Menu';
 
 const meta = {

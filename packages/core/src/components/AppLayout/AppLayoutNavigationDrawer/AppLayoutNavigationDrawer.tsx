@@ -4,10 +4,9 @@ import { useAppLayoutContext } from '~/components/AppLayout/AppLayout.context';
 import { NavigationDrawerDestination } from '~/components/NavigationDrawerDestination';
 import { NavigationDrawerSection } from '~/components/NavigationDrawerSection';
 import { SideSheet } from '~/components/SideSheet';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { mergeClassNames } from '~/utils/styles/mergeClassNames';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { COMPONENT_NAME } from './AppLayoutNavigationDrawer.constants';
 import { appLayoutNavigationDrawerTheme } from './AppLayoutNavigationDrawer.css';
 

@@ -4,7 +4,7 @@ import { faStar as fasStar, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
-import type { IPlacement } from '~/helpers/types';
+import type { IPlacement } from '~/utils/types';
 import type {
   IPopoverBaseContentRendererProps,
   IPopoverBaseProps,
@@ -14,7 +14,7 @@ import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { IconButton } from '~/components/IconButton';
 import { Placeholder } from '~/components/Placeholder';
 import { themeTokens } from '~/components/ThemeProvider';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { PopoverBase } from './PopoverBase';
 
 const meta = {

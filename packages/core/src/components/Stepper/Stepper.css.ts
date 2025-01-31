@@ -1,10 +1,10 @@
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { px } from '~/utils/css/px';
+import { space } from '~/utils/css/space';
 import { COMPONENT_NAME } from './Stepper.constants';
 
 type IModifier = 'orientation' | 'label-position';
@@ -21,14 +21,14 @@ const classNames = createStyles({
     flexGrow: 1,
 
     selectors: {
-      [getModifierSelector<IModifier>({ orientation: 'horizontal' })]: {
+      [modifierSelector<IModifier>({ orientation: 'horizontal' })]: {
         flexDirection: 'row',
         alignItems: 'center',
       },
-      [getModifierSelector<IModifier>({ orientation: 'vertical' })]: {
+      [modifierSelector<IModifier>({ orientation: 'vertical' })]: {
         flexDirection: 'column',
       },
-      [getModifierSelector<IModifier>({ 'label-position': 'bottom' })]: {
+      [modifierSelector<IModifier>({ 'label-position': 'bottom' })]: {
         alignItems: 'flex-start',
       },
     },

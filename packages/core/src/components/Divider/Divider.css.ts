@@ -1,14 +1,14 @@
 import { calc } from '@vanilla-extract/css-utils';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { px } from '~/utils/css/px';
+import { space } from '~/utils/css/space';
+import { typography } from '~/utils/css/typography';
 import { COMPONENT_NAME } from './Divider.constants';
 
 type IModifier =
@@ -47,18 +47,18 @@ const classNames = createStyles({
     color: tokens.color,
 
     selectors: {
-      [getModifierSelector<IModifier>({ orientation: 'horizontal' })]: {
+      [modifierSelector<IModifier>({ orientation: 'horizontal' })]: {
         flexDirection: 'column',
         width: '100%',
       },
-      [getModifierSelector<IModifier>({
+      [modifierSelector<IModifier>({
         orientation: 'horizontal',
         'label-position': 'top',
         'vertical-align': 'middle',
       })]: {
         transform: `translateY(${calc.add('-50%', calc.divide(tokens.stroke, 2))})`,
       },
-      [getModifierSelector<IModifier>({
+      [modifierSelector<IModifier>({
         orientation: 'horizontal',
         'label-position': 'middle',
       })]: {
@@ -66,14 +66,14 @@ const classNames = createStyles({
 
         height: tokens.stroke,
       },
-      [getModifierSelector<IModifier>({
+      [modifierSelector<IModifier>({
         orientation: 'horizontal',
         'label-position': 'bottom',
         'vertical-align': 'middle',
       })]: {
         transform: `translateY(${calc.subtract('50%', calc.divide(tokens.stroke, 2))})`,
       },
-      [getModifierSelector<IModifier>({ orientation: 'vertical' })]: {
+      [modifierSelector<IModifier>({ orientation: 'vertical' })]: {
         flexDirection: 'column',
         alignSelf: 'stretch',
       },
@@ -93,11 +93,11 @@ const classNames = createStyles({
     },
 
     selectors: {
-      [getModifierSelector<IModifier>({ orientation: 'horizontal' }, root)]: {
+      [modifierSelector<IModifier>({ orientation: 'horizontal' }, root)]: {
         flexDirection: 'row',
         height: tokens.stroke,
       },
-      [getModifierSelector<IModifier>({ orientation: 'vertical' }, root)]: {
+      [modifierSelector<IModifier>({ orientation: 'vertical' }, root)]: {
         flexDirection: 'column',
         width: tokens.stroke,
       },
@@ -105,13 +105,13 @@ const classNames = createStyles({
   }),
   line$start: ({ root }) => ({
     selectors: {
-      [getModifierSelector<IModifier>(
+      [modifierSelector<IModifier>(
         { orientation: 'horizontal', 'inset-start': true },
         root,
       )]: {
         paddingInlineStart: tokens.inset.horizontal.leadingSpace,
       },
-      [getModifierSelector<IModifier>(
+      [modifierSelector<IModifier>(
         { orientation: 'vertical', 'inset-start': true },
         root,
       )]: {
@@ -121,13 +121,13 @@ const classNames = createStyles({
   }),
   line$end: ({ root }) => ({
     selectors: {
-      [getModifierSelector<IModifier>(
+      [modifierSelector<IModifier>(
         { orientation: 'horizontal', 'inset-end': true },
         root,
       )]: {
         paddingInlineEnd: tokens.inset.horizontal.trailingSpace,
       },
-      [getModifierSelector<IModifier>(
+      [modifierSelector<IModifier>(
         { orientation: 'vertical', 'inset-end': true },
         root,
       )]: {
@@ -141,23 +141,23 @@ const classNames = createStyles({
     alignItems: 'baseline',
 
     selectors: {
-      [getModifierSelector<IModifier>({ orientation: 'horizontal' }, root)]: {
+      [modifierSelector<IModifier>({ orientation: 'horizontal' }, root)]: {
         paddingLeft: tokens.label.horizontalSpace,
         paddingRight: tokens.label.horizontalSpace,
       },
-      [getModifierSelector<IModifier>(
+      [modifierSelector<IModifier>(
         { orientation: 'horizontal', 'label-position': 'top' },
         root,
       )]: {
         paddingBottom: tokens.label.verticalSpace,
       },
-      [getModifierSelector<IModifier>(
+      [modifierSelector<IModifier>(
         { orientation: 'horizontal', 'label-position': 'bottom' },
         root,
       )]: {
         paddingTop: tokens.label.verticalSpace,
       },
-      [getModifierSelector<IModifier>({ orientation: 'vertical' }, root)]: {
+      [modifierSelector<IModifier>({ orientation: 'vertical' }, root)]: {
         paddingTop: tokens.label.verticalSpace,
         paddingBottom: tokens.label.verticalSpace,
         transform: `translateX(${calc.add(
@@ -170,10 +170,10 @@ const classNames = createStyles({
   text: ({ root }) => ({
     textAlign: 'center',
     color: tokens.label.color,
-    ...getTypographyStyles(tokens.label.typography),
+    ...typography(tokens.label.typography),
 
     selectors: {
-      [getModifierSelector<IModifier>(
+      [modifierSelector<IModifier>(
         {
           orientation: 'horizontal',
           'label-position': 'middle',

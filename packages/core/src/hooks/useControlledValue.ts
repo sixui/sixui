@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { isProduction } from '~/helpers/isProduction';
+import { isProduction } from '~/utils/isProduction';
 
 export type IUseControlledProps<TValue> = {
   /**

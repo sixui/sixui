@@ -1,6 +1,6 @@
 import type { IBoxProps } from '~/components/Box';
+import type { IComponentThemeProps } from '~/components/ThemeProvider';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { anchoredTheme, IAnchoredThemeFactory } from './Anchored.css';
 
 type IVerticalPosition = 'top' | 'middle' | 'bottom';

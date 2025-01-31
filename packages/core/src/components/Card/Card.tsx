@@ -1,9 +1,8 @@
 import type { ICardThemeFactory } from './Card.css';
 import type { ICardFactory } from './Card.types';
 import { ButtonBase } from '~/components/ButtonBase';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { COMPONENT_NAME } from './Card.constants';
 import { CardActions } from './CardActions';
 import { CardContent } from './CardContent';

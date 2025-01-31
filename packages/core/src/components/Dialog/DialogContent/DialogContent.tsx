@@ -1,14 +1,13 @@
 import { useCallback, useEffect, useId, useRef, useState } from 'react';
 
-import type { IMaybeAsync } from '~/helpers/types';
+import type { IMaybeAsync } from '~/utils/types';
 import type { IDialogContentThemeFactory } from './DialogContent.css';
 import type { IDialogContentFactory } from './DialogContent.types';
 import { Divider } from '~/components/Divider';
 import { Paper } from '~/components/Paper';
-import { isFunction } from '~/helpers/isFunction';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { isFunction } from '~/utils/isFunction';
 import { COMPONENT_NAME } from './DiagonalContent.constants';
 import { dialogContentTheme } from './DialogContent.css';
 

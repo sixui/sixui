@@ -6,8 +6,8 @@ import type {
 } from '~/components/FloatingFilterableListBase';
 import type { IMenuListProps } from '~/components/Menu/MenuList';
 import type { ITextInputFieldProps } from '~/components/TextInputField';
-import type { IOmit } from '~/helpers/types';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IOmit } from '~/utils/types';
 
 export interface ISuggestBaseOwnProps<TItem>
   extends IOmit<

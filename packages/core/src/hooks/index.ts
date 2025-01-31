@@ -9,7 +9,7 @@ export * from './useImageLoaded';
 export * from './useInteractions';
 export * from './useIsomorphicLayoutEffect';
 export * from './useMergeRefs';
-export * from './usePopoverCursor';
+export * from './useMultiSelect';
 export * from './usePrevious';
 export * from './useRadio';
 export * from './useSideSheet';

@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
-import { px } from '~/helpers/styles/px';
+import { px } from '~/utils/css/px';
 import { themeTokens } from '~/components/ThemeProvider/ThemeProvider.css';
 
 export const classNames = {

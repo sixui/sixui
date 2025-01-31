@@ -1,12 +1,12 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IButtonOwnProps } from '~/components/Button';
+import type { IComponentThemeProps } from '~/components/ThemeProvider';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type {
   copyableTextTheme,
   ICopyableTextThemeFactory,
 } from './CopyableText.css';
-import { IOmit } from '~/helpers/types';
+import { IOmit } from '~/utils/types';
 
 export interface ICopyableTextOwnProps
   extends IOmit<IButtonOwnProps, 'children'> {

@@ -1,5 +1,5 @@
-import type { IOrientation } from '~/helpers/types';
-import { createOptionalContext } from '~/helpers/createOptionalContext';
+import type { IOrientation } from '~/utils/types';
+import { createOptionalContext } from '~/utils/react/createOptionalContext';
 
 export type IStepperContextValue = {
   orientation?: IOrientation;

@@ -1,13 +1,13 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IPaperBaseOwnProps } from '~/components/PaperBase';
 import type {
+  IComponentThemeProps,
   IThemeColorScheme,
   IThemeElevationLevel,
   IThemeOutlineSize,
   IThemeShapeCornerSize,
 } from '~/components/ThemeProvider';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type { IPaperThemeFactory, paperTheme } from './Paper.css';
 
 export interface IPaperOwnProps extends IPaperBaseOwnProps {

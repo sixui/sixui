@@ -1,14 +1,14 @@
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import type { IPolymorphicTemplateVariant } from './PolymorphicTemplate.types';
 import { PaperBase } from '~/components/PaperBase';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { px } from '~/utils/css/px';
+import { space } from '~/utils/css/space';
 import { COMPONENT_NAME } from './PolymorphicTemplate.constants';
 
 type IModifier = 'disabled';
@@ -39,15 +39,15 @@ const classNames = createStyles({
   root: {
     padding: px(space(2)),
 
-    vars: createTokensVars(PaperBase.theme.tokens, {
+    vars: overrideTokens(PaperBase.theme.tokens, {
       container: {
         color: tokens.container.color.normal,
       },
     }),
 
     selectors: {
-      [getModifierSelector<IModifier>('disabled')]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [modifierSelector<IModifier>('disabled')]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: tokens.container.color.disabled,
             opacity: tokens.container.opacity.disabled,
@@ -60,7 +60,7 @@ const classNames = createStyles({
     color: tokens.label.color.normal,
 
     selectors: {
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         color: tokens.label.color.disabled,
         opacity: tokens.label.opacity.disabled,
       },
@@ -85,7 +85,7 @@ export const polymorphicTemplateTheme =
 export const polymorphicTemplateThemeVariants = {
   primary: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
+      vars: overrideTokens(tokens, {
         container: {
           color: {
             normal: themeTokens.colorScheme.primary,
@@ -102,7 +102,7 @@ export const polymorphicTemplateThemeVariants = {
   }),
   secondary: createStyles({
     root: {
-      vars: createTokensVars(tokens, {
+      vars: overrideTokens(tokens, {
         container: {
           color: {
             normal: themeTokens.colorScheme.secondary,

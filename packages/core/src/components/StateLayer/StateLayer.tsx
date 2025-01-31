@@ -1,10 +1,9 @@
 import type { IStateLayerThemeFactory } from './StateLayer.css';
 import type { IStateLayerFactory } from './StateLayer.types';
 import { Box } from '~/components/Box';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { COMPONENT_NAME } from './StateLayer.constants';
 import { stateLayerTheme } from './StateLayer.css';
 

@@ -2,10 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
-import type { IOmit } from '~/helpers/types';
+import type { IOmit } from '~/utils/types';
 import type { ICheckboxProps } from './Checkbox.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { Checkbox } from './Checkbox';
 
 const meta = {

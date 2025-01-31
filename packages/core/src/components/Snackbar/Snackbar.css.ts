@@ -1,11 +1,11 @@
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { getResponsiveContainerQuery } from '~/helpers/styles/getResponsiveContainerQuery';
-import { px } from '~/helpers/styles/px';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { px } from '~/utils/css/px';
+import { responsiveContainerQuery } from '~/utils/css/responsiveContainerQuery';
 import { COMPONENT_NAME } from './Snackbar.constants';
 
 type IModifier = 'justify';
@@ -27,17 +27,17 @@ const classNames = createStyles({
     minWidth: 'unset',
 
     selectors: {
-      [getModifierSelector<IModifier>({ justify: 'start' })]: {
+      [modifierSelector<IModifier>({ justify: 'start' })]: {
         left: tokens.fixedHorizontalSpace.normal,
         justifyContent: 'start',
 
         '@container': {
-          [getResponsiveContainerQuery({ size: 'compact' })]: {
+          [responsiveContainerQuery({ size: 'compact' })]: {
             left: tokens.fixedHorizontalSpace.compact,
           },
         },
       },
-      [getModifierSelector<IModifier>({ justify: 'center' })]: {
+      [modifierSelector<IModifier>({ justify: 'center' })]: {
         left: tokens.fixedHorizontalSpace.compact,
         right: tokens.fixedHorizontalSpace.compact,
         justifyContent: 'center',
@@ -48,7 +48,7 @@ const classNames = createStyles({
     transformOrigin: 'bottom',
 
     '@container': {
-      [getResponsiveContainerQuery({ size: 'compact' })]: {
+      [responsiveContainerQuery({ size: 'compact' })]: {
         flexGrow: 1,
         minWidth: 'unset',
       },

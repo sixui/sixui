@@ -1,9 +1,8 @@
 import type { ICardTitleThemeFactory } from './CardTitle.css';
 import type { ICardTitleFactory } from './CardTitle.types';
 import { Box } from '~/components/Box';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { COMPONENT_NAME } from './CardTitle.constants';
 import { cardTitleTheme } from './CardTitle.css';
 

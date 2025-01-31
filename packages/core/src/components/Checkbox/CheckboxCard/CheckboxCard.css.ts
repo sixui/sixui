@@ -1,15 +1,15 @@
 import type { ICardVariant } from '~/components/Card';
 import type { IInteraction } from '~/hooks/useInteractions';
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { Card } from '~/components/Card';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
-import { px } from '~/helpers/styles/px';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { px } from '~/utils/css/px';
+import { typography } from '~/utils/css/typography';
 import { COMPONENT_NAME } from './CheckboxCard.constants';
 
 type IModifier = IInteraction | 'disabled' | 'checked';
@@ -24,7 +24,7 @@ const classNames = createStyles({
   root: {
     textAlign: 'left',
 
-    vars: createTokensVars(Card.theme.tokens, {
+    vars: overrideTokens(Card.theme.tokens, {
       container: {
         color: {
           normal: themeTokens.colorScheme.surfaceContainerHigh,
@@ -32,8 +32,8 @@ const classNames = createStyles({
       },
     }),
     selectors: {
-      [getModifierSelector<IModifier>('checked')]: {
-        vars: createTokensVars(Card.theme.tokens, {
+      [modifierSelector<IModifier>('checked')]: {
+        vars: overrideTokens(Card.theme.tokens, {
           outline: {
             color: {
               normal: themeTokens.colorScheme.primary,
@@ -48,10 +48,10 @@ const classNames = createStyles({
     },
   },
   supportingText: ({ root }) => ({
-    ...getTypographyStyles(tokens.supportingText.typography),
+    ...typography(tokens.supportingText.typography),
 
     selectors: {
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         opacity: themeTokens.state.opacity.disabled,
       },
     },

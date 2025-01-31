@@ -1,14 +1,14 @@
 import { calc } from '@vanilla-extract/css-utils';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { Divider } from '~/components/Divider';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { px } from '~/helpers/styles/px';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { px } from '~/utils/css/px';
 import { stepperStepTheme } from '../StepperStep/StepperStep.css';
 import { COMPONENT_NAME } from './StepperConnector.constants';
 
@@ -31,7 +31,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
 
 const classNames = createStyles({
   root: {
-    vars: createTokensVars(Divider.theme.tokens, {
+    vars: overrideTokens(Divider.theme.tokens, {
       stroke: tokens.stroke,
       shape: tokens.shape,
       color: tokens.color.normal,
@@ -41,8 +41,8 @@ const classNames = createStyles({
     }),
 
     selectors: {
-      [getModifierSelector<IModifier>('completed')]: {
-        vars: createTokensVars(Divider.theme.tokens, {
+      [modifierSelector<IModifier>('completed')]: {
+        vars: overrideTokens(Divider.theme.tokens, {
           stroke: tokens.stroke,
           shape: tokens.shape,
           color: tokens.color.completed,
@@ -51,7 +51,7 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>({
+      [modifierSelector<IModifier>({
         orientation: 'horizontal',
         'step-label-position': 'bottom',
       })]: {
@@ -61,7 +61,7 @@ const classNames = createStyles({
           calc.divide(stepperStepTheme.tokens.indicator.size, 2),
         ),
       },
-      [getModifierSelector<IModifier>({
+      [modifierSelector<IModifier>({
         orientation: 'vertical',
         'step-label-position': 'right',
       })]: {
@@ -71,7 +71,7 @@ const classNames = createStyles({
           calc.divide(stepperStepTheme.tokens.indicator.size, 2),
         ),
       },
-      [getModifierSelector<IModifier>({
+      [modifierSelector<IModifier>({
         orientation: 'vertical',
         'step-label-position': 'bottom',
       })]: {

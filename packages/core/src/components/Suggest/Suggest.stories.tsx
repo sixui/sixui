@@ -11,7 +11,7 @@ import {
 } from '~/components/FilterableList/FilterableList.stories/fruits';
 import { Flex } from '~/components/Flex';
 import { ListItem } from '~/components/List/ListItem';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { Suggest } from './Suggest';
 
 const meta = {

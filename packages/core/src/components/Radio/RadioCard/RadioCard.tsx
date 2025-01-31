@@ -5,12 +5,11 @@ import type { IRadioCardFactory } from './RadioCard.types';
 import { Card } from '~/components/Card';
 import { Labeled } from '~/components/Labeled';
 import { RadioIndicator } from '~/components/Radio/RadioIndicator';
-import { isFunction } from '~/helpers/isFunction';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { useRadio } from '~/hooks/useRadio';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { isFunction } from '~/utils/isFunction';
 import { COMPONENT_NAME } from './RadioCard.constants';
 import { RadioCardTheme } from './RadioCard.css';
 

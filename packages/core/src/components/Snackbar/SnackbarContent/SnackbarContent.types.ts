@@ -1,12 +1,12 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IPaperBaseOwnProps } from '~/components/PaperBase';
+import type { IComponentThemeProps } from '~/components/ThemeProvider';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
 import type {
   ISnackbarContentThemeFactory,
   snackbarContentTheme,
 } from './SnackbarContent.css';
-import { IMaybeAsync } from '~/helpers/types';
+import { IMaybeAsync } from '~/utils/types';
 
 export interface ISnackbarContentOwnProps extends IPaperBaseOwnProps {
   children?: React.ReactNode;

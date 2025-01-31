@@ -3,14 +3,16 @@ import { useMemo, useState } from 'react';
 import type { IAppLayoutThemeFactory } from './AppLayout.css';
 import type { IAppLayoutFactory } from './AppLayout.types';
 import { Box } from '~/components/Box';
-import { themeTokens } from '~/components/ThemeProvider';
-import { isFunction } from '~/helpers/isFunction';
+import {
+  themeTokens,
+  useComponentTheme,
+  useProps,
+} from '~/components/ThemeProvider';
 import { useDisclosure } from '~/hooks/useDisclosure';
 import { useSideSheet } from '~/hooks/useSideSheet';
 import { useWindowSizeClass } from '~/hooks/useWindowSizeClass';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { isFunction } from '~/utils/isFunction';
 import { COMPONENT_NAME } from './AppLayout.constants';
 import { AppLayoutProvider, IAppLayoutContextValue } from './AppLayout.context';
 import { AppLayoutBody } from './AppLayoutBody';

@@ -16,8 +16,8 @@ import type { IStepperStepProps } from './StepperStep';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Flex } from '~/components/Flex';
 import { IconButton } from '~/components/IconButton';
-import { isFunction } from '~/helpers/isFunction';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { isFunction } from '~/utils/isFunction';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { Stepper } from './Stepper';
 
 const meta = {

@@ -10,10 +10,9 @@ import { floatingFilterableListBaseFactory } from '~/components/FloatingFilterab
 import { ListItem } from '~/components/List/ListItem';
 import { MenuList } from '~/components/Menu/MenuList';
 import { TextInputField } from '~/components/TextInputField';
-import { IElementProps } from '~/helpers/types';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { IElementProps } from '~/utils/types';
 import { COMPONENT_NAME } from './MultiSelectBase.constants';
 import {
   IMultiSelectBaseThemeFactory,

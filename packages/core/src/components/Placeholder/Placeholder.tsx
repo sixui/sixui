@@ -2,9 +2,8 @@ import type { IPlaceholderThemeFactory } from './Placeholder.css';
 import type { IPlaceholderFactory } from './Placeholder.types';
 import { Diagonals } from '~/components/Diagonals';
 import { Paper } from '~/components/Paper';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { COMPONENT_NAME } from './Placeholder.constants';
 import { placeholderTheme } from './Placeholder.css';
 

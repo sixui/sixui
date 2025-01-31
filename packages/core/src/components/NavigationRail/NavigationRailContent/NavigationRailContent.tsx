@@ -2,9 +2,8 @@ import type { INavigationRailContentThemeFactory } from './NavigationRailContent
 import type { INavigationRailContentFactory } from './NavigationRailContent.types';
 import { NavigationRailDestination } from '~/components/NavigationRail/NavigationRailDestination';
 import { PaperBase } from '~/components/PaperBase';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { COMPONENT_NAME } from './NavigationRailContent.constants';
 import { navigationRailContentTheme } from './NavigationRailContent.css';
 

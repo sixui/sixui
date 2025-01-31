@@ -2,10 +2,9 @@ import type { IAppLayoutSideSheetThemeFactory } from './AppLayoutSideSheet.css';
 import type { IAppLayoutSideSheetFactory } from './AppLayoutSideSheet.types';
 import { useAppLayoutContext } from '~/components/AppLayout/AppLayout.context';
 import { SideSheet } from '~/components/SideSheet';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { mergeClassNames } from '~/utils/styles/mergeClassNames';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { COMPONENT_NAME } from './AppLayoutSideSheet.constants';
 import { appLayoutSideSheetTheme } from './AppLayoutSideSheet.css';
 

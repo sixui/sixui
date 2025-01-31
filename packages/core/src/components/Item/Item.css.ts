@@ -1,20 +1,20 @@
 import { calc } from '@vanilla-extract/css-utils';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getDensity } from '~/helpers/styles/getDensity';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { density } from '~/utils/css/density';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { px } from '~/utils/css/px';
+import { space } from '~/utils/css/space';
+import { typography } from '~/utils/css/typography';
 import { COMPONENT_NAME } from './Item.constants';
 
 type IModifier = 'line-clamp';
 
-const DENSITY = px(getDensity({ min: -1, max: 0 }));
+const DENSITY = px(density({ min: -1, max: 0 }));
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   gap: px(space(3)),
@@ -61,22 +61,22 @@ const classNames = createStyles({
     justifyContent: 'center',
 
     selectors: {
-      [getModifierSelector({ section: 'start' })]: {
+      [modifierSelector({ section: 'start' })]: {
         color: tokens.nonText.color,
         opacity: tokens.nonText.opacity,
       },
 
-      [getModifierSelector({ section: 'main' })]: {
+      [modifierSelector({ section: 'main' })]: {
         flexGrow: 1,
       },
 
-      [getModifierSelector({ section: 'trailingSupportingText' })]: {
+      [modifierSelector({ section: 'trailingSupportingText' })]: {
         color: tokens.trailingSupportingText.color,
         opacity: tokens.trailingSupportingText.opacity,
-        ...getTypographyStyles(tokens.trailingSupportingText.typography),
+        ...typography(tokens.trailingSupportingText.typography),
       },
 
-      [getModifierSelector({ section: 'end' })]: {
+      [modifierSelector({ section: 'end' })]: {
         color: tokens.nonText.color,
         opacity: tokens.nonText.opacity,
       },
@@ -92,7 +92,7 @@ const classNames = createStyles({
     overflow: 'hidden',
 
     selectors: {
-      [getModifierSelector<IModifier>('line-clamp', root)]: {
+      [modifierSelector<IModifier>('line-clamp', root)]: {
         overflow: 'hidden',
         display: '-webkit-box',
         WebkitBoxOrient: 'vertical',
@@ -104,7 +104,7 @@ const classNames = createStyles({
   overline: {
     color: tokens.overline.color,
     opacity: tokens.overline.opacity,
-    ...getTypographyStyles(tokens.overline.typography),
+    ...typography(tokens.overline.typography),
   },
   label: {
     // Needed since the default slot can have just text content, and ellipsis
@@ -115,7 +115,7 @@ const classNames = createStyles({
     textOverflow: 'ellipsis',
     color: tokens.label.color,
     opacity: tokens.label.opacity,
-    ...getTypographyStyles({
+    ...typography({
       ...tokens.label.typography,
       lineHeight: calc.add(tokens.label.typography.lineHeight, DENSITY),
     }),
@@ -123,7 +123,7 @@ const classNames = createStyles({
   supportingText: {
     color: tokens.supportingText.color,
     opacity: tokens.supportingText.opacity,
-    ...getTypographyStyles(tokens.supportingText.typography),
+    ...typography(tokens.supportingText.typography),
   },
 });
 

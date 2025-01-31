@@ -7,7 +7,7 @@ import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Flex } from '~/components/Flex';
 import { Radio } from '~/components/Radio';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { RadioGroup } from './RadioGroup';
 
 interface IRadioGroupDemoProps extends IRadioGroupProps {

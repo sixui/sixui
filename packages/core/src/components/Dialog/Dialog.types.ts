@@ -1,8 +1,8 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IPopoverBaseOwnProps } from '~/components/PopoverBase';
-import type { IOmit } from '~/helpers/types';
+import type { IComponentThemeProps } from '~/components/ThemeProvider';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import type { IComponentThemeProps } from '~/utils/styles/useComponentTheme';
+import type { IOmit } from '~/utils/types';
 import type { dialogTheme, IDialogThemeFactory } from './Dialog.css';
 import type { IDialogContentOwnProps } from './DialogContent';
 

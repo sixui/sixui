@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react';
 
-import type { IMaybeAsync } from '~/helpers/types';
+import type { IMaybeAsync } from '~/utils/types';
 import { useLabeledContext } from '~/components/Labeled';
-import { executeLazyPromise } from '~/helpers/executeLazyPromise';
+import { executeLazyPromise } from '~/utils/executeLazyPromise';
 import { useControlledValue } from './useControlledValue';
 
 export interface IUseSwitchProps {

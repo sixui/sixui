@@ -4,7 +4,7 @@ import { useState } from 'react';
 import type { ISnackbarProps } from './Snackbar.types';
 import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { Snackbar } from './Snackbar';
 
 const meta = {

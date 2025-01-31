@@ -1,16 +1,16 @@
 import { calc } from '@vanilla-extract/css-utils';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { PaperBase } from '~/components/PaperBase';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getDensity } from '~/helpers/styles/getDensity';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
-import { px } from '~/helpers/styles/px';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { density } from '~/utils/css/density';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { px } from '~/utils/css/px';
+import { typography } from '~/utils/css/typography';
 import { COMPONENT_NAME } from './StepperStepIndicator.constants';
 
 type IModifier =
@@ -20,7 +20,7 @@ type IModifier =
   | 'disabled'
   | 'icon-only';
 
-const DENSITY = px(getDensity({ min: -2, max: 0 }));
+const DENSITY = px(density({ min: -2, max: 0 }));
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
@@ -77,53 +77,52 @@ const classNames = createStyles({
     height: calc.add(tokens.container.size, DENSITY),
     fontSize: calc.add(tokens.container.size, DENSITY),
 
-    vars: createTokensVars(PaperBase.theme.tokens, {
+    vars: overrideTokens(PaperBase.theme.tokens, {
       container: {
         shape: tokens.container.shape,
       },
     }),
 
     selectors: {
-      [getModifierSelector<IModifier>(['!active', '!completed', '!has-error'])]:
-        {
-          vars: createTokensVars(PaperBase.theme.tokens, {
-            container: {
-              color: tokens.container.color.inactive,
-              opacity: tokens.container.opacity.inactive,
-            },
-          }),
-        },
-      [getModifierSelector<IModifier>('active')]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [modifierSelector<IModifier>(['!active', '!completed', '!has-error'])]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
+          container: {
+            color: tokens.container.color.inactive,
+            opacity: tokens.container.opacity.inactive,
+          },
+        }),
+      },
+      [modifierSelector<IModifier>('active')]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: tokens.container.color.active,
           },
         }),
       },
-      [getModifierSelector<IModifier>('icon-only')]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [modifierSelector<IModifier>('icon-only')]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: 'transparent',
             opacity: tokens.icon.opacity.inactive,
           },
         }),
       },
-      [getModifierSelector<IModifier>(['completed', '!icon-only'])]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [modifierSelector<IModifier>(['completed', '!icon-only'])]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: tokens.container.color.completed,
           },
         }),
       },
-      [getModifierSelector<IModifier>(['has-error', '!icon-only'])]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [modifierSelector<IModifier>(['has-error', '!icon-only'])]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: tokens.container.color.error,
           },
         }),
       },
-      [getModifierSelector<IModifier>(['disabled', '!icon-only'])]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [modifierSelector<IModifier>(['disabled', '!icon-only'])]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: tokens.container.color.disabled,
             opacity: tokens.container.opacity.disabled,
@@ -134,7 +133,7 @@ const classNames = createStyles({
   },
   icon: ({ root }) => ({
     selectors: {
-      [getModifierSelector<IModifier>(
+      [modifierSelector<IModifier>(
         ['!active', '!completed', '!has-error'],
         root,
       )]: {
@@ -142,19 +141,19 @@ const classNames = createStyles({
         fill: tokens.icon.color.inactive,
         opacity: tokens.icon.opacity.inactive,
       },
-      [getModifierSelector<IModifier>('active', root)]: {
+      [modifierSelector<IModifier>('active', root)]: {
         color: tokens.icon.color.active,
         fill: tokens.icon.color.active,
       },
-      [getModifierSelector<IModifier>('completed', root)]: {
+      [modifierSelector<IModifier>('completed', root)]: {
         color: tokens.icon.color.completed,
         fill: tokens.icon.color.completed,
       },
-      [getModifierSelector<IModifier>('has-error', root)]: {
+      [modifierSelector<IModifier>('has-error', root)]: {
         color: tokens.icon.color.error,
         fill: tokens.icon.color.error,
       },
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         color: tokens.icon.color.disabled,
         fill: tokens.icon.color.disabled,
         opacity: tokens.icon.opacity.disabled,
@@ -162,21 +161,21 @@ const classNames = createStyles({
     },
   }),
   label: ({ root }) => ({
-    ...getTypographyStyles(tokens.label.typography),
+    ...typography(tokens.label.typography),
     color: tokens.label.color.inactive,
     opacity: tokens.label.opacity.inactive,
 
     selectors: {
-      [getModifierSelector<IModifier>('completed', root)]: {
+      [modifierSelector<IModifier>('completed', root)]: {
         color: tokens.label.color.completed,
       },
-      [getModifierSelector<IModifier>('has-error', root)]: {
+      [modifierSelector<IModifier>('has-error', root)]: {
         color: tokens.label.color.error,
       },
-      [getModifierSelector<IModifier>('active', root)]: {
+      [modifierSelector<IModifier>('active', root)]: {
         color: tokens.label.color.active,
       },
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         color: tokens.label.color.disabled,
         opacity: tokens.label.opacity.disabled,
       },

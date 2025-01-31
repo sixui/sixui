@@ -1,4 +1,4 @@
-import type { IPlacement } from '~/helpers/types';
+import type { IPlacement } from '~/utils/types';
 import { stringFromPlacement } from '~/utils/stringFromPlacement';
 
 export const getEdgeTransformOriginFromPlacement = (

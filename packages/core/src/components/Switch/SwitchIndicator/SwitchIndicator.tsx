@@ -4,9 +4,8 @@ import { iconCheckmark, iconXMark } from '~/assets/icons';
 import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
 import { PaperBase } from '~/components/PaperBase';
 import { SvgIcon } from '~/components/SvgIcon';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { COMPONENT_NAME } from './SwitchIndicator.constants';
 import { basicTemplateTheme } from './SwitchIndicator.css';
 

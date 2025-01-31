@@ -4,10 +4,9 @@ import { iconXMark } from '~/assets/icons';
 import { IconButton } from '~/components/IconButton';
 import { Paper } from '~/components/Paper';
 import { SvgIcon } from '~/components/SvgIcon';
-import { isFunction } from '~/helpers/isFunction';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
+import { isFunction } from '~/utils/isFunction';
 import { COMPONENT_NAME } from './SideSheetContent.constants';
 import {
   sideSheetContentTheme,

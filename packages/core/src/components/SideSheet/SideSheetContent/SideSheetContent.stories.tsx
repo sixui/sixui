@@ -7,7 +7,7 @@ import type {
 } from './SideSheetContent.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Placeholder } from '~/components/Placeholder';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { SideSheetContent } from './SideSheetContent';
 
 const meta = {

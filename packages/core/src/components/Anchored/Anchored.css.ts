@@ -1,13 +1,13 @@
 import { createVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { px } from '~/helpers/styles/px';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { px } from '~/utils/css/px';
 import { COMPONENT_NAME } from './Anchored.constants';
 
 type IModifier = 'position' | 'invisible';
@@ -69,47 +69,47 @@ const classNames = createStyles({
     transformOrigin: `${vars.transformOrigin.x} ${vars.transformOrigin.y}`,
 
     selectors: {
-      [getModifierSelector<IModifier>('invisible', root)]: {
+      [modifierSelector<IModifier>('invisible', root)]: {
         vars: {
           [vars.scale]: '0',
         },
       },
-      [getModifierSelector<IModifier>('position^=top-', root)]: {
+      [modifierSelector<IModifier>('position^=top-', root)]: {
         vars: {
           top: vars.offset.y,
           [vars.translate.y]: '-50%',
           [vars.transformOrigin.y]: '0%',
         },
       },
-      [getModifierSelector<IModifier>('position^=middle-', root)]: {
+      [modifierSelector<IModifier>('position^=middle-', root)]: {
         vars: {
           top: '50%',
           [vars.translate.y]: '-50%',
           [vars.transformOrigin.y]: '0%',
         },
       },
-      [getModifierSelector<IModifier>('position^=bottom-', root)]: {
+      [modifierSelector<IModifier>('position^=bottom-', root)]: {
         vars: {
           bottom: vars.offset.y,
           [vars.translate.y]: '50%',
           [vars.transformOrigin.y]: '100%',
         },
       },
-      [getModifierSelector<IModifier>('position$=-start', root)]: {
+      [modifierSelector<IModifier>('position$=-start', root)]: {
         vars: {
           left: vars.offset.x,
           [vars.translate.x]: '-50%',
           [vars.transformOrigin.x]: '0%',
         },
       },
-      [getModifierSelector<IModifier>('position$=-center', root)]: {
+      [modifierSelector<IModifier>('position$=-center', root)]: {
         vars: {
           left: '50%',
           [vars.translate.x]: '-50%',
           [vars.transformOrigin.x]: '0%',
         },
       },
-      [getModifierSelector<IModifier>('position$=-end', root)]: {
+      [modifierSelector<IModifier>('position$=-end', root)]: {
         vars: {
           right: vars.offset.x,
           [vars.translate.x]: '50%',

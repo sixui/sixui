@@ -5,8 +5,8 @@ import { ColorInputField } from '~/components/ColorInputField';
 import { ColorScheme } from '~/components/ColorScheme';
 import { Flex } from '~/components/Flex';
 import { Paper } from '~/components/Paper';
-import { generateThemeFromSourceColor } from '~/helpers/colors/generateThemeFromSourceColor';
-import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
+import { generateThemeFromSourceColor } from '~/utils/colors/generateThemeFromSourceColor';
+import { isValidHexColor } from '~/utils/colors/isValidHexColor';
 import { ThemeProvider } from './ThemeProvider';
 import { useThemeSetterContext } from './ThemeSetter.context';
 

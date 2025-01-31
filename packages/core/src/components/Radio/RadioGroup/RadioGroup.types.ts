@@ -1,7 +1,7 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IRadioGroupContextValue } from './RadioGroup.context';
-import { IOmit } from '~/helpers/types';
+import { IOmit } from '~/utils/types';
 
 export interface IRadioGroupOwnProps
   extends IOmit<IRadioGroupContextValue, 'changingValue'> {

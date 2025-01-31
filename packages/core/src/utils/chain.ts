@@ -1,4 +1,4 @@
-import type { IAny } from '~/helpers/types';
+import type { IAny } from '~/utils/types';
 
 /**
  * Calls all functions in the order they were chained with the same arguments.

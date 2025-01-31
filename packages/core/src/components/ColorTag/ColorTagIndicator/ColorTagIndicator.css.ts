@@ -1,22 +1,22 @@
 import { calc } from '@vanilla-extract/css-utils';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { Diagonals } from '~/components/Diagonals';
 import { PaperBase } from '~/components/PaperBase';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getDensity } from '~/helpers/styles/getDensity';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { density } from '~/utils/css/density';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { px } from '~/utils/css/px';
+import { space } from '~/utils/css/space';
 import { COMPONENT_NAME } from './ColorTagIndicator.constants';
 
 type IModifier = 'empty' | 'invalid' | 'outlined';
 
-const DENSITY = px(getDensity({ min: -3, max: 0 }));
+const DENSITY = px(density({ min: -3, max: 0 }));
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
@@ -71,7 +71,7 @@ const classNames = createStyles({
     alignItems: 'center',
     padding: px(space(2)),
 
-    vars: createTokensVars(PaperBase.theme.tokens, {
+    vars: overrideTokens(PaperBase.theme.tokens, {
       container: {
         shape: tokens.container.shape,
         color: tokens.container.color.normal,
@@ -83,16 +83,16 @@ const classNames = createStyles({
       },
     }),
     selectors: {
-      [getModifierSelector<IModifier>('outlined')]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [modifierSelector<IModifier>('outlined')]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           outline: {
             width: px(themeTokens.outline.width.xs),
             opacity: '0.5',
           },
         }),
       },
-      [getModifierSelector<IModifier>('empty')]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [modifierSelector<IModifier>('empty')]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: tokens.container.color.empty,
           },
@@ -103,8 +103,8 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>(['invalid', '!empty'])]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+      [modifierSelector<IModifier>(['invalid', '!empty'])]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: tokens.container.color.invalid,
           },
@@ -125,19 +125,19 @@ const classNames = createStyles({
     display: 'none',
 
     selectors: {
-      [getModifierSelector<IModifier>('empty', root)]: {
+      [modifierSelector<IModifier>('empty', root)]: {
         display: 'block',
 
-        vars: createTokensVars(Diagonals.theme.tokens, {
+        vars: overrideTokens(Diagonals.theme.tokens, {
           color: tokens.diagonals.color.empty,
           width: tokens.diagonals.width.empty,
           opacity: tokens.diagonals.opacity.empty,
         }),
       },
-      [getModifierSelector<IModifier>(['invalid', '!empty'], root)]: {
+      [modifierSelector<IModifier>(['invalid', '!empty'], root)]: {
         display: 'block',
 
-        vars: createTokensVars(Diagonals.theme.tokens, {
+        vars: overrideTokens(Diagonals.theme.tokens, {
           color: tokens.diagonals.color.invalid,
           width: tokens.diagonals.width.invalid,
           opacity: tokens.diagonals.opacity.invalid,

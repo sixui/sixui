@@ -6,7 +6,7 @@ import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { INavigationDrawerDestinationProps } from './NavigationDrawerDestination.types';
 import { Avatar } from '~/components/Avatar';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { NavigationDrawerDestination } from './NavigationDrawerDestination';
 
 // https://m3.material.io/components/items/overview

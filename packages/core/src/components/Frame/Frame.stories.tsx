@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { IFrameProps } from './Frame.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { themeTokens } from '~/components/ThemeProvider';
-import { px } from '~/helpers/styles/px';
+import { px } from '~/utils/css/px';
 import { Frame } from './Frame';
 
 const meta = {

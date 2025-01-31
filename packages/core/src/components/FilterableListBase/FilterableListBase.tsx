@@ -6,9 +6,9 @@ import type {
   IFilterableListItemModifiers,
 } from './FilterableListBase.types';
 import { Box } from '~/components/Box';
+import { useProps } from '~/components/ThemeProvider';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { useProps } from '~/utils/component/useProps';
 import { COMPONENT_NAME } from './FilterableListBase.constants';
 import {
   executeFilterableItemsEqual,

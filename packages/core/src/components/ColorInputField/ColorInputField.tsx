@@ -1,6 +1,6 @@
 import { useCallback, useContext, useRef, useState } from 'react';
 
-import type { IColorPalette } from '~/components/ColorPickerContent';
+import type { IColorPalette } from '~/utils/types';
 import type {
   IColorInputFieldColorPickerRendererProps,
   IColorInputFieldFactory,
@@ -13,11 +13,11 @@ import { IconButton } from '~/components/IconButton';
 import { PopoverBase } from '~/components/PopoverBase';
 import { SvgIcon } from '~/components/SvgIcon';
 import { TextInputField } from '~/components/TextInputField';
-import { extractPaletteFromImage } from '~/helpers/colors/extractPaletteFromImage';
-import { isValidHexColor } from '~/helpers/colors/isValidHexColor';
+import { useProps } from '~/components/ThemeProvider';
 import { useControlledValue } from '~/hooks/useControlledValue';
+import { extractPaletteFromImage } from '~/utils/colors/extractPaletteFromImage';
+import { isValidHexColor } from '~/utils/colors/isValidHexColor';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
 import { COMPONENT_NAME } from './ColorInputField.constants';
 import { colorInputFieldTheme } from './ColorInputField.css';
 

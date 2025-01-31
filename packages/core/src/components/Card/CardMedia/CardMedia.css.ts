@@ -1,8 +1,8 @@
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
 import { cardTheme } from '~/components/Card/Card.css';
 import { COMPONENT_NAME } from './CardMedia.constants';
 
@@ -22,7 +22,7 @@ const classNames = createStyles({
     flexShrink: 0,
 
     selectors: {
-      [getModifierSelector<IModifier>({ type: 'image' })]: {
+      [modifierSelector<IModifier>({ type: 'image' })]: {
         objectFit: 'cover',
       },
     },

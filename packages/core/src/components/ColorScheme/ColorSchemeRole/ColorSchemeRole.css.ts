@@ -1,20 +1,20 @@
 import { calc } from '@vanilla-extract/css-utils';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getDensity } from '~/helpers/styles/getDensity';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { density } from '~/utils/css/density';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { px } from '~/utils/css/px';
+import { space } from '~/utils/css/space';
+import { typography } from '~/utils/css/typography';
 import { COMPONENT_NAME } from './ColorSchemeRole.constants';
 
 type IModifier = 'size';
 
-const DENSITY = px(getDensity({ min: -5, max: 0 }));
+const DENSITY = px(density({ min: -5, max: 0 }));
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME);
 
@@ -25,22 +25,22 @@ const classNames = createStyles({
     paddingRight: px(space(3)),
     paddingTop: px(space(2)),
     paddingBottom: px(space(2)),
-    ...getTypographyStyles(themeTokens.typeScale.label.sm),
+    ...typography(themeTokens.typeScale.label.sm),
 
     selectors: {
-      [getModifierSelector<IModifier>({ size: 'xs' })]: {
+      [modifierSelector<IModifier>({ size: 'xs' })]: {
         flexBasis: calc.add('30px', DENSITY),
       },
-      [getModifierSelector<IModifier>({ size: 'sm' })]: {
+      [modifierSelector<IModifier>({ size: 'sm' })]: {
         flexBasis: calc.add('40px', DENSITY),
       },
-      [getModifierSelector<IModifier>({ size: 'md' })]: {
+      [modifierSelector<IModifier>({ size: 'md' })]: {
         flexBasis: calc.add('50px', DENSITY),
       },
-      [getModifierSelector<IModifier>({ size: 'lg' })]: {
+      [modifierSelector<IModifier>({ size: 'lg' })]: {
         flexBasis: calc.add('65px', DENSITY),
       },
-      [getModifierSelector<IModifier>({ size: 'xl' })]: {
+      [modifierSelector<IModifier>({ size: 'xl' })]: {
         flexBasis: calc.add('75px', DENSITY),
       },
     },

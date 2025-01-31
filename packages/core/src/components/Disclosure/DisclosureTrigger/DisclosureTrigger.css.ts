@@ -1,16 +1,16 @@
 import { calc } from '@vanilla-extract/css-utils';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { Item } from '~/components/Item';
 import { ListItem } from '~/components/List/ListItem';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { px } from '~/utils/css/px';
+import { space } from '~/utils/css/space';
 import { COMPONENT_NAME } from './DisclosureTrigger.constants';
 
 type IModifier = 'disabled' | 'expanded' | 'checkable' | 'switchable';
@@ -62,7 +62,7 @@ const classNames = createStyles({
     display: 'block',
     width: '100%',
 
-    vars: createTokensVars(ListItem.theme.tokens, {
+    vars: overrideTokens(ListItem.theme.tokens, {
       container: {
         shape: tokens.container.shape,
         color: {
@@ -96,8 +96,8 @@ const classNames = createStyles({
       },
     }),
     selectors: {
-      [getModifierSelector<IModifier>('expanded', root)]: {
-        vars: createTokensVars(ListItem.theme.tokens, {
+      [modifierSelector<IModifier>('expanded', root)]: {
+        vars: overrideTokens(ListItem.theme.tokens, {
           container: {
             color: {
               normal: {
@@ -121,8 +121,8 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>('checkable', root)]: {
-        vars: createTokensVars(ListItem.theme.tokens, {
+      [modifierSelector<IModifier>('checkable', root)]: {
+        vars: overrideTokens(ListItem.theme.tokens, {
           container: {
             leadingSpace: {
               normal: calc(tokens.toggle.leadingSpace)
@@ -139,8 +139,8 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>('switchable', root)]: {
-        vars: createTokensVars(ListItem.theme.tokens, {
+      [modifierSelector<IModifier>('switchable', root)]: {
+        vars: overrideTokens(ListItem.theme.tokens, {
           container: {
             leadingSpace: {
               normal: calc(tokens.toggle.leadingSpace)
@@ -160,7 +160,7 @@ const classNames = createStyles({
     },
   }),
   item: {
-    vars: createTokensVars(Item.theme.tokens, {
+    vars: overrideTokens(Item.theme.tokens, {
       label: {
         typography: tokens.label.typography,
       },
@@ -174,7 +174,7 @@ const classNames = createStyles({
     transform: 'rotate(0)',
 
     selectors: {
-      [getModifierSelector<IModifier>('expanded', root)]: {
+      [modifierSelector<IModifier>('expanded', root)]: {
         transform: 'rotate(180deg)',
         transitionDuration: themeTokens.motion.duration.long2,
         transitionTimingFunction:

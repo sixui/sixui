@@ -7,12 +7,11 @@ import { iconTriangleDown } from '~/assets/icons';
 import { FieldBase } from '~/components/FieldBase';
 import { useLabeledContext } from '~/components/Labeled';
 import { SvgIcon } from '~/components/SvgIcon';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
+import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { mergeProps } from '~/utils/mergeProps';
-import { mergeClassNames } from '~/utils/styles/mergeClassNames';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { COMPONENT_NAME } from './HtmlSelect.constants';
 import { htmlSelectTheme } from './HtmlSelect.css';
 

@@ -1,9 +1,9 @@
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { overrideTokens } from '~/utils/css/overrideTokens';
 import { FocusRing } from '../FocusRing';
 import { PaperBase } from '../PaperBase';
 import { themeTokens } from '../ThemeProvider';
@@ -24,18 +24,18 @@ export const classNames = createStyles({
     cursor: 'pointer',
     userSelect: 'none',
 
-    vars: createTokensVars(PaperBase.theme.tokens, {
+    vars: overrideTokens(PaperBase.theme.tokens, {
       container: {
         shape: tokens.container.shape,
       },
     }),
 
     selectors: {
-      [getModifierSelector<IModifier>('disabled')]: {
+      [modifierSelector<IModifier>('disabled')]: {
         cursor: 'default',
         pointerEvents: 'none',
       },
-      [getModifierSelector<IModifier>('non-interactive')]: {
+      [modifierSelector<IModifier>('non-interactive')]: {
         cursor: 'default',
         pointerEvents: 'none',
         userSelect: 'auto',
@@ -51,7 +51,7 @@ export const classNames = createStyles({
   touchTarget: {},
   stateLayer: {},
   focusRing: {
-    vars: createTokensVars(FocusRing.theme.tokens, {
+    vars: overrideTokens(FocusRing.theme.tokens, {
       shape: tokens.container.shape,
     }),
   },

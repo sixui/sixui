@@ -1,11 +1,11 @@
 import { keyframes } from '@vanilla-extract/css';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
 import { COMPONENT_NAME } from './PopoverBase.constants';
 
 type IModifier = 'shake' | 'positioned';
@@ -35,7 +35,7 @@ const classNames = createStyles({
     height: 'inherit',
 
     selectors: {
-      [getModifierSelector<IModifier>('shake', root)]: {
+      [modifierSelector<IModifier>('shake', root)]: {
         animationName: shakeKeyframes,
         animationDuration: themeTokens.motion.duration.short2,
         animationTimingFunction: themeTokens.motion.easing.standard.normal,

@@ -1,6 +1,6 @@
 import type { Alignment, Placement, Side } from '@floating-ui/core';
 
-import type { IPlacement } from '~/helpers/types';
+import type { IPlacement } from '~/utils/types';
 
 export const objectFromPlacement = (
   placement: Placement | IPlacement,

@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react';
 
-import type { IMaybeAsync } from '~/helpers/types';
+import type { IMaybeAsync } from '~/utils/types';
 import { useCheckboxGroupContext } from '~/components/Checkbox/CheckboxGroup/CheckboxGroup.context';
 import { useLabeledContext } from '~/components/Labeled';
-import { executeLazyPromise } from '~/helpers/executeLazyPromise';
 import { useControlledValue } from '~/hooks/useControlledValue';
+import { executeLazyPromise } from '~/utils/executeLazyPromise';
 
 export interface IUseCheckboxProps {
   componentName?: string;

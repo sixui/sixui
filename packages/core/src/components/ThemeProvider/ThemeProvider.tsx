@@ -7,12 +7,12 @@ import type { ITheme, IThemeOverride } from './theme.types';
 import type { IThemeContextValue } from './ThemeProvider.context';
 import type { IThemeProviderProps } from './ThemeProvider.types';
 import type { IThemeSetterContextValue } from './ThemeSetter.context';
-import { deepMerge } from '~/helpers/deepMerge';
-import { partialAssignInlineVars } from '~/utils/styles/partialAssignInlineVars';
-import { textFromCssProperties } from '~/utils/styles/textFromCssProperties';
-import { mergeThemeOverrides } from './mergeThemeOverrides';
+import { partialAssignInlineVars } from '~/utils/css/partialAssignInlineVars';
+import { textFromCssProperties } from '~/utils/css/textFromCssProperties';
+import { deepMerge } from '~/utils/deepMerge';
 import { ThemeContext } from './ThemeProvider.context';
 import { ThemeSetterProvider } from './ThemeSetter.context';
+import { mergeThemeOverrides } from './utils/mergeThemeOverrides';
 import {
   defaultTheme,
   styles,

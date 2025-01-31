@@ -2,15 +2,15 @@ import { calc } from '@vanilla-extract/css-utils';
 import cx from 'clsx';
 
 import type { ICircularProgressIndicatorModifier } from '~/components/CircularProgressIndicator/CircularProgressIndicator.css';
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { themeTokens } from '~/components/ThemeProvider';
-import { deepMerge } from '~/helpers/deepMerge';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { getTypographyStyles } from '~/helpers/styles/getTypographyStyles';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { mergeClassNames } from '~/utils/styles/mergeClassNames';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { mergeClassNames } from '~/utils/css/mergeClassNames';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { typography } from '~/utils/css/typography';
+import { deepMerge } from '~/utils/deepMerge';
 import { circularProgressIndicatorTheme } from '~/components/CircularProgressIndicator/CircularProgressIndicator.css';
 import { COMPONENT_NAME } from './DeterminateCircularProgressIndicator.constants';
 
@@ -46,7 +46,7 @@ const classNames = createStyles({
     mask: `radial-gradient(transparent ${calc.subtract(MASK_RADIUS, ANTIALIASING_EPSILON)}, black ${calc.add(MASK_RADIUS, ANTIALIASING_EPSILON)})`,
 
     selectors: {
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         color: tokens.label.color.disabled,
         opacity: themeTokens.state.opacity.disabled,
       },
@@ -59,11 +59,11 @@ const classNames = createStyles({
     width: '100%',
     height: '100%',
     color: tokens.label.color.normal,
-    ...getTypographyStyles(tokens.label.typography),
+    ...typography(tokens.label.typography),
     fontSize: calc.multiply(calc.multiply(0.25, '1em'), themeTokens.scale),
 
     selectors: {
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         color: tokens.label.color.disabled,
         opacity: tokens.label.opacity.disabled,
       },

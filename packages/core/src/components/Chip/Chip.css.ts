@@ -2,20 +2,20 @@ import { fallbackVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IInteraction } from '~/hooks/useInteractions';
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import type { IChipVariant } from './Chip.types';
 import { Avatar } from '~/components/Avatar';
 import { Button } from '~/components/Button';
 import { PaperBase } from '~/components/PaperBase';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getDensity } from '~/helpers/styles/getDensity';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { px } from '~/helpers/styles/px';
-import { space } from '~/helpers/styles/space';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
-import { createTokensVars } from '~/utils/styles/createTokensVars';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { density } from '~/utils/css/density';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { px } from '~/utils/css/px';
+import { space } from '~/utils/css/space';
 import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
 import { COMPONENT_NAME } from './Chip.constants';
 
@@ -27,7 +27,7 @@ type IModifier =
   | 'avatar'
   | 'disabled';
 
-const DENSITY = px(getDensity({ min: -2, max: 0 }));
+const DENSITY = px(density({ min: -2, max: 0 }));
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   leadingSpace: {
@@ -95,7 +95,7 @@ const classNames = createStyles({
     minWidth: 'unset',
     height: calc.add(tokens.height, DENSITY),
 
-    vars: createTokensVars(Button.theme.tokens, {
+    vars: overrideTokens(Button.theme.tokens, {
       container: {
         shape: px(themeTokens.shape.corner.sm),
         leadingSpace: {
@@ -116,26 +116,26 @@ const classNames = createStyles({
       label: tokens.label,
     }),
     selectors: {
-      [getModifierSelector<IModifier>({
+      [modifierSelector<IModifier>({
         'non-interactive': false,
       })]: {
-        vars: createTokensVars(Button.theme.tokens, {
+        vars: overrideTokens(Button.theme.tokens, {
           icon: tokens.icon$interactive,
         }),
       },
-      [getModifierSelector<IModifier>({
+      [modifierSelector<IModifier>({
         elevated: false,
       })]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           outline: {
             width: px(themeTokens.outline.width.xs),
           },
         }),
       },
-      [getModifierSelector<IModifier>({
+      [modifierSelector<IModifier>({
         elevated: true,
       })]: {
-        vars: createTokensVars(Button.theme.tokens, {
+        vars: overrideTokens(Button.theme.tokens, {
           container: {
             color: {
               disabled: themeTokens.colorScheme.onSurface,
@@ -150,11 +150,11 @@ const classNames = createStyles({
           },
         }),
       },
-      [getModifierSelector<IModifier>({
+      [modifierSelector<IModifier>({
         selected: true,
       })]: {
         vars: {
-          ...createTokensVars(Button.theme.tokens, {
+          ...overrideTokens(Button.theme.tokens, {
             container: {
               color: {
                 normal: themeTokens.colorScheme.secondaryContainer,
@@ -189,10 +189,10 @@ const classNames = createStyles({
           }),
         },
       },
-      [getModifierSelector<IModifier>({
+      [modifierSelector<IModifier>({
         avatar: true,
       })]: {
-        vars: createTokensVars(Button.theme.tokens, {
+        vars: overrideTokens(Button.theme.tokens, {
           container: {
             shape: px(themeTokens.shape.corner.full),
             leadingSpace: {
@@ -202,10 +202,10 @@ const classNames = createStyles({
           icon: tokens.icon$avatar,
         }),
       },
-      [getModifierSelector<IModifier>({
+      [modifierSelector<IModifier>({
         disabled: true,
       })]: {
-        vars: createTokensVars(PaperBase.theme.tokens, {
+        vars: overrideTokens(PaperBase.theme.tokens, {
           outline: {
             opacity: themeTokens.state.opacity.disabled,
           },
@@ -214,17 +214,17 @@ const classNames = createStyles({
     },
   },
   avatar: ({ root }) => ({
-    vars: createTokensVars(Avatar.theme.tokens, {
+    vars: overrideTokens(Avatar.theme.tokens, {
       size: tokens.icon.size,
     }),
 
     selectors: {
-      [getModifierSelector<IModifier>({ avatar: true }, root)]: {
-        vars: createTokensVars(Avatar.theme.tokens, {
+      [modifierSelector<IModifier>({ avatar: true }, root)]: {
+        vars: overrideTokens(Avatar.theme.tokens, {
           size: px(24),
         }),
       },
-      [getModifierSelector<IModifier>({ avatar: false }, root)]: {
+      [modifierSelector<IModifier>({ avatar: false }, root)]: {
         vars: {
           [themeTokens.density.interval]: '0',
         },
@@ -236,7 +236,7 @@ const classNames = createStyles({
     marginLeft: px(-12),
     marginRight: px(-12),
 
-    vars: createTokensVars(Button.theme.tokens, {
+    vars: overrideTokens(Button.theme.tokens, {
       container: {
         color: {
           normal: 'transparent',

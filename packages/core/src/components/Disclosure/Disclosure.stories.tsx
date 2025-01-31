@@ -4,7 +4,7 @@ import type { IDisclosureProps } from './Disclosure.types';
 import type { IDisclosureTriggerProps } from './DisclosureTrigger';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Text } from '~/components/Text';
-import { sbHandleEvent } from '~/helpers/sbHandleEvent';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { Disclosure } from './Disclosure';
 
 const meta = {

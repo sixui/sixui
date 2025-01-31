@@ -1,11 +1,11 @@
 import { keyframes } from '@vanilla-extract/css';
 
 import type { ICircularProgressIndicatorModifier } from '~/components/CircularProgressIndicator/CircularProgressIndicator.css';
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createStyles } from '~/utils/styles/createStyles';
-import { mergeClassNames } from '~/utils/styles/mergeClassNames';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createStyles } from '~/utils/css/createStyles';
+import { mergeClassNames } from '~/utils/css/mergeClassNames';
+import { modifierSelector } from '~/utils/css/modifierSelector';
 import { circularProgressIndicatorTheme } from '~/components/CircularProgressIndicator/CircularProgressIndicator.css';
 
 type IModifier = ICircularProgressIndicatorModifier;
@@ -113,7 +113,7 @@ const classNames = createStyles({
     animationTimingFunction: indeterminateEasing,
     borderWidth: parentStyles.tokens.strokeWidth,
     selectors: {
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         borderTopColor: parentStyles.tokens.color.disabled,
         borderRightColor: parentStyles.tokens.color.disabled,
         borderBottomColor: 'transparent',

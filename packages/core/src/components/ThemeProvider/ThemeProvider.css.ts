@@ -10,8 +10,8 @@ import type {
   ITheme,
   IThemeColorSchemeVariant,
 } from './theme.types';
-import { getCssVarName } from '~/utils/styles/getCssVarName';
-import { getDefaultTheme } from './getDefaultTheme';
+import { getCssVarName } from '~/utils/css/getCssVarName';
+import { getDefaultTheme } from './utils/getDefaultTheme';
 
 export const cssLayers = {
   reset: globalLayer('sixui-reset'),

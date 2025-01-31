@@ -4,9 +4,8 @@ import { Box } from '~/components/Box';
 import { Divider } from '~/components/Divider';
 import { List } from '~/components/List';
 import { NavigationDrawerDestination } from '~/components/NavigationDrawerDestination';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { COMPONENT_NAME } from './NavigationDrawerSection.constants';
 import { navigationDrawerSectionTheme } from './NavigationDrawerSection.css';
 

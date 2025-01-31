@@ -1,6 +1,6 @@
 import type { IFilterableListPredicate } from '~/components/FilterableListBase';
 import type { IFilterableListItem } from '../FilterableList.types';
-import { createFilter } from '~/helpers/createFilter';
+import { createFilter } from '~/utils/createFilter';
 
 export const filterFilterableList: IFilterableListPredicate<IFilterableListItem> =
   createFilter<IFilterableListItem>({

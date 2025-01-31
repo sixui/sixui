@@ -6,9 +6,8 @@ import { Flex } from '~/components/Flex';
 import { IconButton } from '~/components/IconButton';
 import { PaperBase } from '~/components/PaperBase';
 import { SvgIcon } from '~/components/SvgIcon';
+import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { useProps } from '~/utils/component/useProps';
-import { useComponentTheme } from '~/utils/styles/useComponentTheme';
 import { COMPONENT_NAME } from './SnackbarContent.constants';
 import { snackbarContentTheme } from './SnackbarContent.css';
 

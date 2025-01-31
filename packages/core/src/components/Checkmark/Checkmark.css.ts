@@ -1,11 +1,11 @@
 import { keyframes } from '@vanilla-extract/css';
 
-import type { IComponentThemeFactory } from '~/utils/styles/componentThemeFactory';
+import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { themeTokens } from '~/components/ThemeProvider';
-import { getModifierSelector } from '~/helpers/styles/getModifierSelector';
-import { componentThemeFactory } from '~/utils/styles/componentThemeFactory';
-import { createComponentTheme } from '~/utils/styles/createComponentTheme';
-import { createStyles } from '~/utils/styles/createStyles';
+import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
 import { COMPONENT_NAME } from './Checkmark.constants';
 
 type IModifier =
@@ -51,36 +51,36 @@ const classNames = createStyles({
     vectorEffect: 'non-scaling-stroke',
 
     selectors: {
-      [getModifierSelector<IModifier>('on', root)]: {
+      [modifierSelector<IModifier>('on', root)]: {
         // Enter duration and easing.
         animationDuration: themeTokens.motion.duration.medium3,
         animationTimingFunction:
           themeTokens.motion.easing.emphasized.decelerate,
       },
-      [getModifierSelector<IModifier>('checked', root)]: {
+      [modifierSelector<IModifier>('checked', root)]: {
         // Transform from the bottom left of the rectangles, which turn into the
         // bottom-most point of the checkmark. Fix Safari's transform-origin bug
         // from "top left" to "bottom left" Move the "bottom left" corner to the
         // checkmark location. Rotate the checkmark.
         transform: `scaleY(-1) translate(${checkmarkBottomLeft}) rotate(45deg)`,
       },
-      [getModifierSelector<IModifier>('indeterminate', root)]: {
+      [modifierSelector<IModifier>('indeterminate', root)]: {
         transform: `scaleY(-1) translate(${indeterminateBottomLeft}) rotate(0deg)`,
       },
-      [getModifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         // Don't animate to/from disabled states because the outline is hidden
         // when selected. Without this, there'd be a FOUC if the
         // checkboxIndicator state is programmatically changed while disabled.
         animationDuration: '0s',
         transitionDuration: '0s',
       },
-      [getModifierSelector<IModifier>('was-unchecked', root)]: {
+      [modifierSelector<IModifier>('was-unchecked', root)]: {
         // When selecting an unselected checkboxIndicator, don't transition
         // between the checked and indeterminate states. The checkmark icon or
         // indeterminate icon should fade in from its final position.
         transitionProperty: 'none',
       },
-      [getModifierSelector<IModifier>('was-disabled', root)]: {
+      [modifierSelector<IModifier>('was-disabled', root)]: {
         // Don't animate to/from disabled states because the outline is hidden
         // when selected. Without this, there'd be a FOUC if the checkbox state
         // is programmatically  changed while disabled.
@@ -97,7 +97,7 @@ const classNames = createStyles({
     transitionProperty: 'transform, height',
 
     selectors: {
-      [getModifierSelector<IModifier>('checked', root)]: {
+      [modifierSelector<IModifier>('checked', root)]: {
         // The right triangle that forms the short end has an X, Y length of
         // 4dp, 4dp. The hypoteneuse is √(4*4 + 4*4), which is the length of the
         // short end when checked.
@@ -112,13 +112,13 @@ const classNames = createStyles({
     transitionProperty: 'transform, width',
 
     selectors: {
-      [getModifierSelector<IModifier>('checked', root)]: {
+      [modifierSelector<IModifier>('checked', root)]: {
         // The right triangle that forms the long end has an X, Y length of 8dp,
         // 8dp. The hypoteneuse is √(8*8 + 8*8), which is the length of the long
         // end when checked.
         width: Math.sqrt(256),
       },
-      [getModifierSelector<IModifier>(['was-unchecked', 'on'], root)]: {
+      [modifierSelector<IModifier>(['was-unchecked', 'on'], root)]: {
         animationName: prevUnselectedToCheckedKeyframes,
       },
     },
