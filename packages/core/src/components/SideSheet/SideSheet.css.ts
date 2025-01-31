@@ -51,9 +51,8 @@ export type ISideSheetThemeFactory = IComponentThemeFactory<{
   tokens: typeof tokens;
 }>;
 
-export const navigationDrawerTheme =
-  componentThemeFactory<ISideSheetThemeFactory>({
-    classNames,
-    tokensClassName,
-    tokens,
-  });
+export const sideSheetTheme = componentThemeFactory<ISideSheetThemeFactory>({
+  classNames,
+  tokensClassName,
+  tokens,
+});

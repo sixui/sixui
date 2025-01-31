@@ -18,16 +18,16 @@ export type IFilterableListItem = {
   href?: string;
 };
 
-export interface IFilterableListOwnProps {
+export interface IFilterableListOwnProps
+  extends IOmit<
+    IFilterableListBaseProps<IFilterableListItem>,
+    'renderer' | 'itemRenderer'
+  > {
   canFilter?: boolean;
 }
 
 export interface IFilterableListProps
   extends IBoxProps,
-    IOmit<
-      IFilterableListBaseProps<IFilterableListItem>,
-      'renderer' | 'itemRenderer'
-    >,
     IFilterableListOwnProps {}
 
 export type IFilterableListFactory = IPolymorphicComponentFactory<{

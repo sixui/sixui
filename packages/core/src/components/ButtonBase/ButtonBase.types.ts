@@ -17,7 +17,7 @@ export interface IButtonBaseChildrenRendererPops {
   renderTouchTarget: () => React.ReactNode;
 }
 
-export interface IButtonBaseOwnProps {
+export interface IButtonBaseOwnProps extends IOmit<IPaperOwnProps, 'children'> {
   interactionsMergeStrategy?: IInteractionsMergeStrategy;
   children?:
     | React.ReactNode
@@ -44,9 +44,8 @@ export interface IButtonBaseOwnProps {
 
 export interface IButtonBaseProps
   extends IBoxProps,
-    IOmit<IPaperOwnProps, 'children'>,
-    IButtonBaseOwnProps,
-    IComponentThemeProps<IButtonBaseThemeFactory> {}
+    IComponentThemeProps<IButtonBaseThemeFactory>,
+    IButtonBaseOwnProps {}
 
 export type IButtonBaseFactory = IPolymorphicComponentFactory<{
   props: IButtonBaseProps;

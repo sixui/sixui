@@ -2,9 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
-import type { ICardProps, ICardVariant } from './Card.types';
+import type { ICardProps } from './Card.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Card } from './Card';
+import { cardVariants } from './Card.types';
 
 const meta = {
   component: Card,
@@ -44,12 +45,10 @@ export const Variants: IStory = {
   render: (props) => (
     <CardShowcase
       props={props}
-      cols={(['filled', 'elevated', 'outlined'] as Array<ICardVariant>).map(
-        (variant) => ({
-          legend: capitalizeFirstLetter(variant),
-          props: { variant },
-        }),
-      )}
+      cols={cardVariants.map((variant) => ({
+        legend: capitalizeFirstLetter(variant),
+        props: { variant },
+      }))}
     />
   ),
   args: defaultArgs,

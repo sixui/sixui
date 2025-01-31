@@ -8,7 +8,7 @@ import type {
   IColorPickerContentThemeFactory,
 } from './ColorPickerContent.css';
 
-export interface IColorPickerContentOwnProps {
+export interface IColorPickerContentOwnProps extends IPaperBaseOwnProps {
   selectedColor?: string;
   onClick?: (event: React.MouseEvent, color: string) => IMaybeAsync<unknown>;
   customPalette?: IColorPalette;
@@ -18,7 +18,6 @@ export interface IColorPickerContentOwnProps {
 
 export interface IColorPickerContentProps
   extends IBoxProps,
-    IPaperBaseOwnProps,
     IComponentThemeProps<IColorPickerContentThemeFactory>,
     IColorPickerContentOwnProps {}
 

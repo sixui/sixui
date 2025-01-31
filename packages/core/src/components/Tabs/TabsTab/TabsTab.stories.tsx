@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { faEnvelope as fasEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { ITabsTabProps } from './TabsTab.types';
@@ -9,6 +10,7 @@ import { Badge } from '~/components/Badge';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { TabsTab } from './TabsTab';
+import { tabsTabVariants } from './TabsTab.types';
 
 const meta = {
   component: TabsTab,
@@ -66,22 +68,10 @@ const groups: Array<IComponentPresentation<ITabsTabProps>> = [
 export const Variants: IStory = {
   render: (props) => (
     <TabsTabShowcase
-      cols={[
-        {
-          legend: 'Primary',
-          props: {
-            variant: 'primary',
-            label: 'Primary',
-          },
-        },
-        {
-          legend: 'Secondary',
-          props: {
-            variant: 'secondary',
-            label: 'Secondary',
-          },
-        },
-      ]}
+      cols={tabsTabVariants.map((variant) => ({
+        legend: capitalizeFirstLetter(variant),
+        props: { variant, label: capitalizeFirstLetter(variant) },
+      }))}
       props={props}
     />
   ),

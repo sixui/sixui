@@ -10,18 +10,19 @@ export type ISelectOwnProps = {
   noResultsLabel?: string;
 };
 
-export type ISelectProps = Omit<
-  IOmit<
-    ISelectBaseProps<IFilterableListItem>,
-    | 'itemRenderer'
-    | 'itemLabel'
-    | 'defaultItem'
-    | 'selectedItem'
-    | 'onItemChange'
-  >,
-  keyof ISelectOwnProps
-> &
-  ISelectOwnProps;
+export interface ISelectProps
+  extends Omit<
+      IOmit<
+        ISelectBaseProps<IFilterableListItem>,
+        | 'itemRenderer'
+        | 'itemLabel'
+        | 'defaultItem'
+        | 'selectedItem'
+        | 'onItemChange'
+      >,
+      keyof ISelectOwnProps
+    >,
+    ISelectOwnProps {}
 
 export type ISelectFactory = IComponentFactory<{
   props: ISelectProps;

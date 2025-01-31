@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { IBoxProps } from '~/components/Box';
 import type { IPlaceholderOwnProps } from '~/components/Placeholder';
@@ -7,6 +8,7 @@ import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Placeholder } from '~/components/Placeholder';
 import { useInteractions } from '~/hooks/useInteractions';
 import { FocusRing } from './FocusRing';
+import { focusRingVariants } from './FocusRing.types';
 
 // https://github.com/material-components/material-web/blob/main/focus/demo/stories.ts
 
@@ -74,24 +76,15 @@ export const Variants: IStory = {
       props={props}
       cols={[
         { props: { label: 'Unfocused' } },
-        {
+        ...focusRingVariants.map((variant) => ({
           props: {
             interactions: {
               focused: true,
             },
-            variant: 'inward',
-            label: 'Inward',
+            variant,
+            label: capitalizeFirstLetter(variant),
           },
-        },
-        {
-          props: {
-            interactions: {
-              focused: true,
-            },
-            variant: 'outward',
-            label: 'Outward',
-          },
-        },
+        })),
       ]}
     />
   ),

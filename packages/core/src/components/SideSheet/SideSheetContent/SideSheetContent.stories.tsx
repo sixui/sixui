@@ -1,14 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
-import type {
-  ISideSheetContentProps,
-  ISideSheetContentVariant,
-} from './SideSheetContent.types';
+import type { ISideSheetContentProps } from './SideSheetContent.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Placeholder } from '~/components/Placeholder';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { SideSheetContent } from './SideSheetContent';
+import { sideSheetContentVariants } from './SideSheetContent.types';
 
 const meta = {
   component: SideSheetContent,
@@ -24,13 +22,7 @@ export const Variants: IStory = {
   render: (props) => (
     <SideSheetContentShowcase
       props={props}
-      cols={(
-        [
-          'standard',
-          'modal',
-          'detachedModal',
-        ] as Array<ISideSheetContentVariant>
-      ).map((variant) => ({
+      cols={sideSheetContentVariants.map((variant) => ({
         props: {
           variant,
         },

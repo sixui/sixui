@@ -8,7 +8,13 @@ import type {
   sideSheetContentTheme,
 } from './SideSheetContent.css';
 
-export type ISideSheetContentVariant = 'standard' | 'modal' | 'detachedModal';
+export const sideSheetContentVariants = [
+  'standard',
+  'modal',
+  'detachedModal',
+] as const;
+export type ISideSheetContentVariant =
+  (typeof sideSheetContentVariants)[number];
 
 export type ISideSheetContentRenderProps = {
   close: (event: React.MouseEvent) => void;

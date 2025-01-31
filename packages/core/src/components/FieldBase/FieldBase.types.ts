@@ -9,7 +9,8 @@ import type {
 } from '~/utils/react/forwardablePropsTypes';
 import type { fieldBaseTheme, IFieldBaseThemeFactory } from './FieldBase.css';
 
-export type IFieldBaseVariant = 'filled' | 'outlined';
+export const fieldBaseVariants = ['filled', 'outlined'] as const;
+export type IFieldBaseVariant = (typeof fieldBaseVariants)[number];
 
 export interface IFieldBaseOwnProps extends IForwardableProps {
   count?: number;

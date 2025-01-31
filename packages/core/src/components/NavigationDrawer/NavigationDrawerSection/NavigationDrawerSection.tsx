@@ -3,9 +3,9 @@ import type { INavigationDrawerSectionFactory } from './NavigationDrawerSection.
 import { Box } from '~/components/Box';
 import { Divider } from '~/components/Divider';
 import { List } from '~/components/List';
-import { NavigationDrawerDestination } from '~/components/NavigationDrawerDestination';
 import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
+import { NavigationDrawerDestination } from '../NavigationDrawerDestination';
 import { COMPONENT_NAME } from './NavigationDrawerSection.constants';
 import { navigationDrawerSectionTheme } from './NavigationDrawerSection.css';
 

@@ -3,7 +3,14 @@ import type { IComponentThemeProps } from '~/components/ThemeProvider';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { ITextThemeFactory, textTheme } from './Text.css';
 
-export type ITextVariant = 'display' | 'headline' | 'title' | 'body' | 'label';
+export const textVariants = [
+  'display',
+  'headline',
+  'title',
+  'body',
+  'label',
+] as const;
+export type ITextVariant = (typeof textVariants)[number];
 
 export type ITextSize = 'sm' | 'md' | 'lg';
 

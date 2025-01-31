@@ -3,7 +3,6 @@ import type {
   IButtonBaseChildrenRendererPops,
   IButtonBaseOwnProps,
 } from '~/components/ButtonBase';
-import type { IPaperOwnProps } from '~/components/Paper';
 import type { IComponentThemeProps } from '~/components/ThemeProvider';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { buttonTheme, IButtonThemeFactory } from './Button.css';
@@ -45,7 +44,6 @@ export interface IButtonOwnProps
 export interface IButtonProps
   extends IBoxProps,
     IComponentThemeProps<IButtonThemeFactory>,
-    IOmit<IPaperOwnProps, 'children'>,
     IButtonOwnProps {}
 
 export type IButtonFactory = IPolymorphicComponentFactory<{

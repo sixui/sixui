@@ -8,7 +8,8 @@ import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphic
 import type { IListItemThemeFactory, listItemTheme } from './ListItem.css';
 import { IOmit } from '~/utils/types';
 
-export type IListItemVariant = 'standard' | 'danger';
+export const listItemVariants = ['standard', 'danger'] as const;
+export type IListItemVariant = (typeof listItemVariants)[number];
 
 export interface IListItemOwnProps
   extends IItemOwnProps,

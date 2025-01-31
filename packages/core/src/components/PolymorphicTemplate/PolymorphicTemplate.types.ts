@@ -7,7 +7,9 @@ import type {
   polymorphicTemplateTheme,
 } from './PolymorphicTemplate.css';
 
-export type IPolymorphicTemplateVariant = 'primary' | 'secondary';
+export const polymorphicTemplateVariants = ['primary', 'secondary'] as const;
+export type IPolymorphicTemplateVariant =
+  (typeof polymorphicTemplateVariants)[number];
 
 export interface IPolymorphicTemplateOwnProps extends IPaperOwnProps {
   children?: React.ReactNode;

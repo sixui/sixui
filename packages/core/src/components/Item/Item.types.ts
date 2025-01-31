@@ -3,8 +3,6 @@ import type { IComponentThemeProps } from '~/components/ThemeProvider';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IItemThemeFactory, itemTheme } from './Item.css';
 
-export type IItemVariant = 'primary';
-
 export interface IItemOwnProps {
   start?: React.ReactNode;
   overline?: React.ReactNode;
@@ -18,7 +16,6 @@ export interface IItemOwnProps {
 export interface IItemProps
   extends IBoxProps,
     IComponentThemeProps<IItemThemeFactory>,
-    IItemOwnProps,
     IItemOwnProps {}
 
 export type IItemFactory = IPolymorphicComponentFactory<{
@@ -26,5 +23,4 @@ export type IItemFactory = IPolymorphicComponentFactory<{
   defaultRef: HTMLDivElement;
   defaultRoot: 'div';
   theme: typeof itemTheme;
-  variant: IItemVariant | false;
 }>;

@@ -13,7 +13,7 @@ import { polymorphicComponentFactory } from '~/utils/component/polymorphicCompon
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { executeLazyPromise } from '~/utils/executeLazyPromise';
 import { COMPONENT_NAME } from './ListItem.constants';
-import { listItemTheme, listItemVariants } from './ListItem.css';
+import { listItemTheme, listItemThemeVariants } from './ListItem.css';
 
 export const ListItem = polymorphicComponentFactory<IListItemFactory>(
   (props, forwardedRef) => {
@@ -67,7 +67,7 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
       style,
       variant,
       theme: listItemTheme,
-      themeVariants: listItemVariants,
+      themeVariants: listItemThemeVariants,
       modifiers: {
         selected,
         disabled: disabledOrReadOnly,

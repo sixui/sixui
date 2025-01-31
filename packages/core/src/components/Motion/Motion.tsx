@@ -41,10 +41,6 @@ export const Motion = polymorphicComponentFactory<IMotionFactory>(
         : undefined);
     const resolvedStatus = resolveRtgStatus(status);
 
-    if (!keepMounted && status === 'exited') {
-      return null;
-    }
-
     const { getStyles } = useComponentTheme<IMotionThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
@@ -66,6 +62,10 @@ export const Motion = polymorphicComponentFactory<IMotionFactory>(
               : pattern.enter,
       },
     });
+
+    if (!keepMounted && status === 'exited') {
+      return null;
+    }
 
     if (disabled) {
       return <Box {...getStyles('root')} ref={forwardedRef} {...other} />;

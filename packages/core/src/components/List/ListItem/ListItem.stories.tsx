@@ -9,11 +9,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
-import type { IListItemProps, IListItemVariant } from './ListItem.types';
+import type { IListItemProps } from './ListItem.types';
 import { Avatar } from '~/components/Avatar';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { ListItem } from './ListItem';
+import { listItemVariants } from './ListItem.types';
 
 // https://m3.material.io/components/items/overview
 // https://material-web.dev/components/item/
@@ -118,16 +119,14 @@ export const Variants: IStory = {
   render: (props) => (
     <ListItemShowcase
       props={props}
-      cols={(['standard', 'danger'] as Array<IListItemVariant>).map(
-        (variant) => ({
-          props: {
-            variant,
-            children: capitalizeFirstLetter(variant),
-            leadingIcon: <FontAwesomeIcon icon={faCalendarDays} />,
-            trailingIcon: <FontAwesomeIcon icon={faChevronRight} />,
-          },
-        }),
-      )}
+      cols={listItemVariants.map((variant) => ({
+        props: {
+          variant,
+          children: capitalizeFirstLetter(variant),
+          leadingIcon: <FontAwesomeIcon icon={faCalendarDays} />,
+          trailingIcon: <FontAwesomeIcon icon={faChevronRight} />,
+        },
+      }))}
     />
   ),
   args: defaultArgs,

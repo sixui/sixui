@@ -3,25 +3,26 @@ import type { ISuggestBaseProps } from '~/components/SuggestBase';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IOmit } from '~/utils/types';
 
-export type ISuggestOwnProps = {
+export interface ISuggestOwnProps {
   value?: string;
   defaultValue?: string;
   onChange?: (value: string | undefined) => void;
   noResultsLabel?: string;
-};
+}
 
-export type ISuggestProps = Omit<
-  IOmit<
-    ISuggestBaseProps<IFilterableListItem>,
-    | 'itemRenderer'
-    | 'itemLabel'
-    | 'defaultItem'
-    | 'selectedItem'
-    | 'onItemChange'
-  >,
-  keyof ISuggestOwnProps
-> &
-  ISuggestOwnProps;
+export interface ISuggestProps
+  extends Omit<
+      IOmit<
+        ISuggestBaseProps<IFilterableListItem>,
+        | 'itemRenderer'
+        | 'itemLabel'
+        | 'defaultItem'
+        | 'selectedItem'
+        | 'onItemChange'
+      >,
+      keyof ISuggestOwnProps
+    >,
+    ISuggestOwnProps {}
 
 export type ISuggestFactory = IComponentFactory<{
   props: ISuggestProps;

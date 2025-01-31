@@ -10,18 +10,19 @@ export type IMultiSelectOwnProps = {
   noResultsLabel?: string;
 };
 
-export type IMultiSelectProps = Omit<
-  IOmit<
-    IMultiSelectBaseProps<IFilterableListItem>,
-    | 'itemRenderer'
-    | 'itemLabel'
-    | 'defaultItems'
-    | 'selectedItems'
-    | 'onItemsChange'
-  >,
-  keyof IMultiSelectOwnProps
-> &
-  IMultiSelectOwnProps;
+export interface IMultiSelectProps
+  extends Omit<
+      IOmit<
+        IMultiSelectBaseProps<IFilterableListItem>,
+        | 'itemRenderer'
+        | 'itemLabel'
+        | 'defaultItems'
+        | 'selectedItems'
+        | 'onItemsChange'
+      >,
+      keyof IMultiSelectOwnProps
+    >,
+    IMultiSelectOwnProps {}
 
 export type IMultiSelectFactory = IComponentFactory<{
   props: IMultiSelectProps;

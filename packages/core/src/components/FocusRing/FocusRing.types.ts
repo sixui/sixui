@@ -3,7 +3,8 @@ import type { IComponentThemeProps } from '~/components/ThemeProvider';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { focusRingTheme, IFocusRingThemeFactory } from './FocusRing.css';
 
-export type IFocusRingVariant = 'outward' | 'inward';
+export const focusRingVariants = ['outward', 'inward'] as const;
+export type IFocusRingVariant = (typeof focusRingVariants)[number];
 
 export interface IFocusRingOwnProps {
   visible?: boolean;

@@ -4,12 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
-import type { IFieldBaseProps, IFieldBaseVariant } from './FieldBase.types';
+import type { IFieldBaseProps } from './FieldBase.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { IconButton } from '~/components/IconButton';
 import { Placeholder } from '~/components/Placeholder';
 import { px } from '~/utils/css/px';
 import { FieldBase } from './FieldBase';
+import { fieldBaseVariants } from './FieldBase.types';
 
 // https://github.com/material-components/material-web/blob/main/field/demo/stories.ts
 
@@ -68,14 +69,12 @@ export const Variants: IStory = {
   render: (props) => (
     <FieldBaseShowcase
       props={props}
-      cols={(['filled', 'outlined'] as Array<IFieldBaseVariant>).map(
-        (variant) => ({
-          props: {
-            variant,
-            label: capitalizeFirstLetter(variant),
-          },
-        }),
-      )}
+      cols={fieldBaseVariants.map((variant) => ({
+        props: {
+          variant,
+          label: capitalizeFirstLetter(variant),
+        },
+      }))}
     />
   ),
   args: defaultArgs,

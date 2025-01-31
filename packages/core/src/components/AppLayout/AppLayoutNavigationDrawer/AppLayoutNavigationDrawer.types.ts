@@ -1,6 +1,8 @@
 import type { IBoxProps } from '~/components/Box';
-import type { NavigationDrawerDestination } from '~/components/NavigationDrawerDestination';
-import type { NavigationDrawerSection } from '~/components/NavigationDrawerSection';
+import type {
+  NavigationDrawerDestination,
+  NavigationDrawerSection,
+} from '~/components/NavigationDrawer';
 import type { IComponentThemeProps } from '~/components/ThemeProvider';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type {

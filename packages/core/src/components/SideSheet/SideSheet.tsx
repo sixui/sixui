@@ -6,7 +6,7 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { COMPONENT_NAME } from './SideSheet.constants';
 import { SideSheetContent } from './SideSheetContent';
-import { navigationDrawerTheme } from './SideSheet.css';
+import { sideSheetTheme } from './SideSheet.css';
 
 export const SideSheet = componentFactory<ISideSheetFactory>(
   (props, forwardedRef) => {
@@ -32,7 +32,7 @@ export const SideSheet = componentFactory<ISideSheetFactory>(
       styles,
       style,
       variant,
-      theme: navigationDrawerTheme,
+      theme: sideSheetTheme,
     });
 
     return (
@@ -70,5 +70,5 @@ export const SideSheet = componentFactory<ISideSheetFactory>(
   },
 );
 
-SideSheet.theme = navigationDrawerTheme;
+SideSheet.theme = sideSheetTheme;
 SideSheet.displayName = `@sixui/${COMPONENT_NAME}`;

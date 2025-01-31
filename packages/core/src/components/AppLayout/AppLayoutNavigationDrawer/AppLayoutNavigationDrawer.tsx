@@ -1,9 +1,7 @@
 import type { IAppLayoutNavigationDrawerThemeFactory } from './AppLayoutNavigationDrawer.css';
 import type { IAppLayoutNavigationDrawerFactory } from './AppLayoutNavigationDrawer.types';
 import { useAppLayoutContext } from '~/components/AppLayout/AppLayout.context';
-import { NavigationDrawerDestination } from '~/components/NavigationDrawerDestination';
-import { NavigationDrawerSection } from '~/components/NavigationDrawerSection';
-import { SideSheet } from '~/components/SideSheet';
+import { NavigationDrawer } from '~/components/NavigationDrawer';
 import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
@@ -64,7 +62,7 @@ export const AppLayoutNavigationDrawer =
     };
 
     return (
-      <SideSheet
+      <NavigationDrawer
         {...getStyles('root')}
         classNames={mergeClassNames(classNames, {
           sideSheetContent: getStyles('sideSheetContent').className,
@@ -81,5 +79,5 @@ export const AppLayoutNavigationDrawer =
 
 AppLayoutNavigationDrawer.theme = appLayoutNavigationDrawerTheme;
 AppLayoutNavigationDrawer.displayName = `@sixui/${COMPONENT_NAME}`;
-AppLayoutNavigationDrawer.Section = NavigationDrawerSection;
-AppLayoutNavigationDrawer.Destination = NavigationDrawerDestination;
+AppLayoutNavigationDrawer.Section = NavigationDrawer.Section;
+AppLayoutNavigationDrawer.Destination = NavigationDrawer.Destination;

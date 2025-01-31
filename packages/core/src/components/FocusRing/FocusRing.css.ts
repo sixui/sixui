@@ -1,4 +1,4 @@
-import { keyframes } from '@vanilla-extract/css';
+import { fallbackVar, keyframes } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
@@ -14,7 +14,7 @@ type IModifier = 'visible' | 'variant';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   color: themeTokens.colorScheme.secondary,
-  shape: 'inherit',
+  shape: 'unset',
   animationDuration: themeTokens.motion.duration.long4,
   offset: {
     inward: px(0),
@@ -52,7 +52,7 @@ const classNames = createStyles({
     animationDuration: `calc(${tokens.animationDuration} * 0.25), calc(${tokens.animationDuration} * 0.75)`,
     animationTimingFunction: themeTokens.motion.easing.standard.normal,
     color: tokens.color,
-    borderRadius: tokens.shape,
+    borderRadius: fallbackVar(tokens.shape, 'inherit'),
     display: 'none',
     pointerEvents: 'none',
 

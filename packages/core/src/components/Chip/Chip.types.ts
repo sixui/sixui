@@ -1,17 +1,22 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IButtonOwnProps } from '~/components/Button';
-import type { IPaperOwnProps } from '~/components/Paper';
 import type { IComponentThemeProps } from '~/components/ThemeProvider';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IMaybeAsync, IOmit } from '~/utils/types';
 import type { chipTheme, IChipThemeFactory } from './Chip.css';
 
-export type IChipVariant = 'assist' | 'filter' | 'input' | 'suggestion';
+export const chipVariants = [
+  'assist',
+  'filter',
+  'input',
+  'suggestion',
+] as const;
+export type IChipVariant = (typeof chipVariants)[number];
 
 export interface IChipOwnProps
   extends IOmit<
     IButtonOwnProps,
-    'leadingIcon' | 'trailingIcon' | 'startSlot' | 'endSlot' | 'children'
+    'leadingIcon' | 'trailingIcon' | 'startSlot' | 'endSlot'
   > {
   onTrailingClick?: (event: React.MouseEvent) => IMaybeAsync<unknown>;
   trailingLoading?: boolean;
@@ -28,7 +33,6 @@ export interface IChipOwnProps
 export interface IChipProps
   extends IBoxProps,
     IComponentThemeProps<IChipThemeFactory>,
-    IPaperOwnProps,
     IChipOwnProps {}
 
 export type IChipFactory = IPolymorphicComponentFactory<{

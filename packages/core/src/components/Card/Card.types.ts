@@ -8,7 +8,8 @@ import type { CardContent } from './CardContent';
 import type { CardMedia } from './CardMedia';
 import type { CardTitle } from './CardTitle';
 
-export type ICardVariant = 'filled' | 'elevated' | 'outlined';
+export const cardVariants = ['filled', 'elevated', 'outlined'] as const;
+export type ICardVariant = (typeof cardVariants)[number];
 
 export type ICardOwnProps = IButtonBaseOwnProps;
 

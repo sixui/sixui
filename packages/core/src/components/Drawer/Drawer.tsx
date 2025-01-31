@@ -54,6 +54,7 @@ export const Drawer = componentFactory<IDrawerFactory>(
         contentRenderer={children}
         placement={{ side }}
         modal={modal}
+        scrim={modal || jail}
         jail={jail}
         floatingFocusManagerProps={{
           visuallyHiddenDismiss: true,

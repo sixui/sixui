@@ -52,7 +52,7 @@ const DrawerDemo: React.FC<IDrawerDemoProps> = (props) => {
 };
 
 const DrawerFrame: React.FC<IDrawerProps> = (props) => {
-  const [rootElement, setRootElement] = useState<HTMLDivElement | null>(null);
+  const [root, setRoot] = useState<HTMLDivElement | null>(null);
   const [leftOpened, leftActions] = useDisclosure(false);
   const [topOpened, topActions] = useDisclosure(false);
   const [rightOpened, rightActions] = useDisclosure(false);
@@ -69,10 +69,10 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
         borderStyle: 'dashed',
       }}
     >
-      <div ref={setRootElement}>
+      <div ref={setRoot}>
         <DrawerDemo
           {...props}
-          root={rootElement}
+          root={root}
           opened={leftOpened}
           onClose={leftActions.close}
           side="left"
@@ -80,7 +80,7 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
         />
         <DrawerDemo
           {...props}
-          root={rootElement}
+          root={root}
           opened={topOpened}
           onClose={topActions.close}
           side="top"
@@ -88,7 +88,7 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
         />
         <DrawerDemo
           {...props}
-          root={rootElement}
+          root={root}
           opened={rightOpened}
           onClose={rightActions.close}
           side="right"
@@ -96,7 +96,7 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
         />
         <DrawerDemo
           {...props}
-          root={rootElement}
+          root={root}
           opened={bottomOpened}
           onClose={bottomActions.close}
           side="bottom"

@@ -4,7 +4,8 @@ import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { ISide } from '~/utils/types';
 import type { drawerTheme, IDrawerThemeFactory } from './Drawer.css';
 
-export type IDrawerVariant = 'standard' | 'detached';
+export const drawerVariants = ['standard', 'detached'] as const;
+export type IDrawerVariant = (typeof drawerVariants)[number];
 
 export type IDrawerChildrenRenderProps = {
   close: (event?: React.MouseEvent) => void;

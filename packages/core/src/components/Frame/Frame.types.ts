@@ -8,7 +8,8 @@ export type IFrameRenderProps = {
   window: Window;
 };
 
-export interface IFrameOwnProps {
+export interface IFrameOwnProps
+  extends IElementProps<'iframe', 'className' | 'children'> {
   children: React.ReactNode | ((props: IFrameRenderProps) => React.ReactNode);
   importParentStyles?: boolean;
 }
@@ -16,7 +17,6 @@ export interface IFrameOwnProps {
 export interface IFrameProps
   extends IBoxProps,
     IComponentThemeProps<IFrameThemeFactory>,
-    IElementProps<'iframe', 'className' | 'children'>,
     IFrameOwnProps {}
 
 export type IFrameFactory = IComponentFactory<{

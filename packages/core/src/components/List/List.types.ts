@@ -7,8 +7,6 @@ import type { IListThemeFactory, listTheme } from './List.css';
 import type { ListDivider } from './ListDivider';
 import type { ListItem } from './ListItem';
 
-export type IListVariant = 'primary';
-
 export interface IListOwnProps extends IListContextValue, IPaperOwnProps {
   children?: React.ReactNode;
   header?: React.ReactNode;
@@ -20,14 +18,12 @@ export interface IListOwnProps extends IListContextValue, IPaperOwnProps {
 export interface IListProps
   extends IBoxProps,
     IComponentThemeProps<IListThemeFactory>,
-    IListOwnProps,
     IListOwnProps {}
 
 export type IListFactory = IComponentFactory<{
   props: IListProps;
   ref: HTMLDivElement;
   theme: typeof listTheme;
-  variant: IListVariant | false;
   staticComponents: {
     Item: typeof ListItem;
     Divider: typeof ListDivider;

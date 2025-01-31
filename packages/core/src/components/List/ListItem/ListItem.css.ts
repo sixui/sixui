@@ -767,7 +767,7 @@ export const listItemTheme = componentThemeFactory<IListItemThemeFactory>({
   tokens,
 });
 
-export const listItemVariants = {
+export const listItemThemeVariants = {
   standard: createStyles({
     root: {
       vars: overrideTokens(tokens, {

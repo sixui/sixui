@@ -52,8 +52,6 @@ export * from './Motion';
 export * from './MultiSelect';
 export * from './MultiSelectBase';
 export * from './NavigationBar';
-export * from './NavigationDrawerDestination';
-export * from './NavigationDrawerSection';
 export * from './NavigationRail';
 export * from './Overlayable';
 export * from './Paper';

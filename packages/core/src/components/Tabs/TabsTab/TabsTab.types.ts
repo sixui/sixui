@@ -5,7 +5,8 @@ import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphic
 import type { IOmit } from '~/utils/types';
 import type { ITabsTabThemeFactory, tabsTabTheme } from './TabsTab.css';
 
-export type ITabsTabVariant = 'primary' | 'secondary';
+export const tabsTabVariants = ['primary', 'secondary'] as const;
+export type ITabsTabVariant = (typeof tabsTabVariants)[number];
 
 export interface ITabsTabOwnProps
   extends IOmit<IButtonOwnProps, 'leadingIcon' | 'trailingIcon' | 'children'> {
