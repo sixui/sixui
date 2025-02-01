@@ -76,7 +76,6 @@ export const Avatar = polymorphicComponentFactory<IAvatarFactory>(
               }
             : undefined,
         })}
-        classNames={classNames}
         ref={forwardedRef}
         {...other}
       >

@@ -107,7 +107,6 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
             ),
           }),
         })}
-        classNames={classNames}
         ref={forwardedRef}
         {...other}
       />

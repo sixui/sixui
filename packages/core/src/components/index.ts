@@ -7,6 +7,7 @@ export * from './Badge';
 export * from './BottomSheet';
 export * from './Box';
 export * from './Breadcrumbs';
+export * from './Burger';
 export * from './Button';
 export * from './ButtonBase';
 export * from './Card';

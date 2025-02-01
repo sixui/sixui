@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IBurgerIndicatorProps } from './BurgerIndicator.types';
+import { Button } from '~/components/Button';
+import { Flex } from '~/components/Flex';
 import { useToggle } from '~/hooks';
-import { Button } from '../Button';
-import { Flex } from '../Flex';
 import { BurgerIndicator } from './BurgerIndicator';
 
 const meta = {

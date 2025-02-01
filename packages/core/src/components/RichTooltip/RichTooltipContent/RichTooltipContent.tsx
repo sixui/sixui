@@ -38,12 +38,7 @@ export const RichTooltipContent = componentFactory<IRichTooltipContentFactory>(
     });
 
     return (
-      <Paper
-        {...getStyles('root')}
-        classNames={classNames}
-        ref={forwardedRef}
-        {...other}
-      >
+      <Paper {...getStyles('root')} ref={forwardedRef} {...other}>
         <Flex direction="column">
           {renderCursor?.(getStyles('cursor'))}
           <Flex {...getStyles('content')} direction="column" gap="$2">

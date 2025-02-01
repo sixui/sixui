@@ -11,7 +11,6 @@ import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { createStyles } from '~/utils/css/createStyles';
 import { density } from '~/utils/css/density';
-import { em } from '~/utils/css/em';
 import { modifierSelector } from '~/utils/css/modifierSelector';
 import { overrideTokens } from '~/utils/css/overrideTokens';
 import { px } from '~/utils/css/px';
@@ -696,8 +695,8 @@ export const buttonThemeVariants = {
             color: {
               disabled: 'unset',
             },
-            minHeight: em(1),
-            minWidth: em(1),
+            minHeight: '1em',
+            minWidth: '1em',
             leadingSpace: {
               normal: px(0),
               withStart: px(0),
@@ -708,8 +707,8 @@ export const buttonThemeVariants = {
             },
           },
           icon: {
-            size: em(1),
-            labelSpace: em(0.25),
+            size: '1em',
+            labelSpace: '0.25em',
           },
           label: {
             color: {

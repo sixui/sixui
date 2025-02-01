@@ -14,10 +14,10 @@ type IModifier = 'opened';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
-    size: px(24),
+    size: '1em',
   },
   lines: {
-    color: themeTokens.colorScheme.onSurface,
+    color: 'currentColor',
     size: 'unset',
   },
 });

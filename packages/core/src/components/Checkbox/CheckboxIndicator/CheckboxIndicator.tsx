@@ -51,7 +51,6 @@ export const CheckboxIndicator = componentFactory<ICheckboxIndicatorFactory>(
     return (
       <PaperBase
         {...getStyles('root')}
-        classNames={classNames}
         ref={forwardedRef}
         disabled={disabled}
         {...other}

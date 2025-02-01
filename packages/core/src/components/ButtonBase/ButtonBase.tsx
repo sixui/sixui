@@ -130,7 +130,6 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
         {...attributes}
         ref={handleRef}
         as={rootElement}
-        classNames={classNames}
         tabIndex={nonInteractive ? undefined : disabledOrReadOnly ? -1 : 0}
         interactions={stateLayer.interactionsContext.state}
         {...mergeProps(

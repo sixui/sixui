@@ -50,12 +50,7 @@ export const SwitchIndicator = componentFactory<ISwitchIndicatorFactory>(
     });
 
     return (
-      <PaperBase
-        {...getStyles('root')}
-        classNames={classNames}
-        ref={forwardedRef}
-        {...other}
-      >
+      <PaperBase {...getStyles('root')} ref={forwardedRef} {...other}>
         <div {...getStyles('track')}>
           <div {...getStyles('handleContainer')}>
             {!disabled && stateLayer}

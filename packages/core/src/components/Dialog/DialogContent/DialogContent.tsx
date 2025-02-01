@@ -111,7 +111,6 @@ export const DialogContent = polymorphicComponentFactory<IDialogContentFactory>(
     return (
       <Paper
         {...getStyles('root')}
-        classNames={classNames}
         aria-labelledby={headline ? headlineId : undefined}
         aria-describedby={childrenId}
         role={type === 'alert' ? 'alertdialog' : undefined}

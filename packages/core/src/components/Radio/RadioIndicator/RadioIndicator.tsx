@@ -39,12 +39,7 @@ export const RadioIndicator = componentFactory<IRadioIndicatorFactory>(
     });
 
     return (
-      <PaperBase
-        {...getStyles('root')}
-        classNames={classNames}
-        ref={forwardedRef}
-        {...other}
-      >
+      <PaperBase {...getStyles('root')} ref={forwardedRef} {...other}>
         {loading && (
           <IndeterminateCircularProgressIndicator
             {...getStyles('progressIndicator')}

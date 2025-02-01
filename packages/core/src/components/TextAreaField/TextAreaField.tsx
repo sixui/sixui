@@ -128,11 +128,11 @@ export const TextAreaField = componentFactory<ITextAreaFieldFactory>(
         {...getStyles('root')}
         wrapperProps={{ onClick: handleClick }}
         classNames={classNames}
+        variant={variant}
         interactions={{ focused, ...other.interactions }}
         populated={populated}
         disabled={disabled}
         readOnly={readOnly}
-        variant={variant}
         endSlot={renderEndSection()}
         forwardProps
         withoutRippleEffect

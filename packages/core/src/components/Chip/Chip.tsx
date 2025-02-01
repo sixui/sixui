@@ -199,8 +199,8 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
     return (
       <Button
         {...getStyles('root')}
-        variant={false}
         classNames={classNames}
+        variant={false}
         leadingIcon={leadingIcon}
         onClick={handleClick}
         loading={loading}

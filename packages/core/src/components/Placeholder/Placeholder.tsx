@@ -41,7 +41,6 @@ export const Placeholder = polymorphicComponentFactory<IPlaceholderFactory>(
         {...getStyles('root')}
         surface={surface}
         ref={forwardedRef}
-        classNames={classNames}
         {...other}
       >
         {diagonals && <Diagonals {...getStyles('diagonals')} />}

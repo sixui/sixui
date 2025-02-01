@@ -30,12 +30,7 @@ export const PlainTooltipContent =
     });
 
     return (
-      <Paper
-        {...getStyles('root')}
-        classNames={classNames}
-        ref={forwardedRef}
-        {...other}
-      >
+      <Paper {...getStyles('root')} ref={forwardedRef} {...other}>
         {renderCursor?.(getStyles('cursor'))}
         <div {...getStyles('supportingText')}>{supportingText}</div>
       </Paper>
