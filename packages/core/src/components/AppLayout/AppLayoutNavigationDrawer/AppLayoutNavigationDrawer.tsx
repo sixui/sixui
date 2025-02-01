@@ -5,6 +5,7 @@ import { NavigationDrawer } from '~/components/NavigationDrawer';
 import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
+import { useAppLayoutComponent } from '../hooks/useAppLayoutComponent';
 import { COMPONENT_NAME } from './AppLayoutNavigationDrawer.constants';
 import { appLayoutNavigationDrawerTheme } from './AppLayoutNavigationDrawer.css';
 
@@ -16,8 +17,8 @@ export const AppLayoutNavigationDrawer =
       styles,
       style,
       variant,
-      standardOpened: standardOpenedProp,
-      modalOpened: modalOpenedProp,
+      opened: openedProp,
+      modal: modalProp,
       hasHeader: hasHeaderProp,
       root: rootProp,
       onClose,
@@ -25,6 +26,7 @@ export const AppLayoutNavigationDrawer =
     } = useProps({ componentName: COMPONENT_NAME, props });
 
     const appLayoutContext = useAppLayoutContext();
+    useAppLayoutComponent('navigationDrawer');
 
     const hasHeader =
       hasHeaderProp ?? appLayoutContext?.components.includes('header');
@@ -49,11 +51,12 @@ export const AppLayoutNavigationDrawer =
       return null;
     }
 
-    const standardOpened =
-      standardOpenedProp ??
-      appLayoutContext?.navigationDrawer?.state?.standardOpened;
-    const modalOpened =
-      modalOpenedProp ?? appLayoutContext?.navigationDrawer?.state?.modalOpened;
+    const opened =
+      openedProp ??
+      (appLayoutContext?.navigationDrawer?.state?.standardOpened ||
+        appLayoutContext?.navigationDrawer?.state?.modalOpened);
+    const modal =
+      modalProp ?? appLayoutContext?.navigationDrawer?.state?.modalOpened;
     const root = rootProp ?? appLayoutContext?.root;
 
     const handleClose = (event?: React.MouseEvent): void => {
@@ -67,8 +70,8 @@ export const AppLayoutNavigationDrawer =
         classNames={mergeClassNames(classNames, {
           sideSheetContent: getStyles('sideSheetContent').className,
         })}
-        standardOpened={standardOpened}
-        modalOpened={modalOpened}
+        opened={opened}
+        modal={modal}
         onClose={handleClose}
         root={root}
         ref={forwardedRef}

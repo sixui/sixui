@@ -1,7 +1,11 @@
 import { useMemo, useState } from 'react';
 
 import type { IAppLayoutThemeFactory } from './AppLayout.css';
-import type { IAppLayoutFactory } from './AppLayout.types';
+import type {
+  IAppLayoutComponentName,
+  IAppLayoutFactory,
+} from './AppLayout.types';
+import type { IAppLayoutSetterContextValue } from './AppLayoutSetter.context';
 import { Box } from '~/components/Box';
 import {
   themeTokens,
@@ -9,6 +13,7 @@ import {
   useProps,
 } from '~/components/ThemeProvider';
 import { useDisclosure } from '~/hooks/useDisclosure';
+import { useSet } from '~/hooks/useSet';
 import { useSideSheet } from '~/hooks/useSideSheet';
 import { useWindowSizeClass } from '~/hooks/useWindowSizeClass';
 import { componentFactory } from '~/utils/component/componentFactory';
@@ -21,6 +26,7 @@ import { AppLayoutHeader } from './AppLayoutHeader';
 import { AppLayoutNavigationBar } from './AppLayoutNavigationBar';
 import { AppLayoutNavigationDrawer } from './AppLayoutNavigationDrawer';
 import { AppLayoutNavigationRail } from './AppLayoutNavigationRail';
+import { AppLayoutSetterProvider } from './AppLayoutSetter.context';
 import { AppLayoutSideSheet } from './AppLayoutSideSheet';
 import { resolveNavigationMode } from './resolveNavigationMode';
 import { appLayoutTheme } from './AppLayout.css';
@@ -38,11 +44,11 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
       navigationDrawer,
       sideSheet,
       preferredNavigationMode = 'standard',
-      components,
       pageBackgroundColor = themeTokens.colorScheme.surface,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
+    const componentsSet = useSet<IAppLayoutComponentName>([]);
     const [rootElement, setRootElement] = useState<HTMLDivElement | null>(null);
     const windowSizeClass = useWindowSizeClass({
       window: windowProp ?? window,
@@ -63,7 +69,7 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
       onOpen: navigationDrawerCallbacks.open,
       onClose: navigationDrawerCallbacks.close,
     });
-    const hasNavigationDrawer = components.includes('navigationDrawer');
+    const hasNavigationDrawer = componentsSet.has('navigationDrawer');
 
     const [sideSheetOpened, sideSheetCallbacks] = useDisclosure(
       !sideSheet?.defaultClosed,
@@ -77,7 +83,7 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
       onOpen: sideSheetCallbacks.open,
       onClose: sideSheetCallbacks.close,
     });
-    const hasSideSheet = components.includes('sideSheet');
+    const hasSideSheet = componentsSet.has('sideSheet');
 
     const { getStyles } = useComponentTheme<IAppLayoutThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -92,81 +98,68 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
       },
     });
 
-    const contextValue = useMemo<IAppLayoutContextValue>(() => {
-      const value: IAppLayoutContextValue = {
-        window: window,
-        root: rootElement,
-        navigationDrawer: {
-          ...navigationDrawer,
-          state: hasNavigationDrawer
-            ? {
-                opened: navigationDrawerOpened,
-                type: navigationDrawerType,
-                modalOpened: navigationDrawerState.modalOpened,
-                standardOpened: navigationDrawerState.standardOpened,
-                toggle: navigationDrawerCallbacks.toggle,
-                open: navigationDrawerCallbacks.open,
-                close: navigationDrawerCallbacks.close,
-              }
-            : undefined,
-        },
-        sideSheet: {
-          ...sideSheet,
-          state: hasSideSheet
-            ? {
-                opened: sideSheetOpened,
-                type: sideSheetType,
-                modalOpened: sideSheetState.modalOpened,
-                standardOpened: sideSheetState.standardOpened,
-                toggle: sideSheetCallbacks.toggle,
-                open: sideSheetCallbacks.open,
-                close: sideSheetCallbacks.close,
-              }
-            : undefined,
-        },
-        navigationMode,
-        preferredNavigationMode,
-        components,
-      };
-
-      return value;
-    }, [
-      rootElement,
-      components,
+    const contextValue: IAppLayoutContextValue = {
+      window: window,
+      root: rootElement,
+      navigationDrawer: {
+        ...navigationDrawer,
+        state: hasNavigationDrawer
+          ? {
+              opened: navigationDrawerOpened,
+              type: navigationDrawerType,
+              modalOpened: navigationDrawerState.modalOpened,
+              standardOpened: navigationDrawerState.standardOpened,
+              toggle: navigationDrawerCallbacks.toggle,
+              open: navigationDrawerCallbacks.open,
+              close: navigationDrawerCallbacks.close,
+            }
+          : undefined,
+      },
+      sideSheet: {
+        ...sideSheet,
+        state: hasSideSheet
+          ? {
+              opened: sideSheetOpened,
+              type: sideSheetType,
+              modalOpened: sideSheetState.modalOpened,
+              standardOpened: sideSheetState.standardOpened,
+              toggle: sideSheetCallbacks.toggle,
+              open: sideSheetCallbacks.open,
+              close: sideSheetCallbacks.close,
+            }
+          : undefined,
+      },
       navigationMode,
       preferredNavigationMode,
-      navigationDrawer,
-      hasNavigationDrawer,
-      navigationDrawerOpened,
-      navigationDrawerType,
-      navigationDrawerState.modalOpened,
-      navigationDrawerState.standardOpened,
-      navigationDrawerCallbacks.toggle,
-      navigationDrawerCallbacks.open,
-      navigationDrawerCallbacks.close,
-      sideSheet,
-      hasSideSheet,
-      sideSheetOpened,
-      sideSheetType,
-      sideSheetState.modalOpened,
-      sideSheetState.standardOpened,
-      sideSheetCallbacks.toggle,
-      sideSheetCallbacks.open,
-      sideSheetCallbacks.close,
-    ]);
+      components: [...componentsSet.values()],
+    };
+
+    const setterContextValue = useMemo<IAppLayoutSetterContextValue>(
+      () => ({
+        registerComponent: (component) => {
+          componentsSet.add(component);
+        },
+        unregisterComponent: (component) => {
+          componentsSet.delete(component);
+        },
+      }),
+      [componentsSet],
+    );
 
     const globalStyles = `:root { background-color: ${pageBackgroundColor}; }`;
 
     return (
       <AppLayoutProvider value={contextValue}>
-        <style
-          type="text/css"
-          dangerouslySetInnerHTML={{ __html: globalStyles }}
-        />
-        <Box {...getStyles('root')} ref={forwardedRef} {...other}>
-          <div ref={setRootElement} />
-          {isFunction(children) ? children(contextValue) : children}
-        </Box>
+        <AppLayoutSetterProvider value={setterContextValue}>
+          <style
+            type="text/css"
+            dangerouslySetInnerHTML={{ __html: globalStyles }}
+          />
+          <Box {...getStyles('root')} ref={forwardedRef} {...other}>
+            <div ref={setRootElement} />
+            {isFunction(children) ? children(contextValue) : children}
+          </Box>
+        </AppLayoutSetterProvider>
       </AppLayoutProvider>
     );
   },

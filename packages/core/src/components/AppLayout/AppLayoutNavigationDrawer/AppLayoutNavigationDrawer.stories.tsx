@@ -75,7 +75,6 @@ const AppLayoutNavigationDrawerFrame: React.FC<
           onClick={() => {
             toggleStandardOpened();
           }}
-          w="$24"
         >
           {standardOpened ? 'Close' : 'Open'} standard
         </Button>
@@ -83,7 +82,6 @@ const AppLayoutNavigationDrawerFrame: React.FC<
           onClick={() => {
             toggleModalOpened();
           }}
-          w="$24"
         >
           {modalOpened ? 'Close' : 'Open'} modal
         </Button>
@@ -106,8 +104,8 @@ const AppLayoutNavigationDrawerFrame: React.FC<
         >
           <Placeholder label="Page" grow={1} expanded diagonals />
           <AppLayoutNavigationDrawer
-            standardOpened={standardOpened}
-            modalOpened={modalOpened}
+            opened={standardOpened || modalOpened}
+            modal={modalOpened}
             {...other}
           />
         </Flex>

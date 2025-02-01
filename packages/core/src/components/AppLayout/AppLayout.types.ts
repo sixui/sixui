@@ -34,7 +34,6 @@ export interface IAppLayoutOwnProps {
     defaultClosed?: boolean;
   };
   preferredNavigationMode?: IAppLayoutNavigationMode;
-  components: Array<IAppLayoutComponentName>;
   pageBackgroundColor?: string;
 }
 

@@ -2,18 +2,20 @@ import { useMemo, useRef } from 'react';
 
 import type { IFilterableListItem } from '~/components/FilterableList';
 
-export type IUseSelectProps = {
+export type IUseMultiSelectProps = {
   items: Array<IFilterableListItem>;
   defaultValue?: Array<string>;
   value?: Array<string>;
 };
 
-export type IUseSelectResult = {
+export type IUseMultiSelectResult = {
   defaultItems?: Array<IFilterableListItem>;
   selectedItems?: Array<IFilterableListItem>;
 };
 
-export const useMultiSelect = (props: IUseSelectProps): IUseSelectResult => {
+export const useMultiSelect = (
+  props: IUseMultiSelectProps,
+): IUseMultiSelectResult => {
   const { items, defaultValue, value: values } = props;
   const defaultItemsRef = useRef(
     defaultValue

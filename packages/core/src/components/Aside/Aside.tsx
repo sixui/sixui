@@ -17,8 +17,8 @@ export const Aside = componentFactory<IAsideFactory>((props, forwardedRef) => {
     root,
     detached,
     wide,
-    standardOpened,
-    modalOpened,
+    opened,
+    modal,
     modalRef,
     ...other
   } = useProps({ componentName: COMPONENT_NAME, props });
@@ -37,7 +37,7 @@ export const Aside = componentFactory<IAsideFactory>((props, forwardedRef) => {
     <>
       <ModalAside
         {...getStyles(['root', 'modal'])}
-        opened={modalOpened}
+        opened={opened && modal}
         root={root}
         detached={detached}
         ref={modalRef}
@@ -46,7 +46,7 @@ export const Aside = componentFactory<IAsideFactory>((props, forwardedRef) => {
 
       <StandardAside
         {...getStyles(['root', 'standard'])}
-        opened={standardOpened}
+        opened={opened && !modal}
         wide={wide}
         ref={forwardedRef}
         {...other}

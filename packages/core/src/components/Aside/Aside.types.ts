@@ -9,8 +9,8 @@ import type { asideTheme, IAsideThemeFactory } from './Aside.css';
 export interface IAsideOwnProps
   extends IOmit<IStandardAsideOwnProps, 'opened'>,
     IOmit<IModalAsideOwnProps, 'opened'> {
-  standardOpened?: boolean;
-  modalOpened?: boolean;
+  opened?: boolean;
+  modal?: boolean;
   modalRef?: React.RefObject<HTMLDivElement>;
 }
 

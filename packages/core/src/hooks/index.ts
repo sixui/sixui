@@ -12,6 +12,8 @@ export * from './useMergeRefs';
 export * from './useMultiSelect';
 export * from './usePrevious';
 export * from './useRadio';
+export * from './useSelect';
+export * from './useSet';
 export * from './useSideSheet';
 export * from './useSwitch';
 export * from './useTimeout';

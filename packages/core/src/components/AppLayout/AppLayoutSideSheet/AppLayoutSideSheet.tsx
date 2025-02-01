@@ -5,6 +5,7 @@ import { SideSheet } from '~/components/SideSheet';
 import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
+import { useAppLayoutComponent } from '../hooks/useAppLayoutComponent';
 import { COMPONENT_NAME } from './AppLayoutSideSheet.constants';
 import { appLayoutSideSheetTheme } from './AppLayoutSideSheet.css';
 
@@ -16,8 +17,8 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
       styles,
       style,
       variant,
-      standardOpened: standardOpenedProp,
-      modalOpened: modalOpenedProp,
+      opened: openedProp,
+      modal: modalProp,
       hasHeader: hasHeaderProp,
       root: rootProp,
       onClose,
@@ -25,6 +26,7 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
     } = useProps({ componentName: COMPONENT_NAME, props });
 
     const appLayoutContext = useAppLayoutContext();
+    useAppLayoutComponent('sideSheet');
 
     const hasHeader =
       hasHeaderProp ?? appLayoutContext?.components.includes('header');
@@ -48,10 +50,11 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
       return null;
     }
 
-    const standardOpened =
-      standardOpenedProp ?? appLayoutContext?.sideSheet?.state?.standardOpened;
-    const modalOpened =
-      modalOpenedProp ?? appLayoutContext?.sideSheet?.state?.modalOpened;
+    const opened =
+      openedProp ??
+      (appLayoutContext?.sideSheet?.state?.standardOpened ||
+        appLayoutContext?.sideSheet?.state?.modalOpened);
+    const modal = modalProp ?? appLayoutContext?.sideSheet?.state?.modalOpened;
     const root = rootProp ?? appLayoutContext?.root;
 
     const handleClose = (event?: React.MouseEvent): void => {
@@ -65,8 +68,8 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
         classNames={mergeClassNames(classNames, {
           sideSheetContent: getStyles('sideSheetContent').className,
         })}
-        standardOpened={standardOpened}
-        modalOpened={modalOpened}
+        opened={opened}
+        modal={modal}
         onClose={handleClose}
         root={root}
         ref={forwardedRef}

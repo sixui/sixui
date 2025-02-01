@@ -3,6 +3,7 @@ import type { IAppLayoutHeaderFactory } from './AppLayoutHeader.types';
 import { Paper } from '~/components/Paper';
 import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
+import { useAppLayoutComponent } from '../hooks/useAppLayoutComponent';
 import { COMPONENT_NAME } from './AppLayoutHeader.constants';
 import { appLayoutHeaderTheme } from './AppLayoutHeader.css';
 
@@ -18,6 +19,8 @@ export const AppLayoutHeader = componentFactory<IAppLayoutHeaderFactory>(
       divider,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
+
+    useAppLayoutComponent('header');
 
     const { getStyles } = useComponentTheme<IAppLayoutHeaderThemeFactory>({
       componentName: COMPONENT_NAME,

@@ -139,30 +139,12 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
 
 export const LayoutA: IStory = {
   render: (props) => <AppLayoutFrameA {...props} />,
-  args: {
-    ...defaultArgs,
-    components: [
-      'header',
-      'navigationBar',
-      'navigationRail',
-      'navigationDrawer',
-      'sideSheet',
-    ],
-  },
+  args: defaultArgs,
 };
 
 export const LayoutB: IStory = {
   render: (props) => <AppLayoutFrameB {...props} />,
-  args: {
-    ...defaultArgs,
-    components: [
-      'header',
-      'navigationBar',
-      'navigationRail',
-      'navigationDrawer',
-      'sideSheet',
-    ],
-  },
+  args: defaultArgs,
 };
 
 export default meta;

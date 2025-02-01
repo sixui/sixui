@@ -41,7 +41,6 @@ const AsideFrame: React.FC<IAsideProps> = (props) => {
           onClick={() => {
             toggleStandardOpened();
           }}
-          w="$24"
         >
           {standardOpened ? 'Close' : 'Open'} standard
         </Button>
@@ -49,7 +48,6 @@ const AsideFrame: React.FC<IAsideProps> = (props) => {
           onClick={() => {
             toggleModalOpened();
           }}
-          w="$24"
         >
           {modalOpened ? 'Close' : 'Open'} modal
         </Button>
@@ -72,8 +70,8 @@ const AsideFrame: React.FC<IAsideProps> = (props) => {
         >
           <Placeholder label="Page" grow={1} expanded diagonals />
           <Aside
-            standardOpened={standardOpened}
-            modalOpened={modalOpened}
+            opened={standardOpened || modalOpened}
+            modal={modalOpened}
             onClose={() => {
               toggleModalOpened(false);
             }}

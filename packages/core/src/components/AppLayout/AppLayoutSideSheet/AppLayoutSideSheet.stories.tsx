@@ -74,7 +74,6 @@ const AppLayoutSideSheetFrame: React.FC<IAppLayoutSideSheetProps> = (props) => {
           onClick={() => {
             toggleStandardOpened();
           }}
-          w="$24"
         >
           {standardOpened ? 'Close' : 'Open'} standard
         </Button>
@@ -82,7 +81,6 @@ const AppLayoutSideSheetFrame: React.FC<IAppLayoutSideSheetProps> = (props) => {
           onClick={() => {
             toggleModalOpened();
           }}
-          w="$24"
         >
           {modalOpened ? 'Close' : 'Open'} modal
         </Button>
@@ -105,8 +103,8 @@ const AppLayoutSideSheetFrame: React.FC<IAppLayoutSideSheetProps> = (props) => {
         >
           <Placeholder label="Page" grow={1} expanded diagonals />
           <AppLayoutSideSheet
-            standardOpened={standardOpened}
-            modalOpened={modalOpened}
+            opened={standardOpened || modalOpened}
+            modal={modalOpened}
             {...other}
           />
         </Flex>

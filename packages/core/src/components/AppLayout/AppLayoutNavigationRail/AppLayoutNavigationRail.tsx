@@ -5,6 +5,7 @@ import { NavigationRail } from '~/components/NavigationRail';
 import { NavigationRailDestination } from '~/components/NavigationRail/NavigationRailDestination';
 import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
+import { useAppLayoutComponent } from '../hooks/useAppLayoutComponent';
 import { COMPONENT_NAME } from './AppLayoutNavigationRail.constants';
 import { appLayoutNavigationRailTheme } from './AppLayoutNavigationRail.css';
 
@@ -22,6 +23,7 @@ export const AppLayoutNavigationRail =
     } = useProps({ componentName: COMPONENT_NAME, props });
 
     const appLayoutContext = useAppLayoutContext();
+    useAppLayoutComponent('navigationRail');
 
     const hasHeader =
       hasHeaderProp ?? appLayoutContext?.components.includes('header');

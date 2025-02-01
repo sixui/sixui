@@ -16,8 +16,8 @@ export const SideSheet = componentFactory<ISideSheetFactory>(
       styles,
       style,
       variant,
-      standardOpened,
-      modalOpened,
+      opened,
+      modal,
       detached,
       side = 'left',
       wide: fullHeight,
@@ -41,8 +41,8 @@ export const SideSheet = componentFactory<ISideSheetFactory>(
         classNames={mergeClassNames(classNames, {
           sideSheetContent: getStyles('sideSheetContent').className,
         })}
-        standardOpened={standardOpened}
-        modalOpened={modalOpened}
+        opened={opened}
+        modal={modal}
         detached={detached}
         side={side}
         wide={fullHeight}

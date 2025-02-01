@@ -6,6 +6,7 @@ import { NavigationBarDestination } from '~/components/NavigationBar/NavigationB
 import { useComponentTheme, useProps } from '~/components/ThemeProvider';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
+import { useAppLayoutComponent } from '../hooks/useAppLayoutComponent';
 import { COMPONENT_NAME } from './AppLayoutNavigationBar.constants';
 import { appLayoutNavigationBarTheme } from './AppLayoutNavigationBar.css';
 
@@ -24,6 +25,7 @@ export const AppLayoutNavigationBar =
     } = useProps({ componentName: COMPONENT_NAME, props });
 
     const appLayoutContext = useAppLayoutContext();
+    useAppLayoutComponent('navigationBar');
 
     const hasHeader =
       hasHeaderProp ?? appLayoutContext?.components.includes('header');

@@ -73,7 +73,6 @@ const NavigationDrawerFrame: React.FC<INavigationDrawerProps> = (props) => {
           onClick={() => {
             toggleStandardOpened();
           }}
-          w="$24"
         >
           {standardOpened ? 'Close' : 'Open'} standard
         </Button>
@@ -81,7 +80,6 @@ const NavigationDrawerFrame: React.FC<INavigationDrawerProps> = (props) => {
           onClick={() => {
             toggleModalOpened();
           }}
-          w="$24"
         >
           {modalOpened ? 'Close' : 'Open'} modal
         </Button>
@@ -104,8 +102,8 @@ const NavigationDrawerFrame: React.FC<INavigationDrawerProps> = (props) => {
         >
           <Placeholder label="Page" grow={1} expanded diagonals />
           <NavigationDrawer
-            standardOpened={standardOpened}
-            modalOpened={modalOpened}
+            opened={standardOpened || modalOpened}
+            modal={modalOpened}
             {...other}
           />
         </Flex>
