@@ -1,12 +1,6 @@
-import {
-  faBars as fasBars,
-  faXmark as fasXmark,
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import { AppLayout } from '~/components/AppLayout';
+import { Burger } from '~/components/Burger';
 import { Flex } from '~/components/Flex';
-import { IconButton } from '~/components/IconButton';
 import { useAppLayoutContext } from '../AppLayout.context';
 import { IAppLayoutHeaderProps } from '../AppLayoutHeader';
 
@@ -21,16 +15,8 @@ export const Header: React.FC<IHeaderProps> = (props) => {
       <Flex direction="row" gap="$6" justify="space-between" grow={1}>
         <Flex direction="row" gap="$2" align="center">
           {appLayoutContext?.navigationDrawer?.state?.toggle && (
-            <IconButton
-              icon={
-                <FontAwesomeIcon
-                  icon={
-                    appLayoutContext.navigationDrawer.state.opened
-                      ? fasXmark
-                      : fasBars
-                  }
-                />
-              }
+            <Burger
+              opened={appLayoutContext.navigationDrawer.state.opened}
               onClick={appLayoutContext.navigationDrawer.state.toggle}
             />
           )}
@@ -39,14 +25,8 @@ export const Header: React.FC<IHeaderProps> = (props) => {
 
         <Flex direction="row" gap="$2">
           {appLayoutContext?.sideSheet?.state?.toggle && (
-            <IconButton
-              icon={
-                <FontAwesomeIcon
-                  icon={
-                    appLayoutContext.sideSheet.state.opened ? fasXmark : fasBars
-                  }
-                />
-              }
+            <Burger
+              opened={appLayoutContext.sideSheet.state.opened}
               onClick={appLayoutContext.sideSheet.state.toggle}
             />
           )}

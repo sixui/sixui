@@ -14,7 +14,7 @@ type IModifier = 'opened';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
-    size: '1em',
+    size: px('1em'),
   },
   lines: {
     color: 'currentColor',
@@ -35,7 +35,7 @@ const classNames = createStyles({
     vars: {
       [localVars.lineSize]: fallbackVar(
         tokens.lines.size,
-        calc.divide(tokens.container.size, 12),
+        `round(up, ${calc.divide(tokens.container.size, 12)}, 0.5px)`,
       ),
     },
   },

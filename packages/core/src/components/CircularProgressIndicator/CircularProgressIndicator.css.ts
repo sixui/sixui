@@ -1,5 +1,3 @@
-import { calc } from '@vanilla-extract/css-utils';
-
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { themeTokens } from '~/components/ThemeProvider';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
@@ -20,7 +18,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   opacity: {
     disabled: themeTokens.state.opacity.disabled,
   },
-  size: calc.multiply('1em', themeTokens.scale),
+  size: px('1em'),
   containerPadding: px(0),
   strokeWidth: `round(up, ${px(2)}, 1px)`,
 });

@@ -4,6 +4,7 @@ import type { IComponentThemeFactory } from '~/utils/component/componentThemeFac
 import { themeTokens } from '~/components/ThemeProvider';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { px } from '~/utils/css';
 import { createStyles } from '~/utils/css/createStyles';
 import { modifierSelector } from '~/utils/css/modifierSelector';
 import { COMPONENT_NAME } from './Checkmark.constants';
@@ -36,8 +37,8 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
 
 const classNames = createStyles({
   root: {
-    width: '1em',
-    height: '1em',
+    width: px('1em'),
+    height: px('1em'),
   },
   svg: {
     fill: tokens.color,

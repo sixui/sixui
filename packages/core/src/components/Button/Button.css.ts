@@ -695,8 +695,8 @@ export const buttonThemeVariants = {
             color: {
               disabled: 'unset',
             },
-            minHeight: '1em',
-            minWidth: '1em',
+            minHeight: px('1em'),
+            minWidth: px('1em'),
             leadingSpace: {
               normal: px(0),
               withStart: px(0),
@@ -707,7 +707,7 @@ export const buttonThemeVariants = {
             },
           },
           icon: {
-            size: '1em',
+            size: px('1em'),
             labelSpace: '0.25em',
           },
           label: {

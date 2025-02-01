@@ -6,6 +6,7 @@ import type { IComponentThemeFactory } from '~/utils/component/componentThemeFac
 import { themeTokens } from '~/components/ThemeProvider';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { px } from '~/utils/css';
 import { createStyles } from '~/utils/css/createStyles';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { modifierSelector } from '~/utils/css/modifierSelector';
@@ -60,7 +61,7 @@ const classNames = createStyles({
     height: '100%',
     color: tokens.label.color.normal,
     ...typography(tokens.label.typography),
-    fontSize: calc.multiply(calc.multiply(0.25, '1em'), themeTokens.scale),
+    fontSize: px(calc.multiply(0.25, '1em')),
 
     selectors: {
       [modifierSelector<IModifier>('disabled', root)]: {
