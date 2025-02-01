@@ -1,3 +1,4 @@
+import { style } from '@vanilla-extract/css';
 import { createRainbowSprinkles, defineProperties } from 'rainbow-sprinkles';
 
 import {
@@ -6,15 +7,14 @@ import {
   themeTokens,
   windowSizeClassNames,
 } from '~/components/ThemeProvider';
-import { createStyles } from '~/utils/css/createStyles';
 import { getSpacingValues } from '~/utils/css/getSpacingValues';
 import { modifierSelector } from '~/utils/css/modifierSelector';
 import { responsiveContainerQuery } from '~/utils/css/responsiveContainerQuery';
 
 type IModifier = 'scale';
 
-export const classNames = createStyles({
-  root: {
+export const styles = {
+  root: style({
     '@layer': {
       [cssLayers.components]: {
         selectors: {
@@ -41,8 +41,8 @@ export const classNames = createStyles({
         },
       },
     },
-  },
-});
+  }),
+};
 
 const spacingValues = getSpacingValues();
 
