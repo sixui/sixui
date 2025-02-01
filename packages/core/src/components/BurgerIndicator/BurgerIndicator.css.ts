@@ -1,3 +1,4 @@
+import { createVar, fallbackVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
@@ -17,16 +18,26 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   },
   lines: {
     color: themeTokens.colorScheme.onSurface,
+    size: 'unset',
   },
 });
+
+const localVars = {
+  lineSize: createVar(),
+};
 
 const classNames = createStyles({
   root: {
     width: tokens.container.size,
     height: tokens.container.size,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: calc.divide(tokens.container.size, 2),
+
+    vars: {
+      [localVars.lineSize]: fallbackVar(
+        tokens.lines.size,
+        calc.divide(tokens.container.size, 12),
+      ),
+    },
   },
   burger: ({ root }) => ({
     position: 'relative',
@@ -34,7 +45,7 @@ const classNames = createStyles({
 
     display: 'block',
     width: tokens.container.size,
-    height: calc.divide(tokens.container.size, 12),
+    height: localVars.lineSize,
     backgroundColor: tokens.lines.color,
     outlineWidth: 1,
     outlineStyle: 'solid',
@@ -42,12 +53,12 @@ const classNames = createStyles({
     transitionProperty: 'background-color, transform',
     transitionDuration: themeTokens.motion.duration.medium2,
     transitionTimingFunction: themeTokens.motion.easing.standard.normal,
-    borderRadius: '999px',
+    borderRadius: px(themeTokens.shape.corner.full),
 
     '::before': {
       display: 'block',
       width: tokens.container.size,
-      height: calc.divide(tokens.container.size, 12),
+      height: localVars.lineSize,
       backgroundColor: tokens.lines.color,
       outlineWidth: 1,
       outlineStyle: 'solid',
@@ -67,7 +78,7 @@ const classNames = createStyles({
     '::after': {
       display: 'block',
       width: tokens.container.size,
-      height: calc.divide(tokens.container.size, 12),
+      height: localVars.lineSize,
       backgroundColor: tokens.lines.color,
       outlineWidth: 1,
       outlineStyle: 'solid',

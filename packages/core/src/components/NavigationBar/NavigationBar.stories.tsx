@@ -66,6 +66,7 @@ const NavigationBarFrame: React.FC<INavigationBarProps> = (props) => {
           onClick={() => {
             toggleOpened();
           }}
+          w="$24"
         >
           {opened ? 'Close' : 'Open'}
         </Button>

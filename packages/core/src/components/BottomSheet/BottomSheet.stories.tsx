@@ -32,6 +32,7 @@ const BottomSheetDemo: React.FC<IBottomSheetProps> = (props) => {
         onClick={() => {
           toggle();
         }}
+        w="$24"
       >
         {opened ? 'Close' : 'Open'}
       </Button>

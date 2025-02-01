@@ -23,14 +23,14 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   },
 });
 
-const vars = {
+const localVars = {
   size: createVar(),
 };
 
 const classNames = createStyles({
   root: {
     vars: {
-      [vars.size]: calc.add(tokens.size, DENSITY),
+      [localVars.size]: calc.add(tokens.size, DENSITY),
       ...overrideTokens(PaperBase.theme.tokens, {
         container: {
           color: themeTokens.colorScheme.primaryContainer,
@@ -41,8 +41,8 @@ const classNames = createStyles({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: vars.size,
-    height: vars.size,
+    width: localVars.size,
+    height: localVars.size,
     overflow: 'hidden',
     userSelect: 'none',
     textTransform: 'uppercase',

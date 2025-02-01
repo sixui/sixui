@@ -40,6 +40,7 @@ const StandardAsideFrame: React.FC<IStandardAsideProps> = (props) => {
           onClick={() => {
             toggleOpened();
           }}
+          w="$24"
         >
           {opened ? 'Close' : 'Open'}
         </Button>

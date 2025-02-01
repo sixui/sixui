@@ -27,7 +27,9 @@ const DialogDemo: React.FC<IDialogProps> = (props) => {
 
   return (
     <>
-      <Button onClick={toggle}>{opened ? 'Close' : 'Open'}</Button>
+      <Button onClick={toggle} w="$24">
+        {opened ? 'Close' : 'Open'}
+      </Button>
       <Dialog
         {...props}
         opened={opened}
@@ -129,7 +131,9 @@ const FormDialogDemo: React.FC<IDialogProps> = (props) => {
       </Dialog>
 
       <Flex direction="row" gap="$4" align="center">
-        <Button onClick={toggle}>{opened ? 'Close' : 'Open'}</Button>
+        <Button onClick={toggle} w="$24">
+          {opened ? 'Close' : 'Open'}
+        </Button>
         {name && (
           <div>
             Hello, <strong>{name}</strong>!

@@ -23,6 +23,7 @@ const BurgerIndicatorDemo: React.FC<IBurgerIndicatorProps> = (props) => {
         onClick={() => {
           toggleOpened();
         }}
+        w="$24"
       >
         {opened ? 'Close' : 'Open'}
       </Button>

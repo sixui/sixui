@@ -70,6 +70,7 @@ const AppLayoutNavigationRailFrame: React.FC<IAppLayoutNavigationRailProps> = (
           onClick={() => {
             toggleOpened();
           }}
+          w="$24"
         >
           {opened ? 'Close' : 'Open'}
         </Button>

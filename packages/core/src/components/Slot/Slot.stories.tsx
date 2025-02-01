@@ -30,6 +30,7 @@ const SlotDemo: React.FC<ISlotProps> = (props) => {
         onClick={() => {
           toggleOpened();
         }}
+        w="$24"
       >
         {opened ? 'Close' : 'Open'}
       </Button>

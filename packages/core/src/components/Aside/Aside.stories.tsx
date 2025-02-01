@@ -41,6 +41,7 @@ const AsideFrame: React.FC<IAsideProps> = (props) => {
           onClick={() => {
             toggleStandardOpened();
           }}
+          w="$24"
         >
           {standardOpened ? 'Close' : 'Open'} standard
         </Button>
@@ -48,6 +49,7 @@ const AsideFrame: React.FC<IAsideProps> = (props) => {
           onClick={() => {
             toggleModalOpened();
           }}
+          w="$24"
         >
           {modalOpened ? 'Close' : 'Open'} modal
         </Button>

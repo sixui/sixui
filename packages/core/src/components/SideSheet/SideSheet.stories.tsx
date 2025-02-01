@@ -61,6 +61,7 @@ const SideSheetFrame: React.FC<ISideSheetProps> = (props) => {
           onClick={() => {
             toggleStandardOpened();
           }}
+          w="$24"
         >
           {standardOpened ? 'Close' : 'Open'} standard
         </Button>
@@ -68,6 +69,7 @@ const SideSheetFrame: React.FC<ISideSheetProps> = (props) => {
           onClick={() => {
             toggleModalOpened();
           }}
+          w="$24"
         >
           {modalOpened ? 'Close' : 'Open'} modal
         </Button>

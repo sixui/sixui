@@ -69,6 +69,7 @@ const AppLayoutNavigationBarFrame: React.FC<IAppLayoutNavigationBarProps> = (
           onClick={() => {
             toggleOpened();
           }}
+          w="$24"
         >
           {opened ? 'Close' : 'Open'}
         </Button>

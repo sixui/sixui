@@ -35,6 +35,7 @@ const SnackbarDemo: React.FC<ISnackbarProps> = (props: ISnackbarProps) => {
         onClick={() => {
           setOpened((opened) => !opened);
         }}
+        w="$24"
       >
         {opened ? 'Close' : 'Open'}
       </Button>

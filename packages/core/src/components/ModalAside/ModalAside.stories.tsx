@@ -40,6 +40,7 @@ const ModalAsideFrame: React.FC<IModalAsideProps> = (props) => {
           onClick={() => {
             toggleOpened();
           }}
+          w="$24"
         >
           {opened ? 'Close' : 'Open'}
         </Button>

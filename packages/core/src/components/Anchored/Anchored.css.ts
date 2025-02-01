@@ -19,7 +19,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   },
 });
 
-const vars = {
+const localVars = {
   scale: createVar(),
   translate: {
     x: createVar(),
@@ -43,21 +43,21 @@ const classNames = createStyles({
   },
   content$rectangularOverlap: {
     vars: {
-      [vars.offset.x]: tokens.offset.x,
-      [vars.offset.y]: tokens.offset.y,
+      [localVars.offset.x]: tokens.offset.x,
+      [localVars.offset.y]: tokens.offset.y,
     },
   },
   content$circularOverlap: {
     vars: {
-      [vars.offset.x]: calc.add('14%', tokens.offset.x),
-      [vars.offset.y]: calc.add('14%', tokens.offset.y),
+      [localVars.offset.x]: calc.add('14%', tokens.offset.x),
+      [localVars.offset.y]: calc.add('14%', tokens.offset.y),
     },
   },
   content: ({ root }) => ({
     vars: {
-      [vars.scale]: '1',
-      [vars.translate.x]: px(0),
-      [vars.translate.y]: px(0),
+      [localVars.scale]: '1',
+      [localVars.translate.x]: px(0),
+      [localVars.translate.y]: px(0),
     },
 
     position: 'absolute',
@@ -65,55 +65,55 @@ const classNames = createStyles({
     transitionProperty: 'transform',
     transitionDuration: themeTokens.motion.duration.short3,
     transitionTimingFunction: themeTokens.motion.easing.standard.normal,
-    transform: `scale(${vars.scale}) translate(${vars.translate.x}, ${vars.translate.y})`,
-    transformOrigin: `${vars.transformOrigin.x} ${vars.transformOrigin.y}`,
+    transform: `scale(${localVars.scale}) translate(${localVars.translate.x}, ${localVars.translate.y})`,
+    transformOrigin: `${localVars.transformOrigin.x} ${localVars.transformOrigin.y}`,
 
     selectors: {
       [modifierSelector<IModifier>('invisible', root)]: {
         vars: {
-          [vars.scale]: '0',
+          [localVars.scale]: '0',
         },
       },
       [modifierSelector<IModifier>('position^=top-', root)]: {
         vars: {
-          top: vars.offset.y,
-          [vars.translate.y]: '-50%',
-          [vars.transformOrigin.y]: '0%',
+          top: localVars.offset.y,
+          [localVars.translate.y]: '-50%',
+          [localVars.transformOrigin.y]: '0%',
         },
       },
       [modifierSelector<IModifier>('position^=middle-', root)]: {
         vars: {
           top: '50%',
-          [vars.translate.y]: '-50%',
-          [vars.transformOrigin.y]: '0%',
+          [localVars.translate.y]: '-50%',
+          [localVars.transformOrigin.y]: '0%',
         },
       },
       [modifierSelector<IModifier>('position^=bottom-', root)]: {
         vars: {
-          bottom: vars.offset.y,
-          [vars.translate.y]: '50%',
-          [vars.transformOrigin.y]: '100%',
+          bottom: localVars.offset.y,
+          [localVars.translate.y]: '50%',
+          [localVars.transformOrigin.y]: '100%',
         },
       },
       [modifierSelector<IModifier>('position$=-start', root)]: {
         vars: {
-          left: vars.offset.x,
-          [vars.translate.x]: '-50%',
-          [vars.transformOrigin.x]: '0%',
+          left: localVars.offset.x,
+          [localVars.translate.x]: '-50%',
+          [localVars.transformOrigin.x]: '0%',
         },
       },
       [modifierSelector<IModifier>('position$=-center', root)]: {
         vars: {
           left: '50%',
-          [vars.translate.x]: '-50%',
-          [vars.transformOrigin.x]: '0%',
+          [localVars.translate.x]: '-50%',
+          [localVars.transformOrigin.x]: '0%',
         },
       },
       [modifierSelector<IModifier>('position$=-end', root)]: {
         vars: {
-          right: vars.offset.x,
-          [vars.translate.x]: '50%',
-          [vars.transformOrigin.x]: '100%',
+          right: localVars.offset.x,
+          [localVars.translate.x]: '50%',
+          [localVars.transformOrigin.x]: '100%',
         },
       },
     },
