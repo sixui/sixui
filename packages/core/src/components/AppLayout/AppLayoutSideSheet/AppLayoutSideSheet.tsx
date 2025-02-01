@@ -50,11 +50,8 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
       return null;
     }
 
-    const opened =
-      openedProp ??
-      (appLayoutContext?.sideSheet?.state?.standardOpened ||
-        appLayoutContext?.sideSheet?.state?.modalOpened);
-    const modal = modalProp ?? appLayoutContext?.sideSheet?.state?.modalOpened;
+    const opened = openedProp ?? appLayoutContext?.sideSheet?.state?.opened;
+    const modal = modalProp ?? appLayoutContext?.sideSheet?.state?.modal;
     const root = rootProp ?? appLayoutContext?.root;
 
     const handleClose = (event?: React.MouseEvent): void => {

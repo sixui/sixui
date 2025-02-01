@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
 import {
   faCircle,
   faHeart,
@@ -13,8 +14,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IAppLayoutNavigationDrawerProps } from './AppLayoutNavigationDrawer.types';
 import { Button } from '~/components/Button';
+import { Checkbox } from '~/components/Checkbox';
 import { Flex } from '~/components/Flex';
 import { Frame } from '~/components/Frame';
+import { Labeled } from '~/components/Labeled';
 import { Placeholder } from '~/components/Placeholder';
 import { themeTokens } from '~/components/ThemeProvider';
 import { useToggle } from '~/hooks/useToggle';
@@ -65,26 +68,29 @@ const AppLayoutNavigationDrawerFrame: React.FC<
   IAppLayoutNavigationDrawerProps
 > = (props) => {
   const { ...other } = props;
-  const [standardOpened, toggleStandardOpened] = useToggle([true, false]);
-  const [modalOpened, toggleModalOpened] = useToggle([false, true]);
+  const [opened, toggleOpened] = useToggle([true, false]);
+  const [isModal, setModal] = useState(false);
 
   return (
     <Flex direction="column" gap="$2">
-      <Flex direction="row" gap="$2">
+      <Flex direction="row" gap="$6">
         <Button
           onClick={() => {
-            toggleStandardOpened();
+            toggleOpened();
           }}
+          w="$24"
         >
-          {standardOpened ? 'Close' : 'Open'} standard
+          {opened ? 'Close' : 'Open'}
         </Button>
-        <Button
-          onClick={() => {
-            toggleModalOpened();
-          }}
-        >
-          {modalOpened ? 'Close' : 'Open'} modal
-        </Button>
+        <Labeled label="Modal" labelPosition="right">
+          <Checkbox
+            onChange={(value) => {
+              setModal(!!value);
+            }}
+          >
+            {isModal ? 'Close' : 'Open'} modal
+          </Checkbox>
+        </Labeled>
       </Flex>
 
       <Frame
@@ -104,8 +110,8 @@ const AppLayoutNavigationDrawerFrame: React.FC<
         >
           <Placeholder label="Page" grow={1} expanded diagonals />
           <AppLayoutNavigationDrawer
-            opened={standardOpened || modalOpened}
-            modal={modalOpened}
+            opened={opened}
+            modal={isModal}
             {...other}
           />
         </Flex>

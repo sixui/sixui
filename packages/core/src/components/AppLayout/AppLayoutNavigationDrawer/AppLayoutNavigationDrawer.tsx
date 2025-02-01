@@ -52,11 +52,8 @@ export const AppLayoutNavigationDrawer =
     }
 
     const opened =
-      openedProp ??
-      (appLayoutContext?.navigationDrawer?.state?.standardOpened ||
-        appLayoutContext?.navigationDrawer?.state?.modalOpened);
-    const modal =
-      modalProp ?? appLayoutContext?.navigationDrawer?.state?.modalOpened;
+      openedProp ?? appLayoutContext?.navigationDrawer?.state?.opened;
+    const modal = modalProp ?? appLayoutContext?.navigationDrawer?.state?.modal;
     const root = rootProp ?? appLayoutContext?.root;
 
     const handleClose = (event?: React.MouseEvent): void => {

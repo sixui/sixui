@@ -5,8 +5,8 @@ import { usePrevious } from '~/hooks/usePrevious';
 export type ISideSheetType = 'standard' | 'modal';
 
 export type IUseSideSheetResult = {
-  standardOpened: boolean;
-  modalOpened: boolean;
+  opened: boolean;
+  modal: boolean;
 };
 
 export type IUseSideSheetProps = {
@@ -71,7 +71,7 @@ export const useSideSheet = (
   }, [isModal, previousIsModal, opened, onOpen, onClose]);
 
   return {
-    standardOpened: !isModal && !!opened,
-    modalOpened: modalOpened,
+    opened: !!opened,
+    modal: modalOpened,
   };
 };
