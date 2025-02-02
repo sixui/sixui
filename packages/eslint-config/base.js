@@ -75,6 +75,7 @@ export default [
 
       'import-x/no-default-export': 'error',
       'import-x/export': 'error',
+      'import-x/no-named-as-default-member': 'off',
 
       'prettier/prettier': [
         'error',
