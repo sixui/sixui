@@ -108,36 +108,36 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
   return (
     <ThemeContext.Provider value={themeContextValue}>
       <ThemeSetterProvider value={themeSetterContextValue}>
-        <div
-          className={
-            stylesTarget
-              ? undefined
-              : cx(
-                  styles.root,
-                  parentTheme ? undefined : themeTokensClassName,
-                  className,
-                )
-          }
-          style={
-            stylesTarget
-              ? undefined
-              : {
-                  ...style,
-                  ...themeVars,
-                }
-          }
-          ref={rootRef}
-          {...other}
+        <FloatingDelayGroup
+          delay={{
+            open: 100,
+            close: 1500,
+          }}
         >
-          <FloatingDelayGroup
-            delay={{
-              open: 100,
-              close: 1500,
-            }}
+          <div
+            className={
+              stylesTarget
+                ? undefined
+                : cx(
+                    styles.root,
+                    parentTheme ? undefined : themeTokensClassName,
+                    className,
+                  )
+            }
+            style={
+              stylesTarget
+                ? undefined
+                : {
+                    ...style,
+                    ...themeVars,
+                  }
+            }
+            ref={rootRef}
+            {...other}
           >
             {children}
-          </FloatingDelayGroup>
-        </div>
+          </div>
+        </FloatingDelayGroup>
       </ThemeSetterProvider>
     </ThemeContext.Provider>
   );

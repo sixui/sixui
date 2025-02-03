@@ -1,11 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useRef, useState } from 'react';
 
+import type { IOmit } from '~/utils';
 import type { IDialogProps } from './Dialog.types';
 import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Flex } from '~/components/Flex';
+import {
+  OverlaysProvider,
+  useOverlay,
+  useOverlays,
+} from '~/components/Overlays';
 import { TextInputField } from '~/components/TextInputField';
+import { useId } from '~/hooks';
 import { useDisclosure } from '~/hooks/useDisclosure';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { Dialog } from './Dialog';
@@ -153,24 +160,91 @@ export const WithForm: IStory = {
 };
 
 // DEV:
-const TestDemo: React.FC<IDialogProps> = (props: IDialogProps) => (
-  <Button
-    onClick={() => {
-      Dialog.show({
-        ...props,
-        children: 'AAA',
-      });
-    }}
-  >
-    Show A
-  </Button>
-);
+const createOverlay = <TProps extends object>(
+  Component: React.ComponentType<TProps>,
+): React.FC<TProps> => {
+  return function Overlay(props) {
+    const overlayId = useId();
 
+    return (
+      <OverlayIdProvider value={overlayId}>
+        <Component {...props} />
+      </OverlayIdProvider>
+    );
+  };
+};
+
+// DEV:
+const DialogOverlay = createOverlay((props) => {
+  const overlay = useOverlay({
+    layer: 'dialogs',
+  });
+
+  return <Dialog {...props} opened={overlay.opened} onClose={overlay.close} />;
+});
+
+// DEV:
+const TestDemo: React.FC<IDialogProps> = (props: IDialogProps) => {
+  const overlays = useOverlays();
+
+  return (
+    <OverlaysProvider
+    // overlays={{
+    //   bbb: {
+    //     component: Dialog,
+    //     props: {
+    //       ...props,
+    //       children: 'AAA',
+    //     },
+    //     layer: 'dialogs',
+    //   },
+    // }}
+    >
+      <Button
+        onClick={() => {
+          overlays.show({
+            id: 'xxx',
+            component: Dialog,
+            props: {
+              ...props,
+              headline: 'Hello AAA',
+              children: 'AAA',
+              opened: true,
+              modal: true,
+            },
+            layer: 'dialogs',
+          });
+        }}
+      >
+        Show AAA
+      </Button>
+
+      {/* <Button
+        onClick={() =>
+          overlays.show({
+            id: 'bbb',
+            props: {
+              headline: 'Hello BBB',
+            },
+          })
+        }
+      >
+        Show BBB
+      </Button> */}
+    </OverlaysProvider>
+  );
+};
+
+// DEV:
 export const Test: IStory = {
-  render: (props: IDialogProps) => <TestDemo {...props} />,
+  render: (props: IDialogProps) => (
+    <OverlaysProvider>
+      <TestDemo {...props} />
+    </OverlaysProvider>
+  ),
   args: {
     ...defaultArgs,
-    headline: 'Hello World!',
+    headline: 'Hello',
   },
 };
 

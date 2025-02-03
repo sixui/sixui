@@ -22,8 +22,4 @@ export type IDialogFactory = IPolymorphicComponentFactory<{
   defaultRef: HTMLDivElement;
   defaultRoot: 'div';
   theme: typeof dialogTheme;
-  // DEV:
-  staticComponents: {
-    show: (props: IDialogProps) => void;
-  };
 }>;

@@ -16,9 +16,9 @@ export interface IDialogContentOwnProps extends IPaperOwnProps {
   type?: 'alert';
   scrollable?: boolean;
   icon?: React.ReactNode;
-  headline: React.ReactNode;
+  headline?: React.ReactNode;
   children?: React.ReactNode;
-  actions:
+  actions?:
     | React.ReactNode
     | ((props: IDialogActionsRenderProps) => React.ReactNode);
   onClose?: () => void;

@@ -10,7 +10,7 @@ export const createUseExternalEvents = <
   prefix: string,
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 ) => {
-  const internalUseExternalEvents = (events: THandlers): void => {
+  const useExternalEvents = (events: THandlers): void => {
     const handlers = Object.keys(events).reduce(
       (acc, eventKey) => ({
         ...acc,
@@ -20,7 +20,6 @@ export const createUseExternalEvents = <
       {} as THandlers,
     );
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     useIsomorphicLayoutEffect(() => {
       Object.keys(handlers).forEach((eventKey) => {
         const handler = handlers[eventKey]!;
@@ -37,13 +36,13 @@ export const createUseExternalEvents = <
     }, [handlers]);
   };
 
-  function createEvent<TEventKey extends keyof THandlers>(event: TEventKey) {
+  const createEvent = <TEventKey extends keyof THandlers>(event: TEventKey) => {
     type IParameter = Parameters<THandlers[TEventKey]>[0];
 
     return (
       ...payload: IParameter extends undefined ? [undefined?] : [IParameter]
     ) => dispatchEvent(`${prefix}:${String(event)}`, payload[0]);
-  }
+  };
 
-  return [internalUseExternalEvents, createEvent] as const;
+  return [useExternalEvents, createEvent] as const;
 };

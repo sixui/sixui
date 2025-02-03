@@ -7,17 +7,17 @@ const DEFAUL_EMPTY_ITEM: IFilterableListItem = {
   value: '',
 };
 
-export type IUseSelectProps = {
+export interface IUseSelectProps {
   items: Array<IFilterableListItem>;
   itemEmpty: (item: IFilterableListItem) => boolean;
   defaultValue?: string;
   value?: string;
-};
+}
 
-export type IUseSelectResult = {
+export interface IUseSelectResult {
   defaultItem?: IFilterableListItem;
   selectedItem?: IFilterableListItem;
-};
+}
 
 export const useSelect = (props: IUseSelectProps): IUseSelectResult => {
   const { items, itemEmpty, defaultValue, value } = props;
