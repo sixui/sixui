@@ -207,10 +207,51 @@ const TestDemo: React.FC<IDialogProps> = (props: IDialogProps) => {
             component: Dialog,
             props: {
               ...props,
-              headline: 'Hello AAA',
-              children: 'AAA',
+              headline: 'Delete?',
+              children:
+                'Do you want to delete this thing? This may be a very important thing. So choose carefully.',
               opened: true,
-              modal: true,
+              actions: ({ close }) => (
+                <>
+                  <Button variant="text" onClick={close}>
+                    Cancel
+                  </Button>
+                  <Button
+                    type="submit"
+                    onClick={() => {
+                      overlays.show({
+                        id: 'xxx-2',
+                        component: Dialog,
+                        props: {
+                          ...props,
+                          headline: 'Confirm?',
+                          children:
+                            'Are you sure you want to delete this thing?',
+                          opened: true,
+                          modal: true,
+                          actions: ({ close }) => (
+                            <>
+                              <Button variant="text" onClick={close}>
+                                Cancel
+                              </Button>
+                              <Button
+                                type="submit"
+                                onClick={() => {
+                                  // DELETE
+                                }}
+                              >
+                                Yes
+                              </Button>
+                            </>
+                          ),
+                        },
+                      });
+                    }}
+                  >
+                    Delete
+                  </Button>
+                </>
+              ),
             },
             layer: 'dialogs',
           });

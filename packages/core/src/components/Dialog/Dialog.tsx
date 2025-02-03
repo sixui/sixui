@@ -17,6 +17,7 @@ export const Dialog = polymorphicComponentFactory<IDialogFactory>(
       style,
       variant,
       children,
+      scrim: scrimProp,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -29,6 +30,8 @@ export const Dialog = polymorphicComponentFactory<IDialogFactory>(
       variant,
       theme: dialogTheme,
     });
+
+    const scrim = scrimProp ?? other.modal;
 
     return (
       <PopoverBase
@@ -47,6 +50,7 @@ export const Dialog = polymorphicComponentFactory<IDialogFactory>(
         closeEvents={{ focusOut: false }}
         middlewares={false}
         forwardProps
+        scrim={scrim}
         {...other}
       />
     );
