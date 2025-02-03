@@ -1,7 +1,7 @@
 import type { IFocusRingThemeFactory } from './FocusRing.css';
 import type { IFocusRingFactory } from './FocusRing.types';
 import { Box } from '~/components/Box';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './FocusRing.constants';
 import { focusRingTheme } from './FocusRing.css';
@@ -48,4 +48,4 @@ export const FocusRing = componentFactory<IFocusRingFactory>(
 );
 
 FocusRing.theme = focusRingTheme;
-FocusRing.displayName = `@sixui/${COMPONENT_NAME}`;
+FocusRing.displayName = `@sixui/core/${COMPONENT_NAME}`;

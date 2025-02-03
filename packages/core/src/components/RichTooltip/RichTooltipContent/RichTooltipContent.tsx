@@ -2,7 +2,7 @@ import type { IRichTooltipContentThemeFactory } from './RichTooltipContent.css';
 import type { IRichTooltipContentFactory } from './RichTooltipContent.types';
 import { Flex } from '~/components/Flex';
 import { Paper } from '~/components/Paper';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { isFunction } from '~/utils/isFunction';
 import { COMPONENT_NAME } from './RichTooltipContent.constants';
@@ -64,4 +64,4 @@ export const RichTooltipContent = componentFactory<IRichTooltipContentFactory>(
 );
 
 RichTooltipContent.theme = richTooltipContentTheme;
-RichTooltipContent.displayName = `@sixui/${COMPONENT_NAME}`;
+RichTooltipContent.displayName = `@sixui/core/${COMPONENT_NAME}`;

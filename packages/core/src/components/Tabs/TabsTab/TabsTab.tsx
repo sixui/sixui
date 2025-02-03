@@ -5,7 +5,7 @@ import type { ITabsTabFactory } from './TabsTab.types';
 import { Anchored } from '~/components/Anchored';
 import { Button } from '~/components/Button';
 import { useTabsContext } from '~/components/Tabs/Tabs.context';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
@@ -165,4 +165,4 @@ export const TabsTab = polymorphicComponentFactory<ITabsTabFactory>(
 );
 
 TabsTab.theme = tabsTabTheme;
-TabsTab.displayName = `@sixui/${COMPONENT_NAME}`;
+TabsTab.displayName = `@sixui/core/${COMPONENT_NAME}`;

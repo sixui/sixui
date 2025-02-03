@@ -77,7 +77,7 @@ export type IUseInteractionsResult<TElement extends HTMLElement = HTMLElement> =
   };
 
 /** Used to handle nested surfaces. */
-const activeTriggers: Array<{
+const ACTIVE_TRIGGERS: Array<{
   target: EventTarget;
   onHoverStart: (event: React.PointerEvent) => void;
   onHoverEnd: (event: React.PointerEvent) => void;
@@ -168,8 +168,8 @@ export const useInteractions = <TElement extends HTMLElement>(
         setHovered(true);
 
         if (!hoverOptions?.within) {
-          activeTriggers[0]?.onHoverEnd(event);
-          activeTriggers.unshift({
+          ACTIVE_TRIGGERS[0]?.onHoverEnd(event);
+          ACTIVE_TRIGGERS.unshift({
             target: event.target,
             onHoverStart: handleHoverStart,
             onHoverEnd: handleHoverEnd,
@@ -180,8 +180,8 @@ export const useInteractions = <TElement extends HTMLElement>(
         setHovered(false);
 
         if (!hoverOptions?.within) {
-          activeTriggers.shift();
-          activeTriggers[0]?.onHoverStart(event);
+          ACTIVE_TRIGGERS.shift();
+          ACTIVE_TRIGGERS[0]?.onHoverStart(event);
         }
       },
     }),
@@ -194,10 +194,10 @@ export const useInteractions = <TElement extends HTMLElement>(
   // leaves the component, because pointer events are disabled.
   useEffect(() => {
     if (disabled) {
-      activeTriggers.forEach(({ onHoverEnd }) => {
+      ACTIVE_TRIGGERS.forEach(({ onHoverEnd }) => {
         onHoverEnd({} as React.PointerEvent);
       });
-      activeTriggers.length = 0;
+      ACTIVE_TRIGGERS.length = 0;
     }
   }, [disabled]);
 

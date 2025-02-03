@@ -3,14 +3,14 @@ import { useContext, useMemo, useRef, useState } from 'react';
 import { FloatingDelayGroup } from '@floating-ui/react';
 import cx from 'clsx';
 
+import type { IThemeContextValue } from './Theme.context';
 import type { ITheme, IThemeOverride } from './theme.types';
-import type { IThemeContextValue } from './ThemeProvider.context';
 import type { IThemeProviderProps } from './ThemeProvider.types';
 import type { IThemeSetterContextValue } from './ThemeSetter.context';
 import { partialAssignInlineVars } from '~/utils/css/partialAssignInlineVars';
 import { textFromCssProperties } from '~/utils/css/textFromCssProperties';
 import { deepMerge } from '~/utils/deepMerge';
-import { ThemeContext } from './ThemeProvider.context';
+import { ThemeContext } from './Theme.context';
 import { ThemeSetterProvider } from './ThemeSetter.context';
 import { mergeThemeOverrides } from './utils/mergeThemeOverrides';
 import {

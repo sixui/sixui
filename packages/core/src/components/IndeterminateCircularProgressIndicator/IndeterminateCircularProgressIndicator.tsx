@@ -1,7 +1,7 @@
 import type { IIndeterminateCircularProgressIndicatorThemeFactory } from './IndeterminateCircularProgressIndicator.css';
 import type { IIndeterminateCircularProgressIndicatorFactory } from './IndeterminateCircularProgressIndicator.types';
 import { Box } from '~/components/Box';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './IndeterminateCircularProgressIndicator.constants';
 import { indeterminateCircularProgressIndicatorTheme } from './IndeterminateCircularProgressIndicator.css';
@@ -58,4 +58,4 @@ export const IndeterminateCircularProgressIndicator =
 
 IndeterminateCircularProgressIndicator.theme =
   indeterminateCircularProgressIndicatorTheme;
-IndeterminateCircularProgressIndicator.displayName = `@sixui/${COMPONENT_NAME}`;
+IndeterminateCircularProgressIndicator.displayName = `@sixui/core/${COMPONENT_NAME}`;

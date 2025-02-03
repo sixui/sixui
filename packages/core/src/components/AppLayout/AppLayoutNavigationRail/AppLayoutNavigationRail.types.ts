@@ -1,7 +1,7 @@
 import type { IBoxProps } from '~/components/Box';
 import type { INavigationRailOwnProps } from '~/components/NavigationRail';
 import type { NavigationRailDestination } from '~/components/NavigationRail/NavigationRailDestination';
-import type { IComponentThemeProps } from '~/components/ThemeProvider';
+import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type {
   appLayoutNavigationRailTheme,

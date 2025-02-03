@@ -8,7 +8,7 @@ import { ButtonBase } from '~/components/ButtonBase';
 import { Item } from '~/components/Item';
 import { PaperBase } from '~/components/PaperBase';
 import { StateLayer } from '~/components/StateLayer';
-import { themeTokens } from '~/components/ThemeProvider';
+import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { createStyles } from '~/utils/css/createStyles';

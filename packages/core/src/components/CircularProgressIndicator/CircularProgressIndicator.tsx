@@ -21,4 +21,4 @@ export const CircularProgressIndicator =
   });
 
 CircularProgressIndicator.theme = circularProgressIndicatorTheme;
-CircularProgressIndicator.displayName = `@sixui/${COMPONENT_NAME}`;
+CircularProgressIndicator.displayName = `@sixui/core/${COMPONENT_NAME}`;

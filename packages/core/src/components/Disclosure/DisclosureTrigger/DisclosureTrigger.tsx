@@ -10,7 +10,7 @@ import { useExpandableContext } from '~/components/Expandable';
 import { ListItem } from '~/components/List/ListItem';
 import { SvgIcon } from '~/components/SvgIcon';
 import { Switch } from '~/components/Switch';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
@@ -162,4 +162,4 @@ export const DisclosureTrigger = componentFactory<IDisclosureTriggerFactory>(
 );
 
 DisclosureTrigger.theme = disclosureTriggerTheme;
-DisclosureTrigger.displayName = `@sixui/${COMPONENT_NAME}`;
+DisclosureTrigger.displayName = `@sixui/core/${COMPONENT_NAME}`;

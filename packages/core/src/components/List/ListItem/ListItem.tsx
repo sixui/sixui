@@ -8,7 +8,7 @@ import { Item } from '~/components/Item';
 import { useListContext } from '~/components/List/List.context';
 import { Overlayable } from '~/components/Overlayable';
 import { Paper } from '~/components/Paper';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { executeLazyPromise } from '~/utils/executeLazyPromise';
@@ -227,4 +227,4 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
 );
 
 ListItem.theme = listItemTheme;
-ListItem.displayName = `@sixui/${COMPONENT_NAME}`;
+ListItem.displayName = `@sixui/core/${COMPONENT_NAME}`;

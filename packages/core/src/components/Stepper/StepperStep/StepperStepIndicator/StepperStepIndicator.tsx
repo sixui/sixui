@@ -5,7 +5,7 @@ import { Checkmark } from '~/components/Checkmark';
 import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
 import { Paper } from '~/components/Paper';
 import { SvgIcon } from '~/components/SvgIcon';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './StepperStepIndicator.constants';
 import { stepperStepIndicatorTheme } from './StepperStepIndicator.css';
@@ -73,4 +73,4 @@ export const StepperStepIndicator =
   });
 
 StepperStepIndicator.theme = stepperStepIndicatorTheme;
-StepperStepIndicator.displayName = `@sixui/${COMPONENT_NAME}`;
+StepperStepIndicator.displayName = `@sixui/core/${COMPONENT_NAME}`;

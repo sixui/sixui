@@ -7,7 +7,7 @@ import type { IExpandableContextValue } from './Expandable.context';
 import type { IExpandableThemeFactory } from './Expandable.css';
 import type { IExpandableFactory } from './Expandable.types';
 import { Box } from '~/components/Box';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useElementSize } from '~/hooks/useElementSize';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
@@ -151,4 +151,4 @@ export const Expandable = componentFactory<IExpandableFactory>(
 );
 
 Expandable.theme = expandableTheme;
-Expandable.displayName = `@sixui/${COMPONENT_NAME}`;
+Expandable.displayName = `@sixui/core/${COMPONENT_NAME}`;

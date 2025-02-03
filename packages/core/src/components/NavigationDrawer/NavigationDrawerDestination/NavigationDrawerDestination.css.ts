@@ -1,7 +1,7 @@
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { Item } from '~/components/Item';
 import { ListItem } from '~/components/List/ListItem';
-import { themeTokens } from '~/components/ThemeProvider';
+import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { createStyles } from '~/utils/css/createStyles';

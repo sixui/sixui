@@ -1,7 +1,7 @@
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IRange } from '~/utils/types';
-import { themeTokens } from '~/components/ThemeProvider';
+import { themeTokens } from '~/components/Theme';
 
 export const density = (scaleRange?: IRange): string =>
   calc.multiply(

@@ -3,7 +3,7 @@ import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { IBoxProps } from './Box.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
-import { themeTokens, windowSizeClassNames } from '~/components/ThemeProvider';
+import { themeTokens, windowSizeClassNames } from '~/components/Theme';
 import { Box } from './Box';
 
 const meta = {

@@ -9,7 +9,7 @@ import { FieldBase } from '~/components/FieldBase';
 import { IconButton } from '~/components/IconButton';
 import { useLabeledContext } from '~/components/Labeled';
 import { SvgIcon } from '~/components/SvgIcon';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
@@ -169,4 +169,4 @@ export const TextAreaField = componentFactory<ITextAreaFieldFactory>(
 );
 
 TextAreaField.theme = textAreaFieldTheme;
-TextAreaField.displayName = `@sixui/${COMPONENT_NAME}`;
+TextAreaField.displayName = `@sixui/core/${COMPONENT_NAME}`;

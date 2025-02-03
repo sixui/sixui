@@ -1,6 +1,6 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IPopoverBaseOwnProps } from '~/components/PopoverBase';
-import type { IComponentThemeProps } from '~/components/ThemeProvider';
+import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IOmit } from '~/utils/types';
 import type { richTooltipTheme } from './RichTooltip.css';

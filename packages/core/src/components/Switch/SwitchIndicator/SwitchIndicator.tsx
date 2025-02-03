@@ -4,7 +4,7 @@ import { iconCheckmark, iconXMark } from '~/assets/icons';
 import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
 import { PaperBase } from '~/components/PaperBase';
 import { SvgIcon } from '~/components/SvgIcon';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './SwitchIndicator.constants';
 import { basicTemplateTheme } from './SwitchIndicator.css';
@@ -88,4 +88,4 @@ export const SwitchIndicator = componentFactory<ISwitchIndicatorFactory>(
 );
 
 SwitchIndicator.theme = basicTemplateTheme;
-SwitchIndicator.displayName = `@sixui/${COMPONENT_NAME}`;
+SwitchIndicator.displayName = `@sixui/core/${COMPONENT_NAME}`;

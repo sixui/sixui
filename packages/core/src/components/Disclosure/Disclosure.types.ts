@@ -1,6 +1,6 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IExpandableOwnProps } from '~/components/Expandable';
-import type { IComponentThemeProps } from '~/components/ThemeProvider';
+import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type {
   disclosureTheme,

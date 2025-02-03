@@ -1,7 +1,7 @@
 import type { IOverlayableThemeFactory } from './Overlayable.css';
 import type { IOverlayableFactory } from './Overlayable.types';
 import { Box } from '~/components/Box';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { COMPONENT_NAME } from './Overlayable.constants';
 import { overlayableTheme } from './Overlayable.css';
@@ -45,4 +45,4 @@ export const Overlayable = polymorphicComponentFactory<IOverlayableFactory>(
 );
 
 Overlayable.theme = overlayableTheme;
-Overlayable.displayName = `@sixui/${COMPONENT_NAME}`;
+Overlayable.displayName = `@sixui/core/${COMPONENT_NAME}`;

@@ -6,7 +6,7 @@ import type {
   IThemeElevationLevel,
   IThemeOutlineSize,
   IThemeShapeCornerSize,
-} from '~/components/ThemeProvider';
+} from '~/components/Theme';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IPaperThemeFactory, paperTheme } from './Paper.css';
 

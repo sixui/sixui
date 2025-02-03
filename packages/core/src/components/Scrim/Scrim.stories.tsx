@@ -7,7 +7,7 @@ import type { IScrimProps } from './Scrim.types';
 import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Motion } from '~/components/Motion';
-import { themeTokens } from '~/components/ThemeProvider';
+import { themeTokens } from '~/components/Theme';
 import { useToggle } from '~/hooks/useToggle';
 import { Scrim } from './Scrim';
 

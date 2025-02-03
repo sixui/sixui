@@ -1,7 +1,7 @@
 import type { INavigationBarDestinationThemeFactory } from './NavigationBarDestination.css';
 import type { INavigationBarDestinationFactory } from './NavigationBarDestination.types';
 import { NavigationRailDestination } from '~/components/NavigationRail/NavigationRailDestination';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { COMPONENT_NAME } from './NavigationBarDestination.constants';
 import { navigationBarDestinationTheme } from './NavigationBarDestination.css';
@@ -34,4 +34,4 @@ export const NavigationBarDestination =
   );
 
 NavigationBarDestination.theme = navigationBarDestinationTheme;
-NavigationBarDestination.displayName = `@sixui/${COMPONENT_NAME}`;
+NavigationBarDestination.displayName = `@sixui/core/${COMPONENT_NAME}`;

@@ -1,7 +1,7 @@
 import type { IStepperConnectorThemeFactory } from './StepperConnector.css';
 import type { IStepperConnectorFactory } from './StepperConnector.types';
 import { Divider } from '~/components/Divider';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useStepperStepContext } from '../StepperStep/StepperStep.context';
 import { COMPONENT_NAME } from './StepperConnector.constants';
@@ -60,4 +60,4 @@ export const StepperConnector = componentFactory<IStepperConnectorFactory>(
 );
 
 StepperConnector.theme = dividerTheme;
-StepperConnector.displayName = `@sixui/${COMPONENT_NAME}`;
+StepperConnector.displayName = `@sixui/core/${COMPONENT_NAME}`;

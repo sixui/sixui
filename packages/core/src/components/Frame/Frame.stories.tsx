@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IFrameProps } from './Frame.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
-import { themeTokens } from '~/components/ThemeProvider';
+import { themeTokens } from '~/components/Theme';
 import { px } from '~/utils/css/px';
 import { Frame } from './Frame';
 

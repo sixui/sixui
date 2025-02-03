@@ -1,7 +1,7 @@
 import type { ICardMediaThemeFactory } from './CardMedia.css';
 import type { ICardMediaFactory } from './CardMedia.types';
 import { Box } from '~/components/Box';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './CardMedia.constants';
 import { cardMediaTheme } from './CardMedia.css';
@@ -50,4 +50,4 @@ export const CardMedia = componentFactory<ICardMediaFactory>(
 );
 
 CardMedia.theme = cardMediaTheme;
-CardMedia.displayName = `@sixui/${COMPONENT_NAME}`;
+CardMedia.displayName = `@sixui/core/${COMPONENT_NAME}`;

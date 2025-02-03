@@ -1,6 +1,6 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IPaperBaseOwnProps } from '~/components/PaperBase';
-import type { IComponentThemeProps } from '~/components/ThemeProvider';
+import type { IComponentThemeProps } from '~/components/Theme';
 import type { IUseSwitchProps } from '~/hooks/useSwitch';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { basicTemplateTheme, ISwitchThemeFactory } from './Switch.css';

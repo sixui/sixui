@@ -7,7 +7,7 @@ import { iconTriangleDown } from '~/assets/icons';
 import { FieldBase } from '~/components/FieldBase';
 import { useLabeledContext } from '~/components/Labeled';
 import { SvgIcon } from '~/components/SvgIcon';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
@@ -117,4 +117,4 @@ export const HtmlSelect = componentFactory<IHtmlSelectFactory>(
 );
 
 HtmlSelect.theme = htmlSelectTheme;
-HtmlSelect.displayName = `@sixui/${COMPONENT_NAME}`;
+HtmlSelect.displayName = `@sixui/core/${COMPONENT_NAME}`;

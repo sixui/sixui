@@ -1,7 +1,7 @@
 import type { IPolymorphicTemplateThemeFactory } from './PolymorphicTemplate.css';
 import type { IPolymorphicTemplateFactory } from './PolymorphicTemplate.types';
 import { Paper } from '~/components/Paper';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { COMPONENT_NAME } from './PolymorphicTemplate.constants';
 import {
@@ -48,4 +48,4 @@ export const PolymorphicTemplate =
   );
 
 PolymorphicTemplate.theme = polymorphicTemplateTheme;
-PolymorphicTemplate.displayName = `@sixui/${COMPONENT_NAME}`;
+PolymorphicTemplate.displayName = `@sixui/core/${COMPONENT_NAME}`;

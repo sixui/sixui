@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
+// DEV: delete
 import NiceModal, { useModal } from '@ebay/nice-modal-react';
 
 import type { ISnackbarProps } from './Snackbar.types';
@@ -123,7 +124,7 @@ const MySnackbar = NiceModal.create((props: ISnackbarProps) => {
 });
 
 // DEV:
-const Demo: React.FC<ISnackbarProps> = (props: ISnackbarProps) => (
+const TestDemo: React.FC<ISnackbarProps> = (props: ISnackbarProps) => (
   <NiceModal.Provider>
     <Button
       onClick={() =>
@@ -147,8 +148,10 @@ const Demo: React.FC<ISnackbarProps> = (props: ISnackbarProps) => (
     </Button>
   </NiceModal.Provider>
 );
+
+// DEV:
 export const Test: IStory = {
-  render: (props: ISnackbarProps) => <Demo {...props} />,
+  render: (props: ISnackbarProps) => <TestDemo {...props} />,
   args: {
     ...defaultArgs,
     children: 'Lorem ipsum dolor sit amet.',

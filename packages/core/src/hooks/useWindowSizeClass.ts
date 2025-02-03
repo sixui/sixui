@@ -4,7 +4,7 @@ import type {
   IResponsiveRule,
   IWindowSizeClassContainerName,
 } from '~/utils/css/getResponsiveRules';
-import { useThemeContext } from '~/components/ThemeProvider';
+import { useThemeContext } from '~/components/Theme';
 import { getResponsiveRules } from '~/utils/css/getResponsiveRules';
 
 export type IUseWindowSizeClassResult = Partial<

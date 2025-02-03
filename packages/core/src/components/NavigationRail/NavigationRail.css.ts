@@ -1,7 +1,7 @@
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { NavigationRailContent } from '~/components/NavigationRail/NavigationRailContent';
 import { StandardAside } from '~/components/StandardAside';
-import { themeTokens } from '~/components/ThemeProvider';
+import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { createStyles } from '~/utils/css/createStyles';

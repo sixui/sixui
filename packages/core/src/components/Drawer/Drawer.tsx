@@ -1,7 +1,7 @@
 import type { IDrawerThemeFactory } from './Drawer.css';
 import type { IDrawerFactory } from './Drawer.types';
 import { PopoverBase } from '~/components/PopoverBase';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './Drawer.constants';
 import { drawerTheme, drawerThemeVariants } from './Drawer.css';
@@ -71,4 +71,4 @@ export const Drawer = componentFactory<IDrawerFactory>(
 );
 
 Drawer.theme = drawerTheme;
-Drawer.displayName = `@sixui/${COMPONENT_NAME}`;
+Drawer.displayName = `@sixui/core/${COMPONENT_NAME}`;

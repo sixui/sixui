@@ -1,4 +1,4 @@
-import { themeTokens } from '~/components/ThemeProvider';
+import { themeTokens } from '~/components/Theme';
 import { getNumericPixelValue } from './getNumericPixelValue';
 
 export const px = (value: number | string): string => {

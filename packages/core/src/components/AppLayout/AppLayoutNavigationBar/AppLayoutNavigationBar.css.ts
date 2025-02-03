@@ -3,7 +3,7 @@ import { fallbackVar } from '@vanilla-extract/css';
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { NavigationBar } from '~/components/NavigationBar';
 import { NavigationBarContent } from '~/components/NavigationBar/NavigationBarContent';
-import { themeTokens } from '~/components/ThemeProvider';
+import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { createStyles } from '~/utils/css/createStyles';

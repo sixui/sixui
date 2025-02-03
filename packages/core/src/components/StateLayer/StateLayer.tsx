@@ -1,7 +1,7 @@
 import type { IStateLayerThemeFactory } from './StateLayer.css';
 import type { IStateLayerFactory } from './StateLayer.types';
 import { Box } from '~/components/Box';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './StateLayer.constants';
@@ -55,4 +55,4 @@ export const StateLayer = componentFactory<IStateLayerFactory>(
 );
 
 StateLayer.theme = stateLayerTheme;
-StateLayer.displayName = `@sixui/${COMPONENT_NAME}`;
+StateLayer.displayName = `@sixui/core/${COMPONENT_NAME}`;

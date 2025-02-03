@@ -1,5 +1,5 @@
 import { PaperBase } from '~/components/PaperBase';
-import { themeTokens } from '~/components/ThemeProvider';
+import { themeTokens } from '~/components/Theme';
 import { createStyles } from '~/utils/css/createStyles';
 import { overrideTokens } from '~/utils/css/overrideTokens';
 import { responsiveContainerQuery } from '~/utils/css/responsiveContainerQuery';

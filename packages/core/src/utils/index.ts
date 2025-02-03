@@ -3,6 +3,7 @@ export * from './arraySymmetricDiff';
 export * from './chain';
 export * from './copyToClipboard';
 export * from './createFilter';
+export * from './createUseExternalEvents';
 export * from './dashedCaseFromCamelCase';
 export * from './deepMerge';
 export * from './deselectCurrentSelection';

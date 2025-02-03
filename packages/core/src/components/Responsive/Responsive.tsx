@@ -1,6 +1,6 @@
 import type { IResponsiveThemeFactory } from './Responsive.css';
 import type { IResponsiveFactory } from './Responsive.types';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useResponsiveCssRules } from './hooks/useResponsiveCssRules';
 import { COMPONENT_NAME } from './Responsive.constants';
@@ -43,4 +43,4 @@ export const Responsive = componentFactory<IResponsiveFactory>(
 );
 
 Responsive.theme = responsiveTheme;
-Responsive.displayName = `@sixui/${COMPONENT_NAME}`;
+Responsive.displayName = `@sixui/core/${COMPONENT_NAME}`;

@@ -16,7 +16,7 @@ export const useSixuiContext = (): ISixuiContextValue => {
   const context = useContext(SixuiContext);
   if (!context) {
     throw new Error(
-      '[@sixui] You forgot to wrap your component in <SixuiProvider />.',
+      '[@sixui/core] You forgot to wrap your component in <SixuiProvider />.',
     );
   }
 

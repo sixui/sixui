@@ -1,7 +1,7 @@
 import type { IAppLayoutHeaderThemeFactory } from './AppLayoutHeader.css';
 import type { IAppLayoutHeaderFactory } from './AppLayoutHeader.types';
 import { Paper } from '~/components/Paper';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useAppLayoutComponent } from '../hooks/useAppLayoutComponent';
 import { COMPONENT_NAME } from './AppLayoutHeader.constants';
@@ -44,4 +44,4 @@ export const AppLayoutHeader = componentFactory<IAppLayoutHeaderFactory>(
 );
 
 AppLayoutHeader.theme = appLayoutHeaderTheme;
-AppLayoutHeader.displayName = `@sixui/${COMPONENT_NAME}`;
+AppLayoutHeader.displayName = `@sixui/core/${COMPONENT_NAME}`;

@@ -1,7 +1,7 @@
 import type { IColorSchemeRoleThemeFactory } from './ColorSchemeRole.css';
 import type { IColorSchemeRoleFactory } from './ColorSchemeRole.types';
 import { Paper } from '~/components/Paper';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './ColorSchemeRole.constants';
 import { colorSchemeRoleTheme } from './ColorSchemeRole.css';
@@ -41,4 +41,4 @@ export const ColorSchemeRole = componentFactory<IColorSchemeRoleFactory>(
 );
 
 ColorSchemeRole.theme = colorSchemeRoleTheme;
-ColorSchemeRole.displayName = `@sixui/${COMPONENT_NAME}`;
+ColorSchemeRole.displayName = `@sixui/core/${COMPONENT_NAME}`;

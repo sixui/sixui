@@ -5,7 +5,7 @@ import type { IComponentThemeFactory } from '~/utils/component/componentThemeFac
 import { ButtonBase } from '~/components/ButtonBase';
 import { PaperBase } from '~/components/PaperBase';
 import { StateLayer } from '~/components/StateLayer';
-import { themeTokens } from '~/components/ThemeProvider';
+import { themeTokens } from '~/components/Theme';
 import { IInteraction } from '~/hooks/useInteractions';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';

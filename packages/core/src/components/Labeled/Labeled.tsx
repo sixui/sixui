@@ -3,7 +3,7 @@ import { useCallback, useMemo } from 'react';
 import type { ILabeledThemeFactory } from './Labeled.css';
 import type { ILabeledFactory } from './Labeled.types';
 import { Box } from '~/components/Box';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { useId } from '~/hooks/useId';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { isFunction } from '~/utils/isFunction';
@@ -177,4 +177,4 @@ export const Labeled = componentFactory<ILabeledFactory>(
 );
 
 Labeled.theme = labeledTheme;
-Labeled.displayName = `@sixui/${COMPONENT_NAME}`;
+Labeled.displayName = `@sixui/core/${COMPONENT_NAME}`;

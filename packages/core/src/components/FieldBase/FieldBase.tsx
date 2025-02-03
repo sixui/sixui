@@ -8,7 +8,7 @@ import { CircularProgressIndicator } from '~/components/CircularProgressIndicato
 import { useLabeledContext } from '~/components/Labeled/Labeled.context';
 import { Paper } from '~/components/Paper';
 import { StateLayer, useStateLayer } from '~/components/StateLayer';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { usePrevious } from '~/hooks/usePrevious';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
@@ -466,4 +466,4 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
 );
 
 FieldBase.theme = fieldBaseTheme;
-FieldBase.displayName = `@sixui/${COMPONENT_NAME}`;
+FieldBase.displayName = `@sixui/core/${COMPONENT_NAME}`;

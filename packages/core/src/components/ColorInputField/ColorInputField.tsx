@@ -1,4 +1,4 @@
-import { useCallback, useContext, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 import type { IColorPalette } from '~/utils/types';
 import type {
@@ -6,14 +6,14 @@ import type {
   IColorInputFieldFactory,
 } from './ColorInputField.types';
 import { iconPhoto } from '~/assets/icons';
-import { ColorPaletteGroupContext } from '~/components/ColorPaletteGroup';
+import { useColorPaletteGroupContext } from '~/components/ColorPaletteGroup/ColorPaletteGroup.context';
 import { ColorTag } from '~/components/ColorTag';
 import { HslColorPickerContent } from '~/components/HslColorPickerContent';
 import { IconButton } from '~/components/IconButton';
 import { PopoverBase } from '~/components/PopoverBase';
 import { SvgIcon } from '~/components/SvgIcon';
 import { TextInputField } from '~/components/TextInputField';
-import { useProps } from '~/components/ThemeProvider';
+import { useProps } from '~/components/Theme';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { extractPaletteFromImage } from '~/utils/colors/extractPaletteFromImage';
 import { isValidHexColor } from '~/utils/colors/isValidHexColor';
@@ -48,7 +48,7 @@ export const ColorInputField = componentFactory<IColorInputFieldFactory>(
       name: COMPONENT_NAME,
     });
 
-    const colorPaletteGroupContext = useContext(ColorPaletteGroupContext);
+    const colorPaletteGroupContext = useColorPaletteGroupContext();
     const [quantizedPalette, setQuantizedPalette] = useState<IColorPalette>();
     const [quantizing, setQuantizing] = useState(false);
     const inputFileRef = useRef<HTMLInputElement>(null);
@@ -166,4 +166,4 @@ export const ColorInputField = componentFactory<IColorInputFieldFactory>(
 );
 
 ColorInputField.theme = colorInputFieldTheme;
-ColorInputField.displayName = `@sixui/${COMPONENT_NAME}`;
+ColorInputField.displayName = `@sixui/core/${COMPONENT_NAME}`;

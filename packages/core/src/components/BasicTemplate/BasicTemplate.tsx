@@ -1,7 +1,7 @@
 import type { IBasicTemplateThemeFactory } from './BasicTemplate.css';
 import type { IBasicTemplateFactory } from './BasicTemplate.types';
 import { Paper } from '~/components/Paper';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './BasicTemplate.constants';
 import { basicTemplateTheme } from './BasicTemplate.css';
@@ -41,4 +41,4 @@ export const BasicTemplate = componentFactory<IBasicTemplateFactory>(
 );
 
 BasicTemplate.theme = basicTemplateTheme;
-BasicTemplate.displayName = `@sixui/${COMPONENT_NAME}`;
+BasicTemplate.displayName = `@sixui/core/${COMPONENT_NAME}`;

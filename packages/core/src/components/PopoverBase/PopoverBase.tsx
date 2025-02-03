@@ -28,7 +28,7 @@ import type {
 import { Motion } from '~/components/Motion';
 import { Portal } from '~/components/Portal';
 import { Scrim } from '~/components/Scrim';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';

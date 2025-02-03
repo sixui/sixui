@@ -2,7 +2,7 @@ import type { IBottomSheetThemeFactory } from './BottomSheet.css';
 import type { IBottomSheetFactory } from './BottomSheet.types';
 import { useAppLayoutContext } from '~/components/AppLayout/AppLayout.context';
 import { Drawer } from '~/components/Drawer';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './BottomSheet.constants';
 import { BottomSheetContent } from './BottomSheetContent';
@@ -71,4 +71,4 @@ export const BottomSheet = componentFactory<IBottomSheetFactory>(
 );
 
 BottomSheet.theme = bottomSheetTheme;
-BottomSheet.displayName = `@sixui/${COMPONENT_NAME}`;
+BottomSheet.displayName = `@sixui/core/${COMPONENT_NAME}`;

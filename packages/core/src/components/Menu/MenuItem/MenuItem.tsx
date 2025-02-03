@@ -5,7 +5,7 @@ import { iconTriangleRight } from '~/assets/icons';
 import { ListItem } from '~/components/List/ListItem';
 import { MenuLeaf } from '~/components/Menu/MenuLeaf';
 import { SvgIcon } from '~/components/SvgIcon';
-import { useProps } from '~/components/ThemeProvider';
+import { useProps } from '~/components/Theme';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { mergeProps } from '~/utils/mergeProps';
@@ -69,4 +69,4 @@ export const MenuItem = polymorphicComponentFactory<IMenuItemFactory>(
 );
 
 MenuItem.theme = ListItem.theme;
-MenuItem.displayName = `@sixui/${COMPONENT_NAME}`;
+MenuItem.displayName = `@sixui/core/${COMPONENT_NAME}`;

@@ -152,4 +152,26 @@ export const WithForm: IStory = {
   },
 };
 
+// DEV:
+const TestDemo: React.FC<IDialogProps> = (props: IDialogProps) => (
+  <Button
+    onClick={() => {
+      Dialog.show({
+        ...props,
+        children: 'AAA',
+      });
+    }}
+  >
+    Show A
+  </Button>
+);
+
+export const Test: IStory = {
+  render: (props: IDialogProps) => <TestDemo {...props} />,
+  args: {
+    ...defaultArgs,
+    headline: 'Hello World!',
+  },
+};
+
 export default meta;

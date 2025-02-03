@@ -1,7 +1,7 @@
 import type { IFieldBaseVariant } from '~/components/FieldBase';
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { FieldBase } from '~/components/FieldBase';
-import { themeTokens } from '~/components/ThemeProvider';
+import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { createStyles } from '~/utils/css/createStyles';

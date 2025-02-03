@@ -4,9 +4,11 @@ import { calc } from '@vanilla-extract/css-utils';
 import type { IInteraction } from '~/hooks/useInteractions';
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import type { IButtonVariant } from './Button.types';
+import { ButtonBase } from '~/components/ButtonBase';
 import { PaperBase } from '~/components/PaperBase';
+import { Slot } from '~/components/Slot';
 import { StateLayer } from '~/components/StateLayer';
-import { themeTokens } from '~/components/ThemeProvider';
+import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { createStyles } from '~/utils/css/createStyles';
@@ -17,8 +19,6 @@ import { px } from '~/utils/css/px';
 import { space } from '~/utils/css/space';
 import { typography } from '~/utils/css/typography';
 import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
-import { ButtonBase } from '../ButtonBase';
-import { Slot } from '../Slot';
 import { COMPONENT_NAME } from './Button.constants';
 
 type IModifier =

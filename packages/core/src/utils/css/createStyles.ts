@@ -1,7 +1,7 @@
 import type { ComplexStyleRule } from '@vanilla-extract/css';
 import { style } from '@vanilla-extract/css';
 
-import { cssLayers } from '~/components/ThemeProvider';
+import { cssLayers } from '~/components/Theme';
 import { isFunction } from '~/utils/isFunction';
 
 export const createStyles = <TClassName extends string>(
@@ -15,7 +15,7 @@ export const createStyles = <TClassName extends string>(
 ): Record<'root' | TClassName, string> => {
   if (isFunction(stylesObject.root)) {
     throw new Error(
-      '[@sixui] createStyles: root className cannot be a function. Please use an object.',
+      '[@sixui/core] createStyles: root className cannot be a function. Please use an object.',
     );
   }
 

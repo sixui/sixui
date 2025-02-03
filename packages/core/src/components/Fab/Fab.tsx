@@ -1,7 +1,7 @@
 import type { IFabThemeFactory } from './Fab.css';
 import type { IFabFactory } from './Fab.types';
 import { Button } from '~/components/Button';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { COMPONENT_NAME } from './Fab.constants';
@@ -51,4 +51,4 @@ export const Fab = polymorphicComponentFactory<IFabFactory>(
 );
 
 Fab.theme = fabTheme;
-Fab.displayName = `@sixui/${COMPONENT_NAME}`;
+Fab.displayName = `@sixui/core/${COMPONENT_NAME}`;

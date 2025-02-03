@@ -4,7 +4,7 @@ import type {
   IComponentShowcaseFactory,
 } from './ComponentShowcase.types';
 import { Box } from '~/components/Box';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { deepMerge } from '~/utils/deepMerge';
 import { COMPONENT_NAME } from './ComponentShowcase.constants';
@@ -218,7 +218,7 @@ export const componentShowcaseFactory = <TComponentProps extends object>(
   });
 
   ComponentShowcase.theme = componentShowcaseTheme;
-  ComponentShowcase.displayName = `@sixui/${COMPONENT_NAME}`;
+  ComponentShowcase.displayName = `@sixui/core/${COMPONENT_NAME}`;
 
   return ComponentShowcase;
 };

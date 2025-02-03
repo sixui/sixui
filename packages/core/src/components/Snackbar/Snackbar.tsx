@@ -4,7 +4,7 @@ import { CSSTransition } from 'react-transition-group';
 import type { ISnackbarThemeFactory } from './Snackbar.css';
 import type { ISnackbarFactory } from './Snackbar.types';
 import { Motion } from '~/components/Motion';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { useTimeout } from '~/hooks/useTimeout';
 import { componentFactory } from '~/utils/component/componentFactory';
@@ -82,4 +82,4 @@ export const Snackbar = componentFactory<ISnackbarFactory>(
 );
 
 Snackbar.theme = snackbarTheme;
-Snackbar.displayName = `@sixui/${COMPONENT_NAME}`;
+Snackbar.displayName = `@sixui/core/${COMPONENT_NAME}`;

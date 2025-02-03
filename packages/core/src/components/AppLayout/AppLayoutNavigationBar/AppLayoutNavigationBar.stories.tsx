@@ -17,7 +17,7 @@ import { Flex } from '~/components/Flex';
 import { Frame } from '~/components/Frame';
 import { NavigationBar } from '~/components/NavigationBar';
 import { Placeholder } from '~/components/Placeholder';
-import { themeTokens } from '~/components/ThemeProvider';
+import { themeTokens } from '~/components/Theme';
 import { useToggle } from '~/hooks/useToggle';
 import { px } from '~/utils/css/px';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';

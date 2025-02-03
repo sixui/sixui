@@ -1,7 +1,7 @@
 import type { IIndicatorThemeFactory } from './Indicator.css';
 import type { IIndicatorFactory } from './Indicator.types';
 import { Box } from '~/components/Box';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './Indicator.constants';
 import { indicatorTheme } from './Indicator.css';
@@ -41,4 +41,4 @@ export const Indicator = componentFactory<IIndicatorFactory>(
 );
 
 Indicator.theme = indicatorTheme;
-Indicator.displayName = `@sixui/${COMPONENT_NAME}`;
+Indicator.displayName = `@sixui/core/${COMPONENT_NAME}`;

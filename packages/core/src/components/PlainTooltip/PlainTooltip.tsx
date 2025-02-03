@@ -2,7 +2,7 @@ import type { IPlainTooltipThemeFactory } from './PlainTooltip.css';
 import type { IPlainTooltipFactory } from './PlainTooltip.types';
 import type { IPlainTooltipContentOwnProps } from './PlainTooltipContent';
 import { PopoverBase } from '~/components/PopoverBase';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { isFunction } from '~/utils/isFunction';
 import { mergeProps } from '~/utils/mergeProps';
@@ -66,4 +66,4 @@ export const PlainTooltip = componentFactory<IPlainTooltipFactory>(
 );
 
 PlainTooltip.theme = plainTooltipTheme;
-PlainTooltip.displayName = `@sixui/${COMPONENT_NAME}`;
+PlainTooltip.displayName = `@sixui/core/${COMPONENT_NAME}`;

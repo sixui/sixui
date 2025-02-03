@@ -4,7 +4,7 @@ import type { IColorTagIndicatorThemeFactory } from './ColorTagIndicator.css';
 import type { IColorTagIndicatorFactory } from './ColorTagIndicator.types';
 import { Diagonals } from '~/components/Diagonals';
 import { Paper } from '~/components/Paper';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { getTextContrastColor } from '~/utils/colors/getTextContrastColor';
 import { isValidHexColor } from '~/utils/colors/isValidHexColor';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
@@ -65,4 +65,4 @@ export const ColorTagIndicator =
   );
 
 ColorTagIndicator.theme = colorTagIndicatorTheme;
-ColorTagIndicator.displayName = `@sixui/${COMPONENT_NAME}`;
+ColorTagIndicator.displayName = `@sixui/core/${COMPONENT_NAME}`;

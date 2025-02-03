@@ -5,7 +5,7 @@ import type { ICanonicalLayoutType } from '~/hooks/useCanonicalLayout';
 import type { IAppLayoutProps } from './AppLayout.types';
 import { Flex } from '~/components/Flex';
 import { Frame } from '~/components/Frame';
-import { themeTokens } from '~/components/ThemeProvider';
+import { themeTokens } from '~/components/Theme';
 import { px } from '~/utils/css/px';
 import { AppLayout } from './AppLayout';
 import { CanonicalLayout } from './AppLayout.stories/CanonicalLayout';

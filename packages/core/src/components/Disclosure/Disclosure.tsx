@@ -3,7 +3,7 @@ import type { IDisclosureFactory } from './Disclosure.types';
 import { Box } from '~/components/Box';
 import { extractBoxProps } from '~/components/Box/extractBoxProps';
 import { Expandable } from '~/components/Expandable';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './Disclosure.constants';
 import { DisclosureTrigger } from './DisclosureTrigger';
@@ -44,5 +44,5 @@ export const Disclosure = componentFactory<IDisclosureFactory>(
 );
 
 Disclosure.theme = disclosureTheme;
-Disclosure.displayName = `@sixui/${COMPONENT_NAME}`;
+Disclosure.displayName = `@sixui/core/${COMPONENT_NAME}`;
 Disclosure.Trigger = DisclosureTrigger;

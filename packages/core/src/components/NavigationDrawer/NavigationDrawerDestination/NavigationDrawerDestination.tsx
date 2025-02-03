@@ -1,7 +1,7 @@
 import type { INavigationDrawerDestinationThemeFactory } from './NavigationDrawerDestination.css';
 import type { INavigationDrawerDestinationFactory } from './NavigationDrawerDestination.types';
 import { ListItem } from '~/components/List/ListItem';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { COMPONENT_NAME } from './NavigationDrawerDestination.constants';
@@ -62,4 +62,4 @@ export const NavigationDrawerDestination =
   );
 
 NavigationDrawerDestination.theme = navigationDrawerDestinationTheme;
-NavigationDrawerDestination.displayName = `@sixui/${COMPONENT_NAME}`;
+NavigationDrawerDestination.displayName = `@sixui/core/${COMPONENT_NAME}`;

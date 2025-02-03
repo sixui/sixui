@@ -1,16 +1,16 @@
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { ButtonBase } from '~/components/ButtonBase';
 import { Checkmark } from '~/components/Checkmark';
 import { ColorTagIndicator } from '~/components/ColorTag/ColorTagIndicator';
 import { PaperBase } from '~/components/PaperBase';
 import { StateLayer } from '~/components/StateLayer';
-import { themeTokens } from '~/components/ThemeProvider';
+import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { createStyles } from '~/utils/css/createStyles';
 import { modifierSelector } from '~/utils/css/modifierSelector';
 import { overrideTokens } from '~/utils/css/overrideTokens';
 import { px } from '~/utils/css/px';
-import { ButtonBase } from '../ButtonBase';
 import { COMPONENT_NAME } from './ColorTag.constants';
 
 type IModifier = 'disabled';

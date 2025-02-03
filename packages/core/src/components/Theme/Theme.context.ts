@@ -16,7 +16,7 @@ export const useThemeContext = (): IThemeContextValue => {
   const context = useContext(ThemeContext);
   if (!context) {
     throw new Error(
-      '[@sixui] You forgot to wrap your component in <ThemeProvider />.',
+      '[@sixui/core] You forgot to wrap your component in <ThemeProvider />.',
     );
   }
 

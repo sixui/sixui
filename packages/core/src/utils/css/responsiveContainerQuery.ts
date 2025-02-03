@@ -1,4 +1,4 @@
-import type { IThemeWindowSizeClassName } from '~/components/ThemeProvider';
+import type { IThemeWindowSizeClassName } from '~/components/Theme';
 import { Responsive } from '~/components/Responsive';
 
 export const responsiveStyleRuleOperators = ['=', '!=', '<', '>='] as const;

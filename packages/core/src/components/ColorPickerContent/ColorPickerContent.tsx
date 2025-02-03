@@ -5,7 +5,7 @@ import { ColorTag } from '~/components/ColorTag';
 import { Divider } from '~/components/Divider';
 import { Flex } from '~/components/Flex';
 import { PaperBase } from '~/components/PaperBase';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './ColorPickerContent.constants';
 import { colorPickerContentTheme } from './ColorPickerContent.css';
@@ -84,4 +84,4 @@ export const ColorPickerContent = componentFactory<IColorPickerContentFactory>(
 );
 
 ColorPickerContent.theme = colorPickerContentTheme;
-ColorPickerContent.displayName = `@sixui/${COMPONENT_NAME}`;
+ColorPickerContent.displayName = `@sixui/core/${COMPONENT_NAME}`;

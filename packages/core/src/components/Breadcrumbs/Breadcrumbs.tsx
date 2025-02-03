@@ -6,7 +6,7 @@ import { iconEllipsisHorizontal } from '~/assets/icons';
 import { Box } from '~/components/Box';
 import { IconButton } from '~/components/IconButton';
 import { SvgIcon } from '~/components/SvgIcon';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { isProduction } from '~/utils/isProduction';
 import { isFragment } from '~/utils/react/isFragment';
@@ -141,4 +141,4 @@ export const Breadcrumbs = componentFactory<IBreadcrumbsFactory>(
 );
 
 Breadcrumbs.theme = breadcrumbsTheme;
-Breadcrumbs.displayName = `@sixui/${COMPONENT_NAME}`;
+Breadcrumbs.displayName = `@sixui/core/${COMPONENT_NAME}`;

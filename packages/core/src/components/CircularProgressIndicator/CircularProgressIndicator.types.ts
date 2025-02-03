@@ -1,7 +1,7 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IDeterminateCircularProgressIndicatorOwnProps } from '~/components/DeterminateCircularProgressIndicator';
 import type { IIndeterminateCircularProgressIndicatorOwnProps } from '~/components/IndeterminateCircularProgressIndicator';
-import type { IComponentThemeProps } from '~/components/ThemeProvider';
+import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IMakeOptional } from '~/utils/types';
 import type {

@@ -2,7 +2,7 @@ import type { IPaperBaseThemeFactory } from './PaperBase.css';
 import type { IPaperBaseFactory } from './PaperBase.types';
 import { Box } from '~/components/Box';
 import { Elevation } from '~/components/Elevation';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { COMPONENT_NAME } from './PaperBase.constants';
 import { paperBaseTheme } from './PaperBase.css';
@@ -48,4 +48,4 @@ export const PaperBase = polymorphicComponentFactory<IPaperBaseFactory>(
 );
 
 PaperBase.theme = paperBaseTheme;
-PaperBase.displayName = `@sixui/${COMPONENT_NAME}`;
+PaperBase.displayName = `@sixui/core/${COMPONENT_NAME}`;

@@ -3,7 +3,7 @@ import type { IRadioFactory } from './Radio.types';
 import { Box } from '~/components/Box';
 import { FocusRing } from '~/components/FocusRing';
 import { StateLayer, useStateLayer } from '~/components/StateLayer';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { useRadio } from '~/hooks/useRadio';
 import { componentFactory } from '~/utils/component/componentFactory';
@@ -121,7 +121,7 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
 });
 
 Radio.theme = RadioTheme;
-Radio.displayName = `@sixui/${COMPONENT_NAME}`;
+Radio.displayName = `@sixui/core/${COMPONENT_NAME}`;
 Radio.Group = RadioGroup;
 Radio.Indicator = RadioIndicator;
 Radio.Card = RadioCard;

@@ -4,7 +4,7 @@ import { createSequence } from '@olivierpascal/helpers';
 import type { IAppLayoutBodyProps } from './AppLayoutBody.types';
 import { Frame } from '~/components/Frame';
 import { Placeholder } from '~/components/Placeholder';
-import { themeTokens } from '~/components/ThemeProvider';
+import { themeTokens } from '~/components/Theme';
 import { px } from '~/utils/css/px';
 import { AppLayoutBody } from './AppLayoutBody';
 

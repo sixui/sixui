@@ -6,7 +6,7 @@ import { Avatar } from '~/components/Avatar';
 import { Button } from '~/components/Button';
 import { IconButton } from '~/components/IconButton';
 import { SvgIcon } from '~/components/SvgIcon';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { executeLazyPromise } from '~/utils/executeLazyPromise';
@@ -217,4 +217,4 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
 );
 
 Chip.theme = chipTheme;
-Chip.displayName = `@sixui/${COMPONENT_NAME}`;
+Chip.displayName = `@sixui/core/${COMPONENT_NAME}`;

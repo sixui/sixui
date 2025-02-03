@@ -5,7 +5,7 @@ import {
   useComponentTheme,
   useProps,
   useThemeContext,
-} from '~/components/ThemeProvider';
+} from '~/components/Theme';
 import { generateTonalColorPalettes } from '~/utils/colors/generateTonalColorPalettes';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './HctColorPickerContent.constants';
@@ -58,4 +58,4 @@ export const HctColorPickerContent =
   });
 
 HctColorPickerContent.theme = hctColorPickerContentTheme;
-HctColorPickerContent.displayName = `@sixui/${COMPONENT_NAME}`;
+HctColorPickerContent.displayName = `@sixui/core/${COMPONENT_NAME}`;

@@ -10,7 +10,7 @@ import { floatingFilterableListBaseFactory } from '~/components/FloatingFilterab
 import { ListItem } from '~/components/List/ListItem';
 import { MenuList } from '~/components/Menu/MenuList';
 import { TextInputField } from '~/components/TextInputField';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { IElementProps } from '~/utils/types';
 import { COMPONENT_NAME } from './MultiSelectBase.constants';
@@ -304,7 +304,7 @@ export const multiSelectBaseFactory = <
     },
   );
 
-  MultiSelectBase.displayName = `@sixui/${COMPONENT_NAME}`;
+  MultiSelectBase.displayName = `@sixui/core/${COMPONENT_NAME}`;
 
   return MultiSelectBase;
 };

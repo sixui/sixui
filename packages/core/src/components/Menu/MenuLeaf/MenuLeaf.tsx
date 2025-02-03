@@ -27,7 +27,7 @@ import type { IMenuLeafThemeFactory } from './MenuLeaf.css';
 import type { IMenuLeafFactory } from './MenuLeaf.types';
 import { Motion } from '~/components/Motion';
 import { Portal } from '~/components/Portal';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { isFunction } from '~/utils/isFunction';
@@ -270,4 +270,4 @@ export const MenuLeaf = componentFactory<IMenuLeafFactory>(
 );
 
 MenuLeaf.theme = menuLeafTheme;
-MenuLeaf.displayName = `@sixui/${COMPONENT_NAME}`;
+MenuLeaf.displayName = `@sixui/core/${COMPONENT_NAME}`;

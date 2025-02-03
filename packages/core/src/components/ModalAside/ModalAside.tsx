@@ -1,7 +1,7 @@
 import type { IModalAsideThemeFactory } from './ModalAside.css';
 import type { IModalAsideFactory } from './ModalAside.types';
 import { Drawer } from '~/components/Drawer';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { isFunction } from '~/utils/isFunction';
 import { COMPONENT_NAME } from './ModalAside.constants';
@@ -54,4 +54,4 @@ export const ModalAside = componentFactory<IModalAsideFactory>(
 );
 
 ModalAside.theme = modalAsideTheme;
-ModalAside.displayName = `@sixui/${COMPONENT_NAME}`;
+ModalAside.displayName = `@sixui/core/${COMPONENT_NAME}`;

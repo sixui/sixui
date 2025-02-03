@@ -1,6 +1,6 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IListOwnProps } from '~/components/List';
-import type { IComponentThemeProps } from '~/components/ThemeProvider';
+import type { IComponentThemeProps } from '~/components/Theme';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IMenuListThemeFactory, menuListTheme } from './MenuList.css';
 

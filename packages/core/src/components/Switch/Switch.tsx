@@ -3,7 +3,7 @@ import type { ISwitchFactory } from './Switch.types';
 import { Box } from '~/components/Box';
 import { FocusRing } from '~/components/FocusRing';
 import { StateLayer, useStateLayer } from '~/components/StateLayer';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { useSwitch } from '~/hooks/useSwitch';
 import { componentFactory } from '~/utils/component/componentFactory';
@@ -133,5 +133,5 @@ export const Switch = componentFactory<ISwitchFactory>(
 );
 
 Switch.theme = basicTemplateTheme;
-Switch.displayName = `@sixui/${COMPONENT_NAME}`;
+Switch.displayName = `@sixui/core/${COMPONENT_NAME}`;
 Switch.Indicator = SwitchIndicator;

@@ -5,7 +5,7 @@ import type { IRadioCardFactory } from './RadioCard.types';
 import { Card } from '~/components/Card';
 import { Labeled } from '~/components/Labeled';
 import { RadioIndicator } from '~/components/Radio/RadioIndicator';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { useRadio } from '~/hooks/useRadio';
 import { componentFactory } from '~/utils/component/componentFactory';
@@ -182,5 +182,5 @@ export const RadioCard = componentFactory<IRadioCardFactory>(
 );
 
 RadioCard.theme = RadioCardTheme;
-RadioCard.displayName = `@sixui/${COMPONENT_NAME}`;
+RadioCard.displayName = `@sixui/core/${COMPONENT_NAME}`;
 RadioCard.Indicator = RadioIndicator;

@@ -5,12 +5,12 @@ import type { IButtonFactory } from './Button.types';
 import { ButtonBase } from '~/components/ButtonBase';
 import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
 import { Overlayable } from '~/components/Overlayable';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { Slot } from '~/components/Slot';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { executeLazyPromise } from '~/utils/executeLazyPromise';
 import { isFunction } from '~/utils/isFunction';
-import { Slot } from '../Slot';
 import { COMPONENT_NAME } from './Button.constants';
 import { buttonTheme, buttonThemeVariants } from './Button.css';
 
@@ -207,4 +207,4 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
 );
 
 Button.theme = buttonTheme;
-Button.displayName = `@sixui/${COMPONENT_NAME}`;
+Button.displayName = `@sixui/core/${COMPONENT_NAME}`;

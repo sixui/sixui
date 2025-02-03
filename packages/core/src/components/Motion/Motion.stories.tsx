@@ -11,7 +11,7 @@ import type { IMotionProps } from './Motion.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { IconButton } from '~/components/IconButton';
 import { Placeholder } from '~/components/Placeholder';
-import { themeTokens } from '~/components/ThemeProvider';
+import { themeTokens } from '~/components/Theme';
 import { useToggle } from '~/hooks/useToggle';
 import { Motion } from './Motion';
 

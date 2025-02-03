@@ -1,6 +1,6 @@
 import type { IBoxProps } from '~/components/Box';
 import type { ICardOwnProps } from '~/components/Card';
-import type { IComponentThemeProps } from '~/components/ThemeProvider';
+import type { IComponentThemeProps } from '~/components/Theme';
 import type { IUseRadioProps } from '~/hooks/useRadio';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IOmit } from '~/utils/types';

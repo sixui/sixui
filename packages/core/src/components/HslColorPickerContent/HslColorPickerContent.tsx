@@ -3,7 +3,7 @@ import { createSequence } from '@olivierpascal/helpers';
 import type { IHslColorPickerContentThemeFactory } from './HslColorPickerContent.css';
 import type { IHslColorPickerContentFactory } from './HslColorPickerContent.types';
 import { ColorPickerContent } from '~/components/ColorPickerContent';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { generateAnalogousColorPalette } from '~/utils/colors/generateAnalogousColorPalette';
 import { generateAnalogousColorPalettes } from '~/utils/colors/generateAnalogousColorPalettes';
 import { componentFactory } from '~/utils/component/componentFactory';
@@ -68,4 +68,4 @@ export const HslColorPickerContent =
   });
 
 HslColorPickerContent.theme = hslColorPickerContentTheme;
-HslColorPickerContent.displayName = `@sixui/${COMPONENT_NAME}`;
+HslColorPickerContent.displayName = `@sixui/core/${COMPONENT_NAME}`;

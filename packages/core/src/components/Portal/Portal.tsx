@@ -1,7 +1,7 @@
 import { FloatingPortal } from '@floating-ui/react';
 
 import type { IPortalFactory } from './Portal.types';
-import { useProps, useThemeContext } from '~/components/ThemeProvider';
+import { useProps, useThemeContext } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './Portal.constants';
 
@@ -25,4 +25,4 @@ export const Portal = componentFactory<IPortalFactory>((props) => {
   );
 });
 
-Portal.displayName = `@sixui/${COMPONENT_NAME}`;
+Portal.displayName = `@sixui/core/${COMPONENT_NAME}`;

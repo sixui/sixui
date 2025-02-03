@@ -1,7 +1,7 @@
 import type { IIconButtonThemeFactory } from './IconButton.css';
 import type { IIconButtonFactory } from './IconButton.types';
 import { Button } from '~/components/Button';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { COMPONENT_NAME } from './IconButton.constants';
@@ -53,4 +53,4 @@ export const IconButton = polymorphicComponentFactory<IIconButtonFactory>(
 );
 
 IconButton.theme = iconButtonTheme;
-IconButton.displayName = `@sixui/${COMPONENT_NAME}`;
+IconButton.displayName = `@sixui/core/${COMPONENT_NAME}`;

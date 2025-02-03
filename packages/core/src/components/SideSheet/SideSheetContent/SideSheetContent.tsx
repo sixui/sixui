@@ -4,7 +4,7 @@ import { iconXMark } from '~/assets/icons';
 import { IconButton } from '~/components/IconButton';
 import { Paper } from '~/components/Paper';
 import { SvgIcon } from '~/components/SvgIcon';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { isFunction } from '~/utils/isFunction';
 import { COMPONENT_NAME } from './SideSheetContent.constants';
@@ -119,4 +119,4 @@ export const SideSheetContent = componentFactory<ISideSheetContentFactory>(
 );
 
 SideSheetContent.theme = sideSheetContentTheme;
-SideSheetContent.displayName = `@sixui/${COMPONENT_NAME}`;
+SideSheetContent.displayName = `@sixui/core/${COMPONENT_NAME}`;

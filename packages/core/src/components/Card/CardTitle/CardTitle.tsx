@@ -1,7 +1,7 @@
 import type { ICardTitleThemeFactory } from './CardTitle.css';
 import type { ICardTitleFactory } from './CardTitle.types';
 import { Box } from '~/components/Box';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './CardTitle.constants';
 import { cardTitleTheme } from './CardTitle.css';
@@ -46,4 +46,4 @@ export const CardTitle = componentFactory<ICardTitleFactory>(
 );
 
 CardTitle.theme = cardTitleTheme;
-CardTitle.displayName = `@sixui/${COMPONENT_NAME}`;
+CardTitle.displayName = `@sixui/core/${COMPONENT_NAME}`;

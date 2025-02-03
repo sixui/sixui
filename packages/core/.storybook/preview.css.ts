@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
+import { themeTokens } from '~/components/Theme';
 import { px } from '~/utils/css/px';
-import { themeTokens } from '~/components/ThemeProvider/ThemeProvider.css';
 
 export const classNames = {
   storyWrapper: style({

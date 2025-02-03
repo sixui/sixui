@@ -2,10 +2,10 @@ import type { IButtonBaseThemeFactory } from './ButtonBase.css';
 import type { IButtonBaseFactory } from './ButtonBase.types';
 import { FocusRing } from '~/components/FocusRing';
 import { Paper } from '~/components/Paper';
-import { useSixuiContext } from '~/components/SixuiProvider';
+import { useSixuiContext } from '~/components/Sixui';
 import { StateLayer } from '~/components/StateLayer';
 import { useStateLayer } from '~/components/StateLayer/useStateLayer';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { TouchTarget } from '~/components/TouchTarget';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
@@ -154,4 +154,4 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
 );
 
 ButtonBase.theme = buttonBaseTheme;
-ButtonBase.displayName = `@sixui/${COMPONENT_NAME}`;
+ButtonBase.displayName = `@sixui/core/${COMPONENT_NAME}`;

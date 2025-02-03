@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import type { IThemeOverride } from '~/components/ThemeProvider';
+import type { IThemeOverride } from '~/components/Theme';
 import type { ICustomizableThemeThemeFactory } from './CustomizableTheme.css';
 import type { ICustomizableThemeFactory } from './CustomizableTheme.types';
 import { ColorInputField } from '~/components/ColorInputField';
@@ -11,7 +11,7 @@ import {
   ThemeProvider,
   useComponentTheme,
   useProps,
-} from '~/components/ThemeProvider';
+} from '~/components/Theme';
 import { generateThemeFromSourceColor } from '~/utils/colors/generateThemeFromSourceColor';
 import { isValidHexColor } from '~/utils/colors/isValidHexColor';
 import { componentFactory } from '~/utils/component/componentFactory';
@@ -120,4 +120,4 @@ export const CustomizableTheme = componentFactory<ICustomizableThemeFactory>(
   },
 );
 
-CustomizableTheme.displayName = `@sixui/${COMPONENT_NAME}`;
+CustomizableTheme.displayName = `@sixui/core/${COMPONENT_NAME}`;

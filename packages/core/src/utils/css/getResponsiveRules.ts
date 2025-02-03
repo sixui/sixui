@@ -1,7 +1,7 @@
 import type {
   IThemeWindowSizeClassesValues,
   IThemeWindowSizeClassName,
-} from '~/components/ThemeProvider';
+} from '~/components/Theme';
 import { serializeResponsiveRuleQuery } from './serializeResponsiveRuleQuery';
 
 export type IWindowSizeClassContainerName =

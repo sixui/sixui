@@ -7,4 +7,4 @@ export const ListDivider = Divider.withProps({
 });
 
 ListDivider.theme = dividerTheme;
-ListDivider.displayName = `@sixui/${COMPONENT_NAME}`;
+ListDivider.displayName = `@sixui/core/${COMPONENT_NAME}`;

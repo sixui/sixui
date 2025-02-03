@@ -1,6 +1,6 @@
 import type cx from 'clsx';
 
-import type { IThemeWindowSizeClassName } from '~/components/ThemeProvider';
+import type { IThemeWindowSizeClassName } from '~/components/Theme';
 import type { IInteractions } from '~/hooks/useInteractions';
 import type { IModifiers } from '~/utils/getDataAttributes';
 import type { ISixuiSize } from '~/utils/types';

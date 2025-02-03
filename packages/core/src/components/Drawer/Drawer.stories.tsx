@@ -15,7 +15,7 @@ import { Flex } from '~/components/Flex';
 import { Frame } from '~/components/Frame';
 import { Paper } from '~/components/Paper';
 import { Text } from '~/components/Text';
-import { themeTokens } from '~/components/ThemeProvider';
+import { themeTokens } from '~/components/Theme';
 import { useDisclosure } from '~/hooks/useDisclosure';
 import { px } from '~/utils/css/px';
 import { Drawer } from './Drawer';

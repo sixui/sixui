@@ -2,7 +2,7 @@ import type { IAsideThemeFactory } from './Aside.css';
 import type { IAsideFactory } from './Aside.types';
 import { ModalAside } from '~/components/ModalAside';
 import { StandardAside } from '~/components/StandardAside';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './Aside.constants';
 import { asideTheme } from './Aside.css';
@@ -56,4 +56,4 @@ export const Aside = componentFactory<IAsideFactory>((props, forwardedRef) => {
 });
 
 Aside.theme = asideTheme;
-Aside.displayName = `@sixui/${COMPONENT_NAME}`;
+Aside.displayName = `@sixui/core/${COMPONENT_NAME}`;

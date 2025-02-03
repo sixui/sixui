@@ -1,5 +1,5 @@
+import type { IIconButtonVariant } from '~/components/IconButton';
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
-import type { IIconButtonVariant } from '../IconButton';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { createStyles } from '~/utils/css/createStyles';

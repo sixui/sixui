@@ -1,7 +1,7 @@
 import type { IColorSchemeThemeFactory } from './ColorScheme.css';
 import type { IColorSchemeFactory } from './ColorScheme.types';
 import { Flex } from '~/components/Flex';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './ColorScheme.constants';
 import { ColorSchemeRole } from './ColorSchemeRole';
@@ -403,5 +403,5 @@ export const ColorScheme = componentFactory<IColorSchemeFactory>(
 );
 
 ColorScheme.theme = colorSchemeTheme;
-ColorScheme.displayName = `@sixui/${COMPONENT_NAME}`;
+ColorScheme.displayName = `@sixui/core/${COMPONENT_NAME}`;
 ColorScheme.Role = ColorSchemeRole;

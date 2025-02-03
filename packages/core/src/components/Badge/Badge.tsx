@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import type { IBadgeThemeFactory } from './Badge.css';
 import type { IBadgeFactory } from './Badge.types';
 import { Paper } from '~/components/Paper';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { isNumeric } from '~/utils/isNumeric';
 import { COMPONENT_NAME } from './Badge.constants';
@@ -68,4 +68,4 @@ export const Badge = polymorphicComponentFactory<IBadgeFactory>(
 );
 
 Badge.theme = badgeTheme;
-Badge.displayName = `@sixui/${COMPONENT_NAME}`;
+Badge.displayName = `@sixui/core/${COMPONENT_NAME}`;

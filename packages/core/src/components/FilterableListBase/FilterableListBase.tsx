@@ -6,7 +6,7 @@ import type {
   IFilterableListItemModifiers,
 } from './FilterableListBase.types';
 import { Box } from '~/components/Box';
-import { useProps } from '~/components/ThemeProvider';
+import { useProps } from '~/components/Theme';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { COMPONENT_NAME } from './FilterableListBase.constants';
@@ -209,7 +209,7 @@ export const filterableListBaseFactory = <
     );
   });
 
-  FilterableListBase.displayName = `@sixui/${COMPONENT_NAME}`;
+  FilterableListBase.displayName = `@sixui/core/${COMPONENT_NAME}`;
 
   return FilterableListBase;
 };

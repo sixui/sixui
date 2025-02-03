@@ -2,10 +2,10 @@ import type { IRichTooltipThemeFactory } from './RichTooltip.css';
 import type { IRichTooltipFactory } from './RichTooltip.types';
 import type { IRichTooltipContentOwnProps } from './RichTooltipContent';
 import { PopoverBase } from '~/components/PopoverBase';
+import { useComponentTheme } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { isFunction } from '~/utils/isFunction';
 import { mergeProps } from '~/utils/mergeProps';
-import { useComponentTheme } from '../ThemeProvider';
 import { COMPONENT_NAME } from './RichTooltip.constants';
 import { RichTooltipContent } from './RichTooltipContent';
 import { richTooltipTheme } from './RichTooltip.css';
@@ -87,4 +87,4 @@ export const RichTooltip = componentFactory<IRichTooltipFactory>(
 );
 
 RichTooltip.theme = richTooltipTheme;
-RichTooltip.displayName = `@sixui/${COMPONENT_NAME}`;
+RichTooltip.displayName = `@sixui/core/${COMPONENT_NAME}`;

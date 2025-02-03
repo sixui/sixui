@@ -1,6 +1,6 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IFieldBaseOwnProps } from '~/components/FieldBase';
-import type { IComponentThemeProps } from '~/components/ThemeProvider';
+import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IElementProps } from '~/utils/types';
 import type {

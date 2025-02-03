@@ -1,5 +1,4 @@
-import { createContext } from 'react';
-
+import { createOptionalContext } from '~/utils/react';
 import { IColorPalette } from '~/utils/types';
 
 export type IColorPaletteGroupContextValue = {
@@ -8,6 +7,5 @@ export type IColorPaletteGroupContextValue = {
   setQuantizedPalette: (palette: IColorPalette) => void;
 };
 
-export const ColorPaletteGroupContext = createContext<
-  IColorPaletteGroupContextValue | undefined
->(undefined);
+export const [ColorPaletteGroupprovider, useColorPaletteGroupContext] =
+  createOptionalContext<IColorPaletteGroupContextValue>();

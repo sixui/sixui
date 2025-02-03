@@ -1,7 +1,7 @@
 import type { IPlainTooltipContentThemeFactory } from './PlainTooltipContent.css';
 import type { IPlainTooltipContentFactory } from './PlainTooltipContent.types';
 import { Paper } from '~/components/Paper';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './PlainTooltipContent.constants';
 import { plainTooltipContentTheme } from './PlainTooltipContent.css';
@@ -38,4 +38,4 @@ export const PlainTooltipContent =
   });
 
 PlainTooltipContent.theme = plainTooltipContentTheme;
-PlainTooltipContent.displayName = `@sixui/${COMPONENT_NAME}`;
+PlainTooltipContent.displayName = `@sixui/core/${COMPONENT_NAME}`;

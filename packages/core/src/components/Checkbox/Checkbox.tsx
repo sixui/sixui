@@ -3,7 +3,7 @@ import type { ICheckboxFactory } from './Checkbox.types';
 import { Box } from '~/components/Box';
 import { FocusRing } from '~/components/FocusRing';
 import { StateLayer, useStateLayer } from '~/components/StateLayer';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { useCheckbox } from '~/hooks/useCheckbox';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
@@ -127,7 +127,7 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
 );
 
 Checkbox.theme = checkboxTheme;
-Checkbox.displayName = `@sixui/${COMPONENT_NAME}`;
+Checkbox.displayName = `@sixui/core/${COMPONENT_NAME}`;
 Checkbox.Group = CheckboxGroup;
 Checkbox.Indicator = CheckboxIndicator;
 Checkbox.Card = CheckboxCard;

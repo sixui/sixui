@@ -1,4 +1,4 @@
-import type { IThemeProviderProps } from '~/components/ThemeProvider';
+import type { IThemeProviderProps } from '~/components/Theme';
 import type { ISixuiContextValue } from './SixuiProvider.context';
 
 export interface ISixuiProviderProps

@@ -1,7 +1,7 @@
 import type { IScrimThemeFactory } from './Scrim.css';
 import type { IScrimFactory } from './Scrim.types';
 import { Box } from '~/components/Box';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { COMPONENT_NAME } from './Scrim.constants';
 import { scrimTheme } from './Scrim.css';
@@ -50,4 +50,4 @@ export const Scrim = polymorphicComponentFactory<IScrimFactory>(
 );
 
 Scrim.theme = scrimTheme;
-Scrim.displayName = `@sixui/${COMPONENT_NAME}`;
+Scrim.displayName = `@sixui/core/${COMPONENT_NAME}`;

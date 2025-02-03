@@ -4,7 +4,7 @@ import { iconXMark } from '~/assets/icons';
 import { IconButton } from '~/components/IconButton';
 import { Paper } from '~/components/Paper';
 import { SvgIcon } from '~/components/SvgIcon';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { isFunction } from '~/utils/isFunction';
 import { COMPONENT_NAME } from './BottomSheetContent.constants';
@@ -59,4 +59,4 @@ export const BottomSheetContent = componentFactory<IBottomSheetContentFactory>(
 );
 
 BottomSheetContent.theme = bottomSheetContentTheme;
-BottomSheetContent.displayName = `@sixui/${COMPONENT_NAME}`;
+BottomSheetContent.displayName = `@sixui/core/${COMPONENT_NAME}`;

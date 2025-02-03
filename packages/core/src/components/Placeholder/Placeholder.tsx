@@ -2,7 +2,7 @@ import type { IPlaceholderThemeFactory } from './Placeholder.css';
 import type { IPlaceholderFactory } from './Placeholder.types';
 import { Diagonals } from '~/components/Diagonals';
 import { Paper } from '~/components/Paper';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { COMPONENT_NAME } from './Placeholder.constants';
 import { placeholderTheme } from './Placeholder.css';
@@ -52,4 +52,4 @@ export const Placeholder = polymorphicComponentFactory<IPlaceholderFactory>(
 );
 
 Placeholder.theme = placeholderTheme;
-Placeholder.displayName = `@sixui/${COMPONENT_NAME}`;
+Placeholder.displayName = `@sixui/core/${COMPONENT_NAME}`;

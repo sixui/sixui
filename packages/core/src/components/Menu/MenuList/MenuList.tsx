@@ -1,7 +1,7 @@
 import type { IMenuListThemeFactory } from './MenuList.css';
 import type { IMenuListFactory } from './MenuList.types';
 import { List } from '~/components/List';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { COMPONENT_NAME } from './MenuList.constants';
 import { menuListTheme } from './MenuList.css';

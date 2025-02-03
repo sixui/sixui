@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import type { IColorPaletteGroupContextValue } from './ColorPaletteGroup.context';
 import type { IColorPaletteGroupProviderProps } from './ColorPaletteGroupProvider.types';
-import { ColorPaletteGroupContext } from './ColorPaletteGroup.context';
+import { ColorPaletteGroupprovider } from './ColorPaletteGroup.context';
 
 export const ColorPaletteGroupProvider: React.FC<
   IColorPaletteGroupProviderProps
@@ -17,8 +17,8 @@ export const ColorPaletteGroupProvider: React.FC<
   };
 
   return (
-    <ColorPaletteGroupContext.Provider value={contextValue}>
+    <ColorPaletteGroupprovider value={contextValue}>
       {children}
-    </ColorPaletteGroupContext.Provider>
+    </ColorPaletteGroupprovider>
   );
 };

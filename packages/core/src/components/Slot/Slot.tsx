@@ -3,7 +3,7 @@ import { CSSTransition } from 'react-transition-group';
 
 import type { ISlotThemeFactory } from './Slot.css';
 import type { ISlotFactory } from './Slot.types';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { useMergeRefs } from '~/hooks';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { Box } from '../Box';
@@ -80,4 +80,4 @@ export const Slot = polymorphicComponentFactory<ISlotFactory>(
 );
 
 Slot.theme = slotTheme;
-Slot.displayName = `@sixui/${COMPONENT_NAME}`;
+Slot.displayName = `@sixui/core/${COMPONENT_NAME}`;

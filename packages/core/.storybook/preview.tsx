@@ -8,8 +8,8 @@ import './storybook.css';
 
 import { Box } from '~/components/Box';
 import { CustomizableTheme } from '~/components/CustomizableTheme';
-import { SixuiProvider } from '~/components/SixuiProvider';
-import { ThemeProvider } from '~/components/ThemeProvider';
+import { SixuiProvider } from '~/components/Sixui';
+import { ThemeProvider } from '~/components/Theme';
 
 const preview: Preview = {
   parameters: {

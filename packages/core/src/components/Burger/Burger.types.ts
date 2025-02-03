@@ -1,6 +1,6 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IIconButtonOwnProps } from '~/components/IconButton';
-import type { IComponentThemeProps } from '~/components/ThemeProvider';
+import type { IComponentThemeProps } from '~/components/Theme';
 import type { IOmit } from '~/utils';
 import type { IPolymorphicComponentFactory } from '~/utils/component';
 import type { burgerTheme, IBurgerThemeFactory } from './Burger.css';

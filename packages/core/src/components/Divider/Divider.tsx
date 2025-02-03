@@ -1,7 +1,7 @@
 import type { IDividerThemeFactory } from './Divider.css';
 import type { IDividerFactory } from './Divider.types';
 import { Box } from '~/components/Box';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './Divider.constants';
 import { dividerTheme } from './Divider.css';
@@ -79,4 +79,4 @@ export const Divider = componentFactory<IDividerFactory>(
 );
 
 Divider.theme = dividerTheme;
-Divider.displayName = `@sixui/${COMPONENT_NAME}`;
+Divider.displayName = `@sixui/core/${COMPONENT_NAME}`;

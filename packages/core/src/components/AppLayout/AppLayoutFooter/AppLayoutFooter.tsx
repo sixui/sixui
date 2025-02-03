@@ -1,7 +1,7 @@
 import type { IAppLayoutFooterThemeFactory } from './AppLayoutFooter.css';
 import type { IAppLayoutFooterFactory } from './AppLayoutFooter.types';
 import { Paper } from '~/components/Paper';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './AppLayoutFooter.constants';
 import { appLayoutFooterTheme } from './AppLayoutFooter.css';
@@ -41,4 +41,4 @@ export const AppLayoutFooter = componentFactory<IAppLayoutFooterFactory>(
 );
 
 AppLayoutFooter.theme = appLayoutFooterTheme;
-AppLayoutFooter.displayName = `@sixui/${COMPONENT_NAME}`;
+AppLayoutFooter.displayName = `@sixui/core/${COMPONENT_NAME}`;

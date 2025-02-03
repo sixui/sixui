@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 
-import type { IThemeComponentValues } from '~/components/ThemeProvider';
+import type { IThemeComponentValues } from '~/components/Theme';
 import type { IAny } from '../types';
 
 export type IComponentFactoryPayload = {

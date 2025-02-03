@@ -3,7 +3,7 @@ import type { IAppLayoutNavigationRailFactory } from './AppLayoutNavigationRail.
 import { useAppLayoutContext } from '~/components/AppLayout/AppLayout.context';
 import { NavigationRail } from '~/components/NavigationRail';
 import { NavigationRailDestination } from '~/components/NavigationRail/NavigationRailDestination';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useAppLayoutComponent } from '../hooks/useAppLayoutComponent';
 import { COMPONENT_NAME } from './AppLayoutNavigationRail.constants';
@@ -61,5 +61,5 @@ export const AppLayoutNavigationRail =
   });
 
 AppLayoutNavigationRail.theme = appLayoutNavigationRailTheme;
-AppLayoutNavigationRail.displayName = `@sixui/${COMPONENT_NAME}`;
+AppLayoutNavigationRail.displayName = `@sixui/core/${COMPONENT_NAME}`;
 AppLayoutNavigationRail.Destination = NavigationRailDestination;

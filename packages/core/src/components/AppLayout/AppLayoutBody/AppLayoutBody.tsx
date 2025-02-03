@@ -2,7 +2,7 @@ import type { IAppLayoutBodyThemeFactory } from './AppLayoutBody.css';
 import type { IAppLayoutBodyFactory } from './AppLayoutBody.types';
 import { useAppLayoutContext } from '~/components/AppLayout/AppLayout.context';
 import { Paper } from '~/components/Paper';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './AppLayoutBody.constants';
 import { appLayoutBodyTheme } from './AppLayoutBody.css';
@@ -48,4 +48,4 @@ export const AppLayoutBody = componentFactory<IAppLayoutBodyFactory>(
 );
 
 AppLayoutBody.theme = appLayoutBodyTheme;
-AppLayoutBody.displayName = `@sixui/${COMPONENT_NAME}`;
+AppLayoutBody.displayName = `@sixui/core/${COMPONENT_NAME}`;

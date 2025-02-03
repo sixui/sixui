@@ -4,7 +4,7 @@ import cx from 'clsx';
 
 import type { IWithAsProp } from '~/utils/component/createPolymorphicComponent';
 import type { IBoxProps } from './Box.types';
-import { themeTokens } from '~/components/ThemeProvider';
+import { themeTokens } from '~/components/Theme';
 import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { getDataAttributes } from '~/utils/getDataAttributes';
 import { mergeProps } from '~/utils/mergeProps';

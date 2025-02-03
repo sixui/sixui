@@ -1,7 +1,7 @@
 import type { IDiagonalsThemeFactory } from './Diagonals.css';
 import type { IDiagonalsFactory } from './Diagonals.types';
 import { Box } from '~/components/Box';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './Diagonals.constants';
 import { diagonalsTheme } from './Diagonals.css';
@@ -47,4 +47,4 @@ export const Diagonals = componentFactory<IDiagonalsFactory>(
 );
 
 Diagonals.theme = diagonalsTheme;
-Diagonals.displayName = `@sixui/${COMPONENT_NAME}`;
+Diagonals.displayName = `@sixui/core/${COMPONENT_NAME}`;

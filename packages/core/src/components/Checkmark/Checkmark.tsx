@@ -1,7 +1,7 @@
 import type { ICheckmarkThemeFactory } from './Checkmark.css';
 import type { ICheckmarkFactory } from './Checkmark.types';
 import { Box } from '~/components/Box';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './Checkmark.constants';
 import { checkmarkTheme } from './Checkmark.css';
@@ -60,4 +60,4 @@ export const Checkmark = componentFactory<ICheckmarkFactory>(
 );
 
 Checkmark.theme = checkmarkTheme;
-Checkmark.displayName = `@sixui/${COMPONENT_NAME}`;
+Checkmark.displayName = `@sixui/core/${COMPONENT_NAME}`;

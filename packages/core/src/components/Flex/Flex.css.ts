@@ -1,7 +1,7 @@
 import { createRainbowSprinkles, defineProperties } from 'rainbow-sprinkles';
 
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
-import { cssLayers } from '~/components/ThemeProvider';
+import { cssLayers } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { createStyles } from '~/utils/css/createStyles';

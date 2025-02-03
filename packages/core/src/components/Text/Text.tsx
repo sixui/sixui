@@ -3,7 +3,7 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 import type { ITextThemeFactory } from './Text.css';
 import type { ITextFactory, ITextSize, ITextVariant } from './Text.types';
 import { Box } from '~/components/Box';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { COMPONENT_NAME } from './Text.constants';
 import { textTheme } from './Text.css';
@@ -93,4 +93,4 @@ export const Text = polymorphicComponentFactory<ITextFactory>(
 );
 
 Text.theme = textTheme;
-Text.displayName = `@sixui/${COMPONENT_NAME}`;
+Text.displayName = `@sixui/core/${COMPONENT_NAME}`;

@@ -1,7 +1,7 @@
 import type { IFlexThemeFactory } from './Flex.css';
 import type { IFlexFactory } from './Flex.types';
 import { Box } from '~/components/Box';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { filterFalsyChildren } from '~/utils/react/filterFalsyChildren';
 import { COMPONENT_NAME } from './Flex.constants';
@@ -75,4 +75,4 @@ export const Flex = polymorphicComponentFactory<IFlexFactory>(
 );
 
 Flex.theme = flexTheme;
-Flex.displayName = `@sixui/${COMPONENT_NAME}`;
+Flex.displayName = `@sixui/core/${COMPONENT_NAME}`;

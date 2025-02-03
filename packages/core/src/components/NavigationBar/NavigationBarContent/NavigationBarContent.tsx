@@ -1,7 +1,7 @@
 import type { INavigationBarContentThemeFactory } from './NavigationBarContent.css';
 import type { INavigationBarContentFactory } from './NavigationBarContent.types';
 import { Paper } from '~/components/Paper';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './NavigationBarContent.constants';
 import { navigationBarContentTheme } from './NavigationBarContent.css';
@@ -36,4 +36,4 @@ export const NavigationBarContent =
   });
 
 NavigationBarContent.theme = navigationBarContentTheme;
-NavigationBarContent.displayName = `@sixui/${COMPONENT_NAME}`;
+NavigationBarContent.displayName = `@sixui/core/${COMPONENT_NAME}`;

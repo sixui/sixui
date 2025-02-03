@@ -11,7 +11,7 @@ import {
   themeTokens,
   useComponentTheme,
   useProps,
-} from '~/components/ThemeProvider';
+} from '~/components/Theme';
 import { useDisclosure } from '~/hooks/useDisclosure';
 import { useSet } from '~/hooks/useSet';
 import { useSideSheet } from '~/hooks/useSideSheet';
@@ -164,7 +164,7 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
 );
 
 AppLayout.theme = appLayoutTheme;
-AppLayout.displayName = `@sixui/${COMPONENT_NAME}`;
+AppLayout.displayName = `@sixui/core/${COMPONENT_NAME}`;
 AppLayout.Header = AppLayoutHeader;
 AppLayout.Body = AppLayoutBody;
 AppLayout.NavigationBar = AppLayoutNavigationBar;

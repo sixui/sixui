@@ -4,7 +4,7 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 import type { IAvatarThemeFactory } from './Avatar.css';
 import type { IAvatarFactory } from './Avatar.types';
 import { Paper } from '~/components/Paper';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { useImageLoaded } from '~/hooks/useImageLoaded';
 import { hslColorFromString } from '~/utils/colors/hslColorFromString';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
@@ -96,4 +96,4 @@ export const Avatar = polymorphicComponentFactory<IAvatarFactory>(
 );
 
 Avatar.theme = avatarTheme;
-Avatar.displayName = `@sixui/${COMPONENT_NAME}`;
+Avatar.displayName = `@sixui/core/${COMPONENT_NAME}`;

@@ -7,7 +7,7 @@ import {
   themeTokens,
   useComponentTheme,
   useProps,
-} from '~/components/ThemeProvider';
+} from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { px } from '~/utils/css/px';
 import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
@@ -115,4 +115,4 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
 );
 
 Paper.theme = paperTheme;
-Paper.displayName = `@sixui/${COMPONENT_NAME}`;
+Paper.displayName = `@sixui/core/${COMPONENT_NAME}`;

@@ -9,7 +9,7 @@ import {
 import type { ICheckboxGroupContextValue } from './CheckboxGroup.context';
 import type { ICheckboxGroupFactory } from './CheckboxGroup.types';
 import { Box } from '~/components/Box';
-import { useProps } from '~/components/ThemeProvider';
+import { useProps } from '~/components/Theme';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
@@ -102,4 +102,4 @@ export const CheckboxGroup = polymorphicComponentFactory<ICheckboxGroupFactory>(
   },
 );
 
-CheckboxGroup.displayName = `@sixui/${COMPONENT_NAME}`;
+CheckboxGroup.displayName = `@sixui/core/${COMPONENT_NAME}`;

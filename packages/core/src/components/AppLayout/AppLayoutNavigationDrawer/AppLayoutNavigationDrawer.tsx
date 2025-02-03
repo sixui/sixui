@@ -2,7 +2,7 @@ import type { IAppLayoutNavigationDrawerThemeFactory } from './AppLayoutNavigati
 import type { IAppLayoutNavigationDrawerFactory } from './AppLayoutNavigationDrawer.types';
 import { useAppLayoutContext } from '~/components/AppLayout/AppLayout.context';
 import { NavigationDrawer } from '~/components/NavigationDrawer';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { useAppLayoutComponent } from '../hooks/useAppLayoutComponent';
@@ -78,6 +78,6 @@ export const AppLayoutNavigationDrawer =
   });
 
 AppLayoutNavigationDrawer.theme = appLayoutNavigationDrawerTheme;
-AppLayoutNavigationDrawer.displayName = `@sixui/${COMPONENT_NAME}`;
+AppLayoutNavigationDrawer.displayName = `@sixui/core/${COMPONENT_NAME}`;
 AppLayoutNavigationDrawer.Section = NavigationDrawer.Section;
 AppLayoutNavigationDrawer.Destination = NavigationDrawer.Destination;

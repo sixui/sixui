@@ -6,7 +6,7 @@ import type { IStandardAsideThemeFactory } from './StandardAside.css';
 import type { IStandardAsideFactory } from './StandardAside.types';
 import { Box } from '~/components/Box';
 import { Motion } from '~/components/Motion';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { isFunction } from '~/utils/isFunction';
@@ -84,4 +84,4 @@ export const StandardAside = componentFactory<IStandardAsideFactory>(
 );
 
 StandardAside.theme = standardAsideTheme;
-StandardAside.displayName = `@sixui/${COMPONENT_NAME}`;
+StandardAside.displayName = `@sixui/core/${COMPONENT_NAME}`;

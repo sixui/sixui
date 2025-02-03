@@ -26,7 +26,7 @@ import type { IFloatingFilterableListBaseFactory } from './FloatingFilterableLis
 import { filterableListBaseFactory } from '~/components/FilterableListBase';
 import { Motion } from '~/components/Motion';
 import { Portal } from '~/components/Portal';
-import { useProps } from '~/components/ThemeProvider';
+import { useProps } from '~/components/Theme';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { usePrevious } from '~/hooks/usePrevious';
@@ -469,7 +469,7 @@ export const floatingFilterableListBaseFactory = <
     );
   });
 
-  FloatingFilterableListBase.displayName = `@sixui/${COMPONENT_NAME}`;
+  FloatingFilterableListBase.displayName = `@sixui/core/${COMPONENT_NAME}`;
 
   return FloatingFilterableListBase;
 };

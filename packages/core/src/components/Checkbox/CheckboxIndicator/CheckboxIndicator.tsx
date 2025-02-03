@@ -3,7 +3,7 @@ import type { ICheckboxIndicatorFactory } from './CheckboxIndicator.types';
 import { Checkmark } from '~/components/Checkmark';
 import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
 import { PaperBase } from '~/components/PaperBase';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { usePrevious } from '~/hooks/usePrevious';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './CheckboxIndicator.constants';
@@ -79,4 +79,4 @@ export const CheckboxIndicator = componentFactory<ICheckboxIndicatorFactory>(
 );
 
 CheckboxIndicator.theme = checkboxIndicatorTheme;
-CheckboxIndicator.displayName = `@sixui/${COMPONENT_NAME}`;
+CheckboxIndicator.displayName = `@sixui/core/${COMPONENT_NAME}`;

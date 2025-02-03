@@ -4,7 +4,7 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 import type { ISkeletonThemeFactory } from './Skeleton.css';
 import type { ISkeletonFactory } from './Skeleton.types';
 import { Paper } from '~/components/Paper';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { random } from '~/utils/random';
 import { COMPONENT_NAME } from './Skeleton.constants';
@@ -72,4 +72,4 @@ export const Skeleton = componentFactory<ISkeletonFactory>(
 );
 
 Skeleton.theme = skeletonTheme;
-Skeleton.displayName = `@sixui/${COMPONENT_NAME}`;
+Skeleton.displayName = `@sixui/core/${COMPONENT_NAME}`;

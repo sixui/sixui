@@ -1,7 +1,7 @@
 import type { IBurgerThemeFactory } from './Burger.css';
 import type { IBurgerFactory } from './Burger.types';
 import { IconButton } from '~/components/IconButton';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component';
 import { COMPONENT_NAME } from './Burger.constants';
 import { BurgerIndicator } from './BurgerIndicator';
@@ -36,5 +36,5 @@ export const Burger = polymorphicComponentFactory<IBurgerFactory>(
 );
 
 Burger.theme = burgerTheme;
-Burger.displayName = `@sixui/${COMPONENT_NAME}`;
+Burger.displayName = `@sixui/core/${COMPONENT_NAME}`;
 Burger.Indicator = BurgerIndicator;

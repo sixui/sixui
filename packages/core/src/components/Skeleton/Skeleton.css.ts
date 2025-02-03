@@ -3,7 +3,7 @@ import { keyframes } from '@vanilla-extract/css';
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import type { ISkeletonVariant } from './Skeleton.types';
 import { PaperBase } from '~/components/PaperBase';
-import { themeTokens } from '~/components/ThemeProvider';
+import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { createStyles } from '~/utils/css/createStyles';

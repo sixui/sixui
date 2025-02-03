@@ -3,12 +3,12 @@ import { faSmile } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { ISlotProps } from './Slot.types';
+import { Box } from '~/components/Box';
+import { Button } from '~/components/Button';
+import { Flex } from '~/components/Flex';
+import { themeTokens } from '~/components/Theme';
 import { useToggle } from '~/hooks';
 import { px } from '~/utils/css/px';
-import { Box } from '../Box';
-import { Button } from '../Button';
-import { Flex } from '../Flex';
-import { themeTokens } from '../ThemeProvider';
 import { Slot } from './Slot';
 
 const meta = {

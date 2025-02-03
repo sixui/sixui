@@ -1,4 +1,4 @@
-import { themeTokens } from '~/components/ThemeProvider';
+import { themeTokens } from '~/components/Theme';
 import { createStyles } from '~/utils/css/createStyles';
 
 export const floatingFilterableListBaseClassNames = createStyles({

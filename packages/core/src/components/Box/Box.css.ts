@@ -6,7 +6,7 @@ import {
   IThemeWindowSizeClassName,
   themeTokens,
   windowSizeClassNames,
-} from '~/components/ThemeProvider';
+} from '~/components/Theme';
 import { getSpacingValues } from '~/utils/css/getSpacingValues';
 import { modifierSelector } from '~/utils/css/modifierSelector';
 import { responsiveContainerQuery } from '~/utils/css/responsiveContainerQuery';

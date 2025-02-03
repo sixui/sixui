@@ -7,7 +7,7 @@ import { isFilterableListItemDisabled } from '~/components/FilterableList/utils/
 import { renderFilterableListItem } from '~/components/FilterableList/utils/renderFilterableListItem';
 import { ListItem } from '~/components/List/ListItem';
 import { multiSelectBaseFactory } from '~/components/MultiSelectBase';
-import { useProps } from '~/components/ThemeProvider';
+import { useProps } from '~/components/Theme';
 import { useMultiSelect } from '~/hooks/useMultiSelect';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './MultiSelect.constants';
@@ -58,4 +58,4 @@ export const MultiSelect = componentFactory<IMultiSelectFactory>(
   },
 );
 
-MultiSelect.displayName = `@sixui/${COMPONENT_NAME}`;
+MultiSelect.displayName = `@sixui/core/${COMPONENT_NAME}`;

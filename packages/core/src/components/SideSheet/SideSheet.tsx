@@ -1,7 +1,7 @@
 import type { ISideSheetThemeFactory } from './SideSheet.css';
 import type { ISideSheetFactory } from './SideSheet.types';
 import { Aside } from '~/components/Aside';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { COMPONENT_NAME } from './SideSheet.constants';
@@ -71,4 +71,4 @@ export const SideSheet = componentFactory<ISideSheetFactory>(
 );
 
 SideSheet.theme = sideSheetTheme;
-SideSheet.displayName = `@sixui/${COMPONENT_NAME}`;
+SideSheet.displayName = `@sixui/core/${COMPONENT_NAME}`;

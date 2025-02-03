@@ -5,7 +5,7 @@ import cx from 'clsx';
 import type { IPaperProps } from '~/components/Paper';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Paper } from '~/components/Paper';
-import { windowSizeClassNames } from '~/components/ThemeProvider';
+import { windowSizeClassNames } from '~/components/Theme';
 import { responsiveStoriesClassNames } from './Responsive.stories.css';
 
 const meta = {

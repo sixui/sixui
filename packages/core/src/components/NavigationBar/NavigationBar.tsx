@@ -2,7 +2,7 @@ import type { INavigationBarThemeFactory } from './NavigationBar.css';
 import type { INavigationBarFactory } from './NavigationBar.types';
 import { extractBoxProps } from '~/components/Box/extractBoxProps';
 import { Drawer } from '~/components/Drawer';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './NavigationBar.constants';
 import { NavigationBarContent } from './NavigationBarContent';
@@ -52,5 +52,5 @@ export const NavigationBar = componentFactory<INavigationBarFactory>(
 );
 
 NavigationBar.theme = navigationBarTheme;
-NavigationBar.displayName = `@sixui/${COMPONENT_NAME}`;
+NavigationBar.displayName = `@sixui/core/${COMPONENT_NAME}`;
 NavigationBar.Destination = NavigationBarDestination;

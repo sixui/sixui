@@ -4,7 +4,7 @@ import type { IBoxProps } from '~/components/Box';
 import type { ListDivider } from '~/components/List/ListDivider';
 import type { IMotionProps } from '~/components/Motion';
 import type { IPortalProps } from '~/components/Portal';
-import type { IComponentThemeProps } from '~/components/ThemeProvider';
+import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IOrientation, IPlacement } from '~/utils/types';
 import type { IMenuThemeFactory, menuTheme } from './Menu.css';

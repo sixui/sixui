@@ -1,7 +1,7 @@
 import type { IBurgerIndicatorThemeFactory } from './BurgerIndicator.css';
 import type { IBurgerIndicatorFactory } from './BurgerIndicator.types';
 import { Box } from '~/components/Box';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './BurgerIndicator.constants';
 import { burgerIndicatorTheme } from './BurgerIndicator.css';
@@ -33,4 +33,4 @@ export const BurgerIndicator = componentFactory<IBurgerIndicatorFactory>(
 );
 
 BurgerIndicator.theme = burgerIndicatorTheme;
-BurgerIndicator.displayName = `@sixui/${COMPONENT_NAME}`;
+BurgerIndicator.displayName = `@sixui/core/${COMPONENT_NAME}`;

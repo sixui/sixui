@@ -3,7 +3,7 @@ import type {
   NavigationDrawerDestination,
   NavigationDrawerSection,
 } from '~/components/NavigationDrawer';
-import type { IComponentThemeProps } from '~/components/ThemeProvider';
+import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type {
   appLayoutNavigationDrawerTheme,

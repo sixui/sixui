@@ -7,7 +7,7 @@ import { iconCopyToCliboard } from '~/assets/icons';
 import { Button } from '~/components/Button';
 import { PlainTooltip } from '~/components/PlainTooltip';
 import { SvgIcon } from '~/components/SvgIcon';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { copyToClipboard } from '~/utils/copyToClipboard';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
@@ -85,4 +85,4 @@ export const CopyableText = componentFactory<ICopyableTextFactory>(
 );
 
 CopyableText.theme = copyableTextTheme;
-CopyableText.displayName = `@sixui/${COMPONENT_NAME}`;
+CopyableText.displayName = `@sixui/core/${COMPONENT_NAME}`;

@@ -3,7 +3,7 @@ import type { INavigationDrawerSectionFactory } from './NavigationDrawerSection.
 import { Box } from '~/components/Box';
 import { Divider } from '~/components/Divider';
 import { List } from '~/components/List';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { NavigationDrawerDestination } from '../NavigationDrawerDestination';
 import { COMPONENT_NAME } from './NavigationDrawerSection.constants';
@@ -48,5 +48,5 @@ export const NavigationDrawerSection =
   });
 
 NavigationDrawerSection.theme = navigationDrawerSectionTheme;
-NavigationDrawerSection.displayName = `@sixui/${COMPONENT_NAME}`;
+NavigationDrawerSection.displayName = `@sixui/core/${COMPONENT_NAME}`;
 NavigationDrawerSection.Destination = NavigationDrawerDestination;

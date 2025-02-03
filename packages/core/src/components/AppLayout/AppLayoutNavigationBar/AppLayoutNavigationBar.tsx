@@ -3,7 +3,7 @@ import type { IAppLayoutNavigationBarFactory } from './AppLayoutNavigationBar.ty
 import { useAppLayoutContext } from '~/components/AppLayout/AppLayout.context';
 import { NavigationBar } from '~/components/NavigationBar';
 import { NavigationBarDestination } from '~/components/NavigationBar/NavigationBarDestination';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { useAppLayoutComponent } from '../hooks/useAppLayoutComponent';
@@ -68,5 +68,5 @@ export const AppLayoutNavigationBar =
   });
 
 AppLayoutNavigationBar.theme = appLayoutNavigationBarTheme;
-AppLayoutNavigationBar.displayName = `@sixui/${COMPONENT_NAME}`;
+AppLayoutNavigationBar.displayName = `@sixui/core/${COMPONENT_NAME}`;
 AppLayoutNavigationBar.Destination = NavigationBarDestination;

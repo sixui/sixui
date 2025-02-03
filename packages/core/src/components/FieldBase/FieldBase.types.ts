@@ -1,6 +1,6 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IPaperProps } from '~/components/Paper';
-import type { IComponentThemeProps } from '~/components/ThemeProvider';
+import type { IComponentThemeProps } from '~/components/Theme';
 import type { IInteractionsMergeStrategy } from '~/hooks/useInteractions';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type {

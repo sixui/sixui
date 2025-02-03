@@ -1,5 +1,5 @@
 import type { IBoxProps } from '~/components/Box';
-import type { IComponentThemeProps } from '~/components/ThemeProvider';
+import type { IComponentThemeProps } from '~/components/Theme';
 import type { IUseCheckboxProps } from '~/hooks/useCheckbox';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { checkboxTheme, ICheckboxThemeFactory } from './Checkbox.css';

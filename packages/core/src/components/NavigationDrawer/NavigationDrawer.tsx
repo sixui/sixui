@@ -1,7 +1,7 @@
 import type { INavigationDrawerThemeFactory } from './NavigationDrawer.css';
 import type { INavigationDrawerFactory } from './NavigationDrawer.types';
 import { SideSheet } from '~/components/SideSheet';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './NavigationDrawer.constants';
 import { NavigationDrawerDestination } from './NavigationDrawerDestination';
@@ -35,6 +35,6 @@ export const NavigationDrawer = componentFactory<INavigationDrawerFactory>(
 );
 
 NavigationDrawer.theme = navigationDrawerTheme;
-NavigationDrawer.displayName = `@sixui/${COMPONENT_NAME}`;
+NavigationDrawer.displayName = `@sixui/core/${COMPONENT_NAME}`;
 NavigationDrawer.Section = NavigationDrawerSection;
 NavigationDrawer.Destination = NavigationDrawerDestination;

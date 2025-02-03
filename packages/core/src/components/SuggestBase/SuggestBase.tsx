@@ -7,7 +7,7 @@ import { floatingFilterableListBaseFactory } from '~/components/FloatingFilterab
 import { ListItem } from '~/components/List/ListItem';
 import { MenuList } from '~/components/Menu/MenuList';
 import { TextInputField } from '~/components/TextInputField';
-import { useProps } from '~/components/ThemeProvider';
+import { useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './SuggestBase.constants';
 
@@ -134,7 +134,7 @@ export const suggestBaseFactory = <
     },
   );
 
-  SuggestBase.displayName = `@sixui/${COMPONENT_NAME}`;
+  SuggestBase.displayName = `@sixui/core/${COMPONENT_NAME}`;
 
   return SuggestBase;
 };

@@ -2,7 +2,7 @@ import type { ITabsPanelThemeFactory } from './TabsPanel.css';
 import type { ITabsPanelFactory } from './TabsPanel.types';
 import { Box } from '~/components/Box';
 import { useTabsContext } from '~/components/Tabs/Tabs.context';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './TabsPanel.constants';
 import { tabsPanelTheme } from './TabsPanel.css';
@@ -52,4 +52,4 @@ export const TabsPanel = componentFactory<ITabsPanelFactory>(
 );
 
 TabsPanel.theme = tabsPanelTheme;
-TabsPanel.displayName = `@sixui/${COMPONENT_NAME}`;
+TabsPanel.displayName = `@sixui/core/${COMPONENT_NAME}`;

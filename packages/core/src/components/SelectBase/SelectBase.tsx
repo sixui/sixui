@@ -8,7 +8,7 @@ import { floatingFilterableListBaseFactory } from '~/components/FloatingFilterab
 import { ListItem } from '~/components/List/ListItem';
 import { MenuList } from '~/components/Menu/MenuList';
 import { TextInputField } from '~/components/TextInputField';
-import { useProps } from '~/components/ThemeProvider';
+import { useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './SelectBase.constants';
 
@@ -122,7 +122,7 @@ export const selectBaseFactory = <
     },
   );
 
-  SelectBase.displayName = `@sixui/${COMPONENT_NAME}`;
+  SelectBase.displayName = `@sixui/core/${COMPONENT_NAME}`;
 
   return SelectBase;
 };

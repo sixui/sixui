@@ -9,7 +9,7 @@ import {
 import type { IRadioGroupContextValue } from './RadioGroup.context';
 import type { IRadioGroupFactory } from './RadioGroup.types';
 import { Box } from '~/components/Box';
-import { useProps } from '~/components/ThemeProvider';
+import { useProps } from '~/components/Theme';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useId } from '~/hooks/useId';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
@@ -108,4 +108,4 @@ export const RadioGroup = polymorphicComponentFactory<IRadioGroupFactory>(
   },
 );
 
-RadioGroup.displayName = `@sixui/${COMPONENT_NAME}`;
+RadioGroup.displayName = `@sixui/core/${COMPONENT_NAME}`;

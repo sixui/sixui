@@ -16,7 +16,7 @@ import type { IBoxProps } from '~/components/Box';
 import type { IMotionProps } from '~/components/Motion';
 import type { IPortalProps } from '~/components/Portal';
 import type { IScrimProps } from '~/components/Scrim';
-import type { IComponentThemeProps } from '~/components/ThemeProvider';
+import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type {
   IForwardableProps,

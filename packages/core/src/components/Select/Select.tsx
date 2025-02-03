@@ -8,7 +8,7 @@ import { isFilterableListItemEmpty } from '~/components/FilterableList/utils/isF
 import { renderFilterableListItem } from '~/components/FilterableList/utils/renderFilterableListItem';
 import { ListItem } from '~/components/List/ListItem';
 import { selectBaseFactory } from '~/components/SelectBase';
-import { useProps } from '~/components/ThemeProvider';
+import { useProps } from '~/components/Theme';
 import { useSelect } from '~/hooks/useSelect';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './Select.constants';
@@ -61,4 +61,4 @@ export const Select = componentFactory<ISelectFactory>(
   },
 );
 
-Select.displayName = `@sixui/${COMPONENT_NAME}`;
+Select.displayName = `@sixui/core/${COMPONENT_NAME}`;

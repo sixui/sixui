@@ -1,6 +1,6 @@
 import type { IAsideOwnProps } from '~/components/Aside';
 import type { IBoxProps } from '~/components/Box';
-import type { IComponentThemeProps } from '~/components/ThemeProvider';
+import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IHorizontalSide, IOmit } from '~/utils/types';
 import type { ISideSheetThemeFactory, sideSheetTheme } from './SideSheet.css';

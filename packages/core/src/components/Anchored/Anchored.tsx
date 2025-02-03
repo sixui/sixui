@@ -3,7 +3,7 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 import type { IAnchoredThemeFactory } from './Anchored.css';
 import type { IAnchoredFactory } from './Anchored.types';
 import { Box } from '~/components/Box';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { px } from '~/utils/css/px';
 import { COMPONENT_NAME } from './Anchored.constants';
@@ -71,4 +71,4 @@ export const Anchored = componentFactory<IAnchoredFactory>(
 );
 
 Anchored.theme = anchoredTheme;
-Anchored.displayName = `@sixui/${COMPONENT_NAME}`;
+Anchored.displayName = `@sixui/core/${COMPONENT_NAME}`;

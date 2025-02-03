@@ -1,7 +1,7 @@
 import type { ICardThemeFactory } from './Card.css';
 import type { ICardFactory } from './Card.types';
 import { ButtonBase } from '~/components/ButtonBase';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { COMPONENT_NAME } from './Card.constants';
 import { CardActions } from './CardActions';
@@ -55,7 +55,7 @@ export const Card = polymorphicComponentFactory<ICardFactory>(
 );
 
 Card.theme = cardTheme;
-Card.displayName = `@sixui/${COMPONENT_NAME}`;
+Card.displayName = `@sixui/core/${COMPONENT_NAME}`;
 Card.Content = CardContent;
 Card.Title = CardTitle;
 Card.Media = CardMedia;

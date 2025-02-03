@@ -2,7 +2,7 @@ import type { INavigationRailContentThemeFactory } from './NavigationRailContent
 import type { INavigationRailContentFactory } from './NavigationRailContent.types';
 import { NavigationRailDestination } from '~/components/NavigationRail/NavigationRailDestination';
 import { PaperBase } from '~/components/PaperBase';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './NavigationRailContent.constants';
 import { navigationRailContentTheme } from './NavigationRailContent.css';
@@ -51,5 +51,5 @@ export const NavigationRailContent =
   });
 
 NavigationRailContent.theme = navigationRailContentTheme;
-NavigationRailContent.displayName = `@sixui/${COMPONENT_NAME}`;
+NavigationRailContent.displayName = `@sixui/core/${COMPONENT_NAME}`;
 NavigationRailContent.Destination = NavigationRailDestination;

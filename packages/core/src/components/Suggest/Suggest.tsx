@@ -8,7 +8,7 @@ import { isFilterableListItemEmpty } from '~/components/FilterableList/utils/isF
 import { renderFilterableListItem } from '~/components/FilterableList/utils/renderFilterableListItem';
 import { ListItem } from '~/components/List/ListItem';
 import { suggestBaseFactory } from '~/components/SuggestBase';
-import { useProps } from '~/components/ThemeProvider';
+import { useProps } from '~/components/Theme';
 import { useSelect } from '~/hooks/useSelect';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './Suggest.constants';
@@ -63,4 +63,4 @@ export const Suggest = componentFactory<ISuggestFactory>(
   },
 );
 
-Suggest.displayName = `@sixui/${COMPONENT_NAME}`;
+Suggest.displayName = `@sixui/core/${COMPONENT_NAME}`;

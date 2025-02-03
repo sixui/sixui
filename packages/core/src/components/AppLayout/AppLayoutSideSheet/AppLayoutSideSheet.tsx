@@ -2,7 +2,7 @@ import type { IAppLayoutSideSheetThemeFactory } from './AppLayoutSideSheet.css';
 import type { IAppLayoutSideSheetFactory } from './AppLayoutSideSheet.types';
 import { useAppLayoutContext } from '~/components/AppLayout/AppLayout.context';
 import { SideSheet } from '~/components/SideSheet';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { useAppLayoutComponent } from '../hooks/useAppLayoutComponent';
@@ -77,4 +77,4 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
 );
 
 AppLayoutSideSheet.theme = appLayoutSideSheetTheme;
-AppLayoutSideSheet.displayName = `@sixui/${COMPONENT_NAME}`;
+AppLayoutSideSheet.displayName = `@sixui/core/${COMPONENT_NAME}`;

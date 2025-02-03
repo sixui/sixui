@@ -1,7 +1,8 @@
 import type { IDialogThemeFactory } from './Dialog.css';
 import type { IDialogFactory } from './Dialog.types';
+import { LayersManager } from '~/components/Layers';
 import { PopoverBase } from '~/components/PopoverBase';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { mergeProps } from '~/utils/mergeProps';
 import { COMPONENT_NAME } from './Dialog.constants';
@@ -54,4 +55,7 @@ export const Dialog = polymorphicComponentFactory<IDialogFactory>(
 );
 
 Dialog.theme = dialogTheme;
-Dialog.displayName = `@sixui/${COMPONENT_NAME}`;
+Dialog.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Dialog.show = (props) => {
+  LayersManager.show();
+};

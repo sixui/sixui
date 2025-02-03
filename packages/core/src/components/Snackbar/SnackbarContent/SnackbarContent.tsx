@@ -6,7 +6,7 @@ import { Flex } from '~/components/Flex';
 import { IconButton } from '~/components/IconButton';
 import { PaperBase } from '~/components/PaperBase';
 import { SvgIcon } from '~/components/SvgIcon';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './SnackbarContent.constants';
 import { snackbarContentTheme } from './SnackbarContent.css';
@@ -77,4 +77,4 @@ export const SnackbarContent = componentFactory<ISnackbarContentFactory>(
 );
 
 SnackbarContent.theme = snackbarContentTheme;
-SnackbarContent.displayName = `@sixui/${COMPONENT_NAME}`;
+SnackbarContent.displayName = `@sixui/core/${COMPONENT_NAME}`;

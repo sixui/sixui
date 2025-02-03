@@ -1,7 +1,7 @@
 import type { ISvgIconThemeFactory } from './SvgIcon.css';
 import type { ISvgIconFactory } from './SvgIcon.types';
 import { Box } from '~/components/Box';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './SvgIcon.constants';
 import { svgIconTheme } from './SvgIcon.css';
@@ -34,4 +34,4 @@ export const SvgIcon = componentFactory<ISvgIconFactory>(
 );
 
 SvgIcon.theme = svgIconTheme;
-SvgIcon.displayName = `@sixui/${COMPONENT_NAME}`;
+SvgIcon.displayName = `@sixui/core/${COMPONENT_NAME}`;

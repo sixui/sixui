@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { IAppLayoutFooterProps } from './AppLayoutFooter.types';
 import { Frame } from '~/components/Frame';
 import { Placeholder } from '~/components/Placeholder';
-import { themeTokens } from '~/components/ThemeProvider';
+import { themeTokens } from '~/components/Theme';
 import { px } from '~/utils/css/px';
 import { AppLayoutFooter } from './AppLayoutFooter';
 

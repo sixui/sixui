@@ -5,7 +5,7 @@ import type { IStepperThemeFactory } from './Stepper.css';
 import type { IStepperFactory } from './Stepper.types';
 import type { IStepperStepProps } from './StepperStep';
 import { Box } from '~/components/Box';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { mergeProps } from '~/utils/mergeProps';
 import { isElementLike } from '~/utils/react/isElementLike';
@@ -110,6 +110,6 @@ export const Stepper = componentFactory<IStepperFactory>(
 );
 
 Stepper.theme = stepperTheme;
-Stepper.displayName = `@sixui/${COMPONENT_NAME}`;
+Stepper.displayName = `@sixui/core/${COMPONENT_NAME}`;
 Stepper.Step = StepperStep;
 Stepper.Connector = StepperConnector;

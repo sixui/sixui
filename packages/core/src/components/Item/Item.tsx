@@ -3,7 +3,7 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 import type { IItemThemeFactory } from './Item.css';
 import type { IItemFactory } from './Item.types';
 import { Box } from '~/components/Box';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { COMPONENT_NAME } from './Item.constants';
 import { itemTheme } from './Item.css';
@@ -82,4 +82,4 @@ export const Item = polymorphicComponentFactory<IItemFactory>(
 );
 
 Item.theme = itemTheme;
-Item.displayName = `@sixui/${COMPONENT_NAME}`;
+Item.displayName = `@sixui/core/${COMPONENT_NAME}`;

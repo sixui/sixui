@@ -1,7 +1,7 @@
 import type { ICardActionsThemeFactory } from './CardActions.css';
 import type { ICardActionsFactory } from './CardActions.types';
 import { Box } from '~/components/Box';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './CardActions.constants';
 import { cardActionsTheme } from './CardActions.css';
@@ -37,4 +37,4 @@ export const CardActions = componentFactory<ICardActionsFactory>(
 );
 
 CardActions.theme = cardActionsTheme;
-CardActions.displayName = `@sixui/${COMPONENT_NAME}`;
+CardActions.displayName = `@sixui/core/${COMPONENT_NAME}`;

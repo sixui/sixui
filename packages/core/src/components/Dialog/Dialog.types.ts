@@ -1,6 +1,6 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IPopoverBaseOwnProps } from '~/components/PopoverBase';
-import type { IComponentThemeProps } from '~/components/ThemeProvider';
+import type { IComponentThemeProps } from '~/components/Theme';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IOmit } from '~/utils/types';
 import type { dialogTheme, IDialogThemeFactory } from './Dialog.css';
@@ -22,4 +22,8 @@ export type IDialogFactory = IPolymorphicComponentFactory<{
   defaultRef: HTMLDivElement;
   defaultRoot: 'div';
   theme: typeof dialogTheme;
+  // DEV:
+  staticComponents: {
+    show: (props: IDialogProps) => void;
+  };
 }>;

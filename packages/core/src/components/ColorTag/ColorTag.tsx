@@ -5,7 +5,7 @@ import type { IColorTagFactory } from './ColorTag.types';
 import { ButtonBase } from '~/components/ButtonBase';
 import { Checkmark } from '~/components/Checkmark';
 import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { getTextContrastColor } from '~/utils/colors/getTextContrastColor';
 import { isValidHexColor } from '~/utils/colors/isValidHexColor';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
@@ -88,5 +88,5 @@ export const ColorTag = polymorphicComponentFactory<IColorTagFactory>(
 );
 
 ColorTag.theme = colorTagTheme;
-ColorTag.displayName = `@sixui/${COMPONENT_NAME}`;
+ColorTag.displayName = `@sixui/core/${COMPONENT_NAME}`;
 ColorTag.Indicator = ColorTagIndicator;

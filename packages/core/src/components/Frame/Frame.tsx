@@ -9,7 +9,7 @@ import {
   ThemeProvider,
   useComponentTheme,
   useProps,
-} from '~/components/ThemeProvider';
+} from '~/components/Theme';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { isFunction } from '~/utils/isFunction';
@@ -95,4 +95,4 @@ export const Frame = componentFactory<IFrameFactory>((props, forwardedRef) => {
 });
 
 Frame.theme = frameTheme;
-Frame.displayName = `@sixui/${COMPONENT_NAME}`;
+Frame.displayName = `@sixui/core/${COMPONENT_NAME}`;

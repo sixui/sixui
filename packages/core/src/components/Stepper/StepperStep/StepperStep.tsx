@@ -4,7 +4,7 @@ import type { IStepperStepFactory } from './StepperStep.types';
 import { Box } from '~/components/Box';
 import { extractBoxProps } from '~/components/Box/extractBoxProps';
 import { Button } from '~/components/Button';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { isFunction } from '~/utils/isFunction';
 import { useStepperContext } from '../Stepper.context';
@@ -222,5 +222,5 @@ export const StepperStep = componentFactory<IStepperStepFactory>(
 );
 
 StepperStep.theme = stepperStepTheme;
-StepperStep.displayName = `@sixui/${COMPONENT_NAME}`;
+StepperStep.displayName = `@sixui/core/${COMPONENT_NAME}`;
 StepperStep.Indicator = StepperStepIndicator;

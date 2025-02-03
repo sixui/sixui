@@ -2,7 +2,7 @@ import type { IRadioIndicatorThemeFactory } from './RadioIndicator.css';
 import type { IRadioIndicatorFactory } from './RadioIndicator.types';
 import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
 import { PaperBase } from '~/components/PaperBase';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './RadioIndicator.constants';
 import { RadioIndicatorTheme } from './RadioIndicator.css';
@@ -61,4 +61,4 @@ export const RadioIndicator = componentFactory<IRadioIndicatorFactory>(
 );
 
 RadioIndicator.theme = RadioIndicatorTheme;
-RadioIndicator.displayName = `@sixui/${COMPONENT_NAME}`;
+RadioIndicator.displayName = `@sixui/core/${COMPONENT_NAME}`;

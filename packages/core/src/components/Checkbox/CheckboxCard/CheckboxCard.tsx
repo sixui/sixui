@@ -3,12 +3,12 @@ import { useRef } from 'react';
 import type { ICheckboxCardThemeFactory } from './CheckboxCard.css';
 import type { ICheckboxCardFactory } from './CheckboxCard.types';
 import { Card } from '~/components/Card';
+import { CheckboxIndicator } from '~/components/CheckboxIndicator';
 import { Labeled } from '~/components/Labeled';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { useCheckbox } from '~/hooks/useCheckbox';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { CheckboxIndicator } from '../CheckboxIndicator';
 import { COMPONENT_NAME } from './CheckboxCard.constants';
 import { checkboxCardTheme } from './CheckboxCard.css';
 
@@ -134,4 +134,4 @@ export const CheckboxCard = componentFactory<ICheckboxCardFactory>(
 );
 
 CheckboxCard.theme = checkboxCardTheme;
-CheckboxCard.displayName = `@sixui/${COMPONENT_NAME}`;
+CheckboxCard.displayName = `@sixui/core/${COMPONENT_NAME}`;

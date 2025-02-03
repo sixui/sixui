@@ -5,7 +5,7 @@ import type { INavigationRailDestinationFactory } from './NavigationRailDestinat
 import { Anchored } from '~/components/Anchored';
 import { ButtonBase } from '~/components/ButtonBase';
 import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { executeLazyPromise } from '~/utils/executeLazyPromise';
@@ -115,4 +115,4 @@ export const NavigationRailDestination =
   );
 
 NavigationRailDestination.theme = navigationRailDestinationTheme;
-NavigationRailDestination.displayName = `@sixui/${COMPONENT_NAME}`;
+NavigationRailDestination.displayName = `@sixui/core/${COMPONENT_NAME}`;

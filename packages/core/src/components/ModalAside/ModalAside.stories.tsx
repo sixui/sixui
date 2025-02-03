@@ -5,7 +5,7 @@ import { Button } from '~/components/Button';
 import { Flex } from '~/components/Flex';
 import { Frame } from '~/components/Frame';
 import { Placeholder } from '~/components/Placeholder';
-import { themeTokens } from '~/components/ThemeProvider';
+import { themeTokens } from '~/components/Theme';
 import { useToggle } from '~/hooks/useToggle';
 import { px } from '~/utils/css/px';
 import { ModalAside } from './ModalAside';

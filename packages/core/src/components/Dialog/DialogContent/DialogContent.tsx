@@ -5,7 +5,7 @@ import type { IDialogContentThemeFactory } from './DialogContent.css';
 import type { IDialogContentFactory } from './DialogContent.types';
 import { Divider } from '~/components/Divider';
 import { Paper } from '~/components/Paper';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { isFunction } from '~/utils/isFunction';
 import { COMPONENT_NAME } from './DiagonalContent.constants';
@@ -166,4 +166,4 @@ export const DialogContent = polymorphicComponentFactory<IDialogContentFactory>(
 );
 
 DialogContent.theme = dialogContentTheme;
-DialogContent.displayName = `@sixui/${COMPONENT_NAME}`;
+DialogContent.displayName = `@sixui/core/${COMPONENT_NAME}`;

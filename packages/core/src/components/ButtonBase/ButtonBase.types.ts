@@ -2,7 +2,7 @@ import type { IBoxProps } from '~/components/Box';
 import type { IFocusRingProps } from '~/components/FocusRing';
 import type { IPaperOwnProps } from '~/components/Paper';
 import type { IUseStateLayerResult } from '~/components/StateLayer';
-import type { IComponentThemeProps } from '~/components/ThemeProvider';
+import type { IComponentThemeProps } from '~/components/Theme';
 import type { IInteractionsMergeStrategy } from '~/hooks/useInteractions';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IMaybeAsync, IOmit } from '~/utils/types';

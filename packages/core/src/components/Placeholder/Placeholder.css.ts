@@ -1,6 +1,6 @@
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { Diagonals } from '~/components/Diagonals';
-import { themeTokens } from '~/components/ThemeProvider';
+import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { createStyles } from '~/utils/css/createStyles';

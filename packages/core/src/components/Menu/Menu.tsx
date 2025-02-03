@@ -24,7 +24,7 @@ export const Menu = componentFactory<IMenuFactory>((props, forwardedRef) => {
 });
 
 Menu.theme = menuTheme;
-Menu.displayName = `@sixui/${COMPONENT_NAME}`;
+Menu.displayName = `@sixui/core/${COMPONENT_NAME}`;
 Menu.List = MenuList;
 Menu.Item = MenuItem;
 Menu.Divider = ListDivider;

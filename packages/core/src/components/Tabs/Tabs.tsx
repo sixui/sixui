@@ -4,7 +4,7 @@ import type { ITabsContextValue } from './Tabs.context';
 import type { ITabsThemeFactory } from './Tabs.css';
 import type { ITabsFactory } from './Tabs.types';
 import { Box } from '~/components/Box';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useId } from '~/hooks/useId';
 import { componentFactory } from '~/utils/component/componentFactory';
@@ -128,7 +128,7 @@ export const Tabs = componentFactory<ITabsFactory>((props, forwardedRef) => {
 });
 
 Tabs.theme = basicTemplateTheme;
-Tabs.displayName = `@sixui/${COMPONENT_NAME}`;
+Tabs.displayName = `@sixui/core/${COMPONENT_NAME}`;
 Tabs.List = TabsList;
 Tabs.Tab = TabsTab;
 Tabs.Panel = TabsPanel;

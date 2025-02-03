@@ -3,7 +3,7 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 import type { IMotionThemeFactory } from './Motion.css';
 import type { IMotionFactory } from './Motion.types';
 import { Box } from '~/components/Box';
-import { useComponentTheme, useProps } from '~/components/ThemeProvider';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { getCornerTransformOriginFromPlacement } from './getCornerTransformOriginFromPlacement';
 import { getEdgeTransformOriginFromPlacement } from './getEdgeTransformOriginFromPlacement';
@@ -93,4 +93,4 @@ export const Motion = polymorphicComponentFactory<IMotionFactory>(
 );
 
 Motion.theme = motionTheme;
-Motion.displayName = `@sixui/${COMPONENT_NAME}`;
+Motion.displayName = `@sixui/core/${COMPONENT_NAME}`;

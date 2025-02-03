@@ -1,5 +1,5 @@
 import type { IAny } from '~/utils/types';
-import { useThemeContext } from '~/components/ThemeProvider';
+import { useThemeContext } from '~/components/Theme';
 import { isFunction } from '~/utils/isFunction';
 
 type IFilterPropsRes<TProps extends Record<string, IAny>> = {

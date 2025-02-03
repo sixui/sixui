@@ -1,6 +1,7 @@
 import type { ISixuiProviderProps } from './SixuiProvider.types';
+import { LayersProvider } from '~/components/Layers';
 import { Responsive } from '~/components/Responsive';
-import { ThemeProvider } from '~/components/ThemeProvider';
+import { ThemeProvider } from '~/components/Theme';
 import { ISixuiContextValue, SixuiContext } from './SixuiProvider.context';
 
 export const SixuiProvider: React.FC<ISixuiProviderProps> = (props) => {
@@ -12,7 +13,9 @@ export const SixuiProvider: React.FC<ISixuiProviderProps> = (props) => {
   return (
     <SixuiContext.Provider value={contextValue}>
       <ThemeProvider stylesTarget={document.documentElement} {...other}>
-        <Responsive>{children}</Responsive>
+        <LayersProvider>
+          <Responsive>{children}</Responsive>
+        </LayersProvider>
       </ThemeProvider>
     </SixuiContext.Provider>
   );

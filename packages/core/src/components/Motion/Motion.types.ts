@@ -1,7 +1,7 @@
 import type { TransitionStatus } from 'react-transition-group';
 
 import type { IBoxProps } from '~/components/Box';
-import type { IComponentThemeProps } from '~/components/ThemeProvider';
+import type { IComponentThemeProps } from '~/components/Theme';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IOrientation, IPlacement } from '~/utils/types';
 import type { IMotionThemeFactory, motionTheme } from './Motion.css';
