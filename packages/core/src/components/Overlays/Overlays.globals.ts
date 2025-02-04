@@ -1,7 +1,9 @@
-import type { IAny } from '~/utils';
-import type { IOverlayAction } from './Overlays.reducer';
+import type { IAny } from '~/utils/types';
+import type { IOverlay } from './Overlays.types';
 
-type IOverlaysCallbacks = Record<
+export type IOverlaysRegistry = Record<string, IOverlay<IAny>>;
+
+export type IOverlaysCallbacks = Record<
   string,
   {
     resolve: (args: unknown) => void;
@@ -10,28 +12,30 @@ type IOverlaysCallbacks = Record<
   }
 >;
 
-type IOverlaysGlobals = {
-  alreadyMounted: Record<string, boolean>;
-  dispatch: React.ActionDispatch<[action: IOverlayAction]>;
-  registry: Record<
-    string,
-    {
-      component: React.FC<IAny>;
-      props?: Record<string, unknown>;
-    }
-  >;
-  callbacks: IOverlaysCallbacks;
-  hideCallbacks: IOverlaysCallbacks;
+const register = (overlay: IOverlay<IAny>): void => {
+  const overlayId = overlay.id || 'yyy';
+  console.log('_______REGISTER', overlayId, overlay);
+  if (overlaysGlobals.registry[overlayId]) {
+    Object.assign(overlaysGlobals.registry[overlayId], {
+      layer: overlay.layer,
+      props: overlay.props,
+    });
+  } else {
+    overlaysGlobals.registry[overlayId] = {
+      ...overlay,
+      id: overlayId,
+    };
+  }
 };
 
+interface IOverlaysGlobals {
+  registry: IOverlaysRegistry;
+  callbacks: IOverlaysCallbacks;
+  register: typeof register;
+}
+
 export const overlaysGlobals: IOverlaysGlobals = {
-  alreadyMounted: {},
-  dispatch: () => {
-    throw new Error(
-      '[@sixui/core] No dispatch method detected. You forgot to wrap your component in <OverlaysProvider />.',
-    );
-  },
   registry: {},
   callbacks: {},
-  hideCallbacks: {},
+  register,
 };

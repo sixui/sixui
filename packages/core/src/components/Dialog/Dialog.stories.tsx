@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useRef, useState } from 'react';
 
-import type { IOmit } from '~/utils';
 import type { IDialogProps } from './Dialog.types';
 import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
@@ -15,6 +14,8 @@ import { TextInputField } from '~/components/TextInputField';
 import { useId } from '~/hooks';
 import { useDisclosure } from '~/hooks/useDisclosure';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
+import { OverlayProvider } from '../Overlays/Overlay.context';
+import { overlaysGlobals } from '../Overlays/Overlays.globals';
 import { Dialog } from './Dialog';
 
 // https://m3.material.io/components/dialogs/overview
@@ -163,15 +164,21 @@ export const WithForm: IStory = {
 const createOverlay = <TProps extends object>(
   Component: React.ComponentType<TProps>,
 ): React.FC<TProps> => {
-  return function Overlay(props) {
-    const overlayId = useId();
+  const overlayId = 'xxx';
 
-    return (
-      <OverlayIdProvider value={overlayId}>
-        <Component {...props} />
-      </OverlayIdProvider>
-    );
-  };
+  const OverlayComponent: React.FC<TProps> = (props: TProps) => (
+    <OverlayProvider value={{ id: overlayId }}>
+      <Component {...props} />
+    </OverlayProvider>
+  );
+
+  overlaysGlobals.register({
+    id: overlayId,
+    component: OverlayComponent,
+    layer: 'dialogs',
+  });
+
+  return OverlayComponent;
 };
 
 // DEV:
@@ -180,7 +187,16 @@ const DialogOverlay = createOverlay((props) => {
     layer: 'dialogs',
   });
 
-  return <Dialog {...props} opened={overlay.opened} onClose={overlay.close} />;
+  return (
+    <Dialog
+      {...props}
+      opened={overlay.opened}
+      onClose={() => {
+        overlay.close();
+        overlay.resolve();
+      }}
+    />
+  );
 });
 
 // DEV:
@@ -201,10 +217,10 @@ const TestDemo: React.FC<IDialogProps> = (props: IDialogProps) => {
     // }}
     >
       <Button
-        onClick={() => {
-          overlays.show({
+        onClick={() =>
+          overlays.open({
             id: 'xxx',
-            component: Dialog,
+            component: DialogOverlay,
             props: {
               ...props,
               headline: 'Delete?',
@@ -218,10 +234,10 @@ const TestDemo: React.FC<IDialogProps> = (props: IDialogProps) => {
                   </Button>
                   <Button
                     type="submit"
-                    onClick={() => {
-                      overlays.show({
+                    onClick={() =>
+                      overlays.open({
                         id: 'xxx-2',
-                        component: Dialog,
+                        component: DialogOverlay,
                         props: {
                           ...props,
                           headline: 'Confirm?',
@@ -245,8 +261,8 @@ const TestDemo: React.FC<IDialogProps> = (props: IDialogProps) => {
                             </>
                           ),
                         },
-                      });
-                    }}
+                      })
+                    }
                   >
                     Delete
                   </Button>
@@ -254,15 +270,15 @@ const TestDemo: React.FC<IDialogProps> = (props: IDialogProps) => {
               ),
             },
             layer: 'dialogs',
-          });
-        }}
+          })
+        }
       >
         Show AAA
       </Button>
 
       {/* <Button
         onClick={() =>
-          overlays.show({
+          overlays.open({
             id: 'bbb',
             props: {
               headline: 'Hello BBB',

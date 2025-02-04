@@ -1,9 +1,6 @@
-import { useMemo, useReducer, useRef } from 'react';
+import { useMemo, useReducer } from 'react';
 
-import type {
-  IOverlaysContextValue,
-  IOverlaysRegistry,
-} from './Overlays.context';
+import type { IOverlaysContextValue } from './Overlays.context';
 import type { IOverlayAction, IOverlaysState } from './Overlays.reducer';
 import { OverlaysContext } from './Overlays.context';
 import { overlaysInitialState, overlaysReducer } from './Overlays.reducer';
@@ -25,13 +22,11 @@ export const OverlaysProvider: React.FC<IOverlaysProviderProps> = (props) => {
   } = props;
 
   const [state, dispatch] = useReducer(overlaysReducer, overlaysInitialState);
-  const registryRef = useRef<IOverlaysRegistry>({});
 
   const overlaysContextValue: IOverlaysContextValue = useMemo(
     () => ({
       state: stateProp ?? state,
       dispatch: dispatchProp ?? dispatch,
-      registry: registryRef.current,
       layers,
     }),
     [state, dispatch, layers, stateProp, dispatchProp],

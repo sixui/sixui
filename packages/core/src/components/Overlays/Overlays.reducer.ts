@@ -1,12 +1,10 @@
 import { COMPONENT_ID } from './Overlays.constants';
-import { overlaysGlobals } from './Overlays.globals';
 
 export interface IOverlayState {
   id: string;
-  zIndex: number;
   args?: Record<string, unknown>;
-  visible?: boolean;
-  delayVisible?: boolean;
+  opened?: boolean;
+  delayOpened?: boolean;
   keepMounted?: boolean;
 }
 
@@ -28,59 +26,61 @@ export const overlaysReducer = (
   action: IOverlayAction,
 ): IOverlaysState => {
   switch (action.type) {
-    case `${COMPONENT_ID}/show`: {
-      const { id: modalId, args } = action.payload;
+    case `${COMPONENT_ID}/open`: {
+      const { id: overlayId, args } = action.payload;
 
       return {
         ...state,
-        [modalId]: {
-          ...state[modalId],
-          id: modalId,
+        [overlayId]: {
+          ...state[overlayId],
+          id: overlayId,
           args,
+          opened: true,
           // If modal is not mounted, mount it first then make it visible. There
           // is logic inside HOC wrapper to make it visible after its first
           // mount. This mechanism ensures the entering transition.
-          visible: !!overlaysGlobals.alreadyMounted[modalId],
-          delayVisible: !overlaysGlobals.alreadyMounted[modalId],
+          // FIXME:
+          // opened: !!overlaysGlobals.alreadyMounted[overlayId],
+          // delayOpened: !overlaysGlobals.alreadyMounted[overlayId],
         },
       };
     }
 
-    case `${COMPONENT_ID}/hide`: {
-      const { id: modalId } = action.payload;
-      if (!state[modalId]) {
+    case `${COMPONENT_ID}/close`: {
+      const { id: overlayId } = action.payload;
+      if (!state[overlayId]) {
         return state;
       }
 
       return {
         ...state,
-        [modalId]: {
-          ...state[modalId],
-          visible: false,
+        [overlayId]: {
+          ...state[overlayId],
+          opened: false,
         },
       };
     }
 
     case `${COMPONENT_ID}/remove`: {
-      const { id: modalId } = action.payload;
+      const { id: overlayId } = action.payload;
       const newState = { ...state };
       // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
-      delete newState[modalId];
+      delete newState[overlayId];
 
       return newState;
     }
 
     case `${COMPONENT_ID}/set-flags`: {
-      const { id: modalId, flags } = action.payload;
+      const { id: overlayId, flags } = action.payload;
 
-      if (!state[modalId]) {
+      if (!state[overlayId]) {
         return state;
       }
 
       return {
         ...state,
-        [modalId]: {
-          ...state[modalId],
+        [overlayId]: {
+          ...state[overlayId],
           ...flags,
         },
       };
