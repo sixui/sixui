@@ -64,7 +64,6 @@ export const overlaysReducer = (
     case `${COMPONENT_ID}/remove`: {
       const { id: overlayId } = action.payload;
       const newState = { ...state };
-      // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
       delete newState[overlayId];
 
       return newState;

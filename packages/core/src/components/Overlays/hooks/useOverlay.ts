@@ -36,6 +36,10 @@ export const useOverlay = (props?: IUseOverlayProps): IUseOverlayResult => {
     overlays.close(overlayId);
   }, [overlays, overlayId]);
 
+  const removeCallback = useCallback(() => {
+    overlays.remove(overlayId);
+  }, [overlays, overlayId]);
+
   const resolveCallback = useCallback(
     (args?: unknown) => {
       overlaysGlobals.callbacks[overlayId]?.resolve(args);
@@ -54,7 +58,7 @@ export const useOverlay = (props?: IUseOverlayProps): IUseOverlayResult => {
     id: overlayId,
     opened: overlayState?.opened || false,
     close: closeCallback,
-    remove: () => {},
+    remove: removeCallback,
     resolve: resolveCallback,
     reject: rejectCallback,
   };

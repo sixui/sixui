@@ -48,6 +48,7 @@ export default tseslint.config(...base, {
       },
     ],
     '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/no-dynamic-delete': 'off',
     '@typescript-eslint/prefer-nullish-coalescing': [
       'error',
       {

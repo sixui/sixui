@@ -182,7 +182,7 @@ const createOverlay = <TProps extends object>(
 };
 
 // DEV:
-const DialogOverlay = createOverlay((props) => {
+const DialogOverlay = createOverlay<IDialogProps>((props) => {
   const overlay = useOverlay({
     layer: 'dialogs',
   });
@@ -194,6 +194,10 @@ const DialogOverlay = createOverlay((props) => {
       onClose={() => {
         overlay.close();
         overlay.resolve();
+
+        if (!props.keepMounted) {
+          overlay.remove();
+        }
       }}
     />
   );

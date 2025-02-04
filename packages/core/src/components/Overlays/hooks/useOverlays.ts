@@ -7,6 +7,7 @@ import { overlaysGlobals } from '../Overlays.globals';
 export interface IUseOverlaysResult {
   open: <TProps extends object>(overlay: IOverlay<TProps>) => Promise<unknown>;
   close: (overlayId: string) => void;
+  remove: (overlayId: string) => void;
 }
 
 export const useOverlays = (): IUseOverlaysResult => {
@@ -15,12 +16,13 @@ export const useOverlays = (): IUseOverlaysResult => {
   // if (overlaysContext.registry = {};
 
   const open = (overlay: IOverlay<IAny>): Promise<unknown> => {
+    console.log('____OPEN', overlay);
+
     overlaysGlobals.register(overlay);
     overlaysContext.dispatch({
       type: `${COMPONENT_ID}/open`,
       payload: overlay,
     });
-    console.log('____OPEN', overlay);
 
     if (!overlaysGlobals.callbacks[overlay.id]) {
       // `!` tell ts that theResolve will be written before it is used
@@ -44,17 +46,32 @@ export const useOverlays = (): IUseOverlaysResult => {
   };
 
   const close = (overlayId: string): void => {
+    console.log('____CLOSE', overlayId);
+
     overlaysContext.dispatch({
       type: `${COMPONENT_ID}/close`,
       payload: {
         id: overlayId,
       },
     });
-    console.log('____CLOSE', overlayId);
+  };
+
+  const remove = (overlayId: string): void => {
+    console.log('____REMOVE', overlayId);
+
+    overlaysContext.dispatch({
+      type: `${COMPONENT_ID}/remove`,
+      payload: {
+        id: overlayId,
+      },
+    });
+
+    delete overlaysGlobals.callbacks[overlayId];
   };
 
   return {
     open,
     close,
+    remove,
   };
 };
