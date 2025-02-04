@@ -1,5 +1,6 @@
 import type { IAny } from '~/utils/types';
 import type { IOverlay } from './Overlays.types';
+import { getOverlayId } from './utils/getOverlayId';
 
 export type IOverlaysRegistry = Record<string, IOverlay<IAny>>;
 
@@ -13,7 +14,7 @@ export type IOverlaysCallbacks = Record<
 >;
 
 const register = (overlay: IOverlay<IAny>): void => {
-  const overlayId = overlay.id || 'yyy';
+  const overlayId = getOverlayId(overlay);
   console.log('_______REGISTER', overlayId, overlay);
   if (overlaysGlobals.registry[overlayId]) {
     Object.assign(overlaysGlobals.registry[overlayId], {

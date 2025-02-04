@@ -1,8 +1,10 @@
 import type { IOverlay } from '../Overlays.types';
 import { type IAny } from '~/utils';
-import { COMPONENT_ID } from '../Overlays.constants';
+import { getUid } from '~/utils/getUid';
+import { COMPONENT_ID, OVERLAY_ID_SYMBOL } from '../Overlays.constants';
 import { useOverlaysContext } from '../Overlays.context';
 import { overlaysGlobals } from '../Overlays.globals';
+import { getOverlayId } from '../utils/getOverlayId';
 
 export interface IUseOverlaysResult {
   open: <TProps extends object>(overlay: IOverlay<TProps>) => Promise<unknown>;
@@ -16,15 +18,20 @@ export const useOverlays = (): IUseOverlaysResult => {
   // if (overlaysContext.registry = {};
 
   const open = (overlay: IOverlay<IAny>): Promise<unknown> => {
-    console.log('____OPEN', overlay);
+    const overlayId = getOverlayId(overlay);
+
+    console.log('____OPEN', overlayId, '->', overlay);
 
     overlaysGlobals.register(overlay);
     overlaysContext.dispatch({
       type: `${COMPONENT_ID}/open`,
-      payload: overlay,
+      payload: {
+        id: overlayId,
+        ...overlay,
+      },
     });
 
-    if (!overlaysGlobals.callbacks[overlay.id]) {
+    if (!overlaysGlobals.callbacks[overlayId]) {
       // `!` tell ts that theResolve will be written before it is used
       let theResolve!: (args?: unknown) => void;
       // `!` tell ts that theResolve will be written before it is used
@@ -33,7 +40,7 @@ export const useOverlays = (): IUseOverlaysResult => {
         theResolve = resolve;
         theReject = reject;
       });
-      overlaysGlobals.callbacks[overlay.id] = {
+      overlaysGlobals.callbacks[overlayId] = {
         resolve: theResolve,
         reject: theReject,
         promise,
@@ -42,7 +49,7 @@ export const useOverlays = (): IUseOverlaysResult => {
       return promise;
     }
 
-    return overlaysGlobals.callbacks[overlay.id]!.promise;
+    return overlaysGlobals.callbacks[overlayId].promise;
   };
 
   const close = (overlayId: string): void => {

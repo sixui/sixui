@@ -7,6 +7,7 @@ import { overlaysGlobals } from '../Overlays.globals';
 import { useOverlays } from './useOverlays';
 
 export interface IUseOverlayProps {
+  id?: string;
   layer?: string;
 }
 
@@ -25,12 +26,8 @@ export const useOverlay = (props?: IUseOverlayProps): IUseOverlayResult => {
   const id = useId();
   const overlays = useOverlays();
 
-  const overlayId = overlayContext?.id || id;
-
-  // const overlayInfo = overlays.register(overlayId);
-
+  const overlayId = props?.id || overlayContext?.id || id;
   const overlayState = overlaysContext.state[overlayId];
-  console.log('___state', overlayState);
 
   const closeCallback = useCallback(() => {
     overlays.close(overlayId);

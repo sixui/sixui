@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useRef, useState } from 'react';
 
+import type { IOverlayFC } from '~/components/Overlays';
 import type { IDialogProps } from './Dialog.types';
 import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
@@ -13,8 +14,10 @@ import {
 import { TextInputField } from '~/components/TextInputField';
 import { useId } from '~/hooks';
 import { useDisclosure } from '~/hooks/useDisclosure';
+import { getUid } from '~/utils/getUid';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { OverlayProvider } from '../Overlays/Overlay.context';
+import { OVERLAY_ID_SYMBOL } from '../Overlays/Overlays.constants';
 import { overlaysGlobals } from '../Overlays/Overlays.globals';
 import { Dialog } from './Dialog';
 
@@ -164,13 +167,19 @@ export const WithForm: IStory = {
 const createOverlay = <TProps extends object>(
   Component: React.ComponentType<TProps>,
 ): React.FC<TProps> => {
-  const overlayId = 'xxx';
+  const overlayId = getUid();
 
-  const OverlayComponent: React.FC<TProps> = (props: TProps) => (
-    <OverlayProvider value={{ id: overlayId }}>
-      <Component {...props} />
-    </OverlayProvider>
-  );
+  const OverlayComponent: IOverlayFC<TProps> & {
+    [OVERLAY_ID_SYMBOL]: string;
+  } = (props: TProps) => {
+    return (
+      <OverlayProvider value={{ id: overlayId }}>
+        <Component {...props} />
+      </OverlayProvider>
+    );
+  };
+
+  OverlayComponent[OVERLAY_ID_SYMBOL] = overlayId;
 
   overlaysGlobals.register({
     id: overlayId,
@@ -224,7 +233,6 @@ const TestDemo: React.FC<IDialogProps> = (props: IDialogProps) => {
       <Button
         onClick={() =>
           overlays.open({
-            id: 'xxx',
             component: DialogOverlay,
             props: {
               ...props,
