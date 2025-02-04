@@ -3,30 +3,40 @@ import type { IOverlay } from './Overlays.types';
 import { useOverlaysContext } from './Overlays.context';
 import { overlaysGlobals } from './Overlays.globals';
 
-/** The placeholder component is used to auto render elements when call
-show(). */
+/** The placeholder component is used to auto render overlays. */
 export const OverlaysPlaceholder: React.FC = () => {
   const overlaysContext = useOverlaysContext();
-  console.log('________X', {
-    registry: overlaysGlobals.registry,
-    state: overlaysContext.state,
-  });
+  console.log('RENDER:');
+  console.log('________REGISTRY', overlaysGlobals.registry);
+  console.log('___________STATE', overlaysContext.instances);
 
-  const visibleIds = Object.keys(overlaysContext.state);
-  const itemsToRender = visibleIds.reduce<Array<IOverlay<IAny>>>((acc, id) => {
-    if (!overlaysGlobals.registry[id]) {
+  const overlaysToRender = Object.entries(overlaysContext.instances).reduce<
+    Array<IOverlay<IAny> & { instanceId: string }>
+  >((acc, [instanceId, instance]) => {
+    const overlay = overlaysGlobals.registry[instance.overlayId];
+    if (!overlay) {
       // eslint-disable-next-line no-console
-      console.warn(`[@sixui/core] No modal found for id \`${id}\`.`);
+      console.warn(
+        `[@sixui/core] No overlay found for id \`${instance.overlayId}\`.`,
+      );
 
       return acc;
     }
 
-    return [...acc, overlaysGlobals.registry[id]];
+    return [
+      ...acc,
+      {
+        ...overlay,
+        instanceId,
+        props: {
+          ...overlay.props,
+          ...instance.props,
+        },
+      },
+    ];
   }, []);
 
-  console.log('__render', itemsToRender);
-
-  return itemsToRender.map((item) => (
-    <item.component key={item.id} {...item.props} />
+  return overlaysToRender.map(({ component: Component, instanceId, props }) => (
+    <Component key={instanceId} instanceId={instanceId} {...props} />
   ));
 };

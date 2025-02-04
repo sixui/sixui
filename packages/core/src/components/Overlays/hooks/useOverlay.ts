@@ -6,11 +6,6 @@ import { useOverlaysContext } from '../Overlays.context';
 import { overlaysGlobals } from '../Overlays.globals';
 import { useOverlays } from './useOverlays';
 
-export interface IUseOverlayProps {
-  id?: string;
-  layer?: string;
-}
-
 export interface IUseOverlayResult {
   id: string;
   opened: boolean;
@@ -20,40 +15,40 @@ export interface IUseOverlayResult {
   reject: (args?: unknown) => void;
 }
 
-export const useOverlay = (props?: IUseOverlayProps): IUseOverlayResult => {
+export const useOverlay = (instanceId: string): IUseOverlayResult => {
   const overlaysContext = useOverlaysContext();
   const overlayContext = useOverlayContext();
   const id = useId();
   const overlays = useOverlays();
 
-  const overlayId = props?.id || overlayContext?.id || id;
-  const overlayState = overlaysContext.state[overlayId];
+  const overlayId = overlayContext?.id || id;
+  const overlayInstance = overlaysContext.instances[instanceId];
 
   const closeCallback = useCallback(() => {
-    overlays.close(overlayId);
-  }, [overlays, overlayId]);
+    overlays.close(overlayId, instanceId);
+  }, [overlays, overlayId, instanceId]);
 
   const removeCallback = useCallback(() => {
-    overlays.remove(overlayId);
-  }, [overlays, overlayId]);
+    overlays.remove(overlayId, instanceId);
+  }, [overlays, overlayId, instanceId]);
 
   const resolveCallback = useCallback(
     (args?: unknown) => {
-      overlaysGlobals.callbacks[overlayId]?.resolve(args);
+      overlaysGlobals.callbacks[instanceId]?.resolve(args);
     },
-    [overlayId],
+    [instanceId],
   );
 
   const rejectCallback = useCallback(
     (args?: unknown) => {
-      overlaysGlobals.callbacks[overlayId]?.reject(args);
+      overlaysGlobals.callbacks[instanceId]?.reject(args);
     },
-    [overlayId],
+    [instanceId],
   );
 
   return {
     id: overlayId,
-    opened: overlayState?.opened || false,
+    opened: overlayInstance?.opened || false,
     close: closeCallback,
     remove: removeCallback,
     resolve: resolveCallback,

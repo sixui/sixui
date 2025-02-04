@@ -1,24 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useRef, useState } from 'react';
 
-import type { IOverlayFC } from '~/components/Overlays';
 import type { IDialogProps } from './Dialog.types';
 import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Flex } from '~/components/Flex';
 import {
+  createOverlay,
   OverlaysProvider,
   useOverlay,
   useOverlays,
 } from '~/components/Overlays';
 import { TextInputField } from '~/components/TextInputField';
-import { useId } from '~/hooks';
 import { useDisclosure } from '~/hooks/useDisclosure';
-import { getUid } from '~/utils/getUid';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
-import { OverlayProvider } from '../Overlays/Overlay.context';
-import { OVERLAY_ID_SYMBOL } from '../Overlays/Overlays.constants';
-import { overlaysGlobals } from '../Overlays/Overlays.globals';
 import { Dialog } from './Dialog';
 
 // https://m3.material.io/components/dialogs/overview
@@ -164,37 +159,8 @@ export const WithForm: IStory = {
 };
 
 // DEV:
-const createOverlay = <TProps extends object>(
-  Component: React.ComponentType<TProps>,
-): React.FC<TProps> => {
-  const overlayId = getUid();
-
-  const OverlayComponent: IOverlayFC<TProps> & {
-    [OVERLAY_ID_SYMBOL]: string;
-  } = (props: TProps) => {
-    return (
-      <OverlayProvider value={{ id: overlayId }}>
-        <Component {...props} />
-      </OverlayProvider>
-    );
-  };
-
-  OverlayComponent[OVERLAY_ID_SYMBOL] = overlayId;
-
-  overlaysGlobals.register({
-    id: overlayId,
-    component: OverlayComponent,
-    layer: 'dialogs',
-  });
-
-  return OverlayComponent;
-};
-
-// DEV:
 const DialogOverlay = createOverlay<IDialogProps>((props) => {
-  const overlay = useOverlay({
-    layer: 'dialogs',
-  });
+  const overlay = useOverlay(props.instanceId);
 
   return (
     <Dialog
@@ -219,74 +185,115 @@ const TestDemo: React.FC<IDialogProps> = (props: IDialogProps) => {
 
   return (
     <OverlaysProvider
-    // overlays={{
-    //   bbb: {
-    //     component: Dialog,
-    //     props: {
-    //       ...props,
-    //       children: 'AAA',
-    //     },
-    //     layer: 'dialogs',
-    //   },
-    // }}
+      overlays={{
+        bbb: {
+          component: DialogOverlay,
+          props: {
+            ...props,
+            children: 'AAA',
+          },
+          layer: 'dialogs',
+        },
+      }}
     >
       <Button
         onClick={() =>
-          overlays.open({
-            component: DialogOverlay,
-            props: {
-              ...props,
-              headline: 'Delete?',
-              children:
-                'Do you want to delete this thing? This may be a very important thing. So choose carefully.',
-              opened: true,
-              actions: ({ close }) => (
-                <>
-                  <Button variant="text" onClick={close}>
-                    Cancel
-                  </Button>
-                  <Button
-                    type="submit"
-                    onClick={() =>
-                      overlays.open({
-                        id: 'xxx-2',
-                        component: DialogOverlay,
-                        props: {
-                          ...props,
-                          headline: 'Confirm?',
-                          children:
-                            'Are you sure you want to delete this thing?',
-                          opened: true,
-                          modal: true,
-                          actions: ({ close }) => (
-                            <>
-                              <Button variant="text" onClick={close}>
-                                Cancel
-                              </Button>
-                              <Button
-                                type="submit"
-                                onClick={() => {
-                                  // DELETE
-                                }}
-                              >
-                                Yes
-                              </Button>
-                            </>
-                          ),
-                        },
-                      })
-                    }
-                  >
-                    Delete
-                  </Button>
-                </>
-              ),
-            },
-            layer: 'dialogs',
+          void overlays.open(DialogOverlay, {
+            ...props,
+            headline: 'Delete?',
+            children:
+              'Do you want to delete this thing? This may be a very important thing. So choose carefully.',
+            opened: true,
+            actions: ({ close }) => (
+              <>
+                <Button variant="text" onClick={close}>
+                  Cancel
+                </Button>
+                <Button
+                  type="submit"
+                  onClick={() =>
+                    overlays.open(DialogOverlay, {
+                      ...props,
+                      headline: 'Confirm?',
+                      children: 'Are you sure you want to delete this thing?',
+                      opened: true,
+                      modal: true,
+                      actions: ({ close }) => (
+                        <>
+                          <Button variant="text" onClick={close}>
+                            Cancel
+                          </Button>
+                          <Button
+                            type="submit"
+                            onClick={() => {
+                              // DELETE
+                            }}
+                          >
+                            Yes
+                          </Button>
+                        </>
+                      ),
+                    })
+                  }
+                >
+                  Delete
+                </Button>
+              </>
+            ),
           })
         }
       >
         Show AAA
+      </Button>
+
+      <Button
+        onClick={() =>
+          void overlays.open(DialogOverlay, {
+            ...props,
+            headline: 'Delete (bis)?',
+            children:
+              'Do you want to delete this thing? This may be a very important thing. So choose carefully.',
+            opened: true,
+            actions: ({ close }) => (
+              <>
+                <Button variant="text" onClick={close}>
+                  Cancel
+                </Button>
+                <Button
+                  type="submit"
+                  onClick={() =>
+                    overlays.open(DialogOverlay, {
+                      ...props,
+                      headline: 'Confirm (bis)?',
+                      children: 'Are you sure you want to delete this thing?',
+                      opened: true,
+                      modal: true,
+                      actions: ({ close }) => (
+                        <>
+                          <Button variant="text" onClick={close}>
+                            Cancel
+                          </Button>
+                          <Button
+                            type="submit"
+                            onClick={() => {
+                              // DELETE
+                            }}
+                          >
+                            Yes
+                          </Button>
+                        </>
+                      ),
+                    })
+                  }
+                >
+                  Delete
+                </Button>
+              </>
+            ),
+          })
+        }
+      >
+        Show AAA(bis)
       </Button>
 
       {/* <Button

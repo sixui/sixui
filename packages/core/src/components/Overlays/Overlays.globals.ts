@@ -1,6 +1,5 @@
 import type { IAny } from '~/utils/types';
 import type { IOverlay } from './Overlays.types';
-import { getOverlayId } from './utils/getOverlayId';
 
 export type IOverlaysRegistry = Record<string, IOverlay<IAny>>;
 
@@ -14,18 +13,14 @@ export type IOverlaysCallbacks = Record<
 >;
 
 const register = (overlay: IOverlay<IAny>): void => {
-  const overlayId = getOverlayId(overlay);
-  console.log('_______REGISTER', overlayId, overlay);
-  if (overlaysGlobals.registry[overlayId]) {
-    Object.assign(overlaysGlobals.registry[overlayId], {
-      layer: overlay.layer,
-      props: overlay.props,
-    });
+  const registeredOverlay = overlaysGlobals.registry[overlay.overlayId];
+  if (registeredOverlay) {
+    // eslint-disable-next-line no-console
+    console.warn(
+      `[@sixui/core] Overlay with id \`${overlay.overlayId}\` already exists.`,
+    );
   } else {
-    overlaysGlobals.registry[overlayId] = {
-      ...overlay,
-      id: overlayId,
-    };
+    overlaysGlobals.registry[overlay.overlayId] = overlay;
   }
 };
 

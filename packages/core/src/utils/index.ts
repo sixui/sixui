@@ -9,6 +9,7 @@ export * from './deepMerge';
 export * from './deselectCurrentSelection';
 export * from './executeLazyPromise';
 export * from './getDataAttributes';
+export * from './getUid';
 export * from './getValidRectFromSvgArea';
 export * from './isFunction';
 export * from './isNumeric';

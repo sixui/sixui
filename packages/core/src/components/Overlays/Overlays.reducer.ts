@@ -1,40 +1,41 @@
 import { COMPONENT_ID } from './Overlays.constants';
 
-export interface IOverlayState {
-  id: string;
-  args?: Record<string, unknown>;
+export interface IOverlayInstance {
+  overlayId: string;
+  props?: Record<string, unknown>;
   opened?: boolean;
   delayOpened?: boolean;
   keepMounted?: boolean;
 }
 
-export type IOverlaysState = Record<string, IOverlayState>;
+export type IOverlaysInstances = Record<string, IOverlayInstance>;
 
 export interface IOverlayAction {
   type: string;
   payload: {
-    id: string;
-    args?: Record<string, unknown>;
+    overlayId: string;
+    instanceId: string;
+    props?: Record<string, unknown>;
     flags?: Record<string, unknown>;
   };
 }
 
-export const overlaysInitialState: IOverlaysState = {};
+export const overlaysInitialInstances: IOverlaysInstances = {};
 
 export const overlaysReducer = (
-  state: IOverlaysState = overlaysInitialState,
+  instances = overlaysInitialInstances,
   action: IOverlayAction,
-): IOverlaysState => {
+): IOverlaysInstances => {
   switch (action.type) {
     case `${COMPONENT_ID}/open`: {
-      const { id: overlayId, args } = action.payload;
+      const { overlayId, instanceId, props } = action.payload;
 
       return {
-        ...state,
-        [overlayId]: {
-          ...state[overlayId],
-          id: overlayId,
-          args,
+        ...instances,
+        [instanceId]: {
+          ...instances[overlayId],
+          overlayId,
+          props,
           opened: true,
           // If modal is not mounted, mount it first then make it visible. There
           // is logic inside HOC wrapper to make it visible after its first
@@ -47,45 +48,45 @@ export const overlaysReducer = (
     }
 
     case `${COMPONENT_ID}/close`: {
-      const { id: overlayId } = action.payload;
-      if (!state[overlayId]) {
-        return state;
+      const { instanceId } = action.payload;
+      if (!instances[instanceId]) {
+        return instances;
       }
 
       return {
-        ...state,
-        [overlayId]: {
-          ...state[overlayId],
+        ...instances,
+        [instanceId]: {
+          ...instances[instanceId],
           opened: false,
         },
       };
     }
 
     case `${COMPONENT_ID}/remove`: {
-      const { id: overlayId } = action.payload;
-      const newState = { ...state };
-      delete newState[overlayId];
+      const { instanceId } = action.payload;
+      const newState = { ...instances };
+      delete newState[instanceId];
 
       return newState;
     }
 
     case `${COMPONENT_ID}/set-flags`: {
-      const { id: overlayId, flags } = action.payload;
+      const { instanceId, flags } = action.payload;
 
-      if (!state[overlayId]) {
-        return state;
+      if (!instances[instanceId]) {
+        return instances;
       }
 
       return {
-        ...state,
-        [overlayId]: {
-          ...state[overlayId],
+        ...instances,
+        [instanceId]: {
+          ...instances[instanceId],
           ...flags,
         },
       };
     }
 
     default:
-      return state;
+      return instances;
   }
 };

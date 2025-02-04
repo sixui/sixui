@@ -1,16 +1,19 @@
 import { useMemo, useReducer } from 'react';
 
+import type { IAny, IOmit } from '~/utils/types';
 import type { IOverlaysContextValue } from './Overlays.context';
-import type { IOverlayAction, IOverlaysState } from './Overlays.reducer';
+import type { IOverlayAction, IOverlaysInstances } from './Overlays.reducer';
+import type { IOverlay } from './Overlays.types';
 import { OverlaysContext } from './Overlays.context';
-import { overlaysInitialState, overlaysReducer } from './Overlays.reducer';
+import { overlaysInitialInstances, overlaysReducer } from './Overlays.reducer';
 import { OverlaysPlaceholder } from './OverlaysPlaceholder';
 
 export interface IOverlaysProviderProps {
   children: React.ReactNode;
   layers?: Array<string>;
-  state?: IOverlaysState;
+  state?: IOverlaysInstances;
   dispatch?: React.ActionDispatch<[action: IOverlayAction]>;
+  overlays?: Record<string, IOmit<IOverlay<IAny>, 'id'>>;
 }
 
 export const OverlaysProvider: React.FC<IOverlaysProviderProps> = (props) => {
@@ -21,11 +24,14 @@ export const OverlaysProvider: React.FC<IOverlaysProviderProps> = (props) => {
     dispatch: dispatchProp,
   } = props;
 
-  const [state, dispatch] = useReducer(overlaysReducer, overlaysInitialState);
+  const [state, dispatch] = useReducer(
+    overlaysReducer,
+    overlaysInitialInstances,
+  );
 
   const overlaysContextValue: IOverlaysContextValue = useMemo(
     () => ({
-      state: stateProp ?? state,
+      instances: stateProp ?? state,
       dispatch: dispatchProp ?? dispatch,
       layers,
     }),
