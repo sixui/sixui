@@ -4,14 +4,14 @@ import { OverlayProvider } from '../Overlay.context';
 import { OVERLAY_ID_SYMBOL } from '../Overlays.constants';
 import { overlaysGlobals } from '../Overlays.globals';
 
-export type ICreateOverlayOptions = {
+export type IRegisterOverlayOptions = {
   id?: string;
   layer?: string;
 };
 
-export const createOverlay = <TProps extends object>(
+export const registerOverlay = <TProps extends object>(
   Component: IOverlayFC<TProps>,
-  options?: ICreateOverlayOptions,
+  options?: IRegisterOverlayOptions,
 ): IOverlayFC<TProps> => {
   const overlayId = options?.id ?? getUid();
 

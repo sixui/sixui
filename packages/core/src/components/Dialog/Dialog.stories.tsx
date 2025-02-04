@@ -6,8 +6,8 @@ import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Flex } from '~/components/Flex';
 import {
-  createOverlay,
   OverlaysProvider,
+  registerOverlay,
   useOverlay,
   useOverlays,
 } from '~/components/Overlays';
@@ -159,15 +159,14 @@ export const WithForm: IStory = {
 };
 
 // DEV:
-const DialogOverlay = createOverlay<IDialogProps>(
+const DialogOverlay = registerOverlay<IDialogProps>(
   (props) => {
-    const overlay = useOverlay({
-      instanceId: props.instanceId,
-    });
+    const { instanceId, ...other } = props;
+    const overlay = useOverlay({ instanceId });
 
     return (
       <Dialog
-        {...props}
+        {...other}
         opened={overlay.opened}
         onClose={() => {
           overlay.close();
@@ -206,7 +205,7 @@ const TestDemo: React.FC<IDialogProps> = (props: IDialogProps) => {
     >
       <Button
         onClick={() =>
-          void overlays.open(DialogOverlay, {
+          overlays.open(DialogOverlay, {
             ...props,
             // modal: true,
             headline: 'Delete?',
@@ -257,7 +256,7 @@ const TestDemo: React.FC<IDialogProps> = (props: IDialogProps) => {
 
       <Button
         onClick={() =>
-          void overlays.open(DialogOverlay, {
+          overlays.open(DialogOverlay, {
             ...props,
             // modal: true,
             headline: 'Delete (bis)?',
