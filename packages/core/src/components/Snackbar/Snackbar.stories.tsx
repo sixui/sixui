@@ -116,7 +116,7 @@ const MySnackbar = NiceModal.create((props: ISnackbarProps) => {
         modal.resolve();
         return modal.hide();
       }}
-      onAfterClose={() => {
+      onClosed={() => {
         modal.remove();
       }}
     />

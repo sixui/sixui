@@ -1,5 +1,5 @@
 import type { ElementRects, Elements } from '@floating-ui/react';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { arrow, flip, offset, shift } from '@floating-ui/core';
 import {
   autoUpdate,
@@ -29,6 +29,7 @@ import { Motion } from '~/components/Motion';
 import { Portal } from '~/components/Portal';
 import { Scrim } from '~/components/Scrim';
 import { useComponentTheme, useProps } from '~/components/Theme';
+import { usePrevious } from '~/hooks';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
@@ -77,6 +78,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       cursor: cursorType = false,
       onOpen,
       onClose,
+      onClosed,
       forwardProps,
       disabled,
       role: roleProp,
@@ -265,6 +267,16 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
     const transitionStatus = useTransitionStatus(floating.context, {
       duration: 150, // motionTokens.duration$short3
     });
+
+    const previousStatus = usePrevious(transitionStatus.status);
+    useEffect(() => {
+      if (
+        transitionStatus.status === 'unmounted' &&
+        previousStatus === 'close'
+      ) {
+        onClosed?.();
+      }
+    }, [previousStatus, transitionStatus.status, onClosed]);
 
     const renderCursor = (
       userProps?: React.HTMLAttributes<SVGSVGElement>,

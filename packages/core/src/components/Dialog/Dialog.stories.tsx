@@ -194,7 +194,8 @@ const DialogOverlay = createOverlay<IDialogProps>((props) => {
       onClose={() => {
         overlay.close();
         overlay.resolve();
-
+      }}
+      onClosed={() => {
         if (!props.keepMounted) {
           overlay.remove();
         }

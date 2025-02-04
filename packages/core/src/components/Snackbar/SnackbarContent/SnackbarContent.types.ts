@@ -13,7 +13,7 @@ export interface ISnackbarContentOwnProps extends IPaperBaseOwnProps {
   actionLabel?: string;
   onActionClick?: () => IMaybeAsync<unknown>;
   onClose?: () => IMaybeAsync<unknown>;
-  onAfterClose?: () => IMaybeAsync<unknown>;
+  onClosed?: () => IMaybeAsync<unknown>;
   showCloseButton?: boolean;
 }
 

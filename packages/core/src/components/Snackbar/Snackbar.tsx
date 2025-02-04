@@ -24,7 +24,7 @@ export const Snackbar = componentFactory<ISnackbarFactory>(
       justify = 'center',
       autoHideDuration,
       onClose,
-      onAfterClose,
+      onClosed,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -54,7 +54,7 @@ export const Snackbar = componentFactory<ISnackbarFactory>(
         nodeRef={transitionNodeRef}
         in={opened}
         timeout={550} // motionTokens.duration$long3
-        onExited={onAfterClose}
+        onExited={onClosed}
         unmountOnExit
       >
         {(status) => (

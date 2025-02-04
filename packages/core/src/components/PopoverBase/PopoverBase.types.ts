@@ -118,6 +118,8 @@ export type IPopoverBaseOwnProps<TForwardedProps extends object = object> =
      */
     onClose?: () => void;
 
+    onClosed?: () => void;
+
     /**
      * If set, the popover will not be rendered.
      */
