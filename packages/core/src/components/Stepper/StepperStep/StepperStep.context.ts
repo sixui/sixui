@@ -10,5 +10,5 @@ export type IStepperStepContextValue = {
 
 export const [StepperStepContextProvider, useStepperStepContext] =
   createSafeContext<IStepperStepContextValue>(
-    'You forgot to wrap your component in <StepperStepContext />.',
+    'You forgot to wrap your component in <StepperStepContextProvider />.',
   );

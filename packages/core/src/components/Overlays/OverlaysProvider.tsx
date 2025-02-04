@@ -13,7 +13,7 @@ export interface IOverlaysProviderProps {
   layers?: Array<string>;
   state?: IOverlaysInstances;
   dispatch?: React.ActionDispatch<[action: IOverlayAction]>;
-  overlays?: Record<string, IOmit<IOverlay<IAny>, 'id'>>;
+  overlays?: Record<string, IOmit<IOverlay<IAny>, 'overlayId'>>;
 }
 
 export const OverlaysProvider: React.FC<IOverlaysProviderProps> = (props) => {
@@ -22,12 +22,15 @@ export const OverlaysProvider: React.FC<IOverlaysProviderProps> = (props) => {
     layers = ['snackbars', 'dialogs', 'confirms', 'drawers'],
     state: stateProp,
     dispatch: dispatchProp,
+    overlays,
   } = props;
 
   const [state, dispatch] = useReducer(
     overlaysReducer,
     overlaysInitialInstances,
   );
+
+  //
 
   const overlaysContextValue: IOverlaysContextValue = useMemo(
     () => ({

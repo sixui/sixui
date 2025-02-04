@@ -159,25 +159,33 @@ export const WithForm: IStory = {
 };
 
 // DEV:
-const DialogOverlay = createOverlay<IDialogProps>((props) => {
-  const overlay = useOverlay(props.instanceId);
+const DialogOverlay = createOverlay<IDialogProps>(
+  (props) => {
+    const overlay = useOverlay({
+      instanceId: props.instanceId,
+    });
 
-  return (
-    <Dialog
-      {...props}
-      opened={overlay.opened}
-      onClose={() => {
-        overlay.close();
-        overlay.resolve();
-      }}
-      onClosed={() => {
-        if (!props.keepMounted) {
-          overlay.remove();
-        }
-      }}
-    />
-  );
-});
+    return (
+      <Dialog
+        {...props}
+        opened={overlay.opened}
+        onClose={() => {
+          overlay.close();
+          overlay.resolve();
+        }}
+        onClosed={() => {
+          if (!props.keepMounted) {
+            overlay.remove();
+          }
+        }}
+      />
+    );
+  },
+  {
+    id: 'test',
+    layer: 'dialogs',
+  },
+);
 
 // DEV:
 const TestDemo: React.FC<IDialogProps> = (props: IDialogProps) => {
@@ -200,6 +208,7 @@ const TestDemo: React.FC<IDialogProps> = (props: IDialogProps) => {
         onClick={() =>
           void overlays.open(DialogOverlay, {
             ...props,
+            // modal: true,
             headline: 'Delete?',
             children:
               'Do you want to delete this thing? This may be a very important thing. So choose carefully.',
@@ -250,6 +259,7 @@ const TestDemo: React.FC<IDialogProps> = (props: IDialogProps) => {
         onClick={() =>
           void overlays.open(DialogOverlay, {
             ...props,
+            // modal: true,
             headline: 'Delete (bis)?',
             children:
               'Do you want to delete this thing? This may be a very important thing. So choose carefully.',

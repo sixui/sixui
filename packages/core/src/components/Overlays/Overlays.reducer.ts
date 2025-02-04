@@ -2,7 +2,7 @@ import { COMPONENT_ID } from './Overlays.constants';
 
 export interface IOverlayInstance {
   overlayId: string;
-  props?: Record<string, unknown>;
+  props?: object;
   opened?: boolean;
   delayOpened?: boolean;
   keepMounted?: boolean;
@@ -15,7 +15,7 @@ export interface IOverlayAction {
   payload: {
     overlayId: string;
     instanceId: string;
-    props?: Record<string, unknown>;
+    props?: object;
     flags?: Record<string, unknown>;
   };
 }

@@ -124,7 +124,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
               ...closeEventsProp,
             }
           : {
-              escapeKey: true,
+              escapeKey: false,
               ...closeEventsProp,
             };
 

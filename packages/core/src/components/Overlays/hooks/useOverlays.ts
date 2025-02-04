@@ -8,7 +8,7 @@ import { overlaysGlobals } from '../Overlays.globals';
 import { getOverlayId } from '../utils/getOverlayId';
 
 export interface IUseOverlaysResult {
-  open: <TProps extends Record<string, unknown>>(
+  open: <TProps extends object>(
     idOrComponent: string | IOverlayFC<TProps>,
     props: TProps,
   ) => Promise<unknown>;
@@ -22,7 +22,7 @@ export const useOverlays = (): IUseOverlaysResult => {
   const open: IUseOverlaysResult['open'] = useCallback(
     (idOrComponent, props): Promise<unknown> => {
       const overlayId = getOverlayId(idOrComponent);
-      const instanceId = getUid();
+      const instanceId = getUid(overlayId);
 
       const registeredOverlay = overlaysGlobals.registry[overlayId];
       if (!registeredOverlay) {
@@ -34,7 +34,7 @@ export const useOverlays = (): IUseOverlaysResult => {
         payload: {
           overlayId,
           instanceId,
-          props: props,
+          props,
         },
       });
 

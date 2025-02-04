@@ -1,11 +1,16 @@
 import { OVERLAY_ID_SYMBOL } from './Overlays.constants';
 
-export type IOverlayFC<TProps extends Record<string, unknown>> =
-  React.FC<TProps> & {
-    [OVERLAY_ID_SYMBOL]?: string;
-  };
+export type IOverlayFCProps<TProps extends object> = TProps & {
+  instanceId?: string;
+};
 
-export interface IOverlay<TProps extends Record<string, unknown>> {
+export type IOverlayFC<TProps extends object> = React.FC<
+  IOverlayFCProps<TProps>
+> & {
+  [OVERLAY_ID_SYMBOL]?: string;
+};
+
+export interface IOverlay<TProps extends object> {
   overlayId: string;
   component: IOverlayFC<TProps>;
   props?: TProps;

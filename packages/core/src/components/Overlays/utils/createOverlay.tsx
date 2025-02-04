@@ -1,33 +1,34 @@
-import type { IOverlayFC } from '../Overlays.types';
+import type { IOverlayFC, IOverlayFCProps } from '../Overlays.types';
 import { getUid } from '~/utils/getUid';
 import { OverlayProvider } from '../Overlay.context';
 import { OVERLAY_ID_SYMBOL } from '../Overlays.constants';
 import { overlaysGlobals } from '../Overlays.globals';
 
-type IOverlayFCProps<TProps extends Record<string, unknown>> = TProps & {
-  instanceId: string;
+export type ICreateOverlayOptions = {
+  id?: string;
+  layer?: string;
 };
 
-export const createOverlay = <TProps extends Record<string, unknown>>(
-  Component: React.ComponentType<IOverlayFCProps<TProps>>,
-): React.FC<TProps & { instanceId: string }> => {
-  const id = getUid();
+export const createOverlay = <TProps extends object>(
+  Component: IOverlayFC<TProps>,
+  options?: ICreateOverlayOptions,
+): IOverlayFC<TProps> => {
+  const overlayId = options?.id ?? getUid();
 
-  const Overlay: IOverlayFC<IOverlayFCProps<TProps>> & {
+  const Overlay: IOverlayFC<TProps> & {
     [OVERLAY_ID_SYMBOL]: string;
   } = (props: IOverlayFCProps<TProps>) => (
-    <OverlayProvider value={{ id }}>
+    <OverlayProvider value={{ overlayId }}>
       <Component {...props} />
     </OverlayProvider>
   );
 
-  Overlay[OVERLAY_ID_SYMBOL] = id;
+  Overlay[OVERLAY_ID_SYMBOL] = overlayId;
 
   overlaysGlobals.register({
-    overlayId: id,
+    overlayId,
     component: Overlay,
-    // FIXME: move layer
-    layer: 'dialogs',
+    layer: options?.layer,
   });
 
   return Overlay;

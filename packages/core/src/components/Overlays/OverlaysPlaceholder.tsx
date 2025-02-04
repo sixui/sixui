@@ -8,7 +8,7 @@ export const OverlaysPlaceholder: React.FC = () => {
   const overlaysContext = useOverlaysContext();
   console.log('RENDER:');
   console.log('________REGISTRY', overlaysGlobals.registry);
-  console.log('___________STATE', overlaysContext.instances);
+  console.log('_______INSTANCES', overlaysContext.instances);
 
   const overlaysToRender = Object.entries(overlaysContext.instances).reduce<
     Array<IOverlay<IAny> & { instanceId: string }>

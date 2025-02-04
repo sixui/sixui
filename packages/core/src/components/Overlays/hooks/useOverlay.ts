@@ -1,13 +1,17 @@
 import { useCallback } from 'react';
 
-import { useId } from '~/hooks';
+import { getUid } from '~/utils';
 import { useOverlayContext } from '../Overlay.context';
 import { useOverlaysContext } from '../Overlays.context';
 import { overlaysGlobals } from '../Overlays.globals';
 import { useOverlays } from './useOverlays';
 
+export interface IUseOverlayProps {
+  instanceId?: string;
+}
+
 export interface IUseOverlayResult {
-  id: string;
+  overlayId: string;
   opened: boolean;
   close: () => void;
   remove: () => void;
@@ -15,13 +19,15 @@ export interface IUseOverlayResult {
   reject: (args?: unknown) => void;
 }
 
-export const useOverlay = (instanceId: string): IUseOverlayResult => {
+export const useOverlay = (props: IUseOverlayProps = {}): IUseOverlayResult => {
+  const { instanceId: instanceIdProp } = props;
+
   const overlaysContext = useOverlaysContext();
   const overlayContext = useOverlayContext();
-  const id = useId();
   const overlays = useOverlays();
 
-  const overlayId = overlayContext?.id || id;
+  const overlayId = overlayContext.overlayId || getUid();
+  const instanceId = instanceIdProp ?? overlayId;
   const overlayInstance = overlaysContext.instances[instanceId];
 
   const closeCallback = useCallback(() => {
@@ -47,7 +53,7 @@ export const useOverlay = (instanceId: string): IUseOverlayResult => {
   );
 
   return {
-    id: overlayId,
+    overlayId,
     opened: overlayInstance?.opened || false,
     close: closeCallback,
     remove: removeCallback,

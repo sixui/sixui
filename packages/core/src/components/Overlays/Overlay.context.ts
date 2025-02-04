@@ -1,8 +1,10 @@
-import { createOptionalContext } from '~/utils/react';
+import { createSafeContext } from '~/utils/react';
 
 export type IOverlayContext = {
-  id: string;
+  overlayId: string;
 };
 
 export const [OverlayProvider, useOverlayContext] =
-  createOptionalContext<IOverlayContext>();
+  createSafeContext<IOverlayContext>(
+    'You forgot to wrap your component in <OverlayProvider />.',
+  );
