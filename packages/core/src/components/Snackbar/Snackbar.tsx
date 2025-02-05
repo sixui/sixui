@@ -4,16 +4,18 @@ import { CSSTransition } from 'react-transition-group';
 
 import type { ISnackbarThemeFactory } from './Snackbar.css';
 import type { ISnackbarFactory } from './Snackbar.types';
+import { Box } from '~/components/Box';
 import { Motion } from '~/components/Motion';
+import { useOverlayContext } from '~/components/Overlays/Overlay.context';
+import { useOverlaysStateContext } from '~/components/Overlays/OverlaysState.context';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { useTimeout } from '~/hooks/useTimeout';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { px } from '~/utils/css';
-import { Box } from '../Box';
-import { useOverlayContext } from '../Overlays/Overlay.context';
-import { useOverlaysStateContext } from '../Overlays/OverlaysState.context';
-import { COMPONENT_NAME } from './Snackbar.constants';
+import {
+  COMPONENT_NAME,
+  DEFAULT_AUTO_HIDE_DURATION_MS,
+} from './Snackbar.constants';
 import { SnackbarContent } from './SnackbarContent';
 import { snackbarTheme } from './Snackbar.css';
 
@@ -27,7 +29,7 @@ export const Snackbar = componentFactory<ISnackbarFactory>(
       variant,
       opened,
       justify = 'center',
-      autoHideDuration,
+      autoHideDuration: autoHideDurationProp,
       onClose,
       onClosed,
       ...other
@@ -43,22 +45,31 @@ export const Snackbar = componentFactory<ISnackbarFactory>(
       theme: snackbarTheme,
       modifiers: {
         justify,
+        opened,
       },
     });
 
     const overlaysStateContext = useOverlaysStateContext();
     const overlayContext = useOverlayContext();
-    const snackbarOverlayInstanceIds = Object.values(
+    const lastOpenOverlayInstancePosition = useRef(0);
+    const openedSnackbarOverlayInstanceIds = Object.values(
       overlaysStateContext.instances,
     )
       .filter(({ overlayId, opened }) => overlayId === COMPONENT_NAME && opened)
       .map(({ instanceId }) => instanceId);
     const overlayInstancePosition = overlayContext
-      ? snackbarOverlayInstanceIds.length -
-        snackbarOverlayInstanceIds.indexOf(overlayContext.instanceId) -
+      ? openedSnackbarOverlayInstanceIds.length -
+        openedSnackbarOverlayInstanceIds.indexOf(overlayContext.instanceId) -
         1
       : 0;
-    const bottomSpace = 24 + (48 + 12) * overlayInstancePosition;
+    if (opened) {
+      lastOpenOverlayInstancePosition.current = overlayInstancePosition;
+    }
+    const autoHideDuration =
+      autoHideDurationProp ??
+      ((other.actionLabel ?? other.showCloseButton)
+        ? undefined
+        : DEFAULT_AUTO_HIDE_DURATION_MS);
 
     const transitionNodeRef = useRef<HTMLDivElement>(null);
     const transitionNodeHandleRef = useMergeRefs(
@@ -80,7 +91,9 @@ export const Snackbar = componentFactory<ISnackbarFactory>(
           <Box
             {...getStyles('root', {
               style: assignInlineVars({
-                [snackbarTheme.tokens.fixedBottomSpace]: px(bottomSpace),
+                [snackbarTheme.tokens.position]: String(
+                  lastOpenOverlayInstancePosition.current,
+                ),
               }),
             })}
           >

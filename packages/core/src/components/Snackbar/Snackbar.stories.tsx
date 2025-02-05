@@ -4,8 +4,10 @@ import { useState } from 'react';
 import type { ISnackbarProps } from './Snackbar.types';
 import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { OverlaysProvider, useOverlays } from '~/components/Overlays';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { Snackbar } from './Snackbar';
+import { SnackbarOverlay } from './SnackbarOverlay';
 
 const meta = {
   component: Snackbar,
@@ -100,6 +102,28 @@ export const Open: IStory = {
   args: {
     ...defaultArgs,
     children: 'Lorem ipsum dolor sit amet.',
+  },
+};
+
+const AsOverlayDemo: React.FC<ISnackbarProps> = (props: ISnackbarProps) => {
+  const overlays = useOverlays();
+
+  return (
+    <Button onClick={() => void overlays.open(SnackbarOverlay, props)}>
+      Open
+    </Button>
+  );
+};
+
+export const AsOverlay: IStory = {
+  render: (props: ISnackbarProps) => (
+    <OverlaysProvider>
+      <AsOverlayDemo {...props} />
+    </OverlaysProvider>
+  ),
+  args: {
+    ...defaultArgs,
+    children: 'Saved!',
   },
 };
 

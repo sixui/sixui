@@ -1,16 +1,25 @@
+import { calc } from '@vanilla-extract/css-utils';
+
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { overrideTokens, space } from '~/utils/css';
 import { createStyles } from '~/utils/css/createStyles';
 import { modifierSelector } from '~/utils/css/modifierSelector';
 import { px } from '~/utils/css/px';
 import { responsiveContainerQuery } from '~/utils/css/responsiveContainerQuery';
 import { COMPONENT_NAME } from './Snackbar.constants';
+import { SnackbarContent } from './SnackbarContent';
 
-type IModifier = 'justify';
+type IModifier = 'justify' | 'opened';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
+  container: {
+    minHeight: px(48),
+  },
+  position: '0',
+  gap: px(space(3)),
   fixedHorizontalSpace: {
     normal: px(24),
     compact: px(32),
@@ -22,8 +31,15 @@ const classNames = createStyles({
   root: {
     display: 'flex',
     position: 'fixed',
-    bottom: tokens.fixedBottomSpace,
-    zIndex: themeTokens.zIndex.overlay,
+    bottom: px(
+      calc.add(
+        tokens.fixedBottomSpace,
+        calc.multiply(
+          calc.add(tokens.container.minHeight, tokens.gap),
+          tokens.position,
+        ),
+      ),
+    ),
     minWidth: 'unset',
 
     transitionProperty: 'bottom',
@@ -31,6 +47,9 @@ const classNames = createStyles({
     transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
 
     selectors: {
+      [modifierSelector<IModifier>({ opened: true })]: {
+        zIndex: themeTokens.zIndex.overlay,
+      },
       [modifierSelector<IModifier>({ justify: 'start' })]: {
         left: tokens.fixedHorizontalSpace.normal,
         justifyContent: 'start',
@@ -58,6 +77,12 @@ const classNames = createStyles({
   },
   snackbarContent: {
     transformOrigin: 'bottom',
+
+    vars: overrideTokens(SnackbarContent.theme.tokens, {
+      container: {
+        minHeight: tokens.container.minHeight,
+      },
+    }),
   },
 });
 
