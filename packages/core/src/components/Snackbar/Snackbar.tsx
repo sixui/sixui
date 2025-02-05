@@ -58,7 +58,7 @@ export const Snackbar = componentFactory<ISnackbarFactory>(
         snackbarOverlayInstanceIds.indexOf(overlayContext.instanceId) -
         1
       : 0;
-    const bottomSpace = 24 + (48 + 24) * overlayInstancePosition;
+    const bottomSpace = 24 + (48 + 12) * overlayInstancePosition;
 
     const transitionNodeRef = useRef<HTMLDivElement>(null);
     const transitionNodeHandleRef = useMergeRefs(
@@ -85,6 +85,7 @@ export const Snackbar = componentFactory<ISnackbarFactory>(
             })}
           >
             <Motion
+              {...getStyles('motion')}
               orientation="vertical"
               origin="edge"
               placement={{ side: 'top' }}

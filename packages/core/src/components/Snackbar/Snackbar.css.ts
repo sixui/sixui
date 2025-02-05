@@ -34,12 +34,6 @@ const classNames = createStyles({
       [modifierSelector<IModifier>({ justify: 'start' })]: {
         left: tokens.fixedHorizontalSpace.normal,
         justifyContent: 'start',
-
-        '@container': {
-          [responsiveContainerQuery({ size: 'compact' })]: {
-            left: tokens.fixedHorizontalSpace.compact,
-          },
-        },
       },
       [modifierSelector<IModifier>({ justify: 'center' })]: {
         left: tokens.fixedHorizontalSpace.compact,
@@ -47,16 +41,23 @@ const classNames = createStyles({
         justifyContent: 'center',
       },
     },
-  },
-  snackbarContent: {
-    transformOrigin: 'bottom',
 
+    '@container': {
+      [responsiveContainerQuery({ size: 'compact' })]: {
+        left: tokens.fixedHorizontalSpace.compact,
+      },
+    },
+  },
+  motion: {
     '@container': {
       [responsiveContainerQuery({ size: 'compact' })]: {
         flexGrow: 1,
         minWidth: 'unset',
       },
     },
+  },
+  snackbarContent: {
+    transformOrigin: 'bottom',
   },
 });
 
