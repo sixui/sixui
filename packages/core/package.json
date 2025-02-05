@@ -42,7 +42,6 @@
     "build": "tsx scripts/build.ts"
   },
   "dependencies": {
-    "@ebay/nice-modal-react": "^1.2.13",
     "@floating-ui/core": "^1.6.9",
     "@floating-ui/react": "^0.27.3",
     "@material/material-color-utilities": "^0.3.0",
@@ -71,7 +70,7 @@
     "@storybook/react": "^8.5.3",
     "@storybook/react-vite": "^8.5.3",
     "@storybook/test": "^8.5.3",
-    "@types/node": "^22.13.0",
+    "@types/node": "^22.13.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/react-transition-group": "^4",

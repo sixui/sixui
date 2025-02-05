@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-// DEV: delete
-import NiceModal, { useModal } from '@ebay/nice-modal-react';
 
 import type { ISnackbarProps } from './Snackbar.types';
 import { Button } from '~/components/Button';
@@ -102,60 +100,6 @@ export const Open: IStory = {
   args: {
     ...defaultArgs,
     children: 'Lorem ipsum dolor sit amet.',
-  },
-};
-
-const MySnackbar = NiceModal.create((props: ISnackbarProps) => {
-  const modal = useModal();
-
-  return (
-    <Snackbar
-      {...props}
-      opened={modal.visible}
-      onClose={() => {
-        modal.resolve();
-        return modal.hide();
-      }}
-      onClosed={() => {
-        modal.remove();
-      }}
-    />
-  );
-});
-
-// DEV:
-const TestDemo: React.FC<ISnackbarProps> = (props: ISnackbarProps) => (
-  <NiceModal.Provider>
-    <Button
-      onClick={() =>
-        NiceModal.show(MySnackbar, {
-          ...props,
-          children: 'AAA',
-        })
-      }
-    >
-      Show A
-    </Button>
-    <Button
-      onClick={() =>
-        NiceModal.show(MySnackbar, {
-          ...props,
-          children: 'BBB',
-        })
-      }
-    >
-      Show B
-    </Button>
-  </NiceModal.Provider>
-);
-
-// DEV:
-export const Test: IStory = {
-  render: (props: ISnackbarProps) => <TestDemo {...props} />,
-  args: {
-    ...defaultArgs,
-    children: 'Lorem ipsum dolor sit amet.',
-    showCloseButton: true,
   },
 };
 

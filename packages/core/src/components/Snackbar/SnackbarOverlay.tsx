@@ -6,7 +6,7 @@ import { COMPONENT_NAME } from './Snackbar.constants';
 export const SnackbarOverlay = registerOverlay<ISnackbarProps>(
   (props) => {
     const { instanceId, ...other } = props;
-    const overlay = useOverlay({ instanceId, layer: 'snackbars' });
+    const overlay = useOverlay({ instanceId });
 
     return (
       <Snackbar
@@ -22,5 +22,8 @@ export const SnackbarOverlay = registerOverlay<ISnackbarProps>(
       />
     );
   },
-  { id: COMPONENT_NAME },
+  {
+    id: COMPONENT_NAME,
+    layer: 'snackbars',
+  },
 );

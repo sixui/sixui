@@ -37,6 +37,7 @@ export const useOverlays = (): IUseOverlaysResult => {
           overlayId,
           instanceId,
           props,
+          layer: registeredOverlay.layer,
         },
       });
 

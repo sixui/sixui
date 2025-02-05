@@ -8,7 +8,6 @@ import { useOverlays } from './useOverlays';
 
 export interface IUseOverlayProps {
   instanceId: string;
-  layer?: string;
 }
 
 export interface IUseOverlayResult {
@@ -53,10 +52,6 @@ export const useOverlay = (props: IUseOverlayProps): IUseOverlayResult => {
     },
     [instanceId],
   );
-
-  overlaysGlobals.update(overlayId, {
-    layer: props.layer,
-  });
 
   return {
     overlayId,

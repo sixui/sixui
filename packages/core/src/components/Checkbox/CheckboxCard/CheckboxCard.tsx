@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import type { ICheckboxCardThemeFactory } from './CheckboxCard.css';
 import type { ICheckboxCardFactory } from './CheckboxCard.types';
 import { Card } from '~/components/Card';
-import { CheckboxIndicator } from '~/components/CheckboxIndicator';
+import { CheckboxIndicator } from '~/components/Checkbox/CheckboxIndicator';
 import { Labeled } from '~/components/Labeled';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { useCheckbox } from '~/hooks/useCheckbox';

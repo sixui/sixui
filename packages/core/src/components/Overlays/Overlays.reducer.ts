@@ -1,6 +1,8 @@
 import { COMPONENT_ID } from './Overlays.constants';
 
+
 export interface IOverlayInstanceState {
+  mounted?: boolean;
   opened?: boolean;
   delayOpened?: boolean;
   keepMounted?: boolean;
@@ -21,6 +23,7 @@ export interface IOverlayAction {
     overlayId: string;
     instanceId: string;
     props?: object;
+    layer?: string;
     flags?: Record<string, unknown>;
   };
 }
@@ -33,36 +36,64 @@ export const overlaysReducer = (
 ): IOverlaysInstances => {
   switch (action.type) {
     case `${COMPONENT_ID}/open`: {
-      const { overlayId, instanceId, props } = action.payload;
+      const { instanceId, ...instance } = action.payload;
+      const existingInstance = instances[instanceId];
 
       return {
         ...instances,
         [instanceId]: {
-          ...instances[overlayId],
-          overlayId,
+          ...existingInstance,
+          ...instance,
           instanceId,
-          props,
+          opened: !!existingInstance?.mounted,
+        },
+      };
+    }
+
+    case `${COMPONENT_ID}/mounted`: {
+      const { instanceId, ...instance } = action.payload;
+      const existingInstance = instances[instanceId];
+
+      return {
+        ...instances,
+        [instanceId]: {
+          ...existingInstance,
+          ...instance,
+          instanceId,
+          mounted: true,
           opened: true,
-          // If modal is not mounted, mount it first then make it visible. There
-          // is logic inside HOC wrapper to make it visible after its first
-          // mount. This mechanism ensures the entering transition.
-          // FIXME:
-          // opened: !!overlaysGlobals.alreadyMounted[overlayId],
-          // delayOpened: !overlaysGlobals.alreadyMounted[overlayId],
         },
       };
     }
 
     case `${COMPONENT_ID}/close`: {
       const { instanceId } = action.payload;
-      if (!instances[instanceId]) {
+      const existingInstance = instances[instanceId];
+
+      if (!existingInstance) {
         return instances;
       }
 
       return {
         ...instances,
         [instanceId]: {
-          ...instances[instanceId],
+          ...existingInstance,
+          opened: false,
+        },
+      };
+    }
+
+    case `${COMPONENT_ID}/unmounted`: {
+      const { instanceId, ...instance } = action.payload;
+      const existingInstance = instances[instanceId];
+
+      return {
+        ...instances,
+        [instanceId]: {
+          ...existingInstance,
+          ...instance,
+          instanceId,
+          mounted: false,
           opened: false,
         },
       };
@@ -76,6 +107,7 @@ export const overlaysReducer = (
       return newState;
     }
 
+    // FIXME: remove?
     case `${COMPONENT_ID}/set-flags`: {
       const { instanceId, flags } = action.payload;
 

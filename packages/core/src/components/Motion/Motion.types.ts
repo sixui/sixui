@@ -71,8 +71,6 @@ export interface IMotionOwnProps {
   disabled?: boolean;
 
   children?: React.ReactNode;
-
-  keepMounted?: boolean;
 }
 
 export interface IMotionProps

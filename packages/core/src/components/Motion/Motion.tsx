@@ -26,7 +26,6 @@ export const Motion = polymorphicComponentFactory<IMotionFactory>(
       pattern = 'enterExit',
       orientation: orientationProp,
       disabled,
-      keepMounted,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -63,10 +62,6 @@ export const Motion = polymorphicComponentFactory<IMotionFactory>(
       },
     });
 
-    if (!keepMounted && status === 'exited') {
-      return null;
-    }
-
     if (disabled) {
       return <Box {...getStyles('root')} ref={forwardedRef} {...other} />;
     }
@@ -93,4 +88,4 @@ export const Motion = polymorphicComponentFactory<IMotionFactory>(
 );
 
 Motion.theme = motionTheme;
-Motion.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Motion.displayName = `@sixui/${COMPONENT_NAME}`;

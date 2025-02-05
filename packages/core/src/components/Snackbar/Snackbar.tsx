@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { assignInlineVars } from '@vanilla-extract/dynamic';
 import { CSSTransition } from 'react-transition-group';
 
 import type { ISnackbarThemeFactory } from './Snackbar.css';
@@ -8,6 +9,8 @@ import { useComponentTheme, useProps } from '~/components/Theme';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { useTimeout } from '~/hooks/useTimeout';
 import { componentFactory } from '~/utils/component/componentFactory';
+import { px } from '~/utils/css';
+import { useOverlaysContext } from '../Overlays/Overlays.context';
 import { COMPONENT_NAME } from './Snackbar.constants';
 import { SnackbarContent } from './SnackbarContent';
 import { snackbarTheme } from './Snackbar.css';
@@ -41,6 +44,17 @@ export const Snackbar = componentFactory<ISnackbarFactory>(
       },
     });
 
+    const overlaysContext = useOverlaysContext();
+    const snackbarOverlayInstances = Object.values(
+      overlaysContext.instances,
+    ).filter((instance) => instance.overlayId === COMPONENT_NAME);
+    console.log('___', snackbarOverlayInstances);
+
+    const x = useRef(
+      24 + (48 + 24) * Math.max(snackbarOverlayInstances.length - 1, 0),
+    );
+    console.log('_____X', x.current);
+
     const transitionNodeRef = useRef<HTMLDivElement>(null);
     const transitionNodeHandleRef = useMergeRefs(
       transitionNodeRef,
@@ -59,7 +73,11 @@ export const Snackbar = componentFactory<ISnackbarFactory>(
       >
         {(status) => (
           <Motion
-            {...getStyles('root')}
+            {...getStyles('root', {
+              style: assignInlineVars({
+                [snackbarTheme.tokens.fixedBottomSpace]: px(x.current),
+              }),
+            })}
             orientation="vertical"
             origin="edge"
             placement={{ side: 'top' }}

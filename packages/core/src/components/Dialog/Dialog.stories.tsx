@@ -160,9 +160,10 @@ export const WithForm: IStory = {
 };
 
 // DEV:
-const DialogOverlay2 = registerOverlay<IDialogProps>((props) => (
-  <DialogOverlay {...props} headline="HELLLELKSDLDKLQSKD" />
-));
+const DialogOverlay2 = registerOverlay<IDialogProps>(
+  (props) => <DialogOverlay {...props} headline="HELLLELKSDLDKLQSKD" />,
+  { layer: 'dialogs' },
+);
 
 // DEV:
 const TestDemo: React.FC<IDialogProps> = (props: IDialogProps) => {

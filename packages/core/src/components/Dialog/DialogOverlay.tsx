@@ -6,7 +6,7 @@ import { COMPONENT_NAME } from './Dialog.constants';
 export const DialogOverlay = registerOverlay<IDialogProps>(
   (props) => {
     const { instanceId, ...other } = props;
-    const overlay = useOverlay({ instanceId, layer: 'dialogs' });
+    const overlay = useOverlay({ instanceId });
 
     return (
       <Dialog
@@ -17,12 +17,13 @@ export const DialogOverlay = registerOverlay<IDialogProps>(
           overlay.resolve();
         }}
         onClosed={() => {
-          if (!props.keepMounted) {
-            overlay.remove();
-          }
+          overlay.remove();
         }}
       />
     );
   },
-  { id: COMPONENT_NAME },
+  {
+    id: COMPONENT_NAME,
+    layer: 'dialogs',
+  },
 );
