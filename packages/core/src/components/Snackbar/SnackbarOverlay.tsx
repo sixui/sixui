@@ -1,7 +1,7 @@
 import type { ISnackbarProps } from './Snackbar.types';
 import { registerOverlay, useOverlayInstance } from '../Overlays';
 import { Snackbar } from './Snackbar';
-import { COMPONENT_NAME } from './Snackbar.constants';
+import { COMPONENT_NAME, OVERLAY_LAYER } from './Snackbar.constants';
 
 export const SnackbarOverlay = registerOverlay<ISnackbarProps>(
   (props) => {
@@ -24,6 +24,6 @@ export const SnackbarOverlay = registerOverlay<ISnackbarProps>(
   },
   {
     id: COMPONENT_NAME,
-    layer: 'snackbars',
+    layer: OVERLAY_LAYER,
   },
 );

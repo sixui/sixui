@@ -203,7 +203,6 @@ const TestDemo: React.FC<IDialogProps> = (props: IDialogProps) => {
                       headline: 'Confirm?',
                       children: 'Are you sure you want to delete this thing?',
                       opened: true,
-                      modal: true,
                       actions: ({ close }) => (
                         <>
                           <Button variant="text" onClick={close}>

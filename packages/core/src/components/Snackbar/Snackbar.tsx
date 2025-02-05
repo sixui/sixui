@@ -15,6 +15,7 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import {
   COMPONENT_NAME,
   DEFAULT_AUTO_HIDE_DURATION_MS,
+  OVERLAY_LAYER,
 } from './Snackbar.constants';
 import { SnackbarContent } from './SnackbarContent';
 import { snackbarTheme } from './Snackbar.css';
@@ -53,9 +54,9 @@ export const Snackbar = componentFactory<ISnackbarFactory>(
     const overlayContext = useOverlayContext();
     const lastOpenOverlayInstancePosition = useRef(0);
     const overlayInstancePosition = overlayContext?.instanceId
-      ? overlaysStateContext.getInstancePosition(
-          COMPONENT_NAME,
+      ? overlaysStateContext.getInstancePositionInLayer(
           overlayContext.instanceId,
+          OVERLAY_LAYER,
         )
       : 0;
     if (opened) {

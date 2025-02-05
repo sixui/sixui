@@ -6,17 +6,13 @@ import { overlaysInitialInstances } from './Overlays.reducer';
 export interface IOverlaysStateContextValue {
   instances: IOverlaysInstances;
   layers: Array<string>;
-  getInstancePosition: (
-    overlayId: string,
-    instanceId: string,
-    layer?: string,
-  ) => number;
+  getInstancePositionInLayer: (instanceId: string, layer: string) => number;
 }
 
 export const OverlaysStateContext = createContext<IOverlaysStateContextValue>({
   instances: overlaysInitialInstances,
   layers: [],
-  getInstancePosition: () => {
+  getInstancePositionInLayer: () => {
     throw new Error(
       '[@sixui/core] `getInstancePosition()` not implemented. You forgot to wrap your component in <OverlaysProvider />.',
     );
