@@ -53,12 +53,11 @@ export const Snackbar = componentFactory<ISnackbarFactory>(
     )
       .filter(({ overlayId, opened }) => overlayId === COMPONENT_NAME && opened)
       .map(({ instanceId }) => instanceId);
-    const overlayInstancePosition = Math.max(
-      overlayContext
-        ? snackbarOverlayInstanceIds.indexOf(overlayContext.instanceId)
-        : -1,
-      0,
-    );
+    const overlayInstancePosition = overlayContext
+      ? snackbarOverlayInstanceIds.length -
+        snackbarOverlayInstanceIds.indexOf(overlayContext.instanceId) -
+        1
+      : 0;
     const bottomSpace = 24 + (48 + 24) * overlayInstancePosition;
 
     const transitionNodeRef = useRef<HTMLDivElement>(null);
