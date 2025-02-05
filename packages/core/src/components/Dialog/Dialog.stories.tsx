@@ -13,6 +13,7 @@ import {
 import { TextInputField } from '~/components/TextInputField';
 import { useDisclosure } from '~/hooks/useDisclosure';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
+import { SnackbarOverlay } from '../Snackbar';
 import { Dialog } from './Dialog';
 import { DialogOverlay } from './DialogOverlay';
 
@@ -180,6 +181,16 @@ const TestDemo: React.FC<IDialogProps> = (props: IDialogProps) => {
         },
       }}
     >
+      <Button
+        onClick={() =>
+          void overlays.open(SnackbarOverlay, {
+            children: 'Hello',
+            autoHideDuration: 1000,
+          })
+        }
+      >
+        Snackbar
+      </Button>
       <Button
         onClick={() =>
           overlays.open(DialogOverlay, {
