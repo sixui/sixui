@@ -12,7 +12,11 @@ export const ConfirmDialogOverlay = registerOverlay<IConfirmDialogProps>(
       <ConfirmDialog
         {...other}
         opened={overlay.opened}
-        onClose={overlay.close}
+        onClose={() => {
+          overlay.close();
+          // The promise won't be rejected if it has already been resolved.
+          overlay.reject();
+        }}
         onCancel={() =>
           Promise.resolve()
             .then(() => onCancel?.())

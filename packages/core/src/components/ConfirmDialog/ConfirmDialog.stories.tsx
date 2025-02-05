@@ -84,6 +84,7 @@ const AsOverlayDemo: React.FC<IConfirmDialogProps> = (props) => {
                 overlays.open(ConfirmDialogOverlay, {
                   headline: 'Mmm...',
                   children: 'If I was you, I would not do that. Continue?',
+                  jail: true,
                   ...props,
                 }),
             })
