@@ -163,15 +163,15 @@ const AsOverlayDemo: React.FC<IDialogProps> = (props) => {
         overlays.open(DialogOverlay, {
           ...props,
           modal: true,
-          headline: 'Permanently delete?',
+          headline: 'Basic dialog title',
           children:
-            'Deleting the selected messages will also remove them from all synced devices.',
+            'A dialog is a type of modal window that appears in front of app content to provide critical information, or ask for a decision.',
           actions: ({ close }) => (
             <>
               <Button variant="text" onClick={close}>
-                Cancel
+                I don't agree
               </Button>
-              <Button onClick={close}>Delete</Button>
+              <Button onClick={close}>I agree</Button>
             </>
           ),
         })

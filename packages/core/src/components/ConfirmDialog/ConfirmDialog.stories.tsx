@@ -80,11 +80,23 @@ const AsOverlayDemo: React.FC<IConfirmDialogProps> = (props) => {
               headline: 'Permanently delete?',
               children:
                 'Deleting the selected messages will also remove them from all synced devices.',
+              labels: {
+                confirm: 'Delete',
+              },
+              confirmProps: {
+                variant: 'danger',
+              },
               onConfirm: () =>
                 overlays.open(ConfirmDialogOverlay, {
                   headline: 'Mmm...',
                   children: 'If I was you, I would not do that. Continue?',
                   jail: true,
+                  labels: {
+                    confirm: 'Yes, delete',
+                  },
+                  confirmProps: {
+                    variant: 'danger',
+                  },
                   ...props,
                 }),
             })

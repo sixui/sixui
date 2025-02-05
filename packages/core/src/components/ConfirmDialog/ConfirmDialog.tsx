@@ -10,6 +10,11 @@ import { Button } from '../Button';
 import { COMPONENT_NAME } from './ConfirmDialog.constants';
 import { confirmDialogTheme } from './ConfirmDialog.css';
 
+const defaultLabels = {
+  confirm: 'Confirm',
+  cancel: 'Cancel',
+};
+
 export const ConfirmDialog = componentFactory<IConfirmDialogFactory>(
   (props, forwardedRef) => {
     const {
@@ -22,10 +27,7 @@ export const ConfirmDialog = componentFactory<IConfirmDialogFactory>(
       onConfirm = () => {},
       cancelProps,
       confirmProps,
-      labels = {
-        confirm: 'Confirm',
-        cancel: 'Cancel',
-      },
+      labels: labelsProp,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -42,6 +44,8 @@ export const ConfirmDialog = componentFactory<IConfirmDialogFactory>(
     const [canceling, setCanceling] = useState(false);
     const [confirming, setConfirming] = useState(false);
     const loading = canceling || confirming;
+
+    const labels = { ...defaultLabels, ...labelsProp };
 
     return (
       <Dialog

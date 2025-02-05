@@ -16,8 +16,8 @@ export interface IConfirmDialogOwnProps
   cancelProps?: IButtonProps;
   confirmProps?: IButtonProps;
   labels?: {
-    confirm: string;
-    cancel: string;
+    confirm?: string;
+    cancel?: string;
   };
 }
 
