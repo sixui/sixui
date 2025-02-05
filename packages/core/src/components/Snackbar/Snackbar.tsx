@@ -54,7 +54,7 @@ export const Snackbar = componentFactory<ISnackbarFactory>(
     const overlayContext = useOverlayContext();
     const lastOpenOverlayInstancePosition = useRef(0);
     const overlayInstancePosition = overlayContext?.instanceId
-      ? overlaysStateContext.getInstancePositionInLayer(
+      ? overlaysStateContext.getInstancePosition(
           overlayContext.instanceId,
           OVERLAY_LAYER,
         )

@@ -6,7 +6,7 @@ import { polymorphicComponentFactory } from '~/utils/component/polymorphicCompon
 import { mergeProps } from '~/utils/mergeProps';
 import { useOverlayContext } from '../Overlays/Overlay.context';
 import { useOverlaysStateContext } from '../Overlays/OverlaysState.context';
-import { COMPONENT_NAME, OVERLAY_LAYER } from './Dialog.constants';
+import { COMPONENT_NAME } from './Dialog.constants';
 import { DialogContent, IDialogContentOwnProps } from './DialogContent';
 import { dialogTheme } from './Dialog.css';
 
@@ -36,10 +36,7 @@ export const Dialog = polymorphicComponentFactory<IDialogFactory>(
     const overlaysStateContext = useOverlaysStateContext();
     const overlayContext = useOverlayContext();
     const overlayInstancePosition = overlayContext?.instanceId
-      ? overlaysStateContext.getInstancePositionInLayer(
-          overlayContext.instanceId,
-          OVERLAY_LAYER,
-        )
+      ? overlaysStateContext.getInstancePosition(overlayContext.instanceId)
       : 0;
 
     const scrim = scrimProp ?? other.modal;

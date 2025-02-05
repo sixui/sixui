@@ -1,7 +1,7 @@
 import type { IDialogProps } from './Dialog.types';
 import { registerOverlay, useOverlayInstance } from '../Overlays';
 import { Dialog } from './Dialog';
-import { COMPONENT_NAME } from './Dialog.constants';
+import { COMPONENT_NAME, OVERLAY_LAYER } from './Dialog.constants';
 
 export const DialogOverlay = registerOverlay<IDialogProps>(
   (props) => {
@@ -24,6 +24,6 @@ export const DialogOverlay = registerOverlay<IDialogProps>(
   },
   {
     id: COMPONENT_NAME,
-    layer: 'dialogs',
+    layer: OVERLAY_LAYER,
   },
 );

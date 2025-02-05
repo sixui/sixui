@@ -105,7 +105,7 @@ export const Open: IStory = {
   },
 };
 
-const AsOverlayDemo: React.FC<ISnackbarProps> = (props: ISnackbarProps) => {
+const AsOverlayDemo: React.FC<ISnackbarProps> = (props) => {
   const overlays = useOverlays();
 
   return (
@@ -116,7 +116,7 @@ const AsOverlayDemo: React.FC<ISnackbarProps> = (props: ISnackbarProps) => {
 };
 
 export const AsOverlay: IStory = {
-  render: (props: ISnackbarProps) => (
+  render: (props) => (
     <OverlaysProvider>
       <AsOverlayDemo {...props} />
     </OverlaysProvider>

@@ -23,7 +23,7 @@ export interface IOverlaysProviderProps {
 export const OverlaysProvider: React.FC<IOverlaysProviderProps> = (props) => {
   const {
     children,
-    layers = ['snackbars', 'dialogs', 'confirms', 'drawers'],
+    layers = ['snackbars', 'dialogs', 'alerts', 'drawers'],
     instances: instancesProp,
     dispatch: dispatchProp,
     // DEV:
@@ -35,10 +35,14 @@ export const OverlaysProvider: React.FC<IOverlaysProviderProps> = (props) => {
   const instances = instancesProp ?? internalReducer[0];
   const dispatch = dispatchProp ?? internalReducer[1];
 
-  const getInstancePositionInLayer = useCallback(
-    (instanceId: string, layer: string): number => {
+  const getInstancePosition = useCallback(
+    (instanceId: string, layer?: string): number => {
       const overlayInstanceIds = Object.values(instances)
-        .filter((instance) => instance.opened && instance.layer === layer)
+        .filter(
+          (instance) =>
+            instance.opened &&
+            (layer === undefined || instance.layer === layer),
+        )
         .map(({ instanceId }) => instanceId);
       const position =
         overlayInstanceIds.length - overlayInstanceIds.indexOf(instanceId) - 1;
@@ -52,9 +56,9 @@ export const OverlaysProvider: React.FC<IOverlaysProviderProps> = (props) => {
     () => ({
       instances,
       layers,
-      getInstancePositionInLayer,
+      getInstancePosition,
     }),
-    [instances, layers, getInstancePositionInLayer],
+    [instances, layers, getInstancePosition],
   );
 
   const overlaysDispatchContextValue: IOverlaysDispatchContextValue = useMemo(

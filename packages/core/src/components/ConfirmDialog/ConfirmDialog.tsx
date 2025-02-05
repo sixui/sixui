@@ -1,0 +1,91 @@
+import { useState } from 'react';
+
+import type { IConfirmDialogThemeFactory } from './ConfirmDialog.css';
+import type { IConfirmDialogFactory } from './ConfirmDialog.types';
+import { Dialog } from '~/components/Dialog';
+import { useComponentTheme, useProps } from '~/components/Theme';
+import { executeLazyPromise } from '~/utils';
+import { componentFactory } from '~/utils/component/componentFactory';
+import { Button } from '../Button';
+import { COMPONENT_NAME } from './ConfirmDialog.constants';
+import { confirmDialogTheme } from './ConfirmDialog.css';
+
+export const ConfirmDialog = componentFactory<IConfirmDialogFactory>(
+  (props, forwardedRef) => {
+    const {
+      classNames,
+      className,
+      styles,
+      style,
+      variant,
+      onCancel = () => {},
+      onConfirm = () => {},
+      cancelProps,
+      confirmProps,
+      labels = {
+        confirm: 'Confirm',
+        cancel: 'Cancel',
+      },
+      ...other
+    } = useProps({ componentName: COMPONENT_NAME, props });
+
+    const { getStyles } = useComponentTheme<IConfirmDialogThemeFactory>({
+      componentName: COMPONENT_NAME,
+      classNames,
+      className,
+      styles,
+      style,
+      variant,
+      theme: confirmDialogTheme,
+    });
+
+    const [canceling, setCanceling] = useState(false);
+    const [confirming, setConfirming] = useState(false);
+    const loading = canceling || confirming;
+
+    return (
+      <Dialog
+        {...getStyles('root')}
+        ref={forwardedRef}
+        onClosed={() => {
+          setCanceling(false);
+          setConfirming(false);
+        }}
+        modal={true}
+        actions={({ close }) => (
+          <>
+            <Button
+              readOnly={loading}
+              loading={canceling}
+              onClick={() =>
+                executeLazyPromise(onCancel, setCanceling, {
+                  resetEvent: 'error',
+                }).then(close)
+              }
+              variant="text"
+              {...cancelProps}
+            >
+              {labels.cancel}
+            </Button>
+            <Button
+              readOnly={loading}
+              loading={confirming}
+              onClick={() =>
+                executeLazyPromise(onConfirm, setConfirming, {
+                  resetEvent: 'error',
+                }).then(close)
+              }
+              {...confirmProps}
+            >
+              {labels.confirm}
+            </Button>
+          </>
+        )}
+        {...other}
+      />
+    );
+  },
+);
+
+ConfirmDialog.theme = confirmDialogTheme;
+ConfirmDialog.displayName = `@sixui/core/${COMPONENT_NAME}`;
