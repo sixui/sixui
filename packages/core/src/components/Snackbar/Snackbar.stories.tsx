@@ -115,10 +115,23 @@ const AsOverlayDemo: React.FC<ISnackbarProps> = (props) => {
   );
 };
 
+const AsOverlayDemoShowcase = componentShowcaseFactory(AsOverlayDemo);
+
 export const AsOverlay: IStory = {
   render: (props) => (
     <OverlaysProvider>
-      <AsOverlayDemo {...props} />
+      <AsOverlayDemoShowcase
+        props={props}
+        rows={[
+          { legend: 'Normal' },
+          {
+            legend: 'Closable',
+            props: {
+              showCloseButton: true,
+            },
+          },
+        ]}
+      />
     </OverlaysProvider>
   ),
   args: {

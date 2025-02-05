@@ -5,11 +5,7 @@ import type { IDialogProps } from './Dialog.types';
 import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Flex } from '~/components/Flex';
-import {
-  OverlaysProvider,
-  registerOverlay,
-  useOverlays,
-} from '~/components/Overlays';
+import { OverlaysProvider, useOverlays } from '~/components/Overlays';
 import { TextInputField } from '~/components/TextInputField';
 import { useDisclosure } from '~/hooks/useDisclosure';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
@@ -158,143 +154,40 @@ export const WithForm: IStory = {
   },
 };
 
-const TestDemo: React.FC<IDialogProps> = (props: IDialogProps) => {
+const AsOverlayDemo: React.FC<IDialogProps> = (props) => {
   const overlays = useOverlays();
 
   return (
-    <OverlaysProvider
-      overlays={{
-        bbb: {
-          component: DialogOverlay,
-          props: {
-            ...props,
-            children: 'AAA',
-          },
-          layer: 'dialogs',
-        },
-      }}
+    <Button
+      onClick={() =>
+        overlays.open(DialogOverlay, {
+          ...props,
+          modal: true,
+          headline: 'Permanently delete?',
+          children:
+            'Deleting the selected messages will also remove them from all synced devices.',
+          actions: ({ close }) => (
+            <>
+              <Button variant="text" onClick={close}>
+                Cancel
+              </Button>
+              <Button onClick={close}>Delete</Button>
+            </>
+          ),
+        })
+      }
     >
-      <Button
-        onClick={() =>
-          overlays.open(DialogOverlay, {
-            ...props,
-            // modal: true,
-            headline: 'Delete?',
-            children:
-              'Do you want to delete this thing? This may be a very important thing. So choose carefully.',
-            opened: true,
-            actions: ({ close }) => (
-              <>
-                <Button variant="text" onClick={close}>
-                  Cancel
-                </Button>
-                <Button
-                  type="submit"
-                  onClick={() =>
-                    overlays.open(DialogOverlay, {
-                      ...props,
-                      headline: 'Confirm?',
-                      children: 'Are you sure you want to delete this thing?',
-                      opened: true,
-                      actions: ({ close }) => (
-                        <>
-                          <Button variant="text" onClick={close}>
-                            Cancel
-                          </Button>
-                          <Button
-                            type="submit"
-                            onClick={() => {
-                              // DELETE
-                            }}
-                          >
-                            Yes
-                          </Button>
-                        </>
-                      ),
-                    })
-                  }
-                >
-                  Delete
-                </Button>
-              </>
-            ),
-          })
-        }
-      >
-        Show normal
-      </Button>
-
-      <Button
-        onClick={() =>
-          overlays.open(DialogOverlay2, {
-            ...props,
-            modal: true,
-            headline: 'Delete (bis)?',
-            children:
-              'Do you want to delete this thing? This may be a very important thing. So choose carefully.',
-            opened: true,
-            actions: ({ close }) => (
-              <>
-                <Button variant="text" onClick={close}>
-                  Cancel
-                </Button>
-                <Button
-                  type="submit"
-                  onClick={() =>
-                    overlays.open(DialogOverlay, {
-                      ...props,
-                      headline: 'Confirm (bis)?',
-                      children: 'Are you sure you want to delete this thing?',
-                      opened: true,
-                      modal: true,
-                      actions: ({ close }) => (
-                        <>
-                          <Button variant="text" onClick={close}>
-                            Cancel
-                          </Button>
-                          <Button
-                            type="submit"
-                            onClick={() => {
-                              // DELETE
-                            }}
-                          >
-                            Yes
-                          </Button>
-                        </>
-                      ),
-                    })
-                  }
-                >
-                  Delete
-                </Button>
-              </>
-            ),
-          })
-        }
-      >
-        Show modal
-      </Button>
-
-      {/* <Button
-        onClick={() =>
-          overlays.open({
-            id: 'bbb',
-            props: {
-              headline: 'Hello BBB',
-            },
-          })
-        }
-      >
-        Show BBB
-      </Button> */}
-    </OverlaysProvider>
+      Open
+    </Button>
   );
 };
+
+const AsOverlayDemoShowcase = componentShowcaseFactory(AsOverlayDemo);
 
 export const AsOverlay: IStory = {
   render: (props: IDialogProps) => (
     <OverlaysProvider>
-      <TestDemo {...props} />
+      <AsOverlayDemoShowcase props={props} />
     </OverlaysProvider>
   ),
   args: defaultArgs,
