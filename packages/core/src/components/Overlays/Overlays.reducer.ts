@@ -1,11 +1,16 @@
 import { COMPONENT_ID } from './Overlays.constants';
 
-export interface IOverlayInstance {
-  overlayId: string;
-  props?: object;
+export interface IOverlayInstanceState {
   opened?: boolean;
   delayOpened?: boolean;
   keepMounted?: boolean;
+}
+
+export interface IOverlayInstance extends IOverlayInstanceState {
+  overlayId: string;
+  instanceId: string;
+  props?: object;
+  layer?: string;
 }
 
 export type IOverlaysInstances = Record<string, IOverlayInstance>;
@@ -35,6 +40,7 @@ export const overlaysReducer = (
         [instanceId]: {
           ...instances[overlayId],
           overlayId,
+          instanceId,
           props,
           opened: true,
           // If modal is not mounted, mount it first then make it visible. There

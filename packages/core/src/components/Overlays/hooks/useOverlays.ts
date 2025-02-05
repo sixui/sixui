@@ -26,7 +26,9 @@ export const useOverlays = (): IUseOverlaysResult => {
 
       const registeredOverlay = overlaysGlobals.registry[overlayId];
       if (!registeredOverlay) {
-        throw new Error('Overlay is not registered');
+        throw new Error(
+          'You try to open an overlay that has not been registered with `registerOverlay()`.',
+        );
       }
 
       overlaysContext.dispatch({

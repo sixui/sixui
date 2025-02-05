@@ -1,13 +1,13 @@
 import { OVERLAY_ID_SYMBOL } from './Overlays.constants';
 
 export type IOverlayFCProps<TProps extends object> = TProps & {
-  instanceId?: string;
+  instanceId: string;
 };
 
 export type IOverlayFC<TProps extends object> = React.FC<
   IOverlayFCProps<TProps>
 > & {
-  [OVERLAY_ID_SYMBOL]?: string;
+  [OVERLAY_ID_SYMBOL]: string;
 };
 
 export interface IOverlay<TProps extends object> {
@@ -16,3 +16,8 @@ export interface IOverlay<TProps extends object> {
   props?: TProps;
   layer?: string;
 }
+
+export type IOverlayUpdate<TProps extends object> = Pick<
+  IOverlay<TProps>,
+  'props' | 'layer'
+>;

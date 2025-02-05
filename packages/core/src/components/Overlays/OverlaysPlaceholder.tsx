@@ -3,22 +3,22 @@ import type { IOverlay } from './Overlays.types';
 import { useOverlaysContext } from './Overlays.context';
 import { overlaysGlobals } from './Overlays.globals';
 
+interface IRenderableOverlay<TProps extends object> extends IOverlay<TProps> {
+  instanceId: string;
+}
+
 /** The placeholder component is used to auto render overlays. */
 export const OverlaysPlaceholder: React.FC = () => {
   const overlaysContext = useOverlaysContext();
-  console.log('RENDER:');
-  console.log('________REGISTRY', overlaysGlobals.registry);
-  console.log('___________STATE', overlaysContext.instances);
 
   const overlaysToRender = Object.entries(overlaysContext.instances).reduce<
-    Array<IOverlay<IAny> & { instanceId: string }>
+    Array<IRenderableOverlay<IAny>>
   >((acc, [instanceId, instance]) => {
-    const overlay = overlaysGlobals.registry[instance.overlayId];
+    const id = instance.overlayId;
+    const overlay = overlaysGlobals.registry[id];
     if (!overlay) {
       // eslint-disable-next-line no-console
-      console.warn(
-        `[@sixui/core] No overlay found for id \`${instance.overlayId}\`.`,
-      );
+      console.warn(`[@sixui/core] No overlay registered for id \`${id}\`.`);
 
       return acc;
     }

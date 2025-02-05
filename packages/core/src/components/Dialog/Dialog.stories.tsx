@@ -8,13 +8,13 @@ import { Flex } from '~/components/Flex';
 import {
   OverlaysProvider,
   registerOverlay,
-  useOverlay,
   useOverlays,
 } from '~/components/Overlays';
 import { TextInputField } from '~/components/TextInputField';
 import { useDisclosure } from '~/hooks/useDisclosure';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { Dialog } from './Dialog';
+import { DialogOverlay } from './DialogOverlay';
 
 // https://m3.material.io/components/dialogs/overview
 // https://material-web.dev/components/dialog/
@@ -159,32 +159,9 @@ export const WithForm: IStory = {
 };
 
 // DEV:
-const DialogOverlay = registerOverlay<IDialogProps>(
-  (props) => {
-    const { instanceId, ...other } = props;
-    const overlay = useOverlay({ instanceId });
-
-    return (
-      <Dialog
-        {...other}
-        opened={overlay.opened}
-        onClose={() => {
-          overlay.close();
-          overlay.resolve();
-        }}
-        onClosed={() => {
-          if (!props.keepMounted) {
-            overlay.remove();
-          }
-        }}
-      />
-    );
-  },
-  {
-    id: 'test',
-    layer: 'dialogs',
-  },
-);
+const DialogOverlay2 = registerOverlay<IDialogProps>((props) => (
+  <DialogOverlay {...props} headline="HELLLELKSDLDKLQSKD" />
+));
 
 // DEV:
 const TestDemo: React.FC<IDialogProps> = (props: IDialogProps) => {
@@ -251,14 +228,14 @@ const TestDemo: React.FC<IDialogProps> = (props: IDialogProps) => {
           })
         }
       >
-        Show AAA
+        Show normal
       </Button>
 
       <Button
         onClick={() =>
-          overlays.open(DialogOverlay, {
+          overlays.open(DialogOverlay2, {
             ...props,
-            // modal: true,
+            modal: true,
             headline: 'Delete (bis)?',
             children:
               'Do you want to delete this thing? This may be a very important thing. So choose carefully.',
@@ -302,7 +279,7 @@ const TestDemo: React.FC<IDialogProps> = (props: IDialogProps) => {
           })
         }
       >
-        Show AAA(bis)
+        Show modal
       </Button>
 
       {/* <Button
@@ -321,17 +298,13 @@ const TestDemo: React.FC<IDialogProps> = (props: IDialogProps) => {
   );
 };
 
-// DEV:
-export const Test: IStory = {
+export const AsOverlay: IStory = {
   render: (props: IDialogProps) => (
     <OverlaysProvider>
       <TestDemo {...props} />
     </OverlaysProvider>
   ),
-  args: {
-    ...defaultArgs,
-    headline: 'Hello',
-  },
+  args: defaultArgs,
 };
 
 export default meta;

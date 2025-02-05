@@ -7,7 +7,8 @@ import { overlaysGlobals } from '../Overlays.globals';
 import { useOverlays } from './useOverlays';
 
 export interface IUseOverlayProps {
-  instanceId?: string;
+  instanceId: string;
+  layer?: string;
 }
 
 export interface IUseOverlayResult {
@@ -19,16 +20,17 @@ export interface IUseOverlayResult {
   reject: (args?: unknown) => void;
 }
 
-export const useOverlay = (props: IUseOverlayProps = {}): IUseOverlayResult => {
-  const { instanceId: instanceIdProp } = props;
+export const useOverlay = (props: IUseOverlayProps): IUseOverlayResult => {
+  const { instanceId } = props;
 
   const overlaysContext = useOverlaysContext();
   const overlayContext = useOverlayContext();
   const overlays = useOverlays();
 
-  const overlayId = overlayContext.overlayId || getUid();
-  const instanceId = instanceIdProp ?? overlayId;
-  const overlayInstance = overlaysContext.instances[instanceId];
+  const overlayId = overlayContext?.overlayId || getUid();
+  const overlayInstance = instanceId
+    ? overlaysContext.instances[instanceId]
+    : undefined;
 
   const closeCallback = useCallback(() => {
     overlays.close(overlayId, instanceId);
@@ -51,6 +53,10 @@ export const useOverlay = (props: IUseOverlayProps = {}): IUseOverlayResult => {
     },
     [instanceId],
   );
+
+  overlaysGlobals.update(overlayId, {
+    layer: props.layer,
+  });
 
   return {
     overlayId,
