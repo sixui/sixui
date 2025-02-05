@@ -3,8 +3,8 @@ import { useCallback } from 'react';
 import type { IOverlayFC } from '../Overlays.types';
 import { getUid } from '~/utils';
 import { COMPONENT_ID } from '../Overlays.constants';
-import { useOverlaysContext } from '../Overlays.context';
 import { overlaysGlobals } from '../Overlays.globals';
+import { useOverlaysDispatchContext } from '../OverlaysDispatch.context';
 import { getOverlayId } from '../utils/getOverlayId';
 
 export interface IUseOverlaysResult {
@@ -17,7 +17,7 @@ export interface IUseOverlaysResult {
 }
 
 export const useOverlays = (): IUseOverlaysResult => {
-  const overlaysContext = useOverlaysContext();
+  const overlaysDispatchContext = useOverlaysDispatchContext();
 
   const open: IUseOverlaysResult['open'] = useCallback(
     (idOrComponent, props): Promise<unknown> => {
@@ -31,7 +31,7 @@ export const useOverlays = (): IUseOverlaysResult => {
         );
       }
 
-      overlaysContext.dispatch({
+      overlaysDispatchContext.dispatch({
         type: `${COMPONENT_ID}/open`,
         payload: {
           overlayId,
@@ -59,12 +59,12 @@ export const useOverlays = (): IUseOverlaysResult => {
 
       return overlaysGlobals.callbacks[instanceId].promise;
     },
-    [overlaysContext],
+    [overlaysDispatchContext],
   );
 
   const close = useCallback(
     (overlayId: string, instanceId: string): void => {
-      overlaysContext.dispatch({
+      overlaysDispatchContext.dispatch({
         type: `${COMPONENT_ID}/close`,
         payload: {
           overlayId,
@@ -72,12 +72,12 @@ export const useOverlays = (): IUseOverlaysResult => {
         },
       });
     },
-    [overlaysContext],
+    [overlaysDispatchContext],
   );
 
   const remove = useCallback(
     (overlayId: string, instanceId: string): void => {
-      overlaysContext.dispatch({
+      overlaysDispatchContext.dispatch({
         type: `${COMPONENT_ID}/remove`,
         payload: {
           overlayId,
@@ -87,7 +87,7 @@ export const useOverlays = (): IUseOverlaysResult => {
 
       delete overlaysGlobals.callbacks[instanceId];
     },
-    [overlaysContext],
+    [overlaysDispatchContext],
   );
 
   return {

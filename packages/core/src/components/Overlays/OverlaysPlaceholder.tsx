@@ -1,7 +1,7 @@
 import type { IAny } from '~/utils/types';
 import type { IOverlay } from './Overlays.types';
-import { useOverlaysContext } from './Overlays.context';
 import { overlaysGlobals } from './Overlays.globals';
+import { useOverlaysStateContext } from './OverlaysState.context';
 
 interface IRenderableOverlay<TProps extends object> extends IOverlay<TProps> {
   instanceId: string;
@@ -9,10 +9,7 @@ interface IRenderableOverlay<TProps extends object> extends IOverlay<TProps> {
 
 /** The placeholder component is used to auto render overlays. */
 export const OverlaysPlaceholder: React.FC = () => {
-  const overlaysContext = useOverlaysContext();
-  console.log('RENDER:');
-  console.log('________REGISTRY', overlaysGlobals.registry);
-  console.log('_______INSTANCES', overlaysContext.instances);
+  const overlaysContext = useOverlaysStateContext();
 
   const overlaysToRender = Object.entries(overlaysContext.instances).reduce<
     Array<IRenderableOverlay<IAny>>

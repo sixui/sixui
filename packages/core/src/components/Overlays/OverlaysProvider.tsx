@@ -1,17 +1,21 @@
 import { useMemo, useReducer } from 'react';
 
 import type { IAny, IOmit } from '~/utils/types';
-import type { IOverlaysContextValue } from './Overlays.context';
 import type { IOverlayAction, IOverlaysInstances } from './Overlays.reducer';
 import type { IOverlay } from './Overlays.types';
-import { OverlaysContext } from './Overlays.context';
+import type { IOverlaysStateContextValue } from './OverlaysState.context';
 import { overlaysInitialInstances, overlaysReducer } from './Overlays.reducer';
+import {
+  IOverlaysDispatchContextValue,
+  OverlaysDispatchContext,
+} from './OverlaysDispatch.context';
 import { OverlaysPlaceholder } from './OverlaysPlaceholder';
+import { OverlaysStateContext } from './OverlaysState.context';
 
 export interface IOverlaysProviderProps {
   children: React.ReactNode;
   layers?: Array<string>;
-  state?: IOverlaysInstances;
+  instances?: IOverlaysInstances;
   dispatch?: React.ActionDispatch<[action: IOverlayAction]>;
   overlays?: Record<string, IOmit<IOverlay<IAny>, 'overlayId'>>;
 }
@@ -20,31 +24,32 @@ export const OverlaysProvider: React.FC<IOverlaysProviderProps> = (props) => {
   const {
     children,
     layers = ['snackbars', 'dialogs', 'confirms', 'drawers'],
-    state: stateProp,
+    instances: instancesProp,
     dispatch: dispatchProp,
     overlays,
   } = props;
 
-  const [state, dispatch] = useReducer(
-    overlaysReducer,
-    overlaysInitialInstances,
+  const internalReducer = useReducer(overlaysReducer, overlaysInitialInstances);
+
+  const instances = instancesProp ?? internalReducer[0];
+  const dispatch = dispatchProp ?? internalReducer[1];
+
+  const overlaysStateContextValue: IOverlaysStateContextValue = useMemo(
+    () => ({ instances, layers }),
+    [instances, layers],
   );
 
-  //
-
-  const overlaysContextValue: IOverlaysContextValue = useMemo(
-    () => ({
-      instances: stateProp ?? state,
-      dispatch: dispatchProp ?? dispatch,
-      layers,
-    }),
-    [state, dispatch, layers, stateProp, dispatchProp],
+  const overlaysDispatchContextValue: IOverlaysDispatchContextValue = useMemo(
+    () => ({ dispatch }),
+    [dispatch],
   );
 
   return (
-    <OverlaysContext.Provider value={overlaysContextValue}>
-      {children}
-      <OverlaysPlaceholder />
-    </OverlaysContext.Provider>
+    <OverlaysStateContext.Provider value={overlaysStateContextValue}>
+      <OverlaysDispatchContext.Provider value={overlaysDispatchContextValue}>
+        {children}
+        <OverlaysPlaceholder />
+      </OverlaysDispatchContext.Provider>
+    </OverlaysStateContext.Provider>
   );
 };

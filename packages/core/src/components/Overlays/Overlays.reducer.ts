@@ -1,6 +1,5 @@
 import { COMPONENT_ID } from './Overlays.constants';
 
-
 export interface IOverlayInstanceState {
   mounted?: boolean;
   opened?: boolean;
@@ -24,7 +23,6 @@ export interface IOverlayAction {
     instanceId: string;
     props?: object;
     layer?: string;
-    flags?: Record<string, unknown>;
   };
 }
 
@@ -83,45 +81,12 @@ export const overlaysReducer = (
       };
     }
 
-    case `${COMPONENT_ID}/unmounted`: {
-      const { instanceId, ...instance } = action.payload;
-      const existingInstance = instances[instanceId];
-
-      return {
-        ...instances,
-        [instanceId]: {
-          ...existingInstance,
-          ...instance,
-          instanceId,
-          mounted: false,
-          opened: false,
-        },
-      };
-    }
-
     case `${COMPONENT_ID}/remove`: {
       const { instanceId } = action.payload;
       const newState = { ...instances };
       delete newState[instanceId];
 
       return newState;
-    }
-
-    // FIXME: remove?
-    case `${COMPONENT_ID}/set-flags`: {
-      const { instanceId, flags } = action.payload;
-
-      if (!instances[instanceId]) {
-        return instances;
-      }
-
-      return {
-        ...instances,
-        [instanceId]: {
-          ...instances[instanceId],
-          ...flags,
-        },
-      };
     }
 
     default:

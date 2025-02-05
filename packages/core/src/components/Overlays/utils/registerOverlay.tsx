@@ -4,8 +4,8 @@ import type { IOverlayFC, IOverlayFCProps } from '../Overlays.types';
 import { getUid } from '~/utils/getUid';
 import { OverlayProvider, useOverlayContext } from '../Overlay.context';
 import { COMPONENT_ID, OVERLAY_ID_SYMBOL } from '../Overlays.constants';
-import { useOverlaysContext } from '../Overlays.context';
 import { overlaysGlobals } from '../Overlays.globals';
+import { useOverlaysDispatchContext } from '../OverlaysDispatch.context';
 
 export type IRegisterOverlayOptions = {
   id?: string;
@@ -19,30 +19,18 @@ export const registerOverlay = <TProps extends object>(
   const overlayId = options?.id ?? getUid();
 
   const Overlay: IOverlayFC<TProps> = (props: IOverlayFCProps<TProps>) => {
-    const overlaysContext = useOverlaysContext();
+    const overlaysDispatchContext = useOverlaysDispatchContext();
     const overlayContext = useOverlayContext();
 
     useEffect(() => {
-      overlaysContext.dispatch({
+      overlaysDispatchContext.dispatch({
         type: `${COMPONENT_ID}/mounted`,
         payload: {
           overlayId,
           instanceId: props.instanceId,
         },
       });
-      console.log('_MOUNTED');
-
-      return () => {
-        // console.log('_UNMOUNTED');
-        // overlaysContext.dispatch({
-        //   type: `${COMPONENT_ID}/unmounted`,
-        //   payload: {
-        //     overlayId,
-        //     instanceId: props.instanceId,
-        //   },
-        // });
-      };
-    }, []);
+    }, [overlaysDispatchContext, props.instanceId]);
 
     return (
       <OverlayProvider

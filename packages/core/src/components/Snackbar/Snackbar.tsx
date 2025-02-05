@@ -10,7 +10,7 @@ import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { useTimeout } from '~/hooks/useTimeout';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { px } from '~/utils/css';
-import { useOverlaysContext } from '../Overlays/Overlays.context';
+import { useOverlaysStateContext } from '../Overlays/OverlaysState.context';
 import { COMPONENT_NAME } from './Snackbar.constants';
 import { SnackbarContent } from './SnackbarContent';
 import { snackbarTheme } from './Snackbar.css';
@@ -44,7 +44,7 @@ export const Snackbar = componentFactory<ISnackbarFactory>(
       },
     });
 
-    const overlaysContext = useOverlaysContext();
+    const overlaysContext = useOverlaysStateContext();
     const snackbarOverlayInstances = Object.values(
       overlaysContext.instances,
     ).filter((instance) => instance.overlayId === COMPONENT_NAME);

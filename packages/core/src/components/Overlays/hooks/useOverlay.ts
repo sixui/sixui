@@ -2,8 +2,8 @@ import { useCallback } from 'react';
 
 import { getUid } from '~/utils';
 import { useOverlayContext } from '../Overlay.context';
-import { useOverlaysContext } from '../Overlays.context';
 import { overlaysGlobals } from '../Overlays.globals';
+import { useOverlaysStateContext } from '../OverlaysState.context';
 import { useOverlays } from './useOverlays';
 
 export interface IUseOverlayProps {
@@ -22,7 +22,7 @@ export interface IUseOverlayResult {
 export const useOverlay = (props: IUseOverlayProps): IUseOverlayResult => {
   const { instanceId } = props;
 
-  const overlaysContext = useOverlaysContext();
+  const overlaysContext = useOverlaysStateContext();
   const overlayContext = useOverlayContext();
   const overlays = useOverlays();
 
