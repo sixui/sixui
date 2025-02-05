@@ -26,6 +26,10 @@ const classNames = createStyles({
     zIndex: themeTokens.zIndex.overlay,
     minWidth: 'unset',
 
+    transitionProperty: 'bottom',
+    transitionDuration: themeTokens.motion.duration.short3,
+    transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
+
     selectors: {
       [modifierSelector<IModifier>({ justify: 'start' })]: {
         left: tokens.fixedHorizontalSpace.normal,

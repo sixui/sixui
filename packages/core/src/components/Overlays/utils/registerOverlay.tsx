@@ -36,6 +36,7 @@ export const registerOverlay = <TProps extends object>(
       <OverlayProvider
         value={{
           overlayId: overlayContext?.overlayId ?? overlayId,
+          instanceId: props.instanceId,
         }}
       >
         <Component {...props} />

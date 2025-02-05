@@ -6,11 +6,7 @@ import { overlaysGlobals } from '../Overlays.globals';
 import { useOverlaysStateContext } from '../OverlaysState.context';
 import { useOverlays } from './useOverlays';
 
-export interface IUseOverlayProps {
-  instanceId: string;
-}
-
-export interface IUseOverlayResult {
+export interface IUseOverlayInstanceResult {
   overlayId: string;
   opened: boolean;
   close: () => void;
@@ -19,9 +15,9 @@ export interface IUseOverlayResult {
   reject: (args?: unknown) => void;
 }
 
-export const useOverlay = (props: IUseOverlayProps): IUseOverlayResult => {
-  const { instanceId } = props;
-
+export const useOverlayInstance = (
+  instanceId: string,
+): IUseOverlayInstanceResult => {
   const overlaysContext = useOverlaysStateContext();
   const overlayContext = useOverlayContext();
   const overlays = useOverlays();

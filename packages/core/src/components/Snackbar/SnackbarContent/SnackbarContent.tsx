@@ -2,7 +2,6 @@ import type { ISnackbarContentThemeFactory } from './SnackbarContent.css';
 import type { ISnackbarContentFactory } from './SnackbarContent.types';
 import { iconXMark } from '~/assets/icons';
 import { Button } from '~/components/Button';
-import { Flex } from '~/components/Flex';
 import { IconButton } from '~/components/IconButton';
 import { PaperBase } from '~/components/PaperBase';
 import { SvgIcon } from '~/components/SvgIcon';
@@ -42,19 +41,11 @@ export const SnackbarContent = componentFactory<ISnackbarContentFactory>(
     });
 
     return (
-      <PaperBase
-        {...getStyles('root')}
-        as={Flex}
-        direction="row"
-        gap="$3"
-        ref={forwardedRef}
-        wrap
-        {...other}
-      >
+      <PaperBase {...getStyles('root')} ref={forwardedRef} {...other}>
         <div {...getStyles('supportingText')}>{children}</div>
 
         {(actionLabel ?? showCloseButton) && (
-          <Flex {...getStyles('actions')} direction="row" gap="$2">
+          <div {...getStyles('actions')}>
             {actionLabel && (
               <Button variant="snackbar" onClick={onActionClick}>
                 {actionLabel}
@@ -69,7 +60,7 @@ export const SnackbarContent = componentFactory<ISnackbarContentFactory>(
                 aria-label="close"
               />
             )}
-          </Flex>
+          </div>
         )}
       </PaperBase>
     );

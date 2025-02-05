@@ -16,7 +16,6 @@ type IModifier = 'with-trailing-action' | 'with-trailing-icon';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
-    space: px(space(4)),
     color: themeTokens.colorScheme.onSurface,
     elevation: elevationLevelPreset[3],
     shape: px(themeTokens.shape.corner.xs),
@@ -37,13 +36,18 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
 
 const classNames = createStyles({
   root: {
-    padding: tokens.container.space,
+    paddingLeft: px(space(4)),
+    paddingRight: px(space(4)),
+    paddingTop: px(space(3.5)),
+    paddingBottom: px(space(3.5)),
     minHeight: tokens.container.minHeight,
     minWidth: tokens.container.minWidth,
     display: 'flex',
+    gap: px(space(3)),
     flexDirection: 'row',
     alignItems: 'start',
     flexGrow: 'initial',
+    flexWrap: 'wrap',
 
     vars: overrideTokens(PaperBase.theme.tokens, {
       container: {
@@ -68,6 +72,9 @@ const classNames = createStyles({
     ...typography(tokens.supportingText.typography),
   },
   actions: {
+    display: 'flex',
+    flexDirection: 'row',
+    gap: px(space(2)),
     marginLeft: 'auto',
     alignItems: 'center',
     height: tokens.supportingText.typography.lineHeight,

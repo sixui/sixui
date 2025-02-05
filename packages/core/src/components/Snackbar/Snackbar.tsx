@@ -10,6 +10,8 @@ import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { useTimeout } from '~/hooks/useTimeout';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { px } from '~/utils/css';
+import { Box } from '../Box';
+import { useOverlayContext } from '../Overlays/Overlay.context';
 import { useOverlaysStateContext } from '../Overlays/OverlaysState.context';
 import { COMPONENT_NAME } from './Snackbar.constants';
 import { SnackbarContent } from './SnackbarContent';
@@ -44,16 +46,20 @@ export const Snackbar = componentFactory<ISnackbarFactory>(
       },
     });
 
-    const overlaysContext = useOverlaysStateContext();
-    const snackbarOverlayInstances = Object.values(
-      overlaysContext.instances,
-    ).filter((instance) => instance.overlayId === COMPONENT_NAME);
-    console.log('___', snackbarOverlayInstances);
-
-    const x = useRef(
-      24 + (48 + 24) * Math.max(snackbarOverlayInstances.length - 1, 0),
+    const overlaysStateContext = useOverlaysStateContext();
+    const overlayContext = useOverlayContext();
+    const snackbarOverlayInstanceIds = Object.values(
+      overlaysStateContext.instances,
+    )
+      .filter(({ overlayId, opened }) => overlayId === COMPONENT_NAME && opened)
+      .map(({ instanceId }) => instanceId);
+    const overlayInstancePosition = Math.max(
+      overlayContext
+        ? snackbarOverlayInstanceIds.indexOf(overlayContext.instanceId)
+        : -1,
+      0,
     );
-    console.log('_____X', x.current);
+    const bottomSpace = 24 + (48 + 24) * overlayInstancePosition;
 
     const transitionNodeRef = useRef<HTMLDivElement>(null);
     const transitionNodeHandleRef = useMergeRefs(
@@ -72,27 +78,30 @@ export const Snackbar = componentFactory<ISnackbarFactory>(
         unmountOnExit
       >
         {(status) => (
-          <Motion
+          <Box
             {...getStyles('root', {
               style: assignInlineVars({
-                [snackbarTheme.tokens.fixedBottomSpace]: px(x.current),
+                [snackbarTheme.tokens.fixedBottomSpace]: px(bottomSpace),
               }),
             })}
-            orientation="vertical"
-            origin="edge"
-            placement={{ side: 'top' }}
-            pattern={{ enter: 'enterExit', exit: 'fade' }}
-            status={status}
-            z="$overlay"
-            ref={transitionNodeRef}
           >
-            <SnackbarContent
-              {...getStyles('snackbarContent')}
-              ref={transitionNodeHandleRef}
-              onClose={onClose}
-              {...other}
-            />
-          </Motion>
+            <Motion
+              orientation="vertical"
+              origin="edge"
+              placement={{ side: 'top' }}
+              pattern={{ enter: 'enterExit', exit: 'fade' }}
+              status={status}
+              z="$overlay"
+              ref={transitionNodeRef}
+            >
+              <SnackbarContent
+                {...getStyles('snackbarContent')}
+                ref={transitionNodeHandleRef}
+                onClose={onClose}
+                {...other}
+              />
+            </Motion>
+          </Box>
         )}
       </CSSTransition>
     );

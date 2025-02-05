@@ -186,7 +186,7 @@ const TestDemo: React.FC<IDialogProps> = (props: IDialogProps) => {
         onClick={() =>
           void overlays.open(SnackbarOverlay, {
             children: 'Hello',
-            autoHideDuration: 1000,
+            autoHideDuration: 3000,
           })
         }
       >
