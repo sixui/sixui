@@ -52,15 +52,11 @@ export const Snackbar = componentFactory<ISnackbarFactory>(
     const overlaysStateContext = useOverlaysStateContext();
     const overlayContext = useOverlayContext();
     const lastOpenOverlayInstancePosition = useRef(0);
-    const openedSnackbarOverlayInstanceIds = Object.values(
-      overlaysStateContext.instances,
-    )
-      .filter(({ overlayId, opened }) => overlayId === COMPONENT_NAME && opened)
-      .map(({ instanceId }) => instanceId);
-    const overlayInstancePosition = overlayContext
-      ? openedSnackbarOverlayInstanceIds.length -
-        openedSnackbarOverlayInstanceIds.indexOf(overlayContext.instanceId) -
-        1
+    const overlayInstancePosition = overlayContext?.instanceId
+      ? overlaysStateContext.getInstancePosition(
+          COMPONENT_NAME,
+          overlayContext.instanceId,
+        )
       : 0;
     if (opened) {
       lastOpenOverlayInstancePosition.current = overlayInstancePosition;

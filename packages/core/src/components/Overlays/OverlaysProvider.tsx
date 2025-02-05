@@ -1,4 +1,4 @@
-import { useMemo, useReducer } from 'react';
+import { useCallback, useMemo, useReducer } from 'react';
 
 import type { IAny, IOmit } from '~/utils/types';
 import type { IOverlayAction, IOverlaysInstances } from './Overlays.reducer';
@@ -35,9 +35,31 @@ export const OverlaysProvider: React.FC<IOverlaysProviderProps> = (props) => {
   const instances = instancesProp ?? internalReducer[0];
   const dispatch = dispatchProp ?? internalReducer[1];
 
+  const getInstancePosition = useCallback(
+    (overlayId: string, instanceId: string, layer?: string): number => {
+      const overlayInstanceIds = Object.values(instances)
+        .filter(
+          (instance) =>
+            instance.opened &&
+            instance.overlayId === overlayId &&
+            (layer === undefined || instance.layer === layer),
+        )
+        .map(({ instanceId }) => instanceId);
+      const position =
+        overlayInstanceIds.length - overlayInstanceIds.indexOf(instanceId) - 1;
+
+      return position;
+    },
+    [instances],
+  );
+
   const overlaysStateContextValue: IOverlaysStateContextValue = useMemo(
-    () => ({ instances, layers }),
-    [instances, layers],
+    () => ({
+      instances,
+      layers,
+      getInstancePosition,
+    }),
+    [instances, layers, getInstancePosition],
   );
 
   const overlaysDispatchContextValue: IOverlaysDispatchContextValue = useMemo(
