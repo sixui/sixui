@@ -55,8 +55,9 @@ const classNames = createStyles({
         justifyContent: 'start',
       },
       [modifierSelector<IModifier>({ justify: 'center' })]: {
-        left: tokens.fixedHorizontalSpace.compact,
-        right: tokens.fixedHorizontalSpace.compact,
+        left: `max(50%, ${tokens.fixedHorizontalSpace.compact})`,
+        right: `max(50%, ${tokens.fixedHorizontalSpace.compact})`,
+        transform: 'translateX(-50%)',
         justifyContent: 'center',
       },
     },
@@ -64,6 +65,8 @@ const classNames = createStyles({
     '@container': {
       [responsiveContainerQuery({ size: 'compact' })]: {
         left: tokens.fixedHorizontalSpace.compact,
+        right: tokens.fixedHorizontalSpace.compact,
+        transform: 'unset',
       },
     },
   },
