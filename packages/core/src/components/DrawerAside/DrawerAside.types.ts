@@ -3,33 +3,33 @@ import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { ISide } from '~/utils/types';
 import type {
-  IModalAsideThemeFactory,
-  modalAsideTheme,
-} from './ModalAside.css';
+  drawerAsideTheme,
+  IDrawerAsideThemeFactory,
+} from './DrawerAside.css';
 
-export interface IModalAsideChildrenRenderProps {
+export interface IDrawerAsideChildrenRenderProps {
   type: string;
   close?: (event?: React.MouseEvent) => void;
 }
 
-export interface IModalAsideOwnProps {
+export interface IDrawerAsideOwnProps {
   side?: ISide;
   opened?: boolean;
   onClose?: (event?: React.MouseEvent) => void;
   children?:
     | React.ReactNode
-    | ((props: IModalAsideChildrenRenderProps) => React.ReactNode);
+    | ((props: IDrawerAsideChildrenRenderProps) => React.ReactNode);
   root?: HTMLElement | null;
   detached?: boolean;
 }
 
-export interface IModalAsideProps
+export interface IDrawerAsideProps
   extends IBoxProps,
-    IComponentThemeProps<IModalAsideThemeFactory>,
-    IModalAsideOwnProps {}
+    IComponentThemeProps<IDrawerAsideThemeFactory>,
+    IDrawerAsideOwnProps {}
 
-export type IModalAsideFactory = IComponentFactory<{
-  props: IModalAsideProps;
+export type IDrawerAsideFactory = IComponentFactory<{
+  props: IDrawerAsideProps;
   ref: HTMLDivElement;
-  theme: typeof modalAsideTheme;
+  theme: typeof drawerAsideTheme;
 }>;

@@ -4,7 +4,7 @@ import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { createStyles } from '~/utils/css/createStyles';
 import { px } from '~/utils/css/px';
-import { COMPONENT_NAME } from './ModalAside.constants';
+import { COMPONENT_NAME } from './DrawerAside.constants';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
@@ -19,12 +19,12 @@ const classNames = createStyles({
   },
 });
 
-export type IModalAsideThemeFactory = IComponentThemeFactory<{
+export type IDrawerAsideThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
 }>;
 
-export const modalAsideTheme = componentThemeFactory<IModalAsideThemeFactory>({
+export const drawerAsideTheme = componentThemeFactory<IDrawerAsideThemeFactory>({
   classNames,
   tokensClassName,
   tokens,

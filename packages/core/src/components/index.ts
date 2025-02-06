@@ -48,7 +48,7 @@ export * from './Item';
 export * from './Labeled';
 export * from './List';
 export * from './Menu';
-export * from './ModalAside';
+export * from './DrawerAside';
 export * from './Motion';
 export * from './MultiSelect';
 export * from './MultiSelectBase';

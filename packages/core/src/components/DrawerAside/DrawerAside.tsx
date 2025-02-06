@@ -1,13 +1,13 @@
-import type { IModalAsideThemeFactory } from './ModalAside.css';
-import type { IModalAsideFactory } from './ModalAside.types';
+import type { IDrawerAsideThemeFactory } from './DrawerAside.css';
+import type { IDrawerAsideFactory } from './DrawerAside.types';
 import { Drawer } from '~/components/Drawer';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { isFunction } from '~/utils/isFunction';
-import { COMPONENT_NAME } from './ModalAside.constants';
-import { modalAsideTheme } from './ModalAside.css';
+import { COMPONENT_NAME } from './DrawerAside.constants';
+import { drawerAsideTheme } from './DrawerAside.css';
 
-export const ModalAside = componentFactory<IModalAsideFactory>(
+export const DrawerAside = componentFactory<IDrawerAsideFactory>(
   (props, forwardedRef) => {
     const {
       classNames,
@@ -23,14 +23,14 @@ export const ModalAside = componentFactory<IModalAsideFactory>(
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const { getStyles } = useComponentTheme<IModalAsideThemeFactory>({
+    const { getStyles } = useComponentTheme<IDrawerAsideThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
       className,
       styles,
       style,
       variant,
-      theme: modalAsideTheme,
+      theme: drawerAsideTheme,
     });
 
     return (
@@ -53,5 +53,5 @@ export const ModalAside = componentFactory<IModalAsideFactory>(
   },
 );
 
-ModalAside.theme = modalAsideTheme;
-ModalAside.displayName = `@sixui/core/${COMPONENT_NAME}`;
+DrawerAside.theme = drawerAsideTheme;
+DrawerAside.displayName = `@sixui/core/${COMPONENT_NAME}`;

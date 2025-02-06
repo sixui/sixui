@@ -165,7 +165,7 @@ const AsOverlayDemo: React.FC<IDialogProps> = (props) => {
           modal: true,
           headline: 'Basic dialog title',
           children:
-            'A dialog is a type of modal window that appears in front of app content to provide critical information, or ask for a decision.',
+            'A dialog is a window that appears in front of app content to provide information, or ask for a decision.',
           actions: ({ close }) => (
             <>
               <Button variant="text" onClick={close}>

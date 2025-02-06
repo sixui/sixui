@@ -1,5 +1,5 @@
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
-import { ModalAside } from '~/components/ModalAside';
+import { DrawerAside } from '~/components/DrawerAside';
 import { StandardAside } from '~/components/StandardAside';
 import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
@@ -22,7 +22,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
 const classNames = createStyles({
   root: {
     vars: {
-      ...overrideTokens(ModalAside.theme.tokens, {
+      ...overrideTokens(DrawerAside.theme.tokens, {
         container: {
           width: tokens.container.width,
         },

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IModalAsideProps } from './ModalAside.types';
+import type { IDrawerAsideProps } from './DrawerAside.types';
 import { Button } from '~/components/Button';
 import { Flex } from '~/components/Flex';
 import { Frame } from '~/components/Frame';
@@ -8,11 +8,11 @@ import { Placeholder } from '~/components/Placeholder';
 import { themeTokens } from '~/components/Theme';
 import { useToggle } from '~/hooks/useToggle';
 import { px } from '~/utils/css/px';
-import { ModalAside } from './ModalAside';
+import { DrawerAside } from './DrawerAside';
 
 const meta = {
-  component: ModalAside,
-} satisfies Meta<typeof ModalAside>;
+  component: DrawerAside,
+} satisfies Meta<typeof DrawerAside>;
 
 type IStory = StoryObj<typeof meta>;
 
@@ -27,9 +27,9 @@ const defaultArgs = {
       color="$onPrimaryContainer"
     />
   ),
-} satisfies Partial<IModalAsideProps>;
+} satisfies Partial<IDrawerAsideProps>;
 
-const ModalAsideFrame: React.FC<IModalAsideProps> = (props) => {
+const DrawerAsideFrame: React.FC<IDrawerAsideProps> = (props) => {
   const { ...other } = props;
   const [opened, toggleOpened] = useToggle([true, false]);
 
@@ -62,7 +62,7 @@ const ModalAsideFrame: React.FC<IModalAsideProps> = (props) => {
           h="100%"
         >
           <Placeholder label="Page" grow={1} expanded diagonals />
-          <ModalAside
+          <DrawerAside
             opened={opened}
             onClose={() => {
               toggleOpened(false);
@@ -76,7 +76,7 @@ const ModalAsideFrame: React.FC<IModalAsideProps> = (props) => {
 };
 
 export const FromLeft: IStory = {
-  render: (props) => <ModalAsideFrame {...props} />,
+  render: (props) => <DrawerAsideFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'left',
@@ -84,7 +84,7 @@ export const FromLeft: IStory = {
 };
 
 export const FromLeftDetached: IStory = {
-  render: (props) => <ModalAsideFrame {...props} />,
+  render: (props) => <DrawerAsideFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'left',
@@ -93,7 +93,7 @@ export const FromLeftDetached: IStory = {
 };
 
 export const FromRight: IStory = {
-  render: (props) => <ModalAsideFrame {...props} />,
+  render: (props) => <DrawerAsideFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'right',
@@ -101,7 +101,7 @@ export const FromRight: IStory = {
 };
 
 export const FromRightDetached: IStory = {
-  render: (props) => <ModalAsideFrame {...props} />,
+  render: (props) => <DrawerAsideFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'right',

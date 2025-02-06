@@ -1,6 +1,6 @@
 import type { IAsideThemeFactory } from './Aside.css';
 import type { IAsideFactory } from './Aside.types';
-import { ModalAside } from '~/components/ModalAside';
+import { DrawerAside } from '~/components/DrawerAside';
 import { StandardAside } from '~/components/StandardAside';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
@@ -35,7 +35,7 @@ export const Aside = componentFactory<IAsideFactory>((props, forwardedRef) => {
 
   return (
     <>
-      <ModalAside
+      <DrawerAside
         {...getStyles(['root', 'modal'])}
         opened={opened && modal}
         root={root}
