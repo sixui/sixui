@@ -73,6 +73,7 @@ const classNames = createStyles({
       container: {
         color: tokens.container.color,
         shape: tokens.container.shape,
+        elevation: tokens.container.elevation,
       },
     }),
 

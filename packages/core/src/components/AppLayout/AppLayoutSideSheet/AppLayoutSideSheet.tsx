@@ -20,7 +20,7 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
       opened: openedProp,
       modal: modalProp,
       hasHeader: hasHeaderProp,
-      root: rootProp,
+      portalProps,
       onClose,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
@@ -52,7 +52,7 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
 
     const opened = openedProp ?? appLayoutContext?.sideSheet?.state?.opened;
     const modal = modalProp ?? appLayoutContext?.sideSheet?.state?.modal;
-    const root = rootProp ?? appLayoutContext?.root;
+    const root = portalProps?.root ?? appLayoutContext?.root;
 
     const handleClose = (): void => {
       onClose?.();
@@ -68,7 +68,7 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
         opened={opened}
         modal={modal}
         onClose={handleClose}
-        root={root}
+        portalProps={{ root }}
         ref={forwardedRef}
         {...other}
       />

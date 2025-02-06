@@ -54,13 +54,14 @@ export const Snackbar = componentFactory<ISnackbarFactory>(
     const overlayContext = useOverlayContext();
     const lastOpenOverlayInstancePosition = useRef(0);
     const overlayInstancePosition = overlayContext?.instanceId
-      ? overlaysStateContext.getInstancePosition(
-          overlayContext.instanceId,
-          OVERLAY_LAYER,
-        )
-      : 0;
+      ? overlaysStateContext.getInstancePosition(overlayContext.instanceId, {
+          layer: OVERLAY_LAYER,
+          opened: true,
+        })
+      : undefined;
     if (opened) {
-      lastOpenOverlayInstancePosition.current = overlayInstancePosition;
+      lastOpenOverlayInstancePosition.current =
+        overlayInstancePosition?.index ?? 0;
     }
     const autoHideDuration =
       autoHideDurationProp ??

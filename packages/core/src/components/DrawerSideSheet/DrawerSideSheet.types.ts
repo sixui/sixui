@@ -1,9 +1,12 @@
 import type { IBoxProps } from '~/components/Box';
-import type { IDrawerAsideOwnProps } from '~/components/DrawerAside';
+import type {
+  IDrawerAsideOwnProps,
+  IDrawerAsideProps,
+} from '~/components/DrawerAside';
 import type { ISideSheetContentOwnProps } from '~/components/SideSheetContent';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IHorizontalSide, IOmit } from '~/utils/types';
+import type { IOmit } from '~/utils/types';
 import type {
   drawerSideSheetTheme,
   IDrawerSideSheetThemeFactory,
@@ -12,7 +15,7 @@ import type {
 export interface IDrawerSideSheetOwnProps
   extends IOmit<IDrawerAsideOwnProps, 'children' | 'side'>,
     ISideSheetContentOwnProps {
-  side?: IHorizontalSide;
+  drawerAsideProps?: IDrawerAsideProps;
 }
 
 export interface IDrawerSideSheetProps

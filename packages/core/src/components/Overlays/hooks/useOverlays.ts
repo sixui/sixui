@@ -1,27 +1,31 @@
 import { useCallback } from 'react';
 
+import type { IAny } from '~/utils/types';
 import type { IOverlayFC } from '../Overlays.types';
-import { getUid } from '~/utils';
-import { COMPONENT_ID } from '../Overlays.constants';
+import { getUid } from '~/utils/getUid';
 import { overlaysGlobals } from '../Overlays.globals';
 import { useOverlaysDispatchContext } from '../OverlaysDispatch.context';
 import { getOverlayId } from '../utils/getOverlayId';
 
 export interface IUseOverlaysResult {
   open: <TProps extends object>(
-    idOrComponent: string | IOverlayFC<TProps>,
-    props: TProps,
+    overlayIdOrComponent: string | IOverlayFC<TProps>,
+    props?: TProps,
   ) => Promise<unknown>;
-  close: (overlayId: string, instanceId: string) => void;
-  remove: (overlayId: string, instanceId: string) => void;
+  close: (instanceId: string) => void;
+  closeAll: (options?: {
+    id?: string | IOverlayFC<IAny>;
+    layer?: string;
+  }) => void;
+  remove: (instanceId: string) => void;
 }
 
 export const useOverlays = (): IUseOverlaysResult => {
   const overlaysDispatchContext = useOverlaysDispatchContext();
 
   const open: IUseOverlaysResult['open'] = useCallback(
-    (idOrComponent, props): Promise<unknown> => {
-      const overlayId = getOverlayId(idOrComponent);
+    (overlayIdOrComponent, props) => {
+      const overlayId = getOverlayId(overlayIdOrComponent);
       const instanceId = getUid(overlayId);
 
       const registeredOverlay = overlaysGlobals.registry[overlayId];
@@ -32,7 +36,7 @@ export const useOverlays = (): IUseOverlaysResult => {
       }
 
       overlaysDispatchContext.dispatch({
-        type: `${COMPONENT_ID}/open`,
+        type: 'OPEN',
         payload: {
           overlayId,
           instanceId,
@@ -62,12 +66,11 @@ export const useOverlays = (): IUseOverlaysResult => {
     [overlaysDispatchContext],
   );
 
-  const close = useCallback(
-    (overlayId: string, instanceId: string): void => {
+  const close: IUseOverlaysResult['close'] = useCallback(
+    (instanceId) => {
       overlaysDispatchContext.dispatch({
-        type: `${COMPONENT_ID}/close`,
+        type: 'CLOSE',
         payload: {
-          overlayId,
           instanceId,
         },
       });
@@ -75,12 +78,26 @@ export const useOverlays = (): IUseOverlaysResult => {
     [overlaysDispatchContext],
   );
 
-  const remove = useCallback(
-    (overlayId: string, instanceId: string): void => {
+  const closeAll: IUseOverlaysResult['closeAll'] = useCallback(
+    (options) => {
+      const overlayId = options?.id ? getOverlayId(options.id) : undefined;
+
       overlaysDispatchContext.dispatch({
-        type: `${COMPONENT_ID}/remove`,
+        type: 'CLOSE_ALL',
         payload: {
           overlayId,
+          layer: options?.layer,
+        },
+      });
+    },
+    [overlaysDispatchContext],
+  );
+
+  const remove: IUseOverlaysResult['remove'] = useCallback(
+    (instanceId): void => {
+      overlaysDispatchContext.dispatch({
+        type: 'REMOVE',
+        payload: {
           instanceId,
         },
       });
@@ -93,6 +110,7 @@ export const useOverlays = (): IUseOverlaysResult => {
   return {
     open,
     close,
+    closeAll,
     remove,
   };
 };

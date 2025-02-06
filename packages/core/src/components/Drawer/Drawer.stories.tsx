@@ -72,7 +72,7 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
       <div ref={setRoot}>
         <DrawerDemo
           {...props}
-          root={root}
+          portalProps={{ root }}
           opened={leftOpened}
           onClose={leftActions.close}
           side="left"
@@ -80,7 +80,7 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
         />
         <DrawerDemo
           {...props}
-          root={root}
+          portalProps={{ root }}
           opened={topOpened}
           onClose={topActions.close}
           side="top"
@@ -88,7 +88,7 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
         />
         <DrawerDemo
           {...props}
-          root={root}
+          portalProps={{ root }}
           opened={rightOpened}
           onClose={rightActions.close}
           side="right"
@@ -96,7 +96,7 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
         />
         <DrawerDemo
           {...props}
-          root={root}
+          portalProps={{ root }}
           opened={bottomOpened}
           onClose={bottomActions.close}
           side="bottom"

@@ -1,3 +1,5 @@
+import { assignInlineVars } from '@vanilla-extract/dynamic';
+
 import type { IDialogThemeFactory } from './Dialog.css';
 import type { IDialogFactory } from './Dialog.types';
 import { useOverlayContext } from '~/components/Overlays/Overlay.context';
@@ -37,13 +39,19 @@ export const Dialog = polymorphicComponentFactory<IDialogFactory>(
     const overlayContext = useOverlayContext();
     const overlayInstancePosition = overlayContext?.instanceId
       ? overlaysStateContext.getInstancePosition(overlayContext.instanceId)
-      : 0;
+      : undefined;
 
     const scrim = scrimProp ?? other.modal;
 
     return (
       <PopoverBase
-        {...getStyles('root')}
+        {...getStyles('root', {
+          style: assignInlineVars({
+            [dialogTheme.tokens.overlayIndex]: overlayInstancePosition
+              ? String(overlayInstancePosition.index)
+              : '0',
+          }),
+        })}
         contentRenderer={({ close, forwardedProps }) => (
           <DialogContent
             ref={forwardedRef}
@@ -55,9 +63,7 @@ export const Dialog = polymorphicComponentFactory<IDialogFactory>(
             {children}
           </DialogContent>
         )}
-        closeEvents={
-          overlayInstancePosition === 0 ? { focusOut: false } : false
-        }
+        closeEvents={{ focusOut: false }}
         middlewares={false}
         forwardProps
         scrim={scrim}

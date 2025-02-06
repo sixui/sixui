@@ -5,7 +5,7 @@ import { COMPONENT_NAME, OVERLAY_LAYER } from './Snackbar.constants';
 
 export const SnackbarOverlay = registerOverlay<ISnackbarProps>(
   (props) => {
-    const { instanceId, ...other } = props;
+    const { instanceId, onClose, onActionClick, ...other } = props;
     const overlay = useOverlayInstance(instanceId);
 
     return (
@@ -13,9 +13,16 @@ export const SnackbarOverlay = registerOverlay<ISnackbarProps>(
         {...other}
         opened={overlay.opened}
         onClose={() => {
+          onClose?.();
           overlay.close();
           overlay.resolve();
         }}
+        onActionClick={() =>
+          Promise.resolve()
+            .then(() => onActionClick?.())
+            .then(overlay.resolve)
+            .catch(overlay.reject)
+        }
         onClosed={() => {
           overlay.remove();
         }}

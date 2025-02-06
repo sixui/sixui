@@ -5,7 +5,7 @@ import { COMPONENT_NAME, OVERLAY_LAYER } from './ConfirmDialog.constants';
 
 export const ConfirmDialogOverlay = registerOverlay<IConfirmDialogProps>(
   (props) => {
-    const { instanceId, onCancel, onConfirm, ...other } = props;
+    const { instanceId, onClose, onCancel, onConfirm, ...other } = props;
     const overlay = useOverlayInstance(instanceId);
 
     return (
@@ -13,6 +13,7 @@ export const ConfirmDialogOverlay = registerOverlay<IConfirmDialogProps>(
         {...other}
         opened={overlay.opened}
         onClose={() => {
+          onClose?.();
           overlay.close();
           // The promise won't be rejected if it has already been resolved.
           overlay.reject();

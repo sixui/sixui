@@ -47,7 +47,7 @@ export const BottomSheet = componentFactory<IBottomSheetFactory>(
     return (
       <Drawer
         {...getStyles('root')}
-        root={appLayoutContext?.root}
+        portalProps={{ root: appLayoutContext?.root }}
         opened={bottomSheetOpened}
         onClose={() => {
           onClose?.();

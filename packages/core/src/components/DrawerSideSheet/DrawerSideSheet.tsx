@@ -22,6 +22,8 @@ export const DrawerSideSheet = componentFactory<IDrawerSideSheetFactory>(
       side = 'left',
       onClose,
       onClosed,
+      drawerAsideProps,
+      withoutPortal,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -48,6 +50,8 @@ export const DrawerSideSheet = componentFactory<IDrawerSideSheetFactory>(
         onClose={onClose}
         onClosed={onClosed}
         ref={forwardedRef}
+        withoutPortal={withoutPortal}
+        {...drawerAsideProps}
       >
         <SideSheetContent
           side={side}

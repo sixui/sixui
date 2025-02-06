@@ -1,4 +1,4 @@
-import { COMPONENT_ID } from './Overlays.constants';
+import type { IAny } from '~/utils/types';
 
 export interface IOverlayInstanceState {
   mounted?: boolean;
@@ -7,24 +7,51 @@ export interface IOverlayInstanceState {
   keepMounted?: boolean;
 }
 
-export interface IOverlayInstance extends IOverlayInstanceState {
+export interface IOverlayInstance<TProps extends object>
+  extends IOverlayInstanceState {
   overlayId: string;
-  instanceId: string;
-  props?: object;
+  props?: TProps;
   layer?: string;
+  instanceId: string;
 }
 
-export type IOverlaysInstances = Record<string, IOverlayInstance>;
+export type IOverlaysInstances = Record<string, IOverlayInstance<IAny>>;
 
-export interface IOverlayAction {
-  type: string;
-  payload: {
-    overlayId: string;
-    instanceId: string;
-    props?: object;
-    layer?: string;
-  };
-}
+export type IOverlayAction =
+  | {
+      type: 'OPEN';
+      payload: {
+        overlayId: string;
+        instanceId: string;
+        props?: object;
+        layer?: string;
+      };
+    }
+  | {
+      type: 'MOUNTED';
+      payload: {
+        instanceId: string;
+      };
+    }
+  | {
+      type: 'CLOSE';
+      payload: {
+        instanceId: string;
+      };
+    }
+  | {
+      type: 'CLOSE_ALL';
+      payload?: {
+        overlayId?: string;
+        layer?: string;
+      };
+    }
+  | {
+      type: 'REMOVE';
+      payload: {
+        instanceId: string;
+      };
+    };
 
 export const overlaysInitialInstances: IOverlaysInstances = {};
 
@@ -33,7 +60,7 @@ export const overlaysReducer = (
   action: IOverlayAction,
 ): IOverlaysInstances => {
   switch (action.type) {
-    case `${COMPONENT_ID}/open`: {
+    case 'OPEN': {
       const { instanceId, ...instance } = action.payload;
       const existingInstance = instances[instanceId];
 
@@ -48,15 +75,18 @@ export const overlaysReducer = (
       };
     }
 
-    case `${COMPONENT_ID}/mounted`: {
-      const { instanceId, ...instance } = action.payload;
+    case 'MOUNTED': {
+      const { instanceId } = action.payload;
       const existingInstance = instances[instanceId];
+
+      if (!existingInstance) {
+        return instances;
+      }
 
       return {
         ...instances,
         [instanceId]: {
           ...existingInstance,
-          ...instance,
           instanceId,
           mounted: true,
           opened: true,
@@ -64,7 +94,7 @@ export const overlaysReducer = (
       };
     }
 
-    case `${COMPONENT_ID}/close`: {
+    case 'CLOSE': {
       const { instanceId } = action.payload;
       const existingInstance = instances[instanceId];
 
@@ -81,15 +111,40 @@ export const overlaysReducer = (
       };
     }
 
-    case `${COMPONENT_ID}/remove`: {
+    case 'CLOSE_ALL': {
+      const { overlayId, layer } = action.payload ?? {};
+      const instanceIdsToClose = Object.values(instances)
+        .filter(
+          (instance) =>
+            (overlayId !== undefined
+              ? instance.overlayId === overlayId
+              : true) &&
+            (layer !== undefined ? instance.layer === layer : true),
+        )
+        .map(({ instanceId }) => instanceId);
+
+      return instanceIdsToClose.reduce(
+        (acc, instanceId) => {
+          const existingInstance = instances[instanceId]!;
+
+          return {
+            ...acc,
+            [instanceId]: {
+              ...existingInstance,
+              opened: false,
+            },
+          };
+        },
+        { ...instances },
+      );
+    }
+
+    case 'REMOVE': {
       const { instanceId } = action.payload;
       const newState = { ...instances };
       delete newState[instanceId];
 
       return newState;
     }
-
-    default:
-      return instances;
   }
 };

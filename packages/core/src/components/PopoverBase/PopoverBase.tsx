@@ -26,6 +26,8 @@ import type {
   IPopoverOpenEvents,
 } from './PopoverBase.types';
 import { Motion } from '~/components/Motion';
+import { useOverlayContext } from '~/components/Overlays/Overlay.context';
+import { useOverlaysStateContext } from '~/components/Overlays/OverlaysState.context';
 import { Portal } from '~/components/Portal';
 import { Scrim } from '~/components/Scrim';
 import { useComponentTheme, useProps } from '~/components/Theme';
@@ -91,6 +93,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       scrimProps,
       removeScrollProps,
       portalProps,
+      withoutPortal,
       middlewares: middlewaresProp,
       additionalMiddlewares,
       additionalInteractions,
@@ -105,6 +108,12 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
+    const overlaysStateContext = useOverlaysStateContext();
+    const overlayContext = useOverlayContext();
+    const overlayInstancePosition = overlayContext?.instanceId
+      ? overlaysStateContext.getInstancePosition(overlayContext.instanceId)
+      : undefined;
+
     const modal = modalProp || jail;
     const scrim = scrimProp ?? jail;
     const openEvents =
@@ -116,7 +125,9 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
         : {};
 
     const closeEvents =
-      closeEventsProp === false || jail
+      closeEventsProp === false ||
+      !overlayInstancePosition?.isForeground ||
+      jail
         ? undefined
         : modal
           ? {
@@ -320,7 +331,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
         {triggerElement}
 
         {(transitionStatus.isMounted || keepMounted) && (
-          <Portal {...portalProps}>
+          <Portal disabled={withoutPortal} {...portalProps}>
             <FloatingFocusManager
               context={floating.context}
               modal={trapFocus !== undefined ? !!trapFocus : modal}

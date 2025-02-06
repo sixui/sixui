@@ -20,7 +20,7 @@ export const AppLayoutNavigationBar =
       variant,
       hasHeader: hasHeaderProp,
       opened: openedProp,
-      root: rootProp,
+      portalProps,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -51,7 +51,7 @@ export const AppLayoutNavigationBar =
     }
 
     const opened = openedProp ?? appLayoutContext?.navigationMode === 'bar';
-    const root = rootProp ?? appLayoutContext?.root;
+    const root = portalProps?.root ?? appLayoutContext?.root;
 
     return (
       <NavigationBar
@@ -61,7 +61,7 @@ export const AppLayoutNavigationBar =
         })}
         opened={opened}
         ref={forwardedRef}
-        root={root}
+        portalProps={{ root }}
         {...other}
       />
     );

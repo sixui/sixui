@@ -1,9 +1,12 @@
 import { removeUndefineds } from '@olivierpascal/helpers';
 
 import type { IAny } from '~/utils/types';
-import type { IOverlay, IOverlayUpdate } from './Overlays.types';
+import type {
+  IRegisteredOverlay,
+  IRegisteredOverlayUpdate,
+} from './Overlays.types';
 
-type IOverlaysRegistry = Record<string, IOverlay<IAny>>;
+type IOverlaysRegistry = Record<string, IRegisteredOverlay<IAny>>;
 
 type IOverlaysCallbacks = Record<
   string,
@@ -17,11 +20,11 @@ type IOverlaysCallbacks = Record<
 interface IOverlaysGlobals {
   registry: IOverlaysRegistry;
   callbacks: IOverlaysCallbacks;
-  update: (id: string, overlay: IOverlayUpdate<IAny>) => void;
-  register: (id: string, overlay: IOverlay<IAny>) => void;
+  update: (id: string, overlay: IRegisteredOverlayUpdate<IAny>) => void;
+  register: (id: string, overlay: IRegisteredOverlay<IAny>) => void;
 }
 
-const update = (id: string, overlay: IOverlayUpdate<IAny>): void => {
+const update = (id: string, overlay: IRegisteredOverlayUpdate<IAny>): void => {
   const registeredOverlay = overlaysGlobals.registry[id];
   if (registeredOverlay) {
     Object.assign(
@@ -37,7 +40,7 @@ const update = (id: string, overlay: IOverlayUpdate<IAny>): void => {
   }
 };
 
-const register = (id: string, overlay: IOverlay<IAny>): void => {
+const register = (id: string, overlay: IRegisteredOverlay<IAny>): void => {
   const registeredOverlay = overlaysGlobals.registry[id];
 
   if (registeredOverlay) {

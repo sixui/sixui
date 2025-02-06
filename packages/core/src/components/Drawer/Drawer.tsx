@@ -14,7 +14,8 @@ export const Drawer = componentFactory<IDrawerFactory>(
       styles,
       style,
       variant,
-      root,
+      portalProps,
+      withoutPortal,
       opened,
       defaultOpened,
       onClose,
@@ -48,7 +49,8 @@ export const Drawer = componentFactory<IDrawerFactory>(
     return (
       <PopoverBase
         classNames={classNames}
-        portalProps={{ root }}
+        portalProps={portalProps}
+        withoutPortal={withoutPortal}
         opened={opened}
         defaultOpened={defaultOpened}
         onClose={onClose}

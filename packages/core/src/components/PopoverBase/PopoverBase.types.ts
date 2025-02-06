@@ -157,6 +157,7 @@ export type IPopoverBaseOwnProps<TForwardedProps extends object = object> =
     scrimProps?: Partial<IScrimProps>;
     removeScrollProps?: Partial<IRemoveScrollSelfProps>;
     portalProps?: Partial<IPortalProps>;
+    withoutPortal?: boolean;
 
     /**
      * Whether the element should be positioned relative to its nearest

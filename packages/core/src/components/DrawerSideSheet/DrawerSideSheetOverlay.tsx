@@ -19,6 +19,7 @@ export const DrawerSideSheetOverlay = registerOverlay<IDrawerSideSheetProps>(
         onClosed={() => {
           overlay.remove();
         }}
+        withoutPortal
       />
     );
   },

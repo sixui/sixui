@@ -4,8 +4,8 @@ import { getUid } from '~/utils/getUid';
 import { OVERLAY_ID_SYMBOL } from '../Overlays.constants';
 
 export const getOverlayId = (
-  idOrComponent: string | IOverlayFC<IAny>,
+  overlayIdOrComponent: string | IOverlayFC<IAny>,
 ): string =>
-  typeof idOrComponent === 'string'
-    ? idOrComponent
-    : idOrComponent[OVERLAY_ID_SYMBOL] || getUid();
+  typeof overlayIdOrComponent === 'string'
+    ? overlayIdOrComponent
+    : overlayIdOrComponent[OVERLAY_ID_SYMBOL] || getUid();

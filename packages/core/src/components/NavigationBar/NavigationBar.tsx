@@ -18,7 +18,7 @@ export const NavigationBar = componentFactory<INavigationBarFactory>(
       style,
       variant,
       opened,
-      root,
+      portalProps,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
     const { boxProps, other: forwardedProps } = extractBoxProps(other);
@@ -39,7 +39,7 @@ export const NavigationBar = componentFactory<INavigationBarFactory>(
         opened={opened}
         side="bottom"
         ref={forwardedRef}
-        root={root}
+        portalProps={portalProps}
         {...boxProps}
       >
         <NavigationBarContent

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import type { ISnackbarProps } from './Snackbar.types';
 import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { Flex } from '~/components/Flex';
 import { OverlaysProvider, useOverlays } from '~/components/Overlays';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { Snackbar } from './Snackbar';
@@ -109,9 +110,18 @@ const AsOverlayDemo: React.FC<ISnackbarProps> = (props) => {
   const overlays = useOverlays();
 
   return (
-    <Button onClick={() => void overlays.open(SnackbarOverlay, props)}>
-      Open
-    </Button>
+    <Flex direction="row" gap="$3">
+      <Button onClick={() => void overlays.open(SnackbarOverlay, props)}>
+        Open
+      </Button>
+      <Button
+        onClick={() => {
+          overlays.closeAll({ layer: 'snackbars' });
+        }}
+      >
+        Close all
+      </Button>
+    </Flex>
   );
 };
 

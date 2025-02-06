@@ -1,3 +1,4 @@
+import type { IOverlayInstance } from './Overlays.reducer';
 import { OVERLAY_ID_SYMBOL } from './Overlays.constants';
 
 export type IOverlayFCProps<TProps extends object> = TProps & {
@@ -10,14 +11,17 @@ export type IOverlayFC<TProps extends object> = React.FC<
   [OVERLAY_ID_SYMBOL]: string;
 };
 
-export interface IOverlay<TProps extends object> {
+export interface IRegisteredOverlay<TProps extends object> {
   overlayId: string;
-  component: IOverlayFC<TProps>;
   props?: TProps;
   layer?: string;
+  component: IOverlayFC<TProps>;
 }
 
-export type IOverlayUpdate<TProps extends object> = Pick<
-  IOverlay<TProps>,
+export type IRennderableOverlay<TProps extends object> =
+  IOverlayInstance<TProps> & IRegisteredOverlay<TProps>;
+
+export type IRegisteredOverlayUpdate<TProps extends object> = Pick<
+  IRegisteredOverlay<TProps>,
   'props' | 'layer'
 >;

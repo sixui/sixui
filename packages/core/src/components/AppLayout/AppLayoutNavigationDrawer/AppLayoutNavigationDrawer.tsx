@@ -20,7 +20,7 @@ export const AppLayoutNavigationDrawer =
       opened: openedProp,
       modal: modalProp,
       hasHeader: hasHeaderProp,
-      root: rootProp,
+      portalProps,
       onClose,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
@@ -54,10 +54,10 @@ export const AppLayoutNavigationDrawer =
     const opened =
       openedProp ?? appLayoutContext?.navigationDrawer?.state?.opened;
     const modal = modalProp ?? appLayoutContext?.navigationDrawer?.state?.modal;
-    const root = rootProp ?? appLayoutContext?.root;
+    const root = portalProps?.root ?? appLayoutContext?.root;
 
-    const handleClose = (event?: React.MouseEvent): void => {
-      onClose?.(event);
+    const handleClose = (): void => {
+      onClose?.();
       appLayoutContext?.navigationDrawer?.state?.close();
     };
 
@@ -70,7 +70,7 @@ export const AppLayoutNavigationDrawer =
         opened={opened}
         modal={modal}
         onClose={handleClose}
-        root={root}
+        portalProps={{ root }}
         ref={forwardedRef}
         {...other}
       />

@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import type { IOverlayFC, IOverlayFCProps } from '../Overlays.types';
 import { getUid } from '~/utils/getUid';
 import { OverlayProvider, useOverlayContext } from '../Overlay.context';
-import { COMPONENT_ID, OVERLAY_ID_SYMBOL } from '../Overlays.constants';
+import { OVERLAY_ID_SYMBOL } from '../Overlays.constants';
 import { overlaysGlobals } from '../Overlays.globals';
 import { useOverlaysDispatchContext } from '../OverlaysDispatch.context';
 
@@ -24,9 +24,8 @@ export const registerOverlay = <TProps extends object>(
 
     useEffect(() => {
       overlaysDispatchContext.dispatch({
-        type: `${COMPONENT_ID}/mounted`,
+        type: 'MOUNTED',
         payload: {
-          overlayId,
           instanceId: props.instanceId,
         },
       });

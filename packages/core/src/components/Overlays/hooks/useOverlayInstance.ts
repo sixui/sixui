@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 
-import { getUid } from '~/utils';
+import { getUid } from '~/utils/getUid';
 import { useOverlayContext } from '../Overlay.context';
 import { overlaysGlobals } from '../Overlays.globals';
 import { useOverlaysStateContext } from '../OverlaysState.context';
@@ -28,12 +28,12 @@ export const useOverlayInstance = (
     : undefined;
 
   const closeCallback = useCallback(() => {
-    overlays.close(overlayId, instanceId);
-  }, [overlays, overlayId, instanceId]);
+    overlays.close(instanceId);
+  }, [overlays, instanceId]);
 
   const removeCallback = useCallback(() => {
-    overlays.remove(overlayId, instanceId);
-  }, [overlays, overlayId, instanceId]);
+    overlays.remove(instanceId);
+  }, [overlays, instanceId]);
 
   const resolveCallback = useCallback(
     (args?: unknown) => {
