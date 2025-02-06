@@ -49,13 +49,14 @@ const defaultArgs = {
       h="$18"
     />
   ),
-  divider: true,
 } satisfies Partial<ISideSheetProps>;
 
 const SideSheetFrame: React.FC<ISideSheetProps> = (props) => {
   const { ...other } = props;
   const [opened, toggleOpened] = useToggle([true, false]);
+  const [isDrawer, setDrawer] = useState(false);
   const [isModal, setModal] = useState(false);
+  const [detached, setDetached] = useState(false);
 
   return (
     <Flex direction="column" gap="$2">
@@ -68,14 +69,26 @@ const SideSheetFrame: React.FC<ISideSheetProps> = (props) => {
         >
           {opened ? 'Close' : 'Open'}
         </Button>
-        <Labeled label="Modal" labelPosition="right">
+        <Labeled label="Drawer" labelPosition="right">
+          <Checkbox
+            onChange={(value) => {
+              setDrawer(!!value);
+            }}
+          />
+        </Labeled>
+        <Labeled label="Modal" labelPosition="right" disabled={!isDrawer}>
           <Checkbox
             onChange={(value) => {
               setModal(!!value);
             }}
-          >
-            {isModal ? 'Close' : 'Open'} modal
-          </Checkbox>
+          />
+        </Labeled>
+        <Labeled label="Detached" labelPosition="right" disabled={!isDrawer}>
+          <Checkbox
+            onChange={(value) => {
+              setDetached(!!value);
+            }}
+          />
         </Labeled>
       </Flex>
 
@@ -97,7 +110,9 @@ const SideSheetFrame: React.FC<ISideSheetProps> = (props) => {
           <Placeholder label="Page" grow={1} expanded diagonals />
           <SideSheet
             opened={opened}
+            drawer={isDrawer}
             modal={isModal}
+            detached={detached}
             onClose={() => {
               toggleOpened(false);
             }}

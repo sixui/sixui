@@ -61,7 +61,6 @@ const defaultArgs = {
       </AppLayoutNavigationDrawer.Section>
     </>
   ),
-  divider: true,
 } satisfies Partial<IAppLayoutNavigationDrawerProps>;
 
 const AppLayoutNavigationDrawerFrame: React.FC<
@@ -69,7 +68,9 @@ const AppLayoutNavigationDrawerFrame: React.FC<
 > = (props) => {
   const { ...other } = props;
   const [opened, toggleOpened] = useToggle([true, false]);
+  const [isDrawer, setDrawer] = useState(false);
   const [isModal, setModal] = useState(false);
+  const [detached, setDetached] = useState(false);
 
   return (
     <Flex direction="column" gap="$2">
@@ -82,14 +83,26 @@ const AppLayoutNavigationDrawerFrame: React.FC<
         >
           {opened ? 'Close' : 'Open'}
         </Button>
-        <Labeled label="Modal" labelPosition="right">
+        <Labeled label="Drawer" labelPosition="right">
+          <Checkbox
+            onChange={(value) => {
+              setDrawer(!!value);
+            }}
+          />
+        </Labeled>
+        <Labeled label="Modal" labelPosition="right" disabled={!isDrawer}>
           <Checkbox
             onChange={(value) => {
               setModal(!!value);
             }}
-          >
-            {isModal ? 'Close' : 'Open'} modal
-          </Checkbox>
+          />
+        </Labeled>
+        <Labeled label="Detached" labelPosition="right" disabled={!isDrawer}>
+          <Checkbox
+            onChange={(value) => {
+              setDetached(!!value);
+            }}
+          />
         </Labeled>
       </Flex>
 
@@ -111,7 +124,12 @@ const AppLayoutNavigationDrawerFrame: React.FC<
           <Placeholder label="Page" grow={1} expanded diagonals />
           <AppLayoutNavigationDrawer
             opened={opened}
+            drawer={isDrawer}
             modal={isModal}
+            detached={detached}
+            onClose={() => {
+              toggleOpened(false);
+            }}
             {...other}
           />
         </Flex>

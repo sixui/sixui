@@ -22,7 +22,7 @@ export type ISideSheetContentRenderProps = {
 
 export interface ISideSheetContentOwnProps
   extends IOmit<IPaperBaseOwnProps, 'children'> {
-  onClose?: (event?: React.MouseEvent) => void;
+  onClose?: () => void;
   children?:
     | React.ReactNode
     | ((props: ISideSheetContentRenderProps) => React.ReactNode);

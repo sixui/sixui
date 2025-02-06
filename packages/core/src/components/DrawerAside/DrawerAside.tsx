@@ -16,10 +16,8 @@ export const DrawerAside = componentFactory<IDrawerAsideFactory>(
       style,
       variant,
       side = 'left',
-      opened,
       children,
       detached,
-      root,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -36,13 +34,10 @@ export const DrawerAside = componentFactory<IDrawerAsideFactory>(
     return (
       <Drawer
         {...getStyles('root')}
-        opened={opened}
-        side={side}
         variant={detached ? 'detached' : undefined}
         fullHeight={['left', 'right'].includes(side)}
-        root={root}
-        modal
         ref={forwardedRef}
+        side={side}
         {...other}
       >
         {({ close }) =>

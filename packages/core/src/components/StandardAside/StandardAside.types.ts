@@ -15,7 +15,7 @@ export interface IStandardAsideChildrenRenderProps {
 export interface IStandardAsideOwnProps {
   side?: ISide;
   opened?: boolean;
-  onClose?: (event?: React.MouseEvent) => void;
+  onClose?: () => void;
   children?:
     | React.ReactNode
     | ((props: IStandardAsideChildrenRenderProps) => React.ReactNode);

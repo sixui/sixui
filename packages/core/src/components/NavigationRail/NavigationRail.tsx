@@ -17,6 +17,7 @@ export const NavigationRail = componentFactory<INavigationRailFactory>(
       style,
       variant,
       opened,
+      divider = true,
       side = 'left',
       wide: fullHeight,
       ...other
@@ -44,6 +45,7 @@ export const NavigationRail = componentFactory<INavigationRailFactory>(
       >
         <NavigationRailContent
           side={side}
+          divider={divider}
           {...getStyles('navigationRailContent')}
           {...forwardedProps}
         />

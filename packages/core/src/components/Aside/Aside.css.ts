@@ -7,7 +7,7 @@ import { COMPONENT_NAME } from './Aside.constants';
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME);
 
 const classNames = createStyles({
-  modal: {},
+  drawer: {},
   standard: {},
 });
 

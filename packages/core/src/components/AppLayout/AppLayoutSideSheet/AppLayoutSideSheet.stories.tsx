@@ -62,13 +62,14 @@ const defaultArgs = {
       </AppLayoutNavigationDrawer.Section>
     </>
   ),
-  divider: true,
 } satisfies Partial<IAppLayoutSideSheetProps>;
 
 const AppLayoutSideSheetFrame: React.FC<IAppLayoutSideSheetProps> = (props) => {
   const { ...other } = props;
   const [opened, toggleOpened] = useToggle([true, false]);
+  const [isDrawer, setDrawer] = useState(false);
   const [isModal, setModal] = useState(false);
+  const [detached, setDetached] = useState(false);
 
   return (
     <Flex direction="column" gap="$2">
@@ -81,14 +82,26 @@ const AppLayoutSideSheetFrame: React.FC<IAppLayoutSideSheetProps> = (props) => {
         >
           {opened ? 'Close' : 'Open'}
         </Button>
-        <Labeled label="Modal" labelPosition="right">
+        <Labeled label="Drawer" labelPosition="right">
+          <Checkbox
+            onChange={(value) => {
+              setDrawer(!!value);
+            }}
+          />
+        </Labeled>
+        <Labeled label="Modal" labelPosition="right" disabled={!isDrawer}>
           <Checkbox
             onChange={(value) => {
               setModal(!!value);
             }}
-          >
-            {isModal ? 'Close' : 'Open'} modal
-          </Checkbox>
+          />
+        </Labeled>
+        <Labeled label="Detached" labelPosition="right" disabled={!isDrawer}>
+          <Checkbox
+            onChange={(value) => {
+              setDetached(!!value);
+            }}
+          />
         </Labeled>
       </Flex>
 
@@ -108,7 +121,16 @@ const AppLayoutSideSheetFrame: React.FC<IAppLayoutSideSheetProps> = (props) => {
           h="100%"
         >
           <Placeholder label="Page" grow={1} expanded diagonals />
-          <AppLayoutSideSheet opened={opened} modal={isModal} {...other} />
+          <AppLayoutSideSheet
+            opened={opened}
+            drawer={isDrawer}
+            modal={isModal}
+            detached={detached}
+            onClose={() => {
+              toggleOpened(false);
+            }}
+            {...other}
+          />
         </Flex>
       </Frame>
     </Flex>

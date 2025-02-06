@@ -1,25 +1,23 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { ISide } from '~/utils/types';
+import type { IOmit } from '~/utils/types';
 import type {
   drawerAsideTheme,
   IDrawerAsideThemeFactory,
 } from './DrawerAside.css';
+import { IDrawerOwnProps } from '~/components/Drawer/Drawer.types';
 
 export interface IDrawerAsideChildrenRenderProps {
   type: string;
   close?: (event?: React.MouseEvent) => void;
 }
 
-export interface IDrawerAsideOwnProps {
-  side?: ISide;
-  opened?: boolean;
-  onClose?: (event?: React.MouseEvent) => void;
+export interface IDrawerAsideOwnProps
+  extends IOmit<IDrawerOwnProps, 'children'> {
   children?:
     | React.ReactNode
     | ((props: IDrawerAsideChildrenRenderProps) => React.ReactNode);
-  root?: HTMLElement | null;
   detached?: boolean;
 }
 

@@ -3,15 +3,13 @@ import type { IDrawerAsideOwnProps } from '~/components/DrawerAside';
 import type { IStandardAsideOwnProps } from '~/components/StandardAside';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IOmit } from '~/utils/types';
 import type { asideTheme, IAsideThemeFactory } from './Aside.css';
 
 export interface IAsideOwnProps
-  extends IOmit<IStandardAsideOwnProps, 'opened'>,
-    IOmit<IDrawerAsideOwnProps, 'opened'> {
-  opened?: boolean;
-  modal?: boolean;
-  modalRef?: React.RefObject<HTMLDivElement>;
+  extends IStandardAsideOwnProps,
+    IDrawerAsideOwnProps {
+  drawer?: boolean;
+  drawerRef?: React.RefObject<HTMLDivElement>;
 }
 
 export interface IAsideProps

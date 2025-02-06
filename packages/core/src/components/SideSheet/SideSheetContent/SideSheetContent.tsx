@@ -92,7 +92,7 @@ export const SideSheetContent = componentFactory<ISideSheetContentFactory>(
           {children && (
             <div {...getStyles('content')}>
               {isFunction(children)
-                ? children({ close: (event) => onClose?.(event) })
+                ? children({ close: () => onClose?.() })
                 : children}
             </div>
           )}
@@ -103,7 +103,7 @@ export const SideSheetContent = componentFactory<ISideSheetContentFactory>(
                 {bottomActions && (
                   <div {...getStyles('actions')}>
                     {isFunction(bottomActions)
-                      ? bottomActions({ close: (event) => onClose?.(event) })
+                      ? bottomActions({ close: () => onClose?.() })
                       : bottomActions}
                   </div>
                 )}

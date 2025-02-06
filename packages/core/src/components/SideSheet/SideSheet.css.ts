@@ -7,7 +7,6 @@ import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { createStyles } from '~/utils/css/createStyles';
 import { overrideTokens } from '~/utils/css/overrideTokens';
 import { px } from '~/utils/css/px';
-import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
 import { COMPONENT_NAME } from './SideSheet.constants';
 import { SideSheetContent } from './SideSheetContent';
 
@@ -15,7 +14,6 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
     width: px(360),
     color: themeTokens.colorScheme.surface,
-    elevation: elevationLevelPreset[0],
   },
 });
 
@@ -40,7 +38,6 @@ const classNames = createStyles({
     vars: overrideTokens(SideSheetContent.theme.tokens, {
       container: {
         color: tokens.container.color,
-        elevation: tokens.container.elevation,
       },
     }),
   },

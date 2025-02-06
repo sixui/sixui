@@ -54,8 +54,8 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
     const modal = modalProp ?? appLayoutContext?.sideSheet?.state?.modal;
     const root = rootProp ?? appLayoutContext?.root;
 
-    const handleClose = (event?: React.MouseEvent): void => {
-      onClose?.(event);
+    const handleClose = (): void => {
+      onClose?.();
       appLayoutContext?.sideSheet?.state?.close();
     };
 

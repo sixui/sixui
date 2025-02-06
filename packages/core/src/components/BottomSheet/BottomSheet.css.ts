@@ -23,10 +23,11 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
 
 const classNames = createStyles({
   root: {
-    height: calc.subtract('max-content', tokens.fixedTopSpace),
+    height: `min(max-content, ${calc.subtract('100%', tokens.fixedTopSpace)})`,
     minHeight: px(56),
     left: tokens.fixedHorizontalSpace.normal,
     right: tokens.fixedHorizontalSpace.normal,
+    top: 'auto',
 
     '@container': {
       [responsiveContainerQuery({ size: 'compact' })]: {
@@ -43,18 +44,21 @@ const classNames = createStyles({
     },
 
     selectors: {
-      [modifierSelector<IModifier>('full-height')]: {
-        top: tokens.fixedTopSpace,
-      },
       [modifierSelector<IModifier>('detached')]: {
         left: tokens.fixedHorizontalSpace.detached,
         right: tokens.fixedHorizontalSpace.detached,
       },
     },
   },
-  bottomSheetContent: {
+  bottomSheetContent: ({ root }) => ({
     flexGrow: 1,
-  },
+
+    selectors: {
+      [modifierSelector<IModifier>('full-height', root)]: {
+        height: calc.subtract('100vh', tokens.fixedTopSpace),
+      },
+    },
+  }),
 });
 
 export type IBottomSheetThemeFactory = IComponentThemeFactory<{

@@ -61,6 +61,10 @@ const classNames = createStyles({
   root: {
     flexShrink: 0,
 
+    transitionProperty: 'border-radius',
+    transitionDuration: themeTokens.motion.duration.short2,
+    transitionTimingFunction: themeTokens.motion.easing.linear,
+
     vars: overrideTokens(PaperBase.theme.tokens, {
       container: {
         color: tokens.container.color,

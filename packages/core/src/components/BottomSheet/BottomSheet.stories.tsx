@@ -1,12 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
 
-import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IBottomSheetProps } from './BottomSheet.types';
 import { Button } from '~/components/Button';
+import { Checkbox } from '~/components/Checkbox';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { Flex } from '~/components/Flex';
+import { Frame } from '~/components/Frame';
+import { Labeled } from '~/components/Labeled';
 import { OverlaysProvider, useOverlays } from '~/components/Overlays';
 import { Text } from '~/components/Text';
-import { useDisclosure } from '~/hooks/useDisclosure';
+import { themeTokens } from '~/components/Theme';
+import { useToggle } from '~/hooks';
+import { px } from '~/utils/css';
+import { Placeholder } from '../Placeholder';
 import { BottomSheet } from './BottomSheet';
 import { BottomSheetOverlay } from './BottomSheetOverlay';
 
@@ -35,50 +42,78 @@ const defaultArgs = {
   ),
 } satisfies Partial<IBottomSheetProps>;
 
-const rows: Array<IComponentPresentation<IBottomSheetProps>> = [
-  { legend: 'Normal' },
-  { legend: 'Full height', props: { fullHeight: true } },
-];
-
-const BottomSheetDemo: React.FC<IBottomSheetProps> = (props) => {
-  const [opened, { close, toggle }] = useDisclosure(false);
+const BottomSheetFrame: React.FC<IBottomSheetProps> = (props) => {
+  const { ...other } = props;
+  const [opened, toggleOpened] = useToggle([true, false]);
+  const [isModal, setModal] = useState(false);
+  const [detached, setDetached] = useState(false);
+  const [isFullHeight, setFullHeight] = useState(false);
 
   return (
-    <>
-      <Button
-        onClick={() => {
-          toggle();
+    <Flex direction="column" gap="$2">
+      <Flex direction="row" gap="$6">
+        <Button
+          onClick={() => {
+            toggleOpened();
+          }}
+          w="$24"
+        >
+          {opened ? 'Close' : 'Open'}
+        </Button>
+        <Labeled label="Modal" labelPosition="right">
+          <Checkbox
+            onChange={(value) => {
+              setModal(!!value);
+            }}
+          />
+        </Labeled>
+        <Labeled label="Detached" labelPosition="right">
+          <Checkbox
+            onChange={(value) => {
+              setDetached(!!value);
+            }}
+          />
+        </Labeled>
+        <Labeled label="Full height" labelPosition="right">
+          <Checkbox
+            onChange={(value) => {
+              setFullHeight(!!value);
+            }}
+          />
+        </Labeled>
+      </Flex>
+
+      <Frame
+        importParentStyles
+        w="100%"
+        h="$96"
+        style={{
+          borderWidth: px(1),
+          borderStyle: 'dashed',
+          borderColor: themeTokens.colorScheme.outlineVariant,
         }}
-        w="$24"
       >
-        {opened ? 'Close' : 'Open'}
-      </Button>
-      <BottomSheet {...props} opened={opened} onClose={close} />
-    </>
+        <Flex h="100%">
+          <Placeholder label="Page" grow={1} expanded diagonals />
+          <BottomSheet
+            opened={opened}
+            modal={isModal}
+            detached={detached}
+            fullHeight={isFullHeight}
+            onClose={() => {
+              toggleOpened(false);
+            }}
+            {...other}
+          />
+        </Flex>
+      </Frame>
+    </Flex>
   );
 };
 
-const BottomSheetDemoShowcase = componentShowcaseFactory(BottomSheetDemo);
-
-export const Standard: IStory = {
-  render: (props) => <BottomSheetDemoShowcase props={props} rows={rows} />,
+export const Basic: IStory = {
+  render: (props) => <BottomSheetFrame {...props} />,
   args: defaultArgs,
-};
-
-export const Modal: IStory = {
-  render: (props) => <BottomSheetDemoShowcase props={props} rows={rows} />,
-  args: {
-    ...defaultArgs,
-    modal: true,
-  },
-};
-
-export const Detached: IStory = {
-  render: (props) => <BottomSheetDemoShowcase props={props} rows={rows} />,
-  args: {
-    ...defaultArgs,
-    detached: true,
-  },
 };
 
 const AsOverlayDemo: React.FC<IBottomSheetProps> = (props) => {

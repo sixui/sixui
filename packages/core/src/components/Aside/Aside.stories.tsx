@@ -35,6 +35,7 @@ const defaultArgs = {
 const AsideFrame: React.FC<IAsideProps> = (props) => {
   const { ...other } = props;
   const [opened, toggleOpened] = useToggle([true, false]);
+  const [isDrawer, setDrawer] = useState(false);
   const [isModal, setModal] = useState(false);
 
   return (
@@ -48,14 +49,19 @@ const AsideFrame: React.FC<IAsideProps> = (props) => {
         >
           {opened ? 'Close' : 'Open'}
         </Button>
-        <Labeled label="Modal" labelPosition="right">
+        <Labeled label="Drawer" labelPosition="right">
+          <Checkbox
+            onChange={(value) => {
+              setDrawer(!!value);
+            }}
+          />
+        </Labeled>
+        <Labeled label="Modal" labelPosition="right" disabled={!isDrawer}>
           <Checkbox
             onChange={(value) => {
               setModal(!!value);
             }}
-          >
-            {isModal ? 'Close' : 'Open'} modal
-          </Checkbox>
+          />
         </Labeled>
       </Flex>
 
@@ -77,6 +83,7 @@ const AsideFrame: React.FC<IAsideProps> = (props) => {
           <Placeholder label="Page" grow={1} expanded diagonals />
           <Aside
             opened={opened}
+            drawer={isDrawer}
             modal={isModal}
             onClose={() => {
               toggleOpened(false);

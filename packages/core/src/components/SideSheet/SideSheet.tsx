@@ -16,12 +16,15 @@ export const SideSheet = componentFactory<ISideSheetFactory>(
       styles,
       style,
       variant,
+      drawer,
       opened,
       modal,
       detached,
+      divider,
       side = 'left',
       wide: fullHeight,
       onClose,
+      onClosed,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -42,11 +45,13 @@ export const SideSheet = componentFactory<ISideSheetFactory>(
           sideSheetContent: getStyles('sideSheetContent').className,
         })}
         opened={opened}
+        drawer={drawer}
         modal={modal}
         detached={detached}
         side={side}
         wide={fullHeight}
         onClose={onClose}
+        onClosed={onClosed}
         ref={forwardedRef}
       >
         {({ close, type }) => (
@@ -61,6 +66,7 @@ export const SideSheet = componentFactory<ISideSheetFactory>(
             }
             showCloseButton={type === 'modal'}
             onClose={close}
+            divider={divider ?? !drawer}
             {...getStyles('sideSheetContent')}
             {...other}
           />

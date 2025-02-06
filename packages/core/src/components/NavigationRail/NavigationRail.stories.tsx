@@ -53,7 +53,6 @@ const defaultArgs = {
       />
     </>
   ),
-  divider: true,
 } satisfies Partial<INavigationRailProps>;
 
 const NavigationRailFrame: React.FC<INavigationRailProps> = (props) => {
