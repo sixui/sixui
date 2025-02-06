@@ -90,8 +90,6 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
                 activeDestination={activeDestination}
                 onClick={setActiveDestination}
                 divider
-                headline="App Name"
-                showCloseButton
                 wide
               />
 

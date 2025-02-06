@@ -30,6 +30,7 @@ const classNames = createStyles({
     gap: px(space(4)),
     paddingLeft: px(space(7)),
     paddingRight: px(space(7)),
+    paddingTop: px(space(4)),
   },
   list: {
     marginLeft: calc.negate(px(space(4))),

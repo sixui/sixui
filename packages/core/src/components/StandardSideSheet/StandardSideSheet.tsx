@@ -1,6 +1,6 @@
 import type { IStandardSideSheetThemeFactory } from './StandardSideSheet.css';
 import type { IStandardSideSheetFactory } from './StandardSideSheet.types';
-import { SideSheetContent } from '~/components/SideSheetContent';
+import { SideSheetContent } from '~/components/SideSheet/SideSheetContent';
 import { StandardAside } from '~/components/StandardAside';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';

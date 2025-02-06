@@ -69,7 +69,6 @@ export * from './RichTooltip';
 export * from './Scrim';
 export * from './Select';
 export * from './SelectBase';
-export * from './SideSheetContent';
 export * from './Sixui';
 export * from './Skeleton';
 export * from './Snackbar';

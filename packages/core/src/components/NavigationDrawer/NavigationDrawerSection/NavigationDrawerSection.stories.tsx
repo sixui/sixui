@@ -32,8 +32,8 @@ const NavigationDrawerSectionDemo: React.FC<INavigationDrawerSectionProps> = (
     surface="$surface"
     outline="$xs"
     outlineStyle="dashed"
-    pt="$8"
-    pb="$8"
+    pt="$4"
+    pb="$4"
     w="$96"
   >
     <NavigationDrawerSection headline="Mail" endDivider {...props}>

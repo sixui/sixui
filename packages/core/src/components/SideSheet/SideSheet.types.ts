@@ -1,11 +1,11 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IDrawerAsideOwnProps } from '~/components/DrawerAside';
-import type { ISideSheetContentOwnProps } from '~/components/SideSheetContent';
 import type { IStandardAsideOwnProps } from '~/components/StandardAside';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IHorizontalSide, IOmit } from '~/utils/types';
 import type { ISideSheetThemeFactory, sideSheetTheme } from './SideSheet.css';
+import type { ISideSheetContentOwnProps } from './SideSheetContent';
 
 export interface ISideSheetOwnProps
   extends IOmit<IStandardAsideOwnProps, 'children' | 'side'>,

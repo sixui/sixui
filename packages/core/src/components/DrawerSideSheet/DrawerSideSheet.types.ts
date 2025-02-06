@@ -3,7 +3,7 @@ import type {
   IDrawerAsideOwnProps,
   IDrawerAsideProps,
 } from '~/components/DrawerAside';
-import type { ISideSheetContentOwnProps } from '~/components/SideSheetContent';
+import type { ISideSheetContentOwnProps } from '~/components/SideSheet/SideSheetContent';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IOmit } from '~/utils/types';

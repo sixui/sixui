@@ -1,7 +1,7 @@
 import type { IDrawerSideSheetThemeFactory } from './DrawerSideSheet.css';
 import type { IDrawerSideSheetFactory } from './DrawerSideSheet.types';
 import { DrawerAside } from '~/components/DrawerAside';
-import { SideSheetContent } from '~/components/SideSheetContent';
+import { SideSheetContent } from '~/components/SideSheet/SideSheetContent';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
@@ -58,7 +58,6 @@ export const DrawerSideSheet = componentFactory<IDrawerSideSheetFactory>(
         <SideSheetContent
           side={side}
           variant={detached ? 'detachedDrawer' : 'drawer'}
-          showCloseButton
           onClose={onClose}
           {...getStyles('sideSheetContent')}
           {...other}

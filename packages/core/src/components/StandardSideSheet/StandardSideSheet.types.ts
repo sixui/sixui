@@ -1,5 +1,5 @@
 import type { IBoxProps } from '~/components/Box';
-import type { ISideSheetContentOwnProps } from '~/components/SideSheetContent';
+import type { ISideSheetContentOwnProps } from '~/components/SideSheet/SideSheetContent';
 import type { IStandardAsideOwnProps } from '~/components/StandardAside';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';

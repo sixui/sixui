@@ -1,6 +1,6 @@
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { DrawerAside } from '~/components/DrawerAside';
-import { SideSheetContent } from '~/components/SideSheetContent';
+import { SideSheetContent } from '~/components/SideSheet/SideSheetContent';
 import { StandardAside } from '~/components/StandardAside';
 import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
