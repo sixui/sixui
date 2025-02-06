@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { IFrameProps } from './Frame.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { themeTokens } from '~/components/Theme';
-import { px } from '~/utils/css/px';
 import { Frame } from './Frame';
 
 const meta = {
@@ -31,11 +30,6 @@ const defaultArgs = {
   ),
   w: '$48',
   h: '$48',
-  style: {
-    borderWidth: px(1),
-    borderStyle: 'dashed',
-    borderColor: themeTokens.colorScheme.outlineVariant,
-  },
 } satisfies Partial<IFrameProps>;
 
 const FrameShowcase = componentShowcaseFactory(Frame);

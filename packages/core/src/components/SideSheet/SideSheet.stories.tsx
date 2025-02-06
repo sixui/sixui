@@ -11,9 +11,7 @@ import { Frame } from '~/components/Frame';
 import { Labeled } from '~/components/Labeled';
 import { OverlaysProvider, useOverlays } from '~/components/Overlays';
 import { Placeholder } from '~/components/Placeholder';
-import { themeTokens } from '~/components/Theme';
 import { useToggle } from '~/hooks/useToggle';
-import { px } from '~/utils/css/px';
 import { SideSheet } from './SideSheet';
 import { SideSheetOverlay } from './SideSheetOverlay';
 
@@ -96,16 +94,7 @@ const SideSheetFrame: React.FC<ISideSheetProps> = (props) => {
         </Labeled>
       </Flex>
 
-      <Frame
-        importParentStyles
-        w="100%"
-        h="$96"
-        style={{
-          borderWidth: px(1),
-          borderStyle: 'dashed',
-          borderColor: themeTokens.colorScheme.outlineVariant,
-        }}
-      >
+      <Frame importParentStyles w="100%" h="$96">
         <Flex
           direction={other.side === 'right' ? 'row' : 'row-reverse'}
           align="start"

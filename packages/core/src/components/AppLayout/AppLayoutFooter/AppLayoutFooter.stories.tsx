@@ -3,8 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { IAppLayoutFooterProps } from './AppLayoutFooter.types';
 import { Frame } from '~/components/Frame';
 import { Placeholder } from '~/components/Placeholder';
-import { themeTokens } from '~/components/Theme';
-import { px } from '~/utils/css/px';
 import { AppLayoutFooter } from './AppLayoutFooter';
 
 const meta = {
@@ -25,10 +23,9 @@ const AppLayoutFooterFrame: React.FC<IAppLayoutFooterProps> = (props) => {
       w="100%"
       h="$96"
       style={{
-        borderWidth: px(1),
-        borderStyle: 'dashed',
-        borderColor: themeTokens.colorScheme.outlineVariant,
         borderTopWidth: 0,
+        borderTopLeftRadius: 0,
+        borderTopRightRadius: 0,
       }}
     >
       <AppLayoutFooter {...props} />

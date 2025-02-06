@@ -5,8 +5,6 @@ import type { ICanonicalLayoutType } from '~/hooks/useCanonicalLayout';
 import type { IAppLayoutProps } from './AppLayout.types';
 import { Flex } from '~/components/Flex';
 import { Frame } from '~/components/Frame';
-import { themeTokens } from '~/components/Theme';
-import { px } from '~/utils/css/px';
 import { AppLayout } from './AppLayout';
 import { CanonicalLayout } from './AppLayout.stories/CanonicalLayout';
 import { Footer } from './AppLayout.stories/Footer';
@@ -31,16 +29,7 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => {
   >('listDetail');
 
   return (
-    <Frame
-      importParentStyles
-      w="100%"
-      h="$160"
-      style={{
-        borderWidth: px(themeTokens.outline.width.xs),
-        borderColor: themeTokens.colorScheme.outlineVariant,
-        borderStyle: 'dashed',
-      }}
-    >
+    <Frame importParentStyles w="100%" h="$160">
       {({ window }) => (
         <AppLayout
           preferredNavigationMode="standard"
@@ -85,16 +74,7 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => {
   >('listDetail');
 
   return (
-    <Frame
-      importParentStyles
-      w="100%"
-      h="$160"
-      style={{
-        borderWidth: px(themeTokens.outline.width.xs),
-        borderColor: themeTokens.colorScheme.outlineVariant,
-        borderStyle: 'dashed',
-      }}
-    >
+    <Frame importParentStyles w="100%" h="$160">
       {({ window }) => (
         <AppLayout window={window} {...props}>
           <Flex direction="column">

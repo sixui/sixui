@@ -15,9 +15,7 @@ import { Flex } from '~/components/Flex';
 import { Frame } from '~/components/Frame';
 import { Paper } from '~/components/Paper';
 import { Text } from '~/components/Text';
-import { themeTokens } from '~/components/Theme';
 import { useDisclosure } from '~/hooks/useDisclosure';
-import { px } from '~/utils/css/px';
 import { Drawer } from './Drawer';
 
 const meta = {
@@ -59,16 +57,7 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
   const [bottomOpened, bottomActions] = useDisclosure(false);
 
   return (
-    <Frame
-      importParentStyles
-      w="100%"
-      h="$96"
-      style={{
-        borderWidth: px(themeTokens.outline.width.xs),
-        borderColor: themeTokens.colorScheme.outlineVariant,
-        borderStyle: 'dashed',
-      }}
-    >
+    <Frame importParentStyles w="100%" h="$96">
       <div ref={setRoot}>
         <DrawerDemo
           {...props}

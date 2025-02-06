@@ -17,9 +17,7 @@ import { Flex } from '~/components/Flex';
 import { Frame } from '~/components/Frame';
 import { NavigationBar } from '~/components/NavigationBar';
 import { Placeholder } from '~/components/Placeholder';
-import { themeTokens } from '~/components/Theme';
 import { useToggle } from '~/hooks/useToggle';
-import { px } from '~/utils/css/px';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { AppLayoutNavigationBar } from './AppLayoutNavigationBar';
 
@@ -75,16 +73,7 @@ const AppLayoutNavigationBarFrame: React.FC<IAppLayoutNavigationBarProps> = (
         </Button>
       </Flex>
 
-      <Frame
-        importParentStyles
-        w="$72"
-        h="$96"
-        style={{
-          borderWidth: px(1),
-          borderStyle: 'dashed',
-          borderColor: themeTokens.colorScheme.outlineVariant,
-        }}
-      >
+      <Frame importParentStyles w="$72" h="$96">
         <Flex direction="column" align="start" h="100%">
           <Placeholder label="Page" grow={1} expanded diagonals />
           <NavigationBar opened={opened} {...other} />

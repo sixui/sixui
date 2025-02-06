@@ -6,9 +6,7 @@ import type { ISlotProps } from './Slot.types';
 import { Box } from '~/components/Box';
 import { Button } from '~/components/Button';
 import { Flex } from '~/components/Flex';
-import { themeTokens } from '~/components/Theme';
 import { useToggle } from '~/hooks';
-import { px } from '~/utils/css/px';
 import { Slot } from './Slot';
 
 const meta = {
@@ -42,11 +40,6 @@ const SlotDemo: React.FC<ISlotProps> = (props) => {
           h="$10"
           align="center"
           justify="center"
-          style={{
-            borderWidth: px(themeTokens.outline.width.xs),
-            borderColor: themeTokens.colorScheme.outlineVariant,
-            borderStyle: 'dashed',
-          }}
           {...props}
         />
       </Box>

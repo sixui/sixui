@@ -12,9 +12,7 @@ import { Labeled } from '~/components/Labeled';
 import { OverlaysProvider, useOverlays } from '~/components/Overlays';
 import { Placeholder } from '~/components/Placeholder';
 import { Text } from '~/components/Text';
-import { themeTokens } from '~/components/Theme';
 import { useToggle } from '~/hooks';
-import { px } from '~/utils/css';
 import { BottomSheet } from './BottomSheet';
 import { BottomSheetOverlay } from './BottomSheetOverlay';
 
@@ -84,16 +82,7 @@ const BottomSheetFrame: React.FC<IBottomSheetProps> = (props) => {
         </Labeled>
       </Flex>
 
-      <Frame
-        importParentStyles
-        w="100%"
-        h="$96"
-        style={{
-          borderWidth: px(1),
-          borderStyle: 'dashed',
-          borderColor: themeTokens.colorScheme.outlineVariant,
-        }}
-      >
+      <Frame importParentStyles w="100%" h="$96">
         <Flex h="100%">
           <Placeholder label="Page" grow={1} expanded diagonals />
           <BottomSheet

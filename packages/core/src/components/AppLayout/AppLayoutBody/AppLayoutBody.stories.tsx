@@ -4,8 +4,6 @@ import { createSequence } from '@olivierpascal/helpers';
 import type { IAppLayoutBodyProps } from './AppLayoutBody.types';
 import { Frame } from '~/components/Frame';
 import { Placeholder } from '~/components/Placeholder';
-import { themeTokens } from '~/components/Theme';
-import { px } from '~/utils/css/px';
 import { AppLayoutBody } from './AppLayoutBody';
 
 const meta = {
@@ -22,16 +20,7 @@ const defaultArgs = {
 
 const AppLayoutBodyFrame: React.FC<IAppLayoutBodyProps> = (props) => {
   return (
-    <Frame
-      importParentStyles
-      w="100%"
-      h="$96"
-      style={{
-        borderWidth: px(1),
-        borderStyle: 'dashed',
-        borderColor: themeTokens.colorScheme.outlineVariant,
-      }}
-    >
+    <Frame importParentStyles w="100%" h="$96">
       <AppLayoutBody {...props} />
     </Frame>
   );
