@@ -1,6 +1,5 @@
 export * from './Anchored';
 export * from './AppLayout';
-export * from './Aside';
 export * from './Avatar';
 export * from './Badge';
 // export * from './BasicTemplate';
