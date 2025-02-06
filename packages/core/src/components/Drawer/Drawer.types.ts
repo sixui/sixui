@@ -16,6 +16,7 @@ export interface IDrawerOwnProps {
   opened?: boolean;
   defaultOpened?: boolean;
   onClose?: () => void;
+  onClosed?: () => void;
   disabled?: boolean;
   side?: ISide;
   children:

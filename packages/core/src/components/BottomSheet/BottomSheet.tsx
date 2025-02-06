@@ -20,6 +20,7 @@ export const BottomSheet = componentFactory<IBottomSheetFactory>(
       modal,
       detached,
       onClose,
+      onClosed,
       fullHeight,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
@@ -52,6 +53,7 @@ export const BottomSheet = componentFactory<IBottomSheetFactory>(
           onClose?.();
           appLayoutContext?.bottomSheet?.state?.close();
         }}
+        onClosed={onClosed}
         side="bottom"
         modal={modal}
         variant={detached ? 'detached' : undefined}

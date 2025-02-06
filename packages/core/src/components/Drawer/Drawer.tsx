@@ -18,6 +18,7 @@ export const Drawer = componentFactory<IDrawerFactory>(
       opened,
       defaultOpened,
       onClose,
+      onClosed,
       side = 'left',
       children,
       disabled,
@@ -51,6 +52,7 @@ export const Drawer = componentFactory<IDrawerFactory>(
         opened={opened}
         defaultOpened={defaultOpened}
         onClose={onClose}
+        onClosed={onClosed}
         contentRenderer={children}
         placement={{ side }}
         modal={modal}

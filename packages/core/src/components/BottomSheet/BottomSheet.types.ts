@@ -10,6 +10,8 @@ import type { IBottomSheetContentOwnProps } from './BottomSheetContent';
 export interface IBottomSheetOwnProps extends IBottomSheetContentOwnProps {
   opened?: boolean;
   modal?: boolean;
+  onClose?: () => void;
+  onClosed?: () => void;
   detached?: boolean;
   fullHeight?: boolean;
 }
