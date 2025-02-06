@@ -1,15 +1,15 @@
-import type { ISnackbarProps } from './Snackbar.types';
+import type { IDrawerSideSheetProps } from './DrawerSideSheet.types';
 import { registerOverlay, useOverlayInstance } from '~/components/Overlays';
-import { Snackbar } from './Snackbar';
-import { COMPONENT_NAME, OVERLAY_LAYER } from './Snackbar.constants';
+import { DrawerSideSheet } from './DrawerSideSheet';
+import { COMPONENT_NAME, OVERLAY_LAYER } from './DrawerSideSheet.constants';
 
-export const SnackbarOverlay = registerOverlay<ISnackbarProps>(
+export const DrawerSideSheetOverlay = registerOverlay<IDrawerSideSheetProps>(
   (props) => {
     const { instanceId, ...other } = props;
     const overlay = useOverlayInstance(instanceId);
 
     return (
-      <Snackbar
+      <DrawerSideSheet
         {...other}
         opened={overlay.opened}
         onClose={() => {

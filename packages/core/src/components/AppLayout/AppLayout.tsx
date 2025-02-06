@@ -7,11 +7,7 @@ import type {
 } from './AppLayout.types';
 import type { IAppLayoutSetterContextValue } from './AppLayoutSetter.context';
 import { Box } from '~/components/Box';
-import {
-  themeTokens,
-  useComponentTheme,
-  useProps,
-} from '~/components/Theme';
+import { themeTokens, useComponentTheme, useProps } from '~/components/Theme';
 import { useDisclosure } from '~/hooks/useDisclosure';
 import { useSet } from '~/hooks/useSet';
 import { useSideSheet } from '~/hooks/useSideSheet';
@@ -62,7 +58,7 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
       !navigationDrawer?.defaultClosed,
     );
     const navigationDrawerType =
-      navigationMode === 'standard' ? 'standard' : 'modal';
+      navigationMode === 'standard' ? 'standard' : 'drawer';
     const navigationDrawerState = useSideSheet({
       opened: navigationDrawerOpened,
       type: navigationDrawerType,
@@ -76,7 +72,7 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
     );
     const sideSheetType = windowSizeClass?.extraLargeAndUp
       ? 'standard'
-      : 'modal';
+      : 'drawer';
     const sideSheetState = useSideSheet({
       opened: sideSheetOpened,
       type: sideSheetType,

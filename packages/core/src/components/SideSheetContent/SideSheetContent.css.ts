@@ -168,7 +168,7 @@ export const sideSheetContentTheme =
 
 export const sideSheetContentThemeVariants = {
   standard: createStyles(),
-  modal: createStyles({
+  drawer: createStyles({
     root: {
       vars: overrideTokens(tokens, {
         container: {
@@ -203,7 +203,7 @@ export const sideSheetContentThemeVariants = {
       },
     },
   }),
-  detachedModal: createStyles({
+  detachedDrawer: createStyles({
     root: {
       vars: overrideTokens(tokens, {
         container: {

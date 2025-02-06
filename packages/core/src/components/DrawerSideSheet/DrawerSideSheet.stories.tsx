@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
-import type { IBottomSheetProps } from './BottomSheet.types';
+import type { IDrawerSideSheetProps } from './DrawerSideSheet.types';
 import { Button } from '~/components/Button';
 import { Checkbox } from '~/components/Checkbox';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
@@ -10,44 +10,55 @@ import { Frame } from '~/components/Frame';
 import { Labeled } from '~/components/Labeled';
 import { OverlaysProvider, useOverlays } from '~/components/Overlays';
 import { Placeholder } from '~/components/Placeholder';
-import { Text } from '~/components/Text';
 import { themeTokens } from '~/components/Theme';
-import { useToggle } from '~/hooks';
-import { px } from '~/utils/css';
-import { BottomSheet } from './BottomSheet';
-import { BottomSheetOverlay } from './BottomSheetOverlay';
+import { useToggle } from '~/hooks/useToggle';
+import { px } from '~/utils/css/px';
+import { DrawerSideSheet } from './DrawerSideSheet';
+import { DrawerSideSheetOverlay } from './DrawerSideSheetOverlay';
 
 const meta = {
-  component: BottomSheet,
-} satisfies Meta<IBottomSheetProps>;
+  component: DrawerSideSheet,
+} satisfies Meta<typeof DrawerSideSheet>;
 
-type IStory = StoryObj<IBottomSheetProps>;
+type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  showCloseButton: true,
-  children: (
-    <Text p="$6">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-      tincidunt dictum vulputate. Lorem ipsum dolor sit amet, consectetur
-      adipiscing elit. Nullam ultrices leo non urna sollicitudin faucibus.
-      Curabitur interdum, massa at venenatis sodales, metus tellus aliquet erat,
-      vitae lacinia mi mi consectetur dolor. Phasellus blandit porta urna at
-      semper. Donec vehicula lectus in eleifend elementum. Vestibulum quis massa
-      massa. Vivamus porta risus ac metus dictum tristique. Curabitur pulvinar
-      nunc eget eros condimentum, sit amet fermentum dui blandit. Nam lorem
-      orci, ultricies quis justo eget, gravida finibus sapien. Cras lorem odio,
-      sagittis sed risus sed, tristique malesuada leo. In odio enim, pulvinar ut
-      felis ac, vulputate auctor massa.
-    </Text>
+  header: (
+    <Placeholder
+      label="Header"
+      surface="$primaryContainer"
+      color="$onPrimaryContainer"
+      expanded
+      diagonals
+      h="$18"
+    />
   ),
-} satisfies Partial<IBottomSheetProps>;
+  children: (
+    <Placeholder
+      label="Content"
+      surface="$primaryContainer"
+      color="$onPrimaryContainer"
+      expanded
+      diagonals
+    />
+  ),
+  footer: (
+    <Placeholder
+      label="Footer"
+      surface="$primaryContainer"
+      color="$onPrimaryContainer"
+      expanded
+      diagonals
+      h="$18"
+    />
+  ),
+} satisfies Partial<IDrawerSideSheetProps>;
 
-const BottomSheetFrame: React.FC<IBottomSheetProps> = (props) => {
+const DrawerSideSheetFrame: React.FC<IDrawerSideSheetProps> = (props) => {
   const { ...other } = props;
   const [opened, toggleOpened] = useToggle([true, false]);
   const [isModal, setModal] = useState(false);
   const [detached, setDetached] = useState(false);
-  const [isFullHeight, setFullHeight] = useState(false);
 
   return (
     <Flex direction="column" gap="$2">
@@ -74,13 +85,6 @@ const BottomSheetFrame: React.FC<IBottomSheetProps> = (props) => {
             }}
           />
         </Labeled>
-        <Labeled label="Full height" labelPosition="right">
-          <Checkbox
-            onChange={(value) => {
-              setFullHeight(!!value);
-            }}
-          />
-        </Labeled>
       </Flex>
 
       <Frame
@@ -93,13 +97,16 @@ const BottomSheetFrame: React.FC<IBottomSheetProps> = (props) => {
           borderColor: themeTokens.colorScheme.outlineVariant,
         }}
       >
-        <Flex h="100%">
+        <Flex
+          direction={other.side === 'right' ? 'row' : 'row-reverse'}
+          align="start"
+          h="100%"
+        >
           <Placeholder label="Page" grow={1} expanded diagonals />
-          <BottomSheet
+          <DrawerSideSheet
             opened={opened}
             modal={isModal}
             detached={detached}
-            fullHeight={isFullHeight}
             onClose={() => {
               toggleOpened(false);
             }}
@@ -111,16 +118,27 @@ const BottomSheetFrame: React.FC<IBottomSheetProps> = (props) => {
   );
 };
 
-export const Basic: IStory = {
-  render: (props) => <BottomSheetFrame {...props} />,
-  args: defaultArgs,
+export const FromLeft: IStory = {
+  render: (props) => <DrawerSideSheetFrame {...props} />,
+  args: {
+    ...defaultArgs,
+    side: 'left',
+  },
 };
 
-const AsOverlayDemo: React.FC<IBottomSheetProps> = (props) => {
+export const FromRight: IStory = {
+  render: (props) => <DrawerSideSheetFrame {...props} />,
+  args: {
+    ...defaultArgs,
+    side: 'right',
+  },
+};
+
+const AsOverlayDemo: React.FC<IDrawerSideSheetProps> = (props) => {
   const overlays = useOverlays();
 
   return (
-    <Button onClick={() => overlays.open(BottomSheetOverlay, props)}>
+    <Button onClick={() => overlays.open(DrawerSideSheetOverlay, props)}>
       Open
     </Button>
   );
@@ -129,10 +147,14 @@ const AsOverlayDemo: React.FC<IBottomSheetProps> = (props) => {
 const AsOverlayDemoShowcase = componentShowcaseFactory(AsOverlayDemo);
 
 export const AsOverlay: IStory = {
-  render: (props: IBottomSheetProps) => (
+  render: (props: IDrawerSideSheetProps) => (
     <OverlaysProvider>
       <AsOverlayDemoShowcase
         props={props}
+        cols={[
+          { legend: 'From left', props: { side: 'left' } },
+          { legend: 'From right', props: { side: 'right' } },
+        ]}
         rows={[
           { legend: 'Normal' },
           { legend: 'Modal', props: { modal: true } },

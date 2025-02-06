@@ -24,6 +24,7 @@ export const StandardAside = componentFactory<IStandardAsideFactory>(
       side = 'left',
       opened,
       onClose,
+      onClosed,
       children,
       wide,
       ...other
@@ -62,6 +63,7 @@ export const StandardAside = componentFactory<IStandardAsideFactory>(
           in={opened}
           timeout={550} // motionTokens.duration$long3
           unmountOnExit
+          onExited={onClosed}
         >
           {(status) => (
             <Motion
@@ -72,9 +74,7 @@ export const StandardAside = componentFactory<IStandardAsideFactory>(
               pattern="enterExitOffScreen"
               ref={transitionNodeHandleRef}
             >
-              {isFunction(children)
-                ? children({ type: 'standard', close: onClose })
-                : children}
+              {isFunction(children) ? children({ close: onClose }) : children}
             </Motion>
           )}
         </CSSTransition>

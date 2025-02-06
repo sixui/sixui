@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import { usePrevious } from '~/hooks/usePrevious';
 
-export type ISideSheetType = 'standard' | 'modal';
+export type ISideSheetType = 'standard' | 'drawer';
 
 export type IUseSideSheetResult = {
   opened: boolean;
@@ -21,7 +21,7 @@ export const useSideSheet = (
 ): IUseSideSheetResult => {
   const { opened, type, onOpen, onClose } = props;
 
-  const isModal = type === 'modal';
+  const isModal = type === 'drawer';
   const [modalOpened, setModalOpened] = useState(false);
   const savedStandardOpenedRef = useRef(opened);
   const previousOpened = usePrevious(!!opened);

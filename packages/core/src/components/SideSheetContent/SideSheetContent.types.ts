@@ -10,8 +10,8 @@ import type {
 
 export const sideSheetContentVariants = [
   'standard',
-  'modal',
-  'detachedModal',
+  'drawer',
+  'detachedDrawer',
 ] as const;
 export type ISideSheetContentVariant =
   (typeof sideSheetContentVariants)[number];

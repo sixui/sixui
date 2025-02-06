@@ -3,6 +3,7 @@ import type { IAsideFactory } from './Aside.types';
 import { DrawerAside } from '~/components/DrawerAside';
 import { StandardAside } from '~/components/StandardAside';
 import { useComponentTheme, useProps } from '~/components/Theme';
+import { isFunction } from '~/utils';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './Aside.constants';
 import { asideTheme } from './Aside.css';
@@ -21,6 +22,7 @@ export const Aside = componentFactory<IAsideFactory>((props, forwardedRef) => {
     detached,
     wide,
     opened,
+    children,
     ...other
   } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -44,7 +46,11 @@ export const Aside = componentFactory<IAsideFactory>((props, forwardedRef) => {
         ref={drawerRef}
         modal={modal}
         {...other}
-      />
+      >
+        {isFunction(children)
+          ? children({ close: props.onClose, type: 'drawer' })
+          : children}
+      </DrawerAside>
 
       <StandardAside
         {...getStyles(['root', 'standard'])}
@@ -52,7 +58,11 @@ export const Aside = componentFactory<IAsideFactory>((props, forwardedRef) => {
         wide={wide}
         ref={forwardedRef}
         {...other}
-      />
+      >
+        {isFunction(children)
+          ? children({ close: props.onClose, type: 'standard' })
+          : children}
+      </StandardAside>
     </>
   );
 });

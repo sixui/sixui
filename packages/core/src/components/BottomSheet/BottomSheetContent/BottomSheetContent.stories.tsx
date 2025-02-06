@@ -34,7 +34,7 @@ export const Variants: IStory = {
   ),
   args: {
     ...defaultArgs,
-    onClose: (args) => void sbHandleEvent('onClose', args),
+    onClose: (...args) => void sbHandleEvent('onClose', args),
     w: '$96',
     h: '$72',
   },

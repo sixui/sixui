@@ -5,11 +5,7 @@ import type { IFrameThemeFactory } from './Frame.css';
 import type { IFrameFactory } from './Frame.types';
 import { Box } from '~/components/Box';
 import { Responsive } from '~/components/Responsive';
-import {
-  ThemeProvider,
-  useComponentTheme,
-  useProps,
-} from '~/components/Theme';
+import { ThemeProvider, useComponentTheme, useProps } from '~/components/Theme';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { isFunction } from '~/utils/isFunction';

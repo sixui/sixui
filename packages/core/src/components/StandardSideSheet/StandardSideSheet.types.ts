@@ -1,28 +1,27 @@
 import type { IBoxProps } from '~/components/Box';
-import type { IDrawerAsideOwnProps } from '~/components/DrawerAside';
 import type { ISideSheetContentOwnProps } from '~/components/SideSheetContent';
 import type { IStandardAsideOwnProps } from '~/components/StandardAside';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IHorizontalSide, IOmit } from '~/utils/types';
-import type { ISideSheetThemeFactory, sideSheetTheme } from './SideSheet.css';
+import type {
+  IStandardSideSheetThemeFactory,
+  standardSideSheetTheme,
+} from './StandardSideSheet.css';
 
-export interface ISideSheetOwnProps
+export interface IStandardSideSheetOwnProps
   extends IOmit<IStandardAsideOwnProps, 'children' | 'side'>,
-    IOmit<IDrawerAsideOwnProps, 'children' | 'side'>,
     ISideSheetContentOwnProps {
   side?: IHorizontalSide;
-  drawer?: boolean;
-  drawerRef?: React.RefObject<HTMLDivElement>;
 }
 
-export interface ISideSheetProps
+export interface IStandardSideSheetProps
   extends IBoxProps,
-    IComponentThemeProps<ISideSheetThemeFactory>,
-    ISideSheetOwnProps {}
+    IComponentThemeProps<IStandardSideSheetThemeFactory>,
+    IStandardSideSheetOwnProps {}
 
-export type ISideSheetFactory = IComponentFactory<{
-  props: ISideSheetProps;
+export type IStandardSideSheetFactory = IComponentFactory<{
+  props: IStandardSideSheetProps;
   ref: HTMLDivElement;
-  theme: typeof sideSheetTheme;
+  theme: typeof standardSideSheetTheme;
 }>;

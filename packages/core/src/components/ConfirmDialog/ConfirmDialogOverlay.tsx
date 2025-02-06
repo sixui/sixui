@@ -1,5 +1,5 @@
 import type { IConfirmDialogProps } from './ConfirmDialog.types';
-import { registerOverlay, useOverlayInstance } from '../Overlays';
+import { registerOverlay, useOverlayInstance } from '~/components/Overlays';
 import { ConfirmDialog } from './ConfirmDialog';
 import { COMPONENT_NAME, OVERLAY_LAYER } from './ConfirmDialog.constants';
 

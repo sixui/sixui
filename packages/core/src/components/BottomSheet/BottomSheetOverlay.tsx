@@ -1,5 +1,5 @@
 import type { IBottomSheetProps } from './BottomSheet.types';
-import { registerOverlay, useOverlayInstance } from '../Overlays';
+import { registerOverlay, useOverlayInstance } from '~/components/Overlays';
 import { BottomSheet } from './BottomSheet';
 import { COMPONENT_NAME, OVERLAY_LAYER } from './BottomSheet.constants';
 

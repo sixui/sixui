@@ -1,9 +1,9 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IButtonProps } from '~/components/Button';
+import type { IDialogOwnProps } from '~/components/Dialog';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IMaybeAsync, IOmit } from '~/utils';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IDialogOwnProps } from '../Dialog';
 import type {
   confirmDialogTheme,
   IConfirmDialogThemeFactory,

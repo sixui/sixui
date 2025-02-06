@@ -9,7 +9,6 @@ import type {
 import { IDrawerOwnProps } from '~/components/Drawer/Drawer.types';
 
 export interface IDrawerAsideChildrenRenderProps {
-  type: string;
   close?: (event?: React.MouseEvent) => void;
 }
 

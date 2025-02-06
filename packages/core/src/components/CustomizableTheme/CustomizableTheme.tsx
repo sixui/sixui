@@ -7,11 +7,7 @@ import { ColorInputField } from '~/components/ColorInputField';
 import { Flex } from '~/components/Flex';
 import { Paper } from '~/components/Paper';
 import { TextInputField } from '~/components/TextInputField';
-import {
-  ThemeProvider,
-  useComponentTheme,
-  useProps,
-} from '~/components/Theme';
+import { ThemeProvider, useComponentTheme, useProps } from '~/components/Theme';
 import { generateThemeFromSourceColor } from '~/utils/colors/generateThemeFromSourceColor';
 import { isValidHexColor } from '~/utils/colors/isValidHexColor';
 import { componentFactory } from '~/utils/component/componentFactory';

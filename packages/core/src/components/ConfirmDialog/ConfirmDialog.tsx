@@ -2,11 +2,11 @@ import { useState } from 'react';
 
 import type { IConfirmDialogThemeFactory } from './ConfirmDialog.css';
 import type { IConfirmDialogFactory } from './ConfirmDialog.types';
+import { Button } from '~/components/Button';
 import { Dialog } from '~/components/Dialog';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { executeLazyPromise } from '~/utils';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { Button } from '../Button';
 import { COMPONENT_NAME } from './ConfirmDialog.constants';
 import { confirmDialogTheme } from './ConfirmDialog.css';
 

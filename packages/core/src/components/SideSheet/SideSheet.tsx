@@ -1,11 +1,10 @@
 import type { ISideSheetThemeFactory } from './SideSheet.css';
 import type { ISideSheetFactory } from './SideSheet.types';
-import { Aside } from '~/components/Aside';
+import { DrawerSideSheet } from '~/components/DrawerSideSheet';
+import { StandardSideSheet } from '~/components/StandardSideSheet';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { COMPONENT_NAME } from './SideSheet.constants';
-import { SideSheetContent } from './SideSheetContent';
 import { sideSheetTheme } from './SideSheet.css';
 
 export const SideSheet = componentFactory<ISideSheetFactory>(
@@ -16,15 +15,13 @@ export const SideSheet = componentFactory<ISideSheetFactory>(
       styles,
       style,
       variant,
-      drawer,
       opened,
-      modal,
+      drawer,
+      root,
       detached,
-      divider,
-      side = 'left',
-      wide: fullHeight,
-      onClose,
-      onClosed,
+      drawerRef,
+      modal,
+      wide,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -39,39 +36,25 @@ export const SideSheet = componentFactory<ISideSheetFactory>(
     });
 
     return (
-      <Aside
-        {...getStyles('root')}
-        classNames={mergeClassNames(classNames, {
-          sideSheetContent: getStyles('sideSheetContent').className,
-        })}
-        opened={opened}
-        drawer={drawer}
-        modal={modal}
-        detached={detached}
-        side={side}
-        wide={fullHeight}
-        onClose={onClose}
-        onClosed={onClosed}
-        ref={forwardedRef}
-      >
-        {({ close, type }) => (
-          <SideSheetContent
-            side={side}
-            variant={
-              type === 'modal'
-                ? detached
-                  ? 'detachedModal'
-                  : 'modal'
-                : undefined
-            }
-            showCloseButton={type === 'modal'}
-            onClose={close}
-            divider={divider ?? !drawer}
-            {...getStyles('sideSheetContent')}
-            {...other}
-          />
-        )}
-      </Aside>
+      <>
+        <DrawerSideSheet
+          {...getStyles(['root', 'drawer'])}
+          opened={opened && drawer}
+          root={root}
+          detached={detached}
+          ref={drawerRef}
+          modal={modal}
+          {...other}
+        />
+
+        <StandardSideSheet
+          {...getStyles(['root', 'standard'])}
+          opened={opened && !drawer}
+          wide={wide}
+          ref={forwardedRef}
+          {...other}
+        />
+      </>
     );
   },
 );

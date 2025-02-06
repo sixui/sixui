@@ -1,5 +1,5 @@
 import type { IDialogProps } from './Dialog.types';
-import { registerOverlay, useOverlayInstance } from '../Overlays';
+import { registerOverlay, useOverlayInstance } from '~/components/Overlays';
 import { Dialog } from './Dialog';
 import { COMPONENT_NAME, OVERLAY_LAYER } from './Dialog.constants';
 

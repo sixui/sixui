@@ -37,7 +37,7 @@ const defaultArgs = {
     <>
       <AppLayoutNavigationDrawer.Section headline="Section">
         <AppLayoutNavigationDrawer.Destination
-          onClick={(args) => sbHandleEvent('onClick', args, 1000)}
+          onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
           leadingIcon={<FontAwesomeIcon icon={faSquare} />}
           activeLeadingIcon={<FontAwesomeIcon icon={fasSquare} />}
           active
@@ -45,14 +45,14 @@ const defaultArgs = {
           Item 1
         </AppLayoutNavigationDrawer.Destination>
         <AppLayoutNavigationDrawer.Destination
-          onClick={(args) => sbHandleEvent('onClick', args, 1000)}
+          onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
           leadingIcon={<FontAwesomeIcon icon={faCircle} />}
           activeLeadingIcon={<FontAwesomeIcon icon={fasCircle} />}
         >
           Item 2
         </AppLayoutNavigationDrawer.Destination>
         <AppLayoutNavigationDrawer.Destination
-          onClick={(args) => sbHandleEvent('onClick', args, 1000)}
+          onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
           leadingIcon={<FontAwesomeIcon icon={faHeart} />}
           activeLeadingIcon={<FontAwesomeIcon icon={fasHeart} />}
           disabled

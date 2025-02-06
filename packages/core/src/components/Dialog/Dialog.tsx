@@ -1,11 +1,11 @@
 import type { IDialogThemeFactory } from './Dialog.css';
 import type { IDialogFactory } from './Dialog.types';
+import { useOverlayContext } from '~/components/Overlays/Overlay.context';
+import { useOverlaysStateContext } from '~/components/Overlays/OverlaysState.context';
 import { PopoverBase } from '~/components/PopoverBase';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { mergeProps } from '~/utils/mergeProps';
-import { useOverlayContext } from '../Overlays/Overlay.context';
-import { useOverlaysStateContext } from '../Overlays/OverlaysState.context';
 import { COMPONENT_NAME } from './Dialog.constants';
 import { DialogContent, IDialogContentOwnProps } from './DialogContent';
 import { dialogTheme } from './Dialog.css';

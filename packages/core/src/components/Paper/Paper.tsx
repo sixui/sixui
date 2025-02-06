@@ -3,11 +3,7 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 import type { IPaperThemeFactory } from './Paper.css';
 import type { IPaperFactory } from './Paper.types';
 import { PaperBase } from '~/components/PaperBase';
-import {
-  themeTokens,
-  useComponentTheme,
-  useProps,
-} from '~/components/Theme';
+import { themeTokens, useComponentTheme, useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { px } from '~/utils/css/px';
 import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';

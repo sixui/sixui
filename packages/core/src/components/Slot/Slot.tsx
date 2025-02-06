@@ -3,11 +3,11 @@ import { CSSTransition } from 'react-transition-group';
 
 import type { ISlotThemeFactory } from './Slot.css';
 import type { ISlotFactory } from './Slot.types';
+import { Box } from '~/components/Box';
+import { Overlayable } from '~/components/Overlayable';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { useMergeRefs } from '~/hooks';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { Box } from '../Box';
-import { Overlayable } from '../Overlayable';
 import { COMPONENT_NAME } from './Slot.constants';
 import { slotTheme } from './Slot.css';
 

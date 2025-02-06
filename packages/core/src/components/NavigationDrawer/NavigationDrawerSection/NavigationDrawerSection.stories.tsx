@@ -40,27 +40,27 @@ const NavigationDrawerSectionDemo: React.FC<INavigationDrawerSectionProps> = (
       <NavigationDrawerSection.Destination
         leadingIcon={<FontAwesomeIcon icon={faInbox} />}
         badgeLabel="24"
-        onClick={(args) => sbHandleEvent('onClick', args, 1000)}
+        onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
         active
       >
         Inbox
       </NavigationDrawerSection.Destination>
       <NavigationDrawerSection.Destination
         leadingIcon={<FontAwesomeIcon icon={faPaperPlane} />}
-        onClick={(args) => sbHandleEvent('onClick', args, 1000)}
+        onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
       >
         Outbox
       </NavigationDrawerSection.Destination>
       <NavigationDrawerSection.Destination
         leadingIcon={<FontAwesomeIcon icon={faHeart} />}
-        onClick={(args) => sbHandleEvent('onClick', args, 1000)}
+        onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
         disabled
       >
         Favorites
       </NavigationDrawerSection.Destination>
       <NavigationDrawerSection.Destination
         leadingIcon={<FontAwesomeIcon icon={faTrash} />}
-        onClick={(args) => sbHandleEvent('onClick', args, 1000)}
+        onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
       >
         Trash
       </NavigationDrawerSection.Destination>
@@ -71,7 +71,7 @@ const NavigationDrawerSectionDemo: React.FC<INavigationDrawerSectionProps> = (
         <NavigationDrawerSection.Destination
           key={index}
           leadingIcon={<FontAwesomeIcon icon={faFolder} />}
-          onClick={(args) => sbHandleEvent('onClick', args, 1000)}
+          onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
           supportingText="Supporting text"
         >
           Label {label}

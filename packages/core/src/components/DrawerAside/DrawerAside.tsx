@@ -40,9 +40,7 @@ export const DrawerAside = componentFactory<IDrawerAsideFactory>(
         side={side}
         {...other}
       >
-        {({ close }) =>
-          isFunction(children) ? children({ type: 'modal', close }) : children
-        }
+        {({ close }) => (isFunction(children) ? children({ close }) : children)}
       </Drawer>
     );
   },

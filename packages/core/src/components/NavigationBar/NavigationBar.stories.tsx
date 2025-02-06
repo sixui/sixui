@@ -32,20 +32,20 @@ const defaultArgs = {
   children: (
     <>
       <NavigationBar.Destination
-        onClick={(args) => sbHandleEvent('onClick', args, 1000)}
+        onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
         icon={<FontAwesomeIcon icon={faSquare} />}
         activeIcon={<FontAwesomeIcon icon={fasSquare} />}
         label="Item 1"
         active
       />
       <NavigationBar.Destination
-        onClick={(args) => sbHandleEvent('onClick', args, 1000)}
+        onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
         icon={<FontAwesomeIcon icon={faCircle} />}
         activeIcon={<FontAwesomeIcon icon={fasCircle} />}
         label="Item 2"
       />
       <NavigationBar.Destination
-        onClick={(args) => sbHandleEvent('onClick', args, 1000)}
+        onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
         icon={<FontAwesomeIcon icon={faHeart} />}
         activeIcon={<FontAwesomeIcon icon={fasHeart} />}
         label="Item 3"

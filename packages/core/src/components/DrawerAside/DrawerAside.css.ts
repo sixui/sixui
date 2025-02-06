@@ -24,8 +24,10 @@ export type IDrawerAsideThemeFactory = IComponentThemeFactory<{
   tokens: typeof tokens;
 }>;
 
-export const drawerAsideTheme = componentThemeFactory<IDrawerAsideThemeFactory>({
-  classNames,
-  tokensClassName,
-  tokens,
-});
+export const drawerAsideTheme = componentThemeFactory<IDrawerAsideThemeFactory>(
+  {
+    classNames,
+    tokensClassName,
+    tokens,
+  },
+);
