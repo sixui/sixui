@@ -61,6 +61,7 @@ const BottomSheetFrame: React.FC<IBottomSheetProps> = (props) => {
         </Button>
         <Labeled label="Modal" labelPosition="right">
           <Checkbox
+            checked={isModal}
             onChange={(value) => {
               setModal(!!value);
             }}
@@ -68,6 +69,7 @@ const BottomSheetFrame: React.FC<IBottomSheetProps> = (props) => {
         </Labeled>
         <Labeled label="Detached" labelPosition="right">
           <Checkbox
+            checked={detached}
             onChange={(value) => {
               setDetached(!!value);
             }}
@@ -75,6 +77,7 @@ const BottomSheetFrame: React.FC<IBottomSheetProps> = (props) => {
         </Labeled>
         <Labeled label="Full height" labelPosition="right">
           <Checkbox
+            checked={isFullHeight}
             onChange={(value) => {
               setFullHeight(!!value);
             }}

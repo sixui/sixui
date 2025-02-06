@@ -6,7 +6,7 @@ import { StandardAside } from '~/components/StandardAside';
 import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
-import { px } from '~/utils/css';
+import { modifierSelector, px } from '~/utils/css';
 import { createStyles } from '~/utils/css/createStyles';
 import { overrideTokens } from '~/utils/css/overrideTokens';
 import { appLayoutTheme } from '~/components/AppLayout/AppLayout.css';
@@ -21,13 +21,11 @@ const classNames = createStyles({
     vars: {
       ...overrideTokens(StandardAside.theme.tokens, {
         container: {
-          startSpace: appLayoutTheme.tokens.header.height,
           size: fallbackVar(appLayoutTheme.tokens.navigationRail.width, px(80)),
         },
       }),
       ...overrideTokens(NavigationRail.theme.tokens, {
         container: {
-          width: appLayoutTheme.tokens.navigationRail.width,
           color: fallbackVar(
             appLayoutTheme.tokens.navigationRail.color,
             themeTokens.colorScheme.surface,
@@ -44,6 +42,15 @@ const classNames = createStyles({
           ),
         },
       }),
+    },
+    selectors: {
+      [modifierSelector<IModifier>('with-header')]: {
+        vars: overrideTokens(StandardAside.theme.tokens, {
+          container: {
+            startSpace: appLayoutTheme.tokens.header.height,
+          },
+        }),
+      },
     },
   },
 });

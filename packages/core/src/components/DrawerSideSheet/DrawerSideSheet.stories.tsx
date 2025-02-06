@@ -68,6 +68,7 @@ const DrawerSideSheetFrame: React.FC<IDrawerSideSheetProps> = (props) => {
         </Button>
         <Labeled label="Modal" labelPosition="right">
           <Checkbox
+            checked={isModal}
             onChange={(value) => {
               setModal(!!value);
             }}
@@ -75,6 +76,7 @@ const DrawerSideSheetFrame: React.FC<IDrawerSideSheetProps> = (props) => {
         </Labeled>
         <Labeled label="Detached" labelPosition="right">
           <Checkbox
+            checked={detached}
             onChange={(value) => {
               setDetached(!!value);
             }}

@@ -73,6 +73,7 @@ const SideSheetFrame: React.FC<ISideSheetProps> = (props) => {
         </Button>
         <Labeled label="Drawer" labelPosition="right">
           <Checkbox
+            checked={isDrawer}
             onChange={(value) => {
               setDrawer(!!value);
             }}
@@ -80,6 +81,7 @@ const SideSheetFrame: React.FC<ISideSheetProps> = (props) => {
         </Labeled>
         <Labeled label="Modal" labelPosition="right" disabled={!isDrawer}>
           <Checkbox
+            checked={isModal}
             onChange={(value) => {
               setModal(!!value);
             }}
@@ -87,6 +89,7 @@ const SideSheetFrame: React.FC<ISideSheetProps> = (props) => {
         </Labeled>
         <Labeled label="Detached" labelPosition="right" disabled={!isDrawer}>
           <Checkbox
+            checked={detached}
             onChange={(value) => {
               setDetached(!!value);
             }}

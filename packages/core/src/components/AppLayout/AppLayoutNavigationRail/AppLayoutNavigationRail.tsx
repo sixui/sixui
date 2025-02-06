@@ -37,9 +37,6 @@ export const AppLayoutNavigationRail =
         style,
         variant,
         theme: appLayoutNavigationRailTheme,
-        modifiers: {
-          'with-header': hasHeader,
-        },
       });
 
     const hasAppLayoutNavigationRail =
@@ -53,6 +50,7 @@ export const AppLayoutNavigationRail =
     return (
       <NavigationRail
         {...getStyles('root')}
+        modifiers={{ 'with-header': hasHeader }}
         opened={opened}
         ref={forwardedRef}
         {...other}
