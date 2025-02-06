@@ -15,7 +15,7 @@ interface IAppLayoutDisclosureState {
 
 export interface IAppLayoutSideSheetState extends IAppLayoutDisclosureState {
   opened: boolean;
-  modal: boolean;
+  drawer: boolean;
   type: ISideSheetType;
   toggle: () => void;
   open: () => void;

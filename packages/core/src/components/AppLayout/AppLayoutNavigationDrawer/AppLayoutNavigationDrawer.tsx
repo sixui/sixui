@@ -18,6 +18,7 @@ export const AppLayoutNavigationDrawer =
       style,
       variant,
       opened: openedProp,
+      drawer: drawerProp,
       modal: modalProp,
       hasHeader: hasHeaderProp,
       portalProps,
@@ -53,7 +54,9 @@ export const AppLayoutNavigationDrawer =
 
     const opened =
       openedProp ?? appLayoutContext?.navigationDrawer?.state?.opened;
-    const modal = modalProp ?? appLayoutContext?.navigationDrawer?.state?.modal;
+    const drawer =
+      drawerProp ?? appLayoutContext?.navigationDrawer?.state?.drawer;
+    const modal = modalProp ?? drawer;
     const root = portalProps?.root ?? appLayoutContext?.root;
 
     const handleClose = (): void => {
@@ -68,6 +71,7 @@ export const AppLayoutNavigationDrawer =
           sideSheetContent: getStyles('sideSheetContent').className,
         })}
         opened={opened}
+        drawer={drawer}
         modal={modal}
         onClose={handleClose}
         portalProps={{ root }}

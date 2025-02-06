@@ -126,7 +126,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
 
     const closeEvents =
       closeEventsProp === false ||
-      !overlayInstancePosition?.isForeground ||
+      (overlayInstancePosition && !overlayInstancePosition.isForeground) ||
       jail
         ? undefined
         : modal

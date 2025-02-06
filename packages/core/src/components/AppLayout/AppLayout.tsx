@@ -102,7 +102,7 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
         state: hasNavigationDrawer
           ? {
               opened: navigationDrawerOpened,
-              modal: navigationDrawerState.modal,
+              drawer: navigationDrawerState.modal,
               type: navigationDrawerType,
               toggle: navigationDrawerCallbacks.toggle,
               open: navigationDrawerCallbacks.open,
@@ -115,7 +115,7 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
         state: hasSideSheet
           ? {
               opened: sideSheetOpened,
-              modal: sideSheetState.modal,
+              drawer: sideSheetState.modal,
               type: sideSheetType,
               toggle: sideSheetCallbacks.toggle,
               open: sideSheetCallbacks.open,
