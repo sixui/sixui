@@ -24,7 +24,7 @@ export interface IOverlaysProviderProps {
 export const OverlaysProvider: React.FC<IOverlaysProviderProps> = (props) => {
   const {
     children,
-    layers = ['drawers', 'dialogs', 'alerts', 'snackbar'],
+    layers = ['dialogs', 'alerts', 'snackbar'],
     instances: instancesProp,
     dispatch: dispatchProp,
   } = props;

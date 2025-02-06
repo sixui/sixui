@@ -1,2 +1,2 @@
 export const COMPONENT_NAME = 'BottomSheet';
-export const OVERLAY_LAYER = 'drawers';
+export const OVERLAY_LAYER = 'dialogs';
