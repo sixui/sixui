@@ -9,7 +9,7 @@ export const sbHandleEvent = <TArgs extends IAny>(
   delayInMs?: number,
 ): Promise<TArgs | undefined> => {
   if (!delayInMs) {
-    action(name)(...args);
+    action(name)(args);
 
     return Promise.resolve().then(() => args);
   }
@@ -19,7 +19,7 @@ export const sbHandleEvent = <TArgs extends IAny>(
   action(actionStartName)([]);
 
   return delay(delayInMs).then(() => {
-    action(actionEndName)(...args);
+    action(actionEndName)(args);
 
     return args;
   });

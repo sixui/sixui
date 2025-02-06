@@ -13,7 +13,7 @@ const defaultOptions = {
 export const executeLazyPromise = (
   promise: () => IMaybeAsync<unknown>,
   onLoadingChange: (loading: boolean) => void,
-  optionsProp: IExecuteLazyPromiseOptions,
+  optionsProp?: IExecuteLazyPromiseOptions,
 ): Promise<unknown> => {
   const options = {
     ...defaultOptions,
