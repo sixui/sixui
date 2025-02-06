@@ -1,8 +1,6 @@
 import { useCallback, useMemo, useReducer } from 'react';
 
-import type { IAny, IOmit } from '~/utils/types';
 import type { IOverlayAction, IOverlaysInstances } from './Overlays.reducer';
-import type { IOverlay } from './Overlays.types';
 import type { IOverlaysStateContextValue } from './OverlaysState.context';
 import { overlaysInitialInstances, overlaysReducer } from './Overlays.reducer';
 import {
@@ -17,7 +15,6 @@ export interface IOverlaysProviderProps {
   layers?: Array<string>;
   instances?: IOverlaysInstances;
   dispatch?: React.ActionDispatch<[action: IOverlayAction]>;
-  overlays?: Record<string, IOmit<IOverlay<IAny>, 'overlayId'>>;
 }
 
 export const OverlaysProvider: React.FC<IOverlaysProviderProps> = (props) => {
@@ -26,8 +23,6 @@ export const OverlaysProvider: React.FC<IOverlaysProviderProps> = (props) => {
     layers = ['snackbars', 'dialogs', 'alerts', 'drawers'],
     instances: instancesProp,
     dispatch: dispatchProp,
-    // DEV:
-    overlays,
   } = props;
 
   const internalReducer = useReducer(overlaysReducer, overlaysInitialInstances);

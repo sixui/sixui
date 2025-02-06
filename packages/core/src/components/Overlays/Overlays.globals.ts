@@ -3,9 +3,9 @@ import { removeUndefineds } from '@olivierpascal/helpers';
 import type { IAny } from '~/utils/types';
 import type { IOverlay, IOverlayUpdate } from './Overlays.types';
 
-export type IOverlaysRegistry = Record<string, IOverlay<IAny>>;
+type IOverlaysRegistry = Record<string, IOverlay<IAny>>;
 
-export type IOverlaysCallbacks = Record<
+type IOverlaysCallbacks = Record<
   string,
   {
     resolve: (args: unknown) => void;
@@ -13,6 +13,13 @@ export type IOverlaysCallbacks = Record<
     promise: Promise<unknown>;
   }
 >;
+
+interface IOverlaysGlobals {
+  registry: IOverlaysRegistry;
+  callbacks: IOverlaysCallbacks;
+  update: (id: string, overlay: IOverlayUpdate<IAny>) => void;
+  register: (id: string, overlay: IOverlay<IAny>) => void;
+}
 
 const update = (id: string, overlay: IOverlayUpdate<IAny>): void => {
   const registeredOverlay = overlaysGlobals.registry[id];
@@ -39,13 +46,6 @@ const register = (id: string, overlay: IOverlay<IAny>): void => {
     overlaysGlobals.registry[id] = overlay;
   }
 };
-
-interface IOverlaysGlobals {
-  registry: IOverlaysRegistry;
-  callbacks: IOverlaysCallbacks;
-  register: typeof register;
-  update: typeof update;
-}
 
 export const overlaysGlobals: IOverlaysGlobals = {
   registry: {},
