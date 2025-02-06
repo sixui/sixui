@@ -3,7 +3,9 @@ import { registerOverlay, useOverlayInstance } from '~/components/Overlays';
 import { Dialog } from './Dialog';
 import { COMPONENT_NAME, OVERLAY_LAYER } from './Dialog.constants';
 
-export const DialogOverlay = registerOverlay<IDialogProps>(
+export type IDialogOverlayProps = IDialogProps;
+
+export const DialogOverlay = registerOverlay<IDialogOverlayProps>(
   (props) => {
     const { instanceId, onClose, ...other } = props;
     const overlay = useOverlayInstance(instanceId);

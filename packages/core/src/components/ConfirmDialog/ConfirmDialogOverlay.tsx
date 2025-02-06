@@ -3,7 +3,9 @@ import { registerOverlay, useOverlayInstance } from '~/components/Overlays';
 import { ConfirmDialog } from './ConfirmDialog';
 import { COMPONENT_NAME, OVERLAY_LAYER } from './ConfirmDialog.constants';
 
-export const ConfirmDialogOverlay = registerOverlay<IConfirmDialogProps>(
+export type IConfirmDialogOverlayProps = IConfirmDialogProps;
+
+export const ConfirmDialogOverlay = registerOverlay<IConfirmDialogOverlayProps>(
   (props) => {
     const { instanceId, onClose, onCancel, onConfirm, ...other } = props;
     const overlay = useOverlayInstance(instanceId);

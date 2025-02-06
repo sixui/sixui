@@ -1,9 +1,11 @@
-import type { IDrawerSideSheetProps } from './DrawerSideSheet.types';
+import type { IDrawerSideSheetProps } from '~/components/DrawerSideSheet';
+import { DrawerSideSheet } from '~/components/DrawerSideSheet';
 import { registerOverlay, useOverlayInstance } from '~/components/Overlays';
-import { DrawerSideSheet } from './DrawerSideSheet';
-import { COMPONENT_NAME, OVERLAY_LAYER } from './DrawerSideSheet.constants';
+import { COMPONENT_NAME, OVERLAY_LAYER } from './SideSheet.constants';
 
-export const DrawerSideSheetOverlay = registerOverlay<IDrawerSideSheetProps>(
+export type ISideSheetOverlayProps = IDrawerSideSheetProps;
+
+export const SideSheetOverlay = registerOverlay<ISideSheetOverlayProps>(
   (props) => {
     const { instanceId, ...other } = props;
     const overlay = useOverlayInstance(instanceId);

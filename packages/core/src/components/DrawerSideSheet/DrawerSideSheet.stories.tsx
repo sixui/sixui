@@ -4,17 +4,14 @@ import { useState } from 'react';
 import type { IDrawerSideSheetProps } from './DrawerSideSheet.types';
 import { Button } from '~/components/Button';
 import { Checkbox } from '~/components/Checkbox';
-import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Flex } from '~/components/Flex';
 import { Frame } from '~/components/Frame';
 import { Labeled } from '~/components/Labeled';
-import { OverlaysProvider, useOverlays } from '~/components/Overlays';
 import { Placeholder } from '~/components/Placeholder';
 import { themeTokens } from '~/components/Theme';
 import { useToggle } from '~/hooks/useToggle';
 import { px } from '~/utils/css/px';
 import { DrawerSideSheet } from './DrawerSideSheet';
-import { DrawerSideSheetOverlay } from './DrawerSideSheetOverlay';
 
 const meta = {
   component: DrawerSideSheet,
@@ -132,37 +129,6 @@ export const FromRight: IStory = {
     ...defaultArgs,
     side: 'right',
   },
-};
-
-const AsOverlayDemo: React.FC<IDrawerSideSheetProps> = (props) => {
-  const overlays = useOverlays();
-
-  return (
-    <Button onClick={() => overlays.open(DrawerSideSheetOverlay, props)}>
-      Open
-    </Button>
-  );
-};
-
-const AsOverlayDemoShowcase = componentShowcaseFactory(AsOverlayDemo);
-
-export const AsOverlay: IStory = {
-  render: (props: IDrawerSideSheetProps) => (
-    <OverlaysProvider>
-      <AsOverlayDemoShowcase
-        props={props}
-        cols={[
-          { legend: 'From left', props: { side: 'left' } },
-          { legend: 'From right', props: { side: 'right' } },
-        ]}
-        rows={[
-          { legend: 'Normal' },
-          { legend: 'Modal', props: { modal: true } },
-        ]}
-      />
-    </OverlaysProvider>
-  ),
-  args: defaultArgs,
 };
 
 export default meta;

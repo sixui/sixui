@@ -1,9 +1,5 @@
-import { assignInlineVars } from '@vanilla-extract/dynamic';
-
 import type { IDialogThemeFactory } from './Dialog.css';
 import type { IDialogFactory } from './Dialog.types';
-import { useOverlayContext } from '~/components/Overlays/Overlay.context';
-import { useOverlaysStateContext } from '~/components/Overlays/OverlaysState.context';
 import { PopoverBase } from '~/components/PopoverBase';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
@@ -35,23 +31,11 @@ export const Dialog = polymorphicComponentFactory<IDialogFactory>(
       theme: dialogTheme,
     });
 
-    const overlaysStateContext = useOverlaysStateContext();
-    const overlayContext = useOverlayContext();
-    const overlayInstancePosition = overlayContext?.instanceId
-      ? overlaysStateContext.getInstancePosition(overlayContext.instanceId)
-      : undefined;
-
     const scrim = scrimProp ?? other.modal;
 
     return (
       <PopoverBase
-        {...getStyles('root', {
-          style: assignInlineVars({
-            [dialogTheme.tokens.overlayIndex]: overlayInstancePosition
-              ? String(overlayInstancePosition.index)
-              : '0',
-          }),
-        })}
+        {...getStyles('root')}
         contentRenderer={({ close, forwardedProps }) => (
           <DialogContent
             ref={forwardedRef}

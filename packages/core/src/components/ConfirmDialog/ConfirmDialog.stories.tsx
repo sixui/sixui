@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
 import type { IConfirmDialogProps } from './ConfirmDialog.types';
+import type { IConfirmDialogOverlayProps } from './ConfirmDialogOverlay';
 import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Flex } from '~/components/Flex';
@@ -67,7 +68,7 @@ export const Jail: IStory = {
   },
 };
 
-const AsOverlayDemo: React.FC<IConfirmDialogProps> = (props) => {
+const AsOverlayDemo: React.FC<IConfirmDialogOverlayProps> = (props) => {
   const overlays = useOverlays();
   const [result, setResult] = useState<string | undefined>(undefined);
 

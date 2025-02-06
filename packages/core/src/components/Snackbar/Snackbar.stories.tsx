@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
 import type { ISnackbarProps } from './Snackbar.types';
+import type { ISnackbarOverlayProps } from './SnackbarOverlay';
 import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Flex } from '~/components/Flex';
@@ -106,7 +107,7 @@ export const Open: IStory = {
   },
 };
 
-const AsOverlayDemo: React.FC<ISnackbarProps> = (props) => {
+const AsOverlayDemo: React.FC<ISnackbarOverlayProps> = (props) => {
   const overlays = useOverlays();
 
   return (

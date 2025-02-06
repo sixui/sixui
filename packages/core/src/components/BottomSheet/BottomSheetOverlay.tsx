@@ -3,7 +3,9 @@ import { registerOverlay, useOverlayInstance } from '~/components/Overlays';
 import { BottomSheet } from './BottomSheet';
 import { COMPONENT_NAME, OVERLAY_LAYER } from './BottomSheet.constants';
 
-export const BottomSheetOverlay = registerOverlay<IBottomSheetProps>(
+export type IBottomSheetOverlayProps = IBottomSheetProps;
+
+export const BottomSheetOverlay = registerOverlay<IBottomSheetOverlayProps>(
   (props) => {
     const { instanceId, ...other } = props;
     const overlay = useOverlayInstance(instanceId);

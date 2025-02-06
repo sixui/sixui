@@ -17,7 +17,7 @@ export const SideSheet = componentFactory<ISideSheetFactory>(
       variant,
       opened,
       drawer,
-      root,
+      portalProps,
       detached,
       drawerRef,
       modal,
@@ -40,7 +40,7 @@ export const SideSheet = componentFactory<ISideSheetFactory>(
         <DrawerSideSheet
           {...getStyles(['root', 'drawer'])}
           opened={opened && drawer}
-          root={root}
+          portalProps={portalProps}
           detached={detached}
           ref={drawerRef}
           modal={modal}

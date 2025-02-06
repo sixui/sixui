@@ -8,8 +8,10 @@ import { createStyles } from '~/utils/css/createStyles';
 import { COMPONENT_NAME } from './Dialog.constants';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
-  overlayIndex: '0',
-  overlayShift: px(space(4)),
+  overlay: {
+    shiftIndex: '0',
+    shift: px(space(4)),
+  },
 });
 
 const classNames = createStyles({
@@ -19,11 +21,8 @@ const classNames = createStyles({
     left: '50%',
     transform: `translate(${calc.add(
       '-50%',
-      calc.multiply(tokens.overlayIndex, tokens.overlayShift),
-    )}, ${calc.add(
-      '-50%',
-      calc.multiply(tokens.overlayIndex, tokens.overlayShift),
-    )})`,
+      calc.multiply(tokens.overlay.shiftIndex, tokens.overlay.shift),
+    )}, ${calc.add('-50%', calc.multiply(tokens.overlay.shiftIndex, tokens.overlay.shift))})`,
     overflow: 'visible',
   },
 });

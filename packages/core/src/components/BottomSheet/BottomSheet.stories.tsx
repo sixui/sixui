@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
 import type { IBottomSheetProps } from './BottomSheet.types';
+import type { IBottomSheetOverlayProps } from './BottomSheetOverlay';
 import { Button } from '~/components/Button';
 import { Checkbox } from '~/components/Checkbox';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
@@ -116,7 +117,7 @@ export const Basic: IStory = {
   args: defaultArgs,
 };
 
-const AsOverlayDemo: React.FC<IBottomSheetProps> = (props) => {
+const AsOverlayDemo: React.FC<IBottomSheetOverlayProps> = (props) => {
   const overlays = useOverlays();
 
   return (

@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useRef, useState } from 'react';
 
 import type { IDialogProps } from './Dialog.types';
+import type { IDialogOverlayProps } from './DialogOverlay';
 import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Flex } from '~/components/Flex';
@@ -154,7 +155,7 @@ export const WithForm: IStory = {
   },
 };
 
-const AsOverlayDemo: React.FC<IDialogProps> = (props) => {
+const AsOverlayDemo: React.FC<IDialogOverlayProps> = (props) => {
   const overlays = useOverlays();
 
   return (

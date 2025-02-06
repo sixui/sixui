@@ -3,7 +3,9 @@ import { registerOverlay, useOverlayInstance } from '~/components/Overlays';
 import { Snackbar } from './Snackbar';
 import { COMPONENT_NAME, OVERLAY_LAYER } from './Snackbar.constants';
 
-export const SnackbarOverlay = registerOverlay<ISnackbarProps>(
+export type ISnackbarOverlayProps = ISnackbarProps;
+
+export const SnackbarOverlay = registerOverlay<ISnackbarOverlayProps>(
   (props) => {
     const { instanceId, onClose, onActionClick, ...other } = props;
     const overlay = useOverlayInstance(instanceId);
