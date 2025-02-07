@@ -12,15 +12,13 @@ import { overrideTokens } from '~/utils/css/overrideTokens';
 import { appLayoutTheme } from '~/components/AppLayout/AppLayout.css';
 import { COMPONENT_NAME } from './AppLayoutSideSheet.constants';
 
-type IModifier = 'with-header';
-
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME);
 
 const classNames = createStyles({
   root: {
     vars: overrideTokens(StandardAside.theme.tokens, {
       container: {
-        startSpace: appLayoutTheme.tokens.header.height,
+        startSpace: appLayoutTheme.tokens.topBar.height,
         size: fallbackVar(appLayoutTheme.tokens.sideSheet.width, px(400)),
       },
     }),
@@ -49,7 +47,6 @@ const classNames = createStyles({
 
 export type IAppLayoutSideSheetThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
-  modifier: IModifier;
 }>;
 
 export const appLayoutSideSheetTheme =

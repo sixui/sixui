@@ -11,15 +11,15 @@ import { overrideTokens } from '~/utils/css/overrideTokens';
 import { px } from '~/utils/css/px';
 import { space } from '~/utils/css/space';
 import { appLayoutTheme } from '~/components/AppLayout/AppLayout.css';
-import { COMPONENT_NAME } from './AppLayoutHeader.constants';
+import { COMPONENT_NAME } from './AppLayoutTopBar.constants';
 
 type IModifier = 'with-divider';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
-    height: fallbackVar(appLayoutTheme.tokens.header.height, px(64)),
+    height: fallbackVar(appLayoutTheme.tokens.topBar.height, px(64)),
     color: fallbackVar(
-      appLayoutTheme.tokens.header.color,
+      appLayoutTheme.tokens.topBar.color,
       themeTokens.colorScheme.surface,
     ),
   },
@@ -66,14 +66,14 @@ const classNames = createStyles({
   },
 });
 
-export type IAppLayoutHeaderThemeFactory = IComponentThemeFactory<{
+export type IAppLayoutTopBarThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   modifier: IModifier;
 }>;
 
-export const appLayoutHeaderTheme =
-  componentThemeFactory<IAppLayoutHeaderThemeFactory>({
+export const appLayoutTopBarTheme =
+  componentThemeFactory<IAppLayoutTopBarThemeFactory>({
     classNames,
     tokensClassName,
     tokens,

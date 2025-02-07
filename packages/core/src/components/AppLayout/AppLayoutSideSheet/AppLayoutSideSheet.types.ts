@@ -7,9 +7,7 @@ import type {
   IAppLayoutSideSheetThemeFactory,
 } from './AppLayoutSideSheet.css';
 
-export interface IAppLayoutSideSheetOwnProps extends ISideSheetOwnProps {
-  hasHeader?: boolean;
-}
+export type IAppLayoutSideSheetOwnProps = ISideSheetOwnProps;
 
 export interface IAppLayoutSideSheetProps
   extends IBoxProps,

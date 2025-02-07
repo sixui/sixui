@@ -11,10 +11,10 @@ import { Labeled } from '~/components/Labeled';
 import { AppLayout } from './AppLayout';
 import { CanonicalLayout } from './AppLayout.stories/CanonicalLayout';
 import { Footer } from './AppLayout.stories/Footer';
-import { Header } from './AppLayout.stories/Header';
 import { MainNavigationBar } from './AppLayout.stories/MainNavigationBar';
 import { MainNavigationDrawer } from './AppLayout.stories/MainNavigationDrawer';
 import { MainNavigationRail } from './AppLayout.stories/MainNavigationRail';
+import { TopBar } from './AppLayout.stories/TopBar';
 
 const meta = {
   component: AppLayout,
@@ -27,7 +27,7 @@ const defaultArgs = {} satisfies Partial<IAppLayoutProps>;
 interface IAppLayoutFrameChildrenProps {
   activeDestination?: ICanonicalLayoutType;
   setActiveDestination: (destination?: ICanonicalLayoutType) => void;
-  hasHeader?: boolean;
+  hasTopBar?: boolean;
   hasFooter?: boolean;
 }
 
@@ -40,17 +40,17 @@ const AppLayoutFrame: React.FC<IAppLayoutFrameProps> = (props) => {
   const [activeDestination, setActiveDestination] = useState<
     ICanonicalLayoutType | undefined
   >('listDetail');
-  const [hasHeader, setHasHeader] = useState(true);
+  const [hasTopBar, setHasTopBar] = useState(true);
   const [hasFooter, setHasFooter] = useState(true);
 
   return (
     <Flex direction="column" gap="$2">
       <Flex direction="row" gap="$6">
-        <Labeled label="Header" labelPosition="right">
+        <Labeled label="Top bar" labelPosition="right">
           <Checkbox
-            checked={hasHeader}
+            checked={hasTopBar}
             onChange={(value) => {
-              setHasHeader(!!value);
+              setHasTopBar(!!value);
             }}
           />
         </Labeled>
@@ -74,7 +74,7 @@ const AppLayoutFrame: React.FC<IAppLayoutFrameProps> = (props) => {
             {children({
               activeDestination,
               setActiveDestination,
-              hasHeader,
+              hasTopBar,
               hasFooter,
             })}
           </AppLayout>
@@ -86,10 +86,10 @@ const AppLayoutFrame: React.FC<IAppLayoutFrameProps> = (props) => {
 
 const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => (
   <AppLayoutFrame {...props}>
-    {({ activeDestination, setActiveDestination, hasHeader, hasFooter }) => (
+    {({ activeDestination, setActiveDestination, hasTopBar, hasFooter }) => (
       <>
         <Flex direction="column">
-          {hasHeader && <Header divider wide />}
+          {hasTopBar && <TopBar divider wide />}
 
           <Flex direction="row" align="start">
             <MainNavigationRail
@@ -121,7 +121,7 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => (
 
 const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => (
   <AppLayoutFrame {...props}>
-    {({ activeDestination, setActiveDestination, hasHeader, hasFooter }) => (
+    {({ activeDestination, setActiveDestination, hasTopBar, hasFooter }) => (
       <>
         <Flex direction="column">
           <Flex direction="row" align="start">
@@ -140,7 +140,7 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => (
             />
 
             <Flex direction="column" align="stretch" grow={1}>
-              {hasHeader && <Header divider />}
+              {hasTopBar && <TopBar divider />}
 
               <Flex direction="row" align="start">
                 <CanonicalLayout type={activeDestination} />

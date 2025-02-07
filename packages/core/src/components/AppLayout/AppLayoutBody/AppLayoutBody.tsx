@@ -16,14 +16,14 @@ export const AppLayoutBody = componentFactory<IAppLayoutBodyFactory>(
       style,
       variant,
       children,
-      hasHeader: hasHeaderProp,
+      hasTopBar: hasTopBarProp,
       orientation = 'horizontal',
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
     const appLayoutContext = useAppLayoutContext();
-    const hasHeader =
-      hasHeaderProp ?? appLayoutContext?.components.includes('header');
+    const hasTopBar =
+      hasTopBarProp ?? appLayoutContext?.components.includes('topBar');
 
     const { getStyles } = useComponentTheme<IAppLayoutBodyThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -35,7 +35,7 @@ export const AppLayoutBody = componentFactory<IAppLayoutBodyFactory>(
       theme: appLayoutBodyTheme,
       modifiers: {
         orientation,
-        'with-header': hasHeader,
+        'with-top-bar': hasTopBar,
       },
     });
 

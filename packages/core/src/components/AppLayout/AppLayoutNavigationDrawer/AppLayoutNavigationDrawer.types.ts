@@ -12,7 +12,7 @@ import type {
 import { ISideSheetOwnProps } from '~/components/SideSheet';
 
 export interface IAppLayoutNavigationDrawerOwnProps extends ISideSheetOwnProps {
-  hasHeader?: boolean;
+  hasTopBar?: boolean;
 }
 
 export interface IAppLayoutNavigationDrawerProps

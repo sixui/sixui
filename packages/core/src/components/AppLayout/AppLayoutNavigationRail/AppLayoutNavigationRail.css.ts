@@ -12,7 +12,7 @@ import { overrideTokens } from '~/utils/css/overrideTokens';
 import { appLayoutTheme } from '~/components/AppLayout/AppLayout.css';
 import { COMPONENT_NAME } from './AppLayoutNavigationRail.constants';
 
-type IModifier = 'with-header';
+type IModifier = 'with-top-bar';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME);
 
@@ -44,10 +44,10 @@ const classNames = createStyles({
       }),
     },
     selectors: {
-      [modifierSelector<IModifier>('with-header')]: {
+      [modifierSelector<IModifier>('with-top-bar')]: {
         vars: overrideTokens(StandardAside.theme.tokens, {
           container: {
-            startSpace: appLayoutTheme.tokens.header.height,
+            startSpace: appLayoutTheme.tokens.topBar.height,
           },
         }),
       },

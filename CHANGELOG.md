@@ -231,7 +231,7 @@
 
 #### ⚠️ Pushed to `main`
 
-- feat(AppLayoutHeader): exports AppLayoutContext ([@olivierpascal](https://github.com/olivierpascal))
+- feat(AppLayoutTopBar): exports AppLayoutContext ([@olivierpascal](https://github.com/olivierpascal))
 
 #### Authors: 1
 
@@ -243,7 +243,7 @@
 
 #### ⚠️ Pushed to `main`
 
-- feat(AppLayoutHeader): supports divider ([@olivierpascal](https://github.com/olivierpascal))
+- feat(AppLayoutTopBar): supports divider ([@olivierpascal](https://github.com/olivierpascal))
 
 #### Authors: 1
 
@@ -1113,7 +1113,7 @@
 
 #### ⚠️ Pushed to `main`
 
-- refactor: @/* -> ~/*, eslint-import-resolver-alias -> eslint-import-resolver-typescript ([@olivierpascal](https://github.com/olivierpascal))
+- refactor: @/_ -> ~/_, eslint-import-resolver-alias -> eslint-import-resolver-typescript ([@olivierpascal](https://github.com/olivierpascal))
 
 #### Authors: 1
 
@@ -5049,7 +5049,7 @@
 - chore: fix types ([@olivierpascal](https://github.com/olivierpascal))
 - feat: add text color to CardContent ([@olivierpascal](https://github.com/olivierpascal))
 - feat: DeterminateCircularProgressIndicator and IndeterminateCircularProgressIndicator now support sx property ([@olivierpascal](https://github.com/olivierpascal))
-- Counter does not show if count is negative *or 0* ([@olivierpascal](https://github.com/olivierpascal))
+- Counter does not show if count is negative _or 0_ ([@olivierpascal](https://github.com/olivierpascal))
 
 #### Authors: 1
 
@@ -5160,7 +5160,7 @@
 
 #### ⚠️ Pushed to `main`
 
-- Exposing Card* components ([@olivierpascal](https://github.com/olivierpascal))
+- Exposing Card\* components ([@olivierpascal](https://github.com/olivierpascal))
 
 #### Authors: 1
 

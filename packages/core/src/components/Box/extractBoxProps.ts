@@ -2,12 +2,12 @@ import { removeUndefineds } from '@olivierpascal/helpers';
 
 import type { IBoxProps } from './Box.types';
 
-export type IUseForwardedPropsResult = {
+export type IExtractBoxPropsResult = {
   boxProps?: IBoxProps;
-  other?: Record<string, unknown>;
+  other: Record<string, unknown>;
 };
 
-export const extractBoxProps = (props: IBoxProps): IUseForwardedPropsResult => {
+export const extractBoxProps = (props: IBoxProps): IExtractBoxPropsResult => {
   const {
     className,
     style,

@@ -18,7 +18,7 @@ export const AppLayoutNavigationBar =
       styles,
       style,
       variant,
-      hasHeader: hasHeaderProp,
+      hasTopBar: hasTopBarProp,
       opened: openedProp,
       portalProps,
       ...other
@@ -27,8 +27,8 @@ export const AppLayoutNavigationBar =
     const appLayoutContext = useAppLayoutContext();
     useAppLayoutComponent('navigationBar');
 
-    const hasHeader =
-      hasHeaderProp ?? appLayoutContext?.components.includes('header');
+    const hasTopBar =
+      hasTopBarProp ?? appLayoutContext?.components.includes('topBar');
 
     const { getStyles } =
       useComponentTheme<IAppLayoutNavigationBarThemeFactory>({
@@ -40,7 +40,7 @@ export const AppLayoutNavigationBar =
         variant,
         theme: appLayoutNavigationBarTheme,
         modifiers: {
-          'with-header': hasHeader,
+          'with-top-bar': hasTopBar,
         },
       });
 

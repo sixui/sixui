@@ -5,18 +5,18 @@ import type { IAppLayoutContextValue } from './AppLayout.context';
 import type { appLayoutTheme, IAppLayoutThemeFactory } from './AppLayout.css';
 import type { AppLayoutBody } from './AppLayoutBody';
 import type { AppLayoutFooter } from './AppLayoutFooter';
-import type { AppLayoutHeader } from './AppLayoutHeader';
 import type { AppLayoutNavigationBar } from './AppLayoutNavigationBar';
 import type { AppLayoutNavigationDrawer } from './AppLayoutNavigationDrawer';
 import type { AppLayoutNavigationRail } from './AppLayoutNavigationRail';
 import type { AppLayoutSideSheet } from './AppLayoutSideSheet';
+import type { AppLayoutTopBar } from './AppLayoutTopBar';
 
 export type IAppLayoutRenderProps = IAppLayoutContextValue;
 
 export type IAppLayoutNavigationMode = 'bar' | 'rail' | 'standard';
 
 export type IAppLayoutComponentName =
-  | 'header'
+  | 'topBar'
   | 'navigationRail'
   | 'navigationDrawer'
   | 'navigationBar'
@@ -47,7 +47,7 @@ export type IAppLayoutFactory = IComponentFactory<{
   ref: HTMLDivElement;
   theme: typeof appLayoutTheme;
   staticComponents: {
-    Header: typeof AppLayoutHeader;
+    TopBar: typeof AppLayoutTopBar;
     Body: typeof AppLayoutBody;
     NavigationBar: typeof AppLayoutNavigationBar;
     NavigationRail: typeof AppLayoutNavigationRail;

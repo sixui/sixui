@@ -15,7 +15,7 @@ import { space } from '~/utils/css/space';
 import { appLayoutTheme } from '~/components/AppLayout/AppLayout.css';
 import { COMPONENT_NAME } from './AppLayoutBody.constants';
 
-type IModifier = 'orientation' | 'with-header';
+type IModifier = 'orientation' | 'with-top-bar';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME);
 
@@ -54,8 +54,8 @@ const classNames = createStyles({
       [modifierSelector<IModifier>({ orientation: 'vertical' })]: {
         flexDirection: 'column',
       },
-      [modifierSelector<IModifier>('with-header')]: {
-        minHeight: calc.subtract('100vh', appLayoutTheme.tokens.header.height),
+      [modifierSelector<IModifier>('with-top-bar')]: {
+        minHeight: calc.subtract('100vh', appLayoutTheme.tokens.topBar.height),
       },
     },
   },

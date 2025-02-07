@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { createSequence } from '@olivierpascal/helpers';
 
-import type { IAppLayoutHeaderProps } from './AppLayoutHeader.types';
+import type { IAppLayoutTopBarProps } from './AppLayoutTopBar.types';
 import { Frame } from '~/components/Frame';
 import { Placeholder } from '~/components/Placeholder';
-import { AppLayoutHeader } from './AppLayoutHeader';
+import { AppLayoutTopBar } from './AppLayoutTopBar';
 
 const meta = {
-  component: AppLayoutHeader,
-} satisfies Meta<typeof AppLayoutHeader>;
+  component: AppLayoutTopBar,
+} satisfies Meta<typeof AppLayoutTopBar>;
 
 type IStory = StoryObj<typeof meta>;
 
@@ -17,18 +17,18 @@ const defaultArgs = {
     <Placeholder key={index} expanded diagonals />
   )),
   divider: true,
-} satisfies Partial<IAppLayoutHeaderProps>;
+} satisfies Partial<IAppLayoutTopBarProps>;
 
-const AppLayoutHeaderFrame: React.FC<IAppLayoutHeaderProps> = (props) => {
+const AppLayoutTopBarFrame: React.FC<IAppLayoutTopBarProps> = (props) => {
   return (
     <Frame importParentStyles w="100%" h="$96">
-      <AppLayoutHeader {...props} />
+      <AppLayoutTopBar {...props} />
     </Frame>
   );
 };
 
 export const Basic: IStory = {
-  render: (props) => <AppLayoutHeaderFrame {...props} />,
+  render: (props) => <AppLayoutTopBarFrame {...props} />,
   args: defaultArgs,
 };
 

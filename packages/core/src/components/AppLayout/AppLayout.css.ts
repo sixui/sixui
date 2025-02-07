@@ -10,7 +10,7 @@ import { COMPONENT_NAME } from './AppLayout.constants';
 type IModifier = 'navigation-mode';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
-  header: {
+  topBar: {
     height: px(64),
     color: 'initial',
   },

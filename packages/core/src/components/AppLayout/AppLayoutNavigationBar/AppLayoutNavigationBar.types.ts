@@ -10,7 +10,7 @@ import type {
 
 export interface IAppLayoutNavigationBarOwnProps
   extends INavigationBarOwnProps {
-  hasHeader?: boolean;
+  hasTopBar?: boolean;
 }
 
 export interface IAppLayoutNavigationBarProps

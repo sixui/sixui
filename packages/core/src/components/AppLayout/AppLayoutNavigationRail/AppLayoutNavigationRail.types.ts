@@ -10,7 +10,7 @@ import type {
 
 export interface IAppLayoutNavigationRailOwnProps
   extends INavigationRailOwnProps {
-  hasHeader?: boolean;
+  hasTopBar?: boolean;
   hasNavigationDrawer?: boolean;
 }
 

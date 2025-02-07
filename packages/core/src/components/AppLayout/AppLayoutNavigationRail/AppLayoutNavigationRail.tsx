@@ -18,7 +18,7 @@ export const AppLayoutNavigationRail =
       styles,
       style,
       variant,
-      hasHeader: hasHeaderProp,
+      hasTopBar: hasTopBarProp,
       hasNavigationDrawer: hasNavigationDrawerProp,
       opened: openedProp,
       wide,
@@ -28,8 +28,8 @@ export const AppLayoutNavigationRail =
     const appLayoutContext = useAppLayoutContext();
     useAppLayoutComponent('navigationRail');
 
-    const hasHeader =
-      hasHeaderProp ?? appLayoutContext?.components.includes('header');
+    const hasTopBar =
+      hasTopBarProp ?? appLayoutContext?.components.includes('topBar');
     const hasNavigationDrawer =
       hasNavigationDrawerProp ??
       appLayoutContext?.components.includes('navigationDrawer');
@@ -43,6 +43,9 @@ export const AppLayoutNavigationRail =
         style,
         variant,
         theme: appLayoutNavigationRailTheme,
+        modifiers: {
+          'with-top-bar': hasTopBar,
+        },
       });
 
     const hasAppLayoutNavigationRail =
@@ -52,12 +55,11 @@ export const AppLayoutNavigationRail =
     }
 
     const opened = openedProp ?? appLayoutContext?.navigationMode === 'rail';
-    const showMenuIcon = (wide || !hasHeader) && hasNavigationDrawer;
+    const showMenuIcon = (wide || !hasTopBar) && hasNavigationDrawer;
 
     return (
       <NavigationRail
         {...getStyles('root')}
-        modifiers={{ 'with-header': hasHeader }}
         opened={opened}
         ref={forwardedRef}
         menuIcon={

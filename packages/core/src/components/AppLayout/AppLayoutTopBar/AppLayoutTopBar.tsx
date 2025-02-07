@@ -1,13 +1,13 @@
-import type { IAppLayoutHeaderThemeFactory } from './AppLayoutHeader.css';
-import type { IAppLayoutHeaderFactory } from './AppLayoutHeader.types';
+import type { IAppLayoutTopBarThemeFactory } from './AppLayoutTopBar.css';
+import type { IAppLayoutTopBarFactory } from './AppLayoutTopBar.types';
 import { Paper } from '~/components/Paper';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useAppLayoutComponent } from '../hooks/useAppLayoutComponent';
-import { COMPONENT_NAME } from './AppLayoutHeader.constants';
-import { appLayoutHeaderTheme } from './AppLayoutHeader.css';
+import { COMPONENT_NAME } from './AppLayoutTopBar.constants';
+import { appLayoutTopBarTheme } from './AppLayoutTopBar.css';
 
-export const AppLayoutHeader = componentFactory<IAppLayoutHeaderFactory>(
+export const AppLayoutTopBar = componentFactory<IAppLayoutTopBarFactory>(
   (props, forwardedRef) => {
     const {
       classNames,
@@ -23,16 +23,16 @@ export const AppLayoutHeader = componentFactory<IAppLayoutHeaderFactory>(
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
-    useAppLayoutComponent('header');
+    useAppLayoutComponent('topBar');
 
-    const { getStyles } = useComponentTheme<IAppLayoutHeaderThemeFactory>({
+    const { getStyles } = useComponentTheme<IAppLayoutTopBarThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
       className,
       styles,
       style,
       variant,
-      theme: appLayoutHeaderTheme,
+      theme: appLayoutTopBarTheme,
       modifiers: {
         'with-divider': divider,
       },
@@ -46,5 +46,5 @@ export const AppLayoutHeader = componentFactory<IAppLayoutHeaderFactory>(
   },
 );
 
-AppLayoutHeader.theme = appLayoutHeaderTheme;
-AppLayoutHeader.displayName = `@sixui/core/${COMPONENT_NAME}`;
+AppLayoutTopBar.theme = appLayoutTopBarTheme;
+AppLayoutTopBar.displayName = `@sixui/core/${COMPONENT_NAME}`;

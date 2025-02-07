@@ -20,7 +20,7 @@ export const AppLayoutNavigationDrawer =
       opened: openedProp,
       drawer: drawerProp,
       modal: modalProp,
-      hasHeader: hasHeaderProp,
+      hasTopBar: hasTopBarProp,
       portalProps,
       onClose,
       ...other
@@ -29,8 +29,8 @@ export const AppLayoutNavigationDrawer =
     const appLayoutContext = useAppLayoutContext();
     useAppLayoutComponent('navigationDrawer');
 
-    const hasHeader =
-      hasHeaderProp ?? appLayoutContext?.components.includes('header');
+    const hasTopBar =
+      hasTopBarProp ?? appLayoutContext?.components.includes('topBar');
 
     const { getStyles } =
       useComponentTheme<IAppLayoutNavigationDrawerThemeFactory>({
@@ -42,7 +42,7 @@ export const AppLayoutNavigationDrawer =
         variant,
         theme: appLayoutNavigationDrawerTheme,
         modifiers: {
-          'with-header': hasHeader,
+          'with-top-bar': hasTopBar,
         },
       });
 

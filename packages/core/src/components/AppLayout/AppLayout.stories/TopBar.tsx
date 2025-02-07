@@ -2,22 +2,22 @@ import { AppLayout } from '~/components/AppLayout';
 import { Burger } from '~/components/Burger';
 import { Flex } from '~/components/Flex';
 import { useAppLayoutContext } from '../AppLayout.context';
-import { IAppLayoutHeaderProps } from '../AppLayoutHeader';
+import { IAppLayoutTopBarProps } from '../AppLayoutTopBar';
 
-export type IHeaderProps = IAppLayoutHeaderProps;
+export type ITopBarProps = IAppLayoutTopBarProps;
 
-export const Header: React.FC<IHeaderProps> = (props) => {
+export const TopBar: React.FC<ITopBarProps> = (props) => {
   const { ...other } = props;
   const appLayoutContext = useAppLayoutContext();
 
   return (
-    <AppLayout.Header {...other}>
+    <AppLayout.TopBar {...other}>
       <Flex direction="row" gap="$6" justify="space-between" grow={1}>
         <Flex direction="row" gap="$2" align="center">
           {appLayoutContext?.navigationDrawer?.state?.toggle && (
             <Burger onClick={appLayoutContext.navigationDrawer.state.toggle} />
           )}
-          <div>Header</div>
+          <div>TopBar</div>
         </Flex>
 
         <Flex direction="row" gap="$2">
@@ -26,6 +26,6 @@ export const Header: React.FC<IHeaderProps> = (props) => {
           )}
         </Flex>
       </Flex>
-    </AppLayout.Header>
+    </AppLayout.TopBar>
   );
 };

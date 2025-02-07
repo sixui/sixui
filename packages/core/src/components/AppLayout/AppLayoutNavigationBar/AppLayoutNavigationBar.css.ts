@@ -11,7 +11,7 @@ import { overrideTokens } from '~/utils/css/overrideTokens';
 import { appLayoutTheme } from '~/components/AppLayout/AppLayout.css';
 import { COMPONENT_NAME } from './AppLayoutNavigationBar.constants';
 
-type IModifier = 'with-header';
+type IModifier = 'with-top-bar';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME);
 

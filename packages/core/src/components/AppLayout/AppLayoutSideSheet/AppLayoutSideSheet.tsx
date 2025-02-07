@@ -20,7 +20,6 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
       opened: openedProp,
       drawer: drawerProp,
       modal: modalProp,
-      hasHeader: hasHeaderProp,
       portalProps,
       onClose,
       ...other
@@ -28,9 +27,6 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
 
     const appLayoutContext = useAppLayoutContext();
     useAppLayoutComponent('sideSheet');
-
-    const hasHeader =
-      hasHeaderProp ?? appLayoutContext?.components.includes('header');
 
     const { getStyles } = useComponentTheme<IAppLayoutSideSheetThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -40,9 +36,6 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
       style,
       variant,
       theme: appLayoutSideSheetTheme,
-      modifiers: {
-        'with-header': hasHeader,
-      },
     });
 
     const hasAppLayoutAside =

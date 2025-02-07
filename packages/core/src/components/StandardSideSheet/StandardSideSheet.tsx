@@ -5,6 +5,7 @@ import { StandardAside } from '~/components/StandardAside';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
+import { extractDataProps } from '~/utils/extractDataProps';
 import { COMPONENT_NAME } from './StandardSideSheet.constants';
 import { standardSideSheetTheme } from './StandardSideSheet.css';
 
@@ -24,6 +25,7 @@ export const StandardSideSheet = componentFactory<IStandardSideSheetFactory>(
       onClosed,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
+    const { dataProps, other: forwardedProps } = extractDataProps(other);
 
     const { getStyles } = useComponentTheme<IStandardSideSheetThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -38,6 +40,7 @@ export const StandardSideSheet = componentFactory<IStandardSideSheetFactory>(
     return (
       <StandardAside
         {...getStyles('root')}
+        {...dataProps}
         classNames={mergeClassNames(classNames, {
           sideSheetContent: getStyles('sideSheetContent').className,
         })}
@@ -53,7 +56,7 @@ export const StandardSideSheet = componentFactory<IStandardSideSheetFactory>(
           onClose={onClose}
           divider={divider}
           {...getStyles('sideSheetContent')}
-          {...other}
+          {...forwardedProps}
         />
       </StandardAside>
     );

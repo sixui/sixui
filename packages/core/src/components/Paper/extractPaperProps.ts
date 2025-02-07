@@ -3,14 +3,14 @@ import { removeUndefineds } from '@olivierpascal/helpers';
 import type { IPaperProps } from './Paper.types';
 import { extractBoxProps } from '~/components/Box/extractBoxProps';
 
-export type IUseForwardedPropsResult = {
+export type IExtractPaperPropsResult = {
   paperProps?: IPaperProps;
-  other?: Record<string, unknown>;
+  other: Record<string, unknown>;
 };
 
 export const extractPaperProps = (
   props: IPaperProps,
-): IUseForwardedPropsResult => {
+): IExtractPaperPropsResult => {
   const { shape, outline, outlineStyle, elevation, surface, ...other } = props;
 
   const { boxProps, other: forwardedProps } = extractBoxProps(other);
