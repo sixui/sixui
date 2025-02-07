@@ -4,6 +4,7 @@ import { Burger } from '~/components/Burger';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { TopAppBar } from '~/components/TopAppBar';
 import { componentFactory } from '~/utils/component/componentFactory';
+import { isFunction } from '~/utils/isFunction';
 import { useAppLayoutContext } from '../AppLayout.context';
 import { useAppLayoutComponent } from '../hooks/useAppLayoutComponent';
 import { COMPONENT_NAME } from './AppLayoutTopBar.constants';
@@ -17,6 +18,8 @@ export const AppLayoutTopBar = componentFactory<IAppLayoutTopBarFactory>(
       styles,
       style,
       variant,
+      leadingNavigation,
+      trailingActions,
       wide,
       divider,
       ...other
@@ -43,15 +46,30 @@ export const AppLayoutTopBar = componentFactory<IAppLayoutTopBarFactory>(
         {...getStyles('root')}
         as="header"
         ref={forwardedRef}
+        // FIXME: and when no nav rail or no leadingNavigation?
         leadingNavigation={
-          wide &&
-          appLayoutContext?.navigationDrawer?.state?.toggle && (
-            <Burger onClick={appLayoutContext.navigationDrawer.state.toggle} />
+          ((wide && appLayoutContext?.navigationDrawer?.state?.toggle) ||
+            leadingNavigation) && (
+            <>
+              {wide && appLayoutContext?.navigationDrawer?.state?.toggle && (
+                <Burger
+                  onClick={appLayoutContext.navigationDrawer.state.toggle}
+                />
+              )}
+              {leadingNavigation}
+            </>
           )
         }
-        trailingActions={
-          appLayoutContext?.sideSheet?.state?.toggle && (
-            <Burger onClick={appLayoutContext.sideSheet.state.toggle} />
+        trailingActions={(renderProps) =>
+          (appLayoutContext?.sideSheet?.state?.toggle ?? trailingActions) && (
+            <>
+              {appLayoutContext?.sideSheet?.state?.toggle && (
+                <Burger onClick={appLayoutContext.sideSheet.state.toggle} />
+              )}
+              {isFunction(trailingActions)
+                ? trailingActions(renderProps)
+                : trailingActions}
+            </>
           )
         }
         {...other}

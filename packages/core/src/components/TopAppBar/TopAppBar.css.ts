@@ -67,7 +67,7 @@ const classNames = createStyles({
     gap: px(space(3)),
     paddingLeft: px(tokens.container.leadingSpace),
     paddingRight: px(tokens.container.trailingSpace),
-    paddingTop: px(space(3)),
+    height: px(64),
     flexShrink: 0,
 
     vars: overrideTokens(PaperBase.theme.tokens, {
