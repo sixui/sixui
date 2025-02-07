@@ -92,6 +92,7 @@
     "vite-tsconfig-paths": "^5.1.4"
   },
   "peerDependencies": {
+    "node": ">=22",
     "react": "^19"
   }
 }
