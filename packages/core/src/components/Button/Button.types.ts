@@ -8,15 +8,17 @@ import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphic
 import type { buttonTheme, IButtonThemeFactory } from './Button.css';
 import { IOmit } from '~/utils/types';
 
-export type IButtonVariant =
-  | 'elevated'
-  | 'filled'
-  | 'filledTonal'
-  | 'outlined'
-  | 'text'
-  | 'danger'
-  | 'snackbar'
-  | 'inline';
+export const buttonVariants = [
+  'elevated',
+  'filled',
+  'filledTonal',
+  'outlined',
+  'text',
+  'danger',
+  'snackbar',
+  'inline',
+] as const;
+export type IButtonVariant = (typeof buttonVariants)[number];
 
 export interface IButtonChildrenRendererPops
   extends IButtonBaseChildrenRendererPops {

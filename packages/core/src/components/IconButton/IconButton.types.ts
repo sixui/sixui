@@ -8,13 +8,15 @@ import type {
   IIconButtonThemeFactory,
 } from './IconButton.css';
 
-export type IIconButtonVariant =
-  | 'standard'
-  | 'filled'
-  | 'filledTonal'
-  | 'outlined'
-  | 'danger'
-  | 'snackbar';
+export const iconButtonVariants = [
+  'standard',
+  'filled',
+  'filledTonal',
+  'outlined',
+  'danger',
+  'snackbar',
+] as const;
+export type IIconButtonVariant = (typeof iconButtonVariants)[number];
 
 export interface IIconButtonOwnProps
   extends IOmit<

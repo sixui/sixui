@@ -8,12 +8,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
-import type { IButtonProps, IButtonVariant } from './Button.types';
+import type { IButtonProps } from './Button.types';
 import { Badge } from '~/components/Badge';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Text as SixuiText } from '~/components/Text';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { Button } from './Button';
+import { buttonVariants } from './Button.types';
 
 // https://m3.material.io/components/buttons/overview
 // https://material-web.dev/components/button/
@@ -103,18 +104,7 @@ export const Variants: IStory = {
   render: (props) => (
     <ButtonShowcase
       props={props}
-      cols={(
-        [
-          'elevated',
-          'filled',
-          'filledTonal',
-          'outlined',
-          'text',
-          'danger',
-          'snackbar',
-          'inline',
-        ] as Array<IButtonVariant>
-      ).map((variant) => ({
+      cols={buttonVariants.map((variant) => ({
         props: {
           variant,
           children: capitalizeFirstLetter(variant),

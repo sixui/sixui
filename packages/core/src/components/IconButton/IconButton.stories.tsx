@@ -4,10 +4,11 @@ import { faHeart as fasHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
-import type { IIconButtonProps, IIconButtonVariant } from './IconButton.types';
+import type { IIconButtonProps } from './IconButton.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { IconButton } from './IconButton';
+import { iconButtonVariants } from './IconButton.types';
 
 // https://m3.material.io/components/icon-buttons/overview
 // https://material-web.dev/components/icon-button/
@@ -47,16 +48,7 @@ export const Variants: IStory = {
     <IconButtonShowcase
       verticalAlign="center"
       props={props}
-      cols={(
-        [
-          'standard',
-          'filled',
-          'filledTonal',
-          'outlined',
-          'danger',
-          'snackbar',
-        ] as Array<IIconButtonVariant>
-      ).map((variant) => ({ props: { variant } }))}
+      cols={iconButtonVariants.map((variant) => ({ props: { variant } }))}
     />
   ),
   args: defaultArgs,

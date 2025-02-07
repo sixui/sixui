@@ -86,4 +86,5 @@ export * from './Text';
 export * from './TextAreaField';
 export * from './TextInputField';
 export * from './Theme';
+export * from './TopAppBar';
 export * from './TouchTarget';
