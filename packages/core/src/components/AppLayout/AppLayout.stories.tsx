@@ -28,7 +28,10 @@ interface IAppLayoutFrameChildrenProps {
   activeDestination?: ICanonicalLayoutType;
   setActiveDestination: (destination?: ICanonicalLayoutType) => void;
   hasTopBar?: boolean;
+  hasNavigationRail?: boolean;
+  hasNavigationDrawer?: boolean;
   hasFooter?: boolean;
+  hasDividers?: boolean;
 }
 
 type IAppLayoutFrameProps = IOmit<IAppLayoutProps, 'children'> & {
@@ -41,7 +44,10 @@ const AppLayoutFrame: React.FC<IAppLayoutFrameProps> = (props) => {
     ICanonicalLayoutType | undefined
   >('listDetail');
   const [hasTopBar, setHasTopBar] = useState(true);
+  const [hasNavigationRail, setHasNavigationRail] = useState(true);
+  const [hasNavigationDrawer, setHasNavigationDrawer] = useState(true);
   const [hasFooter, setHasFooter] = useState(true);
+  const [hasDividers, setHasDividers] = useState(true);
 
   return (
     <Flex direction="column" gap="$2">
@@ -54,11 +60,35 @@ const AppLayoutFrame: React.FC<IAppLayoutFrameProps> = (props) => {
             }}
           />
         </Labeled>
+        <Labeled label="Navigation rail" labelPosition="right">
+          <Checkbox
+            checked={hasNavigationRail}
+            onChange={(value) => {
+              setHasNavigationRail(!!value);
+            }}
+          />
+        </Labeled>
+        <Labeled label="Navigation drawer" labelPosition="right">
+          <Checkbox
+            checked={hasNavigationDrawer}
+            onChange={(value) => {
+              setHasNavigationDrawer(!!value);
+            }}
+          />
+        </Labeled>
         <Labeled label="Footer" labelPosition="right">
           <Checkbox
             checked={hasFooter}
             onChange={(value) => {
               setHasFooter(!!value);
+            }}
+          />
+        </Labeled>
+        <Labeled label="Dividers" labelPosition="right">
+          <Checkbox
+            checked={hasDividers}
+            onChange={(value) => {
+              setHasDividers(!!value);
             }}
           />
         </Labeled>
@@ -75,7 +105,10 @@ const AppLayoutFrame: React.FC<IAppLayoutFrameProps> = (props) => {
               activeDestination,
               setActiveDestination,
               hasTopBar,
+              hasNavigationRail,
+              hasNavigationDrawer,
               hasFooter,
+              hasDividers,
             })}
           </AppLayout>
         )}
@@ -86,29 +119,41 @@ const AppLayoutFrame: React.FC<IAppLayoutFrameProps> = (props) => {
 
 const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => (
   <AppLayoutFrame {...props}>
-    {({ activeDestination, setActiveDestination, hasTopBar, hasFooter }) => (
+    {({
+      activeDestination,
+      setActiveDestination,
+      hasTopBar,
+      hasNavigationRail,
+      hasNavigationDrawer,
+      hasFooter,
+      hasDividers,
+    }) => (
       <>
         <Flex direction="column">
-          {hasTopBar && <TopBar divider wide />}
+          {hasTopBar && <TopBar divider={hasDividers} wide />}
 
           <Flex direction="row" align="start">
-            <MainNavigationRail
-              activeDestination={activeDestination}
-              onClick={setActiveDestination}
-              divider
-            />
+            {hasNavigationRail && (
+              <MainNavigationRail
+                activeDestination={activeDestination}
+                onClick={setActiveDestination}
+                divider={hasDividers}
+              />
+            )}
 
-            <MainNavigationDrawer
-              activeDestination={activeDestination}
-              onClick={setActiveDestination}
-              divider
-            />
+            {hasNavigationDrawer && (
+              <MainNavigationDrawer
+                activeDestination={activeDestination}
+                onClick={setActiveDestination}
+                divider={hasDividers}
+              />
+            )}
 
             <CanonicalLayout type={activeDestination} />
           </Flex>
         </Flex>
 
-        {hasFooter && <Footer divider />}
+        {hasFooter && <Footer divider={hasDividers} />}
 
         <MainNavigationBar
           activeDestination={activeDestination}
@@ -121,26 +166,38 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => (
 
 const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => (
   <AppLayoutFrame {...props}>
-    {({ activeDestination, setActiveDestination, hasTopBar, hasFooter }) => (
+    {({
+      activeDestination,
+      setActiveDestination,
+      hasTopBar,
+      hasNavigationRail,
+      hasNavigationDrawer,
+      hasFooter,
+      hasDividers,
+    }) => (
       <>
         <Flex direction="column">
           <Flex direction="row" align="start">
-            <MainNavigationRail
-              activeDestination={activeDestination}
-              onClick={setActiveDestination}
-              divider
-              wide
-            />
+            {hasNavigationRail && (
+              <MainNavigationRail
+                activeDestination={activeDestination}
+                onClick={setActiveDestination}
+                divider={hasDividers}
+                wide
+              />
+            )}
 
-            <MainNavigationDrawer
-              activeDestination={activeDestination}
-              onClick={setActiveDestination}
-              divider
-              wide
-            />
+            {hasNavigationDrawer && (
+              <MainNavigationDrawer
+                activeDestination={activeDestination}
+                onClick={setActiveDestination}
+                divider={hasDividers}
+                wide
+              />
+            )}
 
             <Flex direction="column" align="stretch" grow={1}>
-              {hasTopBar && <TopBar divider />}
+              {hasTopBar && <TopBar divider={hasDividers} />}
 
               <Flex direction="row" align="start">
                 <CanonicalLayout type={activeDestination} />
@@ -149,7 +206,7 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => (
           </Flex>
         </Flex>
 
-        {hasFooter && <Footer divider />}
+        {hasFooter && <Footer divider={hasDividers} />}
 
         <MainNavigationBar
           activeDestination={activeDestination}

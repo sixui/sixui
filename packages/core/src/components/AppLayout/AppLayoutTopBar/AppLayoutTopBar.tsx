@@ -41,19 +41,21 @@ export const AppLayoutTopBar = componentFactory<IAppLayoutTopBarFactory>(
       },
     });
 
+    const hasNavigationDrawer =
+      appLayoutContext?.components.includes('navigationDrawer');
+    const hasSideSheet = appLayoutContext?.components.includes('sideSheet');
+
     return (
       <TopAppBar
         {...getStyles('root')}
         as="header"
         ref={forwardedRef}
-        // FIXME: and when no nav rail or no leadingNavigation?
         leadingNavigation={
-          ((wide && appLayoutContext?.navigationDrawer?.state?.toggle) ||
-            leadingNavigation) && (
+          ((wide && hasNavigationDrawer) || leadingNavigation) && (
             <>
-              {wide && appLayoutContext?.navigationDrawer?.state?.toggle && (
+              {wide && hasNavigationDrawer && (
                 <Burger
-                  onClick={appLayoutContext.navigationDrawer.state.toggle}
+                  onClick={appLayoutContext?.navigationDrawer?.state?.toggle}
                 />
               )}
               {leadingNavigation}
@@ -61,10 +63,10 @@ export const AppLayoutTopBar = componentFactory<IAppLayoutTopBarFactory>(
           )
         }
         trailingActions={(renderProps) =>
-          (appLayoutContext?.sideSheet?.state?.toggle ?? trailingActions) && (
+          (hasSideSheet ?? trailingActions) && (
             <>
-              {appLayoutContext?.sideSheet?.state?.toggle && (
-                <Burger onClick={appLayoutContext.sideSheet.state.toggle} />
+              {hasSideSheet && (
+                <Burger onClick={appLayoutContext?.sideSheet?.state?.toggle} />
               )}
               {isFunction(trailingActions)
                 ? trailingActions(renderProps)
