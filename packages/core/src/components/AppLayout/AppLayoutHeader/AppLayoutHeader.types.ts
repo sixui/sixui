@@ -10,6 +10,7 @@ import type {
 export interface IAppLayoutHeaderOwnProps extends IPaperOwnProps {
   children?: React.ReactNode;
   divider?: boolean;
+  wide?: boolean;
 }
 
 export interface IAppLayoutHeaderProps

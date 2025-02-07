@@ -66,6 +66,24 @@ export const Variants: IStory = {
   args: defaultArgs,
 };
 
+export const Sizes: IStory = {
+  render: (props) => (
+    <FabShowcase
+      props={props}
+      cols={[
+        { legend: 'Small', props: { size: 'sm' } },
+        { legend: 'Medium', props: { size: 'md' } },
+        { legend: 'Large', props: { size: 'lg' } },
+      ]}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    variant: 'surface',
+    icon: <FontAwesomeIcon icon={faPaperPlane} />,
+  },
+};
+
 export const Scales: IStory = {
   render: (props) => (
     <FabShowcase
@@ -116,7 +134,7 @@ export const Surface: IStory = {
         { legend: 'With label', props: { children: 'Label' } },
         { legend: 'Label only', props: { children: 'Label', icon: undefined } },
       ]}
-      groups={[{}, { legend: 'Lowered', props: { lowered: true } }]}
+      groups={[{}, { legend: 'Flat', props: { flat: true } }]}
     />
   ),
   args: {
@@ -135,7 +153,7 @@ export const Primary: IStory = {
         { legend: 'With label', props: { children: 'Label' } },
         { legend: 'Label only', props: { children: 'Label', icon: undefined } },
       ]}
-      groups={[{}, { legend: 'Lowered', props: { lowered: true } }]}
+      groups={[{}, { legend: 'Flat', props: { flat: true } }]}
     />
   ),
   args: {
@@ -154,7 +172,7 @@ export const Secondary: IStory = {
         { legend: 'With label', props: { children: 'Label' } },
         { legend: 'Label only', props: { children: 'Label', icon: undefined } },
       ]}
-      groups={[{}, { legend: 'Lowered', props: { lowered: true } }]}
+      groups={[{}, { legend: 'Flat', props: { flat: true } }]}
     />
   ),
   args: {
@@ -173,7 +191,7 @@ export const Tertiary: IStory = {
         { legend: 'With label', props: { children: 'Label' } },
         { legend: 'Label only', props: { children: 'Label', icon: undefined } },
       ]}
-      groups={[{}, { legend: 'Lowered', props: { lowered: true } }]}
+      groups={[{}, { legend: 'Flat', props: { flat: true } }]}
     />
   ),
   args: {
@@ -191,7 +209,7 @@ export const Branded: IStory = {
         { legend: 'Basic' },
         { legend: 'With label', props: { children: 'Label' } },
       ]}
-      groups={[{}, { legend: 'Lowered', props: { lowered: true } }]}
+      groups={[{}, { legend: 'Flat', props: { flat: true } }]}
     />
   ),
   args: {

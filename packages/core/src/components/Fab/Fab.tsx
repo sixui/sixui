@@ -15,8 +15,9 @@ export const Fab = polymorphicComponentFactory<IFabFactory>(
       styles,
       style,
       variant = 'surface',
-      lowered,
+      flat,
       icon,
+      size = 'md',
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -31,7 +32,8 @@ export const Fab = polymorphicComponentFactory<IFabFactory>(
       themeVariants: fabThemeVariants,
       modifiers: {
         extended: !!other.children,
-        lowered,
+        flat,
+        size,
       },
     });
 

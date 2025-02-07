@@ -267,7 +267,10 @@ const classNames = createStyles({
       [modifierSelector<IModifier>('loading')]: {
         vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
-            elevation: tokens.container.elevation.pressed,
+            elevation: fallbackVar(
+              tokens.container.elevation.pressed,
+              tokens.container.elevation.normal,
+            ),
           },
         }),
       },
@@ -378,12 +381,20 @@ const classNames = createStyles({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  slot$start: {
-    marginRight: tokens.icon.labelSpace,
-  },
-  slot$end: {
-    marginLeft: tokens.icon.labelSpace,
-  },
+  slot$start: ({ root }) => ({
+    selectors: {
+      [modifierSelector<IModifier>('with-children', root)]: {
+        marginRight: tokens.icon.labelSpace,
+      },
+    },
+  }),
+  slot$end: ({ root }) => ({
+    selectors: {
+      [modifierSelector<IModifier>('with-children', root)]: {
+        marginLeft: tokens.icon.labelSpace,
+      },
+    },
+  }),
   slot$icon: {
     vars: overrideTokens(Slot.theme.tokens, {
       container: {
@@ -391,7 +402,7 @@ const classNames = createStyles({
       },
     }),
   },
-  slot$icon$start: {
+  slot$icon$start: ({ root }) => ({
     vars: overrideTokens(Slot.theme.tokens, {
       container: {
         leadingSpace: {
@@ -400,27 +411,43 @@ const classNames = createStyles({
             tokens.container.leadingSpace.normal,
           ),
         },
-        trailingSpace: {
-          normal: tokens.icon.labelSpace,
-        },
       },
     }),
-  },
-  slot$icon$end: {
+    selectors: {
+      [modifierSelector<IModifier>('with-children', root)]: {
+        vars: overrideTokens(Slot.theme.tokens, {
+          container: {
+            trailingSpace: {
+              normal: tokens.icon.labelSpace,
+            },
+          },
+        }),
+      },
+    },
+  }),
+  slot$icon$end: ({ root }) => ({
     vars: overrideTokens(Slot.theme.tokens, {
       container: {
         leadingSpace: {
           normal: tokens.icon.labelSpace,
         },
-        trailingSpace: {
-          compensated: calc.subtract(
-            tokens.container.trailingSpace.withEnd,
-            tokens.container.trailingSpace.normal,
-          ),
-        },
       },
     }),
-  },
+    selectors: {
+      [modifierSelector<IModifier>('with-children', root)]: {
+        vars: overrideTokens(Slot.theme.tokens, {
+          container: {
+            trailingSpace: {
+              compensated: calc.subtract(
+                tokens.container.trailingSpace.withEnd,
+                tokens.container.trailingSpace.normal,
+              ),
+            },
+          },
+        }),
+      },
+    },
+  }),
   stateLayer: {},
   touchTarget: {},
 });

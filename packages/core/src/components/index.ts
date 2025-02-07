@@ -31,6 +31,7 @@ export * from './Drawer';
 export * from './DrawerAside';
 export * from './DrawerSideSheet';
 export * from './Elevation';
+export * from './Expandable';
 export * from './Fab';
 export * from './FieldBase';
 export * from './FilterableList';

@@ -24,6 +24,9 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
     width: px(themeTokens.outline.width.xs),
     color: themeTokens.colorScheme.outline,
   },
+  topAppBar: {
+    height: px(64),
+  },
   container: {
     width: px(80),
     color: themeTokens.colorScheme.surface,
@@ -61,33 +64,62 @@ const classNames = createStyles({
       },
     },
   },
-  header: {
+  header: ({ root }) => ({
     flexShrink: 0,
-  },
-  content: ({ root }) => ({
     display: 'flex',
     flexDirection: 'column',
-    height: '100%',
+    flexBasis: 0,
+    alignItems: 'center',
+    justifyContent: 'start',
+
+    selectors: {
+      [modifierSelector<IModifier>({ justify: 'center' }, root)]: {
+        flexGrow: 1,
+      },
+      [modifierSelector<IModifier>({ justify: 'bottom' }, root)]: {
+        flexGrow: 1,
+      },
+    },
+  }),
+  content: {
+    display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
     overflowY: 'auto',
     gap: calc.add(px(space(3)), DENSITY),
     paddingTop: calc.add(px(space(3)), DENSITY),
     paddingBottom: calc.add(px(space(3)), DENSITY),
+  },
+  footer: ({ root }) => ({
+    flexShrink: 0,
+    display: 'flex',
+    flexDirection: 'column',
+    flexBasis: 0,
+    alignItems: 'center',
+    justifyContent: 'end',
 
     selectors: {
-      [modifierSelector<IModifier>({ justify: 'start' }, root)]: {
-        justifyContent: 'start',
-      },
       [modifierSelector<IModifier>({ justify: 'center' }, root)]: {
-        justifyContent: 'center',
+        flexGrow: 1,
       },
-      [modifierSelector<IModifier>({ justify: 'end' }, root)]: {
-        justifyContent: 'end',
+      [modifierSelector<IModifier>({ justify: 'top' }, root)]: {
+        flexGrow: 1,
       },
     },
   }),
-  footer: {
-    flexShrink: 0,
+  menuIconContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: tokens.topAppBar.height,
+  },
+  fabContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: px(space(4)),
   },
 });
 

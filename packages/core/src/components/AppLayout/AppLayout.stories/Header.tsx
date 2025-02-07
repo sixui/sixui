@@ -15,20 +15,14 @@ export const Header: React.FC<IHeaderProps> = (props) => {
       <Flex direction="row" gap="$6" justify="space-between" grow={1}>
         <Flex direction="row" gap="$2" align="center">
           {appLayoutContext?.navigationDrawer?.state?.toggle && (
-            <Burger
-              opened={appLayoutContext.navigationDrawer.state.opened}
-              onClick={appLayoutContext.navigationDrawer.state.toggle}
-            />
+            <Burger onClick={appLayoutContext.navigationDrawer.state.toggle} />
           )}
           <div>Header</div>
         </Flex>
 
         <Flex direction="row" gap="$2">
           {appLayoutContext?.sideSheet?.state?.toggle && (
-            <Burger
-              opened={appLayoutContext.sideSheet.state.opened}
-              onClick={appLayoutContext.sideSheet.state.toggle}
-            />
+            <Burger onClick={appLayoutContext.sideSheet.state.toggle} />
           )}
         </Flex>
       </Flex>

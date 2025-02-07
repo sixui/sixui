@@ -17,6 +17,9 @@ export const AppLayoutHeader = componentFactory<IAppLayoutHeaderFactory>(
       variant,
       children,
       divider,
+      // DEV: use `wide` prop to set the width of the header to 100%
+      // (eventually), and show the menu icon
+      wide,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 

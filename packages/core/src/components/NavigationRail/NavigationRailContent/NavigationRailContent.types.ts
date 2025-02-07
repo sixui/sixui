@@ -10,12 +10,14 @@ import type {
 } from './NavigationRailContent.css';
 
 export interface INavigationRailContentOwnProps extends IPaperBaseOwnProps {
-  header?: React.ReactNode;
+  headerSlot?: React.ReactNode;
   children?: React.ReactNode;
-  footer?: React.ReactNode;
-  justify?: 'start' | 'center' | 'end';
+  footerSlot?: React.ReactNode;
+  justify?: 'top' | 'center' | 'bottom';
   divider?: boolean;
   side?: IHorizontalSide;
+  menuIcon?: React.ReactNode;
+  fab?: React.ReactNode;
 }
 
 export interface INavigationRailContentProps

@@ -5,18 +5,24 @@ import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphic
 import type { IOmit } from '~/utils/types';
 import type { fabTheme, IFabThemeFactory } from './Fab.css';
 
-export type IFabVariant =
-  | 'surface'
-  | 'primary'
-  | 'secondary'
-  | 'tertiary'
-  | 'branded';
+export const fabVariants = [
+  'surface',
+  'primary',
+  'secondary',
+  'tertiary',
+  'branded',
+] as const;
+export type IFabVariant = (typeof fabVariants)[number];
+
+export const fabSizes = ['sm', 'md', 'lg'] as const;
+export type IFabSize = (typeof fabSizes)[number];
 
 export interface IFabOwnProps
   extends IOmit<IButtonOwnProps, 'leadingIcon' | 'trailingIcon'> {
-  lowered?: boolean;
+  flat?: boolean;
   children?: React.ReactNode;
   icon?: React.ReactNode;
+  size?: IFabSize;
 }
 
 export interface IFabProps

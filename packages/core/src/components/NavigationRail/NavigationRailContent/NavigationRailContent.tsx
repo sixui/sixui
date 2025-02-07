@@ -15,12 +15,14 @@ export const NavigationRailContent =
       styles,
       style,
       variant,
-      header,
+      headerSlot,
       children,
-      footer,
+      footerSlot,
       justify = 'center',
       side = 'left',
       divider,
+      menuIcon,
+      fab,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -43,9 +45,18 @@ export const NavigationRailContent =
 
     return (
       <PaperBase {...getStyles('root')} ref={forwardedRef} {...other}>
-        {header && <div {...getStyles('header')}>{header}</div>}
+        <div {...getStyles('header')}>
+          {headerSlot ?? (
+            <>
+              {menuIcon && (
+                <div {...getStyles('menuIconContainer')}>{menuIcon}</div>
+              )}
+              {fab && <div {...getStyles('fabContainer')}>{fab}</div>}
+            </>
+          )}
+        </div>
         <div {...getStyles('content')}>{children}</div>
-        {footer && <div {...getStyles('footer')}>{footer}</div>}
+        <div {...getStyles('footer')}>{footerSlot}</div>
       </PaperBase>
     );
   });

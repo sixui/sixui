@@ -1,6 +1,7 @@
 import type { IAppLayoutNavigationRailThemeFactory } from './AppLayoutNavigationRail.css';
 import type { IAppLayoutNavigationRailFactory } from './AppLayoutNavigationRail.types';
 import { useAppLayoutContext } from '~/components/AppLayout/AppLayout.context';
+import { Burger } from '~/components/Burger';
 import { NavigationRail } from '~/components/NavigationRail';
 import { NavigationRailDestination } from '~/components/NavigationRail/NavigationRailDestination';
 import { useComponentTheme, useProps } from '~/components/Theme';
@@ -18,7 +19,9 @@ export const AppLayoutNavigationRail =
       style,
       variant,
       hasHeader: hasHeaderProp,
+      hasNavigationDrawer: hasNavigationDrawerProp,
       opened: openedProp,
+      wide,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -27,6 +30,9 @@ export const AppLayoutNavigationRail =
 
     const hasHeader =
       hasHeaderProp ?? appLayoutContext?.components.includes('header');
+    const hasNavigationDrawer =
+      hasNavigationDrawerProp ??
+      appLayoutContext?.components.includes('navigationDrawer');
 
     const { getStyles } =
       useComponentTheme<IAppLayoutNavigationRailThemeFactory>({
@@ -46,6 +52,7 @@ export const AppLayoutNavigationRail =
     }
 
     const opened = openedProp ?? appLayoutContext?.navigationMode === 'rail';
+    const showMenuIcon = (wide || !hasHeader) && hasNavigationDrawer;
 
     return (
       <NavigationRail
@@ -53,6 +60,14 @@ export const AppLayoutNavigationRail =
         modifiers={{ 'with-header': hasHeader }}
         opened={opened}
         ref={forwardedRef}
+        menuIcon={
+          showMenuIcon && (
+            <Burger
+              onClick={appLayoutContext?.navigationDrawer?.state?.toggle}
+            />
+          )
+        }
+        wide={wide}
         {...other}
       />
     );

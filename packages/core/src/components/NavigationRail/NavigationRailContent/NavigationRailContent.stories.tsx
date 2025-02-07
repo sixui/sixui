@@ -6,6 +6,7 @@ import {
   faSquare,
 } from '@fortawesome/free-regular-svg-icons';
 import {
+  faDiamondTurnRight,
   faCircle as fasCircle,
   faHeart as fasHeart,
   faSquare as fasSquare,
@@ -15,8 +16,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { IOmit } from '~/utils/types';
 import type { INavigationRailContentProps } from './NavigationRailContent.types';
 import { Badge } from '~/components/Badge';
+import { Burger } from '~/components/Burger';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
-import { Placeholder } from '~/components/Placeholder';
+import { Fab } from '~/components/Fab';
 import { NavigationRailContent } from './NavigationRailContent';
 
 const meta = {
@@ -26,10 +28,16 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  header: <Placeholder label="Header" />,
-  footer: <Placeholder label="Footer" />,
   divider: true,
-  h: '$128',
+  h: '$160',
+  menuIcon: <Burger />,
+  fab: (
+    <Fab
+      variant="primary"
+      icon={<FontAwesomeIcon icon={faDiamondTurnRight} />}
+      flat
+    />
+  ),
 } satisfies Partial<INavigationRailContentProps>;
 
 const NavigationRailContentDemo: React.FC<
@@ -81,12 +89,12 @@ export const Configurations: IStory = {
     <NavigationRailContentDemoShowcase
       props={props}
       cols={[
-        { legend: 'Justify start', props: { justify: 'start' } },
+        { legend: 'Justify top', props: { justify: 'top' } },
         {
           legend: 'Justify center (default)',
           props: { justify: 'center' },
         },
-        { legend: 'Justify end', props: { justify: 'end' } },
+        { legend: 'Justify bottom', props: { justify: 'bottom' } },
       ]}
     />
   ),
