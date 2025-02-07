@@ -30,5 +30,6 @@ jobs:
         run: pnpm install
       - uses: chromaui/action@latest
         with:
+          workingDir: packages/core
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           token: ${{ secrets.GITHUB_TOKEN }}

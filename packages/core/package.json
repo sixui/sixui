@@ -39,7 +39,8 @@
     "check:all": "run-s lint:check ts:check",
     "pre-commit": "run-s generate-icons",
     "clean": "rm -rf dist",
-    "build": "tsx scripts/build.ts"
+    "build": "tsx scripts/build.ts",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@floating-ui/core": "^1.6.9",
