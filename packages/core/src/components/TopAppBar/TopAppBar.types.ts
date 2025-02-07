@@ -1,7 +1,7 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IPaperOwnProps } from '~/components/Paper';
 import type { IComponentThemeProps } from '~/components/Theme';
-import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IPolymorphicComponentFactory } from '~/utils/component';
 import type { ITopAppBarThemeFactory, topAppBarTheme } from './TopAppBar.css';
 
 export const topAppBarVariants = [
@@ -26,9 +26,10 @@ export interface ITopAppBarProps
     IComponentThemeProps<ITopAppBarThemeFactory>,
     ITopAppBarOwnProps {}
 
-export type ITopAppBarFactory = IComponentFactory<{
+export type ITopAppBarFactory = IPolymorphicComponentFactory<{
   props: ITopAppBarProps;
-  ref: HTMLDivElement;
+  defaultRef: HTMLDivElement;
+  defaultRoot: 'div';
   theme: typeof topAppBarTheme;
   variant: ITopAppBarVariant | false;
 }>;

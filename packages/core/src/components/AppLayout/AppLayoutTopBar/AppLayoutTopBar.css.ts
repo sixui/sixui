@@ -1,15 +1,14 @@
 import { fallbackVar } from '@vanilla-extract/css';
 
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
-import { PaperBase } from '~/components/PaperBase';
 import { themeTokens } from '~/components/Theme';
+import { TopAppBar } from '~/components/TopAppBar';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { createStyles } from '~/utils/css/createStyles';
 import { modifierSelector } from '~/utils/css/modifierSelector';
 import { overrideTokens } from '~/utils/css/overrideTokens';
 import { px } from '~/utils/css/px';
-import { space } from '~/utils/css/space';
 import { appLayoutTheme } from '~/components/AppLayout/AppLayout.css';
 import { COMPONENT_NAME } from './AppLayoutTopBar.constants';
 
@@ -39,20 +38,14 @@ const classNames = createStyles({
   root: {
     position: 'sticky',
     top: 0,
-    insetInline: 0,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
     height: tokens.container.height,
     zIndex: themeTokens.zIndex.app,
-    paddingLeft: px(space(3)),
-    paddingRight: px(space(3)),
-    gap: px(space(3)),
 
-    vars: overrideTokens(PaperBase.theme.tokens, {
+    vars: overrideTokens(TopAppBar.theme.tokens, {
       container: {
-        color: tokens.container.color,
+        color: {
+          normal: tokens.container.color,
+        },
       },
     }),
 

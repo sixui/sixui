@@ -1,16 +1,15 @@
 import type { IBoxProps } from '~/components/Box';
-import type { IPaperOwnProps } from '~/components/Paper';
 import type { IComponentThemeProps } from '~/components/Theme';
+import type { ITopAppBarOwnProps } from '~/components/TopAppBar';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type {
   appLayoutTopBarTheme,
   IAppLayoutTopBarThemeFactory,
 } from './AppLayoutTopBar.css';
 
-export interface IAppLayoutTopBarOwnProps extends IPaperOwnProps {
-  children?: React.ReactNode;
-  divider?: boolean;
+export interface IAppLayoutTopBarOwnProps extends ITopAppBarOwnProps {
   wide?: boolean;
+  divider?: boolean;
 }
 
 export interface IAppLayoutTopBarProps

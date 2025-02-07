@@ -2,12 +2,12 @@ import type { ITopAppBarThemeFactory } from './TopAppBar.css';
 import type { ITopAppBarFactory } from './TopAppBar.types';
 import { Paper } from '~/components/Paper';
 import { useComponentTheme, useProps } from '~/components/Theme';
-import { componentFactory } from '~/utils/component/componentFactory';
+import { polymorphicComponentFactory } from '~/utils/component';
 import { isFunction } from '~/utils/isFunction';
 import { COMPONENT_NAME } from './TopAppBar.constants';
 import { topAppBarTheme, topAppBarThemeVariants } from './TopAppBar.css';
 
-export const TopAppBar = componentFactory<ITopAppBarFactory>(
+export const TopAppBar = polymorphicComponentFactory<ITopAppBarFactory>(
   (props, forwardedRef) => {
     const {
       classNames,

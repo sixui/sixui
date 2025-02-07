@@ -1,8 +1,10 @@
 import type { IAppLayoutTopBarThemeFactory } from './AppLayoutTopBar.css';
 import type { IAppLayoutTopBarFactory } from './AppLayoutTopBar.types';
-import { Paper } from '~/components/Paper';
+import { Burger } from '~/components/Burger';
 import { useComponentTheme, useProps } from '~/components/Theme';
+import { TopAppBar } from '~/components/TopAppBar';
 import { componentFactory } from '~/utils/component/componentFactory';
+import { useAppLayoutContext } from '../AppLayout.context';
 import { useAppLayoutComponent } from '../hooks/useAppLayoutComponent';
 import { COMPONENT_NAME } from './AppLayoutTopBar.constants';
 import { appLayoutTopBarTheme } from './AppLayoutTopBar.css';
@@ -15,14 +17,12 @@ export const AppLayoutTopBar = componentFactory<IAppLayoutTopBarFactory>(
       styles,
       style,
       variant,
-      children,
-      divider,
-      // DEV: use `wide` prop to set the width of the header to 100%
-      // (eventually), and show the menu icon
       wide,
+      divider,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
+    const appLayoutContext = useAppLayoutContext();
     useAppLayoutComponent('topBar');
 
     const { getStyles } = useComponentTheme<IAppLayoutTopBarThemeFactory>({
@@ -39,9 +39,23 @@ export const AppLayoutTopBar = componentFactory<IAppLayoutTopBarFactory>(
     });
 
     return (
-      <Paper {...getStyles('root')} as="header" ref={forwardedRef} {...other}>
-        {children}
-      </Paper>
+      <TopAppBar
+        {...getStyles('root')}
+        as="header"
+        ref={forwardedRef}
+        leadingNavigation={
+          wide &&
+          appLayoutContext?.navigationDrawer?.state?.toggle && (
+            <Burger onClick={appLayoutContext.navigationDrawer.state.toggle} />
+          )
+        }
+        trailingActions={
+          appLayoutContext?.sideSheet?.state?.toggle && (
+            <Burger onClick={appLayoutContext.sideSheet.state.toggle} />
+          )
+        }
+        {...other}
+      />
     );
   },
 );

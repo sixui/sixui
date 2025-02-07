@@ -14,7 +14,7 @@ import { elevationLevelPreset } from '../Elevation/Elevation.css';
 import { COMPONENT_NAME } from './TopAppBar.constants';
 import { type ITopAppBarVariant } from './TopAppBar.types';
 
-type IModifier = 'scrolling';
+type IModifier = 'with-divider' | 'scrolling';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
