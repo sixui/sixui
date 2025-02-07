@@ -55,6 +55,7 @@ export const AppLayoutTopBar = componentFactory<IAppLayoutTopBarFactory>(
             <>
               {wide && hasNavigationDrawer && (
                 <Burger
+                  opened={appLayoutContext?.navigationDrawer?.state?.opened}
                   onClick={appLayoutContext?.navigationDrawer?.state?.toggle}
                 />
               )}
@@ -66,7 +67,10 @@ export const AppLayoutTopBar = componentFactory<IAppLayoutTopBarFactory>(
           (hasSideSheet ?? trailingActions) && (
             <>
               {hasSideSheet && (
-                <Burger onClick={appLayoutContext?.sideSheet?.state?.toggle} />
+                <Burger
+                  opened={appLayoutContext?.sideSheet?.state?.opened}
+                  onClick={appLayoutContext?.sideSheet?.state?.toggle}
+                />
               )}
               {isFunction(trailingActions)
                 ? trailingActions(renderProps)

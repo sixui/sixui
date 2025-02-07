@@ -97,7 +97,7 @@ const AppLayoutFrame: React.FC<IAppLayoutFrameProps> = (props) => {
       <Frame importParentStyles w="100%" h="$160">
         {({ window }) => (
           <AppLayout
-            preferredNavigationMode="standard"
+            preferredNavigationMode={hasNavigationDrawer ? 'standard' : 'rail'}
             window={window}
             {...other}
           >
