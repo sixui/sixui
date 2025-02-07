@@ -3,6 +3,7 @@ import type { ITopAppBarFactory } from './TopAppBar.types';
 import { Paper } from '~/components/Paper';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
+import { isFunction } from '~/utils/isFunction';
 import { COMPONENT_NAME } from './TopAppBar.constants';
 import { topAppBarTheme, topAppBarThemeVariants } from './TopAppBar.css';
 
@@ -14,13 +15,10 @@ export const TopAppBar = componentFactory<ITopAppBarFactory>(
       styles,
       style,
       variant,
-      children,
       headline,
       leadingNavigation,
       trailingActions,
-      trailingActionsCountBeforeCollapse = 3,
       scrolling,
-      hidden,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -33,11 +31,32 @@ export const TopAppBar = componentFactory<ITopAppBarFactory>(
       variant,
       theme: topAppBarTheme,
       themeVariants: topAppBarThemeVariants,
+      modifiers: {
+        scrolling,
+      },
     });
+
+    const consolidated = variant === 'centerAligned';
+    const hasMultilineHeadline = variant === 'medium' || variant === 'large';
 
     return (
       <Paper {...getStyles('root')} ref={forwardedRef} {...other}>
-        XXX
+        <div {...getStyles('mainSection')}>
+          <div {...getStyles('leadingNavigationSlot')}>{leadingNavigation}</div>
+          <div {...getStyles(['headlineSlot', 'headlineText'])}>
+            {!hasMultilineHeadline && headline}
+          </div>
+          <div {...getStyles('trailingActionsSlot')}>
+            {isFunction(trailingActions)
+              ? trailingActions({ consolidated })
+              : trailingActions}
+          </div>
+        </div>
+        {hasMultilineHeadline && headline && (
+          <div {...getStyles(['headlineSection', 'headlineText'])}>
+            {headline}
+          </div>
+        )}
       </Paper>
     );
   },

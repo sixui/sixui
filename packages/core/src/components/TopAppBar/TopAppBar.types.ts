@@ -15,10 +15,10 @@ export type ITopAppBarVariant = (typeof topAppBarVariants)[number];
 export interface ITopAppBarOwnProps extends IPaperOwnProps {
   headline?: React.ReactNode;
   leadingNavigation?: React.ReactNode;
-  trailingActions?: React.ReactNode;
-  trailingActionsCountBeforeCollapse?: number;
-  scrolled?: boolean;
-  hidden?: boolean;
+  trailingActions?:
+    | React.ReactNode
+    | (({ consolidated }: { consolidated: boolean }) => React.ReactNode);
+  scrolling?: boolean;
 }
 
 export interface ITopAppBarProps

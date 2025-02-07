@@ -1,9 +1,20 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { faCalendar } from '@fortawesome/free-regular-svg-icons';
+import {
+  faArrowLeft,
+  faBug,
+  faCircleQuestion,
+  faEllipsisVertical,
+  faPaperclip,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { ITopAppBarProps } from './TopAppBar.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { Menu } from '~/components/Menu';
 import { themeTokens } from '~/components/Theme';
+import { IconButton } from '../IconButton';
 import { TopAppBar } from './TopAppBar';
 import { topAppBarVariants } from './TopAppBar.types';
 
@@ -16,6 +27,41 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {
   children: 'TopAppBar',
   w: '$112',
+  leadingNavigation: (
+    <IconButton icon={<FontAwesomeIcon icon={faArrowLeft} />} />
+  ),
+  headline: 'Summer Hits',
+  trailingActions: ({ consolidated }) => (
+    <>
+      {!consolidated && (
+        <>
+          <IconButton icon={<FontAwesomeIcon icon={faPaperclip} />} />
+          <IconButton icon={<FontAwesomeIcon icon={faCalendar} />} />
+        </>
+      )}
+      <Menu
+        trigger={({ getProps }) => (
+          <IconButton
+            icon={<FontAwesomeIcon icon={faEllipsisVertical} />}
+            {...getProps()}
+          />
+        )}
+        placement={{
+          side: 'bottom',
+          alignment: 'end',
+        }}
+      >
+        <Menu.Item
+          trailingIcon={<FontAwesomeIcon icon={faCircleQuestion} />}
+          label="Help center"
+        />
+        <Menu.Item
+          trailingIcon={<FontAwesomeIcon icon={faBug} />}
+          label="File a bug"
+        />
+      </Menu>
+    </>
+  ),
   style: {
     borderWidth: themeTokens.outline.width.xs,
     borderColor: themeTokens.colorScheme.outlineVariant,

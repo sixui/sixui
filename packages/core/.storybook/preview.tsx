@@ -3,8 +3,8 @@ import type { Decorator, Preview } from '@storybook/react';
 import { modes } from './modes';
 import { classNames } from './preview.css';
 
-import '~/styles/index.css';
 import './storybook.css';
+import '~/styles/index.css';
 
 import { Box } from '~/components/Box';
 import { CustomizableTheme } from '~/components/CustomizableTheme';
@@ -45,7 +45,17 @@ export const decorators: Array<Decorator> = [
     const showDarkMode = !context.tags.includes('light-mode-only');
 
     return (
-      <SixuiProvider colorSchemeVariant="light">
+      <SixuiProvider
+        colorSchemeVariant="light"
+        theme={{
+          tokens: {
+            typeFace: {
+              plain: 'Roboto',
+              brand: 'Roboto',
+            },
+          },
+        }}
+      >
         <CustomizableTheme>
           <Box w="100%">
             {showLightMode && (
