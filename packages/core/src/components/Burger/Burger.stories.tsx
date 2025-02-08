@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IBurgerProps } from './Burger.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { useToggle } from '~/hooks';
 import { Burger } from './Burger';
 
 const meta = {
@@ -31,6 +32,25 @@ const BurgerShowcase = componentShowcaseFactory(Burger);
 
 export const Standard: IStory = {
   render: (props) => <BurgerShowcase props={props} cols={states} rows={rows} />,
+  args: defaultArgs,
+};
+
+const BurgerDemo: React.FC<IBurgerProps> = (props) => {
+  const [opened, toggleOpened] = useToggle([false, true]);
+
+  return (
+    <Burger
+      {...props}
+      opened={opened}
+      onClick={() => {
+        toggleOpened();
+      }}
+    />
+  );
+};
+
+export const Interactive: IStory = {
+  render: (props) => <BurgerDemo {...props} />,
   args: defaultArgs,
 };
 
