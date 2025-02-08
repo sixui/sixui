@@ -9,6 +9,9 @@ import { NavigationDrawerDestination } from '../NavigationDrawerDestination';
 import { COMPONENT_NAME } from './NavigationDrawerSection.constants';
 import { navigationDrawerSectionTheme } from './NavigationDrawerSection.css';
 
+/**
+ * @see https://m3.material.io/components/navigation-drawer/overview
+ */
 export const NavigationDrawerSection =
   componentFactory<INavigationDrawerSectionFactory>((props, forwardedRef) => {
     const {

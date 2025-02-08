@@ -7,6 +7,9 @@ import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { COMPONENT_NAME } from './Fab.constants';
 import { fabTheme, fabThemeVariants } from './Fab.css';
 
+/**
+ * @see https://m3.material.io/components/floating-action-button/overview
+ */
 export const Fab = polymorphicComponentFactory<IFabFactory>(
   (props, forwardedRef) => {
     const {

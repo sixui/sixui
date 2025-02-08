@@ -6,6 +6,9 @@ import { polymorphicComponentFactory } from '~/utils/component/polymorphicCompon
 import { COMPONENT_NAME } from './NavigationBarDestination.constants';
 import { navigationBarDestinationTheme } from './NavigationBarDestination.css';
 
+/**
+ * @see https://m3.material.io/components/navigation-bar/overview
+ */
 export const NavigationBarDestination =
   polymorphicComponentFactory<INavigationBarDestinationFactory>(
     (props, forwardedRef) => {

@@ -9,6 +9,9 @@ import { COMPONENT_NAME } from './NavigationRail.constants';
 import { NavigationRailContent } from './NavigationRailContent';
 import { navigationRailTheme } from './NavigationRail.css';
 
+/**
+ * @see https://m3.material.io/components/navigation-rail/overview
+ */
 export const NavigationRail = componentFactory<INavigationRailFactory>(
   (props, forwardedRef) => {
     const {

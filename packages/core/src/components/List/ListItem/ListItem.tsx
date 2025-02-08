@@ -15,6 +15,9 @@ import { executeLazyPromise } from '~/utils/executeLazyPromise';
 import { COMPONENT_NAME } from './ListItem.constants';
 import { listItemTheme, listItemThemeVariants } from './ListItem.css';
 
+/**
+ * @see https://m3.material.io/components/items/overview
+ */
 export const ListItem = polymorphicComponentFactory<IListItemFactory>(
   (props, forwardedRef) => {
     const {

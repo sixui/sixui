@@ -39,6 +39,9 @@ export const textTagMap: Record<
   },
 };
 
+/**
+ * @see https://m3.material.io/styles/typography/overview
+ */
 export const Text = polymorphicComponentFactory<ITextFactory>(
   (props, forwardedRef) => {
     const {

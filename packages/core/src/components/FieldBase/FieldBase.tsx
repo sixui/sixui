@@ -20,6 +20,9 @@ import { fieldBaseTheme, fieldBaseThemeVariants } from './FieldBase.css';
 
 const EASING_STANDARD = 'cubic-bezier(0.2, 0, 0, 1)';
 
+/**
+ * @see https://m3.material.io/components/text-fields/overview
+ */
 export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
   (props, forwardedRef) => {
     const {

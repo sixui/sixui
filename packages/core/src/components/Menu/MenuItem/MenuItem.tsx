@@ -12,6 +12,9 @@ import { mergeProps } from '~/utils/mergeProps';
 import { COMPONENT_NAME } from './MenuItem.constants';
 import { useMenuItemContext } from './MenuItem.context';
 
+/**
+ * @see https://m3.material.io/components/items/overview
+ */
 export const MenuItem = polymorphicComponentFactory<IMenuItemFactory>(
   (props, forwardedRef) => {
     const { children, label, keepOpenOnClick, ...other } = useProps({

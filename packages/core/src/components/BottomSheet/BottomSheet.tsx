@@ -8,6 +8,9 @@ import { COMPONENT_NAME } from './BottomSheet.constants';
 import { BottomSheetContent } from './BottomSheetContent';
 import { bottomSheetTheme } from './BottomSheet.css';
 
+/**
+ * @see https://m3.material.io/components/bottom-sheets/overview
+ */
 export const BottomSheet = componentFactory<IBottomSheetFactory>(
   (props, forwardedRef) => {
     const {

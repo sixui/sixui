@@ -13,6 +13,9 @@ import { CheckboxGroup } from './CheckboxGroup';
 import { CheckboxIndicator } from './CheckboxIndicator';
 import { checkboxTheme } from './Checkbox.css';
 
+/**
+ * @see https://m3.material.io/components/checkbox/overview
+ */
 export const Checkbox = componentFactory<ICheckboxFactory>(
   (props, forwardedRef) => {
     const {

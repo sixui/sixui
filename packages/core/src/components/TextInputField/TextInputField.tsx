@@ -17,6 +17,9 @@ import { triggerChangeEvent } from '~/utils/react';
 import { COMPONENT_NAME } from './TextInputField.constants';
 import { textInputFieldTheme } from './TextInputField.css';
 
+/**
+ * @see https://m3.material.io/components/text-fields/overview
+ */
 export const TextInputField = componentFactory<ITextInputFieldFactory>(
   (props, forwardedRef) => {
     const {

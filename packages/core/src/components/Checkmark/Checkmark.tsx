@@ -6,6 +6,9 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './Checkmark.constants';
 import { checkmarkTheme } from './Checkmark.css';
 
+/**
+ * @see https://m3.material.io/components/checkbox/overview
+ */
 export const Checkmark = componentFactory<ICheckmarkFactory>(
   (props, forwardedRef) => {
     const {

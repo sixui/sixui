@@ -12,6 +12,9 @@ import { ListDivider } from './ListDivider';
 import { ListItem } from './ListItem';
 import { listTheme } from './List.css';
 
+/**
+ * @see https://m3.material.io/components/lists/overview
+ */
 export const List = componentFactory<IListFactory>((props, forwardedRef) => {
   const {
     classNames,

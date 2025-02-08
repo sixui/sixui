@@ -13,10 +13,6 @@ import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { Dialog } from './Dialog';
 import { DialogOverlay } from './DialogOverlay';
 
-// https://m3.material.io/components/dialogs/overview
-// https://material-web.dev/components/dialog/
-// https://github.com/material-components/material-web/blob/main/dialog/demo/stories.ts
-
 const meta = {
   component: Dialog,
 } satisfies Meta<IDialogProps>;

@@ -7,6 +7,9 @@ import { isFunction } from '~/utils/isFunction';
 import { COMPONENT_NAME } from './TopAppBar.constants';
 import { topAppBarTheme, topAppBarThemeVariants } from './TopAppBar.css';
 
+/**
+ * @see https://m3.material.io/components/top-app-bar/overview
+ */
 export const TopAppBar = polymorphicComponentFactory<ITopAppBarFactory>(
   (props, forwardedRef) => {
     const {

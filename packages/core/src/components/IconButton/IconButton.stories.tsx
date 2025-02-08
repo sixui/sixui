@@ -10,10 +10,6 @@ import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { IconButton } from './IconButton';
 import { iconButtonVariants } from './IconButton.types';
 
-// https://m3.material.io/components/icon-buttons/overview
-// https://material-web.dev/components/icon-button/
-// https://github.com/material-components/material-web/blob/main/iconbutton/demo/stories.ts
-
 const meta = {
   component: IconButton,
 } satisfies Meta<typeof IconButton>;

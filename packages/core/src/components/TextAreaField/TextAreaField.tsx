@@ -18,6 +18,9 @@ import { triggerChangeEvent } from '~/utils/react';
 import { COMPONENT_NAME } from './TextAreaField.constants';
 import { textAreaFieldTheme } from './TextAreaField.css';
 
+/**
+ * @see https://m3.material.io/components/text-fields/overview
+ */
 export const TextAreaField = componentFactory<ITextAreaFieldFactory>(
   (props, forwardedRef) => {
     const {

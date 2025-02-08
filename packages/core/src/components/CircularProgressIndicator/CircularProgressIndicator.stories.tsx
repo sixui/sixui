@@ -6,10 +6,6 @@ import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Text } from '~/components/Text';
 import { CircularProgressIndicator } from './CircularProgressIndicator';
 
-// https://m3.material.io/components/progress-indicators/overview
-// https://material-web.dev/components/progress/
-// https://github.com/material-components/material-web/blob/main/progress/demo/stories.ts
-
 const meta = {
   component: CircularProgressIndicator,
 } satisfies Meta<typeof CircularProgressIndicator>;

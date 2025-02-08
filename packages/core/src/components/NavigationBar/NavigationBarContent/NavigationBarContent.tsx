@@ -6,6 +6,9 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './NavigationBarContent.constants';
 import { navigationBarContentTheme } from './NavigationBarContent.css';
 
+/**
+ * @see https://m3.material.io/components/navigation-bar/overview
+ */
 export const NavigationBarContent =
   componentFactory<INavigationBarContentFactory>((props, forwardedRef) => {
     const {

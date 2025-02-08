@@ -10,6 +10,9 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './SnackbarContent.constants';
 import { snackbarContentTheme } from './SnackbarContent.css';
 
+/**
+ * @see https://m3.material.io/components/snackbar/overview
+ */
 export const SnackbarContent = componentFactory<ISnackbarContentFactory>(
   (props, forwardedRef) => {
     const {

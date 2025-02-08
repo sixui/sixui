@@ -6,6 +6,9 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './CardMedia.constants';
 import { cardMediaTheme } from './CardMedia.css';
 
+/**
+ * @see https://m3.material.io/components/cards/overview
+ */
 export const CardMedia = componentFactory<ICardMediaFactory>(
   (props, forwardedRef) => {
     const {

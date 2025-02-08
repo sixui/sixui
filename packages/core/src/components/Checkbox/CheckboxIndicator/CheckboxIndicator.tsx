@@ -9,6 +9,9 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './CheckboxIndicator.constants';
 import { checkboxIndicatorTheme } from './CheckboxIndicator.css';
 
+/**
+ * @see https://m3.material.io/components/checkbox/overview
+ */
 export const CheckboxIndicator = componentFactory<ICheckboxIndicatorFactory>(
   (props, forwardedRef) => {
     const {

@@ -6,6 +6,9 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './FocusRing.constants';
 import { focusRingTheme } from './FocusRing.css';
 
+/**
+ * @see https://m3.material.io/foundations/interaction/states/applying-states#9edb181a-ed5e-4961-b3d0-cae33125a4a9
+ */
 export const FocusRing = componentFactory<IFocusRingFactory>(
   (props, forwardedRef) => {
     const {

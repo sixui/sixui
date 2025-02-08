@@ -10,10 +10,6 @@ import { px } from '~/utils/css/px';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { DialogContent } from './DialogContent';
 
-// https://m3.material.io/components/dialogs/overview
-// https://material-web.dev/components/dialog/
-// https://github.com/material-components/material-web/blob/main/dialog/demo/stories.ts
-
 const meta = {
   component: DialogContent,
 } satisfies Meta<typeof DialogContent>;

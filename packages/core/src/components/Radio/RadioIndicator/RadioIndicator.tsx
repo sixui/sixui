@@ -7,6 +7,9 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './RadioIndicator.constants';
 import { RadioIndicatorTheme } from './RadioIndicator.css';
 
+/**
+ * @see https://m3.material.io/components/radio-button/overview
+ */
 export const RadioIndicator = componentFactory<IRadioIndicatorFactory>(
   (props, forwardedRef) => {
     const {

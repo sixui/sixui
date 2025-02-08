@@ -6,6 +6,9 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './Divider.constants';
 import { dividerTheme } from './Divider.css';
 
+/**
+ * @see https://m3.material.io/components/divider/overview
+ */
 export const Divider = componentFactory<IDividerFactory>(
   (props, forwardedRef) => {
     const {

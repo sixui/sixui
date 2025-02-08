@@ -6,6 +6,9 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './CardActions.constants';
 import { cardActionsTheme } from './CardActions.css';
 
+/**
+ * @see https://m3.material.io/components/cards/overview
+ */
 export const CardActions = componentFactory<ICardActionsFactory>(
   (props, forwardedRef) => {
     const {

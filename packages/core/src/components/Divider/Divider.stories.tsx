@@ -8,10 +8,6 @@ import { Flex } from '~/components/Flex';
 import { Paper } from '~/components/Paper';
 import { Divider } from './Divider';
 
-// https://m3.material.io/components/divider/
-// https://material-web.dev/components/divider/
-// https://github.com/material-components/material-web/blob/main/divider/demo/stories.ts
-
 const meta = {
   component: Divider,
 } satisfies Meta<typeof Divider>;

@@ -6,6 +6,9 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './IndeterminateCircularProgressIndicator.constants';
 import { indeterminateCircularProgressIndicatorTheme } from './IndeterminateCircularProgressIndicator.css';
 
+/**
+ * @see https://m3.material.io/components/progress-indicators/overview
+ */
 export const IndeterminateCircularProgressIndicator =
   componentFactory<IIndeterminateCircularProgressIndicatorFactory>(
     (props, forwardedRef) => {

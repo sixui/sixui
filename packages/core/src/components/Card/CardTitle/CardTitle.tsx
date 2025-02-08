@@ -6,6 +6,9 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './CardTitle.constants';
 import { cardTitleTheme } from './CardTitle.css';
 
+/**
+ * @see https://m3.material.io/components/cards/overview
+ */
 export const CardTitle = componentFactory<ICardTitleFactory>(
   (props, forwardedRef) => {
     const {

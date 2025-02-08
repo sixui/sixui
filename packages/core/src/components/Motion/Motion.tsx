@@ -11,6 +11,9 @@ import { COMPONENT_NAME } from './Motion.constants';
 import { resolveRtgStatus } from './resolveRtgStatus';
 import { motionTheme } from './Motion.css';
 
+/**
+ * @see https://m3.material.io/styles/motion/overview
+ */
 export const Motion = polymorphicComponentFactory<IMotionFactory>(
   (props, forwardedRef) => {
     const {

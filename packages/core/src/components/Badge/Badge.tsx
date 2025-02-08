@@ -9,6 +9,9 @@ import { isNumeric } from '~/utils/isNumeric';
 import { COMPONENT_NAME } from './Badge.constants';
 import { badgeTheme } from './Badge.css';
 
+/**
+ * @see https://m3.material.io/components/badges/overview
+ */
 export const Badge = polymorphicComponentFactory<IBadgeFactory>(
   (props, forwardedRef) => {
     const {

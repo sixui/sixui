@@ -11,6 +11,9 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './HctColorPickerContent.constants';
 import { hctColorPickerContentTheme } from './HctColorPickerContent.css';
 
+/**
+ * @see https://m3.material.io/blog/science-of-color-design
+ */
 export const HctColorPickerContent =
   componentFactory<IHctColorPickerContentFactory>((props, forwardedRef) => {
     const {

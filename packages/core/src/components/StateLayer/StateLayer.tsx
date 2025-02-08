@@ -7,6 +7,9 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './StateLayer.constants';
 import { stateLayerTheme } from './StateLayer.css';
 
+/**
+ * @see https://m3.material.io/foundations/interaction/states/overview
+ */
 export const StateLayer = componentFactory<IStateLayerFactory>(
   (props, forwardedRef) => {
     const {

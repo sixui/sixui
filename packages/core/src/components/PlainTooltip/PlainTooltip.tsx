@@ -10,6 +10,9 @@ import { COMPONENT_NAME } from './PlainTooltip.constants';
 import { PlainTooltipContent } from './PlainTooltipContent';
 import { plainTooltipTheme } from './PlainTooltip.css';
 
+/**
+ * @see https://m3.material.io/components/tooltips/overview
+ */
 export const PlainTooltip = componentFactory<IPlainTooltipFactory>(
   (props, forwardedRef) => {
     const {

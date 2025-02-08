@@ -7,6 +7,9 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './TabsList.constants';
 import { tabsListTheme } from './TabsList.css';
 
+/**
+ * @see https://m3.material.io/components/tabs/overview
+ */
 export const TabsList = componentFactory<ITabsListFactory>(
   (props, forwardedRef) => {
     const {

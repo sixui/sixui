@@ -6,6 +6,9 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './TouchTarget.constants';
 import { touchTargetTheme } from './TouchTarget.css';
 
+/**
+ * @see https://m3.material.io/foundations/designing/structure
+ */
 export const TouchTarget = componentFactory<ITouchTargetFactory>(
   (props, forwardedRef) => {
     const { classNames, className, styles, style, variant, ...other } =

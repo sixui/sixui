@@ -6,6 +6,9 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './PlainTooltipContent.constants';
 import { plainTooltipContentTheme } from './PlainTooltipContent.css';
 
+/**
+ * @see https://m3.material.io/components/tooltips/overview
+ */
 export const PlainTooltipContent =
   componentFactory<IPlainTooltipContentFactory>((props, forwardedRef) => {
     const {

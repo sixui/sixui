@@ -6,6 +6,9 @@ import { polymorphicComponentFactory } from '~/utils/component/polymorphicCompon
 import { COMPONENT_NAME } from './MenuList.constants';
 import { menuListTheme } from './MenuList.css';
 
+/**
+ * @see https://m3.material.io/components/lists/overview
+ */
 export const MenuList = polymorphicComponentFactory<IMenuListFactory>(
   (props, forwardedRef) => {
     const {

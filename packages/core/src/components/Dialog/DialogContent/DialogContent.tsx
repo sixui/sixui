@@ -11,6 +11,9 @@ import { isFunction } from '~/utils/isFunction';
 import { COMPONENT_NAME } from './DiagonalContent.constants';
 import { dialogContentTheme } from './DialogContent.css';
 
+/**
+ * @see https://m3.material.io/components/dialogs/overview
+ */
 export const DialogContent = polymorphicComponentFactory<IDialogContentFactory>(
   (props, forwardedRef) => {
     const {

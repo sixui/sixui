@@ -12,6 +12,9 @@ import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { COMPONENT_NAME } from './TabsTab.constants';
 import { tabsTabTheme, tabsTabThemeVariants } from './TabsTab.css';
 
+/**
+ * @see https://m3.material.io/components/tabs/overview
+ */
 export const TabsTab = polymorphicComponentFactory<ITabsTabFactory>(
   (props, forwardedRef) => {
     const {

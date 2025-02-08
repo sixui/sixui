@@ -13,6 +13,9 @@ import { executeLazyPromise } from '~/utils/executeLazyPromise';
 import { COMPONENT_NAME } from './Chip.constants';
 import { chipTheme, IChipThemeFactory } from './Chip.css';
 
+/**
+ * @see https://m3.material.io/components/chips/overview
+ */
 export const Chip = polymorphicComponentFactory<IChipFactory>(
   (props, forwardedRef) => {
     const {

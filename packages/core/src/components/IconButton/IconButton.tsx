@@ -7,6 +7,9 @@ import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { COMPONENT_NAME } from './IconButton.constants';
 import { iconButtonTheme, iconButtonThemeVariants } from './IconButton.css';
 
+/**
+ * @see https://m3.material.io/components/icon-buttons/overview
+ */
 export const IconButton = polymorphicComponentFactory<IIconButtonFactory>(
   (props, forwardedRef) => {
     const {

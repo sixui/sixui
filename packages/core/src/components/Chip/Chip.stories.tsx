@@ -9,10 +9,6 @@ import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { Chip } from './Chip';
 
-// https://m3.material.io/components/chips/overview
-// https://material-web.dev/components/chip/
-// https://github.com/material-components/material-web/blob/main/chips/demo/stories.ts
-
 const IMAGE_URL = 'https://avatars.githubusercontent.com/u/2182039';
 
 const meta = {

@@ -14,6 +14,9 @@ import { isFunction } from '~/utils/isFunction';
 import { COMPONENT_NAME } from './Button.constants';
 import { buttonTheme, buttonThemeVariants } from './Button.css';
 
+/**
+ * @see https://m3.material.io/components/buttons/overview
+ */
 export const Button = polymorphicComponentFactory<IButtonFactory>(
   (props, forwardedRef) => {
     const {

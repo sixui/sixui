@@ -6,9 +6,6 @@ import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Text, textTagMap } from './Text';
 import { textStoriesStyles } from './Text.stories.css';
 
-// https://m3.material.io/styles/Text/overview
-// https://material-web.dev/theming/Text/
-
 const { classNames } = textStoriesStyles;
 
 const meta = {

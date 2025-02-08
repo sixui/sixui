@@ -8,6 +8,9 @@ import { isFunction } from '~/utils/isFunction';
 import { COMPONENT_NAME } from './RichTooltipContent.constants';
 import { richTooltipContentTheme } from './RichTooltipContent.css';
 
+/**
+ * @see https://m3.material.io/components/tooltips/overview
+ */
 export const RichTooltipContent = componentFactory<IRichTooltipContentFactory>(
   (props, forwardedRef) => {
     const {

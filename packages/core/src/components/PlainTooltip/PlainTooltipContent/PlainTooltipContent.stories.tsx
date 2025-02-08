@@ -4,8 +4,6 @@ import type { IPlainTooltipContentProps } from './PlainTooltipContent.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { PlainTooltipContent } from './PlainTooltipContent';
 
-// https://m3.material.io/components/plaintooltips/overview
-
 const meta = {
   component: PlainTooltipContent,
 } satisfies Meta<typeof PlainTooltipContent>;

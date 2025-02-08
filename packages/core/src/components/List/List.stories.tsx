@@ -19,11 +19,6 @@ import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { List } from './List';
 import { ListItem } from './ListItem';
 
-// https://m3.material.io/components/lists/overview
-// https://material-web.dev/components/list/
-// https://material-web.dev/components/list/stories/
-// https://github.com/material-components/material-web/blob/main/list/demo/stories.ts
-
 const meta = {
   component: List,
 } satisfies Meta<typeof List>;

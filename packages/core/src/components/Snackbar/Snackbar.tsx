@@ -20,6 +20,9 @@ import {
 import { SnackbarContent } from './SnackbarContent';
 import { snackbarTheme } from './Snackbar.css';
 
+/**
+ * @see https://m3.material.io/components/snackbar/overview
+ */
 export const Snackbar = componentFactory<ISnackbarFactory>(
   (props, forwardedRef) => {
     const {

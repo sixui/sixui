@@ -9,6 +9,9 @@ import { MenuLeaf } from './MenuLeaf';
 import { MenuList } from './MenuList';
 import { menuTheme } from './Menu.css';
 
+/**
+ * @see https://m3.material.io/components/menus/overview
+ */
 export const Menu = componentFactory<IMenuFactory>((props, forwardedRef) => {
   const parentId = useFloatingParentNodeId();
 

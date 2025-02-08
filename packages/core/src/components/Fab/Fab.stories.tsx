@@ -8,10 +8,6 @@ import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { Fab } from './Fab';
 
-// https://m3.material.io/components/floating-action-button/overview
-// https://material-web.dev/components/fab/
-// https://github.com/material-components/material-web/blob/main/fab/demo/stories.ts
-
 const meta = {
   component: Fab,
 } satisfies Meta<typeof Fab>;

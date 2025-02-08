@@ -11,6 +11,9 @@ import { COMPONENT_NAME } from './Switch.constants';
 import { SwitchIndicator } from './SwitchIndicator';
 import { basicTemplateTheme } from './Switch.css';
 
+/**
+ * @see https://m3.material.io/components/switch/overview
+ */
 export const Switch = componentFactory<ISwitchFactory>(
   (props, forwardedRef) => {
     const {

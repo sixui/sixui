@@ -16,10 +16,6 @@ import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { Button } from './Button';
 import { buttonVariants } from './Button.types';
 
-// https://m3.material.io/components/buttons/overview
-// https://material-web.dev/components/button/
-// https://github.com/material-components/material-web/blob/main/button/demo/stories.ts
-
 const meta = {
   component: Button,
 } satisfies Meta<typeof Button>;

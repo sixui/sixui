@@ -6,6 +6,9 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './Elevation.constants';
 import { elevationTheme } from './Elevation.css';
 
+/**
+ * @see https://m3.material.io/styles/elevation
+ */
 export const Elevation = componentFactory<IElevationFactory>(
   (props, forwardedRef) => {
     const {

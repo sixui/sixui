@@ -5,10 +5,6 @@ import type { IDeterminateCircularProgressIndicatorProps } from './DeterminateCi
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { DeterminateCircularProgressIndicator } from './DeterminateCircularProgressIndicator';
 
-// https://m3.material.io/components/progress-indicators/overview
-// https://material-web.dev/components/progress/
-// https://github.com/material-components/material-web/blob/main/progress/demo/stories.ts
-
 const meta = {
   component: DeterminateCircularProgressIndicator,
 } satisfies Meta<typeof DeterminateCircularProgressIndicator>;

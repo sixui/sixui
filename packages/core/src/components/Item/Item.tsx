@@ -8,6 +8,9 @@ import { polymorphicComponentFactory } from '~/utils/component/polymorphicCompon
 import { COMPONENT_NAME } from './Item.constants';
 import { itemTheme } from './Item.css';
 
+/**
+ * @see https://m3.material.io/components/items/overview
+ */
 export const Item = polymorphicComponentFactory<IItemFactory>(
   (props, forwardedRef) => {
     const {

@@ -7,6 +7,9 @@ import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { COMPONENT_NAME } from './NavigationDrawerDestination.constants';
 import { navigationDrawerDestinationTheme } from './NavigationDrawerDestination.css';
 
+/**
+ * @see https://m3.material.io/components/navigation-drawer/overview
+ */
 export const NavigationDrawerDestination =
   componentFactory<INavigationDrawerDestinationFactory>(
     (props, forwardedRef) => {

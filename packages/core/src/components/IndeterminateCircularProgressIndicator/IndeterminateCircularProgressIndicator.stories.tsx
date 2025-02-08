@@ -5,10 +5,6 @@ import type { IIndeterminateCircularProgressIndicatorProps } from './Indetermina
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { IndeterminateCircularProgressIndicator } from './IndeterminateCircularProgressIndicator';
 
-// https://m3.material.io/components/progress-indicators/overview
-// https://material-web.dev/components/progress/
-// https://github.com/material-components/material-web/blob/main/progress/demo/stories.ts
-
 const meta = {
   component: IndeterminateCircularProgressIndicator,
 } satisfies Meta<typeof IndeterminateCircularProgressIndicator>;

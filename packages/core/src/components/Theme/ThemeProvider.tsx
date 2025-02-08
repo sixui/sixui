@@ -20,6 +20,9 @@ import {
   themeTokensClassName,
 } from './ThemeProvider.css';
 
+/**
+ * @see https://m3.material.io/styles/color/system/how-the-system-works
+ */
 export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
   const {
     className,

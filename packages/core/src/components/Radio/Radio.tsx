@@ -13,6 +13,9 @@ import { RadioGroup } from './RadioGroup';
 import { RadioIndicator } from './RadioIndicator';
 import { RadioTheme } from './Radio.css';
 
+/**
+ * @see https://m3.material.io/components/radio-button/overview
+ */
 export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
   const {
     classNames,

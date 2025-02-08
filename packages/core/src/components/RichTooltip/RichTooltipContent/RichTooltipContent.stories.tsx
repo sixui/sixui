@@ -5,8 +5,6 @@ import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { RichTooltipContent } from './RichTooltipContent';
 
-// https://m3.material.io/components/richtooltips/overview
-
 const meta = {
   component: RichTooltipContent,
 } satisfies Meta<typeof RichTooltipContent>;

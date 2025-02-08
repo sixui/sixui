@@ -10,6 +10,9 @@ import { COMPONENT_NAME } from './RichTooltip.constants';
 import { RichTooltipContent } from './RichTooltipContent';
 import { richTooltipTheme } from './RichTooltip.css';
 
+/**
+ * @see https://m3.material.io/components/tooltips/overview
+ */
 export const RichTooltip = componentFactory<IRichTooltipFactory>(
   (props, forwardedRef) => {
     const {

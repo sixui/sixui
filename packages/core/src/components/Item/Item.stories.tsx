@@ -5,10 +5,6 @@ import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Paper } from '~/components/Paper';
 import { Item } from './Item';
 
-// https://m3.material.io/components/items/overview
-// https://material-web.dev/components/item/
-// https://github.com/material-components/material-web/blob/main/labs/item/demo/stories.ts
-
 const meta = {
   component: Item,
 } satisfies Meta<typeof Item>;

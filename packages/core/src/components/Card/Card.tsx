@@ -10,6 +10,9 @@ import { CardMedia } from './CardMedia';
 import { CardTitle } from './CardTitle';
 import { cardTheme, cardThemeVariants } from './Card.css';
 
+/**
+ * @see https://m3.material.io/components/cards/overview
+ */
 export const Card = polymorphicComponentFactory<ICardFactory>(
   (props, forwardedRef) => {
     const {

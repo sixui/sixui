@@ -5,6 +5,9 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './CircularProgressIndicator.constants';
 import { circularProgressIndicatorTheme } from './CircularProgressIndicator.css';
 
+/**
+ * @see https://m3.material.io/components/progress-indicators/overview
+ */
 export const CircularProgressIndicator =
   componentFactory<ICircularProgressIndicatorFactory>((props, forwardedRef) => {
     const { value, ...other } = props;

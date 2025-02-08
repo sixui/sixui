@@ -13,6 +13,9 @@ import {
   bottomSheetContentThemeVariants,
 } from './BottomSheetContent.css';
 
+/**
+ * @see https://m3.material.io/components/bottom-sheets/overview
+ */
 export const BottomSheetContent = componentFactory<IBottomSheetContentFactory>(
   (props, forwardedRef) => {
     const {

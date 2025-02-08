@@ -9,10 +9,6 @@ import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { NavigationDrawerDestination } from './NavigationDrawerDestination';
 
-// https://m3.material.io/components/items/overview
-// https://material-web.dev/components/item/
-// https://github.com/material-components/material-web/blob/main/labs/item/demo/stories.ts
-
 const meta = {
   component: NavigationDrawerDestination,
 } satisfies Meta<typeof NavigationDrawerDestination>;

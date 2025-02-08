@@ -8,6 +8,9 @@ import { COMPONENT_NAME } from './Dialog.constants';
 import { DialogContent, IDialogContentOwnProps } from './DialogContent';
 import { dialogTheme } from './Dialog.css';
 
+/**
+ * @see https://m3.material.io/components/dialogs/overview
+ */
 export const Dialog = polymorphicComponentFactory<IDialogFactory>(
   (props, forwardedRef) => {
     const {

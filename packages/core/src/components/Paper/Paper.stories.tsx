@@ -5,9 +5,6 @@ import type { IPaperProps } from './Paper.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Paper } from './Paper';
 
-// https://material.io/blog/tone-based-surface-color-m3
-// https://m3.material.io/styles/elevation/overview
-
 const meta: Meta<typeof Paper> = {
   component: Paper,
 };

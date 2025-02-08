@@ -10,8 +10,6 @@ import { useInteractions } from '~/hooks/useInteractions';
 import { FocusRing } from './FocusRing';
 import { focusRingVariants } from './FocusRing.types';
 
-// https://github.com/material-components/material-web/blob/main/focus/demo/stories.ts
-
 type IDemoProps = IBoxProps &
   IPlaceholderOwnProps & {
     className?: string;

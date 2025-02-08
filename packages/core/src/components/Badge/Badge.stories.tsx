@@ -7,8 +7,6 @@ import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Placeholder } from '~/components/Placeholder';
 import { Badge } from './Badge';
 
-// https://m3.material.io/components/badges/overview
-
 type IBadgeDemoProps = IBadgeProps & Pick<IAnchoredProps, 'overlap'>;
 
 const meta = {

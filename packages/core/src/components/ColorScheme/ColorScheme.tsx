@@ -7,6 +7,9 @@ import { COMPONENT_NAME } from './ColorScheme.constants';
 import { ColorSchemeRole } from './ColorSchemeRole';
 import { colorSchemeTheme } from './ColorScheme.css';
 
+/**
+ * @see https://m3.material.io/styles/color/overview
+ */
 export const ColorScheme = componentFactory<IColorSchemeFactory>(
   (props, forwardedRef) => {
     const { classNames, className, styles, style, variant, ...other } =
