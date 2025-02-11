@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
 import {
   faCircle,
   faHeart,
@@ -13,8 +14,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { INavigationDrawerProps } from './NavigationDrawer.types';
 import { Button } from '~/components/Button';
+import { Checkbox } from '~/components/Checkbox';
 import { Flex } from '~/components/Flex';
 import { Frame } from '~/components/Frame';
+import { Labeled } from '~/components/Labeled';
 import { Placeholder } from '~/components/Placeholder';
 import { useToggle } from '~/hooks/useToggle';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
@@ -61,26 +64,46 @@ const defaultArgs = {
 
 const NavigationDrawerFrame: React.FC<INavigationDrawerProps> = (props) => {
   const { ...other } = props;
-  const [standardOpened, toggleStandardOpened] = useToggle([true, false]);
-  const [modalOpened, toggleModalOpened] = useToggle([false, true]);
+  const [opened, toggleOpened] = useToggle([true, false]);
+  const [isDrawer, setDrawer] = useState(false);
+  const [isModal, setModal] = useState(false);
+  const [detached, setDetached] = useState(false);
 
   return (
     <Flex direction="column" gap="$2">
-      <Flex direction="row" gap="$2">
+      <Flex direction="row" gap="$6">
         <Button
           onClick={() => {
-            toggleStandardOpened();
+            toggleOpened();
           }}
+          w="$24"
         >
-          {standardOpened ? 'Close' : 'Open'} standard
+          {opened ? 'Close' : 'Open'}
         </Button>
-        <Button
-          onClick={() => {
-            toggleModalOpened();
-          }}
-        >
-          {modalOpened ? 'Close' : 'Open'} modal
-        </Button>
+        <Labeled label="Drawer" labelPosition="right">
+          <Checkbox
+            checked={isDrawer}
+            onChange={(value) => {
+              setDrawer(!!value);
+            }}
+          />
+        </Labeled>
+        <Labeled label="Modal" labelPosition="right" disabled={!isDrawer}>
+          <Checkbox
+            checked={isModal}
+            onChange={(value) => {
+              setModal(!!value);
+            }}
+          />
+        </Labeled>
+        <Labeled label="Detached" labelPosition="right" disabled={!isDrawer}>
+          <Checkbox
+            checked={detached}
+            onChange={(value) => {
+              setDetached(!!value);
+            }}
+          />
+        </Labeled>
       </Flex>
 
       <Frame importParentStyles w="100%" h="$96">
@@ -91,8 +114,13 @@ const NavigationDrawerFrame: React.FC<INavigationDrawerProps> = (props) => {
         >
           <Placeholder label="Page" grow={1} expanded diagonals />
           <NavigationDrawer
-            opened={standardOpened || modalOpened}
-            modal={modalOpened}
+            opened={opened}
+            drawer={isDrawer}
+            modal={isModal}
+            detached={detached}
+            onClose={() => {
+              toggleOpened(false);
+            }}
             {...other}
           />
         </Flex>
