@@ -15,7 +15,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
 const classNames = createStyles({
   motion: {
     transitionProperty:
-      'opacity, transform, border-radius, inset, width, height',
+      'opacity, transform, border-radius, margin, width, height',
     transformOrigin: tokens.transformOrigin,
   },
   motion$unmounted: {},

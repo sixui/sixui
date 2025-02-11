@@ -23,24 +23,32 @@ const classNames = createStyles({
 
     selectors: {
       [modifierSelector<IModifier>({ side: 'left' })]: {
-        left: tokens.inset,
+        left: 0,
+        marginLeft: tokens.inset,
       },
       [modifierSelector<IModifier>({ side: 'right' })]: {
-        right: tokens.inset,
+        right: 0,
+        marginRight: tokens.inset,
       },
       [modifierSelector<IModifier>({ side: 'top' })]: {
-        top: tokens.inset,
+        top: 0,
+        marginTop: tokens.inset,
       },
       [modifierSelector<IModifier>({ side: 'bottom' })]: {
-        bottom: tokens.inset,
+        bottom: 0,
+        marginBottom: tokens.inset,
       },
       [modifierSelector<IModifier>('full-height')]: {
-        top: tokens.inset,
-        bottom: tokens.inset,
+        top: 0,
+        bottom: 0,
+        marginTop: tokens.inset,
+        marginBottom: tokens.inset,
       },
       [modifierSelector<IModifier>('full-width')]: {
-        left: tokens.inset,
-        right: tokens.inset,
+        left: 0,
+        right: 0,
+        marginLeft: tokens.inset,
+        marginRight: tokens.inset,
       },
     },
   },
