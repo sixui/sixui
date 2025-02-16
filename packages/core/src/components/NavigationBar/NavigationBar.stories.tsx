@@ -14,8 +14,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { INavigationBarProps } from './NavigationBar.types';
 import { Button } from '~/components/Button';
 import { Flex } from '~/components/Flex';
-import { Frame } from '~/components/Frame';
 import { Placeholder } from '~/components/Placeholder';
+import { ScreenFrame } from '~/components/ScreenFrame';
 import { useToggle } from '~/hooks/useToggle';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { NavigationBar } from './NavigationBar';
@@ -53,7 +53,7 @@ const defaultArgs = {
   ),
 } satisfies Partial<INavigationBarProps>;
 
-const NavigationBarFrame: React.FC<INavigationBarProps> = (props) => {
+const NavigationBarScreenFrame: React.FC<INavigationBarProps> = (props) => {
   const { ...other } = props;
   const [opened, toggleOpened] = useToggle([true, false]);
 
@@ -70,18 +70,18 @@ const NavigationBarFrame: React.FC<INavigationBarProps> = (props) => {
         </Button>
       </Flex>
 
-      <Frame importParentStyles w="$72" h="$96">
+      <ScreenFrame importParentStyles w="$72" h="$96">
         <Flex direction="column" align="start" h="100%">
           <Placeholder label="Page" grow={1} expanded diagonals />
           <NavigationBar opened={opened} {...other} />
         </Flex>
-      </Frame>
+      </ScreenFrame>
     </Flex>
   );
 };
 
 export const Basic: IStory = {
-  render: (props) => <NavigationBarFrame {...props} />,
+  render: (props) => <NavigationBarScreenFrame {...props} />,
   args: defaultArgs,
 };
 

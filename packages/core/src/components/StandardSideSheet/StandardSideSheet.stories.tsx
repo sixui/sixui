@@ -3,8 +3,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { IStandardSideSheetProps } from './StandardSideSheet.types';
 import { Button } from '~/components/Button';
 import { Flex } from '~/components/Flex';
-import { Frame } from '~/components/Frame';
 import { Placeholder } from '~/components/Placeholder';
+import { ScreenFrame } from '~/components/ScreenFrame';
 import { useToggle } from '~/hooks/useToggle';
 import { StandardSideSheet } from './StandardSideSheet';
 
@@ -46,7 +46,9 @@ const defaultArgs = {
   ),
 } satisfies Partial<IStandardSideSheetProps>;
 
-const StandardSideSheetFrame: React.FC<IStandardSideSheetProps> = (props) => {
+const StandardSideSheetScreenFrame: React.FC<IStandardSideSheetProps> = (
+  props,
+) => {
   const { ...other } = props;
   const [opened, toggleOpened] = useToggle([true, false]);
 
@@ -63,7 +65,7 @@ const StandardSideSheetFrame: React.FC<IStandardSideSheetProps> = (props) => {
         </Button>
       </Flex>
 
-      <Frame importParentStyles w="100%" h="$96">
+      <ScreenFrame importParentStyles w="100%" h="$96">
         <Flex
           direction={other.side === 'right' ? 'row' : 'row-reverse'}
           align="start"
@@ -78,13 +80,13 @@ const StandardSideSheetFrame: React.FC<IStandardSideSheetProps> = (props) => {
             {...other}
           />
         </Flex>
-      </Frame>
+      </ScreenFrame>
     </Flex>
   );
 };
 
 export const FromLeft: IStory = {
-  render: (props) => <StandardSideSheetFrame {...props} />,
+  render: (props) => <StandardSideSheetScreenFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'left',
@@ -92,7 +94,7 @@ export const FromLeft: IStory = {
 };
 
 export const FromRight: IStory = {
-  render: (props) => <StandardSideSheetFrame {...props} />,
+  render: (props) => <StandardSideSheetScreenFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'right',

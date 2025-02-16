@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { createSequence } from '@olivierpascal/helpers';
 
 import type { IAppLayoutBodyProps } from './AppLayoutBody.types';
-import { Frame } from '~/components/Frame';
 import { Placeholder } from '~/components/Placeholder';
+import { ScreenFrame } from '~/components/ScreenFrame';
 import { AppLayoutBody } from './AppLayoutBody';
 
 const meta = {
@@ -18,16 +18,16 @@ const defaultArgs = {
   )),
 } satisfies Partial<IAppLayoutBodyProps>;
 
-const AppLayoutBodyFrame: React.FC<IAppLayoutBodyProps> = (props) => {
+const AppLayoutBodyScreenFrame: React.FC<IAppLayoutBodyProps> = (props) => {
   return (
-    <Frame importParentStyles w="100%" h="$96">
+    <ScreenFrame importParentStyles w="100%" h="$96">
       <AppLayoutBody {...props} />
-    </Frame>
+    </ScreenFrame>
   );
 };
 
 export const Basic: IStory = {
-  render: (props) => <AppLayoutBodyFrame {...props} />,
+  render: (props) => <AppLayoutBodyScreenFrame {...props} />,
   args: defaultArgs,
 };
 

@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IAppLayoutFooterProps } from './AppLayoutFooter.types';
-import { Frame } from '~/components/Frame';
 import { Placeholder } from '~/components/Placeholder';
+import { ScreenFrame } from '~/components/ScreenFrame';
 import { AppLayoutFooter } from './AppLayoutFooter';
 
 const meta = {
@@ -16,9 +16,9 @@ const defaultArgs = {
   divider: true,
 } satisfies Partial<IAppLayoutFooterProps>;
 
-const AppLayoutFooterFrame: React.FC<IAppLayoutFooterProps> = (props) => {
+const AppLayoutFooterScreenFrame: React.FC<IAppLayoutFooterProps> = (props) => {
   return (
-    <Frame
+    <ScreenFrame
       importParentStyles
       w="100%"
       h="$96"
@@ -29,12 +29,12 @@ const AppLayoutFooterFrame: React.FC<IAppLayoutFooterProps> = (props) => {
       }}
     >
       <AppLayoutFooter {...props} />
-    </Frame>
+    </ScreenFrame>
   );
 };
 
 export const Basic: IStory = {
-  render: (props) => <AppLayoutFooterFrame {...props} />,
+  render: (props) => <AppLayoutFooterScreenFrame {...props} />,
   args: defaultArgs,
 };
 

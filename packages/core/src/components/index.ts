@@ -67,6 +67,7 @@ export * from './Portal';
 export * from './Radio';
 export * from './Responsive';
 export * from './RichTooltip';
+export * from './ScreenFrame';
 export * from './Scrim';
 export * from './Select';
 export * from './SelectBase';

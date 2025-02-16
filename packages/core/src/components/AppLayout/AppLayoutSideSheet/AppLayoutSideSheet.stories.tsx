@@ -16,9 +16,9 @@ import type { IAppLayoutSideSheetProps } from './AppLayoutSideSheet.types';
 import { Button } from '~/components/Button';
 import { Checkbox } from '~/components/Checkbox';
 import { Flex } from '~/components/Flex';
-import { Frame } from '~/components/Frame';
 import { Labeled } from '~/components/Labeled';
 import { Placeholder } from '~/components/Placeholder';
+import { ScreenFrame } from '~/components/ScreenFrame';
 import { useToggle } from '~/hooks/useToggle';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { AppLayoutNavigationDrawer } from '../AppLayoutNavigationDrawer';
@@ -62,7 +62,9 @@ const defaultArgs = {
   ),
 } satisfies Partial<IAppLayoutSideSheetProps>;
 
-const AppLayoutSideSheetFrame: React.FC<IAppLayoutSideSheetProps> = (props) => {
+const AppLayoutSideSheetScreenFrame: React.FC<IAppLayoutSideSheetProps> = (
+  props,
+) => {
   const { ...other } = props;
   const [opened, toggleOpened] = useToggle([true, false]);
   const [isDrawer, setDrawer] = useState(false);
@@ -106,7 +108,7 @@ const AppLayoutSideSheetFrame: React.FC<IAppLayoutSideSheetProps> = (props) => {
         </Labeled>
       </Flex>
 
-      <Frame importParentStyles w="100%" h="$96">
+      <ScreenFrame importParentStyles w="100%" h="$96">
         <Flex
           direction={other.side === 'right' ? 'row' : 'row-reverse'}
           align="start"
@@ -124,13 +126,13 @@ const AppLayoutSideSheetFrame: React.FC<IAppLayoutSideSheetProps> = (props) => {
             {...other}
           />
         </Flex>
-      </Frame>
+      </ScreenFrame>
     </Flex>
   );
 };
 
 export const Left: IStory = {
-  render: (props) => <AppLayoutSideSheetFrame {...props} />,
+  render: (props) => <AppLayoutSideSheetScreenFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'left',
@@ -138,7 +140,7 @@ export const Left: IStory = {
 };
 
 export const Right: IStory = {
-  render: (props) => <AppLayoutSideSheetFrame {...props} />,
+  render: (props) => <AppLayoutSideSheetScreenFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'right',

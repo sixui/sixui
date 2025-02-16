@@ -16,9 +16,9 @@ import type { INavigationDrawerProps } from './NavigationDrawer.types';
 import { Button } from '~/components/Button';
 import { Checkbox } from '~/components/Checkbox';
 import { Flex } from '~/components/Flex';
-import { Frame } from '~/components/Frame';
 import { Labeled } from '~/components/Labeled';
 import { Placeholder } from '~/components/Placeholder';
+import { ScreenFrame } from '~/components/ScreenFrame';
 import { useToggle } from '~/hooks/useToggle';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { NavigationDrawer } from './NavigationDrawer';
@@ -62,7 +62,9 @@ const defaultArgs = {
   divider: true,
 } satisfies Partial<INavigationDrawerProps>;
 
-const NavigationDrawerFrame: React.FC<INavigationDrawerProps> = (props) => {
+const NavigationDrawerScreenFrame: React.FC<INavigationDrawerProps> = (
+  props,
+) => {
   const { ...other } = props;
   const [opened, toggleOpened] = useToggle([true, false]);
   const [isDrawer, setDrawer] = useState(false);
@@ -106,7 +108,7 @@ const NavigationDrawerFrame: React.FC<INavigationDrawerProps> = (props) => {
         </Labeled>
       </Flex>
 
-      <Frame importParentStyles w="100%" h="$96">
+      <ScreenFrame importParentStyles w="100%" h="$96">
         <Flex
           direction={other.side === 'right' ? 'row' : 'row-reverse'}
           align="start"
@@ -124,13 +126,13 @@ const NavigationDrawerFrame: React.FC<INavigationDrawerProps> = (props) => {
             {...other}
           />
         </Flex>
-      </Frame>
+      </ScreenFrame>
     </Flex>
   );
 };
 
 export const Left: IStory = {
-  render: (props) => <NavigationDrawerFrame {...props} />,
+  render: (props) => <NavigationDrawerScreenFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'left',
@@ -138,7 +140,7 @@ export const Left: IStory = {
 };
 
 export const Right: IStory = {
-  render: (props) => <NavigationDrawerFrame {...props} />,
+  render: (props) => <NavigationDrawerScreenFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'right',

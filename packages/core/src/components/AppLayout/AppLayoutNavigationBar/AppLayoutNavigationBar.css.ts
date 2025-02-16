@@ -17,6 +17,8 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME);
 
 const classNames = createStyles({
   root: {
+    zIndex: themeTokens.zIndex.app,
+
     vars: overrideTokens(NavigationBar.theme.tokens, {
       container: {
         height: appLayoutTheme.tokens.navigationBar.height,

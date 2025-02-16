@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { createSequence } from '@olivierpascal/helpers';
 
 import type { IAppLayoutTopBarProps } from './AppLayoutTopBar.types';
-import { Frame } from '~/components/Frame';
 import { Placeholder } from '~/components/Placeholder';
+import { ScreenFrame } from '~/components/ScreenFrame';
 import { AppLayoutTopBar } from './AppLayoutTopBar';
 
 const meta = {
@@ -19,16 +19,16 @@ const defaultArgs = {
   divider: true,
 } satisfies Partial<IAppLayoutTopBarProps>;
 
-const AppLayoutTopBarFrame: React.FC<IAppLayoutTopBarProps> = (props) => {
+const AppLayoutTopBarScreenFrame: React.FC<IAppLayoutTopBarProps> = (props) => {
   return (
-    <Frame importParentStyles w="100%" h="$96">
+    <ScreenFrame importParentStyles w="100%" h="$96">
       <AppLayoutTopBar {...props} />
-    </Frame>
+    </ScreenFrame>
   );
 };
 
 export const Basic: IStory = {
-  render: (props) => <AppLayoutTopBarFrame {...props} />,
+  render: (props) => <AppLayoutTopBarScreenFrame {...props} />,
   args: defaultArgs,
 };
 

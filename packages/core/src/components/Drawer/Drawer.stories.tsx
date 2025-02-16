@@ -12,8 +12,8 @@ import type { IOmit } from '~/utils/types';
 import type { IDrawerProps } from './Drawer.types';
 import { Button } from '~/components/Button';
 import { Flex } from '~/components/Flex';
-import { Frame } from '~/components/Frame';
 import { Paper } from '~/components/Paper';
+import { ScreenFrame } from '~/components/ScreenFrame';
 import { Text } from '~/components/Text';
 import { useDisclosure } from '~/hooks/useDisclosure';
 import { Drawer } from './Drawer';
@@ -49,7 +49,7 @@ const DrawerDemo: React.FC<IDrawerDemoProps> = (props) => {
   );
 };
 
-const DrawerFrame: React.FC<IDrawerProps> = (props) => {
+const DrawerScreenFrame: React.FC<IDrawerProps> = (props) => {
   const [root, setRoot] = useState<HTMLDivElement | null>(null);
   const [leftOpened, leftActions] = useDisclosure(false);
   const [topOpened, topActions] = useDisclosure(false);
@@ -57,7 +57,7 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
   const [bottomOpened, bottomActions] = useDisclosure(false);
 
   return (
-    <Frame importParentStyles w="100%" h="$96">
+    <ScreenFrame importParentStyles w="100%" h="$96">
       <div ref={setRoot}>
         <DrawerDemo
           {...props}
@@ -136,17 +136,17 @@ const DrawerFrame: React.FC<IDrawerProps> = (props) => {
           </Button>
         </Flex>
       </div>
-    </Frame>
+    </ScreenFrame>
   );
 };
 
 export const Standard: IStory = {
-  render: (props) => <DrawerFrame {...props} />,
+  render: (props) => <DrawerScreenFrame {...props} />,
   args: defaultArgs as IDrawerProps,
 };
 
 export const Detached: IStory = {
-  render: (props) => <DrawerFrame {...props} />,
+  render: (props) => <DrawerScreenFrame {...props} />,
   args: {
     ...defaultArgs,
     variant: 'detached',

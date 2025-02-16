@@ -14,9 +14,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { IAppLayoutNavigationBarProps } from './AppLayoutNavigationBar.types';
 import { Button } from '~/components/Button';
 import { Flex } from '~/components/Flex';
-import { Frame } from '~/components/Frame';
 import { NavigationBar } from '~/components/NavigationBar';
 import { Placeholder } from '~/components/Placeholder';
+import { ScreenFrame } from '~/components/ScreenFrame';
 import { useToggle } from '~/hooks/useToggle';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { AppLayoutNavigationBar } from './AppLayoutNavigationBar';
@@ -54,9 +54,9 @@ const defaultArgs = {
   ),
 } satisfies Partial<IAppLayoutNavigationBarProps>;
 
-const AppLayoutNavigationBarFrame: React.FC<IAppLayoutNavigationBarProps> = (
-  props,
-) => {
+const AppLayoutNavigationBarScreenFrame: React.FC<
+  IAppLayoutNavigationBarProps
+> = (props) => {
   const { ...other } = props;
   const [opened, toggleOpened] = useToggle([true, false]);
 
@@ -73,18 +73,18 @@ const AppLayoutNavigationBarFrame: React.FC<IAppLayoutNavigationBarProps> = (
         </Button>
       </Flex>
 
-      <Frame importParentStyles w="$72" h="$96">
+      <ScreenFrame importParentStyles w="$72" h="$96">
         <Flex direction="column" align="start" h="100%">
           <Placeholder label="Page" grow={1} expanded diagonals />
           <NavigationBar opened={opened} {...other} />
         </Flex>
-      </Frame>
+      </ScreenFrame>
     </Flex>
   );
 };
 
 export const Basic: IStory = {
-  render: (props) => <AppLayoutNavigationBarFrame {...props} />,
+  render: (props) => <AppLayoutNavigationBarScreenFrame {...props} />,
   args: defaultArgs,
 };
 

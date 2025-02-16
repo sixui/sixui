@@ -5,9 +5,9 @@ import type { IDrawerSideSheetProps } from './DrawerSideSheet.types';
 import { Button } from '~/components/Button';
 import { Checkbox } from '~/components/Checkbox';
 import { Flex } from '~/components/Flex';
-import { Frame } from '~/components/Frame';
 import { Labeled } from '~/components/Labeled';
 import { Placeholder } from '~/components/Placeholder';
+import { ScreenFrame } from '~/components/ScreenFrame';
 import { useToggle } from '~/hooks/useToggle';
 import { DrawerSideSheet } from './DrawerSideSheet';
 
@@ -49,7 +49,7 @@ const defaultArgs = {
   ),
 } satisfies Partial<IDrawerSideSheetProps>;
 
-const DrawerSideSheetFrame: React.FC<IDrawerSideSheetProps> = (props) => {
+const DrawerSideSheetScreenFrame: React.FC<IDrawerSideSheetProps> = (props) => {
   const { ...other } = props;
   const [opened, toggleOpened] = useToggle([true, false]);
   const [isModal, setModal] = useState(false);
@@ -84,7 +84,7 @@ const DrawerSideSheetFrame: React.FC<IDrawerSideSheetProps> = (props) => {
         </Labeled>
       </Flex>
 
-      <Frame importParentStyles w="100%" h="$96">
+      <ScreenFrame importParentStyles w="100%" h="$96">
         <Flex
           direction={other.side === 'right' ? 'row' : 'row-reverse'}
           align="start"
@@ -101,13 +101,13 @@ const DrawerSideSheetFrame: React.FC<IDrawerSideSheetProps> = (props) => {
             {...other}
           />
         </Flex>
-      </Frame>
+      </ScreenFrame>
     </Flex>
   );
 };
 
 export const FromLeft: IStory = {
-  render: (props) => <DrawerSideSheetFrame {...props} />,
+  render: (props) => <DrawerSideSheetScreenFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'left',
@@ -115,7 +115,7 @@ export const FromLeft: IStory = {
 };
 
 export const FromRight: IStory = {
-  render: (props) => <DrawerSideSheetFrame {...props} />,
+  render: (props) => <DrawerSideSheetScreenFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'right',

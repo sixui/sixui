@@ -6,8 +6,8 @@ import type { IOmit } from '~/utils';
 import type { IAppLayoutProps } from './AppLayout.types';
 import { Checkbox } from '~/components/Checkbox';
 import { Flex } from '~/components/Flex';
-import { Frame } from '~/components/Frame';
 import { Labeled } from '~/components/Labeled';
+import { ScreenFrame } from '~/components/ScreenFrame';
 import { AppLayout } from './AppLayout';
 import { CanonicalLayout } from './AppLayout.stories/CanonicalLayout';
 import { Footer } from './AppLayout.stories/Footer';
@@ -94,7 +94,7 @@ const AppLayoutFrame: React.FC<IAppLayoutFrameProps> = (props) => {
         </Labeled>
       </Flex>
 
-      <Frame importParentStyles w="100%" h="$160">
+      <ScreenFrame importParentStyles w="100%" h="$160">
         {({ window }) => (
           <AppLayout
             preferredNavigationMode={hasNavigationDrawer ? 'standard' : 'rail'}
@@ -112,7 +112,7 @@ const AppLayoutFrame: React.FC<IAppLayoutFrameProps> = (props) => {
             })}
           </AppLayout>
         )}
-      </Frame>
+      </ScreenFrame>
     </Flex>
   );
 };

@@ -3,8 +3,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { IStandardAsideProps } from './StandardAside.types';
 import { Button } from '~/components/Button';
 import { Flex } from '~/components/Flex';
-import { Frame } from '~/components/Frame';
 import { Placeholder } from '~/components/Placeholder';
+import { ScreenFrame } from '~/components/ScreenFrame';
 import { useToggle } from '~/hooks/useToggle';
 import { StandardAside } from './StandardAside';
 
@@ -27,7 +27,7 @@ const defaultArgs = {
   ),
 } satisfies Partial<IStandardAsideProps>;
 
-const StandardAsideFrame: React.FC<IStandardAsideProps> = (props) => {
+const StandardAsideScreenFrame: React.FC<IStandardAsideProps> = (props) => {
   const { ...other } = props;
   const [opened, toggleOpened] = useToggle([true, false]);
 
@@ -44,7 +44,7 @@ const StandardAsideFrame: React.FC<IStandardAsideProps> = (props) => {
         </Button>
       </Flex>
 
-      <Frame importParentStyles w="100%" h="$96">
+      <ScreenFrame importParentStyles w="100%" h="$96">
         <Flex
           direction={other.side === 'right' ? 'row' : 'row-reverse'}
           align="start"
@@ -59,13 +59,13 @@ const StandardAsideFrame: React.FC<IStandardAsideProps> = (props) => {
             {...other}
           />
         </Flex>
-      </Frame>
+      </ScreenFrame>
     </Flex>
   );
 };
 
 export const FromLeft: IStory = {
-  render: (props) => <StandardAsideFrame {...props} />,
+  render: (props) => <StandardAsideScreenFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'left',
@@ -73,7 +73,7 @@ export const FromLeft: IStory = {
 };
 
 export const FromRight: IStory = {
-  render: (props) => <StandardAsideFrame {...props} />,
+  render: (props) => <StandardAsideScreenFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'right',

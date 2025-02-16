@@ -7,10 +7,10 @@ import { Button } from '~/components/Button';
 import { Checkbox } from '~/components/Checkbox';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Flex } from '~/components/Flex';
-import { Frame } from '~/components/Frame';
 import { Labeled } from '~/components/Labeled';
 import { OverlaysProvider, useOverlays } from '~/components/Overlays';
 import { Placeholder } from '~/components/Placeholder';
+import { ScreenFrame } from '~/components/ScreenFrame';
 import { useToggle } from '~/hooks/useToggle';
 import { SideSheet } from './SideSheet';
 import { SideSheetOverlay } from './SideSheetOverlay';
@@ -53,7 +53,7 @@ const defaultArgs = {
   ),
 } satisfies Partial<ISideSheetProps>;
 
-const SideSheetFrame: React.FC<ISideSheetProps> = (props) => {
+const SideSheetScreenFrame: React.FC<ISideSheetProps> = (props) => {
   const { ...other } = props;
   const [opened, toggleOpened] = useToggle([true, false]);
   const [isDrawer, setDrawer] = useState(false);
@@ -97,7 +97,7 @@ const SideSheetFrame: React.FC<ISideSheetProps> = (props) => {
         </Labeled>
       </Flex>
 
-      <Frame importParentStyles w="100%" h="$96">
+      <ScreenFrame importParentStyles w="100%" h="$96">
         <Flex
           direction={other.side === 'right' ? 'row' : 'row-reverse'}
           align="start"
@@ -115,13 +115,13 @@ const SideSheetFrame: React.FC<ISideSheetProps> = (props) => {
             {...other}
           />
         </Flex>
-      </Frame>
+      </ScreenFrame>
     </Flex>
   );
 };
 
 export const FromLeft: IStory = {
-  render: (props) => <SideSheetFrame {...props} />,
+  render: (props) => <SideSheetScreenFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'left',
@@ -129,7 +129,7 @@ export const FromLeft: IStory = {
 };
 
 export const FromRight: IStory = {
-  render: (props) => <SideSheetFrame {...props} />,
+  render: (props) => <SideSheetScreenFrame {...props} />,
   args: {
     ...defaultArgs,
     side: 'right',

@@ -7,10 +7,10 @@ import { Button } from '~/components/Button';
 import { Checkbox } from '~/components/Checkbox';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Flex } from '~/components/Flex';
-import { Frame } from '~/components/Frame';
 import { Labeled } from '~/components/Labeled';
 import { OverlaysProvider, useOverlays } from '~/components/Overlays';
 import { Placeholder } from '~/components/Placeholder';
+import { ScreenFrame } from '~/components/ScreenFrame';
 import { Text } from '~/components/Text';
 import { useToggle } from '~/hooks';
 import { BottomSheet } from './BottomSheet';
@@ -41,7 +41,7 @@ const defaultArgs = {
   ),
 } satisfies Partial<IBottomSheetProps>;
 
-const BottomSheetFrame: React.FC<IBottomSheetProps> = (props) => {
+const BottomSheetScreenFrame: React.FC<IBottomSheetProps> = (props) => {
   const { ...other } = props;
   const [opened, toggleOpened] = useToggle([true, false]);
   const [isModal, setModal] = useState(false);
@@ -85,7 +85,7 @@ const BottomSheetFrame: React.FC<IBottomSheetProps> = (props) => {
         </Labeled>
       </Flex>
 
-      <Frame importParentStyles w="100%" h="$96">
+      <ScreenFrame importParentStyles w="100%" h="$96">
         <Flex h="100%">
           <Placeholder label="Page" grow={1} expanded diagonals />
           <BottomSheet
@@ -99,13 +99,13 @@ const BottomSheetFrame: React.FC<IBottomSheetProps> = (props) => {
             {...other}
           />
         </Flex>
-      </Frame>
+      </ScreenFrame>
     </Flex>
   );
 };
 
 export const Basic: IStory = {
-  render: (props) => <BottomSheetFrame {...props} />,
+  render: (props) => <BottomSheetScreenFrame {...props} />,
   args: defaultArgs,
 };
 
