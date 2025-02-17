@@ -2,7 +2,6 @@ import type { ICanonicalLayoutType } from '~/hooks/useCanonicalLayout';
 import { AppLayout } from '../AppLayout';
 import { CustomLayout } from './CustomLayout';
 import { DetailPane } from './DetailPane';
-import { FeedCanonicalLayout } from './FeedCanonicalLayout';
 import { FeedPane } from './FeedPane';
 import { FocusPane } from './FocusPane';
 import { ListDetailPane } from './ListDetailPane';
@@ -30,7 +29,7 @@ export const Body: React.FC<IBodyProps> = (props) => {
       supportingPaneBottomSheet={<SupportingPane p="$4" />}
     />
   ) : type === 'feed' ? (
-    <FeedCanonicalLayout feedPane={(props) => <FeedPane {...props} />} />
+    <AppLayout.FeedBody feedPane={(props) => <FeedPane {...props} />} />
   ) : (
     <CustomLayout />
   );

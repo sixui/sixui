@@ -4,6 +4,7 @@ import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IAppLayoutContextValue } from './AppLayout.context';
 import type { appLayoutTheme, IAppLayoutThemeFactory } from './AppLayout.css';
 import type { AppLayoutBody } from './AppLayoutBody';
+import type { AppLayoutFeedBody } from './AppLayoutFeedBody';
 import type { AppLayoutFooter } from './AppLayoutFooter';
 import type { AppLayoutListDetailBody } from './AppLayoutListDetailBody';
 import type { AppLayoutNavigationBar } from './AppLayoutNavigationBar';
@@ -53,6 +54,7 @@ export type IAppLayoutFactory = IComponentFactory<{
     Body: typeof AppLayoutBody;
     ListDetailBody: typeof AppLayoutListDetailBody;
     SupportingPaneBody: typeof AppLayoutSupportingPaneBody;
+    FeedBody: typeof AppLayoutFeedBody;
     NavigationBar: typeof AppLayoutNavigationBar;
     NavigationRail: typeof AppLayoutNavigationRail;
     NavigationDrawer: typeof AppLayoutNavigationDrawer;
