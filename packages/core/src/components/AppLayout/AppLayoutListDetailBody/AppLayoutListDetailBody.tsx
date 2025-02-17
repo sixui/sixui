@@ -63,6 +63,7 @@ export const AppLayoutListDetailBody =
             pane.resizable ? (
               <Resizable
                 key={pane.name}
+                bounds="window"
                 defaultWidth={isHorizontal ? pane.defaultSize : undefined}
                 defaultHeight={isHorizontal ? undefined : pane.defaultSize}
                 orientation={isHorizontal ? 'horizontal' : 'vertical'}

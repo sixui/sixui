@@ -8,7 +8,6 @@ import { FocusPane } from './FocusPane';
 import { ListDetailPane } from './ListDetailPane';
 import { ListPane } from './ListPane';
 import { SupportingPane } from './SupportingPane';
-import { SupportingPaneCanonicalLayout } from './SupportingPaneCanonicalLayout';
 
 type IBodyProps = {
   type?: ICanonicalLayoutType;
@@ -24,7 +23,7 @@ export const Body: React.FC<IBodyProps> = (props) => {
       listDetailPane={<ListDetailPane />}
     />
   ) : type === 'supportingPane' ? (
-    <SupportingPaneCanonicalLayout
+    <AppLayout.SupportingPaneBody
       focusPane={(props) => <FocusPane {...props} />}
       supportingPane={<SupportingPane />}
       supportingPaneAside={<SupportingPane pl="$4" pr="$4" />}

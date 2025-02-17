@@ -10,6 +10,7 @@ import type { AppLayoutNavigationBar } from './AppLayoutNavigationBar';
 import type { AppLayoutNavigationDrawer } from './AppLayoutNavigationDrawer';
 import type { AppLayoutNavigationRail } from './AppLayoutNavigationRail';
 import type { AppLayoutSideSheet } from './AppLayoutSideSheet';
+import type { AppLayoutSupportingPaneBody } from './AppLayoutSupportingPaneBody';
 import type { AppLayoutTopBar } from './AppLayoutTopBar';
 
 export type IAppLayoutRenderProps = IAppLayoutContextValue;
@@ -51,6 +52,7 @@ export type IAppLayoutFactory = IComponentFactory<{
     TopBar: typeof AppLayoutTopBar;
     Body: typeof AppLayoutBody;
     ListDetailBody: typeof AppLayoutListDetailBody;
+    SupportingPaneBody: typeof AppLayoutSupportingPaneBody;
     NavigationBar: typeof AppLayoutNavigationBar;
     NavigationRail: typeof AppLayoutNavigationRail;
     NavigationDrawer: typeof AppLayoutNavigationDrawer;
