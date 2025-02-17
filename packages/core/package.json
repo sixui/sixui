@@ -51,6 +51,7 @@
     "clsx": "^2.1.1",
     "highlight-words": "^2.0.0",
     "rainbow-sprinkles": "^1.0.0",
+    "re-resizable": "^6.10.3",
     "react-aria": "^3.37.0",
     "react-dom": "^19.0.0",
     "react-remove-scroll": "^2.6.3",

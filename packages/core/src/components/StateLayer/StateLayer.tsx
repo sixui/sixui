@@ -36,6 +36,7 @@ export const StateLayer = componentFactory<IStateLayerFactory>(
       variant,
       theme: stateLayerTheme,
       modifiers: {
+        focused: !context?.animating && interactions?.focused,
         hovered: !context?.animating && interactions?.hovered,
         dragged: !context?.animating && interactions?.dragged,
         'static-pressed':

@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IScreenFrameProps } from './ScreenFrame.types';
-import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { themeTokens } from '~/components/Theme';
 import { ScreenFrame } from './ScreenFrame';
 
 const meta = {
@@ -12,25 +11,25 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  children: 'ScreenFrame',
+  children: (
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        height: '100%',
+        backgroundColor: themeTokens.colorScheme.primary,
+        color: themeTokens.colorScheme.onPrimary,
+      }}
+    >
+      Hello world!
+    </div>
+  ),
 } satisfies Partial<IScreenFrameProps>;
 
-const variants: Array<IComponentPresentation<IScreenFrameProps>> = [
-  { legend: 'None', props: { variant: false } },
-  { legend: 'Primary', props: { variant: 'primary' } },
-];
-
-const states: Array<IComponentPresentation<IScreenFrameProps>> = [
-  { legend: 'Normal' },
-  { legend: 'Disabled', props: { disabled: true } },
-];
-
-const ScreenFrameShowcase = componentShowcaseFactory(ScreenFrame);
-
 export const Basic: IStory = {
-  render: (props) => (
-    <ScreenFrameShowcase props={props} cols={states} rows={variants} />
-  ),
+  render: (props) => <ScreenFrame {...props} />,
   args: defaultArgs,
 };
 

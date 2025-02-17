@@ -10,6 +10,7 @@ import { px } from '~/utils/css/px';
 import { COMPONENT_NAME } from './StateLayer.constants';
 
 type IModifier =
+  | 'focused'
   | 'hovered'
   | 'dragged'
   | 'animating'
@@ -19,11 +20,13 @@ type IModifier =
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   color: {
+    focused: 'unset',
     hovered: themeTokens.colorScheme.onSurface,
     pressed: 'inherit',
     dragged: 'inherit',
   },
   opacity: {
+    focused: themeTokens.state.stateLayerOpacity.focused,
     hovered: themeTokens.state.stateLayerOpacity.hovered,
     pressed: themeTokens.state.stateLayerOpacity.pressed,
     dragged: themeTokens.state.stateLayerOpacity.dragged,
@@ -67,6 +70,10 @@ const classNames = createStyles({
     selectors: {
       [modifierSelector<IModifier>('disabled')]: {
         pointerEvents: 'none',
+      },
+      [`${modifierSelector<IModifier>('focused')}::before`]: {
+        backgroundColor: tokens.color.focused,
+        opacity: tokens.opacity.focused,
       },
       [`${modifierSelector<IModifier>('hovered')}::before`]: {
         backgroundColor: tokens.color.hovered,

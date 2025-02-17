@@ -249,6 +249,7 @@ export type IThemeStateValues = {
    * by using opacity.
    */
   stateLayerOpacity: {
+    focused: string;
     hovered: string;
     pressed: string;
     dragged: string;

@@ -1,3 +1,5 @@
+import type { ResizableProps } from 're-resizable';
+
 import type { IBoxProps } from '~/components/Box';
 import type { IFrameOwnProps } from '~/components/Frame';
 import type { IComponentThemeProps } from '~/components/Theme';
@@ -7,12 +9,23 @@ import type {
   screenFrameTheme,
 } from './ScreenFrame.css';
 
-export interface IScreenFrameOwnProps extends IFrameOwnProps {
-  resizable?: boolean | 'horizontal' | 'vertical';
-  minSize?: number;
-  maxSize?: number;
-  aspectRatio?: number;
-  keepAspectRatio?: boolean;
+export interface IScreenFrameOwnProps
+  extends Pick<IFrameOwnProps, 'children'>,
+    Pick<
+      ResizableProps,
+      | 'size'
+      | 'minWidth'
+      | 'minHeight'
+      | 'maxWidth'
+      | 'maxHeight'
+      | 'grid'
+      | 'gridGap'
+      | 'snap'
+      | 'snapGap'
+      | 'lockAspectRatio'
+    > {
+  defaultWidth?: string | number;
+  defaultHeight?: string | number;
 }
 
 export interface IScreenFrameProps

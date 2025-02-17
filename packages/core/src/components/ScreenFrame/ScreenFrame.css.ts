@@ -11,10 +11,24 @@ type IModifier = 'disabled';
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME);
 
 const classNames = createStyles({
-  root: {
+  frame: {
     borderRadius: px(themeTokens.shape.corner.lg),
     borderWidth: px(7),
     borderColor: themeTokens.colorScheme.outlineVariant,
+  },
+  handleRight: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: -7,
+  },
+  handleBottom: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: -7,
   },
 });
 

@@ -94,7 +94,7 @@ const AppLayoutFrame: React.FC<IAppLayoutFrameProps> = (props) => {
         </Labeled>
       </Flex>
 
-      <ScreenFrame importParentStyles w="100%" h="$160">
+      <ScreenFrame>
         {({ window }) => (
           <AppLayout
             preferredNavigationMode={hasNavigationDrawer ? 'standard' : 'rail'}

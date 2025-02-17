@@ -327,6 +327,7 @@ export const getDefaultTheme = (
       },
       state: {
         stateLayerOpacity: {
+          focused: '0.1',
           hovered: '0.08',
           pressed: '0.12',
           dragged: '0.16',

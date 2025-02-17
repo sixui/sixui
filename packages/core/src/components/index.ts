@@ -27,6 +27,7 @@ export * from './Diagonals';
 export * from './Dialog';
 export * from './Disclosure';
 export * from './Divider';
+export * from './DragHandle';
 export * from './Drawer';
 export * from './DrawerAside';
 export * from './DrawerSideSheet';
