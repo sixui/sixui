@@ -10,7 +10,6 @@ import { IOrientation } from '~/utils/types';
 
 export interface IAppLayoutBodyOwnProps extends IPaperOwnProps {
   children?: React.ReactNode;
-  hasTopBar?: boolean;
   orientation?: IOrientation;
 }
 

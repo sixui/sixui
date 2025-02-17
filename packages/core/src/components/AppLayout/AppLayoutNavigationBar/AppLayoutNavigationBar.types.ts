@@ -8,10 +8,7 @@ import type {
   IAppLayoutNavigationBarThemeFactory,
 } from './AppLayoutNavigationBar.css';
 
-export interface IAppLayoutNavigationBarOwnProps
-  extends INavigationBarOwnProps {
-  hasTopBar?: boolean;
-}
+export type IAppLayoutNavigationBarOwnProps = INavigationBarOwnProps;
 
 export interface IAppLayoutNavigationBarProps
   extends IBoxProps,

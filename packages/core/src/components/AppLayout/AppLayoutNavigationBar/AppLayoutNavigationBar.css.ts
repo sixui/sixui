@@ -12,8 +12,6 @@ import { overrideTokens } from '~/utils/css/overrideTokens';
 import { appLayoutTheme } from '~/components/AppLayout/AppLayout.css';
 import { COMPONENT_NAME } from './AppLayoutNavigationBar.constants';
 
-type IModifier = 'with-top-bar';
-
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME);
 
 const classNames = createStyles({
@@ -40,7 +38,6 @@ const classNames = createStyles({
 
 export type IAppLayoutNavigationBarThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
-  modifier: IModifier;
 }>;
 
 export const appLayoutNavigationBarTheme =

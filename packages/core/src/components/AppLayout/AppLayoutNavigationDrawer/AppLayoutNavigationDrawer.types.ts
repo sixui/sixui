@@ -11,9 +11,7 @@ import type {
 } from './AppLayoutNavigationDrawer.css';
 import { ISideSheetOwnProps } from '~/components/SideSheet';
 
-export interface IAppLayoutNavigationDrawerOwnProps extends ISideSheetOwnProps {
-  hasTopBar?: boolean;
-}
+export type IAppLayoutNavigationDrawerOwnProps = ISideSheetOwnProps;
 
 export interface IAppLayoutNavigationDrawerProps
   extends IBoxProps,

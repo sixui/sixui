@@ -10,15 +10,16 @@ export const ListPane: React.FC<IListPaneProps> = (props) => {
   const { ...other } = props;
 
   return (
-    <Flex
-      direction="column"
-      rowGap="$2"
-      h="100%"
-      {...other}
-      style={{ border: '2px solid red' }}
-    >
-      {createSequence(4).map((index) => (
-        <Placeholder key={index} label="List" shape="$sm" h="$24" diagonals />
+    <Flex direction="column" rowGap="$2" {...other}>
+      {createSequence(6).map((index) => (
+        <Placeholder
+          key={index}
+          label="List"
+          shape="$sm"
+          h="$24"
+          shrink={0}
+          diagonals
+        />
       ))}
     </Flex>
   );

@@ -1,14 +1,14 @@
-import type { ResizableProps } from 're-resizable';
+import type { Resizable, ResizableProps } from 're-resizable';
 
-import type { IBoxProps } from '~/components/Box';
-import type { IComponentThemeProps } from '~/components/Theme';
-import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IOrientation } from '~/utils/types';
-import type { IResizableThemeFactory, resizableTheme } from './Resizable.css';
+import type { resizableTheme } from './Resizable.css';
+import { IPolymorphicComponentFactory } from '~/utils/component';
 
 export interface IResizableOwnProps
   extends Pick<
     ResizableProps,
+    | 'className'
+    | 'style'
     | 'size'
     | 'minWidth'
     | 'minHeight'
@@ -28,13 +28,11 @@ export interface IResizableOwnProps
   handleLocation?: 'outside' | 'center' | 'inside';
 }
 
-export interface IResizableProps
-  extends IBoxProps,
-    IComponentThemeProps<IResizableThemeFactory>,
-    IResizableOwnProps {}
+export type IResizableProps = IResizableOwnProps;
 
-export type IResizableFactory = IComponentFactory<{
+export type IResizableFactory = IPolymorphicComponentFactory<{
   props: IResizableProps;
-  ref: HTMLDivElement;
+  defaultRef: Resizable;
+  defaultRoot: Resizable;
   theme: typeof resizableTheme;
 }>;

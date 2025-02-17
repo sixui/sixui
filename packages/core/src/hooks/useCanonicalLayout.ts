@@ -19,6 +19,8 @@ export type ICanonicalLayoutPane = {
   name: 'listDetail' | 'list' | 'detail' | 'focus' | 'supporting' | 'feed';
   type?: 'body' | 'bottomSheet' | 'sideSheet';
   dismissible?: boolean;
+  resizable?: boolean;
+  defaultSize?: number;
 };
 
 export type ICanonicalLayout = {
@@ -97,7 +99,10 @@ export const useCanonicalLayout = (
               windowSizeClass,
               navigationMode,
               orientation: 'horizontal',
-              panes: [{ name: 'list' }, { name: 'detail' }],
+              panes: [
+                { name: 'list', resizable: true, defaultSize: 360 },
+                { name: 'detail' },
+              ],
               standardAside,
             }
           : {
@@ -114,7 +119,10 @@ export const useCanonicalLayout = (
           windowSizeClass,
           navigationMode,
           orientation: 'horizontal',
-          panes: [{ name: 'list' }, { name: 'detail' }],
+          panes: [
+            { name: 'list', resizable: true, defaultSize: 412 },
+            { name: 'detail' },
+          ],
           standardAside,
         };
       }
@@ -123,7 +131,10 @@ export const useCanonicalLayout = (
         windowSizeClass,
         navigationMode,
         orientation: 'horizontal',
-        panes: [{ name: 'list' }, { name: 'detail' }],
+        panes: [
+          { name: 'list', resizable: true, defaultSize: 412 },
+          { name: 'detail' },
+        ],
         standardAside,
       };
 

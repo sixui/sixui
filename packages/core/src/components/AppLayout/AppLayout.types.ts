@@ -5,6 +5,7 @@ import type { IAppLayoutContextValue } from './AppLayout.context';
 import type { appLayoutTheme, IAppLayoutThemeFactory } from './AppLayout.css';
 import type { AppLayoutBody } from './AppLayoutBody';
 import type { AppLayoutFooter } from './AppLayoutFooter';
+import type { AppLayoutListDetailBody } from './AppLayoutListDetailBody';
 import type { AppLayoutNavigationBar } from './AppLayoutNavigationBar';
 import type { AppLayoutNavigationDrawer } from './AppLayoutNavigationDrawer';
 import type { AppLayoutNavigationRail } from './AppLayoutNavigationRail';
@@ -49,6 +50,7 @@ export type IAppLayoutFactory = IComponentFactory<{
   staticComponents: {
     TopBar: typeof AppLayoutTopBar;
     Body: typeof AppLayoutBody;
+    ListDetailBody: typeof AppLayoutListDetailBody;
     NavigationBar: typeof AppLayoutNavigationBar;
     NavigationRail: typeof AppLayoutNavigationRail;
     NavigationDrawer: typeof AppLayoutNavigationDrawer;

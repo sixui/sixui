@@ -3,21 +3,18 @@ import { Resizable as ReResizable } from 're-resizable';
 
 import type { IResizableThemeFactory } from './Resizable.css';
 import type { IResizableFactory } from './Resizable.types';
-import { Box } from '~/components/Box';
 import { DragHandle } from '~/components/DragHandle';
 import { useComponentTheme, useProps } from '~/components/Theme';
-import { componentFactory } from '~/utils/component/componentFactory';
+import { polymorphicComponentFactory } from '~/utils/component';
 import { COMPONENT_NAME } from './Resizable.constants';
 import { resizableTheme } from './Resizable.css';
 
-export const Resizable = componentFactory<IResizableFactory>(
+export const Resizable = polymorphicComponentFactory<IResizableFactory>(
   (props, forwardedRef) => {
     const {
-      classNames,
+      as,
       className,
-      styles,
       style,
-      variant,
       size,
       minWidth,
       minHeight,
@@ -28,7 +25,6 @@ export const Resizable = componentFactory<IResizableFactory>(
       snap,
       snapGap,
       lockAspectRatio,
-      children,
       defaultWidth,
       defaultHeight,
       locked,
@@ -42,11 +38,8 @@ export const Resizable = componentFactory<IResizableFactory>(
 
     const { getStyles } = useComponentTheme<IResizableThemeFactory>({
       componentName: COMPONENT_NAME,
-      classNames,
       className,
-      styles,
       style,
-      variant,
       theme: resizableTheme,
       modifiers: {
         'handle-location': handleLocation,
@@ -54,82 +47,82 @@ export const Resizable = componentFactory<IResizableFactory>(
     });
 
     return (
-      <Box {...getStyles('root')} ref={forwardedRef} {...other}>
-        <ReResizable
-          enable={
-            locked
-              ? false
-              : !orientation
-                ? undefined
-                : {
-                    right: orientation === 'horizontal',
-                    bottom: orientation === 'vertical',
-                  }
+      <ReResizable
+        as={as}
+        enable={
+          locked
+            ? false
+            : !orientation
+              ? undefined
+              : {
+                  right: orientation === 'horizontal',
+                  bottom: orientation === 'vertical',
+                }
+        }
+        defaultSize={{
+          width: defaultWidth,
+          height: defaultHeight,
+        }}
+        size={size}
+        minWidth={minWidth}
+        minHeight={minHeight}
+        maxWidth={maxWidth}
+        maxHeight={maxHeight}
+        grid={grid}
+        gridGap={gridGap}
+        snap={snap}
+        snapGap={snapGap}
+        lockAspectRatio={lockAspectRatio}
+        boundsByDirection
+        handleClasses={{
+          right: getStyles('handleRight').className,
+          bottom: getStyles('handleBottom').className,
+        }}
+        handleStyles={{
+          right: {
+            height: 'auto',
+            top: '50%',
+            transform: 'translateY(-50%)',
+          },
+          bottom: {
+            width: 'auto',
+            left: '50%',
+            transform: 'translateX(-50%)',
+          },
+        }}
+        handleComponent={{
+          right: (
+            <DragHandle
+              interactions={{
+                pressed: draggingHorizontally,
+              }}
+            />
+          ),
+          bottom: (
+            <DragHandle
+              interactions={{
+                pressed: draggingVertically,
+              }}
+              orientation="horizontal"
+            />
+          ),
+        }}
+        onResizeStart={(_event, direction) => {
+          if (['left', 'right'].includes(direction)) {
+            setDraggingHorizontally(true);
           }
-          defaultSize={{
-            width: defaultWidth,
-            height: defaultHeight,
-          }}
-          size={size}
-          minWidth={minWidth}
-          minHeight={minHeight}
-          maxWidth={maxWidth}
-          maxHeight={maxHeight}
-          grid={grid}
-          gridGap={gridGap}
-          snap={snap}
-          snapGap={snapGap}
-          lockAspectRatio={lockAspectRatio}
-          bounds="window"
-          handleClasses={{
-            right: getStyles('handleRight').className,
-            bottom: getStyles('handleBottom').className,
-          }}
-          handleStyles={{
-            right: {
-              height: 'auto',
-              top: '50%',
-              transform: 'translateY(-50%)',
-            },
-            bottom: {
-              width: 'auto',
-              left: '50%',
-              transform: 'translateX(-50%)',
-            },
-          }}
-          handleComponent={{
-            right: (
-              <DragHandle
-                interactions={{
-                  pressed: draggingHorizontally,
-                }}
-              />
-            ),
-            bottom: (
-              <DragHandle
-                interactions={{
-                  pressed: draggingVertically,
-                }}
-                orientation="horizontal"
-              />
-            ),
-          }}
-          onResizeStart={(_event, direction) => {
-            if (['left', 'right'].includes(direction)) {
-              setDraggingHorizontally(true);
-            }
-            if (['top', 'bottom'].includes(direction)) {
-              setDraggingVertically(true);
-            }
-          }}
-          onResizeStop={() => {
-            setDraggingHorizontally(false);
-            setDraggingVertically(false);
-          }}
-        >
-          {children}
-        </ReResizable>
-      </Box>
+          if (['top', 'bottom'].includes(direction)) {
+            setDraggingVertically(true);
+          }
+        }}
+        onResizeStop={() => {
+          setDraggingHorizontally(false);
+          setDraggingVertically(false);
+        }}
+        ref={forwardedRef}
+        {...getStyles('root')}
+        {...other}
+      />
     );
   },
 );

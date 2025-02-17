@@ -10,7 +10,7 @@ import { COMPONENT_NAME } from './Resizable.constants';
 type IModifier = 'handle-location';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
-  dragHandleSpace: px(8),
+  dragHandleSpace: px(12),
 });
 
 const classNames = createStyles({

@@ -18,7 +18,6 @@ export const AppLayoutNavigationBar =
       styles,
       style,
       variant,
-      hasTopBar: hasTopBarProp,
       opened: openedProp,
       portalProps,
       ...other
@@ -26,9 +25,6 @@ export const AppLayoutNavigationBar =
 
     const appLayoutContext = useAppLayoutContext();
     useAppLayoutComponent('navigationBar');
-
-    const hasTopBar =
-      hasTopBarProp ?? appLayoutContext?.components.includes('topBar');
 
     const { getStyles } =
       useComponentTheme<IAppLayoutNavigationBarThemeFactory>({
@@ -39,9 +35,6 @@ export const AppLayoutNavigationBar =
         style,
         variant,
         theme: appLayoutNavigationBarTheme,
-        modifiers: {
-          'with-top-bar': hasTopBar,
-        },
       });
 
     const hasAppLayoutNavigationBar =

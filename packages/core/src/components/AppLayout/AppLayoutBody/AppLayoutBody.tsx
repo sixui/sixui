@@ -1,6 +1,5 @@
 import type { IAppLayoutBodyThemeFactory } from './AppLayoutBody.css';
 import type { IAppLayoutBodyFactory } from './AppLayoutBody.types';
-import { useAppLayoutContext } from '~/components/AppLayout/AppLayout.context';
 import { Paper } from '~/components/Paper';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
@@ -16,14 +15,9 @@ export const AppLayoutBody = componentFactory<IAppLayoutBodyFactory>(
       style,
       variant,
       children,
-      hasTopBar: hasTopBarProp,
       orientation = 'horizontal',
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
-
-    const appLayoutContext = useAppLayoutContext();
-    const hasTopBar =
-      hasTopBarProp ?? appLayoutContext?.components.includes('topBar');
 
     const { getStyles } = useComponentTheme<IAppLayoutBodyThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -35,7 +29,6 @@ export const AppLayoutBody = componentFactory<IAppLayoutBodyFactory>(
       theme: appLayoutBodyTheme,
       modifiers: {
         orientation,
-        'with-top-bar': hasTopBar,
       },
     });
 

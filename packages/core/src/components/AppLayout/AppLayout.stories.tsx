@@ -9,7 +9,7 @@ import { Flex } from '~/components/Flex';
 import { Labeled } from '~/components/Labeled';
 import { ScreenFrame } from '~/components/ScreenFrame';
 import { AppLayout } from './AppLayout';
-import { CanonicalLayout } from './AppLayout.stories/CanonicalLayout';
+import { Body } from './AppLayout.stories/Body';
 import { Footer } from './AppLayout.stories/Footer';
 import { MainNavigationBar } from './AppLayout.stories/MainNavigationBar';
 import { MainNavigationDrawer } from './AppLayout.stories/MainNavigationDrawer';
@@ -149,7 +149,7 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => (
               />
             )}
 
-            <CanonicalLayout type={activeDestination} />
+            <Body type={activeDestination} />
           </Flex>
         </Flex>
 
@@ -200,7 +200,7 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => (
               {hasTopBar && <TopBar divider={hasDividers} />}
 
               <Flex direction="row" align="start">
-                <CanonicalLayout type={activeDestination} />
+                <Body type={activeDestination} />
               </Flex>
             </Flex>
           </Flex>

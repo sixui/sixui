@@ -43,9 +43,6 @@ export const AppLayoutNavigationRail =
         style,
         variant,
         theme: appLayoutNavigationRailTheme,
-        modifiers: {
-          'with-top-bar': hasTopBar,
-        },
       });
 
     const hasAppLayoutNavigationRail =

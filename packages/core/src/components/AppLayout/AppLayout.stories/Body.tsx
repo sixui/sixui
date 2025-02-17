@@ -1,24 +1,24 @@
 import type { ICanonicalLayoutType } from '~/hooks/useCanonicalLayout';
+import { AppLayout } from '../AppLayout';
 import { CustomLayout } from './CustomLayout';
 import { DetailPane } from './DetailPane';
 import { FeedCanonicalLayout } from './FeedCanonicalLayout';
 import { FeedPane } from './FeedPane';
 import { FocusPane } from './FocusPane';
-import { ListDetailCanonicalLayout } from './ListDetailCanonicalLayout';
 import { ListDetailPane } from './ListDetailPane';
 import { ListPane } from './ListPane';
 import { SupportingPane } from './SupportingPane';
 import { SupportingPaneCanonicalLayout } from './SupportingPaneCanonicalLayout';
 
-type ICanonicalLayoutProps = {
+type IBodyProps = {
   type?: ICanonicalLayoutType;
 };
 
-export const CanonicalLayout: React.FC<ICanonicalLayoutProps> = (props) => {
+export const Body: React.FC<IBodyProps> = (props) => {
   const { type } = props;
 
   return type === 'listDetail' ? (
-    <ListDetailCanonicalLayout
+    <AppLayout.ListDetailBody
       listPane={<ListPane />}
       detailPane={<DetailPane />}
       listDetailPane={<ListDetailPane />}

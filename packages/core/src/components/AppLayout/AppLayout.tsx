@@ -18,6 +18,7 @@ import { COMPONENT_NAME } from './AppLayout.constants';
 import { AppLayoutProvider, IAppLayoutContextValue } from './AppLayout.context';
 import { AppLayoutBody } from './AppLayoutBody';
 import { AppLayoutFooter } from './AppLayoutFooter';
+import { AppLayoutListDetailBody } from './AppLayoutListDetailBody';
 import { AppLayoutNavigationBar } from './AppLayoutNavigationBar';
 import { AppLayoutNavigationDrawer } from './AppLayoutNavigationDrawer';
 import { AppLayoutNavigationRail } from './AppLayoutNavigationRail';
@@ -93,6 +94,7 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
       theme: appLayoutTheme,
       modifiers: {
         'navigation-mode': navigationMode,
+        'with-top-bar': componentsSet.has('topBar'),
       },
     });
 
@@ -165,6 +167,7 @@ AppLayout.theme = appLayoutTheme;
 AppLayout.displayName = `@sixui/core/${COMPONENT_NAME}`;
 AppLayout.TopBar = AppLayoutTopBar;
 AppLayout.Body = AppLayoutBody;
+AppLayout.ListDetailBody = AppLayoutListDetailBody;
 AppLayout.NavigationBar = AppLayoutNavigationBar;
 AppLayout.NavigationRail = AppLayoutNavigationRail;
 AppLayout.NavigationDrawer = AppLayoutNavigationDrawer;
