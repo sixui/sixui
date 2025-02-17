@@ -1,6 +1,10 @@
+import { useState } from 'react';
+import { Resizable as ReResizable } from 're-resizable';
+
 import type { IResizableThemeFactory } from './Resizable.css';
 import type { IResizableFactory } from './Resizable.types';
-import { Paper } from '~/components/Paper';
+import { Box } from '~/components/Box';
+import { DragHandle } from '~/components/DragHandle';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './Resizable.constants';
@@ -14,10 +18,27 @@ export const Resizable = componentFactory<IResizableFactory>(
       styles,
       style,
       variant,
+      size,
+      minWidth,
+      minHeight,
+      maxWidth,
+      maxHeight,
+      grid,
+      gridGap,
+      snap,
+      snapGap,
+      lockAspectRatio,
       children,
-      disabled,
+      defaultWidth,
+      defaultHeight,
+      locked,
+      orientation,
+      handleLocation = 'outside',
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
+
+    const [draggingHorizontally, setDraggingHorizontally] = useState(false);
+    const [draggingVertically, setDraggingVertically] = useState(false);
 
     const { getStyles } = useComponentTheme<IResizableThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -28,14 +49,87 @@ export const Resizable = componentFactory<IResizableFactory>(
       variant,
       theme: resizableTheme,
       modifiers: {
-        disabled,
+        'handle-location': handleLocation,
       },
     });
 
     return (
-      <Paper {...getStyles('root')} ref={forwardedRef} {...other}>
-        <div {...getStyles('label')}>{children}</div>
-      </Paper>
+      <Box {...getStyles('root')} ref={forwardedRef} {...other}>
+        <ReResizable
+          enable={
+            locked
+              ? false
+              : !orientation
+                ? undefined
+                : {
+                    right: orientation === 'horizontal',
+                    bottom: orientation === 'vertical',
+                  }
+          }
+          defaultSize={{
+            width: defaultWidth,
+            height: defaultHeight,
+          }}
+          size={size}
+          minWidth={minWidth}
+          minHeight={minHeight}
+          maxWidth={maxWidth}
+          maxHeight={maxHeight}
+          grid={grid}
+          gridGap={gridGap}
+          snap={snap}
+          snapGap={snapGap}
+          lockAspectRatio={lockAspectRatio}
+          bounds="window"
+          handleClasses={{
+            right: getStyles('handleRight').className,
+            bottom: getStyles('handleBottom').className,
+          }}
+          handleStyles={{
+            right: {
+              height: 'auto',
+              top: '50%',
+              transform: 'translateY(-50%)',
+            },
+            bottom: {
+              width: 'auto',
+              left: '50%',
+              transform: 'translateX(-50%)',
+            },
+          }}
+          handleComponent={{
+            right: (
+              <DragHandle
+                interactions={{
+                  pressed: draggingHorizontally,
+                }}
+              />
+            ),
+            bottom: (
+              <DragHandle
+                interactions={{
+                  pressed: draggingVertically,
+                }}
+                orientation="horizontal"
+              />
+            ),
+          }}
+          onResizeStart={(_event, direction) => {
+            if (['left', 'right'].includes(direction)) {
+              setDraggingHorizontally(true);
+            }
+            if (['top', 'bottom'].includes(direction)) {
+              setDraggingVertically(true);
+            }
+          }}
+          onResizeStop={() => {
+            setDraggingHorizontally(false);
+            setDraggingVertically(false);
+          }}
+        >
+          {children}
+        </ReResizable>
+      </Box>
     );
   },
 );

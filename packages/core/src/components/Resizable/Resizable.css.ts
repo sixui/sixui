@@ -1,67 +1,46 @@
+import { calc } from '@vanilla-extract/css-utils';
+
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
-import { PaperBase } from '~/components/PaperBase';
-import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { modifierSelector, px } from '~/utils/css';
 import { createStyles } from '~/utils/css/createStyles';
-import { modifierSelector } from '~/utils/css/modifierSelector';
-import { overrideTokens } from '~/utils/css/overrideTokens';
-import { px } from '~/utils/css/px';
-import { space } from '~/utils/css/space';
 import { COMPONENT_NAME } from './Resizable.constants';
 
-type IModifier = 'disabled';
+type IModifier = 'handle-location';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
-  container: {
-    color: {
-      normal: themeTokens.colorScheme.primary,
-      disabled: themeTokens.colorScheme.onSurface,
-    },
-    opacity: {
-      disabled: themeTokens.state.containerOpacity.disabled,
-    },
-  },
-  label: {
-    typography: themeTokens.typeScale.label.md,
-    color: {
-      normal: themeTokens.colorScheme.onPrimary,
-      disabled: themeTokens.colorScheme.onSurface,
-    },
-    opacity: {
-      disabled: themeTokens.state.opacity.disabled,
-    },
-  },
+  dragHandleSpace: px(8),
 });
 
 const classNames = createStyles({
-  root: {
-    padding: px(space(2)),
-
-    vars: overrideTokens(PaperBase.theme.tokens, {
-      container: {
-        color: tokens.container.color.normal,
-      },
-    }),
+  handleRight: ({ root }) => ({
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
 
     selectors: {
-      [modifierSelector<IModifier>('disabled')]: {
-        vars: overrideTokens(PaperBase.theme.tokens, {
-          container: {
-            color: tokens.container.color.disabled,
-            opacity: tokens.container.opacity.disabled,
-          },
-        }),
+      [modifierSelector<IModifier>({ 'handle-location': 'inside' }, root)]: {
+        marginRight: tokens.dragHandleSpace,
+      },
+      [modifierSelector<IModifier>({ 'handle-location': 'outside' }, root)]: {
+        marginRight: calc.negate(tokens.dragHandleSpace),
       },
     },
-  },
-  label: ({ root }) => ({
-    color: tokens.label.color.normal,
+  }),
+  handleBottom: ({ root }) => ({
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
 
     selectors: {
-      [modifierSelector<IModifier>('disabled', root)]: {
-        color: tokens.label.color.disabled,
-        opacity: tokens.label.opacity.disabled,
+      [modifierSelector<IModifier>({ 'handle-location': 'inside' }, root)]: {
+        marginBottom: tokens.dragHandleSpace,
+      },
+      [modifierSelector<IModifier>({ 'handle-location': 'outside' }, root)]: {
+        marginBottom: calc.negate(tokens.dragHandleSpace),
       },
     },
   }),
