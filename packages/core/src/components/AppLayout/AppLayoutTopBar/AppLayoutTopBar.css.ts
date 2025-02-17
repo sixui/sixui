@@ -40,7 +40,7 @@ const classNames = createStyles({
     position: 'sticky',
     top: 0,
     height: tokens.container.height,
-    zIndex: calc.add(themeTokens.zIndex.app, 1),
+    zIndex: calc.add(themeTokens.zIndex.app, 2),
 
     vars: overrideTokens(TopAppBar.theme.tokens, {
       container: {

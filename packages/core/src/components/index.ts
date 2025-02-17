@@ -66,6 +66,7 @@ export * from './PlainTooltip';
 export * from './PopoverBase';
 export * from './Portal';
 export * from './Radio';
+export * from './Resizable';
 export * from './Responsive';
 export * from './RichTooltip';
 export * from './ScreenFrame';
