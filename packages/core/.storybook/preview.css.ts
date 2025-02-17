@@ -11,4 +11,11 @@ export const classNames = {
     backgroundImage: `radial-gradient(${themeTokens.colorScheme.outlineVariant} max(0.5px, ${px(0.5)}), transparent 0)`,
     backgroundSize: `${px(10)} ${px(10)}`,
   }),
+  wrapper: style({
+    '@media': {
+      '(prefers-color-scheme: dark)': {
+        // flexDirection: 'column-reverse',
+      },
+    },
+  }),
 };

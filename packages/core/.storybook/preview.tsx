@@ -6,8 +6,8 @@ import { classNames } from './preview.css';
 import './storybook.css';
 import '~/styles/index.css';
 
-import { Box } from '~/components/Box';
 import { CustomizableTheme } from '~/components/CustomizableTheme';
+import { Flex } from '~/components/Flex';
 import { SixuiProvider } from '~/components/Sixui';
 import { ThemeProvider } from '~/components/Theme';
 
@@ -57,7 +57,7 @@ export const decorators: Array<Decorator> = [
         }}
       >
         <CustomizableTheme>
-          <Box w="100%">
+          <Flex w="100%" direction="column" className={classNames.wrapper}>
             {showLightMode && (
               <ThemeProvider className={classNames.storyWrapper} inherit>
                 <Story />
@@ -73,7 +73,7 @@ export const decorators: Array<Decorator> = [
                 <Story />
               </ThemeProvider>
             )}
-          </Box>
+          </Flex>
         </CustomizableTheme>
       </SixuiProvider>
     );
