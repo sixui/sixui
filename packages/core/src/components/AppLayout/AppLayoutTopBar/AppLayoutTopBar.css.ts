@@ -1,4 +1,5 @@
 import { fallbackVar } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { themeTokens } from '~/components/Theme';
@@ -39,7 +40,7 @@ const classNames = createStyles({
     position: 'sticky',
     top: 0,
     height: tokens.container.height,
-    zIndex: themeTokens.zIndex.app,
+    zIndex: calc.add(themeTokens.zIndex.app, 1),
 
     vars: overrideTokens(TopAppBar.theme.tokens, {
       container: {

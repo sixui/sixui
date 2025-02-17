@@ -1,4 +1,5 @@
 import { fallbackVar } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { NavigationBar } from '~/components/NavigationBar';
@@ -17,7 +18,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME);
 
 const classNames = createStyles({
   root: {
-    zIndex: themeTokens.zIndex.app,
+    zIndex: calc.add(themeTokens.zIndex.app, 1),
 
     vars: overrideTokens(NavigationBar.theme.tokens, {
       container: {

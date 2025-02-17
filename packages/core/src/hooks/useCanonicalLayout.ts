@@ -1,4 +1,5 @@
 import type { IOrientation } from '~/utils/types';
+import { useAppLayoutContext } from '~/components/AppLayout/AppLayout.context';
 import {
   IUseWindowSizeClassResult,
   useWindowSizeClass,
@@ -62,9 +63,12 @@ export const useCanonicalLayout = (
     ...defaultOptions,
     ...optionsProp,
   };
-  const windowSizeClass = useWindowSizeClass({
-    window: options.window ?? window,
-  });
+
+  const appLayoutContext = useAppLayoutContext();
+
+  const window =
+    options.window ?? appLayoutContext?.window ?? globalThis.window;
+  const windowSizeClass = useWindowSizeClass({ window });
 
   const navigationMode = getNavigationMode(
     windowSizeClass,

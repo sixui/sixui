@@ -1,4 +1,5 @@
 import { fallbackVar } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { NavigationRail } from '~/components/NavigationRail';
@@ -18,6 +19,8 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME);
 
 const classNames = createStyles({
   root: {
+    zIndex: calc.add(themeTokens.zIndex.app, 1),
+
     vars: {
       ...overrideTokens(StandardAside.theme.tokens, {
         container: {

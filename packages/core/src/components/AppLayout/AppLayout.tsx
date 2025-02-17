@@ -44,10 +44,12 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
+    const window = windowProp ?? globalThis.window;
+
     const componentsSet = useSet<IAppLayoutComponentName>([]);
     const [rootElement, setRootElement] = useState<HTMLDivElement | null>(null);
     const windowSizeClass = useWindowSizeClass({
-      window: windowProp ?? window,
+      window,
     });
 
     const navigationMode = resolveNavigationMode(
