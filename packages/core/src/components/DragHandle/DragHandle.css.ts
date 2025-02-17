@@ -42,7 +42,6 @@ const classNames = createStyles({
     transitionProperty: 'width, height',
     transitionDuration: themeTokens.motion.duration.short2,
     transitionTimingFunction: themeTokens.motion.easing.standard.normal,
-    cursor: 'grab',
 
     vars: overrideTokens(PaperBase.theme.tokens, {
       container: {
@@ -52,12 +51,10 @@ const classNames = createStyles({
     }),
 
     selectors: {
-      [modifierSelector<IModifier>('pressed')]: {
-        cursor: 'grabbing',
-      },
       [modifierSelector<IModifier>({ orientation: 'vertical' })]: {
         width: tokens.container.thickness.normal,
         height: tokens.container.length.normal,
+        cursor: 'ew-resize',
       },
       [[
         modifierSelector<IModifier>({ orientation: 'vertical', focused: true }),
@@ -70,6 +67,7 @@ const classNames = createStyles({
       [modifierSelector<IModifier>({ orientation: 'horizontal' })]: {
         width: tokens.container.length.normal,
         height: tokens.container.thickness.normal,
+        cursor: 'ns-resize',
       },
       [[
         modifierSelector<IModifier>({
