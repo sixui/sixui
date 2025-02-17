@@ -67,6 +67,7 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
   const themeOverrideVars = useMemo(() => {
     const tokensOverride = deepMerge(
       dynamicTheme?.tokens ?? ({} as PartialDeep<ITheme['tokens']>),
+      parentTheme?.tokens,
       theme?.tokens,
     );
     const themeTokensOverride = {

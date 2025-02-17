@@ -40,8 +40,6 @@ export const Frame = componentFactory<IFrameFactory>((props, forwardedRef) => {
   );
   const handleRef = useMergeRefs(
     forwardedRef,
-    // TODO: fix "forwardRef render functions accept exactly two parameters:
-    // props and ref. Did you forget to use the ref parameter?" error
     (element: HTMLIFrameElement | null) => {
       setIframeElement(element);
     },
@@ -69,7 +67,10 @@ export const Frame = componentFactory<IFrameFactory>((props, forwardedRef) => {
       {iframeContentWindow && iframeDocument && (
         <>
           {createPortal(
-            <ThemeProvider stylesTarget={iframeDocument.documentElement}>
+            <ThemeProvider
+              stylesTarget={iframeDocument.documentElement}
+              inherit
+            >
               <Responsive>
                 {isFunction(children)
                   ? children({ window: iframeContentWindow })
