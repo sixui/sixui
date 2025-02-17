@@ -83,6 +83,7 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
 
     return themeTokensOverride;
   }, [
+    parentTheme?.tokens,
     theme?.tokens,
     dynamicTheme?.tokens,
     mergedTheme.tokens,
