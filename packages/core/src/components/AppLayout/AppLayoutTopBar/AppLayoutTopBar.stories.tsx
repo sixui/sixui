@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { createSequence } from '@olivierpascal/helpers';
 
 import type { IAppLayoutTopBarProps } from './AppLayoutTopBar.types';
 import { Placeholder } from '~/components/Placeholder';
@@ -13,15 +12,20 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  children: createSequence(4).map((index) => (
-    <Placeholder key={index} expanded diagonals />
-  )),
+  headline: 'Headline',
+  leadingNavigation: <Placeholder diagonals w="$8" h="$8" shape="$xs" />,
+  trailingActions: (
+    <>
+      <Placeholder diagonals w="$8" h="$8" shape="$xs" />
+      <Placeholder diagonals w="$8" h="$8" shape="$xs" />
+    </>
+  ),
   divider: true,
 } satisfies Partial<IAppLayoutTopBarProps>;
 
 const AppLayoutTopBarScreenFrame: React.FC<IAppLayoutTopBarProps> = (props) => {
   return (
-    <ScreenFrame w="100%" h="$96">
+    <ScreenFrame defaultHeight={350}>
       <AppLayoutTopBar {...props} />
     </ScreenFrame>
   );

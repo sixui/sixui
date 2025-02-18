@@ -7,7 +7,6 @@ import { Button } from '~/components/Button';
 import { Checkbox } from '~/components/Checkbox';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Flex } from '~/components/Flex';
-import { Labeled } from '~/components/Labeled';
 import { useOverlays } from '~/components/Overlays';
 import { Placeholder } from '~/components/Placeholder';
 import { ScreenFrame } from '~/components/ScreenFrame';
@@ -71,33 +70,32 @@ const SideSheetScreenFrame: React.FC<ISideSheetProps> = (props) => {
         >
           {opened ? 'Close' : 'Open'}
         </Button>
-        <Labeled label="Drawer" labelPosition="right">
-          <Checkbox
-            checked={isDrawer}
-            onChange={(value) => {
-              setDrawer(!!value);
-            }}
-          />
-        </Labeled>
-        <Labeled label="Modal" labelPosition="right" disabled={!isDrawer}>
-          <Checkbox
-            checked={isModal}
-            onChange={(value) => {
-              setModal(!!value);
-            }}
-          />
-        </Labeled>
-        <Labeled label="Detached" labelPosition="right" disabled={!isDrawer}>
-          <Checkbox
-            checked={detached}
-            onChange={(value) => {
-              setDetached(!!value);
-            }}
-          />
-        </Labeled>
+        <Checkbox
+          label="Drawer"
+          checked={isDrawer}
+          onChange={(value) => {
+            setDrawer(!!value);
+          }}
+        />
+        <Checkbox
+          label="Modal"
+          checked={isModal}
+          onChange={(value) => {
+            setModal(!!value);
+          }}
+          disabled={!isDrawer}
+        />
+        <Checkbox
+          label="Detached"
+          checked={detached}
+          onChange={(value) => {
+            setDetached(!!value);
+          }}
+          disabled={!isDrawer}
+        />
       </Flex>
 
-      <ScreenFrame w="100%" h="$96">
+      <ScreenFrame h={350}>
         <Flex
           direction={other.side === 'right' ? 'row' : 'row-reverse'}
           align="start"

@@ -73,7 +73,7 @@ const AppLayoutNavigationBarScreenFrame: React.FC<
         </Button>
       </Flex>
 
-      <ScreenFrame w="$72" h="$96">
+      <ScreenFrame defaultWidth={375} defaultHeight={667}>
         <Flex direction="column" align="start" h="100%">
           <Placeholder label="Page" grow={1} expanded diagonals />
           <NavigationBar opened={opened} {...other} />

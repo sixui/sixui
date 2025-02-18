@@ -67,19 +67,24 @@ const classNames = createStyles({
   root: {
     display: 'flex',
     flexDirection: 'column',
+    justifyContent: 'center',
+  },
+  wrapper: ({ root }) => ({
+    display: 'flex',
+    flexDirection: 'column',
     gap: calc.add(px(space(1)), DENSITY),
 
     selectors: {
-      [modifierSelector<IModifier>('horizontal')]: {
+      [modifierSelector<IModifier>('horizontal', root)]: {
         flexDirection: 'row',
         alignItems: 'center',
         gap: px(space(3)),
       },
-      [modifierSelector<IModifier>('disabled')]: {
+      [modifierSelector<IModifier>('disabled', root)]: {
         pointerEvents: 'none',
       },
     },
-  },
+  }),
   content: {
     flexGrow: 0,
     flexShrink: 0,

@@ -6,7 +6,6 @@ import type { IOmit } from '~/utils';
 import type { IAppLayoutProps } from './AppLayout.types';
 import { Checkbox } from '~/components/Checkbox';
 import { Flex } from '~/components/Flex';
-import { Labeled } from '~/components/Labeled';
 import { ScreenFrame } from '~/components/ScreenFrame';
 import { AppLayout } from './AppLayout';
 import { Body } from './AppLayout.stories/Body';
@@ -52,46 +51,41 @@ const AppLayoutFrame: React.FC<IAppLayoutFrameProps> = (props) => {
   return (
     <Flex direction="column" gap="$2">
       <Flex direction="row" gap="$6">
-        <Labeled label="Top bar" labelPosition="right">
-          <Checkbox
-            checked={hasTopBar}
-            onChange={(value) => {
-              setHasTopBar(!!value);
-            }}
-          />
-        </Labeled>
-        <Labeled label="Navigation rail" labelPosition="right">
-          <Checkbox
-            checked={hasNavigationRail}
-            onChange={(value) => {
-              setHasNavigationRail(!!value);
-            }}
-          />
-        </Labeled>
-        <Labeled label="Navigation drawer" labelPosition="right">
-          <Checkbox
-            checked={hasNavigationDrawer}
-            onChange={(value) => {
-              setHasNavigationDrawer(!!value);
-            }}
-          />
-        </Labeled>
-        <Labeled label="Footer" labelPosition="right">
-          <Checkbox
-            checked={hasFooter}
-            onChange={(value) => {
-              setHasFooter(!!value);
-            }}
-          />
-        </Labeled>
-        <Labeled label="Dividers" labelPosition="right">
-          <Checkbox
-            checked={hasDividers}
-            onChange={(value) => {
-              setHasDividers(!!value);
-            }}
-          />
-        </Labeled>
+        <Checkbox
+          label="Top bar"
+          checked={hasTopBar}
+          onChange={(value) => {
+            setHasTopBar(!!value);
+          }}
+        />
+        <Checkbox
+          label="Navigation rail"
+          checked={hasNavigationRail}
+          onChange={(value) => {
+            setHasNavigationRail(!!value);
+          }}
+        />
+        <Checkbox
+          label="Navigation drawer"
+          checked={hasNavigationDrawer}
+          onChange={(value) => {
+            setHasNavigationDrawer(!!value);
+          }}
+        />
+        <Checkbox
+          label="Footer"
+          checked={hasFooter}
+          onChange={(value) => {
+            setHasFooter(!!value);
+          }}
+        />
+        <Checkbox
+          label="Dividers"
+          checked={hasDividers}
+          onChange={(value) => {
+            setHasDividers(!!value);
+          }}
+        />
       </Flex>
 
       <ScreenFrame>

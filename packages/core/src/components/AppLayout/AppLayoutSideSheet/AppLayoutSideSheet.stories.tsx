@@ -16,7 +16,6 @@ import type { IAppLayoutSideSheetProps } from './AppLayoutSideSheet.types';
 import { Button } from '~/components/Button';
 import { Checkbox } from '~/components/Checkbox';
 import { Flex } from '~/components/Flex';
-import { Labeled } from '~/components/Labeled';
 import { Placeholder } from '~/components/Placeholder';
 import { ScreenFrame } from '~/components/ScreenFrame';
 import { useToggle } from '~/hooks/useToggle';
@@ -82,33 +81,32 @@ const AppLayoutSideSheetScreenFrame: React.FC<IAppLayoutSideSheetProps> = (
         >
           {opened ? 'Close' : 'Open'}
         </Button>
-        <Labeled label="Drawer" labelPosition="right">
-          <Checkbox
-            checked={isDrawer}
-            onChange={(value) => {
-              setDrawer(!!value);
-            }}
-          />
-        </Labeled>
-        <Labeled label="Modal" labelPosition="right" disabled={!isDrawer}>
-          <Checkbox
-            checked={isModal}
-            onChange={(value) => {
-              setModal(!!value);
-            }}
-          />
-        </Labeled>
-        <Labeled label="Detached" labelPosition="right" disabled={!isDrawer}>
-          <Checkbox
-            checked={detached}
-            onChange={(value) => {
-              setDetached(!!value);
-            }}
-          />
-        </Labeled>
+        <Checkbox
+          label="Drawer"
+          checked={isDrawer}
+          onChange={(value) => {
+            setDrawer(!!value);
+          }}
+        />
+        <Checkbox
+          label="Modal"
+          checked={isModal}
+          onChange={(value) => {
+            setModal(!!value);
+          }}
+          disabled={!isDrawer}
+        />
+        <Checkbox
+          label="Detached"
+          checked={detached}
+          onChange={(value) => {
+            setDetached(!!value);
+          }}
+          disabled={!isDrawer}
+        />
       </Flex>
 
-      <ScreenFrame w="100%" h="$96">
+      <ScreenFrame defaultHeight={350}>
         <Flex
           direction={other.side === 'right' ? 'row' : 'row-reverse'}
           align="start"

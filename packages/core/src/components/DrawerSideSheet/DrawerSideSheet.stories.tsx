@@ -5,7 +5,6 @@ import type { IDrawerSideSheetProps } from './DrawerSideSheet.types';
 import { Button } from '~/components/Button';
 import { Checkbox } from '~/components/Checkbox';
 import { Flex } from '~/components/Flex';
-import { Labeled } from '~/components/Labeled';
 import { Placeholder } from '~/components/Placeholder';
 import { ScreenFrame } from '~/components/ScreenFrame';
 import { useToggle } from '~/hooks/useToggle';
@@ -66,25 +65,23 @@ const DrawerSideSheetScreenFrame: React.FC<IDrawerSideSheetProps> = (props) => {
         >
           {opened ? 'Close' : 'Open'}
         </Button>
-        <Labeled label="Modal" labelPosition="right">
-          <Checkbox
-            checked={isModal}
-            onChange={(value) => {
-              setModal(!!value);
-            }}
-          />
-        </Labeled>
-        <Labeled label="Detached" labelPosition="right">
-          <Checkbox
-            checked={detached}
-            onChange={(value) => {
-              setDetached(!!value);
-            }}
-          />
-        </Labeled>
+        <Checkbox
+          label="Modal"
+          checked={isModal}
+          onChange={(value) => {
+            setModal(!!value);
+          }}
+        />
+        <Checkbox
+          label="Detached"
+          checked={detached}
+          onChange={(value) => {
+            setDetached(!!value);
+          }}
+        />
       </Flex>
 
-      <ScreenFrame w="100%" h="$96">
+      <ScreenFrame defaultHeight={350}>
         <Flex
           direction={other.side === 'right' ? 'row' : 'row-reverse'}
           align="start"

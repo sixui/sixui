@@ -76,7 +76,7 @@ const classNames = createStyles({
       },
       [modifierSelector<IModifier>('position^=top-', root)]: {
         vars: {
-          top: localVars.offset.y,
+          top: tokens.offset.y,
           [localVars.translate.y]: '-50%',
           [localVars.transformOrigin.y]: '0%',
         },
@@ -90,7 +90,7 @@ const classNames = createStyles({
       },
       [modifierSelector<IModifier>('position^=bottom-', root)]: {
         vars: {
-          bottom: localVars.offset.y,
+          bottom: tokens.offset.y,
           [localVars.translate.y]: '50%',
           [localVars.transformOrigin.y]: '100%',
         },

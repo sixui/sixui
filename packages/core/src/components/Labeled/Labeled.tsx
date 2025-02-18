@@ -129,48 +129,50 @@ export const Labeled = componentFactory<ILabeledFactory>(
 
     return (
       <Box {...getStyles('root')} ref={forwardedRef} {...other}>
-        {hasLeading && (
-          <div {...getStyles('rows')}>
-            {isLabelAtStart && renderLabelAndAction()}
-            {supportingTextPosition === 'start' && renderSupportingText()}
-            {errorTextPosition === 'start' && renderErrorText()}
-          </div>
-        )}
+        <div {...getStyles('wrapper')}>
+          {hasLeading && (
+            <div {...getStyles('rows')}>
+              {isLabelAtStart && renderLabelAndAction()}
+              {supportingTextPosition === 'start' && renderSupportingText()}
+              {errorTextPosition === 'start' && renderErrorText()}
+            </div>
+          )}
 
-        {children && (
-          <div {...getStyles('content')}>
-            <div {...getStyles('control')}>
-              {isFunction(children) ? (
-                children({
-                  id,
-                  required,
-                  disabled,
-                  readOnly,
-                  loading,
-                })
-              ) : (
-                <LabeledContextProvider value={labeledContextValue}>
-                  {children}
-                </LabeledContextProvider>
+          {children && (
+            <div {...getStyles('content')}>
+              <div {...getStyles('control')}>
+                {isFunction(children) ? (
+                  children({
+                    id,
+                    required,
+                    disabled,
+                    readOnly,
+                    loading,
+                  })
+                ) : (
+                  <LabeledContextProvider value={labeledContextValue}>
+                    {children}
+                  </LabeledContextProvider>
+                )}
+              </div>
+
+              {hasTrailing && isLabelAtStart && (
+                <div {...getStyles('rows')}>
+                  {supportingTextPosition === 'end' && renderSupportingText()}
+                  {errorTextPosition === 'end' && renderErrorText()}
+                </div>
               )}
             </div>
+          )}
 
-            {hasTrailing && isLabelAtStart && (
-              <div {...getStyles('rows')}>
-                {supportingTextPosition === 'end' && renderSupportingText()}
-                {errorTextPosition === 'end' && renderErrorText()}
-              </div>
-            )}
-          </div>
-        )}
-
-        {hasTrailing && !isLabelAtStart && (
-          <div {...getStyles('rows')}>
-            {renderLabelAndAction()}
-            {supportingTextPosition === 'end' && renderSupportingText()}
-            {errorTextPosition === 'end' && renderErrorText()}
-          </div>
-        )}
+          {hasTrailing && !isLabelAtStart && (
+            <div {...getStyles('rows')}>
+              {renderLabelAndAction()}
+              {supportingTextPosition === 'end' && renderSupportingText()}
+              {errorTextPosition === 'end' && renderErrorText()}
+            </div>
+          )}
+        </div>
       </Box>
     );
   },

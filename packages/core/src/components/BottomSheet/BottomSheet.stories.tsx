@@ -7,7 +7,6 @@ import { Button } from '~/components/Button';
 import { Checkbox } from '~/components/Checkbox';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Flex } from '~/components/Flex';
-import { Labeled } from '~/components/Labeled';
 import { useOverlays } from '~/components/Overlays';
 import { Placeholder } from '~/components/Placeholder';
 import { ScreenFrame } from '~/components/ScreenFrame';
@@ -59,33 +58,30 @@ const BottomSheetScreenFrame: React.FC<IBottomSheetProps> = (props) => {
         >
           {opened ? 'Close' : 'Open'}
         </Button>
-        <Labeled label="Modal" labelPosition="right">
-          <Checkbox
-            checked={isModal}
-            onChange={(value) => {
-              setModal(!!value);
-            }}
-          />
-        </Labeled>
-        <Labeled label="Detached" labelPosition="right">
-          <Checkbox
-            checked={detached}
-            onChange={(value) => {
-              setDetached(!!value);
-            }}
-          />
-        </Labeled>
-        <Labeled label="Full height" labelPosition="right">
-          <Checkbox
-            checked={isFullHeight}
-            onChange={(value) => {
-              setFullHeight(!!value);
-            }}
-          />
-        </Labeled>
+        <Checkbox
+          label="Modal"
+          checked={isModal}
+          onChange={(value) => {
+            setModal(!!value);
+          }}
+        />
+        <Checkbox
+          label="Detached"
+          checked={detached}
+          onChange={(value) => {
+            setDetached(!!value);
+          }}
+        />
+        <Checkbox
+          label="Full height"
+          checked={isFullHeight}
+          onChange={(value) => {
+            setFullHeight(!!value);
+          }}
+        />
       </Flex>
 
-      <ScreenFrame w="100%" h="$96">
+      <ScreenFrame defaultHeight={350}>
         <Flex h="100%">
           <Placeholder label="Page" grow={1} expanded diagonals />
           <BottomSheet

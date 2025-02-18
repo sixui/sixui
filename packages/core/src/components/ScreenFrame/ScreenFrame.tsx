@@ -19,8 +19,8 @@ export const ScreenFrame = componentFactory<IScreenFrameFactory>(
       children,
       minWidth = 375,
       minHeight = 375 * 0.65,
-      defaultWidth = 1400,
-      defaultHeight = 1400 * 0.65,
+      defaultWidth = 1300,
+      defaultHeight = 1300 * 0.65,
       bounds = 'window',
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
