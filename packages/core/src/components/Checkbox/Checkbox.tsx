@@ -1,14 +1,13 @@
 import type { ICheckboxThemeFactory } from './Checkbox.css';
 import type { ICheckboxFactory } from './Checkbox.types';
-import { Box } from '~/components/Box';
-import { FocusRing } from '~/components/FocusRing';
-import { StateLayer, useStateLayer } from '~/components/StateLayer';
+import { extractBoxProps } from '~/components/Box/extractBoxProps';
+import { Labeled } from '~/components/Labeled';
 import { useComponentTheme, useProps } from '~/components/Theme';
-import { useCheckbox } from '~/hooks/useCheckbox';
-import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
+import { mergeClassNames } from '~/utils/css';
 import { COMPONENT_NAME } from './Checkbox.constants';
 import { CheckboxCard } from './CheckboxCard';
+import { CheckboxControl } from './CheckboxControl';
 import { CheckboxGroup } from './CheckboxGroup';
 import { CheckboxIndicator } from './CheckboxIndicator';
 import { checkboxTheme } from './Checkbox.css';
@@ -24,53 +23,16 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
       styles,
       style,
       variant,
-      interactions,
-      checked: checkedProp,
-      defaultChecked,
-      indeterminate: indeterminateProp,
-      defaultIndeterminate,
-      value,
-      onChange,
-      loading: loadingProp,
-      disabled: disabledProp,
-      readOnly: readOnlyProp,
-      required: requiredProp,
-      id: idProp,
-      rootRef,
+      label,
+      supportingText,
+      hasError,
+      errorText,
+      requiredSign,
+      labelPosition = 'right',
+      labeledProps,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
-
-    const {
-      loading,
-      disabled,
-      readOnly,
-      required,
-      checked,
-      indeterminate,
-      id,
-      handleChange,
-    } = useCheckbox({
-      componentName: COMPONENT_NAME,
-      checked: checkedProp,
-      defaultChecked,
-      indeterminate: indeterminateProp,
-      defaultIndeterminate,
-      value,
-      onChange,
-      loading: loadingProp,
-      disabled: disabledProp,
-      readOnly: readOnlyProp,
-      required: requiredProp,
-      id: idProp,
-    });
-
-    const disabledOrReadOnly = disabled || readOnly;
-
-    const stateLayer = useStateLayer<HTMLInputElement>({
-      baseState: interactions,
-      disabled: disabledOrReadOnly,
-    });
-    const inputHandleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
+    const { boxProps, other: forwardedProps } = extractBoxProps(other);
 
     const { getStyles } = useComponentTheme<ICheckboxThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -80,57 +42,37 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
       style,
       variant,
       theme: checkboxTheme,
-      modifiers: {
-        disabled: disabledOrReadOnly,
-      },
     });
 
     return (
-      <Box
+      <Labeled
         {...getStyles('root')}
-        interactions={stateLayer.interactionsContext.state}
-        ref={rootRef}
-        {...other}
+        classNames={mergeClassNames(classNames, {
+          content: getStyles('content').className,
+        })}
+        label={label}
+        supportingText={supportingText}
+        hasError={hasError}
+        errorText={errorText}
+        requiredSign={requiredSign}
+        labelPosition={labelPosition}
+        loading={other.loading}
+        id={other.id}
+        required={other.required}
+        disabled={other.disabled}
+        readOnly={other.readOnly}
+        {...boxProps}
+        {...labeledProps}
       >
-        {!disabled && (
-          <>
-            <FocusRing
-              {...getStyles('focusRing')}
-              interactions={stateLayer.interactionsContext.state}
-            />
-            <StateLayer {...getStyles('stateLayer')} context={stateLayer} />
-          </>
-        )}
-
-        <CheckboxIndicator
-          checked={checked}
-          indeterminate={indeterminate}
-          loading={loading}
-          disabled={disabledOrReadOnly}
-          interactions={stateLayer.interactionsContext.state}
-        />
-
-        <input
-          type="checkbox"
-          checked={checked}
-          onChange={handleChange}
-          id={id}
-          required={required}
-          disabled={disabled}
-          readOnly={readOnly}
-          value={value}
-          ref={inputHandleRef}
-          aria-checked={indeterminate ? 'mixed' : checked}
-          {...getStyles('input')}
-          {...stateLayer.interactionsContext.triggerProps}
-        />
-      </Box>
+        <CheckboxControl ref={forwardedRef} {...forwardedProps} />
+      </Labeled>
     );
   },
 );
 
 Checkbox.theme = checkboxTheme;
 Checkbox.displayName = `@sixui/core/${COMPONENT_NAME}`;
-Checkbox.Group = CheckboxGroup;
+Checkbox.Control = CheckboxControl;
 Checkbox.Indicator = CheckboxIndicator;
+Checkbox.Group = CheckboxGroup;
 Checkbox.Card = CheckboxCard;

@@ -1,24 +1,22 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
-import type { IRadioProps } from './Radio.types';
+import type { IRadioControlProps } from './RadioControl.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
-import { Radio } from './Radio';
+import { RadioControl } from './RadioControl';
 
 const meta = {
-  component: Radio,
-} satisfies Meta<typeof Radio>;
+  component: RadioControl,
+} satisfies Meta<typeof RadioControl>;
 
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   onChange: (...args) => sbHandleEvent('onChange', args),
-  label: 'Dark mode',
-  supportingText: 'Enhance readability at night',
-} satisfies Partial<IRadioProps>;
+} satisfies Partial<IRadioControlProps>;
 
-const states: Array<IComponentPresentation<IRadioProps>> = [
+const states: Array<IComponentPresentation<IRadioControlProps>> = [
   { legend: 'Normal' },
   {
     legend: 'Focused',
@@ -36,11 +34,11 @@ const states: Array<IComponentPresentation<IRadioProps>> = [
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const RadioShowcase = componentShowcaseFactory(Radio);
+const RadioControlShowcase = componentShowcaseFactory(RadioControl);
 
 export const Basic: IStory = {
   render: (props) => (
-    <RadioShowcase
+    <RadioControlShowcase
       props={props}
       cols={[{ props: { checked: false } }, { props: { checked: true } }]}
     />
@@ -53,7 +51,7 @@ export const Basic: IStory = {
 
 export const Scales: IStory = {
   render: (props) => (
-    <RadioShowcase
+    <RadioControlShowcase
       props={props}
       cols={[
         { legend: 'Extra small', props: { scale: 'xs' } },
@@ -72,7 +70,7 @@ export const Scales: IStory = {
 
 export const Densities: IStory = {
   render: (props) => (
-    <RadioShowcase
+    <RadioControlShowcase
       props={props}
       cols={[
         { legend: '-1', props: { density: -1 } },
@@ -88,7 +86,7 @@ export const Densities: IStory = {
 
 export const Configurations: IStory = {
   render: (props) => (
-    <RadioShowcase
+    <RadioControlShowcase
       props={props}
       cols={states}
       rows={[

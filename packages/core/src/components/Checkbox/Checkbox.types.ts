@@ -1,14 +1,25 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IComponentThemeProps } from '~/components/Theme';
-import type { IUseCheckboxProps } from '~/hooks/useCheckbox';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IHorizontalSide } from '~/utils/types';
+import type { ILabeledOwnProps } from '../Labeled';
 import type { checkboxTheme, ICheckboxThemeFactory } from './Checkbox.css';
 import type { CheckboxCard } from './CheckboxCard';
+import type {
+  CheckboxControl,
+  ICheckboxControlOwnProps,
+} from './CheckboxControl';
 import type { CheckboxGroup } from './CheckboxGroup';
 import type { CheckboxIndicator } from './CheckboxIndicator';
 
-export interface ICheckboxOwnProps extends IUseCheckboxProps {
-  rootRef?: React.Ref<HTMLDivElement>;
+export interface ICheckboxOwnProps
+  extends ICheckboxControlOwnProps,
+    Pick<
+      ILabeledOwnProps,
+      'label' | 'supportingText' | 'hasError' | 'errorText' | 'requiredSign'
+    > {
+  labelPosition?: IHorizontalSide;
+  labeledProps?: ILabeledOwnProps;
 }
 
 export interface ICheckboxProps
@@ -21,8 +32,9 @@ export type ICheckboxFactory = IComponentFactory<{
   ref: HTMLInputElement;
   theme: typeof checkboxTheme;
   staticComponents: {
-    Group: typeof CheckboxGroup;
+    Control: typeof CheckboxControl;
     Indicator: typeof CheckboxIndicator;
+    Group: typeof CheckboxGroup;
     Card: typeof CheckboxCard;
   };
 }>;

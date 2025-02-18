@@ -15,7 +15,7 @@ export type ILabeledRenderProps = {
 };
 
 export interface ILabeledOwnProps extends ILabeledContextValue {
-  label: React.ReactNode;
+  label?: React.ReactNode;
   trailingAction?: React.ReactNode;
   supportingText?: React.ReactNode;
   children?:

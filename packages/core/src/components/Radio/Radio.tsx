@@ -1,20 +1,19 @@
 import type { IRadioThemeFactory } from './Radio.css';
 import type { IRadioFactory } from './Radio.types';
-import { Box } from '~/components/Box';
-import { FocusRing } from '~/components/FocusRing';
-import { StateLayer, useStateLayer } from '~/components/StateLayer';
+import { extractBoxProps } from '~/components/Box/extractBoxProps';
+import { Labeled } from '~/components/Labeled';
 import { useComponentTheme, useProps } from '~/components/Theme';
-import { useMergeRefs } from '~/hooks/useMergeRefs';
-import { useRadio } from '~/hooks/useRadio';
 import { componentFactory } from '~/utils/component/componentFactory';
+import { mergeClassNames } from '~/utils/css';
 import { COMPONENT_NAME } from './Radio.constants';
 import { RadioCard } from './RadioCard';
+import { RadioControl } from './RadioControl';
 import { RadioGroup } from './RadioGroup';
 import { RadioIndicator } from './RadioIndicator';
-import { RadioTheme } from './Radio.css';
+import { radioTheme } from './Radio.css';
 
 /**
- * @see https://m3.material.io/components/radio-button/overview
+ * @see https://m3.material.io/components/radio/overview
  */
 export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
   const {
@@ -23,48 +22,16 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
     styles,
     style,
     variant,
-    required: requiredProp,
-    disabled: disabledProp,
-    interactions,
-    checked: checkedProp,
-    onChange,
-    readOnly: readOnlyProp,
-    loading: loadingProp,
-    name: nameProp,
-    value,
-    id: idProp,
-    rootRef,
+    label,
+    supportingText,
+    hasError,
+    errorText,
+    requiredSign,
+    labelPosition = 'right',
+    labeledProps,
     ...other
   } = useProps({ componentName: COMPONENT_NAME, props });
-
-  const {
-    loading,
-    disabled,
-    readOnly,
-    required,
-    checked,
-    id,
-    handleChange,
-    name,
-  } = useRadio({
-    checked: checkedProp,
-    value,
-    onChange,
-    loading: loadingProp,
-    disabled: disabledProp,
-    readOnly: readOnlyProp,
-    required: requiredProp,
-    id: idProp,
-    name: nameProp,
-  });
-
-  const disabledOrReadOnly = disabled || readOnly;
-
-  const stateLayer = useStateLayer<HTMLInputElement>({
-    baseState: interactions,
-    disabled: disabledOrReadOnly,
-  });
-  const inputHandleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
+  const { boxProps, other: forwardedProps } = extractBoxProps(other);
 
   const { getStyles } = useComponentTheme<IRadioThemeFactory>({
     componentName: COMPONENT_NAME,
@@ -73,58 +40,37 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
     styles,
     style,
     variant,
-    theme: RadioTheme,
-    modifiers: {
-      disabled: disabledOrReadOnly,
-      loading,
-      checked,
-    },
+    theme: radioTheme,
   });
 
   return (
-    <Box
+    <Labeled
       {...getStyles('root')}
-      interactions={stateLayer.interactionsContext.state}
-      ref={rootRef}
-      {...other}
+      classNames={mergeClassNames(classNames, {
+        content: getStyles('content').className,
+      })}
+      label={label}
+      supportingText={supportingText}
+      hasError={hasError}
+      errorText={errorText}
+      requiredSign={requiredSign}
+      labelPosition={labelPosition}
+      loading={other.loading}
+      id={other.id}
+      required={other.required}
+      disabled={other.disabled}
+      readOnly={other.readOnly}
+      {...boxProps}
+      {...labeledProps}
     >
-      {!disabledOrReadOnly && (
-        <>
-          <FocusRing
-            {...getStyles('focusRing')}
-            interactions={stateLayer.interactionsContext.state}
-          />
-          <StateLayer {...getStyles('stateLayer')} context={stateLayer} />
-        </>
-      )}
-
-      <RadioIndicator
-        checked={checked}
-        loading={loading}
-        disabled={disabledOrReadOnly}
-        interactions={stateLayer.interactionsContext.state}
-      />
-
-      <input
-        name={name}
-        type="radio"
-        checked={checked}
-        onChange={handleChange}
-        value={value}
-        id={id}
-        required={required}
-        disabled={disabled}
-        readOnly={readOnly}
-        ref={inputHandleRef}
-        {...getStyles('input')}
-        {...stateLayer.interactionsContext.triggerProps}
-      />
-    </Box>
+      <RadioControl ref={forwardedRef} {...forwardedProps} />
+    </Labeled>
   );
 });
 
-Radio.theme = RadioTheme;
+Radio.theme = radioTheme;
 Radio.displayName = `@sixui/core/${COMPONENT_NAME}`;
-Radio.Group = RadioGroup;
+Radio.Control = RadioControl;
 Radio.Indicator = RadioIndicator;
+Radio.Group = RadioGroup;
 Radio.Card = RadioCard;

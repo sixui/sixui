@@ -10,24 +10,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IOmit } from '~/utils/types';
-import type { ISwitchProps } from './Switch.types';
+import type { ISwitchControlProps } from './SwitchControl.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
-import { Switch } from './Switch';
+import { SwitchControl } from './SwitchControl';
 
 const meta = {
-  component: Switch,
-} satisfies Meta<typeof Switch>;
+  component: SwitchControl,
+} satisfies Meta<typeof SwitchControl>;
 
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   onChange: (...args) => sbHandleEvent('onChange', args, 1000),
-  label: 'Dark mode',
-  supportingText: 'Enhance readability at night',
-} satisfies Partial<ISwitchProps>;
+} satisfies Partial<ISwitchControlProps>;
 
-const states: Array<IComponentPresentation<ISwitchProps>> = [
+const states: Array<IComponentPresentation<ISwitchControlProps>> = [
   { legend: 'Normal' },
   { legend: 'Focused', props: { interactions: { focused: true } } },
   { legend: 'Hovered', props: { interactions: { hovered: true } } },
@@ -36,7 +34,7 @@ const states: Array<IComponentPresentation<ISwitchProps>> = [
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const changeActions: Array<IComponentPresentation<ISwitchProps>> = [
+const changeActions: Array<IComponentPresentation<ISwitchControlProps>> = [
   {
     legend: 'Immediate',
     props: {
@@ -51,11 +49,11 @@ const changeActions: Array<IComponentPresentation<ISwitchProps>> = [
   },
 ];
 
-const SwitchShowcase = componentShowcaseFactory(Switch);
+const SwitchControlShowcase = componentShowcaseFactory(SwitchControl);
 
 export const Uncontrolled: IStory = {
   render: (props) => (
-    <SwitchShowcase
+    <SwitchControlShowcase
       props={props}
       cols={[
         { legend: 'Basic' },
@@ -80,11 +78,13 @@ export const Uncontrolled: IStory = {
   args: defaultArgs,
 };
 
-const ControlledSwitch: React.FC<IOmit<ISwitchProps, 'checked'>> = (props) => {
+const ControlledSwitchControl: React.FC<
+  IOmit<ISwitchControlProps, 'checked'>
+> = (props) => {
   const { onChange, ...other } = props;
   const [checked, setChecked] = useState(props.defaultChecked ?? false);
 
-  const handleChange: ISwitchProps['onChange'] = onChange
+  const handleChange: ISwitchControlProps['onChange'] = onChange
     ? (value) => {
         const checked = value !== undefined;
 
@@ -96,14 +96,16 @@ const ControlledSwitch: React.FC<IOmit<ISwitchProps, 'checked'>> = (props) => {
       }
     : undefined;
 
-  return <Switch {...other} checked={checked} onChange={handleChange} />;
+  return <SwitchControl {...other} checked={checked} onChange={handleChange} />;
 };
 
-const ControlledSwitchShowcase = componentShowcaseFactory(ControlledSwitch);
+const ControlledSwitchControlShowcase = componentShowcaseFactory(
+  ControlledSwitchControl,
+);
 
 export const Controlled: IStory = {
   render: (props) => (
-    <ControlledSwitchShowcase
+    <ControlledSwitchControlShowcase
       props={props}
       cols={[
         { legend: 'Basic' },
@@ -130,7 +132,7 @@ export const Controlled: IStory = {
 
 export const Scales: IStory = {
   render: (props) => (
-    <SwitchShowcase
+    <SwitchControlShowcase
       props={props}
       cols={[
         { legend: 'Extra small', props: { scale: 'xs' } },
@@ -146,7 +148,7 @@ export const Scales: IStory = {
 
 export const Densities: IStory = {
   render: (props) => (
-    <SwitchShowcase
+    <SwitchControlShowcase
       props={props}
       cols={[
         { legend: '-2', props: { density: -2 } },
@@ -160,7 +162,7 @@ export const Densities: IStory = {
 
 export const Configurations: IStory = {
   render: (props) => (
-    <SwitchShowcase
+    <SwitchControlShowcase
       props={props}
       cols={states}
       rows={[

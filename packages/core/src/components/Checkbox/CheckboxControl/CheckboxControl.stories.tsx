@@ -3,24 +3,22 @@ import { useState } from 'react';
 
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IOmit } from '~/utils/types';
-import type { ICheckboxProps } from './Checkbox.types';
+import type { ICheckboxControlProps } from './CheckboxControl.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
-import { Checkbox } from './Checkbox';
+import { CheckboxControl } from './CheckboxControl';
 
 const meta = {
-  component: Checkbox,
-} satisfies Meta<typeof Checkbox>;
+  component: CheckboxControl,
+} satisfies Meta<typeof CheckboxControl>;
 
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   onChange: (...args) => sbHandleEvent('onChange', args),
-  label: 'Dark mode',
-  supportingText: 'Enhance readability at night',
-} satisfies Partial<ICheckboxProps>;
+} satisfies Partial<ICheckboxControlProps>;
 
-const states: Array<IComponentPresentation<ICheckboxProps>> = [
+const states: Array<IComponentPresentation<ICheckboxControlProps>> = [
   { legend: 'Normal' },
   { legend: 'Focused', props: { interactions: { focused: true } } },
   { legend: 'Hovered', props: { interactions: { hovered: true } } },
@@ -29,7 +27,7 @@ const states: Array<IComponentPresentation<ICheckboxProps>> = [
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const changeActions: Array<IComponentPresentation<ICheckboxProps>> = [
+const changeActions: Array<IComponentPresentation<ICheckboxControlProps>> = [
   {
     legend: 'Immediate',
     props: {
@@ -44,11 +42,11 @@ const changeActions: Array<IComponentPresentation<ICheckboxProps>> = [
   },
 ];
 
-const CheckboxShowcase = componentShowcaseFactory(Checkbox);
+const CheckboxControlShowcase = componentShowcaseFactory(CheckboxControl);
 
 export const Uncontrolled: IStory = {
   render: (props) => (
-    <CheckboxShowcase
+    <CheckboxControlShowcase
       props={props}
       cols={[
         {},
@@ -61,16 +59,16 @@ export const Uncontrolled: IStory = {
   args: defaultArgs,
 };
 
-const ControlledCheckbox: React.FC<IOmit<ICheckboxProps, 'checked'>> = (
-  props,
-) => {
+const ControlledCheckboxControl: React.FC<
+  IOmit<ICheckboxControlProps, 'checked'>
+> = (props) => {
   const { onChange, defaultChecked, defaultIndeterminate, ...other } = props;
   const [checked, setChecked] = useState(defaultChecked ?? false);
   const [indeterminate, setIndeterminate] = useState(
     defaultIndeterminate ?? false,
   );
 
-  const handleChange: ICheckboxProps['onChange'] = onChange
+  const handleChange: ICheckboxControlProps['onChange'] = onChange
     ? (value) => {
         const checked = value !== undefined;
 
@@ -84,7 +82,7 @@ const ControlledCheckbox: React.FC<IOmit<ICheckboxProps, 'checked'>> = (
     : undefined;
 
   return (
-    <Checkbox
+    <CheckboxControl
       {...other}
       checked={checked}
       onChange={handleChange}
@@ -93,11 +91,13 @@ const ControlledCheckbox: React.FC<IOmit<ICheckboxProps, 'checked'>> = (
   );
 };
 
-const ControlledCheckboxShowcase = componentShowcaseFactory(ControlledCheckbox);
+const ControlledCheckboxControlShowcase = componentShowcaseFactory(
+  ControlledCheckboxControl,
+);
 
 export const Controlled: IStory = {
   render: (props) => (
-    <ControlledCheckboxShowcase
+    <ControlledCheckboxControlShowcase
       props={props}
       cols={[
         {},
@@ -112,7 +112,7 @@ export const Controlled: IStory = {
 
 export const Scales: IStory = {
   render: (props) => (
-    <CheckboxShowcase
+    <CheckboxControlShowcase
       props={props}
       cols={[
         { legend: 'Extra small', props: { scale: 'xs' } },
@@ -128,7 +128,7 @@ export const Scales: IStory = {
 
 export const Densities: IStory = {
   render: (props) => (
-    <CheckboxShowcase
+    <CheckboxControlShowcase
       props={props}
       cols={[
         { legend: '-1', props: { density: -1 } },
@@ -141,7 +141,7 @@ export const Densities: IStory = {
 
 export const Configurations: IStory = {
   render: (props) => (
-    <CheckboxShowcase
+    <CheckboxControlShowcase
       props={props}
       cols={states}
       rows={[

@@ -1,15 +1,20 @@
 import type { IBoxProps } from '~/components/Box';
-import type { IPaperBaseOwnProps } from '~/components/PaperBase';
 import type { IComponentThemeProps } from '~/components/Theme';
-import type { IUseSwitchProps } from '~/hooks/useSwitch';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { basicTemplateTheme, ISwitchThemeFactory } from './Switch.css';
+import type { IHorizontalSide } from '~/utils/types';
+import type { ILabeledOwnProps } from '../Labeled';
+import type { ISwitchThemeFactory, switchTheme } from './Switch.css';
+import type { ISwitchControlOwnProps, SwitchControl } from './SwitchControl';
 import type { SwitchIndicator } from './SwitchIndicator';
 
-export interface ISwitchOwnProps extends IUseSwitchProps, IPaperBaseOwnProps {
-  checkedIcon?: React.ReactNode | true;
-  uncheckedIcon?: React.ReactNode | true;
-  rootRef?: React.Ref<HTMLDivElement>;
+export interface ISwitchOwnProps
+  extends ISwitchControlOwnProps,
+    Pick<
+      ILabeledOwnProps,
+      'label' | 'supportingText' | 'hasError' | 'errorText' | 'requiredSign'
+    > {
+  labelPosition?: IHorizontalSide;
+  labeledProps?: ILabeledOwnProps;
 }
 
 export interface ISwitchProps
@@ -20,8 +25,9 @@ export interface ISwitchProps
 export type ISwitchFactory = IComponentFactory<{
   props: ISwitchProps;
   ref: HTMLInputElement;
-  theme: typeof basicTemplateTheme;
+  theme: typeof switchTheme;
   staticComponents: {
+    Control: typeof SwitchControl;
     Indicator: typeof SwitchIndicator;
   };
 }>;
