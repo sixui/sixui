@@ -52,8 +52,8 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
     gap: px(space(6)),
   },
   content: {
-    topSpace: px(space(4)),
-    bottomSpace: px(space(4)),
+    topSpace: px(space(6)),
+    bottomSpace: px(space(6)),
   },
 });
 

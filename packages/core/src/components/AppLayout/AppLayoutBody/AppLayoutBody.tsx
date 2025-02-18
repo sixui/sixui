@@ -3,6 +3,7 @@ import type { IAppLayoutBodyFactory } from './AppLayoutBody.types';
 import { Paper } from '~/components/Paper';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
+import { useAppLayoutContext } from '../AppLayout.context';
 import { COMPONENT_NAME } from './AppLayoutBody.constants';
 import { appLayoutBodyTheme } from './AppLayoutBody.css';
 
@@ -16,8 +17,20 @@ export const AppLayoutBody = componentFactory<IAppLayoutBodyFactory>(
       variant,
       children,
       orientation = 'horizontal',
+      detached,
+      fixedHeight,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
+
+    const appLayoutContext = useAppLayoutContext();
+    const hasTopBar = appLayoutContext?.components.includes('topBar');
+    const hasSideNavigation =
+      (appLayoutContext?.navigationMode === 'standard' &&
+        appLayoutContext.components.includes('navigationDrawer') &&
+        appLayoutContext.navigationDrawer?.state?.opened) ||
+      (appLayoutContext?.navigationMode === 'rail' &&
+        appLayoutContext.components.includes('navigationRail'));
+    const hasSideSheet = appLayoutContext?.sideSheet?.state?.opened;
 
     const { getStyles } = useComponentTheme<IAppLayoutBodyThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -29,12 +42,17 @@ export const AppLayoutBody = componentFactory<IAppLayoutBodyFactory>(
       theme: appLayoutBodyTheme,
       modifiers: {
         orientation,
+        detached,
+        'with-top-bar': hasTopBar,
+        'with-side-navigation': hasSideNavigation,
+        'with-side-sheet': hasSideSheet,
+        'fixed-height': fixedHeight,
       },
     });
 
     return (
       <Paper as="main" {...getStyles('root')} ref={forwardedRef} {...other}>
-        {children}
+        <div {...getStyles('inner')}>{children}</div>
       </Paper>
     );
   },

@@ -54,6 +54,7 @@ export const AppLayoutListDetailBody =
       <AppLayoutBody
         orientation={canonicalLayout.orientation}
         ref={forwardedRef}
+        fixedHeight
         {...getStyles('root')}
         {...other}
       >

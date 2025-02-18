@@ -1,35 +1,21 @@
-import { calc } from '@vanilla-extract/css-utils';
-
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
-import { px, space } from '~/utils/css';
 import { createStyles } from '~/utils/css/createStyles';
-import { appLayoutTheme } from '../AppLayout.css';
 import { COMPONENT_NAME } from './AppLayoutListDetailBody.constants';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME);
 
 const classNames = createStyles({
   listPane: {
-    height: calc.subtract(
-      '100vh',
-      appLayoutTheme.tokens.topBar.height,
-      calc.multiply(px(space(6)), 2),
-    ),
+    height: '100%',
     overflow: 'auto',
   },
   detailPane: {
-    height: calc.subtract(
-      '100vh',
-      appLayoutTheme.tokens.topBar.height,
-      calc.multiply(px(space(6)), 2),
-    ),
+    height: '100%',
     overflowY: 'auto',
   },
-  listDetailPane: {
-    //
-  },
+  listDetailPane: {},
 });
 
 export type IAppLayoutListDetailBodyThemeFactory = IComponentThemeFactory<{

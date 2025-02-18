@@ -1,4 +1,5 @@
 import type { ICanonicalLayoutType } from '~/hooks/useCanonicalLayout';
+import type { IAppLayoutBodyProps } from '../AppLayoutBody';
 import { AppLayout } from '../AppLayout';
 import { CustomLayout } from './CustomLayout';
 import { DetailPane } from './DetailPane';
@@ -8,29 +9,35 @@ import { ListDetailPane } from './ListDetailPane';
 import { ListPane } from './ListPane';
 import { SupportingPane } from './SupportingPane';
 
-type IBodyProps = {
+export interface IBodyProps extends IAppLayoutBodyProps {
   type?: ICanonicalLayoutType;
-};
+  detached?: boolean;
+}
 
 export const Body: React.FC<IBodyProps> = (props) => {
-  const { type } = props;
+  const { type, ...other } = props;
 
   return type === 'listDetail' ? (
     <AppLayout.ListDetailBody
       listPane={<ListPane />}
       detailPane={<DetailPane />}
       listDetailPane={<ListDetailPane />}
+      {...other}
     />
   ) : type === 'supportingPane' ? (
     <AppLayout.SupportingPaneBody
       focusPane={(props) => <FocusPane {...props} />}
       supportingPane={<SupportingPane />}
-      supportingPaneAside={<SupportingPane pl="$4" pr="$4" />}
+      supportingPaneAside={<SupportingPane pl="$6" pr="$6" />}
       supportingPaneBottomSheet={<SupportingPane p="$4" />}
+      {...other}
     />
   ) : type === 'feed' ? (
-    <AppLayout.FeedBody feedPane={(props) => <FeedPane {...props} />} />
+    <AppLayout.FeedBody
+      feedPane={(props) => <FeedPane {...props} />}
+      {...other}
+    />
   ) : (
-    <CustomLayout />
+    <CustomLayout {...other} />
   );
 };

@@ -62,8 +62,6 @@ export const AppLayoutSupportingPaneBody =
           <Flex direction="row" grow={1}>
             <AppLayoutBody
               orientation={canonicalLayout.orientation}
-              pt="$6"
-              pb="$6"
               ref={forwardedRef}
               {...getStyles('root')}
               {...other}
@@ -89,7 +87,7 @@ export const AppLayoutSupportingPaneBody =
             </AppLayoutBody>
 
             {hasSupportingPaneAppLayoutAside && supportingPaneAside && (
-              <AppLayoutSideSheet side="right" divider>
+              <AppLayoutSideSheet side="right" divider={!other.detached}>
                 {supportingPaneAside}
               </AppLayoutSideSheet>
             )}

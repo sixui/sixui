@@ -15,7 +15,13 @@ import { space } from '~/utils/css/space';
 import { appLayoutTheme } from '~/components/AppLayout/AppLayout.css';
 import { COMPONENT_NAME } from './AppLayoutBody.constants';
 
-type IModifier = 'orientation';
+type IModifier =
+  | 'orientation'
+  | 'detached'
+  | 'with-top-bar'
+  | 'with-side-navigation'
+  | 'with-side-sheet'
+  | 'fixed-height';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME);
 
@@ -25,21 +31,6 @@ const classNames = createStyles({
     flexDirection: 'row',
     flexGrow: 1,
     minHeight: calc.subtract('100vh', appLayoutTheme.tokens.topBar.height),
-    gap: px(space(6)),
-    marginLeft: px(space(6)),
-    marginRight: px(space(6)),
-    paddingTop: px(space(6)),
-    paddingBottom: px(space(6)),
-
-    '@container': {
-      [responsiveContainerQuery({ size: 'compact' })]: {
-        gap: px(space(4)),
-        marginLeft: px(space(4)),
-        marginRight: px(space(4)),
-        paddingTop: px(space(4)),
-        paddingBottom: px(space(4)),
-      },
-    },
 
     vars: overrideTokens(PaperBase.theme.tokens, {
       container: {
@@ -51,11 +42,56 @@ const classNames = createStyles({
     }),
 
     selectors: {
-      [modifierSelector<IModifier>({ orientation: 'vertical' })]: {
-        flexDirection: 'column',
+      [modifierSelector<IModifier>({ 'fixed-height': true })]: {
+        minHeight: 'unset',
+        height: calc.subtract('100vh', appLayoutTheme.tokens.topBar.height),
       },
     },
   },
+  inner: ({ root }) => ({
+    display: 'flex',
+    flexDirection: 'row',
+    flexGrow: 1,
+    gap: px(space(6)),
+    padding: px(space(6)),
+    transitionProperty: 'margin',
+    transitionDuration: themeTokens.motion.duration.short2,
+    transitionTimingFunction: themeTokens.motion.easing.standard.normal,
+
+    '@container': {
+      [responsiveContainerQuery({ size: 'compact' })]: {
+        gap: px(space(4)),
+        padding: px(space(4)),
+      },
+    },
+
+    selectors: {
+      [modifierSelector<IModifier>('detached', root)]: {
+        backgroundColor: themeTokens.colorScheme.surfaceContainerLowest,
+        borderRadius: themeTokens.shape.corner.lg,
+        margin: px(space(6)),
+
+        '@container': {
+          [responsiveContainerQuery({ size: 'compact' })]: {
+            margin: px(space(4)),
+          },
+        },
+      },
+      [modifierSelector<IModifier>(['detached', 'with-side-navigation'], root)]:
+        {
+          marginLeft: px(0),
+        },
+      [modifierSelector<IModifier>(['detached', 'with-side-sheet'], root)]: {
+        marginRight: px(0),
+      },
+      [modifierSelector<IModifier>(['detached', 'with-top-bar'], root)]: {
+        marginTop: px(0),
+      },
+      [modifierSelector<IModifier>({ orientation: 'vertical' }, root)]: {
+        flexDirection: 'column',
+      },
+    },
+  }),
 });
 
 export type IAppLayoutBodyThemeFactory = IComponentThemeFactory<{

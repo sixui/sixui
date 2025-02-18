@@ -1,5 +1,6 @@
 import { createSequence } from '@olivierpascal/helpers';
 
+import type { IAppLayoutBodyProps } from '~/components/AppLayout';
 import { AppLayout } from '~/components/AppLayout';
 import { BottomSheet } from '~/components/BottomSheet';
 import { Button } from '~/components/Button';
@@ -22,12 +23,15 @@ const BottomSheetContent: React.FC = () => (
   </Flex>
 );
 
-export const CustomLayout: React.FC = () => {
+export type ICustomLayoutProps = IAppLayoutBodyProps;
+
+export const CustomLayout: React.FC<ICustomLayoutProps> = (props) => {
+  const { ...other } = props;
   const [bottomSheetOpened, toggleBottomSheet] = useToggle([false, true]);
 
   return (
     <>
-      <AppLayout.Body>
+      <AppLayout.Body {...other}>
         <Placeholder shape="$sm" grow={1} h="$64" diagonals>
           <Button
             onClick={() => {
