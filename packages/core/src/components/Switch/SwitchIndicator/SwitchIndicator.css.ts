@@ -285,7 +285,7 @@ const classNames = createStyles({
         root,
       )]: {
         width: calc.add(tokens.handle$off.width.pressed, DENSITY),
-        height: calc.add(tokens.handle$off.height.normal, DENSITY),
+        height: calc.add(tokens.handle$off.height.pressed, DENSITY),
         transitionTimingFunction: themeTokens.motion.easing.standard.normal,
         transitionDuration: themeTokens.motion.duration.short3,
 
