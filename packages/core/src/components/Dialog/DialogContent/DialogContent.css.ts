@@ -27,8 +27,8 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
     elevation: elevationLevelPreset[3],
     shape: px(themeTokens.shape.corner.xl),
     width: {
-      xs: px(160),
-      sm: px(200),
+      xs: px(200),
+      sm: px(240),
       md: px(340),
       lg: px(400),
       xl: px(500),
@@ -80,6 +80,7 @@ const classNames = createStyles({
     display: 'flex',
     flexDirection: 'column',
     maxWidth: calc.subtract('100vw', px(space(8))),
+    width: 'max-content',
 
     selectors: {
       [modifierSelector<IModifier>({ size: 'xs' })]: {

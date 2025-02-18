@@ -46,8 +46,8 @@ export const themeTokensClassName = createTheme(themeTokens, {
   ...getRuntimeThemeTokens(defaultTheme),
 });
 
-export const styles = {
-  root: style({
+export const classNames = {
+  target: style({
     '@layer': {
       [cssLayers.theme]: {
         color: themeTokens.colorScheme.onSurface,

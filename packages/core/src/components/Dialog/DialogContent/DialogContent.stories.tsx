@@ -6,7 +6,6 @@ import type { IDialogContentProps } from './DialogContent.types';
 import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Text } from '~/components/Text';
-import { px } from '~/utils/css/px';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { DialogContent } from './DialogContent';
 
@@ -17,7 +16,6 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  w: px(480),
   h: 'fit-content',
   headline: 'Permanently delete?',
   children:

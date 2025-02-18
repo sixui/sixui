@@ -15,8 +15,8 @@ import { ThemeContext } from './Theme.context';
 import { ThemeSetterProvider } from './ThemeSetter.context';
 import { mergeThemeOverrides } from './utils/mergeThemeOverrides';
 import {
+  classNames,
   defaultTheme,
-  styles,
   themeTokens,
   themeTokensClassName,
 } from './ThemeProvider.css';
@@ -96,7 +96,7 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
   if (stylesTarget) {
     stylesTarget.classList.add(
       ...cx(
-        styles.root,
+        classNames.target,
         parentTheme ? undefined : themeTokensClassName,
         className,
       ).split(' '),
@@ -125,7 +125,7 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
               stylesTarget
                 ? undefined
                 : cx(
-                    styles.root,
+                    classNames.target,
                     parentTheme ? undefined : themeTokensClassName,
                     className,
                   )
