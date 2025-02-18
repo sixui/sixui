@@ -8,7 +8,7 @@ import { Checkbox } from '~/components/Checkbox';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Flex } from '~/components/Flex';
 import { Labeled } from '~/components/Labeled';
-import { OverlaysProvider, useOverlays } from '~/components/Overlays';
+import { useOverlays } from '~/components/Overlays';
 import { Placeholder } from '~/components/Placeholder';
 import { ScreenFrame } from '~/components/ScreenFrame';
 import { useToggle } from '~/hooks/useToggle';
@@ -148,19 +148,14 @@ const AsOverlayDemoShowcase = componentShowcaseFactory(AsOverlayDemo);
 
 export const AsOverlay: IStory = {
   render: (props: ISideSheetProps) => (
-    <OverlaysProvider>
-      <AsOverlayDemoShowcase
-        props={props}
-        cols={[
-          { legend: 'From left', props: { side: 'left' } },
-          { legend: 'From right', props: { side: 'right' } },
-        ]}
-        rows={[
-          { legend: 'Normal' },
-          { legend: 'Modal', props: { modal: true } },
-        ]}
-      />
-    </OverlaysProvider>
+    <AsOverlayDemoShowcase
+      props={props}
+      cols={[
+        { legend: 'From left', props: { side: 'left' } },
+        { legend: 'From right', props: { side: 'right' } },
+      ]}
+      rows={[{ legend: 'Normal' }, { legend: 'Modal', props: { modal: true } }]}
+    />
   ),
   args: defaultArgs,
 };

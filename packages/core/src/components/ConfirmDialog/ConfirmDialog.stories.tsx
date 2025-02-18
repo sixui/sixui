@@ -6,7 +6,7 @@ import type { IConfirmDialogOverlayProps } from './ConfirmDialogOverlay';
 import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Flex } from '~/components/Flex';
-import { OverlaysProvider, useOverlays } from '~/components/Overlays';
+import { useOverlays } from '~/components/Overlays';
 import { Text } from '~/components/Text';
 import { useDisclosure } from '~/hooks/useDisclosure';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
@@ -134,24 +134,22 @@ const AsOverlayDemoShowcase = componentShowcaseFactory(AsOverlayDemo);
 
 export const AsOverlay: IStory = {
   render: (props) => (
-    <OverlaysProvider>
-      <AsOverlayDemoShowcase
-        horizontalAlign="start"
-        props={props}
-        rows={[
-          { legend: 'Normal' },
-          {
-            legend: 'Error on confirm',
-            props: {
-              onConfirm: (...args) =>
-                sbHandleEvent('onConfirm', args, 1000).then(() => {
-                  throw new Error('Forbidden');
-                }),
-            },
+    <AsOverlayDemoShowcase
+      horizontalAlign="start"
+      props={props}
+      rows={[
+        { legend: 'Normal' },
+        {
+          legend: 'Error on confirm',
+          props: {
+            onConfirm: (...args) =>
+              sbHandleEvent('onConfirm', args, 1000).then(() => {
+                throw new Error('Forbidden');
+              }),
           },
-        ]}
-      />
-    </OverlaysProvider>
+        },
+      ]}
+    />
   ),
   args: defaultArgs,
 };

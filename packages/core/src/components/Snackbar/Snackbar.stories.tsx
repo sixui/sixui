@@ -6,7 +6,7 @@ import type { ISnackbarOverlayProps } from './SnackbarOverlay';
 import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Flex } from '~/components/Flex';
-import { OverlaysProvider, useOverlays } from '~/components/Overlays';
+import { useOverlays } from '~/components/Overlays';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { Snackbar } from './Snackbar';
 import { SnackbarOverlay } from './SnackbarOverlay';
@@ -130,20 +130,18 @@ const AsOverlayDemoShowcase = componentShowcaseFactory(AsOverlayDemo);
 
 export const AsOverlay: IStory = {
   render: (props) => (
-    <OverlaysProvider>
-      <AsOverlayDemoShowcase
-        props={props}
-        rows={[
-          { legend: 'Normal' },
-          {
-            legend: 'Closable',
-            props: {
-              showCloseButton: true,
-            },
+    <AsOverlayDemoShowcase
+      props={props}
+      rows={[
+        { legend: 'Normal' },
+        {
+          legend: 'Closable',
+          props: {
+            showCloseButton: true,
           },
-        ]}
-      />
-    </OverlaysProvider>
+        },
+      ]}
+    />
   ),
   args: {
     ...defaultArgs,

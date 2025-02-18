@@ -6,7 +6,7 @@ import type { IDialogOverlayProps } from './DialogOverlay';
 import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Flex } from '~/components/Flex';
-import { OverlaysProvider, useOverlays } from '~/components/Overlays';
+import { useOverlays } from '~/components/Overlays';
 import { TextInputField } from '~/components/TextInputField';
 import { useDisclosure } from '~/hooks/useDisclosure';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
@@ -182,11 +182,7 @@ const AsOverlayDemo: React.FC<IDialogOverlayProps> = (props) => {
 const AsOverlayDemoShowcase = componentShowcaseFactory(AsOverlayDemo);
 
 export const AsOverlay: IStory = {
-  render: (props: IDialogProps) => (
-    <OverlaysProvider>
-      <AsOverlayDemoShowcase props={props} />
-    </OverlaysProvider>
-  ),
+  render: (props: IDialogProps) => <AsOverlayDemoShowcase props={props} />,
   args: defaultArgs,
 };
 

@@ -11,7 +11,7 @@ import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { DialogOverlay } from '~/components/Dialog';
 import { Flex } from '~/components/Flex';
-import { OverlaysProvider, useOverlays } from '~/components/Overlays';
+import { useOverlays } from '~/components/Overlays';
 import { SideSheetOverlay } from '~/components/SideSheet';
 import { SnackbarOverlay } from '~/components/Snackbar';
 
@@ -149,11 +149,7 @@ const defaultArgs = {} as IOverlaysDemoProps;
 const OverlaysDemoShowcase = componentShowcaseFactory(OverlaysDemo);
 
 export const Basic: IStory = {
-  render: (props) => (
-    <OverlaysProvider>
-      <OverlaysDemoShowcase props={props} />
-    </OverlaysProvider>
-  ),
+  render: (props) => <OverlaysDemoShowcase props={props} />,
   args: defaultArgs,
 };
 

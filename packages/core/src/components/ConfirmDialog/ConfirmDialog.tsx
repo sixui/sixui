@@ -56,7 +56,6 @@ export const ConfirmDialog = componentFactory<IConfirmDialogFactory>(
           setCanceling(false);
           setConfirming(false);
         }}
-        modal={true}
         actions={({ close }) => (
           <>
             <Button

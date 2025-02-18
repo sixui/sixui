@@ -7,6 +7,7 @@ import type { IThemeContextValue } from './Theme.context';
 import type { ITheme, IThemeOverride } from './theme.types';
 import type { IThemeProviderProps } from './ThemeProvider.types';
 import type { IThemeSetterContextValue } from './ThemeSetter.context';
+import { OverlaysProvider } from '~/components/Overlays';
 import { partialAssignInlineVars } from '~/utils/css/partialAssignInlineVars';
 import { textFromCssProperties } from '~/utils/css/textFromCssProperties';
 import { deepMerge } from '~/utils/deepMerge';
@@ -140,7 +141,7 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
             ref={rootRef}
             {...other}
           >
-            {children}
+            <OverlaysProvider>{children}</OverlaysProvider>
           </div>
         </FloatingDelayGroup>
       </ThemeSetterProvider>

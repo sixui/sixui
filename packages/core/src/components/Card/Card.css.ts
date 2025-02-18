@@ -3,6 +3,7 @@ import { fallbackVar } from '@vanilla-extract/css';
 import type { IInteraction } from '~/hooks/useInteractions';
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import type { ICardVariant } from './Card.types';
+import { ButtonBase } from '~/components/ButtonBase';
 import { PaperBase } from '~/components/PaperBase';
 import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
@@ -64,17 +65,23 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
 
 const classNames = createStyles({
   root: {
-    vars: overrideTokens(PaperBase.theme.tokens, {
-      container: {
-        shape: tokens.container.shape,
-        color: tokens.container.color.normal,
-        elevation: tokens.container.elevation.normal,
-      },
-      outline: {
-        width: tokens.outline.width.normal,
-        color: tokens.outline.color.normal,
-      },
-    }),
+    vars: {
+      ...overrideTokens(ButtonBase.theme.tokens, {
+        container: {
+          shape: tokens.container.shape,
+        },
+      }),
+      ...overrideTokens(PaperBase.theme.tokens, {
+        container: {
+          color: tokens.container.color.normal,
+          elevation: tokens.container.elevation.normal,
+        },
+        outline: {
+          width: tokens.outline.width.normal,
+          color: tokens.outline.color.normal,
+        },
+      }),
+    },
     selectors: {
       [modifierSelector<IModifier>('focused')]: {
         vars: overrideTokens(PaperBase.theme.tokens, {
