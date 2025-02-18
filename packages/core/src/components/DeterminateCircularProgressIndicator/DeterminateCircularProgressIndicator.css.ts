@@ -44,6 +44,9 @@ const classNames = createStyles({
     borderRadius: themeTokens.shape.corner.circle,
   },
   ring: ({ root }) => ({
+    position: 'absolute',
+    overflow: 'hidden',
+    inset: 0,
     mask: `radial-gradient(transparent ${calc.subtract(MASK_RADIUS, ANTIALIASING_EPSILON)}, black ${calc.add(MASK_RADIUS, ANTIALIASING_EPSILON)})`,
 
     selectors: {
@@ -54,6 +57,9 @@ const classNames = createStyles({
     },
   }),
   label: ({ root }) => ({
+    position: 'absolute',
+    overflow: 'hidden',
+    inset: 0,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

@@ -63,9 +63,9 @@ export const DeterminateCircularProgressIndicator =
           role="progressbar"
           {...other}
         >
-          <div {...getStyles(['layer', 'progress'])}>
+          <div {...getStyles('progress')}>
             <div
-              {...getStyles(['layer', 'ring'], {
+              {...getStyles('ring', {
                 style: {
                   background: isNegative
                     ? `conic-gradient(transparent
@@ -78,9 +78,7 @@ export const DeterminateCircularProgressIndicator =
               })}
             />
             {hasContent && (
-              <div {...getStyles(['layer', 'label'])}>
-                {children ?? formattedValue}
-              </div>
+              <div {...getStyles('label')}>{children ?? formattedValue}</div>
             )}
           </div>
         </Box>

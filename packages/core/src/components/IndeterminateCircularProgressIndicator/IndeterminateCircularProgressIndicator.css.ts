@@ -78,12 +78,18 @@ const linearRotateKeyframes = keyframes({
 
 const classNames = createStyles({
   progress: {
+    position: 'absolute',
+    overflow: 'hidden',
+    inset: 0,
     animationTimingFunction: 'linear',
     animationIterationCount: 'infinite',
     animationName: linearRotateKeyframes,
     animationDuration: linearRotateDuration,
   },
   spinner: {
+    position: 'absolute',
+    overflow: 'hidden',
+    inset: 0,
     animationIterationCount: 'infinite',
     animationFillMode: 'both',
     animationName: rotateArcKeyframes,
@@ -126,12 +132,16 @@ const classNames = createStyles({
     },
   }),
   circle$left: {
-    rotate: '135deg',
+    position: 'absolute',
+    overflow: 'hidden',
     inset: '0 -100% 0 0',
+    rotate: '135deg',
   },
   circle$right: {
-    rotate: '100deg',
+    position: 'absolute',
+    overflow: 'hidden',
     inset: '0 0 0 -100%',
+    rotate: '100deg',
     animationDelay: `calc(-0.5 * ${arcDuration}), 0ms`,
   },
 });

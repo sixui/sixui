@@ -42,12 +42,10 @@ const classNames = createStyles({
       },
     },
   },
-  layer: {
+  progress: {
     position: 'absolute',
     overflow: 'hidden',
     inset: 0,
-  },
-  progress: {
     borderRadius: themeTokens.shape.corner.circle,
     flexGrow: 1,
     flexShrink: 1,

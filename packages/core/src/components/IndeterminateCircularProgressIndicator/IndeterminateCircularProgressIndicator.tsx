@@ -42,18 +42,18 @@ export const IndeterminateCircularProgressIndicator =
           role="progressbar"
           {...other}
         >
-          <div {...getStyles(['layer', 'progress'])}>
-            <div {...getStyles(['layer', 'spinner'])}>
+          <div {...getStyles('progress')}>
+            <div {...getStyles('spinner')}>
               <div {...getStyles('left')}>
-                <div {...getStyles(['layer', 'circle', 'circle$left'])} />
+                <div {...getStyles(['circle', 'circle$left'])} />
               </div>
               <div {...getStyles('right')}>
-                <div {...getStyles(['layer', 'circle', 'circle$right'])} />
+                <div {...getStyles(['circle', 'circle$right'])} />
               </div>
             </div>
           </div>
 
-          {children && <div {...getStyles('layer')}>{children}</div>}
+          {children}
         </Box>
       );
     },
