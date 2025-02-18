@@ -20,7 +20,7 @@ const defaultArgs = {
 
 const AppLayoutBodyScreenFrame: React.FC<IAppLayoutBodyProps> = (props) => {
   return (
-    <ScreenFrame importParentStyles w="100%" h="$96">
+    <ScreenFrame w="100%" h="$96">
       <AppLayoutBody {...props} />
     </ScreenFrame>
   );

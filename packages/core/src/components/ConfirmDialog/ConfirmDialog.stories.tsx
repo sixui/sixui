@@ -52,6 +52,14 @@ export const Standard: IStory = {
   args: defaultArgs,
 };
 
+export const Danger: IStory = {
+  render: (props) => <ConfirmDialogDemoShowcase props={props} />,
+  args: {
+    ...defaultArgs,
+    danger: true,
+  },
+};
+
 export const Modal: IStory = {
   render: (props) => <ConfirmDialogDemo {...props} />,
   args: {

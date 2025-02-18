@@ -74,7 +74,7 @@ const AppLayoutNavigationRailScreenFrame: React.FC<
         </Button>
       </Flex>
 
-      <ScreenFrame importParentStyles w="100%" h="$96">
+      <ScreenFrame w="100%" h="$96">
         <Flex
           direction={other.side === 'right' ? 'row' : 'row-reverse'}
           align="start"

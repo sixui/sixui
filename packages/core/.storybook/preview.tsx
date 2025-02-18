@@ -29,7 +29,10 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
-    chromatic: { modes },
+    chromatic: {
+      modes,
+      disableAutoSnapshot: true,
+    },
     // This allows custom storybook body padding.
     layout: 'none',
     backgrounds: {

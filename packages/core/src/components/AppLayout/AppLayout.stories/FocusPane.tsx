@@ -1,10 +1,10 @@
 import type { IBoxProps } from '~/components/Box';
-import type { ISupportingPaneCanonicalLayoutFocusPaneRendererProps } from './SupportingPaneCanonicalLayout';
+import type { IAppLayoutSupportingPaneBodyFocusPaneRendererProps } from '../AppLayoutSupportingPaneBody';
 import { Button } from '~/components/Button';
 import { Placeholder } from '~/components/Placeholder';
 
 export type IFocusPaneProps = IBoxProps &
-  ISupportingPaneCanonicalLayoutFocusPaneRendererProps;
+  IAppLayoutSupportingPaneBodyFocusPaneRendererProps;
 
 export const FocusPane: React.FC<IFocusPaneProps> = (props) => {
   const {

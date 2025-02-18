@@ -24,6 +24,7 @@ export type IThemeColorScheme = {
   errorContainer: string;
   onErrorContainer: string;
   surface: string;
+  surfaceVariant: string;
   onSurface: string;
   onSurfaceVariant: string;
   surfaceContainerLowest: string;

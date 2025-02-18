@@ -64,8 +64,12 @@ export const AppLayoutListDetailBody =
               <Resizable
                 key={pane.name}
                 bounds="window"
+                snap={pane.defaultSize ? { x: [pane.defaultSize] } : undefined}
+                snapGap={12}
                 defaultWidth={isHorizontal ? pane.defaultSize : undefined}
                 defaultHeight={isHorizontal ? undefined : pane.defaultSize}
+                minWidth={0}
+                maxWidth="80%"
                 orientation={isHorizontal ? 'horizontal' : 'vertical'}
               >
                 {renderPane(pane.name)}

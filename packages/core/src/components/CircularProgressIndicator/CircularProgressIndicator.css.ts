@@ -44,12 +44,11 @@ const classNames = createStyles({
   },
   layer: {
     position: 'absolute',
-    inset: 0,
-    borderColor: 'inherit',
-    borderRadius: 'inherit',
     overflow: 'hidden',
+    inset: 0,
   },
   progress: {
+    borderRadius: themeTokens.shape.corner.circle,
     flexGrow: 1,
     flexShrink: 1,
     flexBasis: '0%',

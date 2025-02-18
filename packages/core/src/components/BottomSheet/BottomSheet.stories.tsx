@@ -85,7 +85,7 @@ const BottomSheetScreenFrame: React.FC<IBottomSheetProps> = (props) => {
         </Labeled>
       </Flex>
 
-      <ScreenFrame importParentStyles w="100%" h="$96">
+      <ScreenFrame w="100%" h="$96">
         <Flex h="100%">
           <Placeholder label="Page" grow={1} expanded diagonals />
           <BottomSheet

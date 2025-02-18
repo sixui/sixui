@@ -44,10 +44,10 @@ export const IndeterminateCircularProgressIndicator =
         >
           <div {...getStyles(['layer', 'progress'])}>
             <div {...getStyles(['layer', 'spinner'])}>
-              <div {...getStyles(['layer', 'left'])}>
+              <div {...getStyles('left')}>
                 <div {...getStyles(['layer', 'circle', 'circle$left'])} />
               </div>
-              <div {...getStyles(['layer', 'right'])}>
+              <div {...getStyles('right')}>
                 <div {...getStyles(['layer', 'circle', 'circle$right'])} />
               </div>
             </div>

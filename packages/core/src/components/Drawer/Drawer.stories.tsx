@@ -57,7 +57,7 @@ const DrawerScreenFrame: React.FC<IDrawerProps> = (props) => {
   const [bottomOpened, bottomActions] = useDisclosure(false);
 
   return (
-    <ScreenFrame importParentStyles w="100%" h="$96">
+    <ScreenFrame w="100%" h="$96">
       <div ref={setRoot}>
         <DrawerDemo
           {...props}

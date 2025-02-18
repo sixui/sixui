@@ -17,6 +17,7 @@ import type { ISideSheetProps } from '~/components/SideSheet';
 import type { ICanonicalLayoutType } from '~/hooks/useCanonicalLayout';
 import { AppLayout } from '~/components/AppLayout';
 import { Flex } from '~/components/Flex';
+import { useAppLayoutContext } from '../AppLayout.context';
 
 export interface IMainNavigationDrawerProps extends ISideSheetProps {
   activeDestination?: ICanonicalLayoutType;
@@ -28,6 +29,15 @@ export const MainNavigationDrawer: React.FC<IMainNavigationDrawerProps> = (
 ) => {
   const { activeDestination, onClick, ...other } = props;
 
+  const appLayoutContext = useAppLayoutContext();
+
+  const changeRoute = (destination?: ICanonicalLayoutType): void => {
+    onClick?.(destination);
+    if (appLayoutContext?.navigationDrawer?.state?.isDrawer) {
+      appLayoutContext.navigationDrawer.state.close();
+    }
+  };
+
   return (
     <AppLayout.NavigationDrawer {...other}>
       <Flex direction="column" gap="$6">
@@ -36,7 +46,9 @@ export const MainNavigationDrawer: React.FC<IMainNavigationDrawerProps> = (
           endDivider
         >
           <AppLayout.NavigationDrawer.Destination
-            onClick={() => onClick?.('listDetail')}
+            onClick={() => {
+              changeRoute('listDetail');
+            }}
             active={activeDestination === 'listDetail'}
             leadingIcon={<FontAwesomeIcon icon={faSquare} />}
             activeLeadingIcon={<FontAwesomeIcon icon={fasSquare} />}
@@ -44,7 +56,9 @@ export const MainNavigationDrawer: React.FC<IMainNavigationDrawerProps> = (
             List-detail
           </AppLayout.NavigationDrawer.Destination>
           <AppLayout.NavigationDrawer.Destination
-            onClick={() => onClick?.('supportingPane')}
+            onClick={() => {
+              changeRoute('supportingPane');
+            }}
             active={activeDestination === 'supportingPane'}
             leadingIcon={<FontAwesomeIcon icon={faCircle} />}
             activeLeadingIcon={<FontAwesomeIcon icon={fasCircle} />}
@@ -52,7 +66,9 @@ export const MainNavigationDrawer: React.FC<IMainNavigationDrawerProps> = (
             Supporting pane
           </AppLayout.NavigationDrawer.Destination>
           <AppLayout.NavigationDrawer.Destination
-            onClick={() => onClick?.('feed')}
+            onClick={() => {
+              changeRoute('feed');
+            }}
             active={activeDestination === 'feed'}
             leadingIcon={<FontAwesomeIcon icon={faHeart} />}
             activeLeadingIcon={<FontAwesomeIcon icon={fasHeart} />}
@@ -60,7 +76,9 @@ export const MainNavigationDrawer: React.FC<IMainNavigationDrawerProps> = (
             Feed
           </AppLayout.NavigationDrawer.Destination>
           <AppLayout.NavigationDrawer.Destination
-            onClick={() => onClick?.(undefined)}
+            onClick={() => {
+              changeRoute(undefined);
+            }}
             active={activeDestination === undefined}
             leadingIcon={<FontAwesomeIcon icon={faQuestionCircle} />}
             activeLeadingIcon={<FontAwesomeIcon icon={fasQuestionCircle} />}

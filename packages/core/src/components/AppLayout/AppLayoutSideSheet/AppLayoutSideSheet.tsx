@@ -45,7 +45,7 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
     }
 
     const opened = openedProp ?? appLayoutContext?.sideSheet?.state?.opened;
-    const drawer = drawerProp ?? appLayoutContext?.sideSheet?.state?.drawer;
+    const drawer = drawerProp ?? appLayoutContext?.sideSheet?.state?.isDrawer;
     const modal = modalProp ?? drawer;
     const root = portalProps?.root ?? appLayoutContext?.root;
 

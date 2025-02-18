@@ -43,6 +43,7 @@ export const getRolesFromMaterialScheme = (
   inversePrimary: getMaterialDynamicSchemeColor('inversePrimary', scheme),
 
   surface: getMaterialDynamicSchemeColor('surface', scheme),
+  surfaceVariant: getMaterialDynamicSchemeColor('surfaceVariant', scheme),
   onSurface: getMaterialDynamicSchemeColor('onSurface', scheme),
   onSurfaceVariant: getMaterialDynamicSchemeColor('onSurfaceVariant', scheme),
   surfaceContainerLowest: getMaterialDynamicSchemeColor(

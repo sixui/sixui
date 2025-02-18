@@ -19,6 +19,7 @@ export interface IConfirmDialogOwnProps
     confirm?: string;
     cancel?: string;
   };
+  danger?: boolean;
 }
 
 export interface IConfirmDialogProps

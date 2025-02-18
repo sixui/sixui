@@ -1,11 +1,11 @@
 import { createSequence } from '@olivierpascal/helpers';
 
-import type { IFeedCanonicalLayoutFeedPaneRendererProps } from './FeedCanonicalLayout';
+import type { IAppLayoutFeedBodyFeedPaneRendererProps } from '../AppLayoutFeedBody';
 import { IBoxProps } from '~/components/Box';
 import { Placeholder } from '~/components/Placeholder';
 
 export type IFeedPaneProps = IBoxProps &
-  IFeedCanonicalLayoutFeedPaneRendererProps;
+  IAppLayoutFeedBodyFeedPaneRendererProps;
 
 export const FeedPane: React.FC<IFeedPaneProps> = (props) => {
   const { grid, ...other } = props;

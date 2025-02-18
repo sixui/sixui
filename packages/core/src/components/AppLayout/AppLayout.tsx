@@ -108,7 +108,7 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
         state: hasNavigationDrawer
           ? {
               opened: navigationDrawerOpened,
-              drawer: navigationDrawerState.modal,
+              isDrawer: navigationDrawerState.modal,
               type: navigationDrawerType,
               toggle: navigationDrawerCallbacks.toggle,
               open: navigationDrawerCallbacks.open,
@@ -121,7 +121,7 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
         state: hasSideSheet
           ? {
               opened: sideSheetOpened,
-              drawer: sideSheetState.modal,
+              isDrawer: sideSheetState.modal,
               type: sideSheetType,
               toggle: sideSheetCallbacks.toggle,
               open: sideSheetCallbacks.open,

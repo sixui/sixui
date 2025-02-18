@@ -50,7 +50,6 @@ export * from './IndeterminateCircularProgressIndicator';
 export * from './Item';
 export * from './Labeled';
 export * from './List';
-export * from './ListDetailCanonicalLayout';
 export * from './Menu';
 export * from './Motion';
 export * from './MultiSelect';

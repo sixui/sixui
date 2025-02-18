@@ -28,6 +28,7 @@ export const ConfirmDialog = componentFactory<IConfirmDialogFactory>(
       cancelProps,
       confirmProps,
       labels: labelsProp,
+      danger,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -79,6 +80,7 @@ export const ConfirmDialog = componentFactory<IConfirmDialogFactory>(
                   resetEvent: 'error',
                 }).then(close)
               }
+              variant={danger ? 'danger' : undefined}
               {...confirmProps}
             >
               {labels.confirm}

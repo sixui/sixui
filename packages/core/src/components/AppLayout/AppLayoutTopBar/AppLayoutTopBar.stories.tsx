@@ -21,7 +21,7 @@ const defaultArgs = {
 
 const AppLayoutTopBarScreenFrame: React.FC<IAppLayoutTopBarProps> = (props) => {
   return (
-    <ScreenFrame importParentStyles w="100%" h="$96">
+    <ScreenFrame w="100%" h="$96">
       <AppLayoutTopBar {...props} />
     </ScreenFrame>
   );

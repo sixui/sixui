@@ -48,7 +48,7 @@ export const AppLayoutNavigationDrawer =
     const opened =
       openedProp ?? appLayoutContext?.navigationDrawer?.state?.opened;
     const drawer =
-      drawerProp ?? appLayoutContext?.navigationDrawer?.state?.drawer;
+      drawerProp ?? appLayoutContext?.navigationDrawer?.state?.isDrawer;
     const modal = modalProp ?? drawer;
     const root = portalProps?.root ?? appLayoutContext?.root;
 

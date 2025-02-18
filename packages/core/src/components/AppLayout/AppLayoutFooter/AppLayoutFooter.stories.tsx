@@ -19,7 +19,6 @@ const defaultArgs = {
 const AppLayoutFooterScreenFrame: React.FC<IAppLayoutFooterProps> = (props) => {
   return (
     <ScreenFrame
-      importParentStyles
       w="100%"
       h="$96"
       style={{

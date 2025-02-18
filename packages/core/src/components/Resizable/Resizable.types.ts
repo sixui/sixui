@@ -4,22 +4,7 @@ import type { IOrientation } from '~/utils/types';
 import type { resizableTheme } from './Resizable.css';
 import { IPolymorphicComponentFactory } from '~/utils/component';
 
-export interface IResizableOwnProps
-  extends Pick<
-    ResizableProps,
-    | 'className'
-    | 'style'
-    | 'size'
-    | 'minWidth'
-    | 'minHeight'
-    | 'maxWidth'
-    | 'maxHeight'
-    | 'grid'
-    | 'gridGap'
-    | 'snap'
-    | 'snapGap'
-    | 'lockAspectRatio'
-  > {
+export interface IResizableOwnProps extends ResizableProps {
   children?: React.ReactNode;
   defaultWidth?: string | number;
   defaultHeight?: string | number;

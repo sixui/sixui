@@ -2,6 +2,7 @@ import { keyframes } from '@vanilla-extract/css';
 
 import type { ICircularProgressIndicatorModifier } from '~/components/CircularProgressIndicator/CircularProgressIndicator.css';
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createStyles } from '~/utils/css/createStyles';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
@@ -90,15 +91,17 @@ const classNames = createStyles({
     animationTimingFunction: indeterminateEasing,
   },
   left: {
+    position: 'absolute',
     overflow: 'hidden',
     inset: '0 50% 0 0',
   },
   right: {
+    position: 'absolute',
     overflow: 'hidden',
     inset: '0 0 0 50%',
   },
   circle: ({ root }) => ({
-    borderRadius: '50%',
+    borderRadius: themeTokens.shape.corner.circle,
     // Match size to svg stroke width, which is a fraction of the overall
     // padding box width.
     borderStyle: 'solid',

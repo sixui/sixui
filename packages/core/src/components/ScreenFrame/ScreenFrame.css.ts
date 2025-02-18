@@ -11,7 +11,7 @@ type IModifier = 'disabled';
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME);
 
 const classNames = createStyles({
-  frame: {
+  root: {
     borderRadius: px(themeTokens.shape.corner.lg),
     borderWidth: px(7),
     borderColor: themeTokens.colorScheme.outlineVariant,
