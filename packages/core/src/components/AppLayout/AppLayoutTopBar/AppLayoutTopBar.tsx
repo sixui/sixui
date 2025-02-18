@@ -43,6 +43,8 @@ export const AppLayoutTopBar = componentFactory<IAppLayoutTopBarFactory>(
 
     const hasNavigationDrawer =
       appLayoutContext?.components.includes('navigationDrawer');
+    const isNavigationDrawerOpened =
+      appLayoutContext?.navigationDrawer?.state?.opened;
     const hasSideSheet = appLayoutContext?.components.includes('sideSheet');
 
     return (
@@ -51,15 +53,16 @@ export const AppLayoutTopBar = componentFactory<IAppLayoutTopBarFactory>(
         as="header"
         ref={forwardedRef}
         leadingNavigation={
-          ((wide && hasNavigationDrawer) || leadingNavigation) && (
+          ((wide && hasNavigationDrawer) ||
+            (!wide && hasNavigationDrawer && !isNavigationDrawerOpened) ||
+            leadingNavigation) && (
             <>
-              {wide && hasNavigationDrawer && (
+              {leadingNavigation ?? (
                 <Burger
                   opened={appLayoutContext?.navigationDrawer?.state?.opened}
                   onClick={appLayoutContext?.navigationDrawer?.state?.toggle}
                 />
               )}
-              {leadingNavigation}
             </>
           )
         }

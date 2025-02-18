@@ -76,9 +76,14 @@ const classNames = createStyles({
       },
       [modifierSelector<IModifier>('position^=top-', root)]: {
         vars: {
-          top: tokens.offset.y,
+          top: localVars.offset.y,
           [localVars.translate.y]: '-50%',
           [localVars.transformOrigin.y]: '0%',
+        },
+      },
+      [modifierSelector<IModifier>({ position: 'top-center' }, root)]: {
+        vars: {
+          top: tokens.offset.y,
         },
       },
       [modifierSelector<IModifier>('position^=middle-', root)]: {
@@ -90,9 +95,14 @@ const classNames = createStyles({
       },
       [modifierSelector<IModifier>('position^=bottom-', root)]: {
         vars: {
-          bottom: tokens.offset.y,
+          bottom: localVars.offset.y,
           [localVars.translate.y]: '50%',
           [localVars.transformOrigin.y]: '100%',
+        },
+      },
+      [modifierSelector<IModifier>({ position: 'bottom-center' }, root)]: {
+        vars: {
+          bottom: tokens.offset.y,
         },
       },
       [modifierSelector<IModifier>('position$=-start', root)]: {
