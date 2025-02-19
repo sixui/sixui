@@ -1,6 +1,8 @@
+import type { Ref, RefCallback } from 'react';
+
 export const mergeRefs = <TInstance>(
-  ...refs: Array<React.Ref<TInstance> | undefined>
-): React.RefCallback<TInstance> | null => {
+  ...refs: Array<Ref<TInstance> | undefined>
+): RefCallback<TInstance> | null => {
   if (refs.every((ref) => ref == null)) {
     return null;
   }

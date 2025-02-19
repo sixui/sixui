@@ -2,7 +2,6 @@ import eslint from '@eslint/js';
 import fpPlugin from 'eslint-plugin-fp';
 import eslintPluginImportX from 'eslint-plugin-import-x';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
-import turboPlugin from 'eslint-plugin-turbo';
 
 /**
  * A shared ESLint configuration for JS files.
@@ -20,7 +19,6 @@ export default [
   {
     plugins: {
       fp: fpPlugin,
-      turbo: turboPlugin,
     },
     languageOptions: {
       parserOptions: {
@@ -70,8 +68,6 @@ export default [
       'object-curly-newline': 'off',
       'function-paren-newline': 'off',
       'no-confusing-arrow': 'off',
-
-      'turbo/no-undeclared-env-vars': 'warn',
 
       'import-x/no-default-export': 'error',
       'import-x/export': 'error',

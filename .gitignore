@@ -20,9 +20,6 @@ dist
 *.tsbuildinfo
 storybook-static
 
-# turbo
-.turbo
-
 # vscode
 .vscode/*
 !.vscode/settings.json.default
