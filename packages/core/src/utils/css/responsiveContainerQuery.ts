@@ -1,5 +1,6 @@
 import type { IThemeWindowSizeClassName } from '~/components/Theme';
 import { Responsive } from '~/components/Responsive';
+import { CSS_TRUE } from './constants';
 
 export const responsiveStyleRuleOperators = ['=', '!=', '<', '>='] as const;
 export type IResponsiveStyleRuleOperator =
@@ -17,7 +18,7 @@ export const responsiveContainerQuery = (
   const tokenGroup = Responsive.theme.tokens.windowSizeClass[rule.size];
   const token = ['=', '!='].includes(op) ? tokenGroup.on : tokenGroup.gte;
   const isNegative = ['!=', '<'].includes(op);
-  const query = `${isNegative ? 'not ' : ''}style(${token.slice(4, -1)})`;
+  const query = `${isNegative ? 'not ' : ''}style(${token.slice(4, -1)}: ${CSS_TRUE})`;
 
   return query;
 };
