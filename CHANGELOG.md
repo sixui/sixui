@@ -1,3 +1,13 @@
+## 1.0.9 (2025-02-19)
+
+### 🩹 Fixes
+
+- built css now includes extracted css ([e53762c2](https://github.com/sixui/sixui/commit/e53762c2))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 1.0.8 (2025-02-19)
 
 ### 🩹 Fixes
