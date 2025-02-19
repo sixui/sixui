@@ -16,7 +16,9 @@
     "dev": "nx run-many -t dev",
     "check:all": "nx run-many -t check:all",
     "pre-commit": "nx run-many -t pre-commit",
-    "build": "nx run-many -t build"
+    "build": "nx run-many -t build",
+    "release:dry": "nx release --dry-run",
+    "release": "nx release"
   },
   "lint-staged": {
     "**/*.(ts|js)?(x)": [
