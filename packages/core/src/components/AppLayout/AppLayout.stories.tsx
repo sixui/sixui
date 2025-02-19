@@ -94,7 +94,7 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => (
                 activeDestination={activeDestination}
                 onClick={setActiveDestination}
                 divider={hasDividers}
-                headline="App Layout"
+                headline="SixUI"
                 wide
               />
             )}
