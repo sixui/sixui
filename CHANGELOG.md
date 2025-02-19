@@ -1,3 +1,14 @@
+## 1.0.5 (2025-02-19)
+
+### 🩹 Fixes
+
+- simulating a fix ([6c0b0602](https://github.com/sixui/sixui/commit/6c0b0602))
+- simulating a fix ([1738ad2a](https://github.com/sixui/sixui/commit/1738ad2a))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 1.0.4 (2025-02-19)
 
 ### 🩹 Fixes
