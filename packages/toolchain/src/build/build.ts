@@ -1,22 +1,22 @@
 import type { OutputOptions } from 'rollup';
 import path from 'path';
 
-import { asArray } from '../utils/asArray';
-import { createLogger } from '../utils/createLogger';
-import { getPath } from '../utils/getPath';
+import { asArray } from '~/utils/asArray';
+import { createLogger } from '~/utils/createLogger';
+import { getPath } from '~/utils/getPath';
+import { loadFirstCompilerOptions } from '~/utils/loadFirstCompilerOptions';
 import { compile } from './compile';
-import { loadFirstCompilerOptions } from './loadFirstCompilerOptions';
 
 const logger = createLogger('build');
 
 export interface IUserBuildOptions {
-  cwd?: string;
   tsconfig: string | Array<string>;
   rootDir: string;
   outDir: string;
   entryPoint: string;
   cssOutputBundleName: string;
   outputOptions?: OutputOptions;
+  cwd?: string;
 }
 
 export interface IBuildOptions extends IUserBuildOptions {

@@ -1,11 +1,8 @@
 import type { IHctColorPickerContentThemeFactory } from './HctColorPickerContent.css';
 import type { IHctColorPickerContentFactory } from './HctColorPickerContent.types';
 import { ColorPickerContent } from '~/components/ColorPickerContent';
-import {
-  useComponentTheme,
-  useProps,
-  useThemeContext,
-} from '~/components/Theme';
+import { useComponentTheme, useProps } from '~/components/Theme';
+import { useThemeContext } from '~/components/Theme/Theme.context';
 import { generateTonalColorPalettes } from '~/utils/colors/generateTonalColorPalettes';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './HctColorPickerContent.constants';

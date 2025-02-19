@@ -7,7 +7,7 @@ import type {
   IComponentThemeFactoryPayload,
 } from '~/utils/component/componentThemeFactory';
 import type { INestedArray } from '~/utils/types';
-import { useThemeContext } from '~/components/Theme';
+import { useThemeContext } from '~/components/Theme/Theme.context';
 import { getDataAttributes, IModifiers } from '~/utils/getDataAttributes';
 import { isTruthy } from '~/utils/isTruthy';
 

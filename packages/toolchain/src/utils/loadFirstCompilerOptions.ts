@@ -1,6 +1,6 @@
 import type { CompilerOptions } from 'typescript';
 
-import { getFirstExistingFile } from '../utils/getFirstExistingFile';
+import { getFirstExistingFile } from './getFirstExistingFile';
 import { loadCompilerOptions } from './loadCompilerOptions';
 
 export const loadFirstCompilerOptions = async (

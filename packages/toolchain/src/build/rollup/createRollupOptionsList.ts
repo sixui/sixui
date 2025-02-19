@@ -31,6 +31,15 @@ export const createRollupOptionsList = (
   const outDirPath = getPath(buildOptions.outDir, buildOptions.cwd);
 
   const plugins = [
+    postcssPlugin({
+      plugins: [postcssImport()],
+      extract: path.join(TMP_DIR, 'extracted.css'),
+      onExtract: ({ codeFileName }) => {
+        emittedCssFiles.add(codeFileName);
+
+        return true;
+      },
+    }),
     vanillaExtractPlugin(),
     typescript({ tsconfig: tsconfigPath }),
     depsExternal(),
@@ -49,23 +58,6 @@ export const createRollupOptionsList = (
   const mainOptions: RollupOptions = {
     input: inputPath,
     plugins: [
-      postcssPlugin({
-        plugins: [postcssImport()],
-        extract: path.join(TMP_DIR, 'extracted.css'),
-        onExtract: (...args) => {
-          // https://github.com/egoist/rollup-plugin-postcss/issues/329
-          const getExtracted = args as unknown as () => Readonly<{
-            code: unknown;
-            map: unknown;
-            codeFileName: string;
-            mapFileName: string;
-          }>;
-          const { codeFileName } = getExtracted();
-          emittedCssFiles.add(codeFileName);
-
-          return true;
-        },
-      }),
       ...plugins,
       banner((chunk) => {
         if (shouldPrependUseClient(chunk.fileName)) {

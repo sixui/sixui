@@ -1,6 +1,6 @@
 {
   "name": "@sixui/core",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Material Design 3 for the web",
   "homepage": "https://sixui.com",
   "license": "MIT",
@@ -39,8 +39,9 @@
     "check:all": "run-s lint:check ts:check",
     "pre-commit": "run-s generate-icons",
     "clean": "rm -rf dist",
+    "build-storybook": "storybook build",
     "build": "tsx scripts/build.ts",
-    "build-storybook": "storybook build"
+    "publish": "tsx scripts/publish.ts"
   },
   "dependencies": {
     "@floating-ui/core": "^1.6.9",
@@ -55,7 +56,9 @@
     "react-aria": "^3.37.0",
     "react-dom": "^19.0.0",
     "react-remove-scroll": "^2.6.3",
-    "react-transition-group": "^4.4.5"
+    "react-transition-group": "^4.4.5",
+    "@vanilla-extract/css": "^1.17.1",
+    "@vanilla-extract/css-utils": "^0.1.4"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
@@ -66,32 +69,28 @@
     "@sixui/eslint-config": "workspace:*",
     "@sixui/toolchain": "workspace:*",
     "@sixui/typescript-config": "workspace:*",
-    "@storybook/addon-actions": "^8.5.6",
-    "@storybook/addon-essentials": "^8.5.6",
-    "@storybook/blocks": "^8.5.6",
-    "@storybook/react": "^8.5.6",
-    "@storybook/react-vite": "^8.5.6",
-    "@storybook/test": "^8.5.6",
+    "@storybook/addon-actions": "^8.5.7",
+    "@storybook/addon-essentials": "^8.5.7",
+    "@storybook/blocks": "^8.5.7",
+    "@storybook/react": "^8.5.7",
+    "@storybook/react-vite": "^8.5.7",
+    "@storybook/test": "^8.5.7",
     "@types/node": "^22.13.4",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/react-transition-group": "^4",
-    "@vanilla-extract/css": "^1.17.1",
-    "@vanilla-extract/css-utils": "^0.1.4",
     "@vanilla-extract/vite-plugin": "^5.0.1",
     "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^9.20.1",
     "npm-run-all": "^4.1.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "storybook": "^8.5.6",
+    "storybook": "^8.5.7",
     "svg-to-ts": "^12.0.0",
-    "tsx": "^4.19.2",
-    "type-fest": "^4.34.1",
+    "tsx": "^4.19.3",
+    "type-fest": "^4.35.0",
     "typescript": "^5.7.3",
-    "vite": "^6.1.0",
-    "vite-plugin-dts": "^4.5.0",
-    "vite-tsconfig-paths": "^5.1.4"
+    "vite": "^6.1.0"
   },
   "peerDependencies": {
     "node": ">=22",

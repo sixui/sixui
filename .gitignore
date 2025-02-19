@@ -29,3 +29,7 @@ storybook-static
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# nx
+.nx/cache
+.nx/workspace-data
