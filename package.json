@@ -1,7 +1,6 @@
 {
   "private": true,
   "name": "sixui",
-  "version": "0.1.0",
   "description": "SixUI Components Monorepo",
   "license": "MIT",
   "repository": "git+https://github.com/sixui/sixui.git",
