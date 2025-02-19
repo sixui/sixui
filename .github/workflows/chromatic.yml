@@ -14,8 +14,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          #👇 Fetches all history so Chromatic can compare against previous
-          #builds
+          # Fetches all history so Chromatic can compare against previous
+          # builds.
           fetch-depth: 0
       - name: Install pnpm
         uses: pnpm/action-setup@v4
