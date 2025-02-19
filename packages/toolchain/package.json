@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "@sixui/toolchain",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "lint:check": "eslint . --fix",

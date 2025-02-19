@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "@sixui/eslint-config",
+  "version": "0.1.0",
   "type": "module",
   "exports": {
     ".": "./base.js",
