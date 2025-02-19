@@ -1,3 +1,13 @@
+## 1.0.8 (2025-02-19)
+
+### 🩹 Fixes
+
+- correct responsive container query ([7f220225](https://github.com/sixui/sixui/commit/7f220225))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 1.0.7 (2025-02-19)
 
 ### 🩹 Fixes
