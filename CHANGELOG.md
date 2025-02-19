@@ -1,3 +1,13 @@
+## 1.0.7 (2025-02-19)
+
+### 🩹 Fixes
+
+- simulating a fix ([e4b67091](https://github.com/sixui/sixui/commit/e4b67091))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 1.0.6 (2025-02-19)
 
 ### 🩹 Fixes
