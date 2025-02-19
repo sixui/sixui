@@ -12,11 +12,11 @@
     "preinstall": "npx only-allow pnpm",
     "prettier:fix:file": "prettier --write",
     "lint:check": "eslint scripts --fix",
+    "ncu": "npx npm-check-updates -i -p pnpm --deep",
     "dev": "nx run-many -t dev",
     "check:all": "nx run-many -t check:all",
     "pre-commit": "nx run-many -t pre-commit",
-    "build": "nx run-many -t build",
-    "ncu": "npx npm-check-updates -i -p pnpm --deep"
+    "build": "nx run-many -t build"
   },
   "lint-staged": {
     "**/*.(ts|js)?(x)": [
