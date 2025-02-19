@@ -24,7 +24,7 @@
       "cache": true
     },
     "build": {
-      "dependsOn": ["clean", "^build"],
+      "dependsOn": ["clean", "toolchain", "^build"],
       "outputs": ["{projectRoot}/dist/**", "{projectRoot}/storybook-static/**"],
       "cache": true
     }

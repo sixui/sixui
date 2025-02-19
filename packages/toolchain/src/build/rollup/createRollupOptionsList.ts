@@ -34,7 +34,15 @@ export const createRollupOptionsList = (
     postcssPlugin({
       plugins: [postcssImport()],
       extract: path.join(TMP_DIR, 'extracted.css'),
-      onExtract: ({ codeFileName }) => {
+      onExtract: (args) => {
+        // https://github.com/egoist/rollup-plugin-postcss/issues/329
+        const getExtracted = args as unknown as () => Readonly<{
+          code: unknown;
+          map: unknown;
+          codeFileName: string;
+          mapFileName: string;
+        }>;
+        const { codeFileName } = getExtracted();
         emittedCssFiles.add(codeFileName);
 
         return true;
