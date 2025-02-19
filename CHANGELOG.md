@@ -1,3 +1,13 @@
+## 1.0.3 (2025-02-19)
+
+### 🩹 Fixes
+
+- simulating a fix ([79be7a09](https://github.com/sixui/sixui/commit/79be7a09))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 1.0.2 (2025-02-19)
 
 ### 🩹 Fixes
