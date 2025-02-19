@@ -1,7 +1,0 @@
-{
-  "plugins": [
-    "@auto-it/npm"
-  ],
-  "owner": "sixui",
-  "repo": "sixui"
-}

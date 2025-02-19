@@ -52,12 +52,5 @@
     "tslib": "^2.8.1",
     "tsx": "^4.19.3",
     "typescript": "^5.7.3"
-  },
-  "dependencies": {
-    "chalk": "^5.4.1",
-    "simple-git": "^3.27.0",
-    "version-next": "^1.0.2",
-    "yargs": "^17.7.2",
-    "zx": "^8.3.2"
   }
 }
