@@ -40,8 +40,7 @@
     "pre-commit": "run-s generate-icons",
     "clean": "rm -rf dist",
     "build-storybook": "storybook build",
-    "build": "tsx scripts/build.ts",
-    "publish": "tsx scripts/publish.ts"
+    "build": "tsx scripts/build.ts"
   },
   "dependencies": {
     "@floating-ui/core": "^1.6.9",
