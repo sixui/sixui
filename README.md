@@ -9,8 +9,8 @@ Ready-to-use foundational React components implementing Google's [Material Desig
 <div align="center">
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/sixui/sixui/blob/HEAD/LICENSE)
-[![npm latest package](https://img.shields.io/npm/v/@sixui/ui/latest.svg)](https://www.npmjs.com/package/@sixui/core)
-[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@sixui/ui)](https://bundlephobia.com/package/@sixui/core@latest)
+[![npm latest package](https://img.shields.io/npm/v/@sixui/core/latest.svg)](https://www.npmjs.com/package/@sixui/core)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@sixui/core)](https://bundlephobia.com/package/@sixui/core@latest)
 
 </div>
 
