@@ -1,0 +1,13 @@
+{
+  "extends": "@sixui/typescript-config/base.json",
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "lib": ["es2022"],
+    "types": ["node"],
+    "paths": {
+      "~/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*.ts"]
+}

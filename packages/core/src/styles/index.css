@@ -1,0 +1,5 @@
+@import './preflight.css' layer(sixui-reset);
+
+:focus {
+  outline: none;
+}

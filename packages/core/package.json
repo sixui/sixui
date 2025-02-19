@@ -1,0 +1,99 @@
+{
+  "name": "@sixui/core",
+  "version": "0.1.0",
+  "description": "Material Design 3 for the web",
+  "homepage": "https://sixui.com",
+  "license": "MIT",
+  "repository": {
+    "url": "git+https://github.com/sixui/sixui.git",
+    "type": "git",
+    "directory": "packages/core"
+  },
+  "author": "Olivier Pascal <olivier@pascal.re>",
+  "sideEffects": [
+    "*.css"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "!dist/tmp"
+  ],
+  "scripts": {
+    "dev": "BROWSER=none storybook dev -p 6006 --no-open --disable-telemetry",
+    "generate-icons:convert": "svg-to-ts-files",
+    "generate-icons:format": "eslint src/assets/icons --fix",
+    "generate-icons": "run-s generate-icons:convert generate-icons:format",
+    "lint:check": "eslint src --fix",
+    "ts:check": "tsc --pretty --noEmit",
+    "check:all": "run-s lint:check ts:check",
+    "pre-commit": "run-s generate-icons",
+    "clean": "rm -rf dist",
+    "build-storybook": "storybook build",
+    "build": "tsx scripts/build.ts",
+    "publish": "tsx scripts/publish.ts"
+  },
+  "dependencies": {
+    "@floating-ui/core": "^1.6.9",
+    "@floating-ui/react": "^0.27.4",
+    "@material/material-color-utilities": "^0.3.0",
+    "@olivierpascal/helpers": "^0.0.71",
+    "@vanilla-extract/dynamic": "^2.1.2",
+    "clsx": "^2.1.1",
+    "highlight-words": "^2.0.0",
+    "rainbow-sprinkles": "^1.0.0",
+    "re-resizable": "^6.10.3",
+    "react-aria": "^3.37.0",
+    "react-dom": "^19.0.0",
+    "react-remove-scroll": "^2.6.3",
+    "react-transition-group": "^4.4.5",
+    "@vanilla-extract/css": "^1.17.1",
+    "@vanilla-extract/css-utils": "^0.1.4"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-regular-svg-icons": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "@react-types/shared": "^3.27.0",
+    "@sixui/eslint-config": "workspace:*",
+    "@sixui/toolchain": "workspace:*",
+    "@sixui/typescript-config": "workspace:*",
+    "@storybook/addon-actions": "^8.5.7",
+    "@storybook/addon-essentials": "^8.5.7",
+    "@storybook/blocks": "^8.5.7",
+    "@storybook/react": "^8.5.7",
+    "@storybook/react-vite": "^8.5.7",
+    "@storybook/test": "^8.5.7",
+    "@types/node": "^22.13.4",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/react-transition-group": "^4",
+    "@vanilla-extract/vite-plugin": "^5.0.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.20.1",
+    "npm-run-all": "^4.1.5",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "storybook": "^8.5.7",
+    "svg-to-ts": "^12.0.0",
+    "tsx": "^4.19.3",
+    "type-fest": "^4.35.0",
+    "typescript": "^5.7.3",
+    "vite": "^6.1.0"
+  },
+  "peerDependencies": {
+    "node": ">=22",
+    "react": "^19"
+  }
+}

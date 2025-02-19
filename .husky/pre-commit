@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-pnpm generate-icons
 pnpm lint-staged
 pnpm check:all
+pnpm pre-commit
 # pnpm test

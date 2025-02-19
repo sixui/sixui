@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "name": "@sixui/typescript-config",
+  "files": [
+    "base.json"
+  ]
+}
