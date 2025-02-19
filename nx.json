@@ -6,10 +6,7 @@
         "env": "NODE_ENV"
       }
     ],
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ]
+    "default": ["{projectRoot}/**/*", "sharedGlobals"]
   },
   "targetDefaults": {
     "dev": {
@@ -19,27 +16,28 @@
       "cache": false
     },
     "check:all": {
-      "dependsOn": [
-        "^check:all"
-      ],
+      "dependsOn": ["^check:all"],
       "cache": true
     },
     "pre-commit": {
-      "dependsOn": [
-        "^pre-commit"
-      ],
+      "dependsOn": ["^pre-commit"],
       "cache": true
     },
     "build": {
-      "dependsOn": [
-        "clean",
-        "^build"
-      ],
-      "outputs": [
-        "{projectRoot}/dist/**",
-        "{projectRoot}/storybook-static/**"
-      ],
+      "dependsOn": ["clean", "^build"],
+      "outputs": ["{projectRoot}/dist/**", "{projectRoot}/storybook-static/**"],
       "cache": true
+    }
+  },
+  "release": {
+    "projects": ["*"],
+    "version": {
+      "conventionalCommits": true
+    },
+    "changelog": {
+      "workspaceChangelog": {
+        "createRelease": "github"
+      }
     }
   }
 }
