@@ -22,7 +22,7 @@ const classNames = createStyles({
     vars: {
       ...overrideTokens(StandardAside.theme.tokens, {
         container: {
-          startSpace: appLayoutTheme.tokens.topBar.height,
+          startSpace: fallbackVar(appLayoutTheme.tokens.topBar.height, px(0)),
           size: fallbackVar(appLayoutTheme.tokens.navigationRail.width, px(80)),
         },
       }),

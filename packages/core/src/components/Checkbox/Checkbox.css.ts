@@ -14,7 +14,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME);
 const classNames = createStyles({
   content: {
     alignSelf: 'start',
-    marginTop: calc.divide(DENSITY, -2),
+    marginTop: calc.add(calc.divide(DENSITY, -2), px(1)),
   },
 });
 

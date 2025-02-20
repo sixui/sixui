@@ -18,7 +18,7 @@ const classNames = createStyles({
   root: {
     vars: overrideTokens(StandardAside.theme.tokens, {
       container: {
-        startSpace: appLayoutTheme.tokens.topBar.height,
+        startSpace: fallbackVar(appLayoutTheme.tokens.topBar.height, px(0)),
         size: fallbackVar(
           appLayoutTheme.tokens.navigationDrawer.width,
           px(360),

@@ -19,8 +19,7 @@ const defaultArgs = {
 const AppLayoutFooterScreenFrame: React.FC<IAppLayoutFooterProps> = (props) => {
   return (
     <ScreenFrame
-      w="100%"
-      h="$96"
+      h={350}
       style={{
         borderTopWidth: 0,
         borderTopLeftRadius: 0,
