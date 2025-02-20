@@ -30,6 +30,7 @@ export default function RootLayout({
     <html lang="en" {...sixuiHtmlProps}>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <SixuiProvider
+          colorSchemeVariant="dark"
           theme={{
             tokens: {
               typeFace: {
