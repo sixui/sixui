@@ -12,10 +12,10 @@
     "prettier:fix:file": "prettier --write",
     "lint:check": "eslint scripts --fix",
     "ncu": "npx npm-check-updates -i -p pnpm --deep",
-    "dev": "nx run-many -t dev",
+    "dev": "nx run core:dev",
     "check:all": "nx run-many -t check:all",
     "pre-commit": "nx run-many -t pre-commit",
-    "build": "nx run-many -t build",
+    "build": "nx run core:build",
     "release:dry": "nx release --dry-run",
     "release": "nx release"
   },

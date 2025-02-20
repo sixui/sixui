@@ -1,25 +1,20 @@
-import type { PartialDeep } from 'type-fest/source/partial-deep';
 import { useContext, useMemo, useRef, useState } from 'react';
 import { FloatingDelayGroup } from '@floating-ui/react';
-import cx from 'clsx';
 
 import type { IThemeContextValue } from './Theme.context';
-import type { ITheme, IThemeOverride } from './theme.types';
+import type { IThemeOverride } from './theme.types';
 import type { IThemeProviderProps } from './ThemeProvider.types';
 import type { IThemeSetterContextValue } from './ThemeSetter.context';
 import { OverlaysProvider } from '~/components/Overlays';
+import { useId } from '~/hooks/useId';
 import { partialAssignInlineVars } from '~/utils/css/partialAssignInlineVars';
 import { textFromCssProperties } from '~/utils/css/textFromCssProperties';
 import { deepMerge } from '~/utils/deepMerge';
 import { ThemeContext } from './Theme.context';
+import { COMPONENT_NAME } from './ThemeProvider.constants';
 import { ThemeSetterProvider } from './ThemeSetter.context';
 import { mergeThemeOverrides } from './utils/mergeThemeOverrides';
-import {
-  classNames,
-  defaultTheme,
-  themeTokens,
-  themeTokensClassName,
-} from './ThemeProvider.css';
+import { cssLayers, defaultTheme, themeTokens } from './ThemeProvider.css';
 
 /**
  * @see https://m3.material.io/styles/color/system/how-the-system-works
@@ -29,26 +24,37 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
     className,
     style,
     children,
-    theme,
+    theme: themeOverrides,
     colorSchemeVariant: colorSchemeVariantProp,
     inherit,
-    stylesTarget,
+    cssVariablesSelector: cssVariableSelectorProp,
+    getRootElement = () => document.documentElement,
     ...other
   } = props;
 
-  const themeContext = useContext(ThemeContext);
-
-  const parentTheme = inherit ? themeContext?.theme : undefined;
-  const colorSchemeVariant =
-    colorSchemeVariantProp ?? themeContext?.colorSchemeVariant ?? 'light';
+  const inheritedThemeContext = useContext(ThemeContext);
+  const id = useId();
+  const cssId = `sixui_themeProvider_${id.replace(/:/g, '')}`;
+  const cssVariablesSelector = cssVariableSelectorProp ?? `#${cssId}`;
 
   const [dynamicTheme, setDynamicTheme] = useState<
     IThemeOverride | undefined
   >();
+
   const mergedTheme = useMemo(
-    () => mergeThemeOverrides(parentTheme ?? defaultTheme, theme, dynamicTheme),
-    [parentTheme, theme, dynamicTheme],
+    () =>
+      mergeThemeOverrides(
+        (inherit ? inheritedThemeContext?.theme : undefined) ?? defaultTheme,
+        themeOverrides,
+        dynamicTheme,
+      ),
+    [inherit, inheritedThemeContext?.theme, themeOverrides, dynamicTheme],
   );
+
+  const colorSchemeVariant =
+    colorSchemeVariantProp ??
+    inheritedThemeContext?.colorSchemeVariant ??
+    'light';
 
   const rootRef = useRef<HTMLDivElement | null>(null);
   const themeContextValue: IThemeContextValue = useMemo(
@@ -56,8 +62,9 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
       getRoot: () => rootRef.current,
       theme: mergedTheme,
       colorSchemeVariant,
+      getRootElement,
     }),
-    [mergedTheme, colorSchemeVariant],
+    [mergedTheme, colorSchemeVariant, getRootElement],
   );
 
   const themeSetterContextValue: IThemeSetterContextValue = useMemo(
@@ -65,51 +72,36 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
     [],
   );
 
-  const themeOverrideVars = useMemo(() => {
-    const tokensOverride = deepMerge(
-      dynamicTheme?.tokens ?? ({} as PartialDeep<ITheme['tokens']>),
-      parentTheme?.tokens,
-      theme?.tokens,
-    );
-    const themeTokensOverride = {
-      ...tokensOverride,
-      colorScheme:
-        colorSchemeVariant === 'dark'
-          ? deepMerge(
-              mergedTheme.tokens.colorScheme.dark,
-              tokensOverride.colorScheme?.dark,
-            )
-          : tokensOverride.colorScheme?.light,
-    };
+  const themeTokensVars = useMemo(
+    () => ({
+      ...(inherit
+        ? mergedTheme.tokens
+        : deepMerge(defaultTheme.tokens, mergedTheme.tokens)),
+      colorScheme: mergedTheme.tokens.colorScheme[colorSchemeVariant],
+    }),
+    [inherit, mergedTheme, colorSchemeVariant],
+  );
 
-    return themeTokensOverride;
-  }, [
-    parentTheme?.tokens,
-    theme?.tokens,
-    dynamicTheme?.tokens,
-    mergedTheme.tokens,
-    colorSchemeVariant,
-  ]);
-
-  const themeVars = partialAssignInlineVars(themeTokens, themeOverrideVars);
-
-  if (stylesTarget) {
-    stylesTarget.classList.add(
-      ...cx(
-        classNames.target,
-        parentTheme ? undefined : themeTokensClassName,
-        className,
-      ).split(' '),
-    );
-
-    stylesTarget.setAttribute(
-      'style',
-      textFromCssProperties({
-        ...style,
-        ...themeVars,
-      }),
-    );
+  const css = `
+@layer ${cssLayers.theme} {
+  ${cssVariablesSelector} {
+    ${textFromCssProperties(
+      partialAssignInlineVars(themeTokens, themeTokensVars),
+      {
+        indent: 4,
+        initialIndent: false,
+      },
+    )}
+    color: ${themeTokens.colorScheme.onSurface};
   }
+
+  @media (pointer: fine) {
+    ${cssVariablesSelector} {
+      scrollbar-color: ${themeTokens.colorScheme.primary} transparent;
+    }
+  }
+}
+  `;
 
   return (
     <ThemeContext.Provider value={themeContextValue}>
@@ -121,26 +113,18 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
           }}
         >
           <div
-            className={
-              stylesTarget
-                ? undefined
-                : cx(
-                    classNames.target,
-                    parentTheme ? undefined : themeTokensClassName,
-                    className,
-                  )
-            }
-            style={
-              stylesTarget
-                ? undefined
-                : {
-                    ...style,
-                    ...themeVars,
-                  }
-            }
+            id={cssId}
+            className={className}
+            style={style}
             ref={rootRef}
             {...other}
           >
+            <style
+              type="text/css"
+              data-sixui-styles={COMPONENT_NAME}
+              dangerouslySetInnerHTML={{ __html: css }}
+            />
+
             <OverlaysProvider>{children}</OverlaysProvider>
           </div>
         </FloatingDelayGroup>

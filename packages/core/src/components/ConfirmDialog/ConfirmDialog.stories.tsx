@@ -96,29 +96,33 @@ const AsOverlayDemo: React.FC<IConfirmDialogOverlayProps> = (props) => {
                 variant: 'danger',
               },
               onConfirm: () =>
-                overlays.open(ConfirmDialogOverlay, {
-                  headline: 'Mmm...',
-                  children: 'If I was you, I would not do that. Continue?',
-                  jail: true,
-                  labels: {
-                    confirm: 'Yes, delete',
-                  },
-                  confirmProps: {
-                    variant: 'danger',
-                  },
-                  ...props,
-                }),
+                overlays
+                  .open(ConfirmDialogOverlay, {
+                    headline: 'Mmm...',
+                    children: 'If I was you, I would not do that. Continue?',
+                    jail: true,
+                    labels: {
+                      confirm: 'Yes, delete',
+                    },
+                    confirmProps: {
+                      variant: 'danger',
+                    },
+                    ...props,
+                  })
+                  .then((confirmed) => {
+                    setResult(confirmed ? 'Confirmed' : 'Canceled');
+                  }),
             })
-            .then(() => {
-              setResult('Confirmed');
+            .then((confirmed) => {
+              if (!confirmed) {
+                setResult('Canceled');
+              }
             })
             .catch((error: unknown) => {
               setResult(
-                error
-                  ? error instanceof Error
-                    ? `Error: ${error.message}`
-                    : `Error (${typeof error})`
-                  : 'Canceled',
+                error instanceof Error
+                  ? `Error: ${error.message}`
+                  : `Unknown error (${typeof error})`,
               );
             })
         }

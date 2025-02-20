@@ -1,9 +1,4 @@
-import {
-  createGlobalThemeContract,
-  createTheme,
-  globalLayer,
-  style,
-} from '@vanilla-extract/css';
+import { createGlobalThemeContract, globalLayer } from '@vanilla-extract/css';
 
 import type {
   IRuntimeThemeTokens,
@@ -40,23 +35,3 @@ export const themeTokens = createGlobalThemeContract(
 );
 
 export const defaultTheme = getDefaultTheme(themeTokens);
-
-export const themeTokensClassName = createTheme(themeTokens, {
-  '@layer': cssLayers.theme,
-  ...getRuntimeThemeTokens(defaultTheme),
-});
-
-export const classNames = {
-  target: style({
-    '@layer': {
-      [cssLayers.theme]: {
-        color: themeTokens.colorScheme.onSurface,
-        '@media': {
-          '(pointer: fine)': {
-            scrollbarColor: `${themeTokens.colorScheme.primary} transparent`,
-          },
-        },
-      },
-    },
-  }),
-};

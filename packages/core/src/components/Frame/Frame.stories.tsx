@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IFrameProps } from './Frame.types';
+import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { themeTokens } from '~/components/Theme';
 import { Frame } from './Frame';
@@ -20,12 +21,12 @@ const defaultArgs = {
         alignItems: 'center',
         width: '100%',
         height: '100%',
-        backgroundColor: themeTokens.colorScheme.primary,
-        backgroundImage: `-webkit-linear-gradient(45deg, ${themeTokens.colorScheme.primary} 50%, #fff 50%)`,
-        color: themeTokens.colorScheme.onPrimary,
+        backgroundColor: themeTokens.colorScheme.inverseSurface,
+        backgroundImage: `-webkit-linear-gradient(45deg, ${themeTokens.colorScheme.inverseSurface} 50%, ${themeTokens.colorScheme.surface} 50%)`,
+        color: themeTokens.colorScheme.inverseOnSurface,
       }}
     >
-      Hello world!
+      <Button>Hello World!</Button>
     </div>
   ),
   w: '$48',

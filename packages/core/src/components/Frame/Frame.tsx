@@ -68,8 +68,8 @@ export const Frame = componentFactory<IFrameFactory>((props, forwardedRef) => {
         <>
           {createPortal(
             <ThemeProvider
-              stylesTarget={iframeDocument.documentElement}
-              inherit
+              getRootElement={() => iframeDocument.documentElement}
+              inherit={importParentStyles}
             >
               <Responsive>
                 {isFunction(children)
@@ -82,7 +82,11 @@ export const Frame = componentFactory<IFrameFactory>((props, forwardedRef) => {
 
           {parentStyles &&
             createPortal(
-              <style type="text/css">{parentStyles}</style>,
+              <style
+                type="text/css"
+                data-sixui-styles={COMPONENT_NAME}
+                dangerouslySetInnerHTML={{ __html: parentStyles }}
+              />,
               iframeDocument.head,
             )}
         </>

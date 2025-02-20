@@ -153,6 +153,7 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
         <AppLayoutSetterProvider value={setterContextValue}>
           <style
             type="text/css"
+            data-sixui-styles={COMPONENT_NAME}
             dangerouslySetInnerHTML={{ __html: globalStyles }}
           />
           <Box {...getStyles('root')} ref={forwardedRef} {...other}>

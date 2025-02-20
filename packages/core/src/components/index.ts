@@ -20,6 +20,7 @@ export * from './ColorPickerContent';
 // export * from './ColorScheme';
 export * from './ColorTag';
 // export * from './ComponentShowcase';
+export * from './ConfirmDialog';
 export * from './CopyableText';
 export * from './CustomizableTheme';
 export * from './DeterminateCircularProgressIndicator';

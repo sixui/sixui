@@ -6,6 +6,7 @@ export type IThemeContextValue = {
   getRoot: () => HTMLDivElement | null;
   theme: ITheme;
   colorSchemeVariant: IThemeColorSchemeVariant;
+  getRootElement: () => HTMLElement | undefined;
 };
 
 export const ThemeContext = createContext<IThemeContextValue | undefined>(

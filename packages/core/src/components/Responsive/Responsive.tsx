@@ -34,6 +34,7 @@ export const Responsive = componentFactory<IResponsiveFactory>(
       <div {...getStyles('root')} ref={forwardedRef} {...other}>
         <style
           type="text/css"
+          data-sixui-styles={COMPONENT_NAME}
           dangerouslySetInnerHTML={{ __html: responsiveCssRules }}
         />
         {children}

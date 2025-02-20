@@ -24,14 +24,16 @@ export const ConfirmDialogOverlay = registerOverlay<IConfirmDialogOverlayProps>(
           Promise.resolve()
             .then(() => onCancel?.())
             .then(() => {
-              overlay.reject();
+              overlay.resolve(false);
             })
             .catch(overlay.reject)
         }
         onConfirm={() =>
           Promise.resolve()
             .then(() => onConfirm?.())
-            .then(overlay.resolve)
+            .then(() => {
+              overlay.resolve(true);
+            })
             .catch(overlay.reject)
         }
         onClosed={() => {
