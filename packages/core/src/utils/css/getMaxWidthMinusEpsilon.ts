@@ -1,4 +1,3 @@
-import { em } from './em';
 import { getNumericPixelValue } from './getNumericPixelValue';
 
 export const getMaxWidthMinusEpsilon = (
@@ -13,7 +12,7 @@ export const getMaxWidthMinusEpsilon = (
   const epsilon = 0.1;
   const maxWidthMinusEpsilon = isPx
     ? `${pxValue - epsilon}px`
-    : em(pxValue - epsilon);
+    : `${(pxValue - epsilon) / 16}em`;
 
   return maxWidthMinusEpsilon;
 };

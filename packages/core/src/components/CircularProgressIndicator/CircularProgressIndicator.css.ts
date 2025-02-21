@@ -2,6 +2,7 @@ import type { IComponentThemeFactory } from '~/utils/component/componentThemeFac
 import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { em } from '~/utils/css';
 import { createStyles } from '~/utils/css/createStyles';
 import { modifierSelector } from '~/utils/css/modifierSelector';
 import { px } from '~/utils/css/px';
@@ -18,7 +19,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   opacity: {
     disabled: themeTokens.state.opacity.disabled,
   },
-  size: px('1em'),
+  size: em(1),
   containerPadding: px(0),
   strokeWidth: `round(up, ${px(2)}, 1px)`,
 });

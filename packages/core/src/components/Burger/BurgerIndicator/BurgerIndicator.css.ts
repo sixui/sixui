@@ -5,7 +5,7 @@ import type { IComponentThemeFactory } from '~/utils/component/componentThemeFac
 import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
-import { modifierSelector } from '~/utils/css';
+import { em, modifierSelector } from '~/utils/css';
 import { createStyles } from '~/utils/css/createStyles';
 import { px } from '~/utils/css/px';
 import { COMPONENT_NAME } from './BurgerIndicator.constants';
@@ -14,7 +14,7 @@ type IModifier = 'opened';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
-    size: px('1em'),
+    size: em(1),
   },
   lines: {
     color: 'currentColor',

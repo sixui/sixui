@@ -1,4 +1,3 @@
-import { em } from '~/utils/css/em';
 import { getNumericPixelValue } from '~/utils/css/getNumericPixelValue';
 
 export const getBreakpointPlusEpsilon = (
@@ -14,7 +13,7 @@ export const getBreakpointPlusEpsilon = (
   const pxValuePlusEpsilon = pxValue + epsilon;
   const breakpointPlusEpsilon = isPxBreakpoint
     ? `${pxValuePlusEpsilon}px`
-    : em(pxValuePlusEpsilon);
+    : `${pxValuePlusEpsilon / 16}em`;
 
   return breakpointPlusEpsilon;
 };

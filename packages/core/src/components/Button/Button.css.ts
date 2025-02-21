@@ -11,6 +11,7 @@ import { StateLayer } from '~/components/StateLayer';
 import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { em } from '~/utils/css';
 import { createStyles } from '~/utils/css/createStyles';
 import { density } from '~/utils/css/density';
 import { modifierSelector } from '~/utils/css/modifierSelector';
@@ -722,8 +723,8 @@ export const buttonThemeVariants = {
             color: {
               disabled: 'unset',
             },
-            minHeight: px('1em'),
-            minWidth: px('1em'),
+            minHeight: em(1),
+            minWidth: em(1),
             leadingSpace: {
               normal: px(0),
               withStart: px(0),
@@ -734,8 +735,8 @@ export const buttonThemeVariants = {
             },
           },
           icon: {
-            size: px('1em'),
-            labelSpace: '0.25em',
+            size: em(1),
+            labelSpace: em(0.25),
           },
           label: {
             color: {

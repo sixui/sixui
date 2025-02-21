@@ -41,6 +41,7 @@ export interface IButtonOwnProps
   endSlot?: React.ReactNode;
   animatedLeadingIconSlot?: boolean;
   animatedTrailingIconSlot?: boolean;
+  loadingIndicatorPosition?: 'start' | 'label' | 'end';
 }
 
 export interface IButtonProps
