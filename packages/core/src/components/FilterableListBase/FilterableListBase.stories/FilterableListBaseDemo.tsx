@@ -44,7 +44,9 @@ export const FilterableListBaseDemo: React.FC<IFilterableListBaseDemoProps> = (
           header={
             canFilter ? (
               <TextInputField
-                onChange={listProps.handleQueryChange}
+                onChange={(event) => {
+                  listProps.handleQueryChange(event.target.value);
+                }}
                 value={listProps.query}
                 disabled={listProps.disabled}
                 clearable

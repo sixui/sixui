@@ -21,7 +21,7 @@ export interface ISuggestBaseOwnProps<TItem>
       | 'defaultQuery'
     >,
     IUseSingleFilterableListBaseProps<TItem, HTMLElement>,
-    IOmit<ITextInputFieldProps, 'children'> {
+    IOmit<ITextInputFieldProps, 'children' | 'onChange'> {
   itemLabel: (item: TItem) => React.ReactNode | undefined;
   getValueFieldProps?: (
     renderProps: IFloatingFilterableListBaseTriggerRenderProps<TItem>,

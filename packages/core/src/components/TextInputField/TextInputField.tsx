@@ -192,9 +192,8 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
               required={required}
               value={value}
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                const nextValue = event.target.value;
-                setValue(nextValue);
-                onChange?.(nextValue);
+                setValue(event.target.value);
+                onChange?.(event);
               }}
               ref={inputHandleRef}
             />

@@ -158,9 +158,8 @@ export const TextAreaField = componentFactory<ITextAreaFieldFactory>(
               required={required}
               value={value}
               onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => {
-                const nextValue = event.target.value;
-                setValue(nextValue);
-                onChange?.(nextValue);
+                setValue(event.target.value);
+                onChange?.(event);
               }}
               ref={textAreaHandleRef}
             />

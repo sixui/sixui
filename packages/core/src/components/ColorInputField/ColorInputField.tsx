@@ -151,7 +151,8 @@ export const ColorInputField = componentFactory<IColorInputFieldFactory>(
               {...getProps()}
               value={value}
               hasError={(!!value && !isValidColor) || other.hasError}
-              onChange={(nextValue) => {
+              onChange={(event) => {
+                const nextValue = event.target.value;
                 setValue(nextValue);
                 onChange?.(nextValue, isValidHexColor(nextValue));
               }}

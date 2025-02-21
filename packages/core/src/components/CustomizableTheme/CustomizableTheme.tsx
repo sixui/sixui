@@ -87,7 +87,9 @@ export const CustomizableTheme = componentFactory<ICustomizableThemeFactory>(
               value={scale}
               min="0.5"
               step="0.1"
-              onChange={setScale}
+              onChange={(event) => {
+                setScale(event.target.value);
+              }}
             />
             <TextInputField
               w="$24"
@@ -95,7 +97,9 @@ export const CustomizableTheme = componentFactory<ICustomizableThemeFactory>(
               type="number"
               value={density}
               step="1"
-              onChange={setDensity}
+              onChange={(event) => {
+                setDensity(event.target.value);
+              }}
             />
             <TextInputField
               w="$32"
@@ -104,7 +108,9 @@ export const CustomizableTheme = componentFactory<ICustomizableThemeFactory>(
               value={minTargetSize}
               step="2"
               suffixText="px"
-              onChange={setMinTargetSize}
+              onChange={(event) => {
+                setMinTargetSize(event.target.value);
+              }}
               disabled={Number(density) < 0}
             />
           </Flex>

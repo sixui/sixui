@@ -10,7 +10,7 @@ import type {
 
 export interface ITextInputFieldOwnProps
   extends IFieldBaseOwnProps,
-    IElementProps<'input', 'className' | 'children' | 'onChange'> {
+    IElementProps<'input', 'className' | 'children'> {
   /**
    * When true, the password field can be unmasked for `type="passord"` input
    * fields.
@@ -46,7 +46,6 @@ export interface ITextInputFieldOwnProps
 
   value?: string;
   defaultValue?: string;
-  onChange?: (value: string) => void;
 }
 
 export interface ITextInputFieldProps
