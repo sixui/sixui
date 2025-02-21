@@ -274,6 +274,7 @@ export const useRippleEffect = <TElement extends HTMLElement>(
 
   const endPressAnimation = useCallback(() => {
     stateRef.current = IState.Inactive;
+    rippleStartEventRef.current = null;
     const animation = growAnimationRef.current;
 
     const pressAnimationPlayState =
@@ -437,6 +438,10 @@ export const useRippleEffect = <TElement extends HTMLElement>(
         return;
       }
 
+      if (!clickThrough) {
+        event.stopPropagation();
+      }
+
       const canSynthesizeClick =
         (event.target as HTMLElement).tagName !== 'INPUT' &&
         (event.key === 'Enter' || event.key === ' ') &&
@@ -445,15 +450,19 @@ export const useRippleEffect = <TElement extends HTMLElement>(
         startPressAnimation(event);
       }
     },
-    [disabled, startPressAnimation],
+    [disabled, startPressAnimation, clickThrough],
   );
 
   const handleKeyUp: React.KeyboardEventHandler = useCallback(() => {
-    endPressAnimation();
+    if (stateRef.current === IState.Inactive) {
+      endPressAnimation();
+    }
   }, [endPressAnimation]);
 
   const handleBlur: React.KeyboardEventHandler = useCallback(() => {
-    endPressAnimation();
+    if (stateRef.current === IState.Inactive) {
+      endPressAnimation();
+    }
   }, [endPressAnimation]);
 
   const handleContextMenu = useCallback(() => {

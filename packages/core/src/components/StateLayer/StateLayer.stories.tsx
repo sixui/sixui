@@ -46,6 +46,7 @@ const BoundedDemo: React.FC<IDemoProps> = (props) => {
       tabIndex={props.disabled || props.baseState ? -1 : 0}
       disabled={props.disabled}
       ref={stateLayer.triggerRef}
+      style={{ cursor: 'pointer' }}
       {...stateLayer.interactionsContext.triggerProps}
     >
       <StateLayer context={stateLayer} />
@@ -77,19 +78,21 @@ const UnboundedDemo: React.FC<IDemoProps> = (props) => {
       role="button"
       tabIndex={props.disabled || props.baseState ? -1 : 0}
       disabled={props.disabled}
+      style={{ cursor: 'pointer' }}
       {...stateLayer.interactionsContext.triggerProps}
       ref={stateLayer.triggerRef}
     >
       <Placeholder
-        as={StateLayer}
         w="$12"
         h="$12"
         surface="$transparent"
         shape="$sm"
         outline="$xs"
         outlineStyle="solid"
-        context={stateLayer}
-      />
+        style={{ cursor: 'pointer' }}
+      >
+        <StateLayer context={stateLayer} />
+      </Placeholder>
       <FocusRing visible={stateLayer.interactionsContext.state.focused} />
     </Placeholder>
   );
@@ -119,6 +122,7 @@ const NestedDemo: React.FC<IDemoProps> = (props) => {
       role="button"
       tabIndex={props.disabled || props.baseState ? -1 : 0}
       disabled={props.disabled}
+      style={{ cursor: 'pointer' }}
       {...stateLayer.interactionsContext.triggerProps}
       ref={stateLayer.triggerRef}
     >
@@ -135,6 +139,7 @@ const NestedDemo: React.FC<IDemoProps> = (props) => {
         role="button"
         tabIndex={props.disabled || props.baseState ? -1 : 0}
         disabled={props.disabled}
+        style={{ cursor: 'pointer' }}
         {...nestedStateLayer.interactionsContext.triggerProps}
         ref={nestedStateLayer.triggerRef}
       >
