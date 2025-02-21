@@ -35,6 +35,9 @@ export const Slot = polymorphicComponentFactory<ISlotFactory>(
       style,
       variant,
       theme: slotTheme,
+      modifiers: {
+        animated,
+      },
     });
 
     const transitionNodeRef = useRef<HTMLDivElement>(null);

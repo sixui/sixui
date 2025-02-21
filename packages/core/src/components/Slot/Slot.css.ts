@@ -9,7 +9,7 @@ import { modifierSelector } from '~/utils/css/modifierSelector';
 import { px } from '~/utils/css/px';
 import { COMPONENT_NAME } from './Slot.constants';
 
-type IModifier = 'animation-status';
+type IModifier = 'animated' | 'animation-status';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
@@ -27,12 +27,14 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
 
 const classNames = createStyles({
   root: {
-    width: tokens.container.width,
     marginLeft: tokens.container.leadingSpace.normal,
     marginRight: tokens.container.trailingSpace.normal,
 
     selectors: {
-      [modifierSelector({ 'animation-status': 'initial' })]: {
+      [modifierSelector<IModifier>('animated')]: {
+        width: tokens.container.width,
+      },
+      [modifierSelector<IModifier>({ 'animation-status': 'initial' })]: {
         opacity: 0,
         marginLeft: calc.add(
           tokens.container.leadingSpace.normal,
@@ -47,7 +49,7 @@ const classNames = createStyles({
           calc.negate(tokens.container.trailingSpace.compensated),
         ),
       },
-      [modifierSelector({ 'animation-status': 'entering' })]: {
+      [modifierSelector<IModifier>({ 'animation-status': 'entering' })]: {
         marginLeft: tokens.container.leadingSpace.normal,
         marginRight: tokens.container.trailingSpace.normal,
         opacity: 1,
@@ -57,12 +59,12 @@ const classNames = createStyles({
         transitionTimingFunction:
           themeTokens.motion.easing.emphasized.decelerate,
       },
-      [modifierSelector({ 'animation-status': 'entered' })]: {
+      [modifierSelector<IModifier>({ 'animation-status': 'entered' })]: {
         marginLeft: tokens.container.leadingSpace.normal,
         marginRight: tokens.container.trailingSpace.normal,
         opacity: 1,
       },
-      [modifierSelector({ 'animation-status': 'exiting' })]: {
+      [modifierSelector<IModifier>({ 'animation-status': 'exiting' })]: {
         opacity: 0,
         marginLeft: calc.add(
           tokens.container.leadingSpace.normal,
@@ -79,7 +81,7 @@ const classNames = createStyles({
         transitionTimingFunction:
           themeTokens.motion.easing.emphasized.accelerate,
       },
-      [modifierSelector({ 'animation-status': 'exited' })]: {
+      [modifierSelector<IModifier>({ 'animation-status': 'exited' })]: {
         marginLeft: tokens.container.leadingSpace.normal,
         marginRight: tokens.container.trailingSpace.normal,
         opacity: 0,
