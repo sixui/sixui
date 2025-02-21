@@ -4,6 +4,7 @@ import { FieldBase } from '~/components/FieldBase';
 import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { px } from '~/utils/css';
 import { createStyles } from '~/utils/css/createStyles';
 import { modifierSelector } from '~/utils/css/modifierSelector';
 import { COMPONENT_NAME } from './TextInputField.constants';
@@ -50,13 +51,11 @@ const classNames = createStyles({
     display: 'block',
     caretColor: tokens.caret.color.normal,
     cursor: 'text',
-    position: 'absolute',
-    inset: 0,
-
-    height: '100%',
     flexShrink: 1,
     flexGrow: 1,
     flexBasis: 0,
+    width: '100%',
+    minWidth: px(24),
 
     '::placeholder': {
       WebkitTextFillColor: tokens.placeholder.color.normal,

@@ -5,6 +5,7 @@ import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IFieldBaseVariant } from '~/components/FieldBase';
 import type { ITextInputFieldProps } from './TextInputField.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { Placeholder } from '~/components/Placeholder';
 import { px } from '~/utils/css/px';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { TextInputField } from './TextInputField';
@@ -66,6 +67,14 @@ const rows: Array<IComponentPresentation<ITextInputFieldProps>> = [
   },
   { legend: 'Error', props: { defaultValue: 'Value', hasError: true } },
   { legend: 'Loading', props: { loading: true } },
+  {
+    legend: 'Children',
+    props: {
+      children: (
+        <Placeholder w="$6" h="$6" surface="$primary" shape="$xs" diagonals />
+      ),
+    },
+  },
 ];
 
 const TextInputFieldShowcase = componentShowcaseFactory(TextInputField);
