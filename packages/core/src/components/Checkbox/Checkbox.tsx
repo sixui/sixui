@@ -30,6 +30,7 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
       requiredSign,
       labelPosition = 'right',
       labeledProps,
+      id,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
     const { boxProps, other: forwardedProps } = extractBoxProps(other);
@@ -57,7 +58,7 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
         requiredSign={requiredSign}
         labelPosition={labelPosition}
         loading={other.loading}
-        id={other.id}
+        id={id}
         required={other.required}
         disabled={other.disabled}
         readOnly={other.readOnly}

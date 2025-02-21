@@ -93,7 +93,9 @@ export const WithCheckbox: IStory = {
     ...defaultArgs,
     w: '$28',
     children: (
-      <Checkbox onChange={(...args) => sbHandleEvent('onClick', args, 1000)} />
+      <Checkbox.Control
+        onChange={(...args) => sbHandleEvent('onClick', args, 1000)}
+      />
     ),
   },
 };
@@ -111,7 +113,9 @@ export const WithRadio: IStory = {
     ...defaultArgs,
     w: '$28',
     children: (
-      <Radio onChange={(...args) => sbHandleEvent('onClick', args, 1000)} />
+      <Radio.Control
+        onChange={(...args) => sbHandleEvent('onClick', args, 1000)}
+      />
     ),
   },
 };
@@ -129,7 +133,9 @@ export const WithSwitch: IStory = {
     ...defaultArgs,
     w: '$28',
     children: (
-      <Switch onChange={(...args) => sbHandleEvent('onClick', args, 1000)} />
+      <Switch.Control
+        onChange={(...args) => sbHandleEvent('onClick', args, 1000)}
+      />
     ),
   },
 };

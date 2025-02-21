@@ -64,7 +64,6 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
 
     const { boxProps, other: forwardedProps } = extractBoxProps(other);
 
-    // fw: disabled, readOnly, id, required
     const labeledContext = useLabeledContext();
     const disabled = disabledProp ?? labeledContext?.disabled;
     const readOnly = readOnlyProp ?? labeledContext?.readOnly;

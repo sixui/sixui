@@ -40,11 +40,12 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
       children,
       loading,
       rootRef,
+      id: idProp,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
     const labeledContext = useLabeledContext();
-    const id = other.id ?? labeledContext?.id;
+    const id = idProp ?? labeledContext?.id;
     const disabled = other.disabled ?? labeledContext?.disabled;
     const readOnly = other.readOnly ?? labeledContext?.readOnly;
     const required = other.required ?? labeledContext?.required;
