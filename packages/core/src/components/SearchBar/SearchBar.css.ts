@@ -7,7 +7,7 @@ import { StateLayer } from '~/components/StateLayer';
 import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
-import { density, space } from '~/utils/css';
+import { density, space, typography } from '~/utils/css';
 import { createStyles } from '~/utils/css/createStyles';
 import { overrideTokens } from '~/utils/css/overrideTokens';
 import { px } from '~/utils/css/px';
@@ -110,6 +110,9 @@ const classNames = createStyles({
     display: 'block',
     caretColor: tokens.caret.color,
     cursor: 'text',
+
+    ...typography(tokens.inputText.typography),
+    color: tokens.inputText.color,
 
     '::placeholder': {
       WebkitTextFillColor: tokens.placeholder.color,
