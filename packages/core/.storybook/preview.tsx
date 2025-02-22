@@ -37,7 +37,7 @@ const preview: Preview = {
     layout: 'none',
     backgrounds: {
       default: 'dark',
-      values: [{ name: 'dark', value: '#141316' }],
+      values: [{ name: 'dark', value: '#0F0D13' }],
     },
   },
 };

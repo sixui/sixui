@@ -80,7 +80,7 @@ export const Variants: IStory = {
           props: {
             variant: 'input',
             children: 'Input',
-            onTrailingClick: () => sbHandleEvent('delete', undefined, 1000),
+            onTrailingClick: (...args) => sbHandleEvent('delete', args, 1000),
             imageUrl: IMAGE_URL,
           },
         },
@@ -88,7 +88,7 @@ export const Variants: IStory = {
           props: {
             variant: 'input',
             children: 'Avatar',
-            onTrailingClick: () => sbHandleEvent('delete', undefined, 1000),
+            onTrailingClick: (...args) => sbHandleEvent('delete', args, 1000),
             imageUrl: IMAGE_URL,
             avatar: true,
           },
@@ -251,7 +251,7 @@ export const Input: IStory = {
         {
           legend: 'Deletable',
           props: {
-            onTrailingClick: () => sbHandleEvent('delete', undefined, 1000),
+            onTrailingClick: (...args) => sbHandleEvent('delete', args, 1000),
           },
         },
       ]}
@@ -302,14 +302,16 @@ export const InputWithIconOrImage: IStory = {
           legend: 'With Image',
           props: {
             imageUrl: IMAGE_URL,
-            onTrailingClick: () => sbHandleEvent('delete', undefined, 1000),
+            onTrailingClick: (...args) =>
+              sbHandleEvent('delete', ...args, 1000),
           },
         },
         {
           legend: 'With avatar',
           props: {
             imageUrl: IMAGE_URL,
-            onTrailingClick: () => sbHandleEvent('delete', undefined, 1000),
+            onTrailingClick: (...args) =>
+              sbHandleEvent('delete', ...args, 1000),
             avatar: true,
           },
         },

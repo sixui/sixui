@@ -4,7 +4,6 @@ import type { IPlainTooltipContentOwnProps } from './PlainTooltipContent';
 import { PopoverBase } from '~/components/PopoverBase';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { isFunction } from '~/utils/isFunction';
 import { mergeProps } from '~/utils/mergeProps';
 import { COMPONENT_NAME } from './PlainTooltip.constants';
 import { PlainTooltipContent } from './PlainTooltipContent';
@@ -60,7 +59,7 @@ export const PlainTooltip = componentFactory<IPlainTooltipFactory>(
       >
         {(renderProps) => (
           <span {...renderProps.getProps()} ref={renderProps.setRef}>
-            {isFunction(children) ? children(renderProps) : children}
+            {children}
           </span>
         )}
       </PopoverBase>

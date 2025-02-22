@@ -65,7 +65,7 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
       baseState: interactions,
       mergeStrategy: interactionsMergeStrategy,
       disabled: !!stateLayerProp || disabledOrReadOnly || nonInteractive,
-      clickThrough: !onClick && !nonInteractive,
+      clickThrough: !onClick,
     });
     const stateLayer = stateLayerProp ?? ownStateLayer;
     const rootElement =

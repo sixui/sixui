@@ -100,7 +100,12 @@ const rows: Array<IComponentPresentation<ICardProps>> = [
             />
           </Card.Content>
           <Card.Actions>
-            <Button variant="filled">Action</Button>
+            <Button
+              variant="filled"
+              onClick={(...args) => sbHandleEvent('action:onClick', args)}
+            >
+              Action
+            </Button>
           </Card.Actions>
         </>
       ),

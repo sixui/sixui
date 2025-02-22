@@ -193,7 +193,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
     return (
       <ButtonBase
         {...getStyles('root')}
-        onClick={handleClick}
+        onClick={onClick ? handleClick : undefined}
         classNames={mergeClassNames(classNames, {
           stateLayer: getStyles('stateLayer').className,
           touchTarget: getStyles('touchTarget').className,

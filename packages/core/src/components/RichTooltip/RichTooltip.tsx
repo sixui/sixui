@@ -4,7 +4,6 @@ import type { IRichTooltipContentOwnProps } from './RichTooltipContent';
 import { PopoverBase } from '~/components/PopoverBase';
 import { useComponentTheme } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { isFunction } from '~/utils/isFunction';
 import { mergeProps } from '~/utils/mergeProps';
 import { COMPONENT_NAME } from './RichTooltip.constants';
 import { RichTooltipContent } from './RichTooltipContent';
@@ -81,7 +80,7 @@ export const RichTooltip = componentFactory<IRichTooltipFactory>(
             {...renderProps.getProps()}
             ref={renderProps.setRef}
           >
-            {isFunction(children) ? children(renderProps) : children}
+            {children}
           </span>
         )}
       </PopoverBase>

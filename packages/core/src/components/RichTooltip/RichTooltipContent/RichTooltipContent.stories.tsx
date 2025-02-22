@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { IRichTooltipContentProps } from './RichTooltipContent.types';
 import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { RichTooltipContent } from './RichTooltipContent';
 
 const meta = {
@@ -51,7 +52,14 @@ export const WithAction: IStory = {
   render: (props) => <RichTooltipContent {...props} />,
   args: {
     ...defaultArgs,
-    actions: <Button variant="text">Action</Button>,
+    actions: (
+      <Button
+        variant="text"
+        onClick={(...args) => sbHandleEvent('action:onClick', args)}
+      >
+        Action
+      </Button>
+    ),
   },
 };
 
@@ -62,8 +70,18 @@ export const WithSubheadAndActions: IStory = {
     subhead: 'Rich tooltip',
     actions: (
       <>
-        <Button variant="text">Action 1</Button>
-        <Button variant="text">Action 2</Button>
+        <Button
+          variant="text"
+          onClick={(...args) => sbHandleEvent('action1:onClick', args)}
+        >
+          Action 1
+        </Button>
+        <Button
+          variant="text"
+          onClick={(...args) => sbHandleEvent('action2:onClick', args)}
+        >
+          Action 2
+        </Button>
       </>
     ),
   },

@@ -20,7 +20,7 @@ const defaultArgs = {
   headline: 'Permanently delete?',
   children:
     'Deleting the selected messages will also remove them from all synced devices.',
-  onClose: () => void sbHandleEvent('onClose', undefined, 500),
+  onClose: (...args) => void sbHandleEvent('onClose', args, 500),
   actions: ({ close }) => (
     <>
       <Button variant="text" onClick={close}>
@@ -28,7 +28,7 @@ const defaultArgs = {
       </Button>
       <Button
         variant="danger"
-        onClick={() => sbHandleEvent('onClick', undefined, 500)}
+        onClick={(...args) => sbHandleEvent('delete:onClick', args, 500)}
       >
         Delete
       </Button>

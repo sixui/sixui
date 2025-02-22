@@ -5,6 +5,7 @@ import type { ICardProps } from './Card.types';
 import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Flex } from '~/components/Flex';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { Card } from './Card';
 
 const meta = {
@@ -64,7 +65,12 @@ const cols: Array<IComponentPresentation<ICardProps>> = [
                 supportingText="Explain more about the topic shown in the headline and subhead through supporting text."
               />
               <Card.Actions p="$0">
-                <Button variant="filled">Action</Button>
+                <Button
+                  variant="filled"
+                  onClick={(...args) => sbHandleEvent('action:onClick', args)}
+                >
+                  Action
+                </Button>
               </Card.Actions>
             </Flex>
           </Card.Content>
@@ -85,7 +91,12 @@ const cols: Array<IComponentPresentation<ICardProps>> = [
                 supportingText="Explain more about the topic shown in the headline and subhead through supporting text."
               />
               <Card.Actions p="$0">
-                <Button variant="filled">Action</Button>
+                <Button
+                  variant="filled"
+                  onClick={(...args) => sbHandleEvent('action:onClick', args)}
+                >
+                  Action
+                </Button>
               </Card.Actions>
             </Flex>
           </Card.Content>

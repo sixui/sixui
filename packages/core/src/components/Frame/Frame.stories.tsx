@@ -4,6 +4,7 @@ import type { IFrameProps } from './Frame.types';
 import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { themeTokens } from '~/components/Theme';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { Frame } from './Frame';
 
 const meta = {
@@ -26,7 +27,9 @@ const defaultArgs = {
         color: themeTokens.colorScheme.inverseOnSurface,
       }}
     >
-      <Button>Hello World!</Button>
+      <Button onClick={(...args) => sbHandleEvent('action:onClick', args)}>
+        Hello World!
+      </Button>
     </div>
   ),
   w: '$48',

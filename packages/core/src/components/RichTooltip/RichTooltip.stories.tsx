@@ -22,7 +22,12 @@ const defaultArgs = {
     'Grant value is calculated using the closing stock price from the day before the grant date. Amounts do not reflect tax withholding.',
   actions: ({ onClose }) => (
     <>
-      <Button variant="text">Action</Button>
+      <Button
+        variant="text"
+        onClick={(...args) => sbHandleEvent('action:onClick', args, 1000)}
+      >
+        Action
+      </Button>
       <Button variant="text" onClick={onClose}>
         Dismiss
       </Button>
