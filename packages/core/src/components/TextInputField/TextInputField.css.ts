@@ -37,16 +37,10 @@ const classNames = createStyles({
     overflowWrap: 'inherit',
     whiteSpace: 'inherit',
     resize: 'none',
-    fontFamily: 'inherit',
-    fontSize: 'inherit',
-    fontWeight: 'inherit',
-    lineHeight: 'inherit',
-    letterSpacing: 'inherit',
     // Remove extra height added by horizontal scrollbars.
     overflowX: 'hidden',
     textAlign: 'inherit',
     padding: 0,
-    backgroundColor: 'inherit',
     borderStyle: 'unset',
     display: 'block',
     caretColor: tokens.caret.color.normal,
@@ -63,6 +57,7 @@ const classNames = createStyles({
     },
     '::selection': {
       backgroundColor: FieldBase.theme.tokens.selection.background,
+      color: FieldBase.theme.tokens.selection.color,
     },
 
     selectors: {

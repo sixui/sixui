@@ -2,15 +2,15 @@ import type { IBoxProps } from '~/components/Box';
 import type { IFieldBaseOwnProps } from '~/components/FieldBase';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IElementProps } from '~/utils/types';
+import type { IElementProps, IOmit } from '~/utils/types';
 import type {
   ITextAreaFieldThemeFactory,
   textAreaFieldTheme,
 } from './TextAreaField.css';
 
 export interface ITextAreaFieldOwnProps
-  extends IFieldBaseOwnProps,
-    IElementProps<'textarea', 'className' | 'children'> {
+  extends IOmit<IFieldBaseOwnProps, 'children'>,
+    IElementProps<'textarea', 'className'> {
   /**
    * When true, a clear icon button will appear on the right side of the input.
    */
@@ -21,7 +21,6 @@ export interface ITextAreaFieldOwnProps
    */
   clearIcon?: React.ReactNode;
 
-  children?: React.ReactNode;
   rootRef?: React.Ref<HTMLDivElement>;
 
   value?: string;

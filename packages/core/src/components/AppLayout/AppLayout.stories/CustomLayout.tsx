@@ -12,7 +12,7 @@ import { useToggle } from '~/hooks/useToggle';
 const AppLayoutSideSheetContent: React.FC = () => (
   <Flex direction="column" rowGap="$2" pl="$4" pr="$4">
     {createSequence(4).map((index) => (
-      <Placeholder key={index} label="list" shape="$sm" h="$24" diagonals />
+      <Placeholder key={index} label="list" shape="$lg" h="$24" diagonals />
     ))}
   </Flex>
 );
@@ -32,7 +32,7 @@ export const CustomLayout: React.FC<ICustomLayoutProps> = (props) => {
   return (
     <>
       <AppLayout.Body {...other}>
-        <Placeholder shape="$sm" grow={1} h="$64" diagonals>
+        <Placeholder shape="$lg" grow={1} h="$64" diagonals>
           <Button
             onClick={() => {
               toggleBottomSheet();

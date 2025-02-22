@@ -7,6 +7,6 @@ export const DetailPane: React.FC<IDetailPaneProps> = (props) => {
   const { ...other } = props;
 
   return (
-    <Placeholder label="Detail" shape="$sm" h="$176" diagonals {...other} />
+    <Placeholder label="Detail" shape="$lg" h="$176" diagonals {...other} />
   );
 };

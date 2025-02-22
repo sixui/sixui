@@ -79,7 +79,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
     },
   },
   selection: {
-    color: themeTokens.colorScheme.onSurface,
+    color: 'inherit',
     background: themeTokens.colorScheme.inversePrimary,
   },
   content: {

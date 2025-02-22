@@ -1,8 +1,11 @@
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { createSequence } from '@olivierpascal/helpers';
 
 import { IBoxProps } from '~/components/Box';
 import { Flex } from '~/components/Flex';
 import { Placeholder } from '~/components/Placeholder';
+import { SearchBar } from '~/components/SearchBar';
 
 export type IListPaneProps = IBoxProps;
 
@@ -11,11 +14,12 @@ export const ListPane: React.FC<IListPaneProps> = (props) => {
 
   return (
     <Flex direction="column" rowGap="$2" {...other}>
-      {createSequence(6).map((index) => (
+      <SearchBar leadingIcon={<FontAwesomeIcon icon={faSearch} />} />
+      {createSequence(4).map((index) => (
         <Placeholder
           key={index}
           label="List"
-          shape="$sm"
+          shape="$lg"
           h="$24"
           shrink={0}
           diagonals

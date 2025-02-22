@@ -15,7 +15,7 @@ export const SupportingPane: React.FC<ISupportingPaneProps> = (props) => {
         <Placeholder
           key={index}
           label="Supporting"
-          shape="$sm"
+          shape="$lg"
           w="$32"
           h="$32"
           diagonals

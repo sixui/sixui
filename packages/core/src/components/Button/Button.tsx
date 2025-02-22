@@ -120,7 +120,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
           !startSlot && ['slot$icon', 'slot$icon$start'],
         ])}
         animated={animatedLeadingIconSlot}
-        opened={startSlotLoading || !!startSlot || !!leadingIcon}
+        hidden={!startSlotLoading && !startSlot && !leadingIcon}
         loading={startSlotLoading}
         loadingOverlay={
           <IndeterminateCircularProgressIndicator {...getStyles('icon')} />
@@ -165,7 +165,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
           !endSlot && ['slot$icon', 'slot$icon$end'],
         ])}
         animated={animatedTrailingIconSlot}
-        opened={endSlotLoading || !!endSlot || !!trailingIcon}
+        hidden={!endSlotLoading && !endSlot && !trailingIcon}
         loading={endSlotLoading}
         loadingOverlay={
           <IndeterminateCircularProgressIndicator {...getStyles('icon')} />

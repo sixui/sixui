@@ -40,17 +40,32 @@ const defaultArgs = {
 const cols: Array<IComponentPresentation<IRichTooltipProps>> = [
   {
     props: {
-      children: <IconButton icon={<FontAwesomeIcon icon={faStar} />} />,
+      children: (
+        <IconButton
+          icon={<FontAwesomeIcon icon={faStar} />}
+          onClick={() => {}}
+        />
+      ),
     },
   },
   {
     props: {
-      children: <IconButton icon={<FontAwesomeIcon icon={faStar} />} />,
+      children: (
+        <IconButton
+          icon={<FontAwesomeIcon icon={faStar} />}
+          onClick={() => {}}
+        />
+      ),
     },
   },
   {
     props: {
-      children: <IconButton icon={<FontAwesomeIcon icon={faStar} />} />,
+      children: (
+        <IconButton
+          icon={<FontAwesomeIcon icon={faStar} />}
+          onClick={() => {}}
+        />
+      ),
     },
   },
 ];

@@ -4,6 +4,7 @@ import { CSSTransition } from 'react-transition-group';
 import type { ISlotThemeFactory } from './Slot.css';
 import type { ISlotFactory } from './Slot.types';
 import { Box } from '~/components/Box';
+import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
 import { Overlayable } from '~/components/Overlayable';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { useMergeRefs } from '~/hooks';
@@ -20,9 +21,9 @@ export const Slot = polymorphicComponentFactory<ISlotFactory>(
       style,
       variant,
       children,
-      opened,
+      hidden,
       loading,
-      loadingOverlay,
+      loadingOverlay = <IndeterminateCircularProgressIndicator />,
       animated,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
@@ -49,7 +50,7 @@ export const Slot = polymorphicComponentFactory<ISlotFactory>(
     return animated ? (
       <CSSTransition
         nodeRef={transitionNodeRef}
-        in={opened}
+        in={!hidden}
         timeout={150} // motionTokens.duration$short2
         unmountOnExit
       >
@@ -68,7 +69,7 @@ export const Slot = polymorphicComponentFactory<ISlotFactory>(
         )}
       </CSSTransition>
     ) : (
-      opened && (
+      !hidden && (
         <Overlayable
           {...getStyles('root')}
           overlay={loadingOverlay}

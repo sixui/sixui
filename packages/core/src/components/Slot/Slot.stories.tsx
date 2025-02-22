@@ -20,23 +20,23 @@ const defaultArgs = {
 } satisfies Partial<ISlotProps>;
 
 const SlotDemo: React.FC<ISlotProps> = (props) => {
-  const [opened, toggleOpened] = useToggle([false, true]);
+  const [hidden, toggleHidden] = useToggle([true, false]);
 
   return (
     <Flex direction="row" gap="$2">
       <Button
         onClick={() => {
-          toggleOpened();
+          toggleHidden();
         }}
         w="$24"
       >
-        {opened ? 'Close' : 'Open'}
+        {hidden ? 'Open' : 'Close'}
       </Button>
 
       <Box w="$10" h="$10">
         <Slot
           as={Flex}
-          opened={opened}
+          hidden={hidden}
           h="$10"
           align="center"
           justify="center"

@@ -39,6 +39,7 @@ const classNames = createStyles({
     position: 'absolute',
     inset: 0,
     overflow: 'hidden',
+    pointerEvents: 'none',
 
     '::before': {
       // This is the background color of the ripple.

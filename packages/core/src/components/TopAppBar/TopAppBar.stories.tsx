@@ -28,15 +28,24 @@ const defaultArgs = {
   children: 'TopAppBar',
   w: '$112',
   leadingNavigation: (
-    <IconButton icon={<FontAwesomeIcon icon={faArrowLeft} />} />
+    <IconButton
+      icon={<FontAwesomeIcon icon={faArrowLeft} />}
+      onClick={() => {}}
+    />
   ),
   headline: 'Summer Hits',
   trailingActions: ({ consolidated }) => (
     <>
       {!consolidated && (
         <>
-          <IconButton icon={<FontAwesomeIcon icon={faPaperclip} />} />
-          <IconButton icon={<FontAwesomeIcon icon={faCalendar} />} />
+          <IconButton
+            icon={<FontAwesomeIcon icon={faPaperclip} />}
+            onClick={() => {}}
+          />
+          <IconButton
+            icon={<FontAwesomeIcon icon={faCalendar} />}
+            onClick={() => {}}
+          />
         </>
       )}
       <Menu

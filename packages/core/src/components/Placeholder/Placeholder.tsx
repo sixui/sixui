@@ -19,7 +19,7 @@ export const Placeholder = polymorphicComponentFactory<IPlaceholderFactory>(
       label,
       diagonals,
       disabled,
-      surface = '$surfaceContainerHighest',
+      surface = '$surfaceContainerHigh',
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 

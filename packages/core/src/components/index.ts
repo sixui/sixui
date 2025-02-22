@@ -72,6 +72,7 @@ export * from './Responsive';
 export * from './RichTooltip';
 export * from './ScreenFrame';
 export * from './Scrim';
+export * from './SearchBar';
 export * from './Select';
 export * from './SelectBase';
 export * from './Sixui';

@@ -5,7 +5,7 @@ import { IPolymorphicComponentFactory } from '~/utils/component/polymorphicCompo
 
 export interface ISlotOwnProps {
   children?: React.ReactNode;
-  opened?: boolean;
+  hidden?: boolean;
   loading?: boolean;
   loadingOverlay?: React.ReactNode;
   animated?: boolean;

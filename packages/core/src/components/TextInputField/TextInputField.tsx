@@ -102,9 +102,6 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
       setValue('');
     };
 
-    // TODO: prevents the input from being blurred when the user clicks outside
-    // of the input.
-
     // Focus the input when the user clicks on the field.
     const handleClick: React.MouseEventHandler<HTMLDivElement> = (event) => {
       if (focused) {
@@ -135,7 +132,7 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
       }, 0);
     };
 
-    const renderEndSection = (): React.ReactNode =>
+    const renderEndSlot = (): React.ReactNode =>
       hasEnd && (
         <>
           {other.endSlot}
@@ -170,7 +167,7 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
         populated={populated}
         disabled={disabled}
         readOnly={readOnly}
-        endSlot={renderEndSection()}
+        endSlot={renderEndSlot()}
         forwardProps
         withoutRippleEffect
         managedFocus
@@ -184,6 +181,7 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
             <input
               {...mergeProps(focus.focusProps, forwardedProps)}
               {...getStyles('input')}
+              ref={inputHandleRef}
               placeholder={other.placeholder}
               type={type}
               id={id}
@@ -195,7 +193,6 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
                 setValue(event.target.value);
                 onChange?.(event);
               }}
-              ref={inputHandleRef}
             />
           </>
         )}

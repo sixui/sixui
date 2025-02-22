@@ -2,15 +2,15 @@ import type { IBoxProps } from '~/components/Box';
 import type { IFieldBaseOwnProps } from '~/components/FieldBase';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IElementProps } from '~/utils/types';
+import type { IElementProps, IOmit } from '~/utils/types';
 import type {
   ITextInputFieldThemeFactory,
   textInputFieldTheme,
 } from './TextInputField.css';
 
 export interface ITextInputFieldOwnProps
-  extends IFieldBaseOwnProps,
-    IElementProps<'input', 'className' | 'children'> {
+  extends IOmit<IFieldBaseOwnProps, 'children'>,
+    IElementProps<'input', 'className'> {
   /**
    * When true, the password field can be unmasked for `type="passord"` input
    * fields.
@@ -41,7 +41,6 @@ export interface ITextInputFieldOwnProps
    */
   clearIcon?: React.ReactNode;
 
-  children?: React.ReactNode;
   rootRef?: React.Ref<HTMLDivElement>;
 
   value?: string;
