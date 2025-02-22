@@ -83,7 +83,12 @@ export default [
     },
   },
   {
-    files: ['eslint.config.*', 'vite.config.*', 'prettier.config/*'],
+    files: [
+      'eslint.config.*',
+      'vite.config.*',
+      'next.config.ts',
+      'prettier.config/*',
+    ],
     rules: {
       'import-x/no-default-export': 'off',
     },

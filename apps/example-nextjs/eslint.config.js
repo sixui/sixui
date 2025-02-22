@@ -1,4 +1,4 @@
-import base from '@sixui/eslint-config/vite';
+import base from '@sixui/eslint-config/nextjs';
 
 export default [
   ...base,

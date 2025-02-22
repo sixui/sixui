@@ -1,11 +1,11 @@
 import globals from 'globals';
 
-import base from './base.js';
+import base from './src/base.js';
 
 export default [
   ...base,
   {
-    files: ['*.js'],
+    files: ['src/*.js'],
     languageOptions: {
       globals: globals.node,
     },

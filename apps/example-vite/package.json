@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
     "preview": "vite preview",
     "lint:check": "eslint src --fix",
     "ts:check": "tsc --pretty --noEmit",
@@ -15,10 +14,10 @@
   },
   "dependencies": {
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "@sixui/core": "workspace:*"
   },
   "devDependencies": {
-    "@sixui/core": "workspace:*",
     "@sixui/eslint-config": "workspace:*",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",

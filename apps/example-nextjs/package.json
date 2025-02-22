@@ -2,25 +2,27 @@
   "name": "example-nextjs",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint:check": "eslint src --fix",
+    "ts:check": "tsc --pretty --noEmit",
+    "check:all": "run-s lint:check ts:check",
+    "clean": "rm -rf dist"
   },
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "@sixui/core": "workspace:*",
     "next": "15.1.7",
-    "@sixui/core": "workspace:*"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@sixui/eslint-config": "workspace:*",
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "15.1.7",
-    "@eslint/eslintrc": "^3"
+    "typescript": "^5"
   }
 }

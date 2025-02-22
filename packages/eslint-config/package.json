@@ -4,10 +4,12 @@
   "version": "0.1.0",
   "type": "module",
   "exports": {
-    ".": "./base.js",
-    "./typescript": "./typescript.js",
-    "./react": "./react.js",
-    "./storybook": "./storybook.js"
+    ".": "./src/base.js",
+    "./typescript": "./src/typescript.js",
+    "./react": "./src/react.js",
+    "./storybook": "./src/storybook.js",
+    "./vite": "./src/vite.js",
+    "./nextjs": "./src/nextjs.js"
   },
   "scripts": {
     "lint:check": "eslint . --fix",

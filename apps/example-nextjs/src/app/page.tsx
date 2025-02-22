@@ -1,41 +1,14 @@
-'use client';
+import { Flex, ThemeProvider } from '@sixui/core';
 
-import {
-  Button,
-  ConfirmDialogOverlay,
-  ThemeProvider,
-  useOverlays,
-} from '@sixui/core';
+import { Demo } from './Demo';
 
-export default function Home() {
-  const overlays = useOverlays();
+const Home: React.FC = () => (
+  <Flex direction="row" w="100%" mih="100vh">
+    <Demo />
+    <ThemeProvider colorSchemeVariant="dark">
+      <Demo />
+    </ThemeProvider>
+  </Flex>
+);
 
-  return (
-    <>
-      <Button
-        onClick={() =>
-          overlays
-            .open(ConfirmDialogOverlay, {
-              modal: true,
-              headline: 'Permanently delete?',
-              children:
-                'Deleting the selected messages will also remove them from all synced devices.',
-              labels: {
-                confirm: 'Delete',
-              },
-              confirmProps: {
-                variant: 'danger',
-              },
-            })
-            .then((confirmed) => console.log('confirmed?', confirmed))
-        }
-      >
-        Hello World!
-      </Button>
-
-      <ThemeProvider colorSchemeVariant="light">
-        <Button>sd</Button>
-      </ThemeProvider>
-    </>
-  );
-}
+export default Home;
