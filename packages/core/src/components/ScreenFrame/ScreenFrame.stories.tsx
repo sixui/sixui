@@ -19,7 +19,6 @@ const defaultArgs = {
         justifyContent: 'center',
         width: '100%',
         height: '100%',
-        backgroundColor: themeTokens.colorScheme.primary,
         color: themeTokens.colorScheme.onPrimary,
       }}
     >

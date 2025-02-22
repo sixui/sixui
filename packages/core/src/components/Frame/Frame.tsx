@@ -69,6 +69,7 @@ export const Frame = componentFactory<IFrameFactory>((props, forwardedRef) => {
           {createPortal(
             <ThemeProvider
               getRootElement={() => iframeDocument.documentElement}
+              cssVariablesSelector=":root"
               inherit={importParentStyles}
             >
               <Responsive>

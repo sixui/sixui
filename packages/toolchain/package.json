@@ -31,7 +31,7 @@
     "@sixui/eslint-config": "workspace:*",
     "@sixui/typescript-config": "workspace:*",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^22.13.4",
+    "@types/node": "^22.13.5",
     "@types/postcss-import": "^14.0.3",
     "@types/signale": "^1.4.7",
     "@types/yargs": "^17.0.33",
