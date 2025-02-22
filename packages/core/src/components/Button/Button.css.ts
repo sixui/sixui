@@ -5,6 +5,7 @@ import type { IInteraction } from '~/hooks/useInteractions';
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import type { IButtonVariant } from './Button.types';
 import { ButtonBase } from '~/components/ButtonBase';
+import { FocusRing } from '~/components/FocusRing';
 import { PaperBase } from '~/components/PaperBase';
 import { Slot } from '~/components/Slot';
 import { StateLayer } from '~/components/StateLayer';
@@ -451,6 +452,7 @@ const classNames = createStyles({
   }),
   stateLayer: {},
   touchTarget: {},
+  focusRing: {},
 });
 
 export type IButtonThemeFactory = IComponentThemeFactory<{
@@ -756,10 +758,18 @@ export const buttonThemeVariants = {
       },
     }),
     stateLayer: {
-      inset: calc.multiply(-0.5, `max(1em, 16px)`),
+      insetInline: calc.multiply(-0.5, `max(${em(1)}, ${px(16)})`),
+      insetBlock: calc.multiply(-0.2, `max(${em(1)}, ${px(16)})`),
     },
     focusRing: {
-      inset: calc.subtract(calc.multiply(-0.5, `max(1em, 16px)`), '3px'),
+      insetInline: calc.subtract(
+        calc.multiply(-0.5, `max(${em(1)}, ${px(16)})`),
+        FocusRing.theme.tokens.offset.outward,
+      ),
+      insetBlock: calc.subtract(
+        calc.multiply(-0.2, `max(${em(1)}, ${px(16)})`),
+        FocusRing.theme.tokens.offset.outward,
+      ),
     },
   }),
 };
