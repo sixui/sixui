@@ -31,7 +31,7 @@ export const useStateLayer = <TElement extends HTMLElement>(
     dragged,
     disabled,
     withoutRippleEffect,
-    clickThrough,
+    propagateClick,
   } = props;
   const surfaceRef = useRef<HTMLDivElement>(null);
   const isStaticState = baseState && mergeStrategy === 'replace';
@@ -46,7 +46,7 @@ export const useStateLayer = <TElement extends HTMLElement>(
     mergeStrategy,
     dragged,
     disabled,
-    clickThrough,
+    propagateClick,
   });
 
   const triggerRef = useRef<TElement>(null);
@@ -54,7 +54,7 @@ export const useStateLayer = <TElement extends HTMLElement>(
     triggerRef,
     surfaceRef,
     disabled: withoutRippleEffect || disabled || isStaticState,
-    clickThrough,
+    propagateClick,
   });
 
   const animating = rippleEffect.animating;

@@ -38,6 +38,7 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
       rel,
       touchTargetRenderer,
       nonInteractive,
+      propagateClick: propagateClickProp,
       ...other
     } = useProps({
       componentName: COMPONENT_NAME,
@@ -65,7 +66,7 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
       baseState: interactions,
       mergeStrategy: interactionsMergeStrategy,
       disabled: !!stateLayerProp || disabledOrReadOnly || nonInteractive,
-      clickThrough: !onClick,
+      propagateClick: propagateClickProp ?? !onClick,
     });
     const stateLayer = stateLayerProp ?? ownStateLayer;
     const rootElement =

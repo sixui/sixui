@@ -40,6 +40,7 @@ export interface IButtonBaseOwnProps extends IOmit<IPaperOwnProps, 'children'> {
 
   type?: string;
   stateLayer?: IUseStateLayerResult;
+  propagateClick?: boolean;
 }
 
 export interface IButtonBaseProps

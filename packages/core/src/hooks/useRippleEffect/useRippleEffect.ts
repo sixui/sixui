@@ -64,7 +64,7 @@ export type IUseRippleEffectProps<TElement extends HTMLElement> = {
   surfaceRef: React.RefObject<HTMLDivElement | null>;
   disabled?: boolean;
   options?: IUseRippleEffectOptions;
-  clickThrough?: boolean;
+  propagateClick?: boolean;
 };
 
 export type IUseRippleEffectResult = {
@@ -138,7 +138,7 @@ export const useRippleEffect = <TElement extends HTMLElement>(
     surfaceRef,
     options: optionsProp,
     disabled,
-    clickThrough,
+    propagateClick,
   } = props;
   const options = { ...DEFAULT_OPTIONS, ...optionsProp };
 
@@ -307,7 +307,7 @@ export const useRippleEffect = <TElement extends HTMLElement>(
         return;
       }
 
-      if (!clickThrough) {
+      if (!propagateClick) {
         event.stopPropagation();
       }
 
@@ -348,7 +348,7 @@ export const useRippleEffect = <TElement extends HTMLElement>(
       triggerRef,
       startPressAnimation,
       options.touchDelayMs,
-      clickThrough,
+      propagateClick,
     ],
   );
 
@@ -358,7 +358,7 @@ export const useRippleEffect = <TElement extends HTMLElement>(
         return;
       }
 
-      if (!clickThrough) {
+      if (!propagateClick) {
         event.stopPropagation();
       }
 
@@ -377,7 +377,7 @@ export const useRippleEffect = <TElement extends HTMLElement>(
         return;
       }
     },
-    [shouldReactToEvent, startPressAnimation, clickThrough],
+    [shouldReactToEvent, startPressAnimation, propagateClick],
   );
 
   const handlePointerLeave: React.PointerEventHandler = useCallback(
@@ -414,7 +414,7 @@ export const useRippleEffect = <TElement extends HTMLElement>(
         return;
       }
 
-      if (!clickThrough) {
+      if (!propagateClick) {
         event.stopPropagation();
       }
 
@@ -429,7 +429,7 @@ export const useRippleEffect = <TElement extends HTMLElement>(
         endPressAnimation();
       }
     },
-    [disabled, startPressAnimation, endPressAnimation, clickThrough],
+    [disabled, startPressAnimation, endPressAnimation, propagateClick],
   );
 
   const handleKeyDown: React.KeyboardEventHandler = useCallback(
@@ -438,7 +438,7 @@ export const useRippleEffect = <TElement extends HTMLElement>(
         return;
       }
 
-      if (!clickThrough) {
+      if (!propagateClick) {
         event.stopPropagation();
       }
 
@@ -450,7 +450,7 @@ export const useRippleEffect = <TElement extends HTMLElement>(
         startPressAnimation(event);
       }
     },
-    [disabled, startPressAnimation, clickThrough],
+    [disabled, startPressAnimation, propagateClick],
   );
 
   const handleKeyUp: React.KeyboardEventHandler = useCallback(() => {
