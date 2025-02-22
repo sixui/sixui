@@ -27,6 +27,12 @@ export const StateLayer = componentFactory<IStateLayerFactory>(
     });
 
     const interactions = interactionsProp ?? context?.interactionsContext.state;
+    const staticPressed =
+      (!context && interactions?.pressed) ||
+      (context?.withoutRippleEffect
+        ? context.interactionsContext.state.pressed
+        : context?.interactionsContext.baseState?.pressed);
+
     const { getStyles } = useComponentTheme<IStateLayerThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
@@ -39,11 +45,7 @@ export const StateLayer = componentFactory<IStateLayerFactory>(
         focused: !context?.animating && interactions?.focused,
         hovered: !context?.animating && interactions?.hovered,
         dragged: !context?.animating && interactions?.dragged,
-        'static-pressed':
-          (!context && interactions?.pressed) ||
-          (context?.withoutRippleEffect
-            ? context.interactionsContext.state.pressed
-            : context?.interactionsContext.baseState?.pressed),
+        'static-pressed': staticPressed,
         'no-ripple-effect': context?.withoutRippleEffect,
         animating: context?.animating,
         disabled: context?.disabled,

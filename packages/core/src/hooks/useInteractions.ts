@@ -140,7 +140,11 @@ export const useInteractions = <TElement extends HTMLElement>(
       onKeyUp: () => {
         setPressed(false);
       },
-      onBlur: () => {
+      onBlur: (event) => {
+        if (event.relatedTarget !== triggerRef.current) {
+          return;
+        }
+
         setPressed(false);
       },
     }),

@@ -71,14 +71,24 @@ const ControlledRadioCardDemo: React.FC<IRadioCardProps> = (props) => {
         {...other}
         onChange={handleChange}
         value="apple"
+        label="Apple"
         checked={value === 'apple'}
         name={name}
       />
       <RadioCard
         {...other}
         onChange={handleChange}
-        value="banana"
-        checked={value === 'banana'}
+        value="lemon"
+        label="Lemon"
+        checked={value === 'lemon'}
+        name={name}
+      />
+      <RadioCard
+        {...other}
+        onChange={handleChange}
+        value="carrot"
+        label="Carrot"
+        checked={value === 'carrot'}
         name={name}
       />
     </Flex>
