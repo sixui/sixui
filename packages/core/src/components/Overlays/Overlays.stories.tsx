@@ -56,6 +56,7 @@ const OverlaysDemo: React.FC<IOverlaysDemoProps> = () => {
           onClick={() =>
             void openSideSheet({
               side: 'left',
+              showCloseButton: true,
             })
           }
         >
@@ -65,6 +66,7 @@ const OverlaysDemo: React.FC<IOverlaysDemoProps> = () => {
           onClick={() =>
             void openSideSheet({
               side: 'left',
+              showCloseButton: true,
               modal: true,
             })
           }
@@ -78,6 +80,7 @@ const OverlaysDemo: React.FC<IOverlaysDemoProps> = () => {
           onClick={() =>
             void openSideSheet({
               side: 'right',
+              showCloseButton: true,
             })
           }
         >
@@ -87,6 +90,7 @@ const OverlaysDemo: React.FC<IOverlaysDemoProps> = () => {
           onClick={() =>
             void openSideSheet({
               side: 'right',
+              showCloseButton: true,
               modal: true,
             })
           }
