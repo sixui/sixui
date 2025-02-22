@@ -65,8 +65,8 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
       normal: px(space(4)),
       withEnd: px(space(4)),
     },
-    topSpace: calc.add(px(space(2)), DENSITY),
-    bottomSpace: calc.add(px(space(2)), DENSITY),
+    topSpace: `max(0, ${calc.add(px(space(2)), DENSITY)})`,
+    bottomSpace: `max(0, ${calc.add(px(space(2)), DENSITY)})`,
     color: {
       normal: {
         regular: 'inherit',

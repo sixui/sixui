@@ -38,7 +38,6 @@ const classNames = createStyles({
 
     vars: overrideTokens(List.theme.tokens, {
       topSpace: px(0),
-      bottomSpace: px(0),
     }),
   },
   headline: {
@@ -49,7 +48,6 @@ const classNames = createStyles({
     vars: overrideTokens(Divider.theme.tokens, {
       color: tokens.divider.color,
     }),
-    marginTop: px(space(1)),
   },
 });
 
