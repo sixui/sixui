@@ -2,7 +2,7 @@
   <a href="https://sixui.com" rel="noopener" target="_blank"><img width="150" height="150" src="doc/images/logo-transparent-nomargin.svg" alt="Sixui logo"></a>
 </p>
 
-<h1 align="center">SixUI</h1>
+<h1 align="center">Sixui</h1>
 
 Ready-to-use foundational React components implementing Google's [Material Design 3](https://m3.material.io/).
 

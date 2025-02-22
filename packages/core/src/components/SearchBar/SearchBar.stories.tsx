@@ -88,7 +88,10 @@ export const Densities: IStory = {
       ]}
     />
   ),
-  args: defaultArgs,
+  args: {
+    ...defaultArgs,
+    leadingIcon: <FontAwesomeIcon icon={faSearch} />,
+  },
 };
 
 export const Scales: IStory = {
@@ -106,7 +109,7 @@ export const Scales: IStory = {
   ),
   args: {
     ...defaultArgs,
-    variant: 'filled',
+    leadingIcon: <FontAwesomeIcon icon={faSearch} />,
   },
 };
 

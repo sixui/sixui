@@ -37,8 +37,8 @@
     "lint:check": "eslint src --fix",
     "ts:check": "tsc --pretty --noEmit",
     "check:all": "run-s lint:check ts:check",
-    "pre-commit": "run-s generate-icons",
     "clean": "rm -rf dist",
+    "pre-commit": "run-s generate-icons",
     "build-storybook": "storybook build",
     "build": "tsx scripts/build.ts"
   },

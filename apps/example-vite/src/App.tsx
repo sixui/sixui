@@ -1,7 +1,12 @@
-import { Button } from '@sixui/core';
+import { Flex, ThemeProvider } from '@sixui/core';
 
-function App() {
-  return <Button>Hello World!</Button>;
-}
+import { Demo } from './Demo';
 
-export default App;
+export const App: React.FC = () => (
+  <Flex direction="row" w="100%" mih="100vh">
+    <Demo />
+    <ThemeProvider colorSchemeVariant="dark">
+      <Demo />
+    </ThemeProvider>
+  </Flex>
+);

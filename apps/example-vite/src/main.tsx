@@ -5,7 +5,7 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import '@sixui/core/styles.css';
 
-import App from './App.tsx';
+import { App } from './App.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -18,6 +18,7 @@ createRoot(document.getElementById('root')!).render(
           },
         },
       }}
+      colorSchemeVariant="light"
     >
       <App />
     </SixuiProvider>

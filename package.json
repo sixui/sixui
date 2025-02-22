@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "sixui",
-  "description": "SixUI Components Monorepo",
+  "description": "Sixui Components Monorepo",
   "license": "MIT",
   "repository": "git+https://github.com/sixui/sixui.git",
   "author": "Olivier Pascal <olivier@pascal.re>",
