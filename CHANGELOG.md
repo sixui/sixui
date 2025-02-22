@@ -1,3 +1,35 @@
+## 1.1.0 (2025-02-22)
+
+### 🚀 Features
+
+- Button propagateClick prop ([9fbb363d](https://github.com/sixui/sixui/commit/9fbb363d))
+- **core:** using storybook light theme by default ([80a1ae74](https://github.com/sixui/sixui/commit/80a1ae74))
+- **core:** SearchBar ([f1587a9a](https://github.com/sixui/sixui/commit/f1587a9a))
+
+### 🩹 Fixes
+
+- minor visual fixes for Firefox and Storybook ([a4a1cad3](https://github.com/sixui/sixui/commit/a4a1cad3))
+- Labeled stories ([08f12856](https://github.com/sixui/sixui/commit/08f12856))
+- FloatingFilterableListBase input change event ([65f443fe](https://github.com/sixui/sixui/commit/65f443fe))
+- StepperStep icon size and Button loadingIndicatorPosition prop ([d7fca98c](https://github.com/sixui/sixui/commit/d7fca98c))
+- StateLayer double ripple effect on nested surfaces ([ce30efc9](https://github.com/sixui/sixui/commit/ce30efc9))
+- Slot auto width if not animated ([eb34a3fa](https://github.com/sixui/sixui/commit/eb34a3fa))
+- TextInputField input size and position ([198168d3](https://github.com/sixui/sixui/commit/198168d3))
+- inline Button variant focus ring ([472e241f](https://github.com/sixui/sixui/commit/472e241f))
+- CustomizableTheme styles ([108a6a3c](https://github.com/sixui/sixui/commit/108a6a3c))
+- ListItem leading and trailing spaces ([0e6b2deb](https://github.com/sixui/sixui/commit/0e6b2deb))
+- no more srcollbar in NavigationDrawerSection when density is high ([df6fcff2](https://github.com/sixui/sixui/commit/df6fcff2))
+- show close button in Overlays side sheets stories ([a7bf6cf3](https://github.com/sixui/sixui/commit/a7bf6cf3))
+- ScreenFrame height in SideSheet stories ([057d9e7d](https://github.com/sixui/sixui/commit/057d9e7d))
+- persistent RichToolTip ; ButtonBase now propagate click events when no onClick handler provided ([68cad5a9](https://github.com/sixui/sixui/commit/68cad5a9))
+- nested StateLayer without ripple effect ([f3c0f99d](https://github.com/sixui/sixui/commit/f3c0f99d))
+- correct Frame ThemeProvider css variables selector ([2de23390](https://github.com/sixui/sixui/commit/2de23390))
+- **core:** SearchBar input text color and font ([444f1b8c](https://github.com/sixui/sixui/commit/444f1b8c))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 1.0.9 (2025-02-19)
 
 ### 🩹 Fixes
