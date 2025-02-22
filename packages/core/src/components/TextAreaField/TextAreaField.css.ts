@@ -43,7 +43,7 @@ const classNames = createStyles({
     letterSpacing: 'inherit',
     width: '100%',
     height: '100%',
-    // remove extra height added by horizontal scrollbars
+    // Remove extra height added by horizontal scrollbars.
     overflowX: 'hidden',
     textAlign: 'inherit',
     padding: 0,

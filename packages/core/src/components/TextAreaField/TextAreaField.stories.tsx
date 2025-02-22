@@ -45,11 +45,13 @@ const rows: Array<IComponentPresentation<ITextAreaFieldProps>> = [
   },
   {
     legend: 'Default value',
-    props: {
-      defaultValue: 'Value',
-    },
+    props: { defaultValue: 'Value' },
   },
   { legend: 'Clearable', props: { clearable: true } },
+  {
+    legend: 'Resizable',
+    props: { resizable: true },
+  },
   { legend: 'Error', props: { defaultValue: 'Value', hasError: true } },
   { legend: 'Loading', props: { loading: true } },
 ];
