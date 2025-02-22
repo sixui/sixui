@@ -155,7 +155,10 @@ export const AsOverlay: IStory = {
       rows={[{ legend: 'Normal' }, { legend: 'Modal', props: { modal: true } }]}
     />
   ),
-  args: defaultArgs,
+  args: {
+    ...defaultArgs,
+    showCloseButton: true,
+  },
 };
 
 export default meta;
