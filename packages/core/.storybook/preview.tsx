@@ -60,20 +60,20 @@ export const decorators: Array<Decorator> = [
         }}
       >
         <CustomizableTheme>
-          <Flex w="100%" direction="column" className={classNames.wrapper}>
+          <Flex direction="column" className={classNames.wrapper}>
             {showLightMode && (
-              <ThemeProvider className={classNames.storyWrapper} inherit>
-                <Story />
+              <ThemeProvider inherit>
+                <div className={classNames.storyWrapper}>
+                  <Story />
+                </div>
               </ThemeProvider>
             )}
 
             {showDarkMode && (
-              <ThemeProvider
-                colorSchemeVariant="dark"
-                className={classNames.storyWrapper}
-                inherit
-              >
-                <Story />
+              <ThemeProvider colorSchemeVariant="dark" inherit>
+                <div className={classNames.storyWrapper}>
+                  <Story />
+                </div>
               </ThemeProvider>
             )}
           </Flex>

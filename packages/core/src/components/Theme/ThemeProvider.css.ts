@@ -1,4 +1,8 @@
-import { createGlobalThemeContract, globalLayer } from '@vanilla-extract/css';
+import {
+  createGlobalThemeContract,
+  globalLayer,
+  style,
+} from '@vanilla-extract/css';
 
 import type {
   IRuntimeThemeTokens,
@@ -33,5 +37,11 @@ export const themeTokens = createGlobalThemeContract(
   getRuntimeThemeTokens(getDefaultTheme()),
   (_value, path) => getCssVarName(path),
 );
+
+export const classNames = {
+  root: style({
+    display: 'contents',
+  }),
+};
 
 export const defaultTheme = getDefaultTheme(themeTokens);

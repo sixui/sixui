@@ -14,15 +14,18 @@ import { ThemeContext } from './Theme.context';
 import { COMPONENT_NAME } from './ThemeProvider.constants';
 import { ThemeSetterProvider } from './ThemeSetter.context';
 import { mergeThemeOverrides } from './utils/mergeThemeOverrides';
-import { cssLayers, defaultTheme, themeTokens } from './ThemeProvider.css';
+import {
+  classNames,
+  cssLayers,
+  defaultTheme,
+  themeTokens,
+} from './ThemeProvider.css';
 
 /**
  * @see https://m3.material.io/styles/color/system/how-the-system-works
  */
 export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
   const {
-    className,
-    style,
     children,
     theme: themeOverrides,
     colorSchemeVariant: colorSchemeVariantProp,
@@ -112,13 +115,7 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
             close: 1500,
           }}
         >
-          <div
-            id={cssId}
-            className={className}
-            style={style}
-            ref={rootRef}
-            {...other}
-          >
+          <div id={cssId} className={classNames.root} ref={rootRef} {...other}>
             <style
               type="text/css"
               data-sixui-styles={COMPONENT_NAME}

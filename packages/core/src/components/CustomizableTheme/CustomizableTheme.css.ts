@@ -5,8 +5,6 @@ import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { createStyles } from '~/utils/css/createStyles';
 import { overrideTokens } from '~/utils/css/overrideTokens';
-import { px } from '~/utils/css/px';
-import { space } from '~/utils/css/space';
 import { COMPONENT_NAME } from './CustomizableTheme.constants';
 
 type IModifier = 'disabled';
@@ -19,15 +17,16 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
 
 const classNames = createStyles({
   root: {
+    minWidth: '100%',
+    width: 'max-content',
+
     vars: overrideTokens(PaperBase.theme.tokens, {
       container: {
         color: tokens.container.color,
       },
     }),
   },
-  controlBar: {
-    padding: px(space(2)),
-  },
+  controlBar: {},
 });
 
 export type ICustomizableThemeThemeFactory = IComponentThemeFactory<{

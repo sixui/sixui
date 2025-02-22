@@ -65,6 +65,7 @@ export const CustomizableTheme = componentFactory<ICustomizableThemeFactory>(
           as={Flex}
           direction="column"
           align="start"
+          gap="$2"
           {...getStyles('root')}
           {...other}
         >
