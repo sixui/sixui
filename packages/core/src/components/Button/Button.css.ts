@@ -428,17 +428,13 @@ const classNames = createStyles({
     },
   }),
   slot$icon$end: ({ root }) => ({
-    vars: overrideTokens(Slot.theme.tokens, {
-      container: {
-        leadingSpace: {
-          normal: tokens.icon.labelSpace,
-        },
-      },
-    }),
     selectors: {
       [modifierSelector<IModifier>('with-children', root)]: {
         vars: overrideTokens(Slot.theme.tokens, {
           container: {
+            leadingSpace: {
+              normal: tokens.icon.labelSpace,
+            },
             trailingSpace: {
               compensated: calc.subtract(
                 tokens.container.trailingSpace.withEnd,
@@ -758,16 +754,11 @@ export const buttonThemeVariants = {
       },
     }),
     stateLayer: {
-      insetInline: calc.multiply(-0.5, `max(${em(1)}, ${px(16)})`),
-      insetBlock: calc.multiply(-0.2, `max(${em(1)}, ${px(16)})`),
+      inset: calc.negate(`max(${em(0.25)}, ${px(8)})`),
     },
     focusRing: {
-      insetInline: calc.subtract(
-        calc.multiply(-0.5, `max(${em(1)}, ${px(16)})`),
-        FocusRing.theme.tokens.offset.outward,
-      ),
-      insetBlock: calc.subtract(
-        calc.multiply(-0.2, `max(${em(1)}, ${px(16)})`),
+      inset: calc.subtract(
+        calc.negate(`max(${em(0.25)}, ${px(8)})`),
         FocusRing.theme.tokens.offset.outward,
       ),
     },
