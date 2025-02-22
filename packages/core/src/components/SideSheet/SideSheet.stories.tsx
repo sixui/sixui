@@ -95,7 +95,7 @@ const SideSheetScreenFrame: React.FC<ISideSheetProps> = (props) => {
         />
       </Flex>
 
-      <ScreenFrame h={350}>
+      <ScreenFrame defaultHeight={350}>
         <Flex
           direction={other.side === 'right' ? 'row' : 'row-reverse'}
           align="start"
