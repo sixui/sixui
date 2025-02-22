@@ -59,11 +59,11 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
     leadingSpace: {
       normal: px(space(4)),
-      withStart: px(space(2)),
+      withStart: px(space(4)),
     },
     trailingSpace: {
       normal: px(space(4)),
-      withEnd: px(space(2)),
+      withEnd: px(space(4)),
     },
     topSpace: calc.add(px(space(2)), DENSITY),
     bottomSpace: calc.add(px(space(2)), DENSITY),
@@ -212,10 +212,10 @@ const classNames = createStyles({
         paddingInlineEnd: tokens.container.trailingSpace.withEnd,
       },
       [modifierSelector<IModifier>('with-leading', root)]: {
-        paddingInlineStart: '0px',
+        paddingInlineStart: px(0),
       },
       [modifierSelector<IModifier>('with-trailing', root)]: {
-        paddingInlineEnd: '0px',
+        paddingInlineEnd: px(0),
       },
       [modifierSelector<IModifier>('selected', root)]: {
         vars: overrideTokens(Item.theme.tokens, {
