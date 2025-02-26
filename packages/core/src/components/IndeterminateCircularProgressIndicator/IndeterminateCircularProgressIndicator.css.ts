@@ -123,8 +123,8 @@ const classNames = createStyles({
     borderWidth: parentStyles.tokens.strokeWidth,
     selectors: {
       [modifierSelector<IModifier>('disabled', root)]: {
-        borderTopColor: parentStyles.tokens.color.disabled,
-        borderRightColor: parentStyles.tokens.color.disabled,
+        borderTopColor: parentStyles.tokens.activeIndicator.color.disabled,
+        borderRightColor: parentStyles.tokens.activeIndicator.color.disabled,
         borderBottomColor: 'transparent',
         borderLeftColor: 'transparent',
         opacity: parentStyles.tokens.opacity.disabled,

@@ -20,7 +20,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
     color: themeTokens.colorScheme.surfaceContainerHigh,
     elevation: elevationLevelPreset[0],
-    shape: themeTokens.shape.corner.full,
+    shape: px(themeTokens.shape.corner.full),
     height: calc.add(px(56), DENSITY),
     leadingSpace: px(space(4)),
     trailingSpace: px(space(4)),
@@ -36,7 +36,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
     size: px(18),
   },
   avatar: {
-    shape: themeTokens.shape.corner.full,
+    shape: px(themeTokens.shape.corner.full),
     size: px(30),
   },
   placeholder: {

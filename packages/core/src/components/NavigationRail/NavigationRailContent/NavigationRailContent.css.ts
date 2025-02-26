@@ -30,7 +30,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
     width: px(80),
     color: themeTokens.colorScheme.surface,
-    shape: themeTokens.shape.corner.none,
+    shape: px(themeTokens.shape.corner.none),
     elevation: elevationLevelPreset[0],
   },
 });

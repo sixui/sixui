@@ -200,7 +200,7 @@ export const Configurations: IStory = {
                   Item with trailing supporting text
                 </ListItem>
                 <ListItem selected>Selected item</ListItem>
-                <ListItem onClick={(...args) => sbHandleEvent('click', args)}>
+                <ListItem onClick={(...args) => sbHandleEvent('onClick', args)}>
                   Interactive item
                 </ListItem>
                 <ListItem

@@ -12,7 +12,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onClick: (...args) => sbHandleEvent('click', args),
+  onClick: (...args) => sbHandleEvent('onClick', args),
 } satisfies Partial<IHctColorPickerContentProps>;
 
 const HctColorPickerContentShowcase = componentShowcaseFactory(

@@ -22,13 +22,13 @@ const rows: Array<IComponentPresentation<ISnackbarContentProps>> = [
     legend: 'Actionable',
     props: {
       actionLabel: 'Action',
-      onActionClick: (...args) => sbHandleEvent('click', args, 1000),
+      onActionClick: (...args) => sbHandleEvent('onClick', args, 1000),
     },
   },
   {
     legend: 'Closable',
     props: {
-      onClose: (...args) => sbHandleEvent('click', args, 1000),
+      onClose: (...args) => sbHandleEvent('onClick', args, 1000),
       showCloseButton: true,
     },
   },
@@ -36,8 +36,8 @@ const rows: Array<IComponentPresentation<ISnackbarContentProps>> = [
     legend: 'Actionable and closable',
     props: {
       actionLabel: 'Action',
-      onActionClick: (...args) => sbHandleEvent('click', args, 1000),
-      onClose: (...args) => sbHandleEvent('click', args, 1000),
+      onActionClick: (...args) => sbHandleEvent('onClick', args, 1000),
+      onClose: (...args) => sbHandleEvent('onClick', args, 1000),
       showCloseButton: true,
     },
   },
@@ -45,7 +45,7 @@ const rows: Array<IComponentPresentation<ISnackbarContentProps>> = [
     legend: 'Longer text',
     props: {
       actionLabel: 'Action',
-      onActionClick: (...args) => sbHandleEvent('click', args, 1000),
+      onActionClick: (...args) => sbHandleEvent('onClick', args, 1000),
     },
   },
 ];

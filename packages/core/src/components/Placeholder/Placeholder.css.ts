@@ -30,6 +30,7 @@ const classNames = createStyles({
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
+    borderRadius: 'inherit',
   },
   diagonals: ({ root }) => ({
     vars: overrideTokens(Diagonals.theme.tokens, {

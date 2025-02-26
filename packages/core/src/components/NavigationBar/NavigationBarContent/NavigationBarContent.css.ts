@@ -12,7 +12,7 @@ import { COMPONENT_NAME } from './NavigationBarContent.constants';
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
     color: themeTokens.colorScheme.surface,
-    shape: themeTokens.shape.corner.none,
+    shape: px(themeTokens.shape.corner.none),
     height: px(80),
     elevation: elevationLevelPreset[0],
   },

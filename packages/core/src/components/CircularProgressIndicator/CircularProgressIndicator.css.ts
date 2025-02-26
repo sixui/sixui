@@ -11,17 +11,31 @@ import { COMPONENT_NAME } from './CircularProgressIndicator.constants';
 export type ICircularProgressIndicatorModifier = 'disabled' | 'negative';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
-  color: {
-    normal: 'currentColor',
-    negative: themeTokens.colorScheme.error,
-    disabled: themeTokens.colorScheme.onSurface,
+  track: {
+    color: {
+      normal: themeTokens.colorScheme.secondaryContainer,
+      disabled: themeTokens.colorScheme.onSurface,
+    },
+    opacity: {
+      disabled: themeTokens.state.containerOpacity.disabled,
+    },
+  },
+  activeIndicator: {
+    color: {
+      normal: themeTokens.colorScheme.primary,
+      negative: themeTokens.colorScheme.error,
+      disabled: themeTokens.colorScheme.onSurface,
+    },
+    opacity: {
+      disabled: themeTokens.state.opacity.disabled,
+    },
   },
   opacity: {
     disabled: themeTokens.state.opacity.disabled,
   },
   size: em(1),
   containerPadding: px(0),
-  strokeWidth: `round(up, ${px(2)}, 1px)`,
+  strokeWidth: `round(up, max(${px(2)}, ${em(0.06)}), 1px)`,
 });
 
 const classNames = createStyles({
@@ -31,7 +45,7 @@ const classNames = createStyles({
     position: 'relative',
     alignItems: 'center',
     justifyContent: 'center',
-    color: tokens.color.normal,
+    color: tokens.activeIndicator.color.normal,
     borderColor: 'currentColor',
 
     width: tokens.size,
@@ -39,7 +53,7 @@ const classNames = createStyles({
 
     selectors: {
       [modifierSelector<ICircularProgressIndicatorModifier>('negative')]: {
-        color: tokens.color.negative,
+        color: tokens.activeIndicator.color.negative,
       },
     },
   },
@@ -54,6 +68,34 @@ const classNames = createStyles({
     alignSelf: 'stretch',
     margin: tokens.containerPadding,
   },
+  track: ({ root }) => ({
+    color: tokens.track.color.normal,
+
+    selectors: {
+      [modifierSelector<ICircularProgressIndicatorModifier>('disabled', root)]:
+        {
+          color: tokens.track.color.disabled,
+          opacity: tokens.track.opacity.disabled,
+        },
+    },
+  }),
+  activeIndicator: ({ root }) => ({
+    color: tokens.activeIndicator.color.normal,
+
+    selectors: {
+      [modifierSelector<ICircularProgressIndicatorModifier>('disabled', root)]:
+        {
+          color: tokens.activeIndicator.color.disabled,
+          opacity: tokens.activeIndicator.opacity.disabled,
+        },
+      [modifierSelector<ICircularProgressIndicatorModifier>(
+        ['!disabled', 'negative'],
+        root,
+      )]: {
+        color: tokens.activeIndicator.color.negative,
+      },
+    },
+  }),
 });
 
 export type ICircularProgressIndicatorThemeFactory = IComponentThemeFactory<{

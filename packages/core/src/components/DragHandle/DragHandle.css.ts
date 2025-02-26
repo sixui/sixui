@@ -25,7 +25,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
       normal: px(4),
       active: px(8),
     },
-    shape: themeTokens.shape.corner.full,
+    shape: px(themeTokens.shape.corner.full),
     color: {
       normal: themeTokens.colorScheme.outline,
       active: themeTokens.colorScheme.onSurface,

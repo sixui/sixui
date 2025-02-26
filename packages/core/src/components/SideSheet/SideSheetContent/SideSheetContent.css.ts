@@ -224,14 +224,14 @@ export const sideSheetContentThemeVariants = {
         [modifierSelector<IModifier>({ side: 'left' })]: {
           vars: overrideTokens(tokens, {
             container: {
-              shape: themeTokens.shape.corner.lg,
+              shape: px(themeTokens.shape.corner.lg),
             },
           }),
         },
         [modifierSelector<IModifier>({ side: 'right' })]: {
           vars: overrideTokens(tokens, {
             container: {
-              shape: themeTokens.shape.corner.lg,
+              shape: px(themeTokens.shape.corner.lg),
             },
           }),
         },

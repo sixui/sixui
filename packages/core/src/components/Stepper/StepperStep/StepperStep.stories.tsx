@@ -15,7 +15,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onClick: (...args) => sbHandleEvent('click', args, 1000),
+  onClick: (...args) => sbHandleEvent('onClick', args, 1000),
 } satisfies Partial<IStepperStepProps>;
 
 const variants: Array<IComponentPresentation<IStepperStepProps>> = [

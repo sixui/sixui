@@ -12,7 +12,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onClick: (...args) => void sbHandleEvent('click', args),
+  onClick: (...args) => void sbHandleEvent('onClick', args),
   palettes: [
     ['#ef6c6c', '#e61919', '#931010'],
     ['#d56cef', '#bd19e6', '#791093'],

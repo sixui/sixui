@@ -70,10 +70,7 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
             ...createThemeSprinkle(
               paperBaseTheme.tokens.container.color,
               surface,
-              {
-                ...themeTokens.colorScheme,
-                transparent: 'transparent',
-              },
+              themeTokens.colorScheme,
             ),
             ...createThemeSprinkle(
               paperBaseTheme.tokens.container.elevation,

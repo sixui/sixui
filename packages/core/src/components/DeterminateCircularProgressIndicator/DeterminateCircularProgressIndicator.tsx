@@ -1,3 +1,5 @@
+import { assignInlineVars } from '@vanilla-extract/dynamic';
+
 import type { IDeterminateCircularProgressIndicatorThemeFactory } from './DeterminateCircularProgressIndicator.css';
 import type { IDeterminateCircularProgressIndicatorFactory } from './DeterminateCircularProgressIndicator.types';
 import { Box } from '~/components/Box';
@@ -33,8 +35,6 @@ export const DeterminateCircularProgressIndicator =
         Math.max(zeroBased ? -1 : 0, progress),
       );
       const isNegative = normalizedProgress < 0;
-      const absoluteProgress = Math.abs(normalizedProgress);
-      const rotationDegrees = absoluteProgress * 360;
 
       const hasContent = withLabel || !!children;
       const formattedValue = labelFormatter
@@ -58,25 +58,19 @@ export const DeterminateCircularProgressIndicator =
 
       return (
         <Box
-          {...getStyles('root')}
+          {...getStyles('root', {
+            style: assignInlineVars({
+              [determinateCircularProgressIndicatorTheme.tokens.progress]:
+                String(normalizedProgress),
+            }),
+          })}
           ref={forwardedRef}
           role="progressbar"
           {...other}
         >
           <div {...getStyles('progress')}>
-            <div
-              {...getStyles('ring', {
-                style: {
-                  background: isNegative
-                    ? `conic-gradient(transparent
-                ${360 - rotationDegrees}deg, currentColor 0
-                360deg)`
-                    : `conic-gradient(currentColor
-                ${rotationDegrees}deg, transparent ${rotationDegrees}deg
-                360deg)`,
-                },
-              })}
-            />
+            <div {...getStyles('track')} />
+            <div {...getStyles('activeIndicator')} />
             {hasContent && (
               <div {...getStyles('label')}>{children ?? formattedValue}</div>
             )}

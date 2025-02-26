@@ -15,7 +15,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
     color: themeTokens.colorScheme.surfaceContainerLow,
     elevation: elevationLevelPreset[1],
-    shape: themeTokens.shape.corner.xl,
+    shape: px(themeTokens.shape.corner.xl),
   },
   dragHandle: {
     color: themeTokens.colorScheme.onSurfaceVariant,

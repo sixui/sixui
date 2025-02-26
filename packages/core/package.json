@@ -53,7 +53,7 @@
     "clsx": "^2.1.1",
     "highlight-words": "^2.0.0",
     "rainbow-sprinkles": "^1.0.0",
-    "re-resizable": "^6.10.3",
+    "re-resizable": "^6.11.2",
     "react-aria": "^3.37.0",
     "react-dom": "^19.0.0",
     "react-remove-scroll": "^2.6.3",
@@ -91,7 +91,7 @@
     "tsx": "^4.19.3",
     "type-fest": "^4.35.0",
     "typescript": "^5.7.3",
-    "vite": "^6.1.1"
+    "vite": "^6.2.0"
   },
   "peerDependencies": {
     "node": ">=22",
