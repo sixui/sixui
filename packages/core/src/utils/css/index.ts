@@ -21,3 +21,4 @@ export * from './textFromCssProperties';
 export * from './typography';
 export * from './vanillaExtract.types';
 export * from './zIndex';
+export * from './getVarNameFromToken';

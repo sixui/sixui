@@ -1,5 +1,6 @@
 import { isObject } from '~/utils/isObject';
 import { INestedObject } from '~/utils/types';
+import { getVarNameFromToken } from './getVarNameFromToken';
 
 type IContract = INestedObject<string | null>;
 type ITokens = INestedObject<string | null | undefined>;
@@ -21,7 +22,7 @@ export const partialAssignInlineVars = (
       typeof contract[key] === 'string' &&
       typeof tokens[key] === 'string'
     ) {
-      const varName = contract[key].substring(4, contract[key].length - 1);
+      const varName = getVarNameFromToken(contract[key]);
       styles[varName] = tokens[key];
     }
   }
