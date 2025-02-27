@@ -1,31 +1,33 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
-import type { ICircularProgressIndicatorProps } from './CircularProgressIndicator.types';
+import type { ILinearProgressIndicatorProps } from './LinearProgressIndicator.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Flex } from '~/components/Flex';
-import { CircularProgressIndicator } from './CircularProgressIndicator';
+import { LinearProgressIndicator } from './LinearProgressIndicator';
 
 const meta = {
-  component: CircularProgressIndicator,
-} satisfies Meta<typeof CircularProgressIndicator>;
+  component: LinearProgressIndicator,
+} satisfies Meta<typeof LinearProgressIndicator>;
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {} satisfies Partial<ICircularProgressIndicatorProps>;
+const defaultArgs = {
+  w: '$72',
+} satisfies Partial<ILinearProgressIndicatorProps>;
 
-const rows: Array<IComponentPresentation<ICircularProgressIndicatorProps>> = [
+const rows: Array<IComponentPresentation<ILinearProgressIndicatorProps>> = [
   { legend: 'Normal' },
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const CircularProgressIndicatorShowcase = componentShowcaseFactory(
-  CircularProgressIndicator,
+const LinearProgressIndicatorShowcase = componentShowcaseFactory(
+  LinearProgressIndicator,
 );
 
 export const Variants: IStory = {
   render: (props) => (
-    <CircularProgressIndicatorShowcase
+    <LinearProgressIndicatorShowcase
       props={props}
       cols={[{ props: { value: undefined } }, { props: { value: 0.75 } }]}
       rows={rows}
@@ -34,18 +36,18 @@ export const Variants: IStory = {
   args: defaultArgs,
 };
 
-const CircularProgressIndicatorWithTextShowcase = componentShowcaseFactory(
-  (props: ICircularProgressIndicatorProps) => (
+const LinearProgressIndicatorWithTextShowcase = componentShowcaseFactory(
+  (props: ILinearProgressIndicatorProps) => (
     <Flex gap="$2">
-      <CircularProgressIndicator {...props} />{' '}
-      <CircularProgressIndicator {...props} value={0.75} />
+      <LinearProgressIndicator {...props} />{' '}
+      <LinearProgressIndicator {...props} value={0.75} />
     </Flex>
   ),
 );
 
 export const Scales: IStory = {
   render: (props) => (
-    <CircularProgressIndicatorWithTextShowcase
+    <LinearProgressIndicatorWithTextShowcase
       props={props}
       cols={[
         { legend: 'Extra small', props: { scale: 'xs' } },
@@ -61,7 +63,7 @@ export const Scales: IStory = {
 
 export const FontSizes: IStory = {
   render: (props) => (
-    <CircularProgressIndicatorWithTextShowcase
+    <LinearProgressIndicatorWithTextShowcase
       props={props}
       cols={[
         { legend: '2', props: { fz: '$2' } },

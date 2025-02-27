@@ -37,9 +37,9 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
 
 const ANTIALIASING_EPSILON = '0.5px';
 const MASK_RADIUS = calc.subtract(
-  calc.divide(parentStyles.tokens.size, 2),
+  calc.divide(parentStyles.tokens.container.size, 2),
   parentStyles.tokens.strokeWidth,
-  parentStyles.tokens.containerPadding,
+  parentStyles.tokens.container.padding,
 );
 
 const localVars = {
@@ -86,6 +86,7 @@ const classNames = createStyles({
       currentColor 0 ${localVars.progressPct},
       transparent ${localVars.progressPct} 100%
     )`,
+    color: parentStyles.tokens.activeIndicator.color.normal,
 
     transitionProperty: getVarNameFromToken(localVars.progressPct),
     transitionDuration: themeTokens.motion.duration.medium3,
@@ -98,9 +99,16 @@ const classNames = createStyles({
           currentColor ${localVars.progressPct} 100%
         )`,
       },
+      [modifierSelector<IModifier>('disabled', root)]: {
+        color: parentStyles.tokens.activeIndicator.color.disabled,
+        opacity: parentStyles.tokens.activeIndicator.opacity.disabled,
+      },
+      [modifierSelector<IModifier>(['!disabled', 'negative'], root)]: {
+        color: parentStyles.tokens.activeIndicator.color.negative,
+      },
     },
   }),
-  track: ({ root }) => ({
+  inactiveTrack: ({ root }) => ({
     position: 'absolute',
     overflow: 'hidden',
     inset: 0,
@@ -114,6 +122,7 @@ const classNames = createStyles({
       currentColor ${calc.add(localVars.progressPct, localVars.spacing)} ${calc.subtract('100%', localVars.spacing)},
       transparent ${calc.subtract('100%', localVars.spacing)}
     )`,
+    color: parentStyles.tokens.inactiveTrack.color.normal,
 
     selectors: {
       [modifierSelector<IModifier>('negative', root)]: {
@@ -122,6 +131,10 @@ const classNames = createStyles({
           currentColor ${localVars.spacing} ${calc.subtract(localVars.progressPct, localVars.spacing)},
           transparent ${calc.subtract(localVars.progressPct, localVars.spacing)}
         )`,
+      },
+      [modifierSelector<IModifier>('disabled', root)]: {
+        color: parentStyles.tokens.inactiveTrack.color.disabled,
+        opacity: parentStyles.tokens.inactiveTrack.opacity.disabled,
       },
     },
   }),

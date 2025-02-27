@@ -30,6 +30,7 @@ const DeterminateLinearProgressIndicatorShowcase = componentShowcaseFactory(
 export const Basic: IStory = {
   render: (props) => (
     <DeterminateLinearProgressIndicatorShowcase
+      verticalAlign="center"
       props={props}
       rows={[
         { legend: '0', props: { value: 0 } },
@@ -75,6 +76,7 @@ export const Scales: IStory = {
   render: (props) => (
     <DeterminateLinearProgressIndicatorShowcase
       horizontalAlign="start"
+      verticalAlign="center"
       props={props}
       rows={[
         { legend: 'Extra small', props: { scale: 'xs' } },
@@ -91,6 +93,7 @@ export const Scales: IStory = {
 export const WithRange: IStory = {
   render: (props) => (
     <DeterminateLinearProgressIndicatorShowcase
+      verticalAlign="center"
       props={props}
       rows={[
         { legend: '-64', props: { value: -64 } },

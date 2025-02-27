@@ -2,24 +2,22 @@ import type { IComponentThemeFactory } from '~/utils/component/componentThemeFac
 import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
-import { em } from '~/utils/css';
+import { modifierSelector } from '~/utils/css';
 import { createStyles } from '~/utils/css/createStyles';
-import { modifierSelector } from '~/utils/css/modifierSelector';
 import { px } from '~/utils/css/px';
-import { COMPONENT_NAME } from './CircularProgressIndicator.constants';
+import { COMPONENT_NAME } from './LinearProgressIndicator.constants';
 
-type IModifier = 'disabled' | 'negative';
-export type ICircularProgressIndicatorModifier = IModifier;
+type IModifier = 'disabled';
+export type ILinearProgressIndicatorModifier = IModifier;
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
-    size: em(1),
-    padding: px(0),
+    height: `round(up, ${px(4)}, 1px)`,
+    shape: px(themeTokens.shape.corner.full),
   },
   activeIndicator: {
     color: {
       normal: themeTokens.colorScheme.primary,
-      negative: themeTokens.colorScheme.error,
       disabled: themeTokens.colorScheme.onSurface,
     },
     opacity: {
@@ -35,44 +33,40 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
       disabled: themeTokens.state.containerOpacity.disabled,
     },
   },
-  strokeWidth: `round(up, max(${px(2)}, ${em(0.06)}), 1px)`,
 });
 
 const classNames = createStyles({
   root: {
     position: 'relative',
-    color: tokens.activeIndicator.color.normal,
+    display: 'flex',
+    flexDirection: 'row',
     contentVisibility: 'auto',
-
-    width: tokens.container.size,
-    height: tokens.container.size,
+    height: tokens.container.height,
+    borderRadius: tokens.container.shape,
+    minWidth: px(80),
+  },
+  inactiveTrack: ({ root }) => ({
+    borderRadius: 'inherit',
+    backgroundColor: tokens.inactiveTrack.color.normal,
+    flexGrow: 1,
 
     selectors: {
-      [modifierSelector<IModifier>('negative')]: {
-        color: tokens.activeIndicator.color.negative,
+      [modifierSelector<IModifier>('disabled', root)]: {
+        backgroundColor: tokens.inactiveTrack.color.disabled,
+        opacity: tokens.inactiveTrack.opacity.disabled,
       },
     },
-  },
-  progress: {
-    position: 'absolute',
-    overflow: 'hidden',
-    inset: 0,
-    borderRadius: themeTokens.shape.corner.circle,
-    flexGrow: 1,
-    flexShrink: 1,
-    flexBasis: '0%',
-    alignSelf: 'stretch',
-    margin: tokens.container.padding,
-  },
+  }),
 });
 
-export type ICircularProgressIndicatorThemeFactory = IComponentThemeFactory<{
+export type ILinearProgressIndicatorThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
+  modifier: ILinearProgressIndicatorModifier;
 }>;
 
-export const circularProgressIndicatorTheme =
-  componentThemeFactory<ICircularProgressIndicatorThemeFactory>({
+export const linearProgressIndicatorTheme =
+  componentThemeFactory<ILinearProgressIndicatorThemeFactory>({
     classNames,
     tokensClassName,
     tokens,

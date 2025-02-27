@@ -11,6 +11,7 @@ export interface IDeterminateLinearProgressIndicatorOwnProps {
   min?: number;
   max?: number;
   disabled?: boolean;
+  children?: React.ReactNode;
 }
 
 export interface IDeterminateLinearProgressIndicatorProps

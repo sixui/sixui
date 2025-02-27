@@ -70,7 +70,7 @@ export const DeterminateCircularProgressIndicator =
         >
           <div {...getStyles('progress')}>
             <div {...getStyles('activeIndicator')} />
-            <div {...getStyles('track')} />
+            <div {...getStyles('inactiveTrack')} />
             {hasContent && (
               <div {...getStyles('label')}>{children ?? formattedValue}</div>
             )}

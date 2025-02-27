@@ -77,6 +77,9 @@ const linearRotateKeyframes = keyframes({
 });
 
 const classNames = createStyles({
+  root: {
+    contain: 'strict',
+  },
   progress: {
     position: 'absolute',
     overflow: 'hidden',
@@ -127,7 +130,7 @@ const classNames = createStyles({
         borderRightColor: parentStyles.tokens.activeIndicator.color.disabled,
         borderBottomColor: 'transparent',
         borderLeftColor: 'transparent',
-        opacity: parentStyles.tokens.opacity.disabled,
+        opacity: parentStyles.tokens.activeIndicator.opacity.disabled,
       },
     },
   }),

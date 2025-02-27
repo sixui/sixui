@@ -1,42 +1,26 @@
 import { createVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
+import cx from 'clsx';
 
+import type { ILinearProgressIndicatorModifier } from '~/components/LinearProgressIndicator/LinearProgressIndicator.css';
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
-import { modifierSelector } from '~/utils/css';
+import { mergeClassNames, modifierSelector } from '~/utils/css';
 import { createStyles } from '~/utils/css/createStyles';
 import { px } from '~/utils/css/px';
+import { deepMerge } from '~/utils/deepMerge';
+import { linearProgressIndicatorTheme } from '~/components/LinearProgressIndicator/LinearProgressIndicator.css';
 import { COMPONENT_NAME } from './DeterminateLinearProgressIndicator.constants';
 
-type IModifier = 'disabled';
+type IModifier = ILinearProgressIndicatorModifier;
+
+const parentStyles = linearProgressIndicatorTheme;
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   progress: '0',
   spacing: px(4),
-  activeIndicator: {
-    thickness: `round(up, ${px(4)}, 1px)`,
-    shape: px(themeTokens.shape.corner.full),
-    color: {
-      normal: themeTokens.colorScheme.primary,
-      disabled: themeTokens.colorScheme.onSurface,
-    },
-    opacity: {
-      disabled: themeTokens.state.opacity.disabled,
-    },
-  },
-  track: {
-    thickness: `round(up, ${px(4)}, 1px)`,
-    shape: px(themeTokens.shape.corner.full),
-    color: {
-      normal: themeTokens.colorScheme.secondaryContainer,
-      disabled: themeTokens.colorScheme.onSurface,
-    },
-    opacity: {
-      disabled: themeTokens.state.containerOpacity.disabled,
-    },
-  },
   stopIndicator: {
     size: `round(up, ${px(4)}, 1px)`,
     shape: `round(up, ${px(4)}, 1px)`,
@@ -56,10 +40,6 @@ const localVars = {
 
 const classNames = createStyles({
   root: {
-    position: 'relative',
-    display: 'flex',
-    flexDirection: 'row',
-
     vars: {
       [localVars.spacing]: `min(${calc.subtract(
         '100%',
@@ -70,9 +50,9 @@ const classNames = createStyles({
   activeIndicator: ({ root }) => ({
     width: calc.multiply(tokens.progress, '100%'),
     marginRight: localVars.spacing,
-    height: tokens.activeIndicator.thickness,
-    borderRadius: tokens.activeIndicator.shape,
-    backgroundColor: tokens.activeIndicator.color.normal,
+    height: parentStyles.tokens.container.height,
+    borderRadius: 'inherit',
+    backgroundColor: parentStyles.tokens.activeIndicator.color.normal,
 
     transitionProperty: 'width, margin-right',
     transitionDuration: themeTokens.motion.duration.medium3,
@@ -80,21 +60,8 @@ const classNames = createStyles({
 
     selectors: {
       [modifierSelector<IModifier>('disabled', root)]: {
-        backgroundColor: tokens.activeIndicator.color.disabled,
-        opacity: tokens.activeIndicator.opacity.disabled,
-      },
-    },
-  }),
-  track: ({ root }) => ({
-    height: tokens.track.thickness,
-    borderRadius: tokens.track.shape,
-    backgroundColor: tokens.track.color.normal,
-    flexGrow: 1,
-
-    selectors: {
-      [modifierSelector<IModifier>('disabled', root)]: {
-        backgroundColor: tokens.track.color.disabled,
-        opacity: tokens.track.opacity.disabled,
+        backgroundColor: parentStyles.tokens.activeIndicator.color.disabled,
+        opacity: parentStyles.tokens.activeIndicator.opacity.disabled,
       },
     },
   }),
@@ -118,14 +85,17 @@ const classNames = createStyles({
 
 export type IDeterminateLinearProgressIndicatorThemeFactory =
   IComponentThemeFactory<{
-    styleName: keyof typeof classNames;
-    tokens: typeof tokens;
+    styleName: keyof typeof parentStyles.classNames | keyof typeof classNames;
+    tokens: typeof parentStyles.tokens & typeof tokens;
     modifier: IModifier;
   }>;
 
 export const determinateLinearProgressIndicatorTheme =
   componentThemeFactory<IDeterminateLinearProgressIndicatorThemeFactory>({
-    classNames,
-    tokensClassName,
-    tokens,
+    classNames: mergeClassNames(parentStyles.classNames, classNames),
+    tokensClassName: cx(parentStyles.tokensClassName, tokensClassName),
+    tokens: deepMerge(
+      parentStyles.tokens,
+      tokens,
+    ) as typeof parentStyles.tokens & typeof tokens,
   });

@@ -34,10 +34,10 @@ const processingKeyframes = keyframes({
 const classNames = createStyles({
   root: {
     position: 'relative',
-    width: px(tokens.container.size),
-    height: px(tokens.container.size),
+    width: tokens.container.size,
+    height: tokens.container.size,
     backgroundColor: tokens.container.color,
-    borderRadius: px(tokens.container.shape),
+    borderRadius: tokens.container.shape,
     zIndex: tokens.container.zIndex,
 
     '::before': {
