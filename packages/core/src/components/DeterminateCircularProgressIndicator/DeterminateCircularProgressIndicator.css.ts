@@ -22,7 +22,7 @@ const parentStyles = circularProgressIndicatorTheme;
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   progress: '0',
-  progressSpace: '8deg',
+  spacing: '8deg',
   label: {
     color: {
       normal: themeTokens.colorScheme.onSurface,
@@ -75,17 +75,17 @@ const classNames = createStyles({
       black ${calc.add(MASK_RADIUS, ANTIALIASING_EPSILON)}
     )`,
     background: `conic-gradient(
-      transparent 0 ${calc.add(localVars.progressDegrees, tokens.progressSpace)},
-      currentColor ${calc.add(localVars.progressDegrees, tokens.progressSpace)} ${calc.subtract('360deg', tokens.progressSpace)},
-      transparent ${calc.subtract('360deg', tokens.progressSpace)}
+      transparent 0 ${calc.add(localVars.progressDegrees, tokens.spacing)},
+      currentColor ${calc.add(localVars.progressDegrees, tokens.spacing)} ${calc.subtract('360deg', tokens.spacing)},
+      transparent ${calc.subtract('360deg', tokens.spacing)}
     )`,
 
     selectors: {
       [modifierSelector<IModifier>('negative', root)]: {
         background: `conic-gradient(
-          transparent 0 ${tokens.progressSpace},
-          currentColor ${tokens.progressSpace} ${calc.subtract(localVars.progressDegrees, tokens.progressSpace)},
-          transparent ${calc.subtract(localVars.progressDegrees, tokens.progressSpace)}
+          transparent 0 ${tokens.spacing},
+          currentColor ${tokens.spacing} ${calc.subtract(localVars.progressDegrees, tokens.spacing)},
+          transparent ${calc.subtract(localVars.progressDegrees, tokens.spacing)}
         )`,
       },
     },

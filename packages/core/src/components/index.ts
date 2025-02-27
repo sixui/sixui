@@ -24,6 +24,7 @@ export * from './ConfirmDialog';
 export * from './CopyableText';
 export * from './CustomizableTheme';
 export * from './DeterminateCircularProgressIndicator';
+export * from './DeterminateLinearProgressIndicator';
 export * from './Diagonals';
 export * from './Dialog';
 export * from './Disclosure';

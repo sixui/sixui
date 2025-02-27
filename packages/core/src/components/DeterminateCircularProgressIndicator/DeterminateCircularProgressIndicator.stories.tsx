@@ -126,7 +126,10 @@ export const WithRange: IStory = {
         { props: { value: 80 } },
         { props: { value: 128 } },
       ]}
-      rows={rows}
+      rows={[
+        { legend: 'Normal [-64 - 128]' },
+        { legend: 'Disabled', props: { disabled: true } },
+      ]}
     />
   ),
   args: {
