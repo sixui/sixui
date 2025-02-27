@@ -1,3 +1,22 @@
+## 1.2.0 (2025-02-27)
+
+### 🚀 Features
+
+- DeterminateLinearProgressIndicator ([84a1124a](https://github.com/sixui/sixui/commit/84a1124a))
+- DeterminateCircularProgressIndicator transitions are now animated ([f0833523](https://github.com/sixui/sixui/commit/f0833523))
+- DeterminateLinearProgressIndicator, IndeterminateLinearProgressIndicator, LinearProgressIndicator components ([4f21e335](https://github.com/sixui/sixui/commit/4f21e335))
+
+### 🩹 Fixes
+
+- CircularProgressIndicator styles ([19d01768](https://github.com/sixui/sixui/commit/19d01768))
+- pnpm version in GitHub actions ([15743e9e](https://github.com/sixui/sixui/commit/15743e9e))
+- pnpm version in GitHub actions ([bd4dfc23](https://github.com/sixui/sixui/commit/bd4dfc23))
+- getVarNameFromToken() export ([9a36e5dd](https://github.com/sixui/sixui/commit/9a36e5dd))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 1.1.0 (2025-02-22)
 
 ### 🚀 Features
