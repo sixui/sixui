@@ -60,8 +60,8 @@ export const DeterminateCircularProgressIndicator =
         <Box
           {...getStyles('root', {
             style: assignInlineVars({
-              [determinateCircularProgressIndicatorTheme.tokens.progress]:
-                String(normalizedProgress),
+              [determinateCircularProgressIndicatorTheme.tokens.progressPct]:
+                `${normalizedProgress * 100}%`,
             }),
           })}
           ref={forwardedRef}
@@ -69,8 +69,8 @@ export const DeterminateCircularProgressIndicator =
           {...other}
         >
           <div {...getStyles('progress')}>
-            <div {...getStyles('track')} />
             <div {...getStyles('activeIndicator')} />
+            <div {...getStyles('track')} />
             {hasContent && (
               <div {...getStyles('label')}>{children ?? formattedValue}</div>
             )}

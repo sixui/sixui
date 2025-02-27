@@ -2,7 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IDeterminateCircularProgressIndicatorProps } from './DeterminateCircularProgressIndicator.types';
+import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { Flex } from '~/components/Flex';
+import { useToggle } from '~/hooks/useToggle';
 import { DeterminateCircularProgressIndicator } from './DeterminateCircularProgressIndicator';
 
 const meta = {
@@ -37,6 +40,33 @@ export const Basic: IStory = {
       rows={rows}
     />
   ),
+  args: defaultArgs,
+};
+
+const AnimatedDemo: React.FC<IDeterminateCircularProgressIndicatorProps> = (
+  props,
+) => {
+  const { ...other } = props;
+  const [value, toggleValue] = useToggle([0, 0.25, 0.5, 0.75, 1]);
+
+  return (
+    <Flex direction="row" gap="$6" align="center">
+      <Button
+        onClick={() => {
+          toggleValue();
+        }}
+        w="$24"
+      >
+        Progress
+      </Button>
+
+      <DeterminateCircularProgressIndicator {...other} value={value} />
+    </Flex>
+  );
+};
+
+export const Animated: IStory = {
+  render: (props) => <AnimatedDemo {...props} />,
   args: defaultArgs,
 };
 

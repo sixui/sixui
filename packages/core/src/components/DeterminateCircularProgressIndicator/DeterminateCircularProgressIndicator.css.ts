@@ -7,7 +7,7 @@ import type { IComponentThemeFactory } from '~/utils/component/componentThemeFac
 import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
-import { px } from '~/utils/css';
+import { getVarNameFromToken, px } from '~/utils/css';
 import { createStyles } from '~/utils/css/createStyles';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { modifierSelector } from '~/utils/css/modifierSelector';
@@ -21,8 +21,8 @@ type IModifier = ICircularProgressIndicatorModifier;
 const parentStyles = circularProgressIndicatorTheme;
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
-  progress: '0',
-  spacing: '8deg',
+  progressPct: '0%',
+  spacing: '2%',
   label: {
     color: {
       normal: themeTokens.colorScheme.onSurface,
@@ -43,7 +43,12 @@ const MASK_RADIUS = calc.subtract(
 );
 
 const localVars = {
-  progressDegrees: createVar(),
+  progressPct: createVar({
+    syntax: '<percentage>',
+    inherits: true,
+    initialValue: '0%',
+  }),
+  spacing: createVar(),
 };
 
 const classNames = createStyles({
@@ -51,20 +56,50 @@ const classNames = createStyles({
     borderRadius: themeTokens.shape.corner.circle,
 
     vars: {
-      [localVars.progressDegrees]: calc.multiply(tokens.progress, '360deg'),
+      [localVars.progressPct]: tokens.progressPct,
+      [localVars.spacing]: `min(${calc.subtract(
+        '100%',
+        localVars.progressPct,
+      )}, min(${localVars.progressPct}, ${tokens.spacing}))`,
     },
 
     selectors: {
       [modifierSelector<IModifier>('negative')]: {
         vars: {
-          [localVars.progressDegrees]: calc.multiply(
-            calc.subtract(1, calc.multiply(tokens.progress, -1)),
-            '360deg',
-          ),
+          [localVars.progressPct]: `${calc.multiply(
+            calc.subtract(1, calc.multiply(localVars.progressPct, -1)),
+            '100%',
+          )}%`,
         },
       },
     },
   },
+  activeIndicator: ({ root }) => ({
+    position: 'absolute',
+    overflow: 'hidden',
+    inset: 0,
+    mask: `radial-gradient(
+      transparent ${calc.subtract(MASK_RADIUS, ANTIALIASING_EPSILON)},
+      black ${calc.add(MASK_RADIUS, ANTIALIASING_EPSILON)}
+      )`,
+    backgroundImage: `conic-gradient(
+      currentColor 0 ${localVars.progressPct},
+      transparent ${localVars.progressPct} 100%
+    )`,
+
+    transitionProperty: getVarNameFromToken(localVars.progressPct),
+    transitionDuration: themeTokens.motion.duration.medium3,
+    transitionTimingFunction: themeTokens.motion.easing.emphasized.decelerate,
+
+    selectors: {
+      [modifierSelector<IModifier>('negative', root)]: {
+        backgroundImage: `conic-gradient(
+          transparent 0 ${localVars.progressPct},
+          currentColor ${localVars.progressPct} 100%
+        )`,
+      },
+    },
+  }),
   track: ({ root }) => ({
     position: 'absolute',
     overflow: 'hidden',
@@ -74,40 +109,18 @@ const classNames = createStyles({
       transparent ${calc.subtract(MASK_RADIUS, ANTIALIASING_EPSILON)},
       black ${calc.add(MASK_RADIUS, ANTIALIASING_EPSILON)}
     )`,
-    background: `conic-gradient(
-      transparent 0 ${calc.add(localVars.progressDegrees, tokens.spacing)},
-      currentColor ${calc.add(localVars.progressDegrees, tokens.spacing)} ${calc.subtract('360deg', tokens.spacing)},
-      transparent ${calc.subtract('360deg', tokens.spacing)}
+    backgroundImage: `conic-gradient(
+      transparent 0 ${calc.add(localVars.progressPct, localVars.spacing)},
+      currentColor ${calc.add(localVars.progressPct, localVars.spacing)} ${calc.subtract('100%', localVars.spacing)},
+      transparent ${calc.subtract('100%', localVars.spacing)}
     )`,
 
     selectors: {
       [modifierSelector<IModifier>('negative', root)]: {
-        background: `conic-gradient(
-          transparent 0 ${tokens.spacing},
-          currentColor ${tokens.spacing} ${calc.subtract(localVars.progressDegrees, tokens.spacing)},
-          transparent ${calc.subtract(localVars.progressDegrees, tokens.spacing)}
-        )`,
-      },
-    },
-  }),
-  activeIndicator: ({ root }) => ({
-    position: 'absolute',
-    overflow: 'hidden',
-    inset: 0,
-    mask: `radial-gradient(
-      transparent ${calc.subtract(MASK_RADIUS, ANTIALIASING_EPSILON)},
-      black ${calc.add(MASK_RADIUS, ANTIALIASING_EPSILON)}
-      )`,
-    background: `conic-gradient(
-      currentColor 0 ${localVars.progressDegrees},
-      transparent ${localVars.progressDegrees} 360deg
-    )`,
-
-    selectors: {
-      [modifierSelector<IModifier>('negative', root)]: {
-        background: `conic-gradient(
-          transparent 0 ${localVars.progressDegrees},
-          currentColor ${localVars.progressDegrees} 360deg
+        backgroundImage: `conic-gradient(
+          transparent 0 ${localVars.spacing},
+          currentColor ${localVars.spacing} ${calc.subtract(localVars.progressPct, localVars.spacing)},
+          transparent ${calc.subtract(localVars.progressPct, localVars.spacing)}
         )`,
       },
     },

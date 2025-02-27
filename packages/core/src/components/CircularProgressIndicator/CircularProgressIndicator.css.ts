@@ -11,15 +11,6 @@ import { COMPONENT_NAME } from './CircularProgressIndicator.constants';
 export type ICircularProgressIndicatorModifier = 'disabled' | 'negative';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
-  track: {
-    color: {
-      normal: themeTokens.colorScheme.secondaryContainer,
-      disabled: themeTokens.colorScheme.onSurface,
-    },
-    opacity: {
-      disabled: themeTokens.state.containerOpacity.disabled,
-    },
-  },
   activeIndicator: {
     color: {
       normal: themeTokens.colorScheme.primary,
@@ -28,6 +19,15 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
     },
     opacity: {
       disabled: themeTokens.state.opacity.disabled,
+    },
+  },
+  track: {
+    color: {
+      normal: themeTokens.colorScheme.secondaryContainer,
+      disabled: themeTokens.colorScheme.onSurface,
+    },
+    opacity: {
+      disabled: themeTokens.state.containerOpacity.disabled,
     },
   },
   opacity: {

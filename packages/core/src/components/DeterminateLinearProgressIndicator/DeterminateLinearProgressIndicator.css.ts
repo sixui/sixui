@@ -1,3 +1,4 @@
+import { createVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
@@ -49,18 +50,26 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   },
 });
 
+const localVars = {
+  spacing: createVar(),
+};
+
 const classNames = createStyles({
   root: {
     position: 'relative',
     display: 'flex',
     flexDirection: 'row',
+
+    vars: {
+      [localVars.spacing]: `min(${calc.subtract(
+        '100%',
+        calc.multiply(tokens.progress, '100%'),
+      )}, min(${calc.multiply(tokens.progress, '100%')}, ${tokens.spacing}))`,
+    },
   },
   activeIndicator: ({ root }) => ({
     width: calc.multiply(tokens.progress, '100%'),
-    marginRight: `min(${calc.subtract(
-      '100%',
-      calc.multiply(tokens.progress, '100%'),
-    )}, min(${calc.multiply(tokens.progress, '100%')}, ${tokens.spacing}))`,
+    marginRight: localVars.spacing,
     height: tokens.activeIndicator.thickness,
     borderRadius: tokens.activeIndicator.shape,
     backgroundColor: tokens.activeIndicator.color.normal,
