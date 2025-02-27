@@ -55,7 +55,7 @@ export const Variants: IStory = {
           legend: 'Circular overlap',
           props: {
             overlap: 'circular',
-            children: <Placeholder w="$12" h="$12" shape="$full" />,
+            children: <Placeholder w="$12" h="$12" shape="$circle" />,
           },
         },
       ]}
@@ -128,7 +128,7 @@ export const CircularOverlap: IStory = {
   args: {
     ...defaultArgs,
     overlap: 'circular',
-    children: <Placeholder w="$12" h="$12" shape="$full" />,
+    children: <Placeholder w="$12" h="$12" shape="$circle" />,
   },
 };
 
