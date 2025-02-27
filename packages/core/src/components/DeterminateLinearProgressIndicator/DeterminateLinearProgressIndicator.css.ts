@@ -77,7 +77,12 @@ const classNames = createStyles({
     selectors: {
       [modifierSelector<IModifier>('disabled', root)]: {
         backgroundColor: tokens.stopIndicator.color.disabled,
-        opacity: tokens.stopIndicator.opacity.disabled,
+        opacity: `min(${tokens.stopIndicator.opacity.disabled}, round(up, ${calc.subtract(1, tokens.progress)}, 1))`,
+
+        transitionProperty: 'opacity',
+        transitionDuration: themeTokens.motion.duration.medium3,
+        transitionTimingFunction:
+          themeTokens.motion.easing.emphasized.decelerate,
       },
     },
   }),
