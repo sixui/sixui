@@ -25,6 +25,7 @@ export const DeterminateCircularProgressIndicator =
         labelFormatter,
         disabled,
         children,
+        hideInactiveTrack,
         ...other
       } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -70,7 +71,7 @@ export const DeterminateCircularProgressIndicator =
         >
           <div {...getStyles('progress')}>
             <div {...getStyles('activeIndicator')} />
-            <div {...getStyles('inactiveTrack')} />
+            {!hideInactiveTrack && <div {...getStyles('inactiveTrack')} />}
             {hasContent && (
               <div {...getStyles('label')}>{children ?? formattedValue}</div>
             )}

@@ -93,3 +93,13 @@ export type IElementProps<
 > = Omit<React.ComponentPropsWithoutRef<TElementType>, TPropsToOmit>;
 
 export type IColorPalette = Array<string>;
+
+export enum ITimeUnit {
+  Millisecond = 1,
+  Second = 1000,
+  Minute = 60000,
+  Hour = 3600000,
+  Day = 86400000,
+  Week = 604800000,
+  Month = 2592000000,
+}

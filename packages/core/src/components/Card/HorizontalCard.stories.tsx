@@ -104,7 +104,7 @@ const cols: Array<IComponentPresentation<ICardProps>> = [
     props: {
       children: (
         <Flex direction="row">
-          <Card.Media src={MEDIA_URL} h="$36" w="$36" />
+          <Card.Media src={MEDIA_URL} h="200px" w="200px" />
           <Card.Content>
             <Flex direction="column" gap="$2">
               <Card.Title

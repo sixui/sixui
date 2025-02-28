@@ -22,6 +22,8 @@ export const DeterminateLinearProgressIndicator =
         max = 1,
         disabled,
         children,
+        hideInactiveTrack,
+        hideStopIndicator,
         ...other
       } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -55,8 +57,8 @@ export const DeterminateLinearProgressIndicator =
           {...other}
         >
           <div {...getStyles('activeIndicator')} />
-          <div {...getStyles('inactiveTrack')} />
-          <div {...getStyles('stopIndicator')} />
+          {!hideInactiveTrack && <div {...getStyles('inactiveTrack')} />}
+          {!hideStopIndicator && <div {...getStyles('stopIndicator')} />}
 
           {children}
         </Box>

@@ -1,6 +1,6 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IComponentThemeProps } from '~/components/Theme';
-import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IPolymorphicComponentFactory } from '~/utils/component';
 import type { cardMediaTheme, ICardMediaThemeFactory } from './CardMedia.css';
 
 export interface ICardMediaOwnProps {
@@ -13,8 +13,9 @@ export interface ICardMediaProps
     IComponentThemeProps<ICardMediaThemeFactory>,
     ICardMediaOwnProps {}
 
-export type ICardMediaFactory = IComponentFactory<{
+export type ICardMediaFactory = IPolymorphicComponentFactory<{
   props: ICardMediaProps;
-  ref: HTMLDivElement;
+  defaultRef: HTMLDivElement;
+  defaultRoot: 'div';
   theme: typeof cardMediaTheme;
 }>;

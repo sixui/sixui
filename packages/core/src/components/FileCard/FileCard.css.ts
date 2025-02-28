@@ -1,70 +1,198 @@
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
-import { PaperBase } from '~/components/PaperBase';
+import { Card } from '~/components/Card';
 import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { em, space, typography } from '~/utils/css';
 import { createStyles } from '~/utils/css/createStyles';
 import { modifierSelector } from '~/utils/css/modifierSelector';
 import { overrideTokens } from '~/utils/css/overrideTokens';
 import { px } from '~/utils/css/px';
-import { space } from '~/utils/css/space';
 import { COMPONENT_NAME } from './FileCard.constants';
 
-type IModifier = 'disabled';
+type IModifier =
+  | 'disabled'
+  | 'with-error'
+  | 'with-metadata'
+  | 'with-thumb'
+  | 'loading';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
+    width: px(130),
+  },
+  media: {
+    height: px(80),
     color: {
-      normal: themeTokens.colorScheme.primary,
+      normal: themeTokens.colorScheme.secondaryContainer,
       disabled: themeTokens.colorScheme.onSurface,
     },
     opacity: {
       disabled: themeTokens.state.containerOpacity.disabled,
     },
   },
-  label: {
-    typography: themeTokens.typeScale.label.md,
+  progressIndicator: {
+    size: px(36),
+    color: themeTokens.colorScheme.onSecondaryContainer,
+  },
+  icon: {
+    size: px(36),
     color: {
-      normal: themeTokens.colorScheme.onPrimary,
+      normal: themeTokens.colorScheme.onSecondaryContainer,
       disabled: themeTokens.colorScheme.onSurface,
     },
     opacity: {
       disabled: themeTokens.state.opacity.disabled,
     },
   },
+  fileName: {
+    typography: themeTokens.typeScale.label.md,
+    color: {
+      normal: themeTokens.colorScheme.onSurface,
+      disabled: themeTokens.colorScheme.onSurface,
+    },
+    opacity: {
+      disabled: themeTokens.state.opacity.disabled,
+    },
+  },
+  fileSize: {
+    typography: themeTokens.typeScale.label.sm,
+    color: {
+      normal: themeTokens.colorScheme.onSurfaceVariant,
+      disabled: themeTokens.colorScheme.onSurfaceVariant,
+    },
+    opacity: {
+      disabled: themeTokens.state.opacity.disabled,
+    },
+  },
+  supportingText: {
+    typography: themeTokens.typeScale.body.sm,
+    color: {
+      normal: themeTokens.colorScheme.onSurfaceVariant,
+      error: themeTokens.colorScheme.error,
+    },
+  },
 });
 
 const classNames = createStyles({
   root: {
-    padding: px(space(2)),
-
-    vars: overrideTokens(PaperBase.theme.tokens, {
-      container: {
-        color: tokens.container.color.normal,
-      },
-    }),
+    display: 'flex',
+    flexDirection: 'column',
+    width: tokens.container.width,
+    position: 'relative',
 
     selectors: {
-      [modifierSelector<IModifier>('disabled')]: {
-        vars: overrideTokens(PaperBase.theme.tokens, {
-          container: {
-            color: tokens.container.color.disabled,
-            opacity: tokens.container.opacity.disabled,
+      [modifierSelector<IModifier>('with-error')]: {
+        vars: overrideTokens(Card.theme.tokens, {
+          outline: {
+            color: {
+              normal: themeTokens.colorScheme.error,
+            },
           },
         }),
       },
     },
   },
-  label: ({ root }) => ({
-    color: tokens.label.color.normal,
+  media: ({ root }) => ({
+    backgroundColor: tokens.media.color.normal,
+    height: tokens.container.width,
 
     selectors: {
-      [modifierSelector<IModifier>('disabled', root)]: {
-        color: tokens.label.color.disabled,
-        opacity: tokens.label.opacity.disabled,
+      [modifierSelector<IModifier>('with-metadata', root)]: {
+        height: tokens.media.height,
+      },
+      [modifierSelector<IModifier>(['!disabled', 'with-metadata'], root)]: {
+        height: tokens.media.height,
+      },
+      [modifierSelector<IModifier>(['!disabled', 'with-thumb'], root)]: {
+        background: `repeating-conic-gradient(color-mix(in srgb,
+        ${themeTokens.colorScheme.outlineVariant} 40%, transparent) 0% 25%,
+        transparent 0% 50%) 50% / 20px 20px`,
       },
     },
   }),
+  mediaContent: ({ root }) => ({
+    selectors: {
+      [modifierSelector<IModifier>('loading', root)]: {
+        boxShadow: `inset 0 0 0 2000px color-mix(in srgb, ${themeTokens.colorScheme.surface}, transparent 33%)`,
+      },
+      [modifierSelector<IModifier>('disabled', root)]: {
+        boxShadow: `inset 0 0 0 2000px color-mix(in srgb, ${themeTokens.colorScheme.surface}, transparent 33%)`,
+        filter: 'grayscale(1)',
+      },
+    },
+  }),
+  progressIndicator: {
+    color: tokens.progressIndicator.color,
+    fontSize: tokens.progressIndicator.size,
+  },
+  icon: ({ root }) => ({
+    display: 'flex',
+    fill: 'currentColor',
+    color: tokens.icon.color.normal,
+    fontSize: tokens.icon.size,
+    blockSize: tokens.icon.size,
+    inlineSize: tokens.icon.size,
+
+    selectors: {
+      [modifierSelector<IModifier>('disabled', root)]: {
+        color: tokens.icon.color.disabled,
+        opacity: tokens.icon.opacity.disabled,
+      },
+    },
+  }),
+  fileInfo: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: px(space(1)),
+  },
+  fileName: ({ root }) => ({
+    lineBreak: 'anywhere',
+    ...typography(tokens.fileName.typography),
+    color: tokens.fileName.color.normal,
+
+    selectors: {
+      [modifierSelector<IModifier>('disabled', root)]: {
+        color: tokens.fileName.color.disabled,
+        opacity: tokens.fileName.opacity.disabled,
+      },
+    },
+  }),
+  fileSize: ({ root }) => ({
+    ...typography(tokens.fileSize.typography),
+    color: tokens.fileSize.color.normal,
+
+    selectors: {
+      [modifierSelector<IModifier>('disabled', root)]: {
+        color: tokens.fileSize.color.disabled,
+        opacity: tokens.fileSize.opacity.disabled,
+      },
+    },
+  }),
+  supportingTextContainer: {
+    display: 'flex',
+    flexGrow: 1,
+    alignItems: 'flex-end',
+  },
+  supportingText: ({ root }) => ({
+    ...typography(tokens.supportingText.typography),
+    color: tokens.supportingText.color.normal,
+
+    selectors: {
+      [modifierSelector<IModifier>('with-error', root)]: {
+        color: tokens.supportingText.color.error,
+      },
+    },
+  }),
+  actions: {
+    position: 'absolute',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: em(0.25),
+    top: px(-5),
+    right: px(-5),
+    zIndex: 1,
+  },
 });
 
 export type IFileCardThemeFactory = IComponentThemeFactory<{

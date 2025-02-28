@@ -15,6 +15,7 @@ export type IDeterminateCircularProgressIndicatorOwnProps = {
   labelFormatter?: (value: number) => string;
   disabled?: boolean;
   children?: React.ReactNode;
+  hideInactiveTrack?: boolean;
 };
 
 export interface IDeterminateCircularProgressIndicatorProps

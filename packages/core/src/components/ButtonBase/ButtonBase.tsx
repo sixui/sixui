@@ -111,14 +111,14 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
 
     const renderTouchTarget = (): React.ReactNode =>
       !nonInteractive &&
-      (touchTargetRenderer !== undefined
-        ? touchTargetRenderer?.()
-        : !disabledOrReadOnly && (
-            <TouchTarget
-              {...getStyles('touchTarget')}
-              interactions={stateLayer.interactionsContext.state}
-            />
-          ));
+      (touchTargetRenderer !== undefined ? (
+        touchTargetRenderer?.()
+      ) : (
+        <TouchTarget
+          {...getStyles('touchTarget')}
+          interactions={stateLayer.interactionsContext.state}
+        />
+      ));
 
     const renderStateLayer = (): React.ReactNode =>
       !nonInteractive &&

@@ -2,14 +2,14 @@ import type { ICardMediaThemeFactory } from './CardMedia.css';
 import type { ICardMediaFactory } from './CardMedia.types';
 import { Box } from '~/components/Box';
 import { useComponentTheme, useProps } from '~/components/Theme';
-import { componentFactory } from '~/utils/component/componentFactory';
+import { polymorphicComponentFactory } from '~/utils/component';
 import { COMPONENT_NAME } from './CardMedia.constants';
 import { cardMediaTheme } from './CardMedia.css';
 
 /**
  * @see https://m3.material.io/components/cards/overview
  */
-export const CardMedia = componentFactory<ICardMediaFactory>(
+export const CardMedia = polymorphicComponentFactory<ICardMediaFactory>(
   (props, forwardedRef) => {
     const {
       classNames,
@@ -36,17 +36,17 @@ export const CardMedia = componentFactory<ICardMediaFactory>(
     });
 
     return (
-      <Box
-        {...getStyles('root', {
-          style: {
-            backgroundImage: src ? `url(${src})` : undefined,
-          },
-        })}
-        role="img"
-        ref={forwardedRef}
-        {...other}
-      >
-        {children}
+      <Box {...getStyles('root')} ref={forwardedRef} {...other}>
+        <div
+          role="img"
+          {...getStyles('content', {
+            style: {
+              backgroundImage: src ? `url(${src})` : undefined,
+            },
+          })}
+        >
+          {children}
+        </div>
       </Box>
     );
   },

@@ -12,21 +12,25 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME);
 
 const classNames = createStyles({
   root: {
+    borderRadius: cardTheme.tokens.container.shape,
+    flexShrink: 0,
+  },
+  content: ({ root }) => ({
+    height: '100%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
-    borderRadius: cardTheme.tokens.container.shape,
-    flexShrink: 0,
+    borderRadius: 'inherit',
 
     selectors: {
-      [modifierSelector<IModifier>({ type: 'image' })]: {
+      [modifierSelector<IModifier>({ type: 'image' }, root)]: {
         objectFit: 'cover',
       },
     },
-  },
+  }),
 });
 
 export type ICardMediaThemeFactory = IComponentThemeFactory<{

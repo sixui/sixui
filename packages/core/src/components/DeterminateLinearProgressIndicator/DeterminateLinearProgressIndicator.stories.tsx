@@ -21,7 +21,29 @@ const defaultArgs = {
 
 const cols: Array<
   IComponentPresentation<IDeterminateLinearProgressIndicatorProps>
-> = [{ legend: 'Normal' }, { legend: 'Disabled', props: { disabled: true } }];
+> = [
+  {
+    legend: 'Normal',
+  },
+  {
+    legend: 'No inactive track',
+    props: {
+      hideInactiveTrack: true,
+    },
+  },
+  {
+    legend: 'No stop indicator',
+    props: {
+      hideStopIndicator: true,
+    },
+  },
+  {
+    legend: 'Disabled',
+    props: {
+      disabled: true,
+    },
+  },
+];
 
 const DeterminateLinearProgressIndicatorShowcase = componentShowcaseFactory(
   DeterminateLinearProgressIndicator,

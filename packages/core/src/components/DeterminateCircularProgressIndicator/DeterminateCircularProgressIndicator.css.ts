@@ -7,7 +7,7 @@ import type { IComponentThemeFactory } from '~/utils/component/componentThemeFac
 import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
-import { getVarNameFromToken, px } from '~/utils/css';
+import { em, getVarNameFromToken } from '~/utils/css';
 import { createStyles } from '~/utils/css/createStyles';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { modifierSelector } from '~/utils/css/modifierSelector';
@@ -24,6 +24,8 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   progressPct: '0%',
   spacing: '2%',
   label: {
+    typography: themeTokens.typeScale.label.md,
+    fontSize: em(0.3),
     color: {
       normal: themeTokens.colorScheme.onSurface,
       disabled: themeTokens.colorScheme.onSurface,
@@ -31,7 +33,6 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
     opacity: {
       disabled: themeTokens.state.opacity.disabled,
     },
-    typography: themeTokens.typeScale.label.sm,
   },
 });
 
@@ -86,7 +87,6 @@ const classNames = createStyles({
       currentColor 0 ${localVars.progressPct},
       transparent ${localVars.progressPct} 100%
     )`,
-    color: parentStyles.tokens.activeIndicator.color.normal,
 
     transitionProperty: getVarNameFromToken(localVars.progressPct),
     transitionDuration: themeTokens.motion.duration.medium3,
@@ -149,7 +149,7 @@ const classNames = createStyles({
     height: '100%',
     color: tokens.label.color.normal,
     ...typography(tokens.label.typography),
-    fontSize: px(calc.multiply(0.25, '1em')),
+    fontSize: tokens.label.fontSize,
 
     selectors: {
       [modifierSelector<IModifier>('disabled', root)]: {
