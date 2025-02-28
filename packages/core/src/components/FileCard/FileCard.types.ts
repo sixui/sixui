@@ -12,11 +12,10 @@ export interface IFileCardOwnProps {
   fileName?: string;
   fileSize?: number;
   thumbUrl?: string;
-  downloadUrl?: string;
   onDelete?: () => IMaybeAsync<unknown>;
-  onReplace?: () => IMaybeAsync<unknown>;
-  onRetry?: () => IMaybeAsync<unknown>;
+  deleteIcon?: React.ReactNode;
   onClick?: () => IMaybeAsync<unknown>;
+  extraActions?: React.ReactNode;
   loading?: boolean;
   progress?: number;
   supportingText?: string;

@@ -1,11 +1,6 @@
 import type { IFileCardThemeFactory } from './FileCard.css';
 import type { IFileCardFactory } from './FileCard.types';
-import {
-  iconArrowDownTray,
-  iconArrowPath,
-  iconArrowUpTray,
-  iconXMark,
-} from '~/assets/icons';
+import { iconXMark } from '~/assets/icons';
 import { Card } from '~/components/Card';
 import { CircularProgressIndicator } from '~/components/CircularProgressIndicator';
 import { IconButton } from '~/components/IconButton';
@@ -30,10 +25,9 @@ export const FileCard = componentFactory<IFileCardFactory>(
       fileName,
       fileSize,
       thumbUrl,
-      downloadUrl,
       onDelete,
-      onReplace,
-      onRetry,
+      deleteIcon,
+      extraActions,
       loading,
       progress,
       supportingText,
@@ -44,13 +38,10 @@ export const FileCard = componentFactory<IFileCardFactory>(
     } = useProps({ componentName: COMPONENT_NAME, props });
 
     const hasError = hasErrorProp || !!errorText;
-    const canRetry = !loading && hasError && !!onRetry;
     const canDelete = !!onDelete;
-    const canReplace = !!onReplace;
     const loaded = !loading && !hasError;
     const hasSupportingText = !!errorText || !!supportingText;
-    const hasActions =
-      !disabled && (canDelete || canRetry || canReplace || !!downloadUrl);
+    const hasActions = !disabled && (canDelete || !!extraActions);
 
     const { getStyles } = useComponentTheme<IFileCardThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -123,36 +114,13 @@ export const FileCard = componentFactory<IFileCardFactory>(
           <div {...getStyles('actions')}>
             {canDelete && (
               <IconButton
-                icon={<SvgIcon icon={iconXMark} />}
+                icon={deleteIcon ?? <SvgIcon icon={iconXMark} />}
                 onClick={onDelete}
                 variant="danger"
               />
             )}
 
-            {canReplace && (
-              <IconButton
-                variant="filled"
-                icon={<SvgIcon icon={iconArrowUpTray} />}
-                onClick={onReplace}
-              />
-            )}
-
-            {canRetry && (
-              <IconButton
-                variant="filled"
-                icon={<SvgIcon icon={iconArrowPath} />}
-                onClick={onRetry}
-              />
-            )}
-
-            {downloadUrl && (
-              <IconButton
-                variant="filled"
-                icon={<SvgIcon icon={iconArrowDownTray} />}
-                href={downloadUrl}
-                target="_blank"
-              />
-            )}
+            {extraActions}
           </div>
         ) : null}
       </Card>

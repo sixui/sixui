@@ -56,11 +56,10 @@ const states: Array<IComponentPresentation<IFileCardProps>> = [
     },
   },
   {
-    legend: 'Can delete and retry',
+    legend: 'Deletable',
     props: {
       errorText: 'Network failed.',
       onDelete: (...args) => sbHandleEvent('delete', args, 1000),
-      onRetry: () => sbHandleEvent('retry', undefined, 1000),
     },
   },
   {
