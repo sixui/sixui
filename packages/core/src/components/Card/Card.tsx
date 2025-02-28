@@ -42,6 +42,7 @@ export const Card = polymorphicComponentFactory<ICardFactory>(
     });
 
     const rootElement = as ?? (other.href ? undefined : 'div');
+    const interactive = !!other.href || !!other.onClick;
 
     return (
       <ButtonBase
@@ -49,6 +50,7 @@ export const Card = polymorphicComponentFactory<ICardFactory>(
         as={rootElement}
         ref={forwardedRef}
         touchTargetRenderer={null}
+        nonInteractive={!interactive}
         {...other}
       >
         {children}

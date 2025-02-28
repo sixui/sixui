@@ -2,6 +2,7 @@ import type { IBoxProps } from '~/components/Box';
 import type { IButtonBaseOwnProps } from '~/components/ButtonBase';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import type { IOmit } from '~/utils/types';
 import type { cardTheme, ICardThemeFactory } from './Card.css';
 import type { CardActions } from './CardActions';
 import type { CardContent } from './CardContent';
@@ -11,7 +12,9 @@ import type { CardTitle } from './CardTitle';
 export const cardVariants = ['filled', 'elevated', 'outlined'] as const;
 export type ICardVariant = (typeof cardVariants)[number];
 
-export type ICardOwnProps = IButtonBaseOwnProps;
+export interface ICardOwnProps extends IOmit<IButtonBaseOwnProps, 'children'> {
+  children?: React.ReactNode;
+}
 
 export interface ICardProps
   extends IBoxProps,
@@ -20,8 +23,8 @@ export interface ICardProps
 
 export type ICardFactory = IPolymorphicComponentFactory<{
   props: ICardProps;
-  defaultRef: HTMLButtonElement;
-  defaultRoot: 'button';
+  defaultRef: HTMLDivElement;
+  defaultRoot: 'div';
   theme: typeof cardTheme;
   variant: ICardVariant | false;
   staticComponents: {

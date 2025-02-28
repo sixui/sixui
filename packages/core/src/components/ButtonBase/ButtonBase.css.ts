@@ -38,7 +38,6 @@ export const classNames = createStyles({
       },
       [modifierSelector<IModifier>('non-interactive')]: {
         cursor: 'default',
-        pointerEvents: 'none',
         userSelect: 'auto',
       },
     },

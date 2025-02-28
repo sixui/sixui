@@ -73,6 +73,7 @@ const classNames = createStyles({
       }),
       ...overrideTokens(PaperBase.theme.tokens, {
         container: {
+          shape: tokens.container.shape,
           color: tokens.container.color.normal,
           elevation: tokens.container.elevation.normal,
         },
@@ -222,7 +223,7 @@ export const cardThemeVariants = {
             normal: elevationLevelPreset[0],
             focused: elevationLevelPreset[0],
             hovered: elevationLevelPreset[1],
-            pressed: elevationLevelPreset[0],
+            pressed: elevationLevelPreset[1],
             dragged: elevationLevelPreset[4],
             disabled: elevationLevelPreset[0],
           },
@@ -241,7 +242,7 @@ export const cardThemeVariants = {
             normal: elevationLevelPreset[1],
             focused: elevationLevelPreset[0],
             hovered: elevationLevelPreset[2],
-            pressed: elevationLevelPreset[1],
+            pressed: elevationLevelPreset[2],
             dragged: elevationLevelPreset[4],
             disabled: elevationLevelPreset[1],
           },

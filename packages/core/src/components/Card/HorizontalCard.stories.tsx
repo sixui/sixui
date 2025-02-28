@@ -26,18 +26,39 @@ const states: Array<IComponentPresentation<ICardProps>> = [
     legend: 'Normal',
   },
   {
+    legend: 'Interactive',
+    props: {
+      onClick: (...args) => sbHandleEvent('onClick', args),
+    },
+  },
+  {
     legend: 'Focused',
-    props: { interactions: { focused: true } },
+    props: {
+      onClick: (...args) => sbHandleEvent('onClick', args),
+      interactions: { focused: true },
+    },
   },
   {
     legend: 'Hovered',
-    props: { interactions: { hovered: true } },
+    props: {
+      onClick: (...args) => sbHandleEvent('onClick', args),
+      interactions: { hovered: true },
+    },
   },
   {
     legend: 'Pressed',
-    props: { interactions: { pressed: true } },
+    props: {
+      onClick: (...args) => sbHandleEvent('onClick', args),
+      interactions: { pressed: true },
+    },
   },
-  { legend: 'Disabled', props: { disabled: true } },
+  {
+    legend: 'Disabled',
+    props: {
+      onClick: (...args) => sbHandleEvent('onClick', args),
+      disabled: true,
+    },
+  },
 ];
 
 const cols: Array<IComponentPresentation<ICardProps>> = [

@@ -4,6 +4,7 @@ import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { ICardProps } from './Card.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { Card } from './Card';
 import { cardVariants } from './Card.types';
 
@@ -23,18 +24,39 @@ const states: Array<IComponentPresentation<ICardProps>> = [
     legend: 'Normal',
   },
   {
+    legend: 'Interactive',
+    props: {
+      onClick: (...args) => sbHandleEvent('onClick', args),
+    },
+  },
+  {
     legend: 'Focused',
-    props: { interactions: { focused: true } },
+    props: {
+      onClick: (...args) => sbHandleEvent('onClick', args),
+      interactions: { focused: true },
+    },
   },
   {
     legend: 'Hovered',
-    props: { interactions: { hovered: true } },
+    props: {
+      onClick: (...args) => sbHandleEvent('onClick', args),
+      interactions: { hovered: true },
+    },
   },
   {
     legend: 'Pressed',
-    props: { interactions: { pressed: true } },
+    props: {
+      onClick: (...args) => sbHandleEvent('onClick', args),
+      interactions: { pressed: true },
+    },
   },
-  { legend: 'Disabled', props: { disabled: true } },
+  {
+    legend: 'Disabled',
+    props: {
+      onClick: (...args) => sbHandleEvent('onClick', args),
+      disabled: true,
+    },
+  },
 ];
 
 const rows: Array<IComponentPresentation<ICardProps>> = [{ legend: 'Basic' }];
