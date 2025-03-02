@@ -1,24 +1,24 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
-import type { IDragHandleProps } from './DragHandle.types';
+import type { IResizeHandleProps } from './ResizeHandle.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
-import { DragHandle } from './DragHandle';
+import { ResizeHandle } from './ResizeHandle';
 
 const meta = {
-  component: DragHandle,
-} satisfies Meta<typeof DragHandle>;
+  component: ResizeHandle,
+} satisfies Meta<typeof ResizeHandle>;
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {} satisfies Partial<IDragHandleProps>;
+const defaultArgs = {} satisfies Partial<IResizeHandleProps>;
 
-const variants: Array<IComponentPresentation<IDragHandleProps>> = [
+const variants: Array<IComponentPresentation<IResizeHandleProps>> = [
   { legend: 'Horizontal', props: { orientation: 'horizontal' } },
   { legend: 'Vertical', props: { orientation: 'vertical' } },
 ];
 
-const states: Array<IComponentPresentation<IDragHandleProps>> = [
+const states: Array<IComponentPresentation<IResizeHandleProps>> = [
   {
     legend: 'Normal',
   },
@@ -34,13 +34,17 @@ const states: Array<IComponentPresentation<IDragHandleProps>> = [
     legend: 'Pressed',
     props: { interactions: { pressed: true } },
   },
+  {
+    legend: 'Dragged',
+    props: { interactions: { dragged: true } },
+  },
 ];
 
-const DragHandleShowcase = componentShowcaseFactory(DragHandle);
+const ResizeHandleShowcase = componentShowcaseFactory(ResizeHandle);
 
 export const Basic: IStory = {
   render: (props) => (
-    <DragHandleShowcase
+    <ResizeHandleShowcase
       props={props}
       cols={states}
       rows={variants}

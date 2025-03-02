@@ -19,7 +19,7 @@ export interface ISelectBaseOwnProps<TItem>
   itemLabel: (item: TItem) => React.ReactNode | undefined;
   canFilter?: boolean;
   getValueFieldProps?: (
-    renderProps: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
+    props: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
     selectedItem?: TItem,
   ) => Partial<IFieldBaseProps>;
   clearable?: boolean;

@@ -28,9 +28,15 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
       hovered: 'inherit',
       focused: 'inherit',
       pressed: 'inherit',
+      dragged: 'inherit',
       disabled: 'inherit',
     },
     opacity: {
+      normal: 'unset',
+      hovered: 'unset',
+      focused: 'unset',
+      pressed: 'unset',
+      dragged: 'inherit',
       disabled: themeTokens.state.opacity.disabled,
     },
     size: px(18),
@@ -41,6 +47,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
       hovered: 'inherit',
       focused: 'inherit',
       pressed: 'inherit',
+      dragged: 'inherit',
     },
   },
   icon$toggle$selected: {
@@ -49,6 +56,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
       hovered: 'inherit',
       focused: 'inherit',
       pressed: 'inherit',
+      dragged: 'inherit',
     },
   },
 });

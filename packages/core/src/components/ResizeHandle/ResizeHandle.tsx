@@ -1,13 +1,13 @@
-import type { IDragHandleThemeFactory } from './DragHandle.css';
-import type { IDragHandleFactory } from './DragHandle.types';
+import type { IResizeHandleThemeFactory } from './ResizeHandle.css';
+import type { IResizeHandleFactory } from './ResizeHandle.types';
 import { ButtonBase } from '~/components/ButtonBase';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { mergeClassNames } from '~/utils/css';
-import { COMPONENT_NAME } from './DragHandle.constants';
-import { resizeHandleTheme } from './DragHandle.css';
+import { COMPONENT_NAME } from './ResizeHandle.constants';
+import { resizeHandleTheme } from './ResizeHandle.css';
 
-export const DragHandle = componentFactory<IDragHandleFactory>(
+export const ResizeHandle = componentFactory<IResizeHandleFactory>(
   (props, forwardedRef) => {
     const {
       classNames,
@@ -20,7 +20,7 @@ export const DragHandle = componentFactory<IDragHandleFactory>(
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const { getStyles } = useComponentTheme<IDragHandleThemeFactory>({
+    const { getStyles } = useComponentTheme<IResizeHandleThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
       className,
@@ -55,5 +55,5 @@ export const DragHandle = componentFactory<IDragHandleFactory>(
   },
 );
 
-DragHandle.theme = resizeHandleTheme;
-DragHandle.displayName = `@sixui/core/${COMPONENT_NAME}`;
+ResizeHandle.theme = resizeHandleTheme;
+ResizeHandle.displayName = `@sixui/core/${COMPONENT_NAME}`;

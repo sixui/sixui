@@ -8,7 +8,7 @@ import { Flex } from '~/components/Flex';
 import { ScreenFrame } from '~/components/ScreenFrame';
 import { AppLayout } from '../AppLayout';
 
-interface IAppLayoutFrameChildrenProps {
+interface IAppLayoutFrameChildrenRenderProps {
   activeDestination?: ICanonicalLayoutType;
   setActiveDestination: (destination?: ICanonicalLayoutType) => void;
   hasTopBar?: boolean;
@@ -19,7 +19,7 @@ interface IAppLayoutFrameChildrenProps {
 }
 
 type IAppLayoutFrameProps = IOmit<IAppLayoutProps, 'children'> & {
-  children: (props: IAppLayoutFrameChildrenProps) => React.ReactNode;
+  children: (props: IAppLayoutFrameChildrenRenderProps) => React.ReactNode;
 };
 
 export const AppLayoutFrame: React.FC<IAppLayoutFrameProps> = (props) => {

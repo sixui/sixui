@@ -465,6 +465,10 @@ export const useRippleEffect = <TElement extends HTMLElement>(
     }
   }, [endPressAnimation]);
 
+  const handleDragStart: React.DragEventHandler = useCallback(() => {
+    setAnimating(false);
+  }, []);
+
   const handleContextMenu = useCallback(() => {
     if (disabled) {
       return;
@@ -487,6 +491,7 @@ export const useRippleEffect = <TElement extends HTMLElement>(
             onKeyDown: handleKeyDown,
             onKeyUp: handleKeyUp,
             onBlur: handleBlur,
+            onDragStart: handleDragStart,
             onContextMenu: handleContextMenu,
           },
     [
@@ -499,6 +504,7 @@ export const useRippleEffect = <TElement extends HTMLElement>(
       handleKeyDown,
       handleKeyUp,
       handleBlur,
+      handleDragStart,
       handleContextMenu,
     ],
   );

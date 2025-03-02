@@ -34,6 +34,7 @@ export const FileCard = componentFactory<IFileCardFactory>(
       hasError: hasErrorProp,
       errorText,
       hideMetadata,
+      children,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -99,6 +100,8 @@ export const FileCard = componentFactory<IFileCardFactory>(
                 </div>
               )}
             </div>
+
+            {children}
 
             {hasSupportingText && (
               <div {...getStyles('supportingTextContainer')}>

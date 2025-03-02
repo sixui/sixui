@@ -22,32 +22,17 @@ const defaultArgs = {
 const cols: Array<IComponentPresentation<IPlainTooltipProps>> = [
   {
     props: {
-      children: (
-        <IconButton
-          icon={<FontAwesomeIcon icon={faStar} />}
-          onClick={() => {}}
-        />
-      ),
+      children: <IconButton icon={<FontAwesomeIcon icon={faStar} />} />,
     },
   },
   {
     props: {
-      children: (
-        <IconButton
-          icon={<FontAwesomeIcon icon={faStar} />}
-          onClick={() => {}}
-        />
-      ),
+      children: <IconButton icon={<FontAwesomeIcon icon={faStar} />} />,
     },
   },
   {
     props: {
-      children: (
-        <IconButton
-          icon={<FontAwesomeIcon icon={faStar} />}
-          onClick={() => {}}
-        />
-      ),
+      children: <IconButton icon={<FontAwesomeIcon icon={faStar} />} />,
     },
   },
 ];

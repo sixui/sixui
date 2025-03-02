@@ -20,7 +20,7 @@ export type IMenuTriggerRenderProps = {
 export interface IMenuOwnProps {
   trigger:
     | React.ReactNode
-    | ((renderProps: IMenuTriggerRenderProps) => React.ReactNode);
+    | ((props: IMenuTriggerRenderProps) => React.ReactNode);
   children: React.ReactNode;
   placement?: IPlacement;
   orientation?: IOrientation;

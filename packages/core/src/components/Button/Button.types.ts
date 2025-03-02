@@ -1,6 +1,6 @@
 import type { IBoxProps } from '~/components/Box';
 import type {
-  IButtonBaseChildrenRendererPops,
+  IButtonBaseChildrenRenderPops,
   IButtonBaseOwnProps,
 } from '~/components/ButtonBase';
 import type { IComponentThemeProps } from '~/components/Theme';
@@ -20,8 +20,8 @@ export const buttonVariants = [
 ] as const;
 export type IButtonVariant = (typeof buttonVariants)[number];
 
-export interface IButtonChildrenRendererPops
-  extends IButtonBaseChildrenRendererPops {
+export interface IButtonChildrenRenderPops
+  extends IButtonBaseChildrenRenderPops {
   renderContent: (children: React.ReactNode) => React.ReactNode;
 }
 
@@ -29,7 +29,7 @@ export interface IButtonOwnProps
   extends IOmit<IButtonBaseOwnProps, 'children'> {
   children?:
     | React.ReactNode
-    | ((props: IButtonChildrenRendererPops) => React.ReactNode);
+    | ((props: IButtonChildrenRenderPops) => React.ReactNode);
   loading?: boolean;
   loadingAnimation?: 'progressIndicator' | 'halfSpin' | 'none';
   loadingText?: React.ReactNode;

@@ -4,13 +4,15 @@ import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IElementProps } from '~/utils/types';
 import type { frameTheme, IFrameThemeFactory } from './Frame.css';
 
-export type IFrameRenderProps = {
+export type IFrameChildrenRenderProps = {
   window: Window;
 };
 
 export interface IFrameOwnProps
   extends IElementProps<'iframe', 'className' | 'children'> {
-  children: React.ReactNode | ((props: IFrameRenderProps) => React.ReactNode);
+  children:
+    | React.ReactNode
+    | ((props: IFrameChildrenRenderProps) => React.ReactNode);
   importParentStyles?: boolean;
 }
 

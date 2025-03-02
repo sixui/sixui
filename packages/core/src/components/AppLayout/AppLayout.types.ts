@@ -14,7 +14,7 @@ import type { AppLayoutSideSheet } from './AppLayoutSideSheet';
 import type { AppLayoutSupportingPaneBody } from './AppLayoutSupportingPaneBody';
 import type { AppLayoutTopBar } from './AppLayoutTopBar';
 
-export type IAppLayoutRenderProps = IAppLayoutContextValue;
+export type IAppLayoutChildrenRenderProps = IAppLayoutContextValue;
 
 export type IAppLayoutNavigationMode = 'bar' | 'rail' | 'standard';
 
@@ -27,7 +27,7 @@ export type IAppLayoutComponentName =
 
 export interface IAppLayoutOwnProps {
   children?:
-    | ((props: IAppLayoutRenderProps) => React.ReactNode)
+    | ((props: IAppLayoutChildrenRenderProps) => React.ReactNode)
     | React.ReactNode;
   window?: Window;
   navigationDrawer?: {

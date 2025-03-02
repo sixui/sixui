@@ -19,7 +19,7 @@ export interface IExpandableOwnProps
   children?: React.ReactNode;
   trigger?:
     | React.ReactNode
-    | ((renderProps: IExpandableTriggerRenderProps) => React.ReactNode);
+    | ((props: IExpandableTriggerRenderProps) => React.ReactNode);
   onChange?: (expanded: boolean) => void;
   collapsedSize?: ICssSizeValue;
 }

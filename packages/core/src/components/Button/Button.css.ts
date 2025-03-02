@@ -52,6 +52,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
       focused: 'unset',
       hovered: 'unset',
       pressed: 'unset',
+      dragged: 'unset',
       disabled: themeTokens.colorScheme.onSurface,
     },
     elevation: {
@@ -59,9 +60,15 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
       focused: 'unset',
       hovered: 'unset',
       pressed: 'unset',
+      dragged: 'unset',
       disabled: 'unset',
     },
     opacity: {
+      normal: 'unset',
+      focused: 'unset',
+      hovered: 'unset',
+      pressed: 'unset',
+      dragged: 'unset',
       disabled: themeTokens.state.containerOpacity.disabled,
     },
   },
@@ -71,6 +78,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
       focused: 'unset',
       hovered: 'unset',
       pressed: 'unset',
+      dragged: 'unset',
       disabled: themeTokens.colorScheme.outline,
     },
     width: {
@@ -78,9 +86,15 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
       focused: 'unset',
       hovered: 'unset',
       pressed: 'unset',
+      dragged: 'unset',
       disabled: px(themeTokens.outline.width.none),
     },
     opacity: {
+      normal: 'unset',
+      focused: 'unset',
+      hovered: 'unset',
+      pressed: 'unset',
+      dragged: 'unset',
       disabled: themeTokens.state.opacity.disabled,
     },
   },
@@ -91,9 +105,15 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
       focused: 'inherit',
       hovered: 'inherit',
       pressed: 'inherit',
+      dragged: 'unset',
       disabled: themeTokens.colorScheme.onSurface,
     },
     opacity: {
+      normal: 'unset',
+      focused: 'unset',
+      hovered: 'unset',
+      pressed: 'unset',
+      dragged: 'unset',
       disabled: themeTokens.state.opacity.disabled,
     },
   },
@@ -105,9 +125,15 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
       focused: 'inherit',
       hovered: 'inherit',
       pressed: 'inherit',
+      dragged: 'unset',
       disabled: 'inherit',
     },
     opacity: {
+      normal: 'unset',
+      focused: 'unset',
+      hovered: 'unset',
+      dragged: 'unset',
+      pressed: 'unset',
       disabled: themeTokens.state.opacity.disabled,
     },
   },
@@ -131,10 +157,12 @@ const classNames = createStyles({
           color: tokens.container.color.normal,
           elevation: tokens.container.elevation.normal,
           shape: tokens.container.shape,
+          opacity: tokens.container.opacity.normal,
         },
         outline: {
           color: tokens.outline.color.normal,
           width: tokens.outline.width.normal,
+          opacity: tokens.outline.opacity.normal,
         },
       }),
     },
@@ -189,6 +217,10 @@ const classNames = createStyles({
               tokens.container.elevation.focused,
               tokens.container.elevation.normal,
             ),
+            opacity: fallbackVar(
+              tokens.container.opacity.focused,
+              tokens.container.opacity.normal,
+            ),
           },
           outline: {
             color: fallbackVar(
@@ -198,6 +230,10 @@ const classNames = createStyles({
             width: fallbackVar(
               tokens.outline.width.focused,
               tokens.outline.width.normal,
+            ),
+            opacity: fallbackVar(
+              tokens.outline.opacity.focused,
+              tokens.outline.opacity.normal,
             ),
           },
         }),
@@ -213,6 +249,10 @@ const classNames = createStyles({
               tokens.container.elevation.hovered,
               tokens.container.elevation.normal,
             ),
+            opacity: fallbackVar(
+              tokens.container.opacity.hovered,
+              tokens.container.opacity.normal,
+            ),
           },
           outline: {
             color: fallbackVar(
@@ -222,6 +262,10 @@ const classNames = createStyles({
             width: fallbackVar(
               tokens.outline.width.hovered,
               tokens.outline.width.normal,
+            ),
+            opacity: fallbackVar(
+              tokens.outline.opacity.hovered,
+              tokens.outline.opacity.normal,
             ),
           },
         }),
@@ -237,6 +281,10 @@ const classNames = createStyles({
               tokens.container.elevation.pressed,
               tokens.container.elevation.normal,
             ),
+            opacity: fallbackVar(
+              tokens.container.opacity.pressed,
+              tokens.container.opacity.normal,
+            ),
           },
           outline: {
             color: fallbackVar(
@@ -246,6 +294,42 @@ const classNames = createStyles({
             width: fallbackVar(
               tokens.outline.width.pressed,
               tokens.outline.width.normal,
+            ),
+            opacity: fallbackVar(
+              tokens.outline.opacity.pressed,
+              tokens.outline.opacity.normal,
+            ),
+          },
+        }),
+      },
+      [modifierSelector<IModifier>('dragged')]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
+          container: {
+            color: fallbackVar(
+              tokens.container.color.dragged,
+              tokens.container.color.normal,
+            ),
+            elevation: fallbackVar(
+              tokens.container.elevation.dragged,
+              tokens.container.elevation.normal,
+            ),
+            opacity: fallbackVar(
+              tokens.container.opacity.dragged,
+              tokens.container.opacity.normal,
+            ),
+          },
+          outline: {
+            color: fallbackVar(
+              tokens.outline.color.dragged,
+              tokens.outline.color.normal,
+            ),
+            width: fallbackVar(
+              tokens.outline.width.dragged,
+              tokens.outline.width.normal,
+            ),
+            opacity: fallbackVar(
+              tokens.outline.opacity.dragged,
+              tokens.outline.opacity.normal,
             ),
           },
         }),
@@ -293,6 +377,7 @@ const classNames = createStyles({
     textOverflow: 'ellipsis',
     textWrap: 'nowrap',
     color: tokens.label.color.normal,
+    opacity: tokens.label.opacity.normal,
 
     selectors: {
       [modifierSelector<IModifier>('focused', root)]: {
@@ -300,17 +385,39 @@ const classNames = createStyles({
           tokens.label.color.focused,
           tokens.label.color.normal,
         ),
+        opacity: fallbackVar(
+          tokens.label.opacity.focused,
+          tokens.label.opacity.normal,
+        ),
       },
       [modifierSelector<IModifier>('hovered', root)]: {
         color: fallbackVar(
           tokens.label.color.hovered,
           tokens.label.color.normal,
         ),
+        opacity: fallbackVar(
+          tokens.label.opacity.hovered,
+          tokens.label.opacity.normal,
+        ),
       },
       [modifierSelector<IModifier>('pressed', root)]: {
         color: fallbackVar(
           tokens.label.color.pressed,
           tokens.label.color.normal,
+        ),
+        opacity: fallbackVar(
+          tokens.label.opacity.pressed,
+          tokens.label.opacity.normal,
+        ),
+      },
+      [modifierSelector<IModifier>('dragged', root)]: {
+        color: fallbackVar(
+          tokens.label.color.dragged,
+          tokens.label.color.normal,
+        ),
+        opacity: fallbackVar(
+          tokens.label.opacity.dragged,
+          tokens.label.opacity.normal,
         ),
       },
       [modifierSelector<IModifier>('disabled', root)]: {
@@ -334,6 +441,7 @@ const classNames = createStyles({
     fontSize: tokens.icon.size,
     inlineSize: tokens.icon.size,
     blockSize: tokens.icon.size,
+    opacity: tokens.icon.opacity.normal,
 
     selectors: {
       [modifierSelector<IModifier>('focused', root)]: {
@@ -343,6 +451,10 @@ const classNames = createStyles({
           tokens.label.color.focused,
           tokens.label.color.normal,
         ),
+        opacity: fallbackVar(
+          tokens.icon.opacity.focused,
+          tokens.icon.opacity.normal,
+        ),
       },
       [modifierSelector<IModifier>('hovered', root)]: {
         color: fallbackVar(
@@ -351,6 +463,10 @@ const classNames = createStyles({
           tokens.label.color.hovered,
           tokens.label.color.normal,
         ),
+        opacity: fallbackVar(
+          tokens.icon.opacity.hovered,
+          tokens.icon.opacity.normal,
+        ),
       },
       [modifierSelector<IModifier>('pressed', root)]: {
         color: fallbackVar(
@@ -358,6 +474,22 @@ const classNames = createStyles({
           tokens.icon.color.normal,
           tokens.label.color.pressed,
           tokens.label.color.normal,
+        ),
+        opacity: fallbackVar(
+          tokens.icon.opacity.pressed,
+          tokens.icon.opacity.normal,
+        ),
+      },
+      [modifierSelector<IModifier>('dragged', root)]: {
+        color: fallbackVar(
+          tokens.icon.color.dragged,
+          tokens.icon.color.normal,
+          tokens.label.color.dragged,
+          tokens.label.color.normal,
+        ),
+        opacity: fallbackVar(
+          tokens.icon.opacity.dragged,
+          tokens.icon.opacity.normal,
         ),
       },
       [modifierSelector<IModifier>('disabled', root)]: {

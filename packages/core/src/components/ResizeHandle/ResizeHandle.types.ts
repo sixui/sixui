@@ -4,22 +4,21 @@ import type { IComponentThemeProps } from '~/components/Theme';
 import type { IOrientation } from '~/utils';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type {
-  IDragHandleThemeFactory,
+  IResizeHandleThemeFactory,
   resizeHandleTheme,
-} from './DragHandle.css';
+} from './ResizeHandle.css';
 
-export interface IDragHandleOwnProps extends IPaperOwnProps {
-  children?: React.ReactNode;
+export interface IResizeHandleOwnProps extends IPaperOwnProps {
   orientation?: IOrientation;
 }
 
-export interface IDragHandleProps
+export interface IResizeHandleProps
   extends IBoxProps,
-    IComponentThemeProps<IDragHandleThemeFactory>,
-    IDragHandleOwnProps {}
+    IComponentThemeProps<IResizeHandleThemeFactory>,
+    IResizeHandleOwnProps {}
 
-export type IDragHandleFactory = IComponentFactory<{
-  props: IDragHandleProps;
+export type IResizeHandleFactory = IComponentFactory<{
+  props: IResizeHandleProps;
   ref: HTMLDivElement;
   theme: typeof resizeHandleTheme;
 }>;

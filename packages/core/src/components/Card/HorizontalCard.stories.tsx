@@ -32,6 +32,13 @@ const states: Array<IComponentPresentation<ICardProps>> = [
     },
   },
   {
+    legend: 'Dragged',
+    props: {
+      onClick: (...args) => sbHandleEvent('onClick', args),
+      interactions: { dragged: true },
+    },
+  },
+  {
     legend: 'Focused',
     props: {
       onClick: (...args) => sbHandleEvent('onClick', args),
@@ -104,7 +111,7 @@ const cols: Array<IComponentPresentation<ICardProps>> = [
     props: {
       children: (
         <Flex direction="row">
-          <Card.Media src={MEDIA_URL} h="200px" w="200px" />
+          <Card.Media src={MEDIA_URL} h="$36" w="$36" />
           <Card.Content>
             <Flex direction="column" gap="$2">
               <Card.Title

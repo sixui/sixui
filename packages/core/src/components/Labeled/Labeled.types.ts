@@ -5,7 +5,7 @@ import type { ILabeledContextValue } from './Labeled.context';
 import type { ILabeledThemeFactory, labeledTheme } from './Labeled.css';
 import { ISide } from '~/utils/types';
 
-export type ILabeledRenderProps = {
+export type ILabeledChildrenRenderProps = {
   id: string;
   required?: boolean;
   disabled?: boolean;
@@ -20,7 +20,7 @@ export interface ILabeledOwnProps extends ILabeledContextValue {
   supportingText?: React.ReactNode;
   children?:
     | React.ReactNode
-    | ((props: ILabeledRenderProps) => React.ReactNode);
+    | ((props: ILabeledChildrenRenderProps) => React.ReactNode);
   labelPosition?: ISide;
   supportingTextPosition?: 'start' | 'end';
   errorTextPosition?: 'start' | 'end';

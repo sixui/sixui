@@ -24,7 +24,7 @@ export interface ISuggestBaseOwnProps<TItem>
     IOmit<ITextInputFieldProps, 'children' | 'onChange'> {
   itemLabel: (item: TItem) => React.ReactNode | undefined;
   getValueFieldProps?: (
-    renderProps: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
+    props: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
     selectedItem?: TItem,
   ) => Partial<ITextInputFieldProps>;
   clearable?: boolean;

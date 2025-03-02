@@ -5,9 +5,7 @@ import type { IIcon } from './lib/my-icons.model';
 export type IIconNameSubset<T extends Readonly<Array<IIcon>>> =
   T[number]['name'];
 
-export * from './lib/icon-ArrowDownTray.icon';
 export * from './lib/icon-ArrowPath.icon';
-export * from './lib/icon-ArrowUpTray.icon';
 export * from './lib/icon-Checkmark.icon';
 export * from './lib/icon-ChevronDown.icon';
 export * from './lib/icon-ChevronRight.icon';
@@ -17,6 +15,8 @@ export * from './lib/icon-EllipsisHorizontal.icon';
 export * from './lib/icon-ExclamationTriangle.icon';
 export * from './lib/icon-Eye.icon';
 export * from './lib/icon-EyeSlash.icon';
+export * from './lib/icon-gripDotsHorizontal.icon';
+export * from './lib/icon-gripDotsVertical.icon';
 export * from './lib/icon-Person.icon';
 export * from './lib/icon-Photo.icon';
 export * from './lib/icon-TriangleDown.icon';

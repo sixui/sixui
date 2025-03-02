@@ -10,7 +10,7 @@ import { createStyles } from '~/utils/css/createStyles';
 import { modifierSelector } from '~/utils/css/modifierSelector';
 import { overrideTokens } from '~/utils/css/overrideTokens';
 import { px } from '~/utils/css/px';
-import { COMPONENT_NAME } from './DragHandle.constants';
+import { COMPONENT_NAME } from './ResizeHandle.constants';
 
 type IModifier = IInteraction | 'orientation';
 
@@ -116,16 +116,15 @@ const classNames = createStyles({
   }),
 });
 
-export type IDragHandleThemeFactory = IComponentThemeFactory<{
+export type IResizeHandleThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   modifier: IModifier;
 }>;
 
-export const resizeHandleTheme = componentThemeFactory<IDragHandleThemeFactory>(
-  {
+export const resizeHandleTheme =
+  componentThemeFactory<IResizeHandleThemeFactory>({
     classNames,
     tokensClassName,
     tokens,
-  },
-);
+  });

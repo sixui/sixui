@@ -42,7 +42,6 @@ export const Box = createPolymorphicComponent<'div', IBoxProps>(
             (event.key === 'Enter' || event.key === ' ')
           ) {
             event.preventDefault();
-            event.stopPropagation();
             event.currentTarget.click();
           }
         },

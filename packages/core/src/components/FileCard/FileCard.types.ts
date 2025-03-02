@@ -22,6 +22,7 @@ export interface IFileCardOwnProps {
   hasError?: boolean;
   errorText?: string;
   hideMetadata?: boolean;
+  children?: React.ReactNode;
 }
 
 export interface IFileCardProps

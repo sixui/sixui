@@ -3,6 +3,7 @@ import type { IButtonBaseFactory } from './ButtonBase.types';
 import { FocusRing } from '~/components/FocusRing';
 import { Paper } from '~/components/Paper';
 import { useSixuiContext } from '~/components/Sixui';
+import { useSortableContext } from '~/components/Sortable/Sortable.context';
 import { StateLayer } from '~/components/StateLayer';
 import { useStateLayer } from '~/components/StateLayer/useStateLayer';
 import { useComponentTheme, useProps } from '~/components/Theme';
@@ -25,7 +26,7 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
       variant,
       children,
       focusRingProps,
-      noFocusRing,
+      noFocusRing: noFocusRingProp,
       disabled,
       readOnly,
       type = 'button',
@@ -46,7 +47,12 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
     });
 
     const sixuiContext = useSixuiContext();
+    const sortableContext = useSortableContext();
+
     const disabledOrReadOnly = disabled || readOnly;
+
+    // We don't want to show the focus ring when the element is being dragged.
+    const noFocusRing = noFocusRingProp ?? sortableContext?.dragging;
 
     const { getStyles } = useComponentTheme<IButtonBaseThemeFactory>({
       componentName: COMPONENT_NAME,

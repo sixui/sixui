@@ -4,17 +4,17 @@ import { usePrevious } from '~/hooks/usePrevious';
 
 export type ISideSheetType = 'standard' | 'drawer';
 
-export type IUseSideSheetResult = {
-  opened: boolean;
-  modal: boolean;
-};
-
-export type IUseSideSheetProps = {
+export interface IUseSideSheetProps {
   opened?: boolean;
   type?: ISideSheetType;
   onOpen?: () => void;
   onClose?: () => void;
-};
+}
+
+export interface IUseSideSheetResult {
+  opened: boolean;
+  modal: boolean;
+}
 
 export const useSideSheet = (
   props: IUseSideSheetProps,

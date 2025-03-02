@@ -11,7 +11,7 @@ export const bottomSheetContentVariants = ['standard', 'minimized'] as const;
 export type IBottomSheetContentVariant =
   (typeof bottomSheetContentVariants)[number];
 
-export type IBottomSheetContentRenderProps = {
+export type IBottomSheetContentChildrenRenderProps = {
   close: (event: React.MouseEvent) => void;
 };
 
@@ -19,7 +19,7 @@ export interface IBottomSheetContentOwnProps {
   onClose?: (event?: React.MouseEvent) => IMaybeAsync<unknown>;
   children?:
     | React.ReactNode
-    | ((props: IBottomSheetContentRenderProps) => React.ReactNode);
+    | ((props: IBottomSheetContentChildrenRenderProps) => React.ReactNode);
   draggable?: boolean;
   showCloseButton?: boolean;
   closeIcon?: React.ReactNode;

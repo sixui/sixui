@@ -3,7 +3,7 @@ import { Resizable as ReResizable } from 're-resizable';
 
 import type { IResizableThemeFactory } from './Resizable.css';
 import type { IResizableFactory } from './Resizable.types';
-import { DragHandle } from '~/components/DragHandle';
+import { ResizeHandle } from '~/components/ResizeHandle';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component';
 import { COMPONENT_NAME } from './Resizable.constants';
@@ -92,14 +92,14 @@ export const Resizable = polymorphicComponentFactory<IResizableFactory>(
         }}
         handleComponent={{
           right: (
-            <DragHandle
+            <ResizeHandle
               interactions={{
                 pressed: draggingHorizontally,
               }}
             />
           ),
           bottom: (
-            <DragHandle
+            <ResizeHandle
               interactions={{
                 pressed: draggingVertically,
               }}

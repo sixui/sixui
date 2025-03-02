@@ -16,7 +16,7 @@ export const sideSheetContentVariants = [
 export type ISideSheetContentVariant =
   (typeof sideSheetContentVariants)[number];
 
-export type ISideSheetContentRenderProps = {
+export type ISideSheetContentChildrenRenderProps = {
   close: (event: React.MouseEvent) => void;
 };
 
@@ -25,7 +25,7 @@ export interface ISideSheetContentOwnProps
   onClose?: () => void;
   children?:
     | React.ReactNode
-    | ((props: ISideSheetContentRenderProps) => React.ReactNode);
+    | ((props: ISideSheetContentChildrenRenderProps) => React.ReactNode);
   headline?: React.ReactNode;
   leadingActions?: React.ReactNode;
   trailingActions?: React.ReactNode;
@@ -35,7 +35,7 @@ export interface ISideSheetContentOwnProps
   footer?: React.ReactNode;
   bottomActions?:
     | React.ReactNode
-    | ((props: ISideSheetContentRenderProps) => React.ReactNode);
+    | ((props: ISideSheetContentChildrenRenderProps) => React.ReactNode);
   side?: IHorizontalSide;
   divider?: boolean;
 }

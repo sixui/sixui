@@ -11,7 +11,7 @@ import type {
   IButtonBaseThemeFactory,
 } from './ButtonBase.css';
 
-export interface IButtonBaseChildrenRendererPops {
+export interface IButtonBaseChildrenRenderPops {
   renderFocusRing: () => React.ReactNode;
   renderStateLayer: () => React.ReactNode;
   renderTouchTarget: () => React.ReactNode;
@@ -21,7 +21,7 @@ export interface IButtonBaseOwnProps extends IOmit<IPaperOwnProps, 'children'> {
   interactionsMergeStrategy?: IInteractionsMergeStrategy;
   children?:
     | React.ReactNode
-    | ((props: IButtonBaseChildrenRendererPops) => React.ReactNode);
+    | ((props: IButtonBaseChildrenRenderPops) => React.ReactNode);
   noFocusRing?: boolean;
   focusRingProps?: IFocusRingProps;
   href?: string;

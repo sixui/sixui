@@ -5,7 +5,7 @@ import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IMaybeAsync, IOmit } from '~/utils/types';
 import type { dropZoneTheme, IDropZoneThemeFactory } from './DropZone.css';
 
-export type IDropZoneRenderProps = {
+export type IDropZoneChildrenRenderProps = {
   dropping?: boolean;
 };
 
@@ -14,7 +14,7 @@ export interface IDropZoneOwnProps extends IOmit<IPaperOwnProps, 'children'> {
   label?: React.ReactNode;
   children?:
     | React.ReactNode
-    | ((props: IDropZoneRenderProps) => React.ReactNode);
+    | ((props: IDropZoneChildrenRenderProps) => React.ReactNode);
   disabled?: boolean;
   dropping?: boolean;
   onClick?: () => IMaybeAsync<unknown>;

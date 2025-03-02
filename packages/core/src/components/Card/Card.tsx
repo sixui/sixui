@@ -42,7 +42,10 @@ export const Card = polymorphicComponentFactory<ICardFactory>(
     });
 
     const rootElement = as ?? (other.href ? undefined : 'div');
-    const interactive = !!other.href || !!other.onClick;
+    const interactive =
+      !!other.href ||
+      !!other.onClick ||
+      (other as React.HTMLAttributes<HTMLElement>).draggable;
 
     return (
       <ButtonBase

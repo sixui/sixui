@@ -186,6 +186,7 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
           tabIndex={-1}
           ref={trailingActionRef}
           onFocus={handleTrailingActionFocus}
+          onKeyDown={handleKeyDown}
           {...getStyles('actionButton')}
         />
       ),
@@ -196,6 +197,7 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
         trailingLoading,
         disabledOrReadOnly,
         handleTrailingActionFocus,
+        handleKeyDown,
       ],
     );
 

@@ -10,7 +10,7 @@ import type {
 } from './StepperStep.css';
 import type { StepperStepIndicator } from './StepperStepIndicator';
 
-export interface IStepperStepRenderProps {
+export interface IStepperStepChildrenRenderProps {
   active?: boolean;
   completed?: boolean;
   hasError?: boolean;
@@ -33,7 +33,7 @@ export interface IStepperStepOwnProps
    */
   children?:
     | React.ReactNode
-    | ((props: IStepperStepRenderProps) => React.ReactNode);
+    | ((props: IStepperStepChildrenRenderProps) => React.ReactNode);
 }
 
 export interface IStepperStepProps

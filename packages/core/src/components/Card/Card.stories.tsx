@@ -30,6 +30,13 @@ const states: Array<IComponentPresentation<ICardProps>> = [
     },
   },
   {
+    legend: 'Dragged',
+    props: {
+      onClick: (...args) => sbHandleEvent('onClick', args),
+      interactions: { dragged: true },
+    },
+  },
+  {
     legend: 'Focused',
     props: {
       onClick: (...args) => sbHandleEvent('onClick', args),
@@ -48,6 +55,13 @@ const states: Array<IComponentPresentation<ICardProps>> = [
     props: {
       onClick: (...args) => sbHandleEvent('onClick', args),
       interactions: { pressed: true },
+    },
+  },
+  {
+    legend: 'Dragged',
+    props: {
+      onClick: (...args) => sbHandleEvent('onClick', args),
+      interactions: { dragged: true },
     },
   },
   {

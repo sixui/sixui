@@ -27,7 +27,7 @@ export interface IDrawerOwnProps
   > {
   side?: ISide;
   children:
-    | ((renderProps: IDrawerChildrenRenderProps) => React.ReactNode)
+    | ((props: IDrawerChildrenRenderProps) => React.ReactNode)
     | React.ReactNode;
   fullHeight?: boolean;
   fullWidth?: boolean;

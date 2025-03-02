@@ -11,10 +11,10 @@ import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphic
 import type { IPaperThemeFactory, paperTheme } from './Paper.css';
 
 export interface IPaperOwnProps extends IPaperBaseOwnProps {
-  shape?: `$${IThemeShapeCornerSize}`;
-  outline?: `$${IThemeOutlineSize}`;
-  outlineStyle?: 'solid' | 'dashed' | 'dotted';
-  outlineColor?: `$${keyof IThemeColorScheme}`;
+  shape?: `$${IThemeShapeCornerSize}` | 'inherit';
+  outline?: `$${IThemeOutlineSize}` | 'inherit';
+  outlineStyle?: 'solid' | 'dashed' | 'dotted' | 'inherit';
+  outlineColor?: `$${keyof IThemeColorScheme}` | 'inherit';
   elevation?: `$${IThemeElevationLevel}`;
   surface?: `$${keyof IThemeColorScheme | 'transparent'}`;
 }

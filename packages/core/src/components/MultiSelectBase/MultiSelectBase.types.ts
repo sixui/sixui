@@ -19,7 +19,7 @@ export interface IMultiSelectBaseOwnProps<TItem>
     IOmit<ITextInputFieldProps, 'children' | 'onChange'> {
   itemLabel: (item: TItem) => React.ReactNode | undefined;
   getValueFieldProps?: (
-    renderProps: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
+    props: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
     selectedItem: TItem,
   ) => IInputChipProps;
   clearable?: boolean;

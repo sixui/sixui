@@ -57,8 +57,6 @@ export const useStateLayer = <TElement extends HTMLElement>(
     propagateClick,
   });
 
-  const animating = rippleEffect.animating;
-
   return {
     triggerRef,
     interactionsContext: {
@@ -69,7 +67,7 @@ export const useStateLayer = <TElement extends HTMLElement>(
       ),
     },
     surfaceRef,
-    animating,
+    animating: rippleEffect.animating,
     withoutRippleEffect,
     disabled,
   };
