@@ -47,9 +47,9 @@ export const ResponsiveVisibility: IStory = {
   ),
   args: {
     ...defaultArgs,
-    w: '$8',
-    h: '$8',
-    br: '$1',
+    w: '32px',
+    h: '32px',
+    br: '4px',
     bg: '$primary',
   },
 };
@@ -75,9 +75,9 @@ export const ResponsiveProperties: IStory = {
   ),
   args: {
     ...defaultArgs,
-    w: '$8',
-    h: '$8',
-    br: '$1',
+    w: '32px',
+    h: '32px',
+    br: '4px',
   },
 };
 

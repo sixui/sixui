@@ -66,12 +66,12 @@ const AnimatedDemo: React.FC<IDeterminateCircularProgressIndicatorProps> = (
   const [value, toggleValue] = useToggle([0, 0.25, 0.5, 0.75, 1]);
 
   return (
-    <Flex direction="row" gap="$6" align="center">
+    <Flex direction="row" gap="$xl" align="center">
       <Button
         onClick={() => {
           toggleValue();
         }}
-        w="$24"
+        w="96px"
       >
         Progress
       </Button>
@@ -108,9 +108,9 @@ export const FontSizes: IStory = {
       props={props}
       cols={[
         { legend: '2', props: { fz: '$2' } },
-        { legend: '4', props: { fz: '$4' } },
-        { legend: '8', props: { fz: '$8' } },
-        { legend: '16', props: { fz: '$16' } },
+        { legend: '4', props: { fz: '16px' } },
+        { legend: '8', props: { fz: '32px' } },
+        { legend: '16', props: { fz: '64px' } },
         { legend: '32', props: { fz: '$32' } },
       ]}
     />

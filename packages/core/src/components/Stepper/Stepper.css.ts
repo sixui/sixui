@@ -11,7 +11,7 @@ type IModifier = 'orientation' | 'label-position';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   connector: {
-    space: px(space(2)),
+    space: px(space('$sm')),
   },
 });
 

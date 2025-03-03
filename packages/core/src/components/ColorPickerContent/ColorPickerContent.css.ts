@@ -29,7 +29,7 @@ const classNames = createStyles({
     }),
   },
   section: {
-    padding: px(space(3)),
+    padding: px(space('$md')),
   },
 });
 

@@ -58,15 +58,15 @@ const slotTokens = {
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
     leadingSpace: {
-      normal: px(space(4)),
-      withStart: px(space(4)),
+      normal: px(space('$lg')),
+      withStart: px(space('$lg')),
     },
     trailingSpace: {
-      normal: px(space(4)),
-      withEnd: px(space(4)),
+      normal: px(space('$lg')),
+      withEnd: px(space('$lg')),
     },
-    topSpace: `max(0, ${calc.add(px(space(2)), DENSITY)})`,
-    bottomSpace: `max(0, ${calc.add(px(space(2)), DENSITY)})`,
+    topSpace: `max(0, ${calc.add(px(space('$sm')), DENSITY)})`,
+    bottomSpace: `max(0, ${calc.add(px(space('$sm')), DENSITY)})`,
     color: {
       normal: {
         regular: 'inherit',
@@ -78,7 +78,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
       disabled: themeTokens.state.containerOpacity.disabled,
     },
     shape: 'unset',
-    minHeight: calc.add(px(space(14)), DENSITY),
+    minHeight: calc.add(px(56), DENSITY),
   },
   nonText: slotTokens,
   text: slotTokens,

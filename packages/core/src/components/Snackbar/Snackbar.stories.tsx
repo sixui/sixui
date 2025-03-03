@@ -39,7 +39,7 @@ const SnackbarDemo: React.FC<ISnackbarProps> = (props: ISnackbarProps) => {
         onClick={() => {
           setOpened((opened) => !opened);
         }}
-        w="$24"
+        w="96px"
       >
         {opened ? 'Close' : 'Open'}
       </Button>
@@ -111,7 +111,7 @@ const AsOverlayDemo: React.FC<ISnackbarOverlayProps> = (props) => {
   const overlays = useOverlays();
 
   return (
-    <Flex direction="row" gap="$3">
+    <Flex direction="row" gap="$md">
       <Button onClick={() => void overlays.open(SnackbarOverlay, props)}>
         Open
       </Button>

@@ -65,24 +65,24 @@ export const CustomizableTheme = componentFactory<ICustomizableThemeFactory>(
           as={Flex}
           direction="column"
           align="start"
-          gap="$2"
+          gap="$sm"
           {...getStyles('root')}
           {...other}
         >
           <Flex
             direction="row"
-            gap="$1"
+            gap="$xs"
             ref={forwardedRef}
             {...getStyles('controlBar')}
           >
             <ColorInputField
-              w="$56"
+              w="224px"
               label="Color"
               onChange={setColor}
               clearable
             />
             <TextInputField
-              w="$24"
+              w="96px"
               label="Scale"
               type="number"
               value={scale}
@@ -93,7 +93,7 @@ export const CustomizableTheme = componentFactory<ICustomizableThemeFactory>(
               }}
             />
             <TextInputField
-              w="$24"
+              w="96px"
               label="Density"
               type="number"
               value={density}
@@ -103,7 +103,7 @@ export const CustomizableTheme = componentFactory<ICustomizableThemeFactory>(
               }}
             />
             <TextInputField
-              w="$32"
+              w="128px"
               label="Min. target size"
               type="number"
               value={minTargetSize}

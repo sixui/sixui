@@ -37,7 +37,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
 
 const classNames = createStyles({
   root: {
-    padding: px(space(2)),
+    padding: px(space('$sm')),
 
     vars: overrideTokens(PaperBase.theme.tokens, {
       container: {

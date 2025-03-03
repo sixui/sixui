@@ -19,7 +19,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
     minHeight: px(48),
   },
   position: '0',
-  gap: px(space(3)),
+  gap: px(space('$md')),
   fixedHorizontalSpace: {
     normal: px(24),
     compact: px(32),

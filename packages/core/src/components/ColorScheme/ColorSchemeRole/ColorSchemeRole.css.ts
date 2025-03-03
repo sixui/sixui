@@ -21,10 +21,10 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME);
 const classNames = createStyles({
   root: {
     flexGrow: 1,
-    paddingLeft: px(space(3)),
-    paddingRight: px(space(3)),
-    paddingTop: px(space(2)),
-    paddingBottom: px(space(2)),
+    paddingLeft: px(space('$md')),
+    paddingRight: px(space('$md')),
+    paddingTop: px(space('$sm')),
+    paddingBottom: px(space('$sm')),
     ...typography(themeTokens.typeScale.label.sm),
 
     selectors: {

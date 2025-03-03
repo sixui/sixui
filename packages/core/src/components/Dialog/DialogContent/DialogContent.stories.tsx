@@ -123,7 +123,7 @@ export const Scrollable: IStory = {
       </>
     ),
     scrollable: true,
-    h: '$72',
+    h: '288px',
   },
 };
 

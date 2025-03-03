@@ -30,7 +30,7 @@ const defaultArgs = {
   trigger: <TriggerDemo />,
   children: <Text>{TEXT}</Text>,
   onChange: (...args) => void sbHandleEvent('onChange', args),
-  w: '$96',
+  w: '384px',
 } satisfies Partial<IDisclosureProps>;
 
 const DisclosureShowcase = componentShowcaseFactory(Disclosure);

@@ -52,12 +52,12 @@ const ControlledCheckboxGroupDemo: React.FC<ICheckboxGroupDemoProps> = (
   const [values, setValues] = useState<Array<string>>(['2', '4']);
 
   return (
-    <Flex direction="row" gap="$8" align="center">
+    <Flex direction="row" gap="$xl" align="center">
       <CheckboxGroup
         {...other}
         as={Flex}
         direction="row"
-        gap="$8"
+        gap="$xl"
         values={values}
         onChange={async (event, values) => {
           await onChange?.(event, values);
@@ -84,12 +84,12 @@ const UncontrolledCheckboxGroupDemo: React.FC<ICheckboxGroupDemoProps> = (
   const ref = useRef<HTMLDivElement>(null);
 
   return (
-    <Flex direction="row" gap="$8" align="center">
+    <Flex direction="row" gap="$xl" align="center">
       <CheckboxGroup
         {...other}
         as={Flex}
         direction="row"
-        gap="$8"
+        gap="$xl"
         defaultValues={['2', '4']}
         ref={ref}
       >
@@ -129,7 +129,7 @@ export const ControlledCard: IStory = {
         optionsRenderer: () =>
           items.map((item, itemIndex) => (
             <Checkbox.Card
-              w="$56"
+              w="224px"
               key={itemIndex}
               label={`Item ${itemIndex + 1}`}
               supportingText="This text explains more about the option shown in the card."
@@ -167,7 +167,7 @@ export const UncontrolledCard: IStory = {
         optionsRenderer: () =>
           items.map((item, itemIndex) => (
             <Checkbox.Card
-              w="$56"
+              w="224px"
               key={itemIndex}
               label={`Item ${itemIndex + 1}`}
               supportingText="This text explains more about the option shown in the card."

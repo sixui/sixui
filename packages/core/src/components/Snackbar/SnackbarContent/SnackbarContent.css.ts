@@ -27,23 +27,23 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
     typography: themeTokens.typeScale.body.md,
   },
   action: {
-    trailingSpace: px(space(2)),
+    trailingSpace: px(space('$sm')),
   },
   icon: {
-    trailingSpace: px(space(3)),
+    trailingSpace: px(space('$md')),
   },
 });
 
 const classNames = createStyles({
   root: {
-    paddingLeft: px(space(4)),
-    paddingRight: px(space(4)),
-    paddingTop: px(space(3.5)),
-    paddingBottom: px(space(3.5)),
+    paddingLeft: px(16),
+    paddingRight: px(16),
+    paddingTop: px(14),
+    paddingBottom: px(14),
     minHeight: tokens.container.minHeight,
     minWidth: tokens.container.minWidth,
     display: 'flex',
-    gap: px(space(3)),
+    gap: px(space('$md')),
     flexDirection: 'row',
     alignItems: 'start',
     flexGrow: 'initial',
@@ -74,7 +74,7 @@ const classNames = createStyles({
   actions: {
     display: 'flex',
     flexDirection: 'row',
-    gap: px(space(2)),
+    gap: px(space('$sm')),
     marginLeft: 'auto',
     alignItems: 'center',
     height: tokens.supportingText.typography.lineHeight,

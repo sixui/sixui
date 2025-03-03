@@ -1,4 +1,4 @@
-import { getNumericPixelValue } from '~/utils/css/getNumericPixelValue';
+import { getNumericPixelValue } from './getNumericPixelValue';
 
 export const getBreakpointPlusEpsilon = (
   breakpoint: string,

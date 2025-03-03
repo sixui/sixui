@@ -14,7 +14,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  children: <Placeholder label="Content" w="$24" h="$24" shape="$md" />,
+  children: <Placeholder label="Content" w="96px" h="96px" shape="$md" />,
   overlay: <IndeterminateCircularProgressIndicator />,
 } satisfies Partial<IOverlayableProps>;
 

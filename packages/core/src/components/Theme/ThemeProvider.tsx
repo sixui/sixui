@@ -5,10 +5,10 @@ import type { IThemeContextValue } from './Theme.context';
 import type { IThemeOverride } from './theme.types';
 import type { IThemeProviderProps } from './ThemeProvider.types';
 import type { IThemeSetterContextValue } from './ThemeSetter.context';
+import { InlineStyles } from '~/components/InlineStyles';
 import { OverlaysProvider } from '~/components/Overlays';
-import { useId } from '~/hooks/useId';
+import { useClassName } from '~/hooks/useClassName';
 import { partialAssignInlineVars } from '~/utils/css/partialAssignInlineVars';
-import { textFromCssProperties } from '~/utils/css/textFromCssProperties';
 import { deepMerge } from '~/utils/deepMerge';
 import { ThemeContext } from './Theme.context';
 import { COMPONENT_NAME } from './ThemeProvider.constants';
@@ -36,9 +36,10 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
   } = props;
 
   const inheritedThemeContext = useContext(ThemeContext);
-  const id = useId();
-  const cssId = `sixui_themeProvider_${id.replace(/:/g, '')}`;
-  const cssVariablesSelector = cssVariableSelectorProp ?? `#${cssId}`;
+  const randomClassName = useClassName({
+    prefix: COMPONENT_NAME,
+  });
+  const cssVariablesSelector = cssVariableSelectorProp ?? `#${randomClassName}`;
 
   const [dynamicTheme, setDynamicTheme] = useState<
     IThemeOverride | undefined
@@ -85,27 +86,6 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
     [inherit, mergedTheme, colorSchemeVariant],
   );
 
-  const css = `
-@layer ${cssLayers.theme} {
-  ${cssVariablesSelector} {
-    ${textFromCssProperties(
-      partialAssignInlineVars(themeTokens, themeTokensVars),
-      {
-        indent: 4,
-        initialIndent: false,
-      },
-    )}
-    color: ${themeTokens.colorScheme.onSurface};
-  }
-
-  @media (pointer: fine) {
-    ${cssVariablesSelector} {
-      scrollbar-color: ${themeTokens.colorScheme.primary} transparent;
-    }
-  }
-}
-  `;
-
   return (
     <ThemeContext.Provider value={themeContextValue}>
       <ThemeSetterProvider value={themeSetterContextValue}>
@@ -115,11 +95,27 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
             close: 1500,
           }}
         >
-          <div id={cssId} className={classNames.root} ref={rootRef} {...other}>
-            <style
-              type="text/css"
-              data-sixui-styles={COMPONENT_NAME}
-              dangerouslySetInnerHTML={{ __html: css }}
+          <div
+            id={randomClassName}
+            className={classNames.root}
+            ref={rootRef}
+            {...other}
+          >
+            <InlineStyles
+              layer={cssLayers.theme}
+              selector={cssVariablesSelector}
+              styles={{
+                ...partialAssignInlineVars(themeTokens, themeTokensVars),
+                color: themeTokens.colorScheme.onSurface,
+              }}
+              mediaQueries={[
+                {
+                  query: '(pointer: fine)',
+                  styles: {
+                    scrollbarColor: `${themeTokens.colorScheme.primary} transparent`,
+                  },
+                },
+              ]}
             />
 
             <OverlaysProvider>{children}</OverlaysProvider>
@@ -129,3 +125,5 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
     </ThemeContext.Provider>
   );
 };
+
+ThemeProvider.displayName = COMPONENT_NAME;

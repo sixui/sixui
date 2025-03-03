@@ -26,11 +26,11 @@ export const ColorScheme = componentFactory<IColorSchemeFactory>(
     });
 
     return (
-      <Flex direction="column" gap="$4" ref={forwardedRef} {...other}>
+      <Flex direction="column" gap="$lg" ref={forwardedRef} {...other}>
         {/* Row 1 */}
-        <Flex direction="column" gap="$1">
-          <Flex direction="row" gap="$4">
-            <Flex direction="row" gap="$1" {...getStyles('lg')}>
+        <Flex direction="column" gap="$xs">
+          <Flex direction="row" gap="$lg">
+            <Flex direction="row" gap="$xs" {...getStyles('lg')}>
               <Flex direction="column" flex={1}>
                 <ColorSchemeRole
                   label="Primary"
@@ -90,8 +90,8 @@ export const ColorScheme = componentFactory<IColorSchemeFactory>(
             </Flex>
           </Flex>
 
-          <Flex direction="row" gap="$4">
-            <Flex direction="row" gap="$1" {...getStyles('lg')}>
+          <Flex direction="row" gap="$lg">
+            <Flex direction="row" gap="$xs" {...getStyles('lg')}>
               <Flex direction="column" flex={1}>
                 <ColorSchemeRole
                   label="Primary Container"
@@ -154,8 +154,8 @@ export const ColorScheme = componentFactory<IColorSchemeFactory>(
 
         {/* Row 2 */}
         <Flex>
-          <Flex direction="row" gap="$4">
-            <Flex direction="row" gap="$1" {...getStyles('lg')}>
+          <Flex direction="row" gap="$lg">
+            <Flex direction="row" gap="$xs" {...getStyles('lg')}>
               <Flex direction="column" flex={1}>
                 <Flex direction="row" flex={1}>
                   <ColorSchemeRole
@@ -245,9 +245,9 @@ export const ColorScheme = componentFactory<IColorSchemeFactory>(
         </Flex>
 
         {/* Row 3 */}
-        <Flex direction="column" gap="$1">
-          <Flex direction="row" gap="$4" align="stretch">
-            <Flex direction="column" gap="$1" {...getStyles('lg')}>
+        <Flex direction="column" gap="$xs">
+          <Flex direction="row" gap="$lg" align="stretch">
+            <Flex direction="column" gap="$xs" {...getStyles('lg')}>
               <Flex direction="row" flex={1}>
                 <Flex direction="column" flex={1}>
                   <ColorSchemeRole
@@ -318,7 +318,7 @@ export const ColorScheme = componentFactory<IColorSchemeFactory>(
               </Flex>
             </Flex>
 
-            <Flex direction="column" gap="$1" {...getStyles('sm')}>
+            <Flex direction="column" gap="$xs" {...getStyles('sm')}>
               <Flex direction="column">
                 <ColorSchemeRole
                   label="Inverse Surface"
@@ -343,8 +343,8 @@ export const ColorScheme = componentFactory<IColorSchemeFactory>(
             </Flex>
           </Flex>
 
-          <Flex direction="row" gap="$4">
-            <Flex direction="column" gap="$1" {...getStyles('lg')}>
+          <Flex direction="row" gap="$lg">
+            <Flex direction="column" gap="$xs" {...getStyles('lg')}>
               <Flex direction="row" flex={1}>
                 <Flex direction="column" flex={1}>
                   <ColorSchemeRole
@@ -380,7 +380,7 @@ export const ColorScheme = componentFactory<IColorSchemeFactory>(
                 </Flex>
               </Flex>
             </Flex>
-            <Flex direction="row" gap="$4" {...getStyles('sm')}>
+            <Flex direction="row" gap="$lg" {...getStyles('sm')}>
               <Flex direction="column" flex={1}>
                 <ColorSchemeRole
                   label="Scrim"

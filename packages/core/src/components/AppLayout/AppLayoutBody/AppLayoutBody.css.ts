@@ -52,16 +52,16 @@ const classNames = createStyles({
     display: 'flex',
     flexDirection: 'row',
     flexGrow: 1,
-    gap: px(space(6)),
-    padding: px(space(6)),
+    gap: px(space('$xl')),
+    padding: px(space('$xl')),
     transitionProperty: 'margin',
     transitionDuration: themeTokens.motion.duration.short2,
     transitionTimingFunction: themeTokens.motion.easing.standard.normal,
 
     '@container': {
       [responsiveContainerQuery({ size: 'compact' })]: {
-        gap: px(space(4)),
-        padding: px(space(4)),
+        gap: px(space('$lg')),
+        padding: px(space('$lg')),
       },
     },
 
@@ -69,11 +69,11 @@ const classNames = createStyles({
       [modifierSelector<IModifier>('detached', root)]: {
         backgroundColor: themeTokens.colorScheme.surfaceContainerLowest,
         borderRadius: themeTokens.shape.corner.lg,
-        margin: px(space(6)),
+        margin: px(space('$xl')),
 
         '@container': {
           [responsiveContainerQuery({ size: 'compact' })]: {
-            margin: px(space(4)),
+            margin: px(space('$lg')),
           },
         },
       },

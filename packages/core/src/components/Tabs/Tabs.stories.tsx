@@ -31,7 +31,7 @@ const defaultArgs = {
 } satisfies Partial<ITabsProps>;
 
 const TabsDemo: React.FC<ITabsProps> = (props) => (
-  <Box w="$160">
+  <Box w="640px">
     <Tabs {...props} defaultAnchor="tab-2">
       <Tabs.List aria-label="Tabs example">
         <Tabs.Tab

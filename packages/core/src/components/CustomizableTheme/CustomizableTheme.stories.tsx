@@ -14,14 +14,14 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   children: (
-    <Flex direction="row" gap="$2">
-      <Placeholder w="$32" h="$24" surface="$primary" shape="$md">
+    <Flex direction="row" gap="$sm">
+      <Placeholder w="128px" h="96px" surface="$primary" shape="$md">
         <Text c="$onPrimary">Primary color</Text>
       </Placeholder>
-      <Placeholder w="$32" h="$24" surface="$secondary" shape="$md">
+      <Placeholder w="128px" h="96px" surface="$secondary" shape="$md">
         <Text c="$onSecondary">Secondary color</Text>
       </Placeholder>
-      <Placeholder w="$32" h="$24" surface="$tertiary" shape="$md">
+      <Placeholder w="128px" h="96px" surface="$tertiary" shape="$md">
         <Text c="$onTertiary">Tertiary color</Text>
       </Placeholder>
     </Flex>

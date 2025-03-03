@@ -240,7 +240,11 @@ export type IThemeShapeValues = {
 export type IThemeSpacingGridSize = 'sm' | 'md' | 'lg';
 
 export type IThemeSpacingValues = {
-  gridSize: string;
+  xs: string;
+  sm: string;
+  md: string;
+  lg: string;
+  xl: string;
 };
 
 export type IThemeStateValues = {

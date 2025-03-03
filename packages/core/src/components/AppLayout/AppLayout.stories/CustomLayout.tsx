@@ -10,9 +10,9 @@ import { Text } from '~/components/Text';
 import { useToggle } from '~/hooks/useToggle';
 
 const AppLayoutSideSheetContent: React.FC = () => (
-  <Flex direction="column" rowGap="$2" pl="$4" pr="$4">
+  <Flex direction="column" rowGap="$sm" pl="$lg" pr="$lg">
     {createSequence(4).map((index) => (
-      <Placeholder key={index} label="list" shape="$lg" h="$24" diagonals />
+      <Placeholder key={index} label="list" shape="$lg" h="96px" diagonals />
     ))}
   </Flex>
 );
@@ -32,7 +32,7 @@ export const CustomLayout: React.FC<ICustomLayoutProps> = (props) => {
   return (
     <>
       <AppLayout.Body {...other}>
-        <Placeholder shape="$lg" grow={1} h="$64" diagonals>
+        <Placeholder shape="$lg" grow={1} h="24px4" diagonals>
           <Button
             onClick={() => {
               toggleBottomSheet();
@@ -53,7 +53,7 @@ export const CustomLayout: React.FC<ICustomLayoutProps> = (props) => {
         onClose={() => {
           toggleBottomSheet(false);
         }}
-        h="$48"
+        h="16px8"
       >
         <BottomSheetContent />
       </BottomSheet>

@@ -16,7 +16,7 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   placeholder: 'Search',
-  w: '$56',
+  w: '224px',
 } satisfies Partial<ISearchBarProps>;
 
 const states: Array<IComponentPresentation<ISearchBarProps>> = [

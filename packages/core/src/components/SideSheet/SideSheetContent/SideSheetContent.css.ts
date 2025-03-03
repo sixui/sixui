@@ -29,10 +29,10 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   header: {
     height: px(64),
     leadingSpace: {
-      normal: px(space(6)),
-      withIcons: px(space(6)),
+      normal: px(space('$xl')),
+      withIcons: px(space('$xl')),
     },
-    trailingSpace: px(space(6)),
+    trailingSpace: px(space('$xl')),
   },
   headline: {
     color: themeTokens.colorScheme.onSurfaceVariant,
@@ -43,17 +43,17 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
     color: themeTokens.colorScheme.outline,
   },
   topElements: {
-    gap: px(space(3)),
+    gap: px(space('$md')),
   },
   bottomActions: {
     height: px(72),
-    topSpace: px(space(4)),
-    bottomSpace: px(space(6)),
-    gap: px(space(6)),
+    topSpace: px(space('$lg')),
+    bottomSpace: px(space('$xl')),
+    gap: px(space('$xl')),
   },
   content: {
-    topSpace: px(space(6)),
-    bottomSpace: px(space(6)),
+    topSpace: px(space('$xl')),
+    bottomSpace: px(space('$xl')),
   },
 });
 
@@ -122,7 +122,7 @@ const classNames = createStyles({
     alignItems: 'center',
     flexShrink: 0,
     flexGrow: 0,
-    gap: px(space(2)),
+    gap: px(space('$sm')),
   },
   headline: {
     flexGrow: 1,
@@ -180,7 +180,7 @@ export const sideSheetContentThemeVariants = {
         },
         header: {
           leadingSpace: {
-            withIcons: px(space(4)),
+            withIcons: px(space('$lg')),
           },
         },
       }),
@@ -215,7 +215,7 @@ export const sideSheetContentThemeVariants = {
         },
         header: {
           leadingSpace: {
-            withIcons: px(space(4)),
+            withIcons: px(space('$lg')),
           },
         },
       }),

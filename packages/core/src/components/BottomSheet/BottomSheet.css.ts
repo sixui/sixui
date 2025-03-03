@@ -16,7 +16,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   fixedHorizontalSpace: {
     normal: px(56),
     compact: px(0),
-    detached: px(space(4)),
+    detached: px(space('$lg')),
   },
   fixedTopSpace: px(72),
 });

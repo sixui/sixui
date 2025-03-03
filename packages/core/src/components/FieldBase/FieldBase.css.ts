@@ -46,15 +46,15 @@ const DENSITY = px(density({ min: -2, max: 0 }));
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   minHeight: px(56),
-  leadingSpace: px(space(4)),
-  trailingSpace: px(space(4)),
+  leadingSpace: px(space('$lg')),
+  trailingSpace: px(space('$lg')),
   topSpace: {
-    normal: px(space(3)),
-    withLabel: px(space(2)),
+    normal: px(space('$md')),
+    withLabel: px(space('$sm')),
   },
   bottomSpace: {
-    normal: px(space(3)),
-    withLabel: px(space(2)),
+    normal: px(space('$md')),
+    withLabel: px(space('$sm')),
   },
   stateLayer: {
     color: {
@@ -105,11 +105,11 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   },
   prefix: {
     color: themeTokens.colorScheme.onSurfaceVariant,
-    trailingSpace: px(space(1)),
+    trailingSpace: px(space('$xs')),
   },
   suffix: {
     color: themeTokens.colorScheme.onSurfaceVariant,
-    leadingSpace: px(space(1)),
+    leadingSpace: px(space('$xs')),
   },
   label: {
     color: {
@@ -134,10 +134,10 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
       resting: themeTokens.typeScale.body.lg,
       floating: themeTokens.typeScale.body.sm,
     },
-    padding: px(space(1)),
+    padding: px(space('$xs')),
   },
   leadingContent: {
-    minWidth: px(48),
+    minWidth: px(56),
     color: {
       normal: {
         regular: themeTokens.colorScheme.onSurfaceVariant,
@@ -186,9 +186,9 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   },
   supportingText: {
     typography: themeTokens.typeScale.body.sm,
-    leadingSpace: px(space(4)),
-    trailingSpace: px(space(4)),
-    topSpace: px(space(1)),
+    leadingSpace: px(space('$lg')),
+    trailingSpace: px(space('$lg')),
+    topSpace: px(space('$xs')),
     color: {
       normal: {
         regular: themeTokens.colorScheme.onSurfaceVariant,
@@ -235,8 +235,8 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
     },
   },
   outline: {
-    leadingSpace: px(space(4)),
-    trailingSpace: px(space(4)),
+    leadingSpace: px(space('$lg')),
+    trailingSpace: px(space('$lg')),
     color: {
       normal: {
         regular: themeTokens.colorScheme.outline,
@@ -262,8 +262,8 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
       disabled: px(themeTokens.outline.width.xs),
     },
     label: {
-      padding: px(space(1)),
-      bottomSpace: px(space(2)),
+      padding: px(space('$xs')),
+      bottomSpace: px(space('$sm')),
     },
   },
 });
@@ -351,7 +351,7 @@ const classNames = createStyles({
   section$start: ({ root }) => ({
     alignItems: 'center',
     justifyContent: 'start',
-    paddingInlineStart: px(space(2)),
+    paddingInlineStart: px(space('$sm')),
     color: tokens.leadingContent.color.normal.regular,
     minWidth: tokens.leadingContent.minWidth,
 
@@ -380,7 +380,7 @@ const classNames = createStyles({
   section$end: ({ root }) => ({
     alignItems: 'center',
     justifyContent: 'end',
-    paddingInlineEnd: px(space(2)),
+    paddingInlineEnd: px(space('$sm')),
     color: tokens.trailingContent.color.normal.regular,
     minWidth: tokens.trailingContent.minWidth,
 
@@ -597,7 +597,7 @@ const classNames = createStyles({
   supportingText: ({ root }) => ({
     display: 'flex',
     ...typography(tokens.supportingText.typography),
-    gap: px(space(4)),
+    gap: px(space('$lg')),
     justifyContent: 'space-between',
     paddingInlineStart: tokens.supportingText.leadingSpace,
     paddingInlineEnd: tokens.supportingText.trailingSpace,

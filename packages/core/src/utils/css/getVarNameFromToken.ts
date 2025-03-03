@@ -1,2 +1,2 @@
 export const getVarNameFromToken = (token: string): string =>
-  token.substring(4, token.length - 1);
+  token.substring('var('.length, token.length - 1);

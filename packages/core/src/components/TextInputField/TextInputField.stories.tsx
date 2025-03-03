@@ -71,7 +71,13 @@ const rows: Array<IComponentPresentation<ITextInputFieldProps>> = [
     legend: 'Children',
     props: {
       children: (
-        <Placeholder w="$6" h="$6" surface="$primary" shape="$xs" diagonals />
+        <Placeholder
+          w="24px"
+          h="24px"
+          surface="$primary"
+          shape="$xs"
+          diagonals
+        />
       ),
     },
   },

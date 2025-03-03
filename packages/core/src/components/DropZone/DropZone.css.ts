@@ -66,10 +66,10 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
 const classNames = createStyles({
   root: {
     display: 'flex',
-    paddingInline: px(space(6)),
-    paddingBlock: px(space(5)),
+    paddingInline: px(space('$xl')),
+    paddingBlock: px(space('$xl')),
     flexDirection: 'column',
-    gap: px(space(3)),
+    gap: px(space('$md')),
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',

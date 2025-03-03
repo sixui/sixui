@@ -38,7 +38,7 @@ const classNames = createStyles({
     boxSizing: 'border-box',
     minWidth: tokens.minSize,
     height: tokens.minSize,
-    padding: px(space(1)),
+    padding: px(space('$xs')),
     transitionProperty: 'transform',
     transitionDuration: themeTokens.motion.duration.short3,
     transitionTimingFunction: themeTokens.motion.easing.standard.normal,

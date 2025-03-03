@@ -1,21 +1,24 @@
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
-import type { IWindowSizeClassRange } from './getWindowSizeClassRanges';
+import type { IWindowSizeClassRanges } from '~/utils/css';
+import { stringFromStyles } from '~/utils/css';
 import { CSS_TRUE } from '~/utils/css/constants';
+import { keys } from '~/utils/keys';
 import { responsiveTheme } from '../Responsive.css';
 
-export const getSizesCssStyles = (
-  ranges: Array<IWindowSizeClassRange>,
-): string => {
-  // Forge the media queries to conditionally set CSS properties based on
-  // the window class size.
-
+/**
+ * Forge the media queries to conditionally set CSS properties based on the
+ * window class size.
+ */
+export const getSizesCssStyles = (ranges: IWindowSizeClassRanges): string => {
   const tokens = responsiveTheme.tokens.windowSizeClass;
-  const windowSizeClassNames = ranges.map((range) => range.name);
+  const windowSizeClassNames = keys(tokens);
 
-  const mediaQueries = ranges.map((range, rangeIndex) => {
+  const cssList = keys(ranges).map((rangeName, rangeIndex) => {
+    const range = ranges[rangeName];
+
     const responsiveVars = assignInlineVars({
-      [tokens[range.name].on]: CSS_TRUE,
+      [tokens[rangeName].on]: CSS_TRUE,
 
       ...windowSizeClassNames.reduce<Record<string, string | undefined | null>>(
         (acc, key, index) =>
@@ -29,20 +32,20 @@ export const getSizesCssStyles = (
       ),
     });
 
-    const mediaQuery = [
-      `@media (min-width: ${range.minBreakpointWidth})${range.maxBreakpointWidth !== undefined ? ` and (max-width: ${range.maxBreakpointWidth})` : ''} {`,
-      `  .${responsiveTheme.classNames.root} {`,
-      ...Object.entries(responsiveVars).map(
-        ([key, value]) => `    ${key}: ${value};`,
-      ),
-      `  }`,
-      `}`,
-    ].join('\n');
+    const css = stringFromStyles({
+      selector: `.${responsiveTheme.classNames.root}`,
+      mediaQueries: [
+        {
+          query: `(min-width: ${range.minWidth})${range.maxWidth !== undefined ? ` and (max-width: ${range.maxWidth})` : ''}`,
+          styles: responsiveVars,
+        },
+      ],
+    });
 
-    return mediaQuery;
+    return css;
   });
 
-  const styles = mediaQueries.join('\n');
+  const styles = cssList.join('\n');
 
   return styles;
 };

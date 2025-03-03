@@ -27,7 +27,7 @@ const classNames = createStyles({
       [localVars.dragHandleSpacing]: calc.subtract(
         calc.divide(themeTokens.density.minTargetSize, 2),
         calc.divide(MoveHandle.theme.tokens.icon.size, 2),
-        px(space(1)),
+        px(space('$xs')),
       ),
     },
 

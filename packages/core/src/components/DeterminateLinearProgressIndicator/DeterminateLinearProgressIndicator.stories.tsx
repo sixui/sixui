@@ -16,7 +16,7 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   value: 0.75,
-  w: '$72',
+  w: '288px',
 } satisfies Partial<IDeterminateLinearProgressIndicatorProps>;
 
 const cols: Array<
@@ -74,12 +74,12 @@ const AnimatedDemo: React.FC<IDeterminateLinearProgressIndicatorProps> = (
   const [value, toggleValue] = useToggle([0, 0.25, 0.5, 0.75, 1]);
 
   return (
-    <Flex direction="row" gap="$6" align="center">
+    <Flex direction="row" gap="$xl" align="center">
       <Button
         onClick={() => {
           toggleValue();
         }}
-        w="$24"
+        w="96px"
       >
         Progress
       </Button>

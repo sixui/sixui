@@ -23,7 +23,7 @@ type IModifier = IInteraction | 'disabled' | 'active' | 'icon-only';
 const DENSITY = px(density({ min: -1, max: 0 }));
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
-  gap: px(space(1)),
+  gap: px(space('$xs')),
   container: {
     shape: {
       normal: px(themeTokens.shape.corner.lg),

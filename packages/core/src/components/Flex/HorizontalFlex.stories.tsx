@@ -15,22 +15,22 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const BoxDemo: React.FC<IPlaceholderProps> = (props) => (
-  <Placeholder miw="$16" shape="$xs" {...props} />
+  <Placeholder miw="64px" shape="$xs" {...props} />
 );
 
 const defaultArgs = {
   children: [
     <BoxDemo key={0} label="Item 1" />,
-    <BoxDemo key={1} label="Item 2" miw="$24" />,
-    <BoxDemo key={2} label="Item 3" miw="$32" />,
+    <BoxDemo key={1} label="Item 2" miw="96px" />,
+    <BoxDemo key={2} label="Item 3" miw="128px" />,
   ],
-  gap: '$4',
+  gap: '$lg',
   justify: 'flex-start',
   align: 'flex-start',
   direction: 'row',
   wrap: 'wrap',
-  w: '$96',
-  h: '$16',
+  w: '384px',
+  h: '64px',
 } satisfies Partial<IFlexProps>;
 
 const FlexShowcase = componentShowcaseFactory((props: IFlexProps) => (

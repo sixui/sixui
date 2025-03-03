@@ -27,14 +27,14 @@ const classNames = createStyles({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    gap: px(space(4)),
-    paddingLeft: px(space(7)),
-    paddingRight: px(space(7)),
-    paddingTop: px(space(4)),
+    gap: px(space('$lg')),
+    paddingLeft: px(28),
+    paddingRight: px(28),
+    paddingTop: px(space('$lg')),
   },
   list: {
-    marginLeft: calc.negate(px(space(4))),
-    marginRight: calc.negate(px(space(4))),
+    marginLeft: calc.negate(px(space('$lg'))),
+    marginRight: calc.negate(px(space('$lg'))),
 
     vars: overrideTokens(List.theme.tokens, {
       topSpace: px(0),

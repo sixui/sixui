@@ -24,7 +24,7 @@ type IStory = StoryObj<IBottomSheetProps>;
 const defaultArgs = {
   showCloseButton: true,
   children: (
-    <Text p="$6">
+    <Text p="$xl">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
       tincidunt dictum vulputate. Lorem ipsum dolor sit amet, consectetur
       adipiscing elit. Nullam ultrices leo non urna sollicitudin faucibus.
@@ -48,13 +48,13 @@ const BottomSheetScreenFrame: React.FC<IBottomSheetProps> = (props) => {
   const [isFullHeight, setFullHeight] = useState(false);
 
   return (
-    <Flex direction="column" gap="$2">
-      <Flex direction="row" gap="$6">
+    <Flex direction="column" gap="$sm">
+      <Flex direction="row" gap="$xl">
         <Button
           onClick={() => {
             toggleOpened();
           }}
-          w="$24"
+          w="96px"
         >
           {opened ? 'Close' : 'Open'}
         </Button>

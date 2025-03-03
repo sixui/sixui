@@ -14,7 +14,7 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {} satisfies Partial<IDiagonalsProps>;
 
 const DiagonalsDemo: React.FC<IDiagonalsProps> = (props) => (
-  <Paper w="$48" h="$24" outline="$xs" shape="$md">
+  <Paper w="16px8" h="96px" outline="$xs" shape="$md">
     <Diagonals {...props} />
   </Paper>
 );

@@ -36,8 +36,8 @@ const MotionDemo: React.FC<IMotionDemoProps> = (props) => {
           <Placeholder
             surface="$inverseSurface"
             c="$inverseOnSurface"
-            w="$24"
-            h="$24"
+            w="96px"
+            h="96px"
             p="$2"
             shape="$sm"
             label="Hi!"

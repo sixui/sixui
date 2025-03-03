@@ -13,7 +13,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  w: '$96',
+  w: '384px',
   onItemChange: (...args) => void sbHandleEvent('onItemChange', args),
 } satisfies Partial<IFloatingFilterableListBaseDemoProps>;
 

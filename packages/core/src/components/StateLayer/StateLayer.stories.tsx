@@ -36,8 +36,8 @@ const BoundedDemo: React.FC<IDemoProps> = (props) => {
 
   return (
     <Placeholder
-      w="$24"
-      h="$24"
+      w="96px"
+      h="96px"
       surface="$surface"
       shape="$md"
       outline="$xs"
@@ -69,8 +69,8 @@ const UnboundedDemo: React.FC<IDemoProps> = (props) => {
 
   return (
     <Placeholder
-      w="$24"
-      h="$24"
+      w="96px"
+      h="96px"
       surface="$surface"
       shape="$md"
       outline="$xs"
@@ -83,8 +83,8 @@ const UnboundedDemo: React.FC<IDemoProps> = (props) => {
       ref={stateLayer.triggerRef}
     >
       <Placeholder
-        w="$12"
-        h="$12"
+        w="48px"
+        h="48px"
         surface="$transparent"
         shape="$sm"
         outline="$xs"
@@ -113,8 +113,8 @@ const NestedDemo: React.FC<IDemoProps> = (props) => {
 
   return (
     <Placeholder
-      w="$24"
-      h="$24"
+      w="96px"
+      h="96px"
       surface="$surface"
       shape="$md"
       outline="$xs"
@@ -130,8 +130,8 @@ const NestedDemo: React.FC<IDemoProps> = (props) => {
       <FocusRing visible={stateLayer.interactionsContext.state.focused} />
 
       <Placeholder
-        w="$12"
-        h="$12"
+        w="48px"
+        h="48px"
         surface="$surface"
         shape="$sm"
         outline="$xs"

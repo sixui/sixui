@@ -69,7 +69,7 @@ const classNames = createStyles({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: px(space(2)),
+    padding: px(space('$sm')),
 
     vars: overrideTokens(PaperBase.theme.tokens, {
       container: {
@@ -119,7 +119,7 @@ const classNames = createStyles({
   },
   content: {
     display: 'flex',
-    gap: px(space(1)),
+    gap: px(space('$xs')),
   },
   diagonals: ({ root }) => ({
     display: 'none',

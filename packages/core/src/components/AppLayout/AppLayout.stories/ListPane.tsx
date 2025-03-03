@@ -13,14 +13,14 @@ export const ListPane: React.FC<IListPaneProps> = (props) => {
   const { ...other } = props;
 
   return (
-    <Flex direction="column" rowGap="$2" {...other}>
+    <Flex direction="column" rowGap="$sm" {...other}>
       <SearchBar leadingIcon={<FontAwesomeIcon icon={faSearch} />} />
       {createSequence(4).map((index) => (
         <Placeholder
           key={index}
           label="List"
           shape="$lg"
-          h="$24"
+          h="96px"
           shrink={0}
           diagonals
         />

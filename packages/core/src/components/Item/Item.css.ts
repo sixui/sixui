@@ -17,7 +17,7 @@ type IModifier = 'line-clamp';
 const DENSITY = px(density({ min: -1, max: 0 }));
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
-  gap: px(space(3)),
+  gap: px(space('$md')),
   lineClamp: 'unset',
   nonText: {
     color: 'inherit',

@@ -25,17 +25,17 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
       disabled: themeTokens.state.opacity.disabled,
     },
   },
-  leadingSpace: px(space(4)),
-  trailingSpace: px(space(4)),
-  topSpace: px(space(4)),
-  bottomSpace: px(space(4)),
+  leadingSpace: px(space('$lg')),
+  trailingSpace: px(space('$lg')),
+  topSpace: px(space('$lg')),
+  bottomSpace: px(space('$lg')),
 });
 
 const classNames = createStyles({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    gap: calc.add(px(space(4)), DENSITY),
+    gap: calc.add(px(space('$lg')), DENSITY),
     color: tokens.text.color.normal,
     paddingTop: calc.add(tokens.topSpace, DENSITY),
     paddingBottom: calc.add(tokens.bottomSpace, DENSITY),

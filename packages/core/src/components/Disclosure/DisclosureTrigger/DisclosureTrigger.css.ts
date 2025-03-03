@@ -49,8 +49,8 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
     },
   },
   toggle: {
-    leadingSpace: px(space(4)),
-    trailingSpace: px(space(4)),
+    leadingSpace: px(space('$lg')),
+    trailingSpace: px(space('$lg')),
   },
 });
 

@@ -12,7 +12,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  children: <Placeholder diagonals h="$72" />,
+  children: <Placeholder diagonals h="288px" />,
   divider: true,
 } satisfies Partial<IAppLayoutFooterProps>;
 

@@ -20,8 +20,8 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
     shape: px(themeTokens.shape.corner.none),
     height: px(64),
-    leadingSpace: px(space(1)),
-    trailingSpace: px(space(1)),
+    leadingSpace: px(space('$xs')),
+    trailingSpace: px(space('$xs')),
     color: {
       normal: themeTokens.colorScheme.surface,
       scrolling: themeTokens.colorScheme.surfaceContainer,
@@ -64,7 +64,7 @@ const classNames = createStyles({
     flexDirection: 'row',
     alignItems: 'center',
     width: '100%',
-    gap: px(space(3)),
+    gap: px(space('$md')),
     paddingLeft: px(tokens.container.leadingSpace),
     paddingRight: px(tokens.container.trailingSpace),
     height: px(64),
@@ -79,7 +79,7 @@ const classNames = createStyles({
   leadingNavigationSlot: {
     display: 'flex',
     alignItems: 'center',
-    gap: px(space(3)),
+    gap: px(space('$md')),
     flexGrow: 0,
   },
   headlineSlot: {
@@ -94,12 +94,12 @@ const classNames = createStyles({
   trailingActionsSlot: {
     display: 'flex',
     alignItems: 'center',
-    gap: px(space(3)),
+    gap: px(space('$md')),
     flexBasis: px(40),
   },
   headlineSection: {
-    paddingLeft: px(calc.add(tokens.container.leadingSpace, space(3))),
-    paddingRight: px(calc.add(tokens.container.leadingSpace, space(3))),
+    paddingLeft: px(calc.add(tokens.container.leadingSpace, space('$md'))),
+    paddingRight: px(calc.add(tokens.container.leadingSpace, space('$md'))),
     display: 'flex',
     alignItems: 'end',
     width: '100%',

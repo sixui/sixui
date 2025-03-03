@@ -15,7 +15,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  w: '$96',
+  w: '384px',
   label: 'Movie',
   keepMounted: true,
   onItemChange: (...args) => void sbHandleEvent('itemChange', args),

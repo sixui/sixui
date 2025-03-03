@@ -72,13 +72,13 @@ const classNames = createStyles({
   wrapper: ({ root }) => ({
     display: 'flex',
     flexDirection: 'column',
-    gap: calc.add(px(space(1)), DENSITY),
+    gap: calc.add(px(space('$xs')), DENSITY),
 
     selectors: {
       [modifierSelector<IModifier>('horizontal', root)]: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: px(space(3)),
+        gap: px(space('$md')),
       },
       [modifierSelector<IModifier>('disabled', root)]: {
         pointerEvents: 'none',
@@ -91,12 +91,12 @@ const classNames = createStyles({
     display: 'flex',
     flexDirection: 'inherit',
     alignItems: 'normal',
-    gap: calc.add(px(space(1)), DENSITY),
+    gap: calc.add(px(space('$xs')), DENSITY),
   },
   control: {
     display: 'flex',
     flexDirection: 'inherit',
-    gap: px(space(3)),
+    gap: px(space('$md')),
   },
   rows: {
     display: 'flex',
@@ -107,7 +107,7 @@ const classNames = createStyles({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: px(space(2)),
+    gap: px(space('$sm')),
   },
   labelContainer: {
     display: 'flex',

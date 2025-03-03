@@ -11,11 +11,11 @@ export type IFilterableListBaseFieldTrailingIcon = {
 export const FilterableListBaseFieldTrailingIcon = (
   props: IFilterableListBaseFieldTrailingIcon,
 ): React.ReactNode => (
-  <Flex direction="row" gap="$1" align="center">
+  <Flex direction="row" gap="$xs" align="center">
     {props.onClear && (
       <IconButton icon={<SvgIcon icon={iconXMark} />} onClick={props.onClear} />
     )}
-    <Flex w="$6" justify="center" fz="$4">
+    <Flex w="24px" justify="center" fz="16px">
       {props.opened ? (
         <SvgIcon icon={iconTriangleUp} />
       ) : (

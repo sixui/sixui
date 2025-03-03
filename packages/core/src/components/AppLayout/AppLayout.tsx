@@ -7,6 +7,7 @@ import type {
 } from './AppLayout.types';
 import type { IAppLayoutSetterContextValue } from './AppLayoutSetter.context';
 import { Box } from '~/components/Box';
+import { InlineStyles } from '~/components/InlineStyles';
 import { themeTokens, useComponentTheme, useProps } from '~/components/Theme';
 import { useDisclosure } from '~/hooks/useDisclosure';
 import { useSet } from '~/hooks/useSet';
@@ -43,7 +44,7 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
       navigationDrawer,
       sideSheet,
       preferredNavigationMode = 'standard',
-      pageBackgroundColor = themeTokens.colorScheme.surface,
+      backgroundColor = themeTokens.colorScheme.surface,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -146,16 +147,10 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
       [componentsSet],
     );
 
-    const globalStyles = `:root { background-color: ${pageBackgroundColor}; }`;
-
     return (
       <AppLayoutProvider value={contextValue}>
         <AppLayoutSetterProvider value={setterContextValue}>
-          <style
-            type="text/css"
-            data-sixui-styles={COMPONENT_NAME}
-            dangerouslySetInnerHTML={{ __html: globalStyles }}
-          />
+          <InlineStyles selector=":root" styles={{ backgroundColor }} />
           <Box {...getStyles('root')} ref={forwardedRef} {...other}>
             <div ref={setRootElement} />
             {isFunction(children) ? children(contextValue) : children}

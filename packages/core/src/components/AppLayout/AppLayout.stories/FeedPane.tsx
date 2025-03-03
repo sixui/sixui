@@ -16,7 +16,7 @@ export const FeedPane: React.FC<IFeedPaneProps> = (props) => {
         key={index}
         label="Feed"
         shape="$lg"
-        h="$32"
+        h="128px"
         diagonals
         {...other}
       />

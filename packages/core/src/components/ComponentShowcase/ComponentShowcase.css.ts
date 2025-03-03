@@ -4,7 +4,6 @@ import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { createStyles } from '~/utils/css/createStyles';
 import { px } from '~/utils/css/px';
-import { space } from '~/utils/css/space';
 import { typography } from '~/utils/css/typography';
 import { COMPONENT_NAME } from './ComponentShowcase.constants';
 
@@ -49,17 +48,17 @@ const classNames = createStyles({
   groupRows: {
     display: 'flex',
     flexDirection: 'column',
-    gap: px(space(16)),
+    gap: px(56),
     alignSelf: 'stretch',
   },
   cols: {
     display: 'flex',
   },
   gap$md: {
-    gap: px(space(8)),
+    gap: px(32),
   },
   gap$lg: {
-    gap: px(space(10)),
+    gap: px(40),
   },
   rows: {
     display: 'flex',
@@ -78,7 +77,7 @@ const classNames = createStyles({
     borderLeftWidth: px(themeTokens.outline.width.xs),
     borderLeftStyle: 'solid',
     borderLeftColor: tokens.outline.color,
-    paddingLeft: px(space(8)),
+    paddingLeft: px(32),
   },
   invisible: {
     visibility: 'hidden',

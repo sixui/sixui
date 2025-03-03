@@ -24,12 +24,12 @@ const classNames = createStyles({
     vars: overrideTokens(ListItem.theme.tokens, {
       container: {
         leadingSpace: {
-          normal: px(space(6)),
-          withStart: px(space(4)),
+          normal: px(space('$xl')),
+          withStart: px(space('$lg')),
         },
         trailingSpace: {
-          normal: px(space(6)),
-          withEnd: px(space(4)),
+          normal: px(space('$xl')),
+          withEnd: px(space('$lg')),
         },
         shape: px(themeTokens.shape.corner.full),
         color: {

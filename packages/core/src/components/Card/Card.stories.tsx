@@ -15,8 +15,8 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  w: '$32',
-  h: '$24',
+  w: '512px',
+  h: '96px',
 } satisfies Partial<ICardProps>;
 
 const states: Array<IComponentPresentation<ICardProps>> = [

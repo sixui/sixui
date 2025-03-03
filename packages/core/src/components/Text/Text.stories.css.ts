@@ -9,7 +9,7 @@ const classNames = createStyles({
     borderWidth: 1,
     borderStyle: 'dashed',
     borderColor: themeTokens.colorScheme.outline,
-    padding: px(space(4)),
+    padding: px(space('$lg')),
     selectors: {
       [modifierSelector('size="sm"')]: {
         maxWidth: px(150),

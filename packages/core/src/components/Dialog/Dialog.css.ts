@@ -10,7 +10,7 @@ import { COMPONENT_NAME } from './Dialog.constants';
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   overlay: {
     shiftIndex: '0',
-    shift: px(space(4)),
+    shift: px(space('$lg')),
   },
 });
 

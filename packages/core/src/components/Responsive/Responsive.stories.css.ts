@@ -48,4 +48,44 @@ export const responsiveStoriesClassNames = createStyles({
       },
     },
   },
+  root$gte$compact: {
+    '@container': {
+      [responsiveContainerQuery({ size: 'compact', op: '>=' })]: {
+        backgroundColor: themeTokens.colorScheme.primary,
+        opacity: '1',
+      },
+    },
+  },
+  root$gte$medium: {
+    '@container': {
+      [responsiveContainerQuery({ size: 'medium', op: '>=' })]: {
+        backgroundColor: themeTokens.colorScheme.primary,
+        opacity: '1',
+      },
+    },
+  },
+  root$gte$expanded: {
+    '@container': {
+      [responsiveContainerQuery({ size: 'expanded', op: '>=' })]: {
+        backgroundColor: themeTokens.colorScheme.primary,
+        opacity: '1',
+      },
+    },
+  },
+  root$gte$large: {
+    '@container': {
+      [responsiveContainerQuery({ size: 'large', op: '>=' })]: {
+        backgroundColor: themeTokens.colorScheme.primary,
+        opacity: '1',
+      },
+    },
+  },
+  root$gte$extraLarge: {
+    '@container': {
+      [responsiveContainerQuery({ size: 'extraLarge', op: '>=' })]: {
+        backgroundColor: themeTokens.colorScheme.primary,
+        opacity: '1',
+      },
+    },
+  },
 });

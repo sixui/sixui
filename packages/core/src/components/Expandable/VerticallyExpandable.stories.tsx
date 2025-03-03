@@ -39,8 +39,8 @@ const defaultArgs = {
     />
   ),
   children: (
-    <Box pt="$4">
-      <Paper p="$4" outline="$xs" outlineStyle="dashed">
+    <Box pt="$lg">
+      <Paper p="$lg" outline="$xs" outlineStyle="dashed">
         <Text>{TEXT}</Text>
       </Paper>
     </Box>

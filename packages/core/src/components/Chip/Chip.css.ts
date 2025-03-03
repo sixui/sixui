@@ -31,12 +31,12 @@ const DENSITY = px(density({ min: -2, max: 0 }));
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   leadingSpace: {
-    normal: px(space(4)),
-    withStart: px(space(2)),
+    normal: px(space('$lg')),
+    withStart: px(space('$sm')),
   },
   trailingSpace: {
-    normal: px(space(4)),
-    withEnd: px(space(2)),
+    normal: px(space('$lg')),
+    withEnd: px(space('$sm')),
   },
   height: px(32),
   icon: {
@@ -196,7 +196,7 @@ const classNames = createStyles({
           container: {
             shape: px(themeTokens.shape.corner.full),
             leadingSpace: {
-              withStart: px(space(1)),
+              withStart: px(space('$xs')),
             },
           },
           icon: tokens.icon$avatar,

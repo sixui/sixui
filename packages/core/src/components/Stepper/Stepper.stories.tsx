@@ -197,7 +197,7 @@ export const Horizontal: IStory = {
   args: {
     ...defaultArgs,
     activeStep: 1,
-    w: '$160',
+    w: '640px',
   } as IStepperProps,
 };
 
@@ -207,7 +207,7 @@ export const HorizontalInteractive: IStory = {
   ),
   args: {
     ...defaultArgs,
-    w: '$160',
+    w: '640px',
     children: makeSteps(
       (index) => ({
         label: 'Lorem ipsum',
@@ -357,8 +357,8 @@ export const Vertical: IStory = {
   args: {
     ...defaultArgs,
     orientation: 'vertical',
-    miw: '$32',
-    h: '$128',
+    miw: '512px',
+    h: '512px',
     activeStep: 1,
   } as IStepperProps,
 };
@@ -370,8 +370,8 @@ export const VerticalInteractive: IStory = {
   args: {
     ...defaultArgs,
     orientation: 'vertical',
-    miw: '$32',
-    h: '$128',
+    miw: '512px',
+    h: '512px',
     children: makeSteps(
       (index) => ({
         label: 'Lorem ipsum',

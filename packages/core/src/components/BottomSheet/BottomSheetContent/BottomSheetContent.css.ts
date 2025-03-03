@@ -43,8 +43,8 @@ const classNames = createStyles({
   },
   closeButton: {
     position: 'absolute',
-    right: px(space(2)),
-    top: px(space(2)),
+    right: px(space('$sm')),
+    top: px(space('$sm')),
   },
 });
 

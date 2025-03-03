@@ -37,7 +37,7 @@ export interface IAppLayoutOwnProps {
     defaultClosed?: boolean;
   };
   preferredNavigationMode?: IAppLayoutNavigationMode;
-  pageBackgroundColor?: string;
+  backgroundColor?: string;
 }
 
 export interface IAppLayoutProps

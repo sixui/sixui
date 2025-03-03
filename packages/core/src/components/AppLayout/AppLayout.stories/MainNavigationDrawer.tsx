@@ -40,7 +40,7 @@ export const MainNavigationDrawer: React.FC<IMainNavigationDrawerProps> = (
 
   return (
     <AppLayout.NavigationDrawer showCloseButton={other.wide} {...other}>
-      <Flex direction="column" gap="$6">
+      <Flex direction="column" gap="$xl">
         <AppLayout.NavigationDrawer.Section
           headline="Canonical layouts"
           endDivider

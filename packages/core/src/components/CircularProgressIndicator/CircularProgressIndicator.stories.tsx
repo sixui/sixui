@@ -36,7 +36,7 @@ export const Variants: IStory = {
 
 const CircularProgressIndicatorWithTextShowcase = componentShowcaseFactory(
   (props: ICircularProgressIndicatorProps) => (
-    <Flex gap="$2">
+    <Flex gap="$sm">
       <CircularProgressIndicator {...props} />{' '}
       <CircularProgressIndicator {...props} value={0.75} />
     </Flex>
@@ -65,9 +65,9 @@ export const FontSizes: IStory = {
       props={props}
       cols={[
         { legend: '2', props: { fz: '$2' } },
-        { legend: '4', props: { fz: '$4' } },
-        { legend: '8', props: { fz: '$8' } },
-        { legend: '16', props: { fz: '$16' } },
+        { legend: '4', props: { fz: '16px' } },
+        { legend: '8', props: { fz: '32px' } },
+        { legend: '16', props: { fz: '64px' } },
         { legend: '32', props: { fz: '$32' } },
       ]}
     />

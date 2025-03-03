@@ -18,12 +18,12 @@ const BurgerIndicatorDemo: React.FC<IBurgerIndicatorProps> = (props) => {
   const [opened, toggleOpened] = useToggle([false, true]);
 
   return (
-    <Flex direction="row" gap="$6" align="center">
+    <Flex direction="row" gap="$xl" align="center">
       <Button
         onClick={() => {
           toggleOpened();
         }}
-        w="$24"
+        w="96px"
       >
         {opened ? 'Close' : 'Open'}
       </Button>

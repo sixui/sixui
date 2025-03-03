@@ -22,7 +22,7 @@ const TRANSPARENT_IMAGE_URL =
 const defaultArgs = {
   fileName: 'flowers.jpg',
   fileSize: 133421,
-  h: '$48',
+  h: '16px8',
   onClick: (...args) => sbHandleEvent('click', args),
 } satisfies Partial<IFileCardProps>;
 

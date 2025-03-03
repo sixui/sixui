@@ -22,14 +22,14 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
     shape: px(themeTokens.shape.corner.md),
     maxWidth: px(315),
     elevation: elevationLevelPreset[2],
-    topSpace: px(space(3)),
+    topSpace: px(space('$md')),
     bottomSpace: {
-      normal: px(space(3)),
-      withActions: px(space(1)),
+      normal: px(space('$md')),
+      withActions: px(space('$xs')),
     },
-    leadingSpace: px(space(4)),
-    trailingSpace: px(space(4)),
-    actionsBottomSpace: px(space(2)),
+    leadingSpace: px(space('$lg')),
+    trailingSpace: px(space('$lg')),
+    actionsBottomSpace: px(space('$sm')),
   },
   subhead: {
     color: themeTokens.colorScheme.onSurfaceVariant,
@@ -79,8 +79,8 @@ const classNames = createStyles({
   },
   actions: {
     paddingBottom: tokens.container.actionsBottomSpace,
-    marginLeft: calc.negate(px(space(3))),
-    marginRight: calc.negate(px(space(3))),
+    marginLeft: calc.negate(px(space('$md'))),
+    marginRight: calc.negate(px(space('$md'))),
   },
   cursor: {
     fill: themeTokens.colorScheme.primary,

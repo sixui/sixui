@@ -145,12 +145,12 @@ const classNames = createStyles({
           disabled: tokens.container.opacity.disabled,
         },
         leadingSpace: {
-          normal: px(space(4)),
-          withStart: px(space(4)),
+          normal: px(space('$lg')),
+          withStart: px(space('$lg')),
         },
         trailingSpace: {
-          normal: px(space(4)),
-          withEnd: px(space(4)),
+          normal: px(space('$lg')),
+          withEnd: px(space('$lg')),
         },
       },
       label: {
@@ -292,7 +292,7 @@ const classNames = createStyles({
   label: ({ root }) => ({
     selectors: {
       [modifierSelector<IModifier>('with-inline-badge', root)]: {
-        marginRight: px(space(1)),
+        marginRight: px(space('$xs')),
         verticalAlign: 'middle',
       },
     },
@@ -316,7 +316,7 @@ export const tabsTabThemeVariants = {
   primary: createStyles({
     root: {
       flexDirection: 'column',
-      gap: px(space(1)),
+      gap: px(space('$xs')),
 
       vars: overrideTokens(tokens, {
         container: {
@@ -336,8 +336,8 @@ export const tabsTabThemeVariants = {
       }),
     },
     activeIndicator: {
-      marginLeft: px(space(4)),
-      marginRight: px(space(4)),
+      marginLeft: px(space('$lg')),
+      marginRight: px(space('$lg')),
     },
     focusRing: {
       vars: overrideTokens(FocusRing.theme.tokens, {
@@ -367,7 +367,7 @@ export const tabsTabThemeVariants = {
         [modifierSelector<IModifier>(['with-icon', 'with-label'])]: {
           vars: overrideTokens(Button.theme.tokens, {
             icon: {
-              labelSpace: px(space(2)),
+              labelSpace: px(space('$sm')),
             },
           }),
         },

@@ -37,8 +37,8 @@ const OverlaysDemo: React.FC<IOverlaysDemoProps> = () => {
     });
 
   const renderContent = (): React.ReactNode => (
-    <Flex direction="column" p="$3" gap="$3" w="$72" ml="auto" mr="auto">
-      <Flex direction="column" gap="$1">
+    <Flex direction="column" p="$3" gap="$md" w="288px" ml="auto" mr="auto">
+      <Flex direction="column" gap="$xs">
         <Button onClick={() => void openDialog()}>Open dialog</Button>
         <Button
           onClick={() =>
@@ -51,7 +51,7 @@ const OverlaysDemo: React.FC<IOverlaysDemoProps> = () => {
         </Button>
       </Flex>
 
-      <Flex direction="column" gap="$1">
+      <Flex direction="column" gap="$xs">
         <Button
           onClick={() =>
             void openSideSheet({
@@ -75,7 +75,7 @@ const OverlaysDemo: React.FC<IOverlaysDemoProps> = () => {
         </Button>
       </Flex>
 
-      <Flex direction="column" gap="$1">
+      <Flex direction="column" gap="$xs">
         <Button
           onClick={() =>
             void openSideSheet({
@@ -99,7 +99,7 @@ const OverlaysDemo: React.FC<IOverlaysDemoProps> = () => {
         </Button>
       </Flex>
 
-      <Flex direction="column" gap="$1">
+      <Flex direction="column" gap="$xs">
         <Button onClick={() => void openBottomSheet()}>
           Open bottom sheet
         </Button>

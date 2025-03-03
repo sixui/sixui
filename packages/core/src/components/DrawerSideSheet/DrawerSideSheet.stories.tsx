@@ -24,7 +24,7 @@ const defaultArgs = {
       color="$onPrimaryContainer"
       expanded
       diagonals
-      h="$18"
+      h="72px"
     />
   ),
   children: (
@@ -43,7 +43,7 @@ const defaultArgs = {
       color="$onPrimaryContainer"
       expanded
       diagonals
-      h="$18"
+      h="72px"
     />
   ),
 } satisfies Partial<IDrawerSideSheetProps>;
@@ -55,13 +55,13 @@ const DrawerSideSheetScreenFrame: React.FC<IDrawerSideSheetProps> = (props) => {
   const [detached, setDetached] = useState(false);
 
   return (
-    <Flex direction="column" gap="$2">
-      <Flex direction="row" gap="$6">
+    <Flex direction="column" gap="$sm">
+      <Flex direction="row" gap="$xl">
         <Button
           onClick={() => {
             toggleOpened();
           }}
-          w="$24"
+          w="96px"
         >
           {opened ? 'Close' : 'Open'}
         </Button>

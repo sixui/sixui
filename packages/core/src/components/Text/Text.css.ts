@@ -43,7 +43,7 @@ const classNames = createStyles({
         WebkitLineClamp: tokens.lineClamp,
       },
       [modifierSelector<IModifier>('gutter-bottom')]: {
-        marginBottom: px(space(1)),
+        marginBottom: px(space('$xs')),
       },
       [modifierSelector<IModifier>({ variant: 'display', size: 'lg' })]:
         typography(themeTokens.typeScale.display.lg),

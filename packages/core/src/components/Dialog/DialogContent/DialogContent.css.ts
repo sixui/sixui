@@ -79,7 +79,7 @@ const classNames = createStyles({
 
     display: 'flex',
     flexDirection: 'column',
-    maxWidth: calc.subtract('100vw', px(space(8))),
+    maxWidth: calc.subtract('100vw', px(32)),
     width: 'max-content',
 
     selectors: {
@@ -109,7 +109,7 @@ const classNames = createStyles({
 
     selectors: {
       [modifierSelector<IModifier>('!with-headline', root)]: {
-        paddingTop: px(space(6)),
+        paddingTop: px(space('$xl')),
       },
     },
   }),
@@ -119,27 +119,27 @@ const classNames = createStyles({
     fontSize: tokens.icon.size,
     blockSize: tokens.icon.size,
     inlineSize: tokens.icon.size,
-    marginTop: px(space(6)),
+    marginTop: px(space('$xl')),
   },
   headline: ({ root }) => ({
     alignItems: 'center',
     alignSelf: 'stretch',
     boxSizing: 'border-box',
     display: 'flex',
-    gap: px(space(2)),
-    paddingTop: px(space(6)),
+    gap: px(space('$sm')),
+    paddingTop: px(space('$xl')),
     paddingBottom: 0,
-    paddingLeft: px(space(6)),
-    paddingRight: px(space(6)),
+    paddingLeft: px(space('$xl')),
+    paddingRight: px(space('$xl')),
     ...typography(tokens.headline.typography),
 
     selectors: {
       [modifierSelector<IModifier>('scrollable', root)]: {
-        paddingBottom: px(space(4)),
+        paddingBottom: px(space('$lg')),
       },
       [modifierSelector<IModifier>('with-icon', root)]: {
         justifyContent: 'center',
-        paddingBottom: px(space(4)),
+        paddingBottom: px(space('$lg')),
       },
     },
   }),
@@ -166,9 +166,9 @@ const classNames = createStyles({
     },
   }),
   content: ({ root }) => ({
-    paddingLeft: px(space(6)),
-    paddingTop: px(space(6)),
-    paddingRight: px(space(6)),
+    paddingLeft: px(space('$xl')),
+    paddingTop: px(space('$xl')),
+    paddingRight: px(space('$xl')),
     color: tokens.supportingText.color,
     ...typography(tokens.supportingText.typography),
     height: 'min-content', // Needed for Safari
@@ -176,21 +176,21 @@ const classNames = createStyles({
 
     selectors: {
       [modifierSelector<IModifier>('with-headline', root)]: {
-        paddingTop: px(space(4)),
-        paddingBottom: px(space(2)),
+        paddingTop: px(space('$lg')),
+        paddingBottom: px(space('$sm')),
       },
       [modifierSelector<IModifier>('scrollable', root)]: {
         paddingTop: 0,
-        paddingBottom: px(space(2)),
+        paddingBottom: px(space('$sm')),
       },
       [modifierSelector<IModifier>(['scrollable', 'with-headline'], root)]: {
-        paddingBottom: px(space(2)),
+        paddingBottom: px(space('$sm')),
       },
     },
   }),
   footer: ({ root }) => ({
     position: 'relative',
-    paddingBottom: px(space(6)),
+    paddingBottom: px(space('$xl')),
 
     selectors: {
       [modifierSelector<IModifier>('with-actions', root)]: {
@@ -201,12 +201,12 @@ const classNames = createStyles({
   actions: {
     boxSizing: 'border-box',
     display: 'flex',
-    gap: px(space(2)),
+    gap: px(space('$sm')),
     justifyContent: 'flex-end',
-    paddingTop: px(space(4)),
-    paddingBottom: px(space(6)),
-    paddingLeft: px(space(6)),
-    paddingRight: px(space(6)),
+    paddingTop: px(space('$lg')),
+    paddingBottom: px(space('$xl')),
+    paddingLeft: px(space('$xl')),
+    paddingRight: px(space('$xl')),
   },
   divider: {
     display: 'none',

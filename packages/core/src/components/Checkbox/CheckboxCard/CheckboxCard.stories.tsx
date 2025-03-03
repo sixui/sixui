@@ -22,7 +22,7 @@ const defaultArgs = {
   onChange: (...args) => sbHandleEvent('onChange', args),
   label: 'Label',
   supportingText: 'This text explains more about the option shown in the card.',
-  w: '$56',
+  w: '224px',
 } satisfies Partial<ICheckboxCardProps>;
 
 const states: Array<IComponentPresentation<ICheckboxCardProps>> = [
@@ -157,7 +157,7 @@ export const Custom: IStory = {
   args: {
     ...defaultArgs,
     variant: 'filled',
-    children: <Card.Media src={MEDIA_URL} h="$32" />,
+    children: <Card.Media src={MEDIA_URL} h="128px" />,
   },
 };
 

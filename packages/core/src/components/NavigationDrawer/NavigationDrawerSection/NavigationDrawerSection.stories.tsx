@@ -28,13 +28,13 @@ const NavigationDrawerSectionDemo: React.FC<INavigationDrawerSectionProps> = (
   <Paper
     as={Flex}
     direction="column"
-    gap="$4"
+    gap="$lg"
     surface="$surface"
     outline="$xs"
     outlineStyle="dashed"
-    pt="$4"
-    pb="$4"
-    w="$96"
+    pt="$lg"
+    pb="$lg"
+    w="384px"
   >
     <NavigationDrawerSection headline="Mail" endDivider {...props}>
       <NavigationDrawerSection.Destination

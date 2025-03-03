@@ -19,7 +19,7 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {
   onChange: (...args) => void sbHandleEvent('change', args),
   items: fruits,
-  w: '$128',
+  w: '512px',
   keepMounted: true,
 } satisfies Partial<IMultiSelectProps>;
 
@@ -36,7 +36,7 @@ const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
   };
 
   return (
-    <Flex direction="column" gap="$2">
+    <Flex direction="column" gap="$sm">
       <MultiSelect {...props} onChange={handleChange} />
       <div>
         Values:{' '}

@@ -70,7 +70,7 @@ export const WithTextField: IStory = {
   ),
   args: {
     ...defaultArgs,
-    w: '$64',
+    w: '24px4',
     children: (
       <TextInputField
         onChange={(...args) => sbHandleEvent('onClick', args, 1000)}
@@ -91,7 +91,7 @@ export const WithCheckbox: IStory = {
   ),
   args: {
     ...defaultArgs,
-    w: '$28',
+    w: '112px',
     children: (
       <Checkbox.Control
         onChange={(...args) => sbHandleEvent('onClick', args, 1000)}
@@ -111,7 +111,7 @@ export const WithRadio: IStory = {
   ),
   args: {
     ...defaultArgs,
-    w: '$28',
+    w: '112px',
     children: (
       <Radio.Control
         onChange={(...args) => sbHandleEvent('onClick', args, 1000)}
@@ -131,7 +131,7 @@ export const WithSwitch: IStory = {
   ),
   args: {
     ...defaultArgs,
-    w: '$28',
+    w: '112px',
     children: (
       <Switch.Control
         onChange={(...args) => sbHandleEvent('onClick', args, 1000)}

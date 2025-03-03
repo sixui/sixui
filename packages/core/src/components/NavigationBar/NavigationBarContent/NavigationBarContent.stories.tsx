@@ -15,7 +15,7 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {
   outline: '$xs',
   outlineStyle: 'dashed',
-  w: '$96',
+  w: '384px',
   children: createSequence(4).map((index) => (
     <Placeholder key={index} w="56px" h="52px" diagonals />
   )),

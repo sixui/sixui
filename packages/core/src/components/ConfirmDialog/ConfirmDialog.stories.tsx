@@ -29,7 +29,7 @@ const ConfirmDialogDemo: React.FC<IConfirmDialogProps> = (props) => {
 
   return (
     <>
-      <Button onClick={toggle} w="$24">
+      <Button onClick={toggle} w="96px">
         {opened ? 'Close' : 'Open'}
       </Button>
       <ConfirmDialog
@@ -81,7 +81,7 @@ const AsOverlayDemo: React.FC<IConfirmDialogOverlayProps> = (props) => {
   const [result, setResult] = useState<string | undefined>(undefined);
 
   return (
-    <Flex direction="row" gap="$3" align="center">
+    <Flex direction="row" gap="$md" align="center">
       <Button
         onClick={() =>
           overlays

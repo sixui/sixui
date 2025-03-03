@@ -10,11 +10,11 @@ import { COMPONENT_NAME } from './List.constants';
 type IModifier = 'grid' | 'empty';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
-  topSpace: px(space(2)),
-  bottomSpace: px(space(2)),
-  gap: px(space(0)),
+  topSpace: px(space('$sm')),
+  bottomSpace: px(space('$sm')),
+  gap: px(0),
   grid: {
-    space: px(space(1)),
+    space: px(space('$xs')),
     templateColumns: 'unset',
   },
 });

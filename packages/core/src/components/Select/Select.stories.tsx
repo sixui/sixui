@@ -22,7 +22,7 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {
   onChange: (...args) => void sbHandleEvent('change', args),
   items: fruits,
-  w: '$96',
+  w: '384px',
   keepMounted: true,
 } satisfies Partial<ISelectProps>;
 
@@ -39,7 +39,7 @@ const SelectDemo: React.FC<ISelectDemoProps> = (props) => {
   };
 
   return (
-    <Flex direction="column" gap="$2">
+    <Flex direction="column" gap="$sm">
       <Select {...props} onChange={handleChange} />
       <div>
         Value:{' '}

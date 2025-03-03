@@ -20,7 +20,7 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {
   onChange: (...args) => sbHandleEvent('change', args),
   onColorsQuantized: (...args) => void sbHandleEvent('colorsQuantized', args),
-  w: '$48',
+  w: '16px8',
 } satisfies Partial<IColorInputFieldProps>;
 
 const ColorInputFieldShowcase = componentShowcaseFactory(ColorInputField);
@@ -79,7 +79,7 @@ export const WithErrorText: IStory = {
 export const PaletteGroup: IStory = {
   render: (props) => (
     <ColorPaletteGroupProvider customPalette={['#ff2d55']}>
-      <Flex direction="column" gap="$2" align="start">
+      <Flex direction="column" gap="$sm" align="start">
         <ColorInputField {...props} />
         <ColorInputField {...props} customPalette={['#000000']} />
         <ColorInputField {...props} />

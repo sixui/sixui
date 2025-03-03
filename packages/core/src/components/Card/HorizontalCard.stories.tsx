@@ -18,7 +18,7 @@ const MEDIA_URL =
   'https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600';
 
 const defaultArgs = {
-  w: '$144',
+  w: '56px4',
 } satisfies Partial<ICardProps>;
 
 const states: Array<IComponentPresentation<ICardProps>> = [
@@ -87,12 +87,12 @@ const cols: Array<IComponentPresentation<ICardProps>> = [
                 aspectRatio: 1,
               }}
             />
-            <Flex direction="column" gap="$2">
+            <Flex direction="column" gap="$sm">
               <Card.Title
                 subhead="Subhead"
                 supportingText="Explain more about the topic shown in the headline and subhead through supporting text."
               />
-              <Card.Actions p="$0">
+              <Card.Actions p="0px">
                 <Button
                   variant="filled"
                   onClick={(...args) => sbHandleEvent('action:onClick', args)}
@@ -111,14 +111,14 @@ const cols: Array<IComponentPresentation<ICardProps>> = [
     props: {
       children: (
         <Flex direction="row">
-          <Card.Media src={MEDIA_URL} h="$36" w="$36" />
+          <Card.Media src={MEDIA_URL} h="144px" w="144px" />
           <Card.Content>
-            <Flex direction="column" gap="$2">
+            <Flex direction="column" gap="$sm">
               <Card.Title
                 subhead="Subhead"
                 supportingText="Explain more about the topic shown in the headline and subhead through supporting text."
               />
-              <Card.Actions p="$0">
+              <Card.Actions p="0px">
                 <Button
                   variant="filled"
                   onClick={(...args) => sbHandleEvent('action:onClick', args)}

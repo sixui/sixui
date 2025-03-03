@@ -24,7 +24,7 @@ const AVATAR_URL =
   'https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80';
 
 const defaultArgs = {
-  w: '$72',
+  w: '288px',
 } satisfies Partial<ICardProps>;
 
 const states: Array<IComponentPresentation<ICardProps>> = [
@@ -89,13 +89,13 @@ const rows: Array<IComponentPresentation<ICardProps>> = [
                 onClick={(...args) => sbHandleEvent('menu:onClick', args)}
               />
             }
-            pt="$2"
+            pt="$sm"
           >
             John Doe
           </List.Item>
           <Card.Content>
             <Card.Title headline="Headline" />
-            <Card.Media src={MEDIA_URL} h="$48" />
+            <Card.Media src={MEDIA_URL} h="16px8" />
             <Card.Title
               subhead="Subhead"
               supportingText="Explain more about the topic shown in the headline and subhead through supporting text."
@@ -118,7 +118,7 @@ const rows: Array<IComponentPresentation<ICardProps>> = [
     props: {
       children: (
         <>
-          <Card.Media src={MEDIA_URL} h="$48" />
+          <Card.Media src={MEDIA_URL} h="16px8" />
           <Card.Content>
             <Card.Title
               headline="Headline"

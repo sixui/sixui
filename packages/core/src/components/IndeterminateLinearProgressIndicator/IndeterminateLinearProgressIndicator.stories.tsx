@@ -12,7 +12,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  w: '$72',
+  w: '288px',
 } satisfies Partial<IIndeterminateLinearProgressIndicatorProps>;
 
 const rows: Array<

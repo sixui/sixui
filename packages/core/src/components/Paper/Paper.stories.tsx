@@ -12,8 +12,8 @@ const meta: Meta<typeof Paper> = {
 type IStory = StoryObj<IPaperProps>;
 
 const defaultArgs = {
-  w: '$24',
-  h: '$24',
+  w: '96px',
+  h: '96px',
 } satisfies Partial<IPaperProps>;
 
 const states: Array<IComponentPresentation<IPaperProps>> = [

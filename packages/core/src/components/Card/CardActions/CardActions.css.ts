@@ -12,10 +12,10 @@ const classNames = createStyles({
   root: {
     display: 'flex',
     flexDirection: 'row',
-    gap: px(space(2)),
+    gap: px(space('$sm')),
     alignItems: 'center',
     justifyContent: 'end',
-    padding: px(space(4)),
+    padding: px(space('$lg')),
     position: 'relative',
   },
 });

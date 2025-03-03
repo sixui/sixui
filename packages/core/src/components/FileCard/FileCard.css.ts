@@ -144,7 +144,7 @@ const classNames = createStyles({
   fileInfo: {
     display: 'flex',
     flexDirection: 'column',
-    gap: px(space(1)),
+    gap: px(space('$xs')),
   },
   fileName: ({ root }) => ({
     lineBreak: 'anywhere',

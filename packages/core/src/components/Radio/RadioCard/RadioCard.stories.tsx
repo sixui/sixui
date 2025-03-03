@@ -22,7 +22,7 @@ const defaultArgs = {
   onChange: (...args) => sbHandleEvent('onChange', args),
   label: 'Label',
   supportingText: 'This text explains more about the option shown in the card.',
-  w: '$56',
+  w: '224px',
 } satisfies Partial<IRadioCardProps>;
 
 const states: Array<IComponentPresentation<IRadioCardProps>> = [
@@ -66,7 +66,7 @@ const ControlledRadioCardDemo: React.FC<IRadioCardProps> = (props) => {
     : undefined;
 
   return (
-    <Flex direction="row" gap="$8">
+    <Flex direction="row" gap="$xl">
       <RadioCard
         {...other}
         onChange={handleChange}
@@ -171,7 +171,7 @@ export const Custom: IStory = {
   args: {
     ...defaultArgs,
     variant: 'filled',
-    children: <Card.Media src={MEDIA_URL} h="$32" />,
+    children: <Card.Media src={MEDIA_URL} h="128px" />,
   },
 };
 

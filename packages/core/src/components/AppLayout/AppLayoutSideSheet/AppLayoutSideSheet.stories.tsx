@@ -71,13 +71,13 @@ const AppLayoutSideSheetScreenFrame: React.FC<IAppLayoutSideSheetProps> = (
   const [detached, setDetached] = useState(false);
 
   return (
-    <Flex direction="column" gap="$2">
-      <Flex direction="row" gap="$6">
+    <Flex direction="column" gap="$sm">
+      <Flex direction="row" gap="$xl">
         <Button
           onClick={() => {
             toggleOpened();
           }}
-          w="$24"
+          w="96px"
         >
           {opened ? 'Close' : 'Open'}
         </Button>

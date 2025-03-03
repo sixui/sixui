@@ -37,7 +37,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
 const classNames = createStyles({
   root: {
     zIndex: themeTokens.zIndex.app,
-    padding: px(space(6)),
+    padding: px(space('$xl')),
 
     vars: overrideTokens(PaperBase.theme.tokens, {
       container: {
@@ -60,12 +60,12 @@ const classNames = createStyles({
     marginRight: 'auto',
     display: 'flex',
     flexDirection: 'column',
-    gap: px(space(4)),
+    gap: px(space('$lg')),
 
-    paddingTop: px(space(4)),
-    paddingBottom: px(space(4)),
-    paddingLeft: px(space(2)),
-    paddingRight: px(space(2)),
+    paddingTop: px(space('$lg')),
+    paddingBottom: px(space('$lg')),
+    paddingLeft: px(space('$sm')),
+    paddingRight: px(space('$sm')),
   },
 });
 

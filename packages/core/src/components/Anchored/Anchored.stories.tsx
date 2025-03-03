@@ -26,8 +26,8 @@ const BadgeDemo: React.FC<IPlaceholderProps & { size: 'sm' | 'lg' }> = ({
 }) => (
   <Paper
     {...other}
-    w={size === 'sm' ? '$4' : '$8'}
-    h="$4"
+    w={size === 'sm' ? '16px' : '32px'}
+    h="16px"
     shape="$full"
     surface="$primary"
   />
@@ -48,14 +48,14 @@ export const Variants: IStory = {
           legend: 'Rectangular overlap',
           props: {
             overlap: 'rectangular',
-            children: <Placeholder w="$12" h="$12" shape="$sm" />,
+            children: <Placeholder w="48px" h="48px" shape="$sm" />,
           },
         },
         {
           legend: 'Circular overlap',
           props: {
             overlap: 'circular',
-            children: <Placeholder w="$12" h="$12" shape="$circle" />,
+            children: <Placeholder w="48px" h="48px" shape="$circle" />,
           },
         },
       ]}
@@ -113,7 +113,7 @@ export const RectangularOverlap: IStory = {
   args: {
     ...defaultArgs,
     overlap: 'rectangular',
-    children: <Placeholder w="$12" h="$12" shape="$sm" />,
+    children: <Placeholder w="48px" h="48px" shape="$sm" />,
   },
 };
 
@@ -128,7 +128,7 @@ export const CircularOverlap: IStory = {
   args: {
     ...defaultArgs,
     overlap: 'circular',
-    children: <Placeholder w="$12" h="$12" shape="$circle" />,
+    children: <Placeholder w="48px" h="48px" shape="$circle" />,
   },
 };
 

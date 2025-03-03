@@ -21,8 +21,8 @@ const BadgeDemo: React.FC<IBadgeDemoProps> = ({ overlap, ...props }) =>
   overlap ? (
     <Anchored content={<Badge {...props} />} overlap={overlap}>
       <Placeholder
-        w="$14"
-        h="$14"
+        w="56px"
+        h="56px"
         shape={overlap === 'circular' ? '$full' : '$sm'}
       />
     </Anchored>

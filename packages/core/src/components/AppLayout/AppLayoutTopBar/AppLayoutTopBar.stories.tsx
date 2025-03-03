@@ -13,11 +13,11 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   headline: 'Headline',
-  leadingNavigation: <Placeholder diagonals w="$8" h="$8" shape="$xs" />,
+  leadingNavigation: <Placeholder diagonals w="32px" h="32px" shape="$xs" />,
   trailingActions: (
     <>
-      <Placeholder diagonals w="$8" h="$8" shape="$xs" />
-      <Placeholder diagonals w="$8" h="$8" shape="$xs" />
+      <Placeholder diagonals w="32px" h="32px" shape="$xs" />
+      <Placeholder diagonals w="32px" h="32px" shape="$xs" />
     </>
   ),
   divider: true,

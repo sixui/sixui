@@ -16,8 +16,8 @@ const IMAGE_URL =
 
 const defaultArgs = {
   src: IMAGE_URL,
-  w: '$48',
-  h: '$48',
+  w: '16px8',
+  h: '16px8',
 } satisfies Partial<ICardMediaProps>;
 
 const states: Array<IComponentPresentation<ICardMediaProps>> = [

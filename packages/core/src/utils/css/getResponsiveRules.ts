@@ -16,12 +16,13 @@ export type IResponsiveRule = {
 };
 
 export const getResponsiveRules = (
-  classes: IThemeWindowSizeClassesValues,
+  windowSizeClasses: IThemeWindowSizeClassesValues,
 ): Array<IResponsiveRule> =>
-  Object.entries(classes).reduce<Array<IResponsiveRule>>(
+  Object.entries(windowSizeClasses).reduce<Array<IResponsiveRule>>(
     (acc, [key, breakpoint], index) => {
       const windowClassName = key as IThemeWindowSizeClassName;
       const previousRule = index > 0 ? acc[index - 1] : undefined;
+
       const containerNames: Array<IWindowSizeClassContainerName> = previousRule
         ? [
             ...previousRule.containerNames.slice(0, -1),
@@ -33,12 +34,10 @@ export const getResponsiveRules = (
       const maxWidth = breakpoint;
       const query = serializeResponsiveRuleQuery({
         minWidth,
-        maxWidth: breakpoint,
+        maxWidth,
       });
 
       return [...acc, { containerNames, minWidth, maxWidth, query }];
-
-      return acc;
     },
     [],
   );

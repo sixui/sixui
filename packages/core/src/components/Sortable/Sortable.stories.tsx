@@ -9,8 +9,10 @@ import type {
 } from './Sortable.types';
 import { Card } from '~/components/Card';
 import { Flex } from '~/components/Flex';
+import { SimpleGrid } from '~/components/SimpleGrid';
 import { SortableItem } from '~/components/SortableItem';
 import { Text } from '~/components/Text';
+import { themeTokens } from '~/components/Theme';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { Sortable } from './Sortable';
 
@@ -37,24 +39,55 @@ const SortableItemDemo: React.FC<ISortableItemDemoProps> = (props) => (
 
 type ISortableDemoProps = ISortableProps;
 
-const SortableDemo: React.FC<ISortableDemoProps> = (props) => {
+const SortableSingleAxisDemo: React.FC<ISortableDemoProps> = (props) => {
   const [value, setValue] = useState(props.initialValue ?? []);
 
   const handleChange = useCallback(
     (value: Array<string>) => {
       setValue(value);
-
       props.onChange?.(value);
     },
     [props],
   );
 
   return (
-    <Flex direction="column" gap="$6">
+    <Flex direction="column" gap="$xl">
       <Sortable
         as={Flex}
         direction={props.axis === 'horizontal' ? 'row' : 'column'}
-        gap="$2"
+        gap="$sm"
+        {...props}
+        onChange={handleChange}
+      />
+      {!props.disabled && (
+        <Text variant="label">Order: {value.join(', ')}</Text>
+      )}
+    </Flex>
+  );
+};
+
+const SortableGridDemo: React.FC<ISortableDemoProps> = (props) => {
+  const [value, setValue] = useState(props.initialValue ?? []);
+
+  const handleChange = useCallback(
+    (value: Array<string>) => {
+      setValue(value);
+      props.onChange?.(value);
+    },
+    [props],
+  );
+
+  return (
+    <Flex direction="column" gap="$xl">
+      <Sortable
+        as={SimpleGrid}
+        w="320px"
+        bd={`1px solid ${themeTokens.colorScheme.outlineVariant}`}
+        br="$sm"
+        p="$lg"
+        cols={3}
+        spacing="$sm"
+        verticalSpacing="$sm"
         {...props}
         onChange={handleChange}
       />
@@ -66,39 +99,35 @@ const SortableDemo: React.FC<ISortableDemoProps> = (props) => {
 };
 
 export const Horizontal: IStory = {
-  render: (props) => <SortableDemo {...props} />,
+  render: (props) => <SortableSingleAxisDemo {...props} />,
   args: {
     ...defaultArgs,
     axis: 'horizontal',
     itemRenderer: ({ id, disabled }: ISortableItemRenderProps) => (
-      <SortableItemDemo key={id} id={id} fixed={disabled} w="$16" h="$24" />
+      <SortableItemDemo key={id} id={id} fixed={disabled} w="64px" h="96px" />
     ),
   },
 };
 
 export const Vertical: IStory = {
-  render: (props) => <SortableDemo {...props} />,
+  render: (props) => <SortableSingleAxisDemo {...props} />,
   args: {
     ...defaultArgs,
     axis: 'vertical',
     itemRenderer: ({ id, disabled }: ISortableItemRenderProps) => (
-      <SortableItemDemo key={id} id={id} fixed={disabled} w="$24" h="$16" />
+      <SortableItemDemo key={id} id={id} fixed={disabled} w="96px" h="64px" />
     ),
   },
 };
 
 export const Grid: IStory = {
-  render: (props) => <SortableDemo {...props} />,
+  render: (props) => <SortableGridDemo {...props} />,
   args: {
     ...defaultArgs,
     itemRenderer: ({ id, disabled }: ISortableItemRenderProps) => (
-      <SortableItemDemo key={id} id={id} fixed={disabled} w="$24" h="$16" />
+      <SortableItemDemo key={id} id={id} fixed={disabled} h="64px" expanded />
     ),
   },
 };
-
-// TODO: grid
-// TODO: with delay and optimistic change
-// TODO: remove
 
 export default meta;

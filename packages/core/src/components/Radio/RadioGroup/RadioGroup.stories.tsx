@@ -50,12 +50,12 @@ const ControlledRadioGroupDemo: React.FC<IRadioGroupDemoProps> = (props) => {
   const [value, setValue] = useState('2');
 
   return (
-    <Flex direction="row" gap="$8" align="center">
+    <Flex direction="row" gap="$xl" align="center">
       <RadioGroup
         {...other}
         as={Flex}
         direction="row"
-        gap="$8"
+        gap="$xl"
         value={value}
         onChange={async (value) => {
           await onChange?.(value);
@@ -80,12 +80,12 @@ const UncontrolledRadioGroupDemo: React.FC<IRadioGroupDemoProps> = (props) => {
   const ref = useRef<HTMLDivElement>(null);
 
   return (
-    <Flex direction="row" gap="$8" align="center">
+    <Flex direction="row" gap="$xl" align="center">
       <RadioGroup
         {...other}
         as={Flex}
         direction="row"
-        gap="$8"
+        gap="$xl"
         defaultValue="2"
         ref={ref}
       >
@@ -123,7 +123,7 @@ export const ControlledCard: IStory = {
         optionsRenderer: () =>
           items.map((item, itemIndex) => (
             <Radio.Card
-              w="$56"
+              w="224px"
               key={itemIndex}
               label={`Item ${itemIndex + 1}`}
               supportingText="This text explains more about the option shown in the card."
@@ -159,7 +159,7 @@ export const UncontrolledCard: IStory = {
         optionsRenderer: () =>
           items.map((item, itemIndex) => (
             <Radio.Card
-              w="$56"
+              w="224px"
               key={itemIndex}
               label={`Item ${itemIndex + 1}`}
               supportingText="This text explains more about the option shown in the card."

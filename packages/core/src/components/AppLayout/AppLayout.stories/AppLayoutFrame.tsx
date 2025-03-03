@@ -34,8 +34,8 @@ export const AppLayoutFrame: React.FC<IAppLayoutFrameProps> = (props) => {
   const [hasDividers, setHasDividers] = useState(true);
 
   return (
-    <Flex direction="column" gap="$2">
-      <Flex direction="row" gap="$6">
+    <Flex direction="column" gap="$sm">
+      <Flex direction="row" gap="$xl">
         <Checkbox
           label="Top bar"
           checked={hasTopBar}

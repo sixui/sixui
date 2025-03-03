@@ -18,8 +18,8 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   id: 'ID',
-  w: '$16',
-  h: '$24',
+  w: '64px',
+  h: '96px',
 } satisfies Partial<ISortableItemProps>;
 
 type ISortableItemDemoProps = IOmit<ISortableItemProps, 'children'>;

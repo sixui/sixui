@@ -325,7 +325,11 @@ export const getDefaultTheme = (
         },
       },
       spacing: {
-        gridSize: '4px',
+        xs: '4px',
+        sm: '8px',
+        md: '12px',
+        lg: '16px',
+        xl: '24px',
       },
       state: {
         stateLayerOpacity: {

@@ -75,7 +75,7 @@ export const drawerThemeVariants = {
   detached: createStyles({
     root: {
       vars: overrideTokens(tokens, {
-        inset: px(space(4)),
+        inset: px(space('$lg')),
       }),
     },
   }),

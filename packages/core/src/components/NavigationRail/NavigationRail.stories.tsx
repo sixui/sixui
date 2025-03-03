@@ -58,13 +58,13 @@ const NavigationRailScreenFrame: React.FC<INavigationRailProps> = (props) => {
   const [opened, toggleOpened] = useToggle([true, false]);
 
   return (
-    <Flex direction="column" gap="$2">
-      <Flex direction="row" gap="$2">
+    <Flex direction="column" gap="$sm">
+      <Flex direction="row" gap="$sm">
         <Button
           onClick={() => {
             toggleOpened();
           }}
-          w="$24"
+          w="96px"
         >
           {opened ? 'Close' : 'Open'}
         </Button>

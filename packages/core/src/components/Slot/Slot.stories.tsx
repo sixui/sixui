@@ -23,21 +23,21 @@ const SlotDemo: React.FC<ISlotProps> = (props) => {
   const [hidden, toggleHidden] = useToggle([true, false]);
 
   return (
-    <Flex direction="row" gap="$2">
+    <Flex direction="row" gap="$sm">
       <Button
         onClick={() => {
           toggleHidden();
         }}
-        w="$24"
+        w="96px"
       >
         {hidden ? 'Open' : 'Close'}
       </Button>
 
-      <Box w="$10" h="$10">
+      <Box w="40px" h="40px">
         <Slot
           as={Flex}
           hidden={hidden}
-          h="$10"
+          h="40px"
           align="center"
           justify="center"
           {...props}

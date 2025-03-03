@@ -1,10 +1,20 @@
 import type cx from 'clsx';
 
-import type { IThemeWindowSizeClassName } from '~/components/Theme';
+import type {
+  IThemeSpacingValues,
+  IThemeWindowSizeClassName,
+} from '~/components/Theme';
 import type { IInteractions } from '~/hooks/useInteractions';
 import type { IModifiers } from '~/utils/getDataAttributes';
 import type { ISixuiSize } from '~/utils/types';
 import type { IBoxSprinkles } from './Box.css';
+
+// eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
+export type ISpacingProp = `$${keyof IThemeSpacingValues}` | string;
+
+export type IResponsiveProp<TValue> =
+  | TValue
+  | Partial<Record<'base' | IThemeWindowSizeClassName, TValue>>;
 
 export interface IBoxProps extends IBoxSprinkles {
   className?: Parameters<typeof cx>[0];

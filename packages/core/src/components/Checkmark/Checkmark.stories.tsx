@@ -12,7 +12,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  fz: '$12',
+  fz: '48px',
   c: '$primary',
 } satisfies Partial<ICheckmarkProps>;
 

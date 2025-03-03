@@ -10,14 +10,14 @@ export const SupportingPane: React.FC<ISupportingPaneProps> = (props) => {
   const { ...other } = props;
 
   return (
-    <Flex direction="row" gap="$2" {...other}>
+    <Flex direction="row" gap="$sm" {...other}>
       {createSequence(2).map((index) => (
         <Placeholder
           key={index}
           label="Supporting"
           shape="$lg"
-          w="$32"
-          h="$32"
+          w="128px"
+          h="128px"
           diagonals
         />
       ))}

@@ -18,7 +18,7 @@ const defaultArgs = {
   children: 'Advanced settings',
   onClick: (...args) => sbHandleEvent('onClick', args, 1000),
   onChange: (...args) => sbHandleEvent('onChange', args, 1000),
-  w: '$96',
+  w: '384px',
 } satisfies Partial<IDisclosureTriggerProps>;
 
 const cols: Array<IComponentPresentation<IDisclosureTriggerProps>> = [

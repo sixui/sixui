@@ -14,7 +14,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  w: '$96',
+  w: '384px',
   icon: <FontAwesomeIcon icon={faArrowUpFromBracket} />,
   label: 'Drop here',
 } satisfies Partial<IDropZoneProps>;

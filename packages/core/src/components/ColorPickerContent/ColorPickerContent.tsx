@@ -57,9 +57,9 @@ export const ColorPickerContent = componentFactory<IColorPickerContentFactory>(
     return (
       <PaperBase {...getStyles('root')} ref={forwardedRef} {...other}>
         <div {...getStyles('section')}>
-          <Flex direction="row" gap="$2" justify="space-between">
+          <Flex direction="row" gap="$sm" justify="space-between">
             {palettes.map((palette, paletteIndex) => (
-              <Flex key={paletteIndex} direction="column" gap="$2">
+              <Flex key={paletteIndex} direction="column" gap="$sm">
                 {renderPalette(palette)}
               </Flex>
             ))}
@@ -70,7 +70,7 @@ export const ColorPickerContent = componentFactory<IColorPickerContentFactory>(
           <>
             <Divider />
             <div {...getStyles('section')}>
-              <Flex direction="row" gap="$2">
+              <Flex direction="row" gap="$sm">
                 {renderPalette(customPalette)}
               </Flex>
             </div>

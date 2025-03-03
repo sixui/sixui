@@ -24,17 +24,17 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   color: themeTokens.colorScheme.outlineVariant,
   inset: {
     horizontal: {
-      leadingSpace: px(space(4)),
-      trailingSpace: px(space(4)),
+      leadingSpace: px(space('$lg')),
+      trailingSpace: px(space('$lg')),
     },
     vertical: {
-      leadingSpace: px(space(2)),
-      trailingSpace: px(space(2)),
+      leadingSpace: px(space('$sm')),
+      trailingSpace: px(space('$sm')),
     },
   },
   label: {
-    horizontalSpace: px(space(2)),
-    verticalSpace: px(space(1)),
+    horizontalSpace: px(space('$sm')),
+    verticalSpace: px(space('$xs')),
     typography: themeTokens.typeScale.body.sm,
     color: themeTokens.colorScheme.outline,
   },

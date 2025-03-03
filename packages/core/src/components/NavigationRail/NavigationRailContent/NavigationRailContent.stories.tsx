@@ -29,7 +29,7 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   divider: true,
-  h: '$160',
+  h: '640px',
   menuIcon: <Burger />,
   fab: (
     <Fab

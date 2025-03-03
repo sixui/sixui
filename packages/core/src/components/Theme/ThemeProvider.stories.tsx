@@ -32,10 +32,10 @@ const DynamicThemeProviderDemo: React.FC = () => {
   };
 
   return (
-    <Flex direction="column" gap="$2">
+    <Flex direction="column" gap="$sm">
       <ColorInputField onChange={handleChange} clearable />
 
-      <Paper p="$4" outline="$xs" outlineStyle="dashed">
+      <Paper p="$lg" outline="$xs" outlineStyle="dashed">
         <ColorScheme />
       </Paper>
     </Flex>

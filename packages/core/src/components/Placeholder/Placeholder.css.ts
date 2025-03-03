@@ -48,7 +48,7 @@ const classNames = createStyles({
   }),
   label: ({ root }) => ({
     position: 'relative',
-    padding: px(space(2)),
+    padding: px(space('$sm')),
     opacity: tokens.label.opacity,
     ...typography(tokens.label.typography),
 

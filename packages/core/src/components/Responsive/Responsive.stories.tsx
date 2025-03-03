@@ -15,14 +15,14 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  w: '$8',
-  h: '$8',
+  w: '32px',
+  h: '32px',
   className: responsiveStoriesClassNames.root,
 } satisfies Partial<IPaperProps>;
 
 const ResponsivePaperShowcase = componentShowcaseFactory(Box);
 
-export const ContainerQueries: IStory = {
+export const ContainerQueriesEqual: IStory = {
   render: (props) => (
     <ResponsivePaperShowcase
       props={props}
@@ -40,19 +40,17 @@ export const ContainerQueries: IStory = {
   args: defaultArgs,
 };
 
-export const Properties: IStory = {
+export const ContainerQueriesGreaterOrEqual: IStory = {
   render: (props) => (
     <ResponsivePaperShowcase
       props={props}
       cols={windowSizeClassNames.map((windowSizeClassName) => ({
         legend: capitalizeFirstLetter(windowSizeClassName),
         props: {
-          opacity: {
-            [windowSizeClassName]: '1',
-          },
-          bg: {
-            [windowSizeClassName]: '$primary',
-          },
+          className: cx(
+            defaultArgs.className,
+            responsiveStoriesClassNames[`root$gte$${windowSizeClassName}`],
+          ),
         },
       }))}
     />

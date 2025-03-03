@@ -32,7 +32,7 @@ const classNames = createStyles({
   header: {
     display: 'flex',
     flexDirection: 'column',
-    gap: calc.add(px(space(2)), DENSITY),
+    gap: calc.add(px(space('$sm')), DENSITY),
   },
   headline: {
     color: tokens.headline.color,

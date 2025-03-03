@@ -86,8 +86,8 @@ export const FromButton: IStory = {
 
 export const FromIconButton: IStory = {
   render: (props) => (
-    <Flex gap="$2" align="center">
-      <Flex align="center" gap="$2" grow={1}>
+    <Flex gap="$sm" align="center">
+      <Flex align="center" gap="$sm" grow={1}>
         Look right <FontAwesomeIcon icon={faArrowRight} />
       </Flex>
       <Menu {...props} />

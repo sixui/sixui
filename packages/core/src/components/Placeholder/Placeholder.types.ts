@@ -8,7 +8,7 @@ import type {
 } from './Placeholder.css';
 
 export interface IPlaceholderOwnProps extends IPaperOwnProps {
-  label?: string;
+  label?: React.ReactNode;
   diagonals?: boolean;
   disabled?: boolean;
 }

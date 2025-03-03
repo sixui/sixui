@@ -23,7 +23,7 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {
   onChange: (...args) => void sbHandleEvent('change', args),
   items: fruits,
-  w: '$96',
+  w: '384px',
   keepMounted: true,
 } satisfies Partial<ISuggestProps>;
 
@@ -40,7 +40,7 @@ const SuggestDemo: React.FC<ISuggestDemoProps> = (props) => {
   };
 
   return (
-    <Flex direction="column" gap="$2">
+    <Flex direction="column" gap="$sm">
       <Suggest {...props} onChange={handleChange} />
       <div>
         Value:{' '}

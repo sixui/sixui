@@ -86,9 +86,9 @@ const classNames = createStyles({
     flexDirection: 'column',
     alignItems: 'center',
     overflowY: 'auto',
-    gap: calc.add(px(space(3)), DENSITY),
-    paddingTop: calc.add(px(space(3)), DENSITY),
-    paddingBottom: calc.add(px(space(3)), DENSITY),
+    gap: calc.add(px(space('$md')), DENSITY),
+    paddingTop: calc.add(px(space('$md')), DENSITY),
+    paddingBottom: calc.add(px(space('$md')), DENSITY),
   },
   footer: ({ root }) => ({
     flexShrink: 0,
@@ -119,7 +119,7 @@ const classNames = createStyles({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: px(space(4)),
+    gap: px(space('$lg')),
   },
 });
 

@@ -4,7 +4,7 @@ export const Demo: React.FC = () => {
   const overlays = useOverlays();
 
   return (
-    <Box grow={1} p="$3" bg="$surface">
+    <Box grow={1} p="$md" bg="$surface">
       <Button
         onClick={() =>
           overlays.open(ConfirmDialogOverlay, {

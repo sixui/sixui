@@ -39,8 +39,8 @@ const Cell: React.FC<IFlexProps> = (props) => (
   <Flex
     align="center"
     justify="center"
-    miw="$24"
-    mih="$12"
+    miw="96px"
+    mih="48px"
     p="$2"
     ta="center"
     {...props}
@@ -98,7 +98,7 @@ export const Horizontal: IStory = {
   args: {
     ...defaultArgs,
     orientation: 'horizontal',
-    w: '$96',
+    w: '384px',
   },
 };
 
@@ -121,7 +121,7 @@ export const Vertical: IStory = {
   args: {
     ...defaultArgs,
     orientation: 'vertical',
-    h: '$96',
+    h: '384px',
   },
 };
 

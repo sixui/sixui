@@ -71,7 +71,7 @@ export const Styled: IStory = {
     alignItems: 'center',
     elevation: '$1',
     px: '$3',
-    h: '$10',
+    h: '40px',
     shape: '$sm',
     surface: '$primaryContainer',
     c: '$onPrimaryContainer',

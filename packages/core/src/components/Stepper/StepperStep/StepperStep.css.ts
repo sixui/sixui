@@ -23,12 +23,12 @@ const DENSITY = px(density({ min: -2, max: 0 }));
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
-    leadingSpace: px(space(2)),
-    trailingSpace: px(space(2)),
+    leadingSpace: px(space('$sm')),
+    trailingSpace: px(space('$sm')),
     // For a proper rendering, should be at least (StepperStepConnector.thickness / 2).
-    topSpace: px(space(2)),
+    topSpace: px(space('$sm')),
     // For a proper rendering, should be at least (StepperStepConnector.thickness / 2).
-    bottomSpace: px(space(2)),
+    bottomSpace: px(space('$sm')),
     shape: px(themeTokens.shape.corner.md),
   },
   label: {
@@ -70,8 +70,8 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   },
   connector: {
     shape: px(themeTokens.shape.corner.full),
-    minLength: px(space(4)),
-    space: fallbackVar(stepperTheme.tokens.connector.space, px(space(2))),
+    minLength: px(space('$lg')),
+    space: fallbackVar(stepperTheme.tokens.connector.space, px(space('$sm'))),
   },
 });
 
@@ -112,7 +112,7 @@ const classNames = createStyles({
     minHeight: 'unset',
     paddingTop: calc.add(tokens.container.topSpace, DENSITY),
     paddingBottom: calc.add(tokens.container.bottomSpace, DENSITY),
-    gap: px(space(2)),
+    gap: px(space('$sm')),
     textAlign: 'start',
 
     vars: overrideTokens(Button.theme.tokens, {
@@ -138,7 +138,7 @@ const classNames = createStyles({
     selectors: {
       [modifierSelector<IModifier>({ 'label-position': 'bottom' }, root)]: {
         flexDirection: 'column',
-        gap: calc.add(px(space(1)), DENSITY),
+        gap: calc.add(px(space('$xs')), DENSITY),
         textAlign: 'center',
       },
     },
@@ -347,7 +347,7 @@ const classNames = createStyles({
     paddingLeft: calc.add(
       tokens.container.leadingSpace,
       tokens.indicator.size,
-      px(space(2)),
+      px(space('$sm')),
     ),
     paddingRight: tokens.container.trailingSpace,
   },

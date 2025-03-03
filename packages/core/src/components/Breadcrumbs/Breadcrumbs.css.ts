@@ -16,7 +16,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   separator: {
     color: themeTokens.colorScheme.onSurface,
     size: themeTokens.typeScale.body.md.size,
-    space: px(space(2)),
+    space: px(space('$sm')),
   },
 });
 
@@ -39,8 +39,8 @@ const classNames = createStyles({
     display: 'flex',
     alignContent: 'center',
     alignItems: 'center',
-    marginLeft: calc.negate(px(space(2))),
-    marginRight: calc.negate(px(space(2))),
+    marginLeft: calc.negate(px(space('$sm'))),
+    marginRight: calc.negate(px(space('$sm'))),
   },
   separator: {
     color: tokens.separator.color,

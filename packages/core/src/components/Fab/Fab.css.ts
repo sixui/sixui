@@ -42,7 +42,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
       md: px(24),
       lg: px(36),
     },
-    labelSpace: px(space(3)),
+    labelSpace: px(space('$md')),
   },
   label: {
     color: 'unset',
@@ -101,12 +101,12 @@ const classNames = createStyles({
                   calc.divide(DENSITY, 4),
                 ),
                 leadingSpace: {
-                  normal: px(space(3)),
-                  withStart: px(space(2)),
+                  normal: px(space('$md')),
+                  withStart: px(space('$sm')),
                 },
                 trailingSpace: {
-                  normal: px(space(3)),
-                  withEnd: px(space(2)),
+                  normal: px(space('$md')),
+                  withEnd: px(space('$sm')),
                 },
               },
               icon: {
@@ -155,12 +155,12 @@ const classNames = createStyles({
         vars: overrideTokens(Button.theme.tokens, {
           container: {
             leadingSpace: {
-              normal: px(space(6)),
-              withStart: px(space(4)),
+              normal: px(space('$xl')),
+              withStart: px(space('$lg')),
             },
             trailingSpace: {
-              normal: px(space(6)),
-              withEnd: px(space(6)),
+              normal: px(space('$xl')),
+              withEnd: px(space('$xl')),
             },
           },
         }),

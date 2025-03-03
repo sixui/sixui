@@ -12,7 +12,7 @@ import { COMPONENT_NAME } from './Disclosure.constants';
 const DENSITY = px(density({ min: -2, max: 0 }));
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
-  panelSpacing: px(space(3)),
+  panelSpacing: px(space('$md')),
 });
 
 const classNames = createStyles({

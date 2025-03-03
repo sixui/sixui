@@ -85,8 +85,8 @@ const SkeletonAsOverlay: React.FC<ISkeletonProps> = (props) => (
       justifyContent: 'center',
       alignItems: 'center',
     }}
-    w="$24"
-    h="$24"
+    w="96px"
+    h="96px"
     outline="$xs"
     shape="$md"
   >

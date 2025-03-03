@@ -15,7 +15,7 @@ const LOREM$XS = 'Lorem ipsum dolor sit amet.';
 const LOREM$SM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
 
 const defaultArgs = {
-  w: '$96',
+  w: '384px',
 } satisfies Partial<IItemProps>;
 
 type ISlotDemoProps = {
@@ -102,14 +102,14 @@ export const Lengths: IStory = {
           legend: 'Fixed width',
           props: {
             children: LOREM$SM,
-            w: '$48',
+            w: '16px8',
           },
         },
         {
           legend: 'Fixed width, two lines max',
           props: {
             children: LOREM$SM,
-            w: '$48',
+            w: '16px8',
             lineClamp: 2,
           },
         },
@@ -117,7 +117,7 @@ export const Lengths: IStory = {
           legend: 'Fixed width, one line max',
           props: {
             children: LOREM$SM,
-            w: '$48',
+            w: '16px8',
             lineClamp: 1,
           },
         },

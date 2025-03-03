@@ -11,8 +11,8 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  w: '$24',
-  h: '$24',
+  w: '96px',
+  h: '96px',
 } satisfies Partial<IPlaceholderProps>;
 
 const PlaceholderShowcase = componentShowcaseFactory(Placeholder);

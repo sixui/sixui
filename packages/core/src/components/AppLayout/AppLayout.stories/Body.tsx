@@ -28,8 +28,8 @@ export const Body: React.FC<IBodyProps> = (props) => {
     <AppLayout.SupportingPaneBody
       focusPane={(props) => <FocusPane {...props} />}
       supportingPane={<SupportingPane />}
-      supportingPaneAside={<SupportingPane pl="$6" pr="$6" />}
-      supportingPaneBottomSheet={<SupportingPane p="$4" />}
+      supportingPaneAside={<SupportingPane pl="$xl" pr="$xl" />}
+      supportingPaneBottomSheet={<SupportingPane p="$lg" />}
       {...other}
     />
   ) : type === 'feed' ? (

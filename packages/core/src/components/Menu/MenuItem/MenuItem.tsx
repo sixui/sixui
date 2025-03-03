@@ -55,7 +55,7 @@ export const MenuItem = polymorphicComponentFactory<IMenuItemFactory>(
       <MenuLeaf
         trigger={(renderProps) => (
           <MenuItem
-            trailingIcon={<SvgIcon icon={iconTriangleRight} fz="$4" />}
+            trailingIcon={<SvgIcon icon={iconTriangleRight} fz="16px" />}
             keepOpenOnClick
             label={label}
             ref={handleRef}

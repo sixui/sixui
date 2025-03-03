@@ -28,7 +28,7 @@ const classNames = createStyles({
     top: 0,
     left: 0,
     bottom: 0,
-    paddingInlineStart: px(space(4)),
+    paddingInlineStart: px(space('$lg')),
     pointerEvents: 'none',
   },
   section$end: {

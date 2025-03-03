@@ -40,12 +40,12 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
     minHeight: px(40),
     minWidth: px(64),
     leadingSpace: {
-      normal: px(space(6)),
-      withStart: px(space(4)),
+      normal: px(space('$xl')),
+      withStart: px(space('$lg')),
     },
     trailingSpace: {
-      normal: px(space(6)),
-      withEnd: px(space(4)),
+      normal: px(space('$xl')),
+      withEnd: px(space('$lg')),
     },
     color: {
       normal: 'unset',
@@ -119,7 +119,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   },
   icon: {
     size: px(18),
-    labelSpace: px(space(2)),
+    labelSpace: px(space('$sm')),
     color: {
       normal: 'inherit',
       focused: 'inherit',
@@ -741,12 +741,12 @@ export const buttonThemeVariants = {
             disabled: 'unset',
           },
           leadingSpace: {
-            normal: px(space(3)),
-            withStart: px(space(3)),
+            normal: px(space('$md')),
+            withStart: px(space('$md')),
           },
           trailingSpace: {
-            normal: px(space(3)),
-            withEnd: px(space(3)),
+            normal: px(space('$md')),
+            withEnd: px(space('$md')),
           },
         },
         label: {
@@ -810,12 +810,12 @@ export const buttonThemeVariants = {
               disabled: 'unset',
             },
             leadingSpace: {
-              normal: px(space(4)),
-              withStart: px(space(3)),
+              normal: px(space('$lg')),
+              withStart: px(space('$md')),
             },
             trailingSpace: {
-              normal: px(space(4)),
-              withEnd: px(space(3)),
+              normal: px(space('$lg')),
+              withEnd: px(space('$md')),
             },
             minHeight: px(32),
           },
