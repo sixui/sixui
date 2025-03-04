@@ -11,7 +11,7 @@ const defaultOptions = {
 };
 
 export const executeLazyPromise = (
-  promise: () => IMaybeAsync<unknown>,
+  maybePromise: () => IMaybeAsync<unknown>,
   onLoadingChange: (loading: boolean) => void,
   optionsProp?: IExecuteLazyPromiseOptions,
 ): Promise<unknown> => {
@@ -21,14 +21,14 @@ export const executeLazyPromise = (
   };
 
   if (!options.minDuration) {
-    return Promise.resolve(promise());
+    return Promise.resolve(maybePromise());
   }
 
   const timeout = setTimeout(() => {
     onLoadingChange(true);
   }, options.minDuration);
 
-  return Promise.resolve(promise())
+  return Promise.resolve(maybePromise())
     .then(() => {
       if (options.resetEvent === 'success') {
         onLoadingChange(false);

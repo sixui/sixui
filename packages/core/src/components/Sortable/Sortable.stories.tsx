@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useCallback, useState } from 'react';
+import { delay } from '@olivierpascal/helpers';
 
 import type { ISortableItemProps } from '~/components/SortableItem';
 import type { IOmit } from '~/utils/types';
@@ -7,6 +8,7 @@ import type {
   ISortableItemRenderProps,
   ISortableProps,
 } from './Sortable.types';
+import { Box } from '~/components/Box';
 import { Card } from '~/components/Card';
 import { Flex } from '~/components/Flex';
 import { SimpleGrid } from '~/components/SimpleGrid';
@@ -14,6 +16,7 @@ import { SortableItem } from '~/components/SortableItem';
 import { Text } from '~/components/Text';
 import { themeTokens } from '~/components/Theme';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
+import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
 import { Sortable } from './Sortable';
 
 const meta = {
@@ -27,15 +30,30 @@ const defaultArgs = {
   onChange: (...args) => sbHandleEvent('onChange', ...args),
 } satisfies Partial<ISortableProps>;
 
-type ISortableItemDemoProps = IOmit<ISortableItemProps, 'children'>;
+interface ISortableItemDemoProps
+  extends IOmit<ISortableItemProps, 'children'>,
+    ISortableItemRenderProps {}
 
-const SortableItemDemo: React.FC<ISortableItemDemoProps> = (props) => (
-  <SortableItem as={Card} shape="$xs" {...props}>
-    <Flex align="center" justify="center" h="100%">
-      <Text variant="label">{props.id}</Text>
-    </Flex>
-  </SortableItem>
-);
+const SortableItemDemo: React.FC<ISortableItemDemoProps> = (props) => {
+  const {
+    index: _index,
+    pending: _pending,
+    itemPending,
+    disabled,
+    ...other
+  } = props;
+
+  return (
+    <SortableItem as={Card} shape="$xs" fixed={disabled} {...other}>
+      <Flex align="center" justify="center" h="100%">
+        <Text variant="label">{props.id}</Text>
+        <Box pos="absolute">
+          {itemPending && <IndeterminateCircularProgressIndicator fz="24px" />}
+        </Box>
+      </Flex>
+    </SortableItem>
+  );
+};
 
 type ISortableDemoProps = ISortableProps;
 
@@ -45,7 +63,7 @@ const SortableSingleAxisDemo: React.FC<ISortableDemoProps> = (props) => {
   const handleChange = useCallback(
     (value: Array<string>) => {
       setValue(value);
-      props.onChange?.(value);
+      return props.onChange?.(value);
     },
     [props],
   );
@@ -87,7 +105,6 @@ const SortableGridDemo: React.FC<ISortableDemoProps> = (props) => {
         p="$lg"
         cols={3}
         spacing="$sm"
-        verticalSpacing="$sm"
         {...props}
         onChange={handleChange}
       />
@@ -98,14 +115,42 @@ const SortableGridDemo: React.FC<ISortableDemoProps> = (props) => {
   );
 };
 
-export const Horizontal: IStory = {
+export const OptimisticWithSuccess: IStory = {
   render: (props) => <SortableSingleAxisDemo {...props} />,
   args: {
     ...defaultArgs,
     axis: 'horizontal',
-    itemRenderer: ({ id, disabled }: ISortableItemRenderProps) => (
-      <SortableItemDemo key={id} id={id} fixed={disabled} w="64px" h="96px" />
+    itemRenderer: (props) => (
+      <SortableItemDemo key={props.id} {...props} w="64px" h="96px" />
     ),
+    onChange: () => delay(2000),
+  },
+};
+
+export const OptimisticWithFailure: IStory = {
+  render: (props) => <SortableSingleAxisDemo {...props} />,
+  args: {
+    ...defaultArgs,
+    axis: 'horizontal',
+    itemRenderer: (props) => (
+      <SortableItemDemo key={props.id} {...props} w="64px" h="96px" />
+    ),
+    onChange: async () => {
+      await delay(2000);
+      throw new Error('Failed');
+    },
+  },
+};
+
+export const MinChangeDuration: IStory = {
+  render: (props) => <SortableSingleAxisDemo {...props} />,
+  args: {
+    ...defaultArgs,
+    axis: 'horizontal',
+    itemRenderer: (props) => (
+      <SortableItemDemo key={props.id} {...props} w="64px" h="96px" />
+    ),
+    minChangeDuration: 600,
   },
 };
 
@@ -114,8 +159,8 @@ export const Vertical: IStory = {
   args: {
     ...defaultArgs,
     axis: 'vertical',
-    itemRenderer: ({ id, disabled }: ISortableItemRenderProps) => (
-      <SortableItemDemo key={id} id={id} fixed={disabled} w="96px" h="64px" />
+    itemRenderer: (props) => (
+      <SortableItemDemo key={props.id} {...props} w="96px" h="64px" />
     ),
   },
 };
@@ -124,8 +169,8 @@ export const Grid: IStory = {
   render: (props) => <SortableGridDemo {...props} />,
   args: {
     ...defaultArgs,
-    itemRenderer: ({ id, disabled }: ISortableItemRenderProps) => (
-      <SortableItemDemo key={id} id={id} fixed={disabled} h="64px" expanded />
+    itemRenderer: (props) => (
+      <SortableItemDemo key={props.id} {...props} h="64px" expanded />
     ),
   },
 };

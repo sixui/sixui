@@ -28,9 +28,12 @@ import type { ISortableFactory, ISortableItem } from './Sortable.types';
 import { Box } from '~/components/Box';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component';
+import { executeLazyPromise } from '~/utils/executeLazyPromise';
 import { COMPONENT_NAME } from './Sortable.constants';
 import { SortableContextProvider } from './Sortable.context';
 import { sortableTheme } from './Sortable.css';
+
+type IPendingChange = { oldIndex: number; newIndex: number };
 
 export const Sortable = polymorphicComponentFactory<ISortableFactory>(
   (props, forwardedRef) => {
@@ -43,7 +46,7 @@ export const Sortable = polymorphicComponentFactory<ISortableFactory>(
       axis,
       initialValue = [],
       onChange,
-      minDelay,
+      minChangeDuration,
       disabled,
       startSlot,
       endSlot,
@@ -67,6 +70,10 @@ export const Sortable = polymorphicComponentFactory<ISortableFactory>(
     };
 
     const [dragging, setDragging] = useState(false);
+    const [pending, setPending] = useState(false);
+    const [items, setItems] = useState<Array<ISortableItem>>(
+      initialValue.map((id) => ({ id, pending: false })),
+    );
 
     const mouseSensor = useSensor(MouseSensor, {
       activationConstraint,
@@ -78,10 +85,7 @@ export const Sortable = polymorphicComponentFactory<ISortableFactory>(
       coordinateGetter: sortableKeyboardCoordinates,
     });
     const sensors = useSensors(mouseSensor, touchSensor, keyboardSensor);
-    const [items, setItems] = useState<Array<ISortableItem>>(
-      initialValue.map((id) => ({ id, pending: false })),
-    );
-    const pendingChangesCountRef = useRef(0);
+    const pendingChangesRef = useRef<Array<IPendingChange>>([]);
     const lastChangeRef = useRef<IMaybeAsync<unknown>>(undefined);
     const lastValidItemsRef = useRef(items);
 
@@ -103,7 +107,7 @@ export const Sortable = polymorphicComponentFactory<ISortableFactory>(
           return;
         }
 
-        pendingChangesCountRef.current++;
+        pendingChangesRef.current.push({ oldIndex, newIndex });
 
         const reorderedItems = arrayMove(items, oldIndex, newIndex);
         const reorderedIds = reorderedItems.map(({ id }) => id);
@@ -115,11 +119,19 @@ export const Sortable = polymorphicComponentFactory<ISortableFactory>(
         );
 
         lastChangeRef.current = Promise.resolve(lastChangeRef.current)
-          .then(() =>
-            Promise.all([
-              onChange?.(reorderedIds),
-              minDelay ? delay(minDelay) : undefined,
-            ]),
+          .then(
+            () =>
+              new Promise((resolve, reject) => {
+                Promise.all([
+                  executeLazyPromise(
+                    () => onChange?.(reorderedIds),
+                    setPending,
+                  ),
+                  minChangeDuration ? delay(minChangeDuration) : undefined,
+                ])
+                  .then(resolve)
+                  .catch(reject);
+              }),
           )
           .then(() => {
             lastValidItemsRef.current = reorderedItems;
@@ -133,8 +145,8 @@ export const Sortable = polymorphicComponentFactory<ISortableFactory>(
             );
           })
           .finally(() => {
-            pendingChangesCountRef.current--;
-            if (pendingChangesCountRef.current <= 0) {
+            pendingChangesRef.current.shift();
+            if (pendingChangesRef.current.length <= 0) {
               setItems(
                 lastValidItemsRef.current.map((item) => ({
                   ...item,
@@ -144,7 +156,7 @@ export const Sortable = polymorphicComponentFactory<ISortableFactory>(
             }
           });
       },
-      [onChange, items, minDelay],
+      [onChange, items, minChangeDuration],
     );
 
     const contextValue = useMemo(
@@ -194,7 +206,16 @@ export const Sortable = polymorphicComponentFactory<ISortableFactory>(
               disabled={disabled}
             >
               {items.map((item, index) =>
-                itemRenderer({ ...item, index, disabled }),
+                itemRenderer({
+                  ...item,
+                  index,
+                  pending,
+                  itemPending: pendingChangesRef.current.some(
+                    ({ oldIndex, newIndex }) =>
+                      oldIndex === index || newIndex === index,
+                  ),
+                  disabled,
+                }),
               )}
             </SortableContext>
 

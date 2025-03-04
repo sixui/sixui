@@ -14,6 +14,8 @@ export interface ISortableItem {
 
 export interface ISortableItemRenderProps extends ISortableItem {
   index: number;
+  pending?: boolean;
+  itemPending?: boolean;
   disabled?: boolean;
 }
 
@@ -21,7 +23,7 @@ export interface ISortableOwnProps {
   axis?: 'horizontal' | 'vertical';
   initialValue?: Array<string>;
   onChange?: (value: Array<string>) => IMaybeAsync<unknown>;
-  minDelay?: number;
+  minChangeDuration?: number;
   disabled?: boolean;
   startSlot?: React.ReactNode;
   endSlot?: React.ReactNode;

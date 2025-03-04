@@ -16,7 +16,7 @@ export interface ISimpleGridInlineStylesProps extends ISimpleGridOwnProps {
 export const SimpleGridInlineStyles: React.FC<ISimpleGridInlineStylesProps> = (
   props,
 ) => {
-  const { cols, spacing, verticalSpacing, ...other } = props;
+  const { selector, cols, spacing, verticalSpacing } = props;
 
   const { theme } = useThemeContext();
 
@@ -35,6 +35,7 @@ export const SimpleGridInlineStyles: React.FC<ISimpleGridInlineStylesProps> = (
 
   return (
     <InlineStyles
+      selector={selector}
       styles={assignInlineVars({
         [simpleGridTheme.tokens.cols]: getStylePropBaseValue(cols)?.toString(),
         [simpleGridTheme.tokens.horizontalSpacing]: spacingTokenValue,
@@ -66,7 +67,6 @@ export const SimpleGridInlineStyles: React.FC<ISimpleGridInlineStylesProps> = (
         ],
         [],
       )}
-      {...other}
     />
   );
 };
