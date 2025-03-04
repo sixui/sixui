@@ -6,7 +6,6 @@ import type { ITabsTabVariant } from './TabsTab.types';
 import { Button } from '~/components/Button';
 import { FocusRing } from '~/components/FocusRing';
 import { StateLayer } from '~/components/StateLayer';
-import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { createStyles } from '~/utils/css/createStyles';
@@ -16,6 +15,7 @@ import { overrideTokens } from '~/utils/css/overrideTokens';
 import { px } from '~/utils/css/px';
 import { space } from '~/utils/css/space';
 import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
+import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './TabsTab.constants';
 
 type IModifier =

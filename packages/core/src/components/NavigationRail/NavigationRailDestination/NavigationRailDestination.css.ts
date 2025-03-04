@@ -5,7 +5,6 @@ import type { IComponentThemeFactory } from '~/utils/component/componentThemeFac
 import { ButtonBase } from '~/components/ButtonBase';
 import { PaperBase } from '~/components/PaperBase';
 import { StateLayer } from '~/components/StateLayer';
-import { themeTokens } from '~/components/Theme';
 import { IInteraction } from '~/hooks/useInteractions';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
@@ -16,6 +15,7 @@ import { overrideTokens } from '~/utils/css/overrideTokens';
 import { px } from '~/utils/css/px';
 import { space } from '~/utils/css/space';
 import { typography } from '~/utils/css/typography';
+import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './NavigationRailDestination.constants';
 
 type IModifier = IInteraction | 'disabled' | 'active' | 'icon-only';

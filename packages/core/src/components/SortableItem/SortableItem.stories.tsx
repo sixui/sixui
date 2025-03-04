@@ -6,8 +6,8 @@ import type { ISortableItemProps } from './SortableItem.types';
 import { Card } from '~/components/Card';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Flex } from '~/components/Flex';
-import { themeTokens } from '~/components/Theme';
 import { px } from '~/utils/css';
+import { themeTokens } from '~/components/Theme/theme.css';
 import { SortableItem } from './SortableItem';
 
 const meta = {

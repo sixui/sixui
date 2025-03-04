@@ -1,5 +1,5 @@
-import { themeTokens } from '~/components/Theme';
 import { createStyles } from '~/utils/css/createStyles';
+import { themeTokens } from '~/components/Theme/theme.css';
 
 export const floatingFilterableListBaseClassNames = createStyles({
   floating: {

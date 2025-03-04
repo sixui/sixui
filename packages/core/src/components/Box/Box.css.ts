@@ -2,13 +2,13 @@ import { style } from '@vanilla-extract/css';
 import { createRainbowSprinkles, defineProperties } from 'rainbow-sprinkles';
 
 import {
-  cssLayers,
   IThemeWindowSizeClassName,
-  themeTokens,
   windowSizeClassNames,
 } from '~/components/Theme';
 import { modifierSelector } from '~/utils/css/modifierSelector';
 import { responsiveContainerQuery } from '~/utils/css/responsiveContainerQuery';
+import { cssLayers } from '~/components/Theme/cssLayers.css';
+import { themeTokens } from '~/components/Theme/theme.css';
 
 type IModifier = 'scale';
 

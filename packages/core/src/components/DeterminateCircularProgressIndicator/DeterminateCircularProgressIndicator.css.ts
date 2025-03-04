@@ -4,7 +4,6 @@ import cx from 'clsx';
 
 import type { ICircularProgressIndicatorModifier } from '~/components/CircularProgressIndicator/CircularProgressIndicator.css';
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
-import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { em, getVarNameFromToken } from '~/utils/css';
@@ -14,6 +13,7 @@ import { modifierSelector } from '~/utils/css/modifierSelector';
 import { typography } from '~/utils/css/typography';
 import { deepMerge } from '~/utils/deepMerge';
 import { circularProgressIndicatorTheme } from '~/components/CircularProgressIndicator/CircularProgressIndicator.css';
+import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './DeterminateCircularProgressIndicator.constants';
 
 type IModifier = ICircularProgressIndicatorModifier;

@@ -1,7 +1,6 @@
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
-import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { overrideTokens, space } from '~/utils/css';
@@ -9,6 +8,7 @@ import { createStyles } from '~/utils/css/createStyles';
 import { modifierSelector } from '~/utils/css/modifierSelector';
 import { px } from '~/utils/css/px';
 import { responsiveContainerQuery } from '~/utils/css/responsiveContainerQuery';
+import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './Snackbar.constants';
 import { SnackbarContent } from './SnackbarContent';
 

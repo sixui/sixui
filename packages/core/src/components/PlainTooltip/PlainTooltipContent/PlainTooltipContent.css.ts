@@ -1,6 +1,5 @@
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { PaperBase } from '~/components/PaperBase';
-import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { createStyles } from '~/utils/css/createStyles';
@@ -9,6 +8,7 @@ import { px } from '~/utils/css/px';
 import { space } from '~/utils/css/space';
 import { typography } from '~/utils/css/typography';
 import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
+import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './PlainTooltipContent.constants';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {

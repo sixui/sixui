@@ -5,7 +5,7 @@ import type { IHtmlSelectThemeFactory } from './HtmlSelect.css';
 import type { IHtmlSelectFactory, IHtmlSelectOption } from './HtmlSelect.types';
 import { iconTriangleDown } from '~/assets/icons';
 import { FieldBase } from '~/components/FieldBase';
-import { useLabeledContext } from '~/components/Labeled';
+import { useLabeledContext } from '~/components/Labeled/Labeled.context';
 import { SvgIcon } from '~/components/SvgIcon';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { useMergeRefs } from '~/hooks/useMergeRefs';

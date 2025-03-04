@@ -4,10 +4,10 @@ import cx from 'clsx';
 
 import type { IWithAsProp } from '~/utils/component/createPolymorphicComponent';
 import type { IBoxProps } from './Box.types';
-import { themeTokens } from '~/components/Theme';
 import { createPolymorphicComponent } from '~/utils/component/createPolymorphicComponent';
 import { getDataAttributes } from '~/utils/getDataAttributes';
 import { mergeProps } from '~/utils/mergeProps';
+import { themeTokens } from '~/components/Theme/theme.css';
 import { boxSprinkles, styles } from './Box.css';
 
 export const Box = createPolymorphicComponent<'div', IBoxProps>(

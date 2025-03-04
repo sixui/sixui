@@ -3,8 +3,8 @@ import { createSequence } from '@olivierpascal/helpers';
 
 import type { ISimpleGridProps } from './SimpleGrid.types';
 import { Placeholder } from '~/components/Placeholder';
-import { themeTokens } from '~/components/Theme';
 import { px } from '~/utils/css';
+import { themeTokens } from '~/components/Theme/theme.css';
 import { SimpleGrid } from './SimpleGrid';
 
 const meta = {

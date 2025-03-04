@@ -1,5 +1,5 @@
 import { useThemeContext } from '~/components/Theme/Theme.context';
-import { getWindowSizeClassRanges } from '~/utils/css';
+import { getWindowSizeClassRanges } from '~/utils/css/getWindowSizeClassRanges';
 import { getSizesCssStyles } from '../utils/getSizesCssStyles';
 import { getVisibilityCssStyles } from '../utils/getVisibilityCssStyles';
 

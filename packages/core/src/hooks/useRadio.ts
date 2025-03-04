@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 
 import type { IMaybeAsync } from '~/utils/types';
-import { useLabeledContext } from '~/components/Labeled';
+import { useLabeledContext } from '~/components/Labeled/Labeled.context';
 import { useRadioGroupContext } from '~/components/Radio/RadioGroup/RadioGroup.context';
 import { executeLazyPromise } from '~/utils/executeLazyPromise';
 

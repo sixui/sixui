@@ -1,13 +1,13 @@
 import type { IInteraction } from '~/hooks/useInteractions';
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { Elevation } from '~/components/Elevation';
-import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { createStyles } from '~/utils/css/createStyles';
 import { modifierSelector } from '~/utils/css/modifierSelector';
 import { px } from '~/utils/css/px';
 import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
+import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './PaperBase.constants';
 
 type IModifier = IInteraction | 'expanded';

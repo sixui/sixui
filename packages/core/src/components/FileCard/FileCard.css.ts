@@ -1,6 +1,5 @@
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { Card } from '~/components/Card';
-import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { em, space, typography } from '~/utils/css';
@@ -8,6 +7,7 @@ import { createStyles } from '~/utils/css/createStyles';
 import { modifierSelector } from '~/utils/css/modifierSelector';
 import { overrideTokens } from '~/utils/css/overrideTokens';
 import { px } from '~/utils/css/px';
+import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './FileCard.constants';
 
 type IModifier =

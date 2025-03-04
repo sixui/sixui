@@ -1,7 +1,7 @@
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { ISpacingProp } from '~/components/Box';
-import { themeTokens } from '~/components/Theme';
+import { themeTokens } from '~/components/Theme/theme.css';
 
 export const space = (spacing: ISpacingProp, density?: string): string => {
   const size = spacing.startsWith('$')

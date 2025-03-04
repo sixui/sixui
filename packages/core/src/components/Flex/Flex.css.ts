@@ -1,7 +1,6 @@
 import { createRainbowSprinkles, defineProperties } from 'rainbow-sprinkles';
 
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
-import { cssLayers, themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { space } from '~/utils/css';
@@ -9,6 +8,8 @@ import { createStyles } from '~/utils/css/createStyles';
 import { density } from '~/utils/css/density';
 import { px } from '~/utils/css/px';
 import { keys } from '~/utils/keys';
+import { cssLayers } from '~/components/Theme/cssLayers.css';
+import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './Flex.constants';
 
 const DENSITY = px(density({ min: -9, max: 0 }));

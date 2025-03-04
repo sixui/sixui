@@ -1,9 +1,9 @@
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
-import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { createStyles } from '~/utils/css/createStyles';
 import { modifierSelector } from '~/utils/css/modifierSelector';
+import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './Expandable.constants';
 
 type IModifier = 'disabled' | 'expanded' | 'orientation';

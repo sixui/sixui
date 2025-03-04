@@ -13,7 +13,7 @@ import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 import type { ITopAppBarProps } from './TopAppBar.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Menu } from '~/components/Menu';
-import { themeTokens } from '~/components/Theme';
+import { themeTokens } from '~/components/Theme/theme.css';
 import { IconButton } from '../IconButton';
 import { TopAppBar } from './TopAppBar';
 import { topAppBarVariants } from './TopAppBar.types';

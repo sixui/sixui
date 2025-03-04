@@ -1,8 +1,8 @@
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
-import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { createStyles } from '~/utils/css/createStyles';
+import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './TouchTarget.constants';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {

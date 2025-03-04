@@ -1,4 +1,4 @@
-import { globalLayer, style } from '@vanilla-extract/css';
+import { globalLayer } from '@vanilla-extract/css';
 
 export const cssLayers = {
   reset: globalLayer('sixui-reset'),
@@ -6,10 +6,4 @@ export const cssLayers = {
   theme: globalLayer('sixui-theme'),
   components: globalLayer('sixui-components'),
   sprinkles: globalLayer('sixui-sprinkles'),
-};
-
-export const classNames = {
-  root: style({
-    display: 'contents',
-  }),
 };

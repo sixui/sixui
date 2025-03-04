@@ -1,12 +1,12 @@
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
-import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { createStyles } from '~/utils/css/createStyles';
 import { px } from '~/utils/css/px';
 import { space } from '~/utils/css/space';
+import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './Breadcrumbs.constants';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {

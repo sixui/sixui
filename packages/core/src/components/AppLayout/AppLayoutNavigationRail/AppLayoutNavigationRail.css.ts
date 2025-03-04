@@ -4,13 +4,13 @@ import { calc } from '@vanilla-extract/css-utils';
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { NavigationRail } from '~/components/NavigationRail';
 import { StandardAside } from '~/components/StandardAside';
-import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { px } from '~/utils/css';
 import { createStyles } from '~/utils/css/createStyles';
 import { overrideTokens } from '~/utils/css/overrideTokens';
 import { appLayoutTheme } from '~/components/AppLayout/AppLayout.css';
+import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './AppLayoutNavigationRail.constants';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME);

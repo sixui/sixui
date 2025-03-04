@@ -3,8 +3,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { IFrameProps } from './Frame.types';
 import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
-import { themeTokens } from '~/components/Theme';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
+import { themeTokens } from '~/components/Theme/theme.css';
 import { Frame } from './Frame';
 
 const meta = {

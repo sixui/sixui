@@ -1,12 +1,12 @@
 import type { IFieldBaseVariant } from '~/components/FieldBase';
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { FieldBase } from '~/components/FieldBase';
-import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { px } from '~/utils/css';
 import { createStyles } from '~/utils/css/createStyles';
 import { modifierSelector } from '~/utils/css/modifierSelector';
+import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './TextInputField.constants';
 
 type IModifier = 'disabled' | 'with-error' | 'no-spinner';

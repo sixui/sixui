@@ -13,8 +13,8 @@ import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { IconButton } from '~/components/IconButton';
 import { Placeholder } from '~/components/Placeholder';
-import { themeTokens } from '~/components/Theme';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
+import { themeTokens } from '~/components/Theme/theme.css';
 import { PopoverBase } from './PopoverBase';
 
 const meta = {

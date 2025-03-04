@@ -1,8 +1,8 @@
 import type { ComplexStyleRule } from '@vanilla-extract/css';
 import { style } from '@vanilla-extract/css';
 
-import { cssLayers } from '~/components/Theme';
 import { isFunction } from '~/utils/isFunction';
+import { cssLayers } from '~/components/Theme/cssLayers.css';
 
 export const createStyles = <TClassName extends string>(
   stylesObject: Partial<

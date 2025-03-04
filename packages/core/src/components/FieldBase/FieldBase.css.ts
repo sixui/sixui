@@ -5,7 +5,6 @@ import type { IComponentThemeFactory } from '~/utils/component/componentThemeFac
 import type { IFieldBaseVariant } from './FieldBase.types';
 import { PaperBase } from '~/components/PaperBase';
 import { StateLayer } from '~/components/StateLayer';
-import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { createStyles } from '~/utils/css/createStyles';
@@ -15,6 +14,7 @@ import { overrideTokens } from '~/utils/css/overrideTokens';
 import { px } from '~/utils/css/px';
 import { space } from '~/utils/css/space';
 import { typography } from '~/utils/css/typography';
+import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './FieldBase.constants';
 
 type IModifier =

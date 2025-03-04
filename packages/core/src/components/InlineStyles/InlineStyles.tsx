@@ -1,5 +1,5 @@
 import type { IInlineStylesProps } from './InlineStyles.types';
-import { stringFromStyles } from '~/utils/css';
+import { stringFromStyles } from '~/utils/css/stringFromStyles';
 
 export const InlineStyles: React.FC<IInlineStylesProps> = (props) => {
   const css = stringFromStyles(props);

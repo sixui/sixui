@@ -6,7 +6,7 @@ import type {
   IVeMapLeafNodes,
   IVeTokens,
 } from '../css/vanillaExtract.types';
-import { cssLayers } from '~/components/Theme';
+import { cssLayers } from '~/components/Theme/cssLayers.css';
 import { getCssVarName } from '../css/getCssVarName';
 
 const lowercaseFirstLetter = (value: string): string => {

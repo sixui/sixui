@@ -8,13 +8,14 @@ import type {
 import type { IAppLayoutSetterContextValue } from './AppLayoutSetter.context';
 import { Box } from '~/components/Box';
 import { InlineStyles } from '~/components/InlineStyles';
-import { themeTokens, useComponentTheme, useProps } from '~/components/Theme';
+import { useComponentTheme, useProps } from '~/components/Theme';
 import { useDisclosure } from '~/hooks/useDisclosure';
 import { useSet } from '~/hooks/useSet';
 import { useSideSheet } from '~/hooks/useSideSheet';
 import { useWindowSizeClass } from '~/hooks/useWindowSizeClass';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { isFunction } from '~/utils/isFunction';
+import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './AppLayout.constants';
 import { AppLayoutProvider, IAppLayoutContextValue } from './AppLayout.context';
 import { AppLayoutBody } from './AppLayoutBody';

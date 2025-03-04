@@ -1,6 +1,6 @@
 import { calc } from '@vanilla-extract/css-utils';
 
-import { themeTokens } from '~/components/Theme';
+import { themeTokens } from '~/components/Theme/theme.css';
 import { getNumericPixelValue } from './getNumericPixelValue';
 
 export const px = (value: number | string): string => {

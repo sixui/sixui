@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 
 import type { IMaybeAsync } from '~/utils/types';
 import { useCheckboxGroupContext } from '~/components/Checkbox/CheckboxGroup/CheckboxGroup.context';
-import { useLabeledContext } from '~/components/Labeled';
+import { useLabeledContext } from '~/components/Labeled/Labeled.context';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { executeLazyPromise } from '~/utils/executeLazyPromise';
 

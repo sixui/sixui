@@ -1,7 +1,6 @@
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { ButtonBase } from '~/components/ButtonBase';
 import { PaperBase } from '~/components/PaperBase';
-import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { space, typography } from '~/utils/css';
@@ -9,6 +8,7 @@ import { createStyles } from '~/utils/css/createStyles';
 import { modifierSelector } from '~/utils/css/modifierSelector';
 import { overrideTokens } from '~/utils/css/overrideTokens';
 import { px } from '~/utils/css/px';
+import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './DropZone.constants';
 
 type IModifier = 'disabled' | 'dropping' | 'interactive';

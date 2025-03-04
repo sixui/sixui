@@ -1,13 +1,13 @@
 import type { IInteraction } from '~/hooks/useInteractions';
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { IconButton } from '~/components/IconButton';
-import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { modifierSelector } from '~/utils/css';
 import { createStyles } from '~/utils/css/createStyles';
 import { overrideTokens } from '~/utils/css/overrideTokens';
 import { px } from '~/utils/css/px';
+import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './MoveHandle.constants';
 
 type IModifier = IInteraction;

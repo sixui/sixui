@@ -7,7 +7,7 @@ import type { ITextAreaFieldFactory } from './TextAreaField.types';
 import { iconXMark } from '~/assets/icons';
 import { FieldBase } from '~/components/FieldBase';
 import { IconButton } from '~/components/IconButton';
-import { useLabeledContext } from '~/components/Labeled';
+import { useLabeledContext } from '~/components/Labeled/Labeled.context';
 import { SvgIcon } from '~/components/SvgIcon';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { useControlledValue } from '~/hooks/useControlledValue';

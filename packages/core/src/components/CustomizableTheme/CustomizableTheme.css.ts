@@ -1,10 +1,10 @@
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { PaperBase } from '~/components/PaperBase';
-import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { createStyles } from '~/utils/css/createStyles';
 import { overrideTokens } from '~/utils/css/overrideTokens';
+import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './CustomizableTheme.constants';
 
 type IModifier = 'disabled';

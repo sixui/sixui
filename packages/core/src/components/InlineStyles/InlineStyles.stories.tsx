@@ -4,10 +4,10 @@ import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IInlineStylesProps } from './InlineStyles.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Placeholder } from '~/components/Placeholder';
-import { themeTokens } from '~/components/Theme';
 import { useClassName } from '~/hooks/useClassName';
 import { px } from '~/utils/css';
 import { IOmit } from '~/utils/types';
+import { themeTokens } from '~/components/Theme/theme.css';
 import { InlineStyles } from './InlineStyles';
 
 type IInlineStylesDemoProps = IOmit<IInlineStylesProps, 'selector'>;

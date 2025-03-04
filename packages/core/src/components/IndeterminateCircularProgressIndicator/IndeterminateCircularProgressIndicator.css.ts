@@ -2,12 +2,12 @@ import { keyframes } from '@vanilla-extract/css';
 
 import type { ICircularProgressIndicatorModifier } from '~/components/CircularProgressIndicator/CircularProgressIndicator.css';
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
-import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createStyles } from '~/utils/css/createStyles';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { modifierSelector } from '~/utils/css/modifierSelector';
 import { circularProgressIndicatorTheme } from '~/components/CircularProgressIndicator/CircularProgressIndicator.css';
+import { themeTokens } from '~/components/Theme/theme.css';
 
 type IModifier = ICircularProgressIndicatorModifier;
 

@@ -10,16 +10,13 @@ import { OverlaysProvider } from '~/components/Overlays';
 import { useClassName } from '~/hooks/useClassName';
 import { partialAssignInlineVars } from '~/utils/css/partialAssignInlineVars';
 import { deepMerge } from '~/utils/deepMerge';
+import { cssLayers } from '~/components/Theme/cssLayers.css';
 import { ThemeContext } from './Theme.context';
 import { COMPONENT_NAME } from './ThemeProvider.constants';
 import { ThemeSetterProvider } from './ThemeSetter.context';
 import { mergeThemeOverrides } from './utils/mergeThemeOverrides';
-import {
-  classNames,
-  cssLayers,
-  defaultTheme,
-  themeTokens,
-} from './ThemeProvider.css';
+import { defaultTheme, themeTokens } from './theme.css';
+import { classNames } from './ThemeProvider.css';
 
 /**
  * @see https://m3.material.io/styles/color/system/how-the-system-works

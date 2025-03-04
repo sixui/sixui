@@ -2,12 +2,12 @@ import { createVar, fallbackVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
-import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { em, modifierSelector } from '~/utils/css';
 import { createStyles } from '~/utils/css/createStyles';
 import { px } from '~/utils/css/px';
+import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './BurgerIndicator.constants';
 
 type IModifier = 'opened';

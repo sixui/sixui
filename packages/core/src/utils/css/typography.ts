@@ -2,7 +2,7 @@ import type { StyleRule } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IThemeTypeScaleStyle } from '~/components/Theme';
-import { themeTokens } from '~/components/Theme';
+import { themeTokens } from '~/components/Theme/theme.css';
 
 export const typography = (
   typography: IThemeTypeScaleStyle | null,

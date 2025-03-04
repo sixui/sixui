@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IScreenFrameProps } from './ScreenFrame.types';
-import { themeTokens } from '~/components/Theme';
+import { themeTokens } from '~/components/Theme/theme.css';
 import { ScreenFrame } from './ScreenFrame';
 
 const meta = {

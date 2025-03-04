@@ -1,6 +1,6 @@
-import { themeTokens } from '~/components/Theme';
 import { createStyles } from '~/utils/css/createStyles';
 import { responsiveContainerQuery } from '~/utils/css/responsiveContainerQuery';
+import { themeTokens } from '~/components/Theme/theme.css';
 
 export const responsiveStoriesClassNames = createStyles({
   root: {

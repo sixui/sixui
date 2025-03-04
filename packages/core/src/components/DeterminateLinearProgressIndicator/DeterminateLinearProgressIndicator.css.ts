@@ -4,7 +4,6 @@ import cx from 'clsx';
 
 import type { ILinearProgressIndicatorModifier } from '~/components/LinearProgressIndicator/LinearProgressIndicator.css';
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
-import { themeTokens } from '~/components/Theme';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { mergeClassNames, modifierSelector } from '~/utils/css';
@@ -12,6 +11,7 @@ import { createStyles } from '~/utils/css/createStyles';
 import { px } from '~/utils/css/px';
 import { deepMerge } from '~/utils/deepMerge';
 import { linearProgressIndicatorTheme } from '~/components/LinearProgressIndicator/LinearProgressIndicator.css';
+import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './DeterminateLinearProgressIndicator.constants';
 
 type IModifier = ILinearProgressIndicatorModifier;
