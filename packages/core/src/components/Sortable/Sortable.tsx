@@ -205,8 +205,7 @@ export const Sortable = polymorphicComponentFactory<ISortableFactory>(
     const isItemPending = useCallback(
       (id: string): boolean =>
         pendingChangesRef.current.some(
-          ({ activeItem, overItem }) =>
-            activeItem.id === id || overItem.id === id,
+          ({ activeItem }) => activeItem.id === id,
         ),
       [],
     );
