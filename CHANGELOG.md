@@ -1,3 +1,28 @@
+## 1.3.0 (2025-03-04)
+
+### 🚀 Features
+
+- FileCard component ([434808c5](https://github.com/sixui/sixui/commit/434808c5))
+- Sortable, SortableItem, MoveHandle, DragHandle->ResizeHandle, dragged states, new icons ([5dd84669](https://github.com/sixui/sixui/commit/5dd84669))
+- Sortable, SortableItem, MoveHandle, DragHandle->ResizeHandle, dragged states, new icons ([5f1e7b5d](https://github.com/sixui/sixui/commit/5f1e7b5d))
+- InlineStyles, SimpleGrid, Sortable ; new spacing values ([d9ed4ff2](https://github.com/sixui/sixui/commit/d9ed4ff2))
+- Sortable: optimistic change and min duration stories ([c9fe581b](https://github.com/sixui/sixui/commit/c9fe581b))
+- Sortable: deletable stories ([01bf0920](https://github.com/sixui/sixui/commit/01bf0920))
+- CustomizableTheme: responsive ([59cdd6c6](https://github.com/sixui/sixui/commit/59cdd6c6))
+
+### 🩹 Fixes
+
+- LinearProgressIndicator stories ([856f53a1](https://github.com/sixui/sixui/commit/856f53a1))
+- Placeholder shape ([ffaacaa4](https://github.com/sixui/sixui/commit/ffaacaa4))
+- DeterminateLinearProgressIndicator stop indicator style ([17529bb8](https://github.com/sixui/sixui/commit/17529bb8))
+- non-interactive buttons ([5f2f432e](https://github.com/sixui/sixui/commit/5f2f432e))
+- FileCard styles ([9feb73b5](https://github.com/sixui/sixui/commit/9feb73b5))
+- build ([9fad8cc1](https://github.com/sixui/sixui/commit/9fad8cc1))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 1.2.0 (2025-02-27)
 
 ### 🚀 Features
