@@ -91,6 +91,7 @@ export const CustomizableTheme = componentFactory<ICustomizableThemeFactory>(
               onChange={(event) => {
                 setScale(event.target.value);
               }}
+              visibleFrom="medium"
             />
             <TextInputField
               w="96px"
@@ -101,6 +102,7 @@ export const CustomizableTheme = componentFactory<ICustomizableThemeFactory>(
               onChange={(event) => {
                 setDensity(event.target.value);
               }}
+              visibleFrom="medium"
             />
             <TextInputField
               w="128px"
@@ -113,6 +115,7 @@ export const CustomizableTheme = componentFactory<ICustomizableThemeFactory>(
                 setMinTargetSize(event.target.value);
               }}
               disabled={Number(density) < 0}
+              visibleFrom="medium"
             />
           </Flex>
 
