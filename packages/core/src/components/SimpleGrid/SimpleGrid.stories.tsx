@@ -17,6 +17,7 @@ const defaultArgs = {
   bd: `1px solid ${themeTokens.colorScheme.outlineVariant}`,
   br: px(themeTokens.shape.corner.sm),
   p: '$lg',
+  w: 'max-content',
 } satisfies Partial<ISimpleGridProps>;
 
 export const Basic: IStory = {
@@ -34,7 +35,8 @@ export const Basic: IStory = {
       <Placeholder
         key={index}
         label={index + 1}
-        h="64px"
+        h="96px"
+        w="64px"
         shape="$sm"
         expanded
       />

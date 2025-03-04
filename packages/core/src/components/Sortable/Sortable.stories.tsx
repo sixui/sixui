@@ -104,6 +104,10 @@ const SortableSingleAxisDemo: React.FC<ISortableDemoProps> = (props) => {
         value={value}
         axis={axis}
         onChange={handleChange}
+        bd={`1px solid ${themeTokens.colorScheme.outlineVariant}`}
+        br="$sm"
+        p="$lg"
+        w="min-content"
         {...other}
       />
       <Flex direction="row" gap="$sm" align="center">
@@ -131,7 +135,7 @@ const SortableGridDemo: React.FC<ISortableDemoProps> = (props) => {
     <Flex direction="column" gap="$xl">
       <Sortable
         as={SimpleGrid}
-        w="320px"
+        w="max-content"
         bd={`1px solid ${themeTokens.colorScheme.outlineVariant}`}
         br="$sm"
         p="$lg"
@@ -220,7 +224,7 @@ export const Grid: IStory = {
   args: {
     ...defaultArgs,
     itemRenderer: (props) => (
-      <SortableItemDemo key={props.id} {...props} h="64px" expanded />
+      <SortableItemDemo key={props.id} {...props} w="64px" h="96px" expanded />
     ),
   },
 };
