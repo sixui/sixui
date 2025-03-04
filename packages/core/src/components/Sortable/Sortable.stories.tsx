@@ -71,9 +71,8 @@ const SortableItemDemo: React.FC<ISortableItemDemoProps> = (props) => {
           }}
         >
           <IconButton
-            variant="danger"
             icon={<FontAwesomeIcon icon={faXmark} />}
-            onClick={onDelete}
+            onClick={() => delay(600).then(() => onDelete?.())}
           />
         </Box>
       )}
