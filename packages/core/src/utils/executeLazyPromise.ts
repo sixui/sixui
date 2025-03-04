@@ -21,7 +21,9 @@ export const executeLazyPromise = (
   };
 
   if (!options.minDuration) {
-    return Promise.resolve(maybePromise());
+    return Promise.resolve(maybePromise()).catch((error: unknown) => {
+      throw error;
+    });
   }
 
   const timeout = setTimeout(() => {
@@ -34,10 +36,12 @@ export const executeLazyPromise = (
         onLoadingChange(false);
       }
     })
-    .catch(() => {
+    .catch((error: unknown) => {
       if (options.resetEvent === 'error') {
         onLoadingChange(false);
       }
+
+      throw error;
     })
     .finally(() => {
       clearTimeout(timeout);

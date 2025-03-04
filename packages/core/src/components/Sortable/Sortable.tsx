@@ -1,5 +1,5 @@
 import type { DragEndEvent } from '@dnd-kit/core';
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   closestCenter,
   DndContext,
@@ -33,7 +33,18 @@ import { COMPONENT_NAME } from './Sortable.constants';
 import { SortableContextProvider } from './Sortable.context';
 import { sortableTheme } from './Sortable.css';
 
-type IPendingChange = { oldIndex: number; newIndex: number };
+type IPendingChange = {
+  activeItem: {
+    id: string;
+    oldIndex: number;
+    newIndex: number;
+  };
+  overItem: {
+    id: string;
+    oldIndex: number;
+    newIndex: number;
+  };
+};
 
 export const Sortable = polymorphicComponentFactory<ISortableFactory>(
   (props, forwardedRef) => {
@@ -44,7 +55,7 @@ export const Sortable = polymorphicComponentFactory<ISortableFactory>(
       style,
       variant,
       axis,
-      initialValue = [],
+      value = [],
       onChange,
       minChangeDuration,
       disabled,
@@ -72,7 +83,7 @@ export const Sortable = polymorphicComponentFactory<ISortableFactory>(
     const [dragging, setDragging] = useState(false);
     const [pending, setPending] = useState(false);
     const [items, setItems] = useState<Array<ISortableItem>>(
-      initialValue.map((id) => ({ id, pending: false })),
+      value.map((id) => ({ id })),
     );
 
     const mouseSensor = useSensor(MouseSensor, {
@@ -89,6 +100,16 @@ export const Sortable = polymorphicComponentFactory<ISortableFactory>(
     const lastChangeRef = useRef<IMaybeAsync<unknown>>(undefined);
     const lastValidItemsRef = useRef(items);
 
+    // Update items when initialValue changes.
+    useEffect(() => {
+      setItems((items) =>
+        value.map((id) => ({
+          id,
+          pending: items.some((item) => item.id === id && item.pending),
+        })),
+      );
+    }, [value]);
+
     const handleDragEnd = useCallback(
       (event: DragEndEvent) => {
         setDragging(false);
@@ -99,15 +120,29 @@ export const Sortable = polymorphicComponentFactory<ISortableFactory>(
           return;
         }
 
+        const activeId = active.id as string;
+        const overId = over.id as string;
+
         const ids = items.map(({ id }) => id);
-        const oldIndex = ids.indexOf(active.id as string);
-        const newIndex = ids.indexOf(over.id as string);
+        const oldIndex = ids.indexOf(activeId);
+        const newIndex = ids.indexOf(overId);
         if (oldIndex < 0 || newIndex < 0) {
           // Invalid state.
           return;
         }
 
-        pendingChangesRef.current.push({ oldIndex, newIndex });
+        pendingChangesRef.current.push({
+          activeItem: {
+            id: activeId,
+            oldIndex,
+            newIndex,
+          },
+          overItem: {
+            id: overId,
+            oldIndex: newIndex,
+            newIndex: oldIndex,
+          },
+        });
 
         const reorderedItems = arrayMove(items, oldIndex, newIndex);
         const reorderedIds = reorderedItems.map(({ id }) => id);
@@ -167,6 +202,22 @@ export const Sortable = polymorphicComponentFactory<ISortableFactory>(
       [axis, dragging],
     );
 
+    const isItemPending = useCallback(
+      (id: string): boolean =>
+        pendingChangesRef.current.some(
+          ({ activeItem, overItem }) =>
+            activeItem.id === id || overItem.id === id,
+        ),
+      [],
+    );
+
+    const handleDelete = useCallback(
+      (id: string) => {
+        onChange?.(items.filter((item) => item.id !== id).map(({ id }) => id));
+      },
+      [items, onChange],
+    );
+
     return (
       <SortableContextProvider value={contextValue}>
         <Box {...getStyles('root')} ref={forwardedRef} {...other}>
@@ -210,11 +261,11 @@ export const Sortable = polymorphicComponentFactory<ISortableFactory>(
                   ...item,
                   index,
                   pending,
-                  itemPending: pendingChangesRef.current.some(
-                    ({ oldIndex, newIndex }) =>
-                      oldIndex === index || newIndex === index,
-                  ),
+                  itemPending: isItemPending(item.id),
                   disabled,
+                  onDelete: () => {
+                    handleDelete(item.id);
+                  },
                 }),
               )}
             </SortableContext>

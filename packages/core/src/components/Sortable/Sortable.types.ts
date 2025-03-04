@@ -17,11 +17,12 @@ export interface ISortableItemRenderProps extends ISortableItem {
   pending?: boolean;
   itemPending?: boolean;
   disabled?: boolean;
+  onDelete?: () => IMaybeAsync<unknown>;
 }
 
 export interface ISortableOwnProps {
   axis?: 'horizontal' | 'vertical';
-  initialValue?: Array<string>;
+  value?: Array<string>;
   onChange?: (value: Array<string>) => IMaybeAsync<unknown>;
   minChangeDuration?: number;
   disabled?: boolean;

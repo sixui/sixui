@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useCallback, useState } from 'react';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { delay } from '@olivierpascal/helpers';
 
 import type { ISortableItemProps } from '~/components/SortableItem';
@@ -16,6 +18,8 @@ import { SortableItem } from '~/components/SortableItem';
 import { Text } from '~/components/Text';
 import { themeTokens } from '~/components/Theme';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
+import { Button } from '../Button';
+import { IconButton } from '../IconButton';
 import { IndeterminateCircularProgressIndicator } from '../IndeterminateCircularProgressIndicator';
 import { Sortable } from './Sortable';
 
@@ -26,13 +30,15 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  initialValue: ['1', '2', '3', '4'],
+  value: ['1', '2', '3', '4'],
   onChange: (...args) => sbHandleEvent('onChange', ...args),
 } satisfies Partial<ISortableProps>;
 
 interface ISortableItemDemoProps
   extends IOmit<ISortableItemProps, 'children'>,
-    ISortableItemRenderProps {}
+    ISortableItemRenderProps {
+  deletable?: boolean;
+}
 
 const SortableItemDemo: React.FC<ISortableItemDemoProps> = (props) => {
   const {
@@ -40,6 +46,8 @@ const SortableItemDemo: React.FC<ISortableItemDemoProps> = (props) => {
     pending: _pending,
     itemPending,
     disabled,
+    deletable,
+    onDelete,
     ...other
   } = props;
 
@@ -51,6 +59,24 @@ const SortableItemDemo: React.FC<ISortableItemDemoProps> = (props) => {
           {itemPending && <IndeterminateCircularProgressIndicator fz="24px" />}
         </Box>
       </Flex>
+      {deletable && (
+        <Box
+          scale="sm"
+          style={{
+            position: 'absolute',
+            bottom: '4px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 1,
+          }}
+        >
+          <IconButton
+            variant="danger"
+            icon={<FontAwesomeIcon icon={faXmark} />}
+            onClick={onDelete}
+          />
+        </Box>
+      )}
     </SortableItem>
   );
 };
@@ -58,34 +84,40 @@ const SortableItemDemo: React.FC<ISortableItemDemoProps> = (props) => {
 type ISortableDemoProps = ISortableProps;
 
 const SortableSingleAxisDemo: React.FC<ISortableDemoProps> = (props) => {
-  const [value, setValue] = useState(props.initialValue ?? []);
+  const { value: initialValue, onChange, axis, ...other } = props;
+  const [value, setValue] = useState(initialValue ?? []);
 
   const handleChange = useCallback(
     (value: Array<string>) => {
       setValue(value);
-      return props.onChange?.(value);
+      return onChange?.(value);
     },
-    [props],
+    [onChange],
   );
 
   return (
     <Flex direction="column" gap="$xl">
       <Sortable
         as={Flex}
-        direction={props.axis === 'horizontal' ? 'row' : 'column'}
+        direction={axis === 'vertical' ? 'column' : 'row'}
         gap="$sm"
-        {...props}
+        value={value}
+        axis={axis}
         onChange={handleChange}
+        {...other}
       />
-      {!props.disabled && (
-        <Text variant="label">Order: {value.join(', ')}</Text>
-      )}
+      <Flex direction="row" gap="$sm" align="center">
+        <Button onClick={() => handleChange(initialValue ?? [])}>Reset</Button>
+        {!props.disabled && (
+          <Text variant="label">Order: {value.join(', ')}</Text>
+        )}
+      </Flex>
     </Flex>
   );
 };
 
 const SortableGridDemo: React.FC<ISortableDemoProps> = (props) => {
-  const [value, setValue] = useState(props.initialValue ?? []);
+  const [value, setValue] = useState(props.value ?? []);
 
   const handleChange = useCallback(
     (value: Array<string>) => {
@@ -119,7 +151,6 @@ export const OptimisticWithSuccess: IStory = {
   render: (props) => <SortableSingleAxisDemo {...props} />,
   args: {
     ...defaultArgs,
-    axis: 'horizontal',
     itemRenderer: (props) => (
       <SortableItemDemo key={props.id} {...props} w="64px" h="96px" />
     ),
@@ -131,7 +162,6 @@ export const OptimisticWithFailure: IStory = {
   render: (props) => <SortableSingleAxisDemo {...props} />,
   args: {
     ...defaultArgs,
-    axis: 'horizontal',
     itemRenderer: (props) => (
       <SortableItemDemo key={props.id} {...props} w="64px" h="96px" />
     ),
@@ -146,11 +176,31 @@ export const MinChangeDuration: IStory = {
   render: (props) => <SortableSingleAxisDemo {...props} />,
   args: {
     ...defaultArgs,
-    axis: 'horizontal',
     itemRenderer: (props) => (
       <SortableItemDemo key={props.id} {...props} w="64px" h="96px" />
     ),
     minChangeDuration: 600,
+  },
+};
+
+export const Deletable: IStory = {
+  render: (props) => <SortableSingleAxisDemo {...props} />,
+  args: {
+    ...defaultArgs,
+    itemRenderer: (props) => (
+      <SortableItemDemo key={props.id} {...props} w="64px" h="96px" deletable />
+    ),
+  },
+};
+
+export const Horizontal: IStory = {
+  render: (props) => <SortableSingleAxisDemo {...props} />,
+  args: {
+    ...defaultArgs,
+    axis: 'horizontal',
+    itemRenderer: (props) => (
+      <SortableItemDemo key={props.id} {...props} w="64px" h="96px" />
+    ),
   },
 };
 
