@@ -1,16 +1,13 @@
-import { Fragment, useCallback } from 'react';
+import { useCallback } from 'react';
 import { FileRejection, useDropzone } from 'react-dropzone';
 
-import type { IFileCardProps } from '~/components/FileCard';
 import type { IMaybeAsync } from '~/utils/types';
 import type { IFileDropZoneThemeFactory } from './FileDropZone.css';
 import type { IFileDropZoneFactory } from './FileDropZone.types';
-import { iconArrowDownTray, iconArrowUpTray } from '~/assets/icons';
+import { iconArrowUpTray } from '~/assets/icons';
 import { Box } from '~/components/Box';
 import { Button } from '~/components/Button';
 import { DropZone } from '~/components/DropZone';
-import { FileCard } from '~/components/FileCard';
-import { IconButton } from '~/components/IconButton';
 import { useOverlays } from '~/components/Overlays';
 import { SnackbarOverlay } from '~/components/Snackbar';
 import { SvgIcon } from '~/components/SvgIcon';
@@ -21,6 +18,7 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { getImageSizeFromFile } from '~/utils/getImageSizeFromFile';
 import { COMPONENT_NAME } from './FileDropZone.constants';
 import { fileDropZoneStrings } from './FileDropZone.strings';
+import { FileDropZoneFileCards } from './FileDropZoneFileCards';
 import { getFormattedConstraints } from './utils/getFormattedConstraints';
 import { validateImageSize } from './utils/validateImageSize';
 import { fileDropZoneTheme } from './FileDropZone.css';
@@ -37,26 +35,20 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
       trailingSupportingText: trailingSupportingTextProp,
       hasError: hasErrorProp,
       errorText: errorTextProp,
-      files,
+      files = [],
       maxFileCount,
       maxFileSize,
       capture,
       extraActions,
       onAccept,
       onReject,
-      onDelete,
-      renderFileItem = (props: IFileCardProps) => (
-        <FileCard {...getStyles('fileCard')} {...props} />
-      ),
       disabled,
       acceptedFileTypes,
-      renderFileIcon,
       rootRef,
       strings = fileDropZoneStrings,
       uploadIcon,
-      downloadIcon,
-      hideMetadata,
       acceptedImageSize,
+      children,
       ...other
     } = useProps({
       componentName: COMPONENT_NAME,
@@ -161,10 +153,9 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
       [acceptFile, rejectFile, acceptedImageSize],
     );
 
-    const fileCount = files?.length;
+    const fileCount = files.length;
     const hasTooManyFiles =
       maxFileCount !== undefined &&
-      fileCount !== undefined &&
       maxFileCount > 1 &&
       fileCount > maxFileCount;
     const errorText = hasTooManyFiles
@@ -175,7 +166,7 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
       : trailingSupportingTextProp;
     const maxUploadableFiles =
       maxFileCount !== undefined
-        ? Math.max(maxFileCount - (files?.length ?? 0), 0)
+        ? Math.max(maxFileCount - files.length, 0)
         : undefined;
     const multiple = maxFileCount === undefined || maxFileCount > 1;
 
@@ -214,55 +205,6 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
       },
     });
 
-    const renderFileItems = useCallback(
-      () => (
-        <div {...getStyles('files')}>
-          {files?.map(
-            (file, fileIndex): React.ReactNode => (
-              <Fragment key={fileIndex}>
-                {renderFileItem({
-                  icon: renderFileIcon?.(file.mimeType),
-                  thumbUrl: file.thumbUrl,
-                  fileName: file.name,
-                  fileSize: file.size,
-                  loading: file.loading,
-                  supportingText: file.supportingText,
-                  progress: file.progress,
-                  hasError: !!file.errorTextList?.length,
-                  errorText: file.errorTextList?.join(' / '),
-                  onDelete: onDelete ? () => void onDelete(file) : undefined,
-                  extraActions: !!file.downloadUrl && (
-                    <>
-                      {!!file.downloadUrl && (
-                        <IconButton
-                          icon={
-                            downloadIcon ?? <SvgIcon icon={iconArrowDownTray} />
-                          }
-                          href={file.downloadUrl}
-                          target="_blank"
-                          variant="filled"
-                        />
-                      )}
-                    </>
-                  ),
-                  hideMetadata,
-                })}
-              </Fragment>
-            ),
-          )}
-        </div>
-      ),
-      [
-        getStyles,
-        renderFileIcon,
-        files,
-        onDelete,
-        renderFileItem,
-        downloadIcon,
-        hideMetadata,
-      ],
-    );
-
     const handleInputRef = useMergeRefs(forwardedRef, inputRef);
     const dropping = isDragActive && !disabled;
 
@@ -274,8 +216,8 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
           ref={handleInputRef}
           capture={capture}
         />
-        {!multiple && files?.length ? (
-          renderFileItems()
+        {!multiple && files.length > 0 ? (
+          children({ files })
         ) : (
           <div {...getRootProps()} {...getStyles('inputContainer')}>
             <DropZone
@@ -323,7 +265,7 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
           </div>
         )}
 
-        {multiple && files?.length ? renderFileItems() : null}
+        {multiple && files.length > 0 && children({ files })}
       </Box>
     );
   },
@@ -331,3 +273,4 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
 
 FileDropZone.theme = fileDropZoneTheme;
 FileDropZone.displayName = `@sixui/core/${COMPONENT_NAME}`;
+FileDropZone.FileCards = FileDropZoneFileCards;

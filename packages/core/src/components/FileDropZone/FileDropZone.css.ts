@@ -37,19 +37,11 @@ const classNames = createStyles({
     display: 'flex',
     flexGrow: 1,
   },
-  files: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'flex-start',
-    gap: px(space('$sm')),
-  },
   dropActions: {
     display: 'flex',
     flexDirection: 'row',
     gap: px(space('sm')),
   },
-  fileCard: {},
   supportingText: ({ root }) => ({
     display: 'flex',
     flexDirection: 'row',
