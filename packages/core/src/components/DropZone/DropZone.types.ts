@@ -1,23 +1,29 @@
 import type { IBoxProps } from '~/components/Box';
-import type { IPaperOwnProps } from '~/components/Paper';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IMaybeAsync, IOmit } from '~/utils/types';
+import type { IMaybeAsync } from '~/utils/types';
 import type { dropZoneTheme, IDropZoneThemeFactory } from './DropZone.css';
 
 export type IDropZoneChildrenRenderProps = {
   dropping?: boolean;
+  hasError?: boolean;
 };
 
-export interface IDropZoneOwnProps extends IOmit<IPaperOwnProps, 'children'> {
-  icon?: React.ReactNode;
+export interface IDropZoneOwnProps {
   label?: React.ReactNode;
+  actionIcon?: React.ReactNode;
+  actionLabel?: React.ReactNode;
   children?:
     | React.ReactNode
     | ((props: IDropZoneChildrenRenderProps) => React.ReactNode);
   disabled?: boolean;
   dropping?: boolean;
   onClick?: () => IMaybeAsync<unknown>;
+  supportingText?: React.ReactNode;
+  trailingSupportingText?: React.ReactNode;
+  hasError?: boolean;
+  errorText?: React.ReactNode;
+  rootRef?: React.Ref<HTMLDivElement>;
 }
 
 export interface IDropZoneProps
@@ -27,6 +33,6 @@ export interface IDropZoneProps
 
 export type IDropZoneFactory = IComponentFactory<{
   props: IDropZoneProps;
-  ref: HTMLButtonElement;
+  ref: HTMLDivElement;
   theme: typeof dropZoneTheme;
 }>;

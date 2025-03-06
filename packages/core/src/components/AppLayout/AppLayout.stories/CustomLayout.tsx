@@ -32,7 +32,7 @@ export const CustomLayout: React.FC<ICustomLayoutProps> = (props) => {
   return (
     <>
       <AppLayout.Body {...other}>
-        <Placeholder shape="$lg" grow={1} h="24px4" diagonals>
+        <Placeholder shape="$lg" grow={1} h="240px" diagonals>
           <Button
             onClick={() => {
               toggleBottomSheet();

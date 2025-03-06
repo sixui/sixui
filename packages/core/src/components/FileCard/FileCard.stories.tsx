@@ -22,7 +22,7 @@ const TRANSPARENT_IMAGE_URL =
 const defaultArgs = {
   fileName: 'flowers.jpg',
   fileSize: 133421,
-  h: '16px8',
+  h: '192px',
   onClick: (...args) => sbHandleEvent('click', args),
 } satisfies Partial<IFileCardProps>;
 
@@ -52,6 +52,7 @@ const states: Array<IComponentPresentation<IFileCardProps>> = [
   {
     legend: 'Error',
     props: {
+      hasError: true,
       errorText: 'The file is too large.',
     },
   },
@@ -74,12 +75,21 @@ const rows: Array<IComponentPresentation<IFileCardProps>> = [
   { legend: 'Basic' },
   {
     legend: 'With icon',
-    props: { icon: <FontAwesomeIcon icon={faFilePdf} /> },
+    props: {
+      icon: <FontAwesomeIcon icon={faFilePdf} />,
+    },
   },
-  { legend: 'With image', props: { thumbUrl: IMAGE_URL } },
+  {
+    legend: 'With image',
+    props: {
+      thumbUrl: IMAGE_URL,
+    },
+  },
   {
     legend: 'With transparent image',
-    props: { thumbUrl: TRANSPARENT_IMAGE_URL },
+    props: {
+      thumbUrl: TRANSPARENT_IMAGE_URL,
+    },
   },
   {
     legend: 'With no metadata',
@@ -89,6 +99,14 @@ const rows: Array<IComponentPresentation<IFileCardProps>> = [
     legend: 'With transparent image and no metadata',
     props: {
       thumbUrl: TRANSPARENT_IMAGE_URL,
+      hideMetadata: true,
+      h: undefined,
+    },
+  },
+  {
+    legend: 'With icon and no metadata',
+    props: {
+      icon: <FontAwesomeIcon icon={faFilePdf} />,
       hideMetadata: true,
       h: undefined,
     },

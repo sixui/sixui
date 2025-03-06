@@ -27,3 +27,7 @@ export * from './stripDiacritics';
 export * from './types';
 export * from './keys';
 export * from './getStylePropBaseValue';
+export * from './camelCaseFromKebabCase';
+export * from './getImageSizeFromFile';
+export * from './validateDimension';
+export * from './validateSize';

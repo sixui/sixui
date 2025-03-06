@@ -38,6 +38,7 @@ export * from './Expandable';
 export * from './Fab';
 export * from './FieldBase';
 export * from './FileCard';
+export * from './FileDropZone';
 export * from './FilterableList';
 export * from './FilterableListBase';
 export * from './Flex';

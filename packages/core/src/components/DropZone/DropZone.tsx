@@ -3,6 +3,8 @@ import type { IDropZoneFactory } from './DropZone.types';
 import { ButtonBase } from '~/components/ButtonBase';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
+import { Box } from '../Box';
+import { extractBoxProps } from '../Box/extractBoxProps';
 import { COMPONENT_NAME } from './DropZone.constants';
 import { dropZoneTheme } from './DropZone.css';
 
@@ -14,14 +16,21 @@ export const DropZone = componentFactory<IDropZoneFactory>(
       styles,
       style,
       variant,
-      icon,
       label,
+      actionIcon,
+      actionLabel,
       children,
       disabled,
       dropping,
       onClick,
+      supportingText,
+      trailingSupportingText,
+      hasError,
+      errorText,
+      rootRef,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
+    const { boxProps, other: forwardedProps } = extractBoxProps(other);
 
     const interactive = !disabled && !dropping && !!onClick;
 
@@ -37,24 +46,57 @@ export const DropZone = componentFactory<IDropZoneFactory>(
         disabled,
         dropping,
         interactive,
+        'with-error': hasError,
       },
     });
 
+    const hasAction = !!actionIcon || !!actionLabel;
+    const supportingOrErrorText =
+      hasError && errorText ? errorText : supportingText;
+    const hasFooter = supportingOrErrorText || !!trailingSupportingText;
+
     return (
-      <ButtonBase
-        as="button"
-        {...getStyles('root')}
-        ref={forwardedRef}
-        nonInteractive={!interactive}
-        variant="text"
-        disabled={disabled}
-        onClick={onClick}
-        {...other}
-      >
-        {icon && <div {...getStyles('icon')}>{icon}</div>}
-        {label && <div {...getStyles('label')}>{label}</div>}
-        {typeof children === 'function' ? children({ dropping }) : children}
-      </ButtonBase>
+      <Box {...getStyles('root')} ref={rootRef} {...forwardedProps}>
+        <ButtonBase
+          {...getStyles('button')}
+          ref={forwardedRef}
+          nonInteractive={!interactive}
+          variant="text"
+          disabled={disabled}
+          onClick={onClick}
+          {...boxProps}
+        >
+          {label && <div {...getStyles(['text', 'label'])}>{label}</div>}
+          {hasAction && (
+            <div {...getStyles('action')}>
+              {actionIcon && (
+                <div {...getStyles('actionIcon')}>{actionIcon}</div>
+              )}
+              {actionLabel && (
+                <div {...getStyles(['text', 'actionLabel'])}>{actionLabel}</div>
+              )}
+            </div>
+          )}
+          {typeof children === 'function'
+            ? children({ dropping, hasError })
+            : children}
+        </ButtonBase>
+
+        {hasFooter && (
+          <div {...getStyles('supportingTextContainer')}>
+            {supportingOrErrorText && (
+              <div {...getStyles('supportingText')}>
+                {supportingOrErrorText}
+              </div>
+            )}
+            {trailingSupportingText && (
+              <div {...getStyles('trailingSupportingText')}>
+                {trailingSupportingText}
+              </div>
+            )}
+          </div>
+        )}
+      </Box>
     );
   },
 );

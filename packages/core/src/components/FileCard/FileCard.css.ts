@@ -1,3 +1,5 @@
+import { calc } from '@vanilla-extract/css-utils';
+
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { Card } from '~/components/Card';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
@@ -28,6 +30,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
       disabled: themeTokens.colorScheme.onSurface,
     },
     opacity: {
+      loading: themeTokens.state.opacity.disabled,
       disabled: themeTokens.state.containerOpacity.disabled,
     },
   },
@@ -42,6 +45,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
       disabled: themeTokens.colorScheme.onSurface,
     },
     opacity: {
+      loading: themeTokens.state.opacity.disabled,
       disabled: themeTokens.state.opacity.disabled,
     },
   },
@@ -96,6 +100,7 @@ const classNames = createStyles({
   media: ({ root }) => ({
     backgroundColor: tokens.media.color.normal,
     height: tokens.container.width,
+    aspectRatio: '1',
 
     selectors: {
       [modifierSelector<IModifier>('with-metadata', root)]: {
@@ -114,7 +119,7 @@ const classNames = createStyles({
   mediaContent: ({ root }) => ({
     selectors: {
       [modifierSelector<IModifier>('loading', root)]: {
-        boxShadow: `inset 0 0 0 2000px color-mix(in srgb, ${themeTokens.colorScheme.surface}, transparent 33%)`,
+        boxShadow: `inset 0 0 0 2000px color-mix(in srgb, ${themeTokens.colorScheme.surface}, transparent ${calc.multiply(tokens.media.opacity.loading, '100%')})`,
       },
       [modifierSelector<IModifier>('disabled', root)]: {
         boxShadow: `inset 0 0 0 2000px color-mix(in srgb, ${themeTokens.colorScheme.surface}, transparent 33%)`,
@@ -126,6 +131,15 @@ const classNames = createStyles({
     color: tokens.progressIndicator.color,
     fontSize: tokens.progressIndicator.size,
   },
+  iconContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: px(space('$md')),
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingInline: px(space('$md')),
+    textAlign: 'center',
+  },
   icon: ({ root }) => ({
     display: 'flex',
     fill: 'currentColor',
@@ -135,6 +149,9 @@ const classNames = createStyles({
     inlineSize: tokens.icon.size,
 
     selectors: {
+      [modifierSelector<IModifier>('loading', root)]: {
+        opacity: tokens.icon.opacity.loading,
+      },
       [modifierSelector<IModifier>('disabled', root)]: {
         color: tokens.icon.color.disabled,
         opacity: tokens.icon.opacity.disabled,
@@ -148,6 +165,7 @@ const classNames = createStyles({
   },
   fileName: ({ root }) => ({
     lineBreak: 'anywhere',
+
     ...typography(tokens.fileName.typography),
     color: tokens.fileName.color.normal,
 

@@ -60,6 +60,7 @@
     "re-resizable": "^6.11.2",
     "react-aria": "^3.37.0",
     "react-dom": "^19.0.0",
+    "react-dropzone": "^14.3.8",
     "react-remove-scroll": "^2.6.3",
     "react-transition-group": "^4.4.5",
     "sortable": "link:@atlaskit/pragmatic-drag-and-drop/sortable"

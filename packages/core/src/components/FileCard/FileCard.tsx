@@ -31,17 +31,15 @@ export const FileCard = componentFactory<IFileCardFactory>(
       loading,
       progress,
       supportingText,
-      hasError: hasErrorProp,
+      hasError,
       errorText,
       hideMetadata,
       children,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const hasError = hasErrorProp || !!errorText;
     const canDelete = !!onDelete;
     const loaded = !loading && !hasError;
-    const hasSupportingText = !!errorText || !!supportingText;
     const hasActions = !disabled && (canDelete || !!extraActions);
 
     const { getStyles } = useComponentTheme<IFileCardThemeFactory>({
@@ -60,6 +58,9 @@ export const FileCard = componentFactory<IFileCardFactory>(
         loading: !loaded,
       },
     });
+
+    const supportingOrErrorText =
+      hasError && errorText ? errorText : supportingText;
 
     return (
       <Card
@@ -84,7 +85,12 @@ export const FileCard = componentFactory<IFileCardFactory>(
               hideInactiveTrack
             />
           ) : thumbUrl ? undefined : icon ? (
-            <div {...getStyles('icon')}>{icon}</div>
+            <div {...getStyles('iconContainer')}>
+              <div {...getStyles('icon')}>{icon}</div>
+              {fileName && hideMetadata && (
+                <div {...getStyles('fileName')}>{fileName}</div>
+              )}
+            </div>
           ) : (
             media
           )}
@@ -103,10 +109,10 @@ export const FileCard = componentFactory<IFileCardFactory>(
 
             {children}
 
-            {hasSupportingText && (
+            {supportingOrErrorText && (
               <div {...getStyles('supportingTextContainer')}>
                 <div {...getStyles('supportingText')}>
-                  {errorText ?? supportingText}
+                  {supportingOrErrorText}
                 </div>
               </div>
             )}

@@ -103,3 +103,13 @@ export enum ITimeUnit {
   Week = 604800000,
   Month = 2592000000,
 }
+
+export enum IFileSizeUnit {
+  Byte = 1,
+  Kilobyte = 1000,
+  Megabyte = 1000000,
+}
+
+export enum IDistanceUnit {
+  Kilometer = 1000,
+}
