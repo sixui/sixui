@@ -7,7 +7,8 @@ import type {
   fileDropZoneTheme,
   IFileDropZoneThemeFactory,
 } from './FileDropZone.css';
-import { ISizeAcceptedValue } from '~/utils/validateSize';
+import type { fileDropZoneStrings } from './FileDropZone.strings';
+import type { IImageSizeConstraints } from './utils/validateImageSize';
 
 export type IFileDropZoneFileInfo = {
   key: string;
@@ -55,14 +56,14 @@ export interface IFileDropZoneOwnProps {
   renderFileItem?: (props: IFileCardProps) => React.ReactNode;
   disabled?: boolean;
   renderFileIcon?: (mimeType?: string) => React.ReactNode;
-  strings?: IFileDropZoneStrings;
+  strings?: typeof fileDropZoneStrings;
   rootRef?: React.RefObject<HTMLDivElement>;
   uploadIcon?: React.ReactNode;
   downloadIcon?: React.ReactNode;
   hideMetadata?: boolean;
   maxFileCount?: number;
   maxFileSize?: number;
-  acceptedImageSize?: ISizeAcceptedValue;
+  acceptedImageSize?: IImageSizeConstraints;
 
   /**
    * See types option for more information. Keep in mind that mime type

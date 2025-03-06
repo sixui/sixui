@@ -19,8 +19,10 @@ import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { camelCaseFromKebabCase } from '~/utils/camelCaseFromKebabCase';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { getImageSizeFromFile } from '~/utils/getImageSizeFromFile';
-import { validateSize } from '~/utils/validateSize';
 import { COMPONENT_NAME } from './FileDropZone.constants';
+import { fileDropZoneStrings } from './FileDropZone.strings';
+import { getFormattedConstraints } from './utils/getFormattedConstraints';
+import { validateImageSize } from './utils/validateImageSize';
 import { fileDropZoneTheme } from './FileDropZone.css';
 
 export const FileDropZone = componentFactory<IFileDropZoneFactory>(
@@ -50,17 +52,7 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
       acceptedFileTypes,
       renderFileIcon,
       rootRef,
-      strings = {
-        dragSingle: 'Drag and drop a file here, or:',
-        dragMultiple: 'Drag and drop files here, or:',
-        browse: 'Browse...',
-        fileInvalidType: 'Invalid file type',
-        fileTooLarge: 'File too large',
-        fileTooSmall: 'File too small',
-        tooManyFiles: 'Too many files',
-        invalidImageSize: 'Invalid image size',
-        unknownError: 'Unknown error',
-      },
+      strings = fileDropZoneStrings,
       uploadIcon,
       downloadIcon,
       hideMetadata,
@@ -102,7 +94,9 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
           file: fileRejection.file,
           errorTextList: fileRejection.errors.map(
             ({ code }) =>
-              strings[camelCaseFromKebabCase(code) as keyof typeof strings],
+              strings.errors[
+                camelCaseFromKebabCase(code) as keyof (typeof strings)['errors']
+              ],
           ),
         }),
       [onReject, strings],
@@ -125,7 +119,7 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
           if (isImage && hasSizeConstraints) {
             void getImageSizeFromFile(file)
               .then((imageSize) => {
-                const sizeValidationResult = validateSize(
+                const sizeValidationResult = validateImageSize(
                   imageSize,
                   acceptedImageSize,
                 );
@@ -173,7 +167,9 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
       fileCount !== undefined &&
       maxFileCount > 1 &&
       fileCount > maxFileCount;
-    const errorText = hasTooManyFiles ? strings.tooManyFiles : errorTextProp;
+    const errorText = hasTooManyFiles
+      ? strings.errors.tooManyFiles
+      : errorTextProp;
     const trailingSupportingText = hasTooManyFiles
       ? `${fileCount} / ${maxFileCount}`
       : trailingSupportingTextProp;
@@ -287,10 +283,21 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
               dropping={dropping}
               onClick={extraActions ? undefined : browse}
               disabled={disabled}
-              label={multiple ? strings.dragMultiple : strings.dragSingle}
+              label={
+                multiple ? strings.label.dragMultiple : strings.label.dragSingle
+              }
               actionIcon={uploadIcon ?? <SvgIcon icon={iconArrowUpTray} />}
-              actionLabel={extraActions ? undefined : strings.browse}
-              supportingText={supportingText}
+              actionLabel={extraActions ? undefined : strings.actions.browse}
+              supportingText={
+                supportingText ??
+                getFormattedConstraints({
+                  acceptedFileTypes,
+                  acceptedImageSize,
+                  maxFileCount,
+                  maxFileSize,
+                  strings: strings.imageSizeConstraints,
+                })
+              }
               trailingSupportingText={trailingSupportingText}
               hasError={hasError}
               errorText={errorText}
@@ -306,7 +313,7 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
                         uploadIcon ?? <SvgIcon icon={iconArrowUpTray} />
                       }
                     >
-                      {strings.browse}
+                      {strings.actions.browse}
                     </Button>
                     {extraActions}
                   </>

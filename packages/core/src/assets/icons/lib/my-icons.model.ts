@@ -15,12 +15,16 @@ export type IIcons =
   | 'eye_slash'
   | 'grip_dots_horizontal'
   | 'grip_dots_vertical'
+  | 'left_right'
   | 'person'
   | 'photo'
   | 'triangle_down'
   | 'triangle_left'
   | 'triangle_right'
   | 'triangle_up'
+  | 'up_down'
+  | 'up_right_and_down_left_from_center'
+  | 'weight_hanging'
   | 'x_mark';
 export interface IIcon {
   name: IIcons;

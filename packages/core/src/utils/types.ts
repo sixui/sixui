@@ -106,8 +106,8 @@ export enum ITimeUnit {
 
 export enum IFileSizeUnit {
   Byte = 1,
-  Kilobyte = 1000,
-  Megabyte = 1000000,
+  Kilobyte = 1024,
+  Megabyte = 1048576,
 }
 
 export enum IDistanceUnit {

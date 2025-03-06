@@ -1,16 +1,16 @@
-export type IDimensionAcceptedValue =
+export type INumericValueConstraints =
   | number
   | {
       min?: number;
       max?: number;
     };
 
-export type IDimensionValidationResult = true | 'tooSmall' | 'tooLarge';
+export type INumericValueValidationResult = true | 'tooSmall' | 'tooLarge';
 
-export const validateDimension = (
+export const validateNumericValue = (
   value: number,
-  acceptableValue?: IDimensionAcceptedValue,
-): IDimensionValidationResult => {
+  acceptableValue?: INumericValueConstraints,
+): INumericValueValidationResult => {
   if (acceptableValue === undefined) {
     return true;
   }
