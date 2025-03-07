@@ -6,6 +6,7 @@ import type { IComponentThemeProps } from '~/components/Theme';
 import type { IPolymorphicComponentFactory } from '~/utils/component';
 import type { IMaybeAsync } from '~/utils/types';
 import type { ISortableThemeFactory, sortableTheme } from './Sortable.css';
+import type { SortableItem } from './SortableItem';
 
 export interface ISortableItem {
   id: string;
@@ -42,4 +43,7 @@ export type ISortableFactory = IPolymorphicComponentFactory<{
   defaultRef: HTMLDivElement;
   defaultRoot: 'div';
   theme: typeof sortableTheme;
+  staticComponents: {
+    Item: typeof SortableItem;
+  };
 }>;

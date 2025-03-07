@@ -1,126 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
-import { faFile, faFilePdf } from '@fortawesome/free-regular-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import type { IOmit } from '~/utils/types';
-import type {
-  IFileDropZoneFileInfo,
-  IFileDropZonePartialFileInfo,
-  IFileDropZoneProps,
-} from './FileDropZone.types';
+import type { IFileDropZoneDemoProps } from './FileDropZone.stories/FileDropZoneDemo';
+import { Flex } from '~/components/Flex';
+import { SimpleGrid } from '~/components/SimpleGrid';
+import { Sortable } from '~/components/Sortable';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { IFileSizeUnit } from '~/utils/types';
 import { FileDropZone } from './FileDropZone';
-
-const FILES_INFO: Array<IFileDropZoneFileInfo> = [
-  {
-    key: '0',
-    thumbUrl:
-      'https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=200',
-    name: 'File.png',
-    mimeType: 'image/png',
-    size: 133421,
-  },
-  {
-    key: '1',
-    thumbUrl:
-      'https://images.unsplash.com/photo-1455659817273-f96807779a8a?q=80&w=200',
-    name: 'File_with_a_long_name.jpg',
-    mimeType: 'image/jpeg',
-    size: 234234,
-  },
-  {
-    key: '2',
-    thumbUrl:
-      'https://images.unsplash.com/photo-1579645899072-e14c6b840afa?q=80&w=200',
-    name: 'File with a very, extremely, insanely long name.mp4',
-    mimeType: 'video/mp4',
-    size: 243244,
-  },
-  {
-    key: '3',
-    name: 'File with no image.pdf',
-    mimeType: 'application/pdf',
-    size: 8329644,
-  },
-];
-
-type IFileDropZoneDemoProps = IOmit<IFileDropZoneProps, 'children'>;
-
-const FileDropZoneDemo: React.FC<IFileDropZoneDemoProps> = (props) => {
-  const [files, setFiles] = useState<Array<IFileDropZonePartialFileInfo>>(
-    props.files ?? [],
-  );
-
-  const handleAccept = (fileInfo: IFileDropZoneFileInfo): void => {
-    void Promise.resolve(props.onAccept?.(fileInfo)).then(() => {
-      setFiles((prevFiles) => [
-        ...prevFiles,
-        {
-          key: fileInfo.key,
-          thumbUrl: fileInfo.thumbUrl,
-          name: fileInfo.name,
-          mimeType: fileInfo.mimeType,
-          size: fileInfo.size,
-        },
-      ]);
-    });
-  };
-
-  const handleReject = (fileInfo: IFileDropZoneFileInfo): void => {
-    void Promise.resolve(props.onReject?.(fileInfo)).then(() => {
-      setFiles((prevFiles) => [
-        ...prevFiles,
-        {
-          key: fileInfo.key,
-          thumbUrl: fileInfo.thumbUrl,
-          name: fileInfo.name,
-          mimeType: fileInfo.mimeType,
-          size: fileInfo.size,
-          errorTextList: fileInfo.errorTextList,
-        },
-      ]);
-    });
-  };
-
-  const handleDelete = (fileInfo: IFileDropZonePartialFileInfo): void => {
-    void Promise.resolve(sbHandleEvent('onDelete')).then(() => {
-      setFiles((prevFiles) =>
-        prevFiles.filter((file) => file.key !== fileInfo.key),
-      );
-    });
-  };
-
-  return (
-    <FileDropZone
-      {...props}
-      onAccept={handleAccept}
-      onReject={handleReject}
-      files={files}
-      acceptedFileTypes={{
-        ...props.acceptedFileTypes,
-        'image/*': [],
-      }}
-    >
-      {({ files }) => (
-        <FileDropZone.FileCards
-          files={files}
-          fileIconRenderer={(mimeType) => {
-            switch (mimeType) {
-              case 'application/pdf':
-                return <FontAwesomeIcon icon={faFilePdf} />;
-
-              default:
-                return <FontAwesomeIcon icon={faFile} />;
-            }
-          }}
-          onDelete={handleDelete}
-        />
-      )}
-    </FileDropZone>
-  );
-};
+import { FileDropZoneDemo } from './FileDropZone.stories/FileDropZoneDemo';
+import { FILES } from './FileDropZone.stories/files';
+import { getIconFromMimeType } from './FileDropZone.stories/getIconFromMimeType';
 
 const meta = {
   component: FileDropZoneDemo,
@@ -130,10 +19,26 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   w: '480px',
+  acceptedFileTypes: {
+    'image/*': [],
+  },
   maxFileSize: 1 * IFileSizeUnit.Megabyte,
   onAccept: (...args) => sbHandleEvent('onAccept', args),
   onReject: (...args) => sbHandleEvent('onReject', args),
-} satisfies Partial<IFileDropZoneProps>;
+  children: ({ files, handleDelete }) => (
+    <Flex direction="row" wrap="wrap" content="start" gap="$sm">
+      {files.map((file) => (
+        <FileDropZone.FileCard
+          key={file.key}
+          id={file.key}
+          file={file}
+          icon={file.mimeType ? getIconFromMimeType(file.mimeType) : undefined}
+          onDelete={() => handleDelete(file)}
+        />
+      ))}
+    </Flex>
+  ),
+} satisfies Partial<IFileDropZoneDemoProps>;
 
 export const Empty: IStory = {
   render: (props) => <FileDropZoneDemo {...props} />,
@@ -177,7 +82,7 @@ export const OneFile: IStory = {
   render: (props) => <FileDropZoneDemo {...props} />,
   args: {
     ...defaultArgs,
-    files: FILES_INFO.slice(0, 1),
+    initialFiles: FILES.slice(0, 1),
   },
 };
 
@@ -185,9 +90,9 @@ export const OneFileLoading: IStory = {
   render: (props) => <FileDropZoneDemo {...props} />,
   args: {
     ...defaultArgs,
-    files: [
+    initialFiles: [
       {
-        ...FILES_INFO[0],
+        ...FILES[0]!,
         loading: true,
       },
     ],
@@ -198,9 +103,9 @@ export const OneFileWithProgress: IStory = {
   render: (props) => <FileDropZoneDemo {...props} />,
   args: {
     ...defaultArgs,
-    files: [
+    initialFiles: [
       {
-        ...FILES_INFO[0],
+        ...FILES[0]!,
         loading: true,
         progress: 0.33,
       },
@@ -212,7 +117,7 @@ export const OneFileMax: IStory = {
   render: (props) => <FileDropZoneDemo {...props} />,
   args: {
     ...defaultArgs,
-    files: FILES_INFO.slice(0, 1),
+    initialFiles: FILES.slice(0, 1),
     maxFileCount: 1,
   },
 };
@@ -221,7 +126,7 @@ export const TwoFiles: IStory = {
   render: (props) => <FileDropZoneDemo {...props} />,
   args: {
     ...defaultArgs,
-    files: FILES_INFO.slice(0, 2),
+    initialFiles: FILES.slice(0, 2),
   },
 };
 
@@ -229,7 +134,7 @@ export const FourFiles: IStory = {
   render: (props) => <FileDropZoneDemo {...props} />,
   args: {
     ...defaultArgs,
-    files: FILES_INFO.slice(0, 4),
+    initialFiles: FILES.slice(0, 4),
   },
 };
 
@@ -237,8 +142,45 @@ export const TooManyFiles: IStory = {
   render: (props) => <FileDropZoneDemo {...props} />,
   args: {
     ...defaultArgs,
-    files: FILES_INFO.slice(0, 4),
+    initialFiles: FILES.slice(0, 4),
     maxFileCount: 3,
+  },
+};
+
+export const SortableFiles: IStory = {
+  render: (props) => <FileDropZoneDemo {...props} />,
+  args: {
+    ...defaultArgs,
+    initialFiles: FILES.slice(0, 4),
+    children: ({ files, handleDelete, handleReorder }) => (
+      <Sortable
+        as={SimpleGrid}
+        w="max-content"
+        cols={3}
+        spacing="$sm"
+        value={files.map((file) => file.key)}
+        onChange={handleReorder}
+        itemRenderer={(item) => {
+          const file = files.find((f) => f.key === item.id);
+          if (!file) {
+            return;
+          }
+
+          return (
+            <Sortable.Item
+              key={file.key}
+              as={FileDropZone.FileCard}
+              id={file.key}
+              file={file}
+              icon={
+                file.mimeType ? getIconFromMimeType(file.mimeType) : undefined
+              }
+              onDelete={() => handleDelete(file)}
+            />
+          );
+        }}
+      />
+    ),
   },
 };
 

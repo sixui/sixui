@@ -21,7 +21,8 @@ type IModifier =
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
-    width: px(130),
+    width: px(128),
+    height: px(160),
   },
   media: {
     height: px(80),
@@ -83,6 +84,7 @@ const classNames = createStyles({
     display: 'flex',
     flexDirection: 'column',
     width: tokens.container.width,
+    height: tokens.container.height,
     position: 'relative',
 
     selectors: {
@@ -165,6 +167,11 @@ const classNames = createStyles({
   },
   fileName: ({ root }) => ({
     lineBreak: 'anywhere',
+    overflow: 'hidden',
+    display: '-webkit-box',
+    WebkitBoxOrient: 'vertical',
+    hyphens: 'auto',
+    WebkitLineClamp: 2,
 
     ...typography(tokens.fileName.typography),
     color: tokens.fileName.color.normal,

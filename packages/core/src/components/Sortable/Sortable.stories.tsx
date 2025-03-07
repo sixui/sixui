@@ -4,17 +4,16 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { delay } from '@olivierpascal/helpers';
 
-import type { ISortableItemProps } from '~/components/SortableItem';
 import type { IOmit } from '~/utils/types';
 import type {
   ISortableItemRenderProps,
   ISortableProps,
 } from './Sortable.types';
+import type { ISortableItemProps } from './SortableItem';
 import { Box } from '~/components/Box';
 import { Card } from '~/components/Card';
 import { Flex } from '~/components/Flex';
 import { SimpleGrid } from '~/components/SimpleGrid';
-import { SortableItem } from '~/components/SortableItem';
 import { Text } from '~/components/Text';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { themeTokens } from '~/components/Theme/theme.css';
@@ -52,7 +51,7 @@ const SortableItemDemo: React.FC<ISortableItemDemoProps> = (props) => {
   } = props;
 
   return (
-    <SortableItem as={Card} shape="$xs" fixed={disabled} {...other}>
+    <Sortable.Item as={Card} shape="$xs" fixed={disabled} {...other}>
       <Flex align="center" justify="center" h="100%">
         <Text variant="label">{props.id}</Text>
         <Box pos="absolute">
@@ -76,7 +75,7 @@ const SortableItemDemo: React.FC<ISortableItemDemoProps> = (props) => {
           />
         </Box>
       )}
-    </SortableItem>
+    </Sortable.Item>
   );
 };
 

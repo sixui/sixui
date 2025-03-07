@@ -90,7 +90,6 @@ export * from './Sixui';
 export * from './Skeleton';
 export * from './Snackbar';
 export * from './Sortable';
-export * from './SortableItem';
 export * from './StandardAside';
 export * from './StandardSideSheet';
 export * from './StateLayer';

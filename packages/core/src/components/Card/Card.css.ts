@@ -275,6 +275,7 @@ export const cardThemeVariants = {
           width: {
             normal: px(themeTokens.outline.width.xs),
             disabled: px(themeTokens.outline.width.xs),
+            dragged: px(themeTokens.outline.width.none),
           },
         },
       }),

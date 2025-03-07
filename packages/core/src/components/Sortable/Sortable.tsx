@@ -31,6 +31,7 @@ import { polymorphicComponentFactory } from '~/utils/component';
 import { executeLazyPromise } from '~/utils/executeLazyPromise';
 import { COMPONENT_NAME } from './Sortable.constants';
 import { SortableContextProvider } from './Sortable.context';
+import { SortableItem } from './SortableItem';
 import { sortableTheme } from './Sortable.css';
 
 type IPendingChange = {
@@ -279,3 +280,4 @@ export const Sortable = polymorphicComponentFactory<ISortableFactory>(
 
 Sortable.theme = sortableTheme;
 Sortable.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Sortable.Item = SortableItem;

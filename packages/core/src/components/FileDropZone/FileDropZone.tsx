@@ -16,9 +16,10 @@ import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { camelCaseFromKebabCase } from '~/utils/camelCaseFromKebabCase';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { getImageSizeFromFile } from '~/utils/getImageSizeFromFile';
+import { getUid } from '~/utils/getUid';
 import { COMPONENT_NAME } from './FileDropZone.constants';
 import { fileDropZoneStrings } from './FileDropZone.strings';
-import { FileDropZoneFileCards } from './FileDropZoneFileCards';
+import { FileDropZoneFileCard } from './FileDropZoneFileCard';
 import { getFormattedConstraints } from './utils/getFormattedConstraints';
 import { validateImageSize } from './utils/validateImageSize';
 import { fileDropZoneTheme } from './FileDropZone.css';
@@ -60,7 +61,7 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
     const acceptFile = useCallback(
       (file: File): IMaybeAsync<unknown> =>
         onAccept?.({
-          key: String(Math.random()),
+          key: getUid(),
           thumbUrl: file.type.startsWith('image/')
             ? URL.createObjectURL(file)
             : undefined,
@@ -76,7 +77,7 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
     const rejectFile = useCallback(
       (fileRejection: FileRejection): IMaybeAsync<unknown> =>
         onReject?.({
-          key: String(Math.random()),
+          key: getUid(),
           thumbUrl: fileRejection.file.type.startsWith('image/')
             ? URL.createObjectURL(fileRejection.file)
             : undefined,
@@ -217,7 +218,7 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
           capture={capture}
         />
         {!multiple && files.length > 0 ? (
-          children({ files })
+          children
         ) : (
           <div {...getRootProps()} {...getStyles('inputContainer')}>
             <DropZone
@@ -265,7 +266,7 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
           </div>
         )}
 
-        {multiple && files.length > 0 && children({ files })}
+        {multiple && files.length > 0 && children}
       </Box>
     );
   },
@@ -273,4 +274,4 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
 
 FileDropZone.theme = fileDropZoneTheme;
 FileDropZone.displayName = `@sixui/core/${COMPONENT_NAME}`;
-FileDropZone.FileCards = FileDropZoneFileCards;
+FileDropZone.FileCard = FileDropZoneFileCard;

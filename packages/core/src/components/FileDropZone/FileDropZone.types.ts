@@ -7,8 +7,8 @@ import type {
   IFileDropZoneThemeFactory,
 } from './FileDropZone.css';
 import type { fileDropZoneStrings } from './FileDropZone.strings';
+import type { FileDropZoneFileCard } from './FileDropZoneFileCard';
 import type { IImageSizeConstraints } from './utils/validateImageSize';
-import { FileDropZoneFileCards } from './FileDropZoneFileCards';
 
 export type IFileDropZoneFileInfo = {
   key: string;
@@ -27,8 +27,6 @@ export type IFileDropZoneFileInfo = {
   abortController?: AbortController;
 };
 
-export type IFileDropZonePartialFileInfo = Partial<IFileDropZoneFileInfo>;
-
 export type IFileDropZoneStrings = Record<
   | 'dragSingle'
   | 'dragMultiple'
@@ -43,7 +41,7 @@ export type IFileDropZoneStrings = Record<
 >;
 
 export interface IFileDropZoneChildrenRenderProps {
-  files: Array<IFileDropZonePartialFileInfo>;
+  files: Array<IFileDropZoneFileInfo>;
 }
 
 export interface IFileDropZoneOwnProps {
@@ -51,12 +49,11 @@ export interface IFileDropZoneOwnProps {
   trailingSupportingText?: React.ReactNode;
   hasError?: boolean;
   errorText?: React.ReactNode;
-  files?: Array<IFileDropZonePartialFileInfo>;
+  files?: Array<IFileDropZoneFileInfo>;
   capture?: 'user' | 'environment';
   extraActions?: React.ReactNode;
   onAccept?: (fileInfo: IFileDropZoneFileInfo) => IMaybeAsync<unknown>;
   onReject?: (fileInfo: IFileDropZoneFileInfo) => IMaybeAsync<unknown>;
-
   disabled?: boolean;
   strings?: typeof fileDropZoneStrings;
   rootRef?: React.RefObject<HTMLDivElement>;
@@ -64,7 +61,7 @@ export interface IFileDropZoneOwnProps {
   maxFileCount?: number;
   maxFileSize?: number;
   acceptedImageSize?: IImageSizeConstraints;
-  children: (props: IFileDropZoneChildrenRenderProps) => React.ReactNode;
+  children: React.ReactNode;
 
   /**
    * See types option for more information. Keep in mind that mime type
@@ -89,6 +86,6 @@ export type IFileDropZoneFactory = IComponentFactory<{
   ref: HTMLDivElement;
   theme: typeof fileDropZoneTheme;
   staticComponents: {
-    FileCards: typeof FileDropZoneFileCards;
+    FileCard: typeof FileDropZoneFileCard;
   };
 }>;
