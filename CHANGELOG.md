@@ -1,3 +1,22 @@
+## 1.4.0 (2025-03-08)
+
+### 🚀 Features
+
+- FileDropZone ([5ee027eb](https://github.com/sixui/sixui/commit/5ee027eb))
+- FileDropZone strings support ([3b4e14ab](https://github.com/sixui/sixui/commit/3b4e14ab))
+- extracted FileDropZoneFileCards for FileDropZone file items rendering ([abbc15d4](https://github.com/sixui/sixui/commit/abbc15d4))
+- FileCard are now horizontal ([4a3fcb21](https://github.com/sixui/sixui/commit/4a3fcb21))
+- npm deps updated ([f46da391](https://github.com/sixui/sixui/commit/f46da391))
+
+### 🩹 Fixes
+
+- SimpleGrid and Sortable stories styles ([c8a90205](https://github.com/sixui/sixui/commit/c8a90205))
+- Sortable: pending item is now active item only ([54b23535](https://github.com/sixui/sixui/commit/54b23535))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 1.3.0 (2025-03-04)
 
 ### 🚀 Features
