@@ -25,12 +25,4 @@ export const Basic: IStory = {
   args: defaultArgs,
 };
 
-export const NoMetadata: IStory = {
-  render: (props) => <FileDropZoneFileCard {...props} />,
-  args: {
-    ...defaultArgs,
-    hideMetadata: true,
-  },
-};
-
 export default meta;

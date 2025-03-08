@@ -41,6 +41,7 @@ const classNames = createStyles({
     paddingBottom: calc.add(tokens.bottomSpace, DENSITY),
     paddingLeft: tokens.leadingSpace,
     paddingRight: tokens.trailingSpace,
+    flexGrow: 1,
 
     selectors: {
       [modifierSelector<IModifier>('disabled')]: {

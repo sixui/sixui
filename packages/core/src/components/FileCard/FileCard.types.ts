@@ -4,6 +4,10 @@ import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IMaybeAsync } from '~/utils/types';
 import type { fileCardTheme, IFileCardThemeFactory } from './FileCard.css';
 
+export interface IFileCardExtraActionsRenderProps {
+  disabled: boolean;
+}
+
 export interface IFileCardOwnProps {
   disabled?: boolean;
   href?: string;
@@ -15,13 +19,14 @@ export interface IFileCardOwnProps {
   onDelete?: () => IMaybeAsync<unknown>;
   deleteIcon?: React.ReactNode;
   onClick?: () => IMaybeAsync<unknown>;
-  extraActions?: React.ReactNode;
+  extraActions?:
+    | React.ReactNode
+    | ((props: IFileCardExtraActionsRenderProps) => React.ReactNode);
   loading?: boolean;
   progress?: number;
   supportingText?: string;
   hasError?: boolean;
   errorText?: string;
-  hideMetadata?: boolean;
   children?: React.ReactNode;
 }
 

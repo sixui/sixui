@@ -4,7 +4,7 @@ import type { IComponentThemeFactory } from '~/utils/component/componentThemeFac
 import { Card } from '~/components/Card';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
-import { em, space, typography } from '~/utils/css';
+import { space, typography } from '~/utils/css';
 import { createStyles } from '~/utils/css/createStyles';
 import { modifierSelector } from '~/utils/css/modifierSelector';
 import { overrideTokens } from '~/utils/css/overrideTokens';
@@ -12,20 +12,13 @@ import { px } from '~/utils/css/px';
 import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './FileCard.constants';
 
-type IModifier =
-  | 'disabled'
-  | 'with-error'
-  | 'with-metadata'
-  | 'with-thumb'
-  | 'loading';
+type IModifier = 'disabled' | 'with-error' | 'with-thumb' | 'loading';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
-    width: px(128),
-    height: px(160),
+    minHeight: px(72),
   },
   media: {
-    height: px(80),
     color: {
       normal: themeTokens.colorScheme.secondaryContainer,
       disabled: themeTokens.colorScheme.onSurface,
@@ -82,10 +75,10 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
 const classNames = createStyles({
   root: {
     display: 'flex',
-    flexDirection: 'column',
-    width: tokens.container.width,
-    height: tokens.container.height,
+    flexDirection: 'row',
+    minHeight: tokens.container.minHeight,
     position: 'relative',
+    flexGrow: 1,
 
     selectors: {
       [modifierSelector<IModifier>('with-error')]: {
@@ -101,16 +94,10 @@ const classNames = createStyles({
   },
   media: ({ root }) => ({
     backgroundColor: tokens.media.color.normal,
-    height: tokens.container.width,
+    width: tokens.container.minHeight,
     aspectRatio: '1',
 
     selectors: {
-      [modifierSelector<IModifier>('with-metadata', root)]: {
-        height: tokens.media.height,
-      },
-      [modifierSelector<IModifier>(['!disabled', 'with-metadata'], root)]: {
-        height: tokens.media.height,
-      },
       [modifierSelector<IModifier>(['!disabled', 'with-thumb'], root)]: {
         background: `repeating-conic-gradient(color-mix(in srgb,
         ${themeTokens.colorScheme.outlineVariant} 40%, transparent) 0% 25%,
@@ -133,15 +120,6 @@ const classNames = createStyles({
     color: tokens.progressIndicator.color,
     fontSize: tokens.progressIndicator.size,
   },
-  iconContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: px(space('$md')),
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingInline: px(space('$md')),
-    textAlign: 'center',
-  },
   icon: ({ root }) => ({
     display: 'flex',
     fill: 'currentColor',
@@ -160,19 +138,15 @@ const classNames = createStyles({
       },
     },
   }),
+  content: {
+    justifyContent: 'center',
+  },
   fileInfo: {
     display: 'flex',
     flexDirection: 'column',
     gap: px(space('$xs')),
   },
   fileName: ({ root }) => ({
-    lineBreak: 'anywhere',
-    overflow: 'hidden',
-    display: '-webkit-box',
-    WebkitBoxOrient: 'vertical',
-    hyphens: 'auto',
-    WebkitLineClamp: 2,
-
     ...typography(tokens.fileName.typography),
     color: tokens.fileName.color.normal,
 
@@ -194,11 +168,6 @@ const classNames = createStyles({
       },
     },
   }),
-  supportingTextContainer: {
-    display: 'flex',
-    flexGrow: 1,
-    alignItems: 'flex-end',
-  },
   supportingText: ({ root }) => ({
     ...typography(tokens.supportingText.typography),
     color: tokens.supportingText.color.normal,
@@ -209,15 +178,6 @@ const classNames = createStyles({
       },
     },
   }),
-  actions: {
-    position: 'absolute',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: em(0.25),
-    top: px(-5),
-    right: px(-5),
-    zIndex: 1,
-  },
 });
 
 export type IFileCardThemeFactory = IComponentThemeFactory<{

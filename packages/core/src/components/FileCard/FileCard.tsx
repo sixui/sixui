@@ -1,3 +1,5 @@
+import { useCallback, useState } from 'react';
+
 import type { IFileCardThemeFactory } from './FileCard.css';
 import type { IFileCardFactory } from './FileCard.types';
 import { iconXMark } from '~/assets/icons';
@@ -8,6 +10,7 @@ import { SvgIcon } from '~/components/SvgIcon';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { getFormattedFileSize } from '~/utils/getFormattedFileSize';
+import { isFunction } from '~/utils/isFunction';
 import { COMPONENT_NAME } from './FileCard.constants';
 import { fileCardTheme } from './FileCard.css';
 
@@ -19,7 +22,7 @@ export const FileCard = componentFactory<IFileCardFactory>(
       styles,
       style,
       variant,
-      disabled,
+      disabled: disabledProp,
       media,
       icon,
       fileName,
@@ -33,14 +36,16 @@ export const FileCard = componentFactory<IFileCardFactory>(
       supportingText,
       hasError,
       errorText,
-      hideMetadata,
       children,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
+    const [handling, setHandling] = useState(false);
+
+    const disabled = disabledProp || handling;
     const canDelete = !!onDelete;
     const loaded = !loading && !hasError;
-    const hasActions = !disabled && (canDelete || !!extraActions);
+    const hasActions = canDelete || !!extraActions;
 
     const { getStyles } = useComponentTheme<IFileCardThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -53,11 +58,16 @@ export const FileCard = componentFactory<IFileCardFactory>(
       modifiers: {
         disabled,
         'with-error': hasError,
-        'with-metadata': !hideMetadata,
         'with-thumb': !!thumbUrl,
         loading: !loaded,
       },
     });
+
+    const handleDelete = useCallback(async () => {
+      setHandling(true);
+      await onDelete?.();
+      setHandling(false);
+    }, [onDelete]);
 
     const supportingOrErrorText =
       hasError && errorText ? errorText : supportingText;
@@ -85,53 +95,44 @@ export const FileCard = componentFactory<IFileCardFactory>(
               hideInactiveTrack
             />
           ) : thumbUrl ? undefined : icon ? (
-            <div {...getStyles('iconContainer')}>
-              <div {...getStyles('icon')}>{icon}</div>
-              {fileName && hideMetadata && (
-                <div {...getStyles('fileName')}>{fileName}</div>
-              )}
-            </div>
+            <div {...getStyles('icon')}>{icon}</div>
           ) : (
             media
           )}
         </Card.Media>
 
-        {!hideMetadata && (
-          <Card.Content>
-            <div {...getStyles('fileInfo')}>
-              {fileName && <div {...getStyles('fileName')}>{fileName}</div>}
-              {fileSize && (
-                <div {...getStyles('fileSize')}>
-                  {getFormattedFileSize(fileSize)}
-                </div>
-              )}
-            </div>
-
-            {children}
-
-            {supportingOrErrorText && (
-              <div {...getStyles('supportingTextContainer')}>
-                <div {...getStyles('supportingText')}>
-                  {supportingOrErrorText}
-                </div>
+        <Card.Content {...getStyles('content')}>
+          <div {...getStyles('fileInfo')}>
+            {fileName && <div {...getStyles('fileName')}>{fileName}</div>}
+            {fileSize && (
+              <div {...getStyles('fileSize')}>
+                {getFormattedFileSize(fileSize)}
               </div>
             )}
-          </Card.Content>
-        )}
+          </div>
 
-        {hasActions ? (
-          <div {...getStyles('actions')}>
+          {children}
+
+          {supportingOrErrorText && (
+            <div {...getStyles('supportingText')}>{supportingOrErrorText}</div>
+          )}
+        </Card.Content>
+
+        {hasActions && (
+          <Card.Actions>
+            {isFunction(extraActions)
+              ? extraActions({ disabled })
+              : extraActions}
+
             {canDelete && (
               <IconButton
                 icon={deleteIcon ?? <SvgIcon icon={iconXMark} />}
-                onClick={onDelete}
+                onClick={handleDelete}
                 variant="danger"
               />
             )}
-
-            {extraActions}
-          </div>
-        ) : null}
+          </Card.Actions>
+        )}
       </Card>
     );
   },

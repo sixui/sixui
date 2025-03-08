@@ -70,7 +70,7 @@ export const WithTextField: IStory = {
   ),
   args: {
     ...defaultArgs,
-    w: '24px4',
+    w: '256px',
     children: (
       <TextInputField
         onChange={(...args) => sbHandleEvent('onClick', args, 1000)}

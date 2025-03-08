@@ -18,7 +18,7 @@ const MEDIA_URL =
   'https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=600';
 
 const defaultArgs = {
-  w: '56px4',
+  w: '512px',
 } satisfies Partial<ICardProps>;
 
 const states: Array<IComponentPresentation<ICardProps>> = [

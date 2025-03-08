@@ -1,10 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { faFilePdf } from '@fortawesome/free-regular-svg-icons';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IFileCardProps } from './FileCard.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { IconButton } from '~/components/IconButton';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { FileCard } from './FileCard';
 
@@ -22,8 +24,8 @@ const TRANSPARENT_IMAGE_URL =
 const defaultArgs = {
   fileName: 'flowers.jpg',
   fileSize: 133421,
-  h: '192px',
   onClick: (...args) => sbHandleEvent('click', args),
+  w: '320px',
 } satisfies Partial<IFileCardProps>;
 
 const states: Array<IComponentPresentation<IFileCardProps>> = [
@@ -57,10 +59,17 @@ const states: Array<IComponentPresentation<IFileCardProps>> = [
     },
   },
   {
-    legend: 'Deletable',
+    legend: 'Deletable and extra action',
     props: {
       errorText: 'Network failed.',
       onDelete: (...args) => sbHandleEvent('delete', args, 1000),
+      extraActions: ({ disabled }) => (
+        <IconButton
+          icon={<FontAwesomeIcon icon={faDownload} />}
+          onClick={(...args) => sbHandleEvent('download', args, 1000)}
+          disabled={disabled}
+        />
+      ),
     },
   },
   {
@@ -71,8 +80,7 @@ const states: Array<IComponentPresentation<IFileCardProps>> = [
   },
 ];
 
-const rows: Array<IComponentPresentation<IFileCardProps>> = [
-  { legend: 'Basic' },
+const cols: Array<IComponentPresentation<IFileCardProps>> = [
   {
     legend: 'With icon',
     props: {
@@ -91,33 +99,13 @@ const rows: Array<IComponentPresentation<IFileCardProps>> = [
       thumbUrl: TRANSPARENT_IMAGE_URL,
     },
   },
-  {
-    legend: 'With no metadata',
-    props: { thumbUrl: IMAGE_URL, hideMetadata: true, h: undefined },
-  },
-  {
-    legend: 'With transparent image and no metadata',
-    props: {
-      thumbUrl: TRANSPARENT_IMAGE_URL,
-      hideMetadata: true,
-      h: undefined,
-    },
-  },
-  {
-    legend: 'With icon and no metadata',
-    props: {
-      icon: <FontAwesomeIcon icon={faFilePdf} />,
-      hideMetadata: true,
-      h: undefined,
-    },
-  },
 ];
 
 const FileCardShowcase = componentShowcaseFactory(FileCard);
 
 export const States: IStory = {
   render: (props) => (
-    <FileCardShowcase props={props} cols={states} rows={rows} />
+    <FileCardShowcase props={props} rows={states} cols={cols} />
   ),
   args: defaultArgs,
 };

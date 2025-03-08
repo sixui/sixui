@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IFileDropZoneDemoProps } from './FileDropZone.stories/FileDropZoneDemo';
 import { Flex } from '~/components/Flex';
-import { SimpleGrid } from '~/components/SimpleGrid';
 import { Sortable } from '~/components/Sortable';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { IFileSizeUnit } from '~/utils/types';
@@ -18,7 +17,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  w: '480px',
+  w: '384px',
   acceptedFileTypes: {
     'image/*': [],
   },
@@ -26,7 +25,7 @@ const defaultArgs = {
   onAccept: (...args) => sbHandleEvent('onAccept', args),
   onReject: (...args) => sbHandleEvent('onReject', args),
   children: ({ files, handleDelete }) => (
-    <Flex direction="row" wrap="wrap" content="start" gap="$sm">
+    <Flex direction="column" gap="$sm" w="100%">
       {files.map((file) => (
         <FileDropZone.FileCard
           key={file.key}
@@ -154,10 +153,11 @@ export const SortableFiles: IStory = {
     initialFiles: FILES.slice(0, 4),
     children: ({ files, handleDelete, handleReorder }) => (
       <Sortable
-        as={SimpleGrid}
-        w="max-content"
-        cols={3}
-        spacing="$sm"
+        as={Flex}
+        w="100%"
+        axis="vertical"
+        direction="column"
+        gap="$sm"
         value={files.map((file) => file.key)}
         onChange={handleReorder}
         itemRenderer={(item) => {

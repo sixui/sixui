@@ -69,9 +69,6 @@ const classNames = createStyles({
       transitionTimingFunction: 'linear',
     },
     selectors: {
-      [modifierSelector<IModifier>('disabled')]: {
-        pointerEvents: 'none',
-      },
       [`${modifierSelector<IModifier>('focused')}::before`]: {
         backgroundColor: tokens.color.focused,
         opacity: tokens.opacity.focused,

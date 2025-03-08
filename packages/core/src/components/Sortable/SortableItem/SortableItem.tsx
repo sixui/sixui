@@ -68,7 +68,7 @@ export const SortableItem = polymorphicComponentFactory<ISortableItemFactory>(
 
     const sortableStyle = useMemo(
       () => ({
-        transform: css.transform.toString(transform),
+        transform: css.translate.toString(transform),
         transition,
         zIndex: isDragging ? 1 : 0,
         touchAction: 'manipulation',
