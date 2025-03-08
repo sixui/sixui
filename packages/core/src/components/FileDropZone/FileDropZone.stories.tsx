@@ -17,7 +17,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  w: '384px',
+  w: '344px',
   acceptedFileTypes: {
     'image/*': [],
   },
