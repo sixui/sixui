@@ -465,9 +465,19 @@ export const useRippleEffect = <TElement extends HTMLElement>(
     }
   }, [endPressAnimation]);
 
-  const handleDragStart: React.DragEventHandler = useCallback(() => {
+  const handleDragEnd: React.DragEventHandler = useCallback(() => {
+    // Gracefully end the ripple animation on desktop when the element is
+    // dragged.
     setAnimating(false);
   }, []);
+
+  const handleTouchMove: React.DragEventHandler = useCallback(() => {
+    // Gracefully end the ripple animation on mobile when the element is
+    // dragged.
+    if (stateRef.current === IState.Holding) {
+      endPressAnimation();
+    }
+  }, [endPressAnimation]);
 
   const handleContextMenu = useCallback(() => {
     if (disabled) {
@@ -491,7 +501,8 @@ export const useRippleEffect = <TElement extends HTMLElement>(
             onKeyDown: handleKeyDown,
             onKeyUp: handleKeyUp,
             onBlur: handleBlur,
-            onDragStart: handleDragStart,
+            onDragStart: handleDragEnd,
+            onTouchMove: handleTouchMove,
             onContextMenu: handleContextMenu,
           },
     [
@@ -504,7 +515,8 @@ export const useRippleEffect = <TElement extends HTMLElement>(
       handleKeyDown,
       handleKeyUp,
       handleBlur,
-      handleDragStart,
+      handleDragEnd,
+      handleTouchMove,
       handleContextMenu,
     ],
   );
