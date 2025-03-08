@@ -71,7 +71,7 @@ export const SortableItem = polymorphicComponentFactory<ISortableItemFactory>(
         transform: css.translate.toString(transform),
         transition,
         zIndex: isDragging ? 1 : 0,
-        touchAction: 'none',
+        touchAction: 'manipulation',
         cursor:
           draggable && !showDragHandle
             ? isDragging

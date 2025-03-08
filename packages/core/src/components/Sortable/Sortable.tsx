@@ -91,7 +91,11 @@ export const Sortable = polymorphicComponentFactory<ISortableFactory>(
       activationConstraint,
     });
     const touchSensor = useSensor(TouchSensor, {
-      activationConstraint,
+      activationConstraint: {
+        ...activationConstraint,
+        delay: 250,
+        tolerance: 8,
+      },
     });
     const keyboardSensor = useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
