@@ -1,3 +1,20 @@
+## 1.5.0 (2025-03-09)
+
+### 🚀 Features
+
+- FileDropZone: sortable option ([ac2e717e](https://github.com/sixui/sixui/commit/ac2e717e))
+
+### 🩹 Fixes
+
+- SortableItem: prevent page scrolling on mobile devices by setting `touch-action` CSS property to `none` ([51a9ef64](https://github.com/sixui/sixui/commit/51a9ef64))
+- useRippleEffect: gracefully end the ripple animation on mobile when the element is dragged ([e1139203](https://github.com/sixui/sixui/commit/e1139203))
+- Sortable: on mobile, the drag activation is now delayed to allow scrolling ([47cd46d3](https://github.com/sixui/sixui/commit/47cd46d3))
+- Sortable: on mobile, the drag activation is now delayed to allow scrolling ([2924ef05](https://github.com/sixui/sixui/commit/2924ef05))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 1.4.0 (2025-03-08)
 
 ### 🚀 Features
