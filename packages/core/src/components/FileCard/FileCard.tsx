@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 
 import type { IFileCardThemeFactory } from './FileCard.css';
 import type { IFileCardFactory } from './FileCard.types';
@@ -6,6 +6,7 @@ import { iconXMark } from '~/assets/icons';
 import { Card } from '~/components/Card';
 import { CircularProgressIndicator } from '~/components/CircularProgressIndicator';
 import { IconButton } from '~/components/IconButton';
+import { MoveHandleIndicator } from '~/components/MoveHandle';
 import { SvgIcon } from '~/components/SvgIcon';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
@@ -31,6 +32,7 @@ export const FileCard = componentFactory<IFileCardFactory>(
       onDelete,
       deleteIcon,
       extraActions,
+      moveHandle,
       loading,
       progress,
       supportingText,
@@ -45,7 +47,7 @@ export const FileCard = componentFactory<IFileCardFactory>(
     const disabled = disabledProp || handling;
     const canDelete = !!onDelete;
     const loaded = !loading && !hasError;
-    const hasActions = canDelete || !!extraActions;
+    const hasActions = canDelete || !!extraActions || !!moveHandle;
 
     const { getStyles } = useComponentTheme<IFileCardThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -63,11 +65,11 @@ export const FileCard = componentFactory<IFileCardFactory>(
       },
     });
 
-    const handleDelete = useCallback(async () => {
+    const handleDelete = async (): Promise<void> => {
       setHandling(true);
       await onDelete?.();
       setHandling(false);
-    }, [onDelete]);
+    };
 
     const supportingOrErrorText =
       hasError && errorText ? errorText : supportingText;
@@ -128,7 +130,14 @@ export const FileCard = componentFactory<IFileCardFactory>(
               <IconButton
                 icon={deleteIcon ?? <SvgIcon icon={iconXMark} />}
                 onClick={handleDelete}
-                variant="danger"
+                // variant="danger"
+              />
+            )}
+
+            {moveHandle && (
+              <MoveHandleIndicator
+                {...getStyles('moveHandle')}
+                orientation="vertical"
               />
             )}
           </Card.Actions>

@@ -1,18 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { IFileDropZoneDemoProps } from './FileDropZone.stories/FileDropZoneDemo';
-import { Flex } from '~/components/Flex';
-import { Sortable } from '~/components/Sortable';
+import type { IFileDropZoneProps } from './FileDropZone.types';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { IFileSizeUnit } from '~/utils/types';
 import { FileDropZone } from './FileDropZone';
-import { FileDropZoneDemo } from './FileDropZone.stories/FileDropZoneDemo';
 import { FILES } from './FileDropZone.stories/files';
 import { getIconFromMimeType } from './FileDropZone.stories/getIconFromMimeType';
 
 const meta = {
-  component: FileDropZoneDemo,
-} satisfies Meta<typeof FileDropZoneDemo>;
+  component: FileDropZone,
+} satisfies Meta<typeof FileDropZone>;
 
 type IStory = StoryObj<typeof meta>;
 
@@ -21,31 +18,22 @@ const defaultArgs = {
   acceptedFileTypes: {
     'image/*': [],
   },
+  getIconFromMimeType,
   maxFileSize: 1 * IFileSizeUnit.Megabyte,
   onAccept: (...args) => sbHandleEvent('onAccept', args),
   onReject: (...args) => sbHandleEvent('onReject', args),
-  children: ({ files, handleDelete }) => (
-    <Flex direction="column" gap="$sm" w="100%">
-      {files.map((file) => (
-        <FileDropZone.FileCard
-          key={file.key}
-          id={file.key}
-          file={file}
-          icon={file.mimeType ? getIconFromMimeType(file.mimeType) : undefined}
-          onDelete={() => handleDelete(file)}
-        />
-      ))}
-    </Flex>
-  ),
-} satisfies Partial<IFileDropZoneDemoProps>;
+  onDelete: (...args) => sbHandleEvent('onDelete', args),
+  onReorder: (...args) => sbHandleEvent('onReorder', args),
+  onChange: (...args) => sbHandleEvent('onChange', args),
+} satisfies Partial<IFileDropZoneProps>;
 
 export const Empty: IStory = {
-  render: (props) => <FileDropZoneDemo {...props} />,
+  render: (props) => <FileDropZone {...props} />,
   args: defaultArgs,
 };
 
 export const ThrowErrorOnDrop: IStory = {
-  render: (props) => <FileDropZoneDemo {...props} />,
+  render: (props) => <FileDropZone {...props} />,
   args: {
     ...defaultArgs,
     onAccept: () => {
@@ -55,7 +43,7 @@ export const ThrowErrorOnDrop: IStory = {
 };
 
 export const ImageSizeConstraint: IStory = {
-  render: (props) => <FileDropZoneDemo {...props} />,
+  render: (props) => <FileDropZone {...props} />,
   args: {
     ...defaultArgs,
     acceptedImageSize: {
@@ -70,7 +58,7 @@ export const ImageSizeConstraint: IStory = {
 };
 
 export const Disabled: IStory = {
-  render: (props) => <FileDropZoneDemo {...props} />,
+  render: (props) => <FileDropZone {...props} />,
   args: {
     ...defaultArgs,
     disabled: true,
@@ -78,7 +66,7 @@ export const Disabled: IStory = {
 };
 
 export const OneFile: IStory = {
-  render: (props) => <FileDropZoneDemo {...props} />,
+  render: (props) => <FileDropZone {...props} />,
   args: {
     ...defaultArgs,
     initialFiles: FILES.slice(0, 1),
@@ -86,7 +74,7 @@ export const OneFile: IStory = {
 };
 
 export const OneFileLoading: IStory = {
-  render: (props) => <FileDropZoneDemo {...props} />,
+  render: (props) => <FileDropZone {...props} />,
   args: {
     ...defaultArgs,
     initialFiles: [
@@ -99,7 +87,7 @@ export const OneFileLoading: IStory = {
 };
 
 export const OneFileWithProgress: IStory = {
-  render: (props) => <FileDropZoneDemo {...props} />,
+  render: (props) => <FileDropZone {...props} />,
   args: {
     ...defaultArgs,
     initialFiles: [
@@ -113,7 +101,7 @@ export const OneFileWithProgress: IStory = {
 };
 
 export const OneFileMax: IStory = {
-  render: (props) => <FileDropZoneDemo {...props} />,
+  render: (props) => <FileDropZone {...props} />,
   args: {
     ...defaultArgs,
     initialFiles: FILES.slice(0, 1),
@@ -122,7 +110,7 @@ export const OneFileMax: IStory = {
 };
 
 export const TwoFiles: IStory = {
-  render: (props) => <FileDropZoneDemo {...props} />,
+  render: (props) => <FileDropZone {...props} />,
   args: {
     ...defaultArgs,
     initialFiles: FILES.slice(0, 2),
@@ -130,7 +118,7 @@ export const TwoFiles: IStory = {
 };
 
 export const FourFiles: IStory = {
-  render: (props) => <FileDropZoneDemo {...props} />,
+  render: (props) => <FileDropZone {...props} />,
   args: {
     ...defaultArgs,
     initialFiles: FILES.slice(0, 4),
@@ -138,7 +126,7 @@ export const FourFiles: IStory = {
 };
 
 export const TooManyFiles: IStory = {
-  render: (props) => <FileDropZoneDemo {...props} />,
+  render: (props) => <FileDropZone {...props} />,
   args: {
     ...defaultArgs,
     initialFiles: FILES.slice(0, 4),
@@ -146,41 +134,16 @@ export const TooManyFiles: IStory = {
   },
 };
 
+const SortableFileDropZone: React.FC<IFileDropZoneProps> = (props) => {
+  return <FileDropZone {...props}></FileDropZone>;
+};
+
 export const SortableFiles: IStory = {
-  render: (props) => <FileDropZoneDemo {...props} />,
+  render: (props) => <SortableFileDropZone {...props} />,
   args: {
     ...defaultArgs,
     initialFiles: FILES.slice(0, 4),
-    children: ({ files, handleDelete, handleReorder }) => (
-      <Sortable
-        as={Flex}
-        w="100%"
-        axis="vertical"
-        direction="column"
-        gap="$sm"
-        value={files.map((file) => file.key)}
-        onChange={handleReorder}
-        itemRenderer={(item) => {
-          const file = files.find((f) => f.key === item.id);
-          if (!file) {
-            return;
-          }
-
-          return (
-            <Sortable.Item
-              key={file.key}
-              as={FileDropZone.FileCard}
-              id={file.key}
-              file={file}
-              icon={
-                file.mimeType ? getIconFromMimeType(file.mimeType) : undefined
-              }
-              onDelete={() => handleDelete(file)}
-            />
-          );
-        }}
-      />
-    ),
+    sortable: true,
   },
 };
 

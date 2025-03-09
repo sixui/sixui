@@ -1,6 +1,6 @@
 import type { ICardActionsThemeFactory } from './CardActions.css';
 import type { ICardActionsFactory } from './CardActions.types';
-import { Box } from '~/components/Box';
+import { Flex } from '~/components/Flex';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './CardActions.constants';
@@ -32,9 +32,9 @@ export const CardActions = componentFactory<ICardActionsFactory>(
     });
 
     return (
-      <Box {...getStyles('root')} ref={forwardedRef} {...other}>
+      <Flex ref={forwardedRef} {...getStyles('root')} {...other}>
         {children}
-      </Box>
+      </Flex>
     );
   },
 );

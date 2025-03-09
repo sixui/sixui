@@ -33,10 +33,6 @@ const classNames = createStyles({
     flexDirection: 'column',
     width: '100%',
   },
-  inputContainer: {
-    display: 'flex',
-    flexGrow: 1,
-  },
   dropActions: {
     display: 'flex',
     flexDirection: 'row',

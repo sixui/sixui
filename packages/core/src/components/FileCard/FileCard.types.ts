@@ -4,7 +4,7 @@ import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IMaybeAsync } from '~/utils/types';
 import type { fileCardTheme, IFileCardThemeFactory } from './FileCard.css';
 
-export interface IFileCardExtraActionsRenderProps {
+export interface IFileCardActionsRenderProps {
   disabled: boolean;
 }
 
@@ -21,7 +21,8 @@ export interface IFileCardOwnProps {
   onClick?: () => IMaybeAsync<unknown>;
   extraActions?:
     | React.ReactNode
-    | ((props: IFileCardExtraActionsRenderProps) => React.ReactNode);
+    | ((props: IFileCardActionsRenderProps) => React.ReactNode);
+  moveHandle?: boolean;
   loading?: boolean;
   progress?: number;
   supportingText?: string;

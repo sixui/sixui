@@ -1,4 +1,5 @@
 import type { IBoxProps } from '~/components/Box';
+import type { IFlexOwnProps } from '~/components/Flex';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type {
@@ -6,7 +7,7 @@ import type {
   ICardContentThemeFactory,
 } from './CardContent.css';
 
-export interface ICardContentOwnProps {
+export interface ICardContentOwnProps extends IFlexOwnProps {
   children?: React.ReactNode;
 }
 

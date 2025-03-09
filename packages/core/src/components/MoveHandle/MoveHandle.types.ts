@@ -2,15 +2,17 @@ import type { IBoxProps } from '~/components/Box';
 import type { IIconButtonOwnProps } from '~/components/IconButton';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IMakeOptional, IOrientation } from '~/utils/types';
+import type { IOmit, IOrientation, ISide } from '~/utils/types';
 import type {
   IMoveHandleThemeFactory,
   moveHandleTheme,
 } from './MoveHandle.css';
+import type { MoveHandleIndicator } from './MoveHandleIndicator';
 
 export interface IMoveHandleOwnProps
-  extends IMakeOptional<IIconButtonOwnProps, 'icon'> {
+  extends IOmit<IIconButtonOwnProps, 'icon'> {
   orientation?: IOrientation;
+  position?: ISide;
 }
 
 export interface IMoveHandleProps
@@ -22,4 +24,7 @@ export type IMoveHandleFactory = IComponentFactory<{
   props: IMoveHandleProps;
   ref: HTMLButtonElement;
   theme: typeof moveHandleTheme;
+  staticComponents: {
+    Indicator: typeof MoveHandleIndicator;
+  };
 }>;

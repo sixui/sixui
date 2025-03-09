@@ -20,3 +20,4 @@ export * from './useTimeout';
 export * from './useToggle';
 export * from './useWindowSizeClass';
 export * from './useClassName';
+export * from './useFileDropZone';

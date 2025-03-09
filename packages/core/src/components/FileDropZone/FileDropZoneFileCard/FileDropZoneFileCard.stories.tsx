@@ -1,6 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IFileDropZoneFileCardProps } from './FileDropZoneFileCard.types';
+import {
+  componentShowcaseFactory,
+  IComponentPresentation,
+} from '~/components/ComponentShowcase';
 import { FileDropZoneFileCard } from './FileDropZoneFileCard';
 
 const meta = {
@@ -11,17 +15,31 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   file: {
-    key: '0',
+    internalId: '0',
     thumbUrl:
       'https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=200',
     name: 'File.png',
     mimeType: 'image/png',
     size: 133421,
   },
+  w: '344px',
 } satisfies Partial<IFileDropZoneFileCardProps>;
 
+const rows: Array<IComponentPresentation<IFileDropZoneFileCardProps>> = [
+  { legend: 'Basic' },
+  {
+    legend: 'Deletable',
+    props: {
+      onDelete: () => {},
+    },
+  },
+];
+
+const FileDropZoneFileCardShowcase =
+  componentShowcaseFactory(FileDropZoneFileCard);
+
 export const Basic: IStory = {
-  render: (props) => <FileDropZoneFileCard {...props} />,
+  render: (props) => <FileDropZoneFileCardShowcase props={props} rows={rows} />,
   args: defaultArgs,
 };
 

@@ -18,14 +18,12 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   id: 'ID',
-  w: '64px',
-  h: '96px',
 } satisfies Partial<ISortableItemProps>;
 
 type ISortableItemDemoProps = IOmit<ISortableItemProps, 'children'>;
 
 const SortableItemDemo: React.FC<ISortableItemDemoProps> = (props) => (
-  <SortableItem as={Card} shape="$xs" {...props}>
+  <SortableItem as={Card} shape="$xs" w="64px" h="96px" {...props}>
     <Flex align="center" justify="center" h="100%" />
   </SortableItem>
 );

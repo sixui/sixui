@@ -12,7 +12,6 @@ export const extractPaperProps = (
   props: IPaperProps,
 ): IExtractPaperPropsResult => {
   const { shape, outline, outlineStyle, elevation, surface, ...other } = props;
-
   const { boxProps, other: forwardedProps } = extractBoxProps(other);
 
   const paperProps: IPaperProps = removeUndefineds({

@@ -1,6 +1,6 @@
 import type { ICardContentThemeFactory } from './CardContent.css';
 import type { ICardContentFactory } from './CardContent.types';
-import { Box } from '~/components/Box';
+import { Flex } from '~/components/Flex';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { COMPONENT_NAME } from './CardContent.constants';
@@ -32,9 +32,9 @@ export const CardContent = polymorphicComponentFactory<ICardContentFactory>(
     });
 
     return (
-      <Box {...getStyles('root')} ref={forwardedRef} {...other}>
+      <Flex ref={forwardedRef} {...getStyles('root')} {...other}>
         {children}
-      </Box>
+      </Flex>
     );
   },
 );

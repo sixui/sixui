@@ -1,5 +1,6 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IComponentThemeProps } from '~/components/Theme';
+import type { IFileDropZoneFileInfo } from '~/hooks/useFileDropZone';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IMaybeAsync } from '~/utils/types';
 import type {
@@ -9,23 +10,6 @@ import type {
 import type { fileDropZoneStrings } from './FileDropZone.strings';
 import type { FileDropZoneFileCard } from './FileDropZoneFileCard';
 import type { IImageSizeConstraints } from './utils/validateImageSize';
-
-export type IFileDropZoneFileInfo = {
-  key: string;
-  id?: string;
-  thumbUrl?: string;
-  downloadUrl?: string;
-  mimeType: string;
-  name: string;
-  size: number;
-  file?: File;
-  loading?: boolean;
-  progress?: number;
-  errorTextList?: Array<string>;
-  canRetry?: boolean;
-  supportingText?: string;
-  abortController?: AbortController;
-};
 
 export type IFileDropZoneStrings = Record<
   | 'dragSingle'
@@ -40,20 +24,21 @@ export type IFileDropZoneStrings = Record<
   string
 >;
 
-export interface IFileDropZoneChildrenRenderProps {
-  files: Array<IFileDropZoneFileInfo>;
-}
-
 export interface IFileDropZoneOwnProps {
   supportingText?: React.ReactNode;
   trailingSupportingText?: React.ReactNode;
   hasError?: boolean;
   errorText?: React.ReactNode;
-  files?: Array<IFileDropZoneFileInfo>;
+  initialFiles?: Array<IFileDropZoneFileInfo>;
   capture?: 'user' | 'environment';
   extraActions?: React.ReactNode;
+  sortable?: boolean;
   onAccept?: (fileInfo: IFileDropZoneFileInfo) => IMaybeAsync<unknown>;
   onReject?: (fileInfo: IFileDropZoneFileInfo) => IMaybeAsync<unknown>;
+  onDelete?: (fileInfo: IFileDropZoneFileInfo) => IMaybeAsync<unknown>;
+  onReorder?: (files: Array<IFileDropZoneFileInfo>) => IMaybeAsync<unknown>;
+  onChange?: (files: Array<IFileDropZoneFileInfo>) => IMaybeAsync<unknown>;
+  getIconFromMimeType: (mimeType?: string) => React.ReactNode;
   disabled?: boolean;
   strings?: typeof fileDropZoneStrings;
   rootRef?: React.RefObject<HTMLDivElement>;
@@ -61,7 +46,6 @@ export interface IFileDropZoneOwnProps {
   maxFileCount?: number;
   maxFileSize?: number;
   acceptedImageSize?: IImageSizeConstraints;
-  children: React.ReactNode;
 
   /**
    * See types option for more information. Keep in mind that mime type

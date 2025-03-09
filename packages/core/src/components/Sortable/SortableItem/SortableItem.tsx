@@ -1,28 +1,25 @@
+import type { AnimateLayoutChanges } from '@dnd-kit/sortable';
 import { useCallback, useMemo } from 'react';
-import { useSortable } from '@dnd-kit/sortable';
+import { defaultAnimateLayoutChanges, useSortable } from '@dnd-kit/sortable';
 
-import type { ISortableItemThemeFactory } from './SortableItem.css';
 import type { ISortableItemFactory } from './SortableItem.types';
-import { Box } from '~/components/Box';
 import { MoveHandle } from '~/components/MoveHandle';
 import { useSortableContext } from '~/components/Sortable/Sortable.context';
-import { useComponentTheme, useProps } from '~/components/Theme';
+import { useProps } from '~/components/Theme';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { polymorphicComponentFactory } from '~/utils/component';
 import { css } from '~/utils/css';
 import { getDataAttributes } from '~/utils/getDataAttributes';
 import { isFunction } from '~/utils/isFunction';
 import { COMPONENT_NAME } from './SortableItem.constants';
-import { sortableItemTheme } from './SortableItem.css';
+
+const animateLayoutChanges: AnimateLayoutChanges = (props) =>
+  defaultAnimateLayoutChanges({ ...props, wasDragging: true });
 
 export const SortableItem = polymorphicComponentFactory<ISortableItemFactory>(
   (props, forwardedRef) => {
     const {
-      classNames,
-      className,
-      styles,
-      style,
-      variant,
+      as: Component = 'div',
       id,
       fixed,
       children,
@@ -40,19 +37,6 @@ export const SortableItem = polymorphicComponentFactory<ISortableItemFactory>(
       dragHandlePositionProp ??
       (sortableContext?.axis === 'vertical' ? 'left' : 'bottom');
 
-    const { getStyles } = useComponentTheme<ISortableItemThemeFactory>({
-      componentName: COMPONENT_NAME,
-      classNames,
-      className,
-      styles,
-      style,
-      variant,
-      theme: sortableItemTheme,
-      modifiers: {
-        'drag-handle-position': dragHandlePosition,
-      },
-    });
-
     const {
       attributes,
       listeners,
@@ -60,13 +44,13 @@ export const SortableItem = polymorphicComponentFactory<ISortableItemFactory>(
       transform,
       transition,
       isDragging,
-    } = useSortable({ id, disabled: fixed });
+    } = useSortable({ id, disabled: fixed, animateLayoutChanges });
 
     const draggable = !dragHandle && !fixed;
     const showDragHandle = dragHandle && !fixed;
     const dragged = isDragging;
 
-    const sortableStyle = useMemo(
+    const style = useMemo(
       () => ({
         transform: css.translate.toString(transform),
         transition,
@@ -94,45 +78,40 @@ export const SortableItem = polymorphicComponentFactory<ISortableItemFactory>(
 
     const getItemProps = useCallback(
       () => ({
-        style: sortableStyle,
+        style,
         ...getDataAttributes({ dragged }),
         draggable,
         ref: handleRef,
       }),
-      [sortableStyle, handleRef, dragged, draggable],
+      [style, handleRef, dragged, draggable],
     );
 
     const renderDragHandle = dragHandleRenderer
       ? () => dragHandleRenderer({ getProps: getDragHandleProps })
       : (): React.ReactNode => (
           <MoveHandle
-            {...getStyles('dragHandle')}
-            orientation={
-              dragHandlePosition === 'top' || dragHandlePosition === 'bottom'
-                ? 'horizontal'
-                : 'vertical'
-            }
+            position={dragHandlePosition}
             {...attributes}
             {...listeners}
           />
         );
 
     return isFunction(children) ? (
-      children({ getItemProps, getDragHandleProps, renderDragHandle })
+      children({
+        getItemProps,
+        getDragHandleProps,
+        renderDragHandle,
+      })
     ) : (
-      <Box
-        {...getStyles('root', {
-          style: sortableStyle,
-        })}
+      <Component
+        {...getItemProps()}
         {...(dragHandle ? undefined : getDragHandleProps())}
-        interactions={{ dragged }}
-        draggable={draggable}
         ref={handleRef}
         {...other}
       >
         {children}
         {showDragHandle && renderDragHandle()}
-      </Box>
+      </Component>
     );
   },
 );

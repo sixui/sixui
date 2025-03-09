@@ -4,6 +4,7 @@ import {
   closestCenter,
   DndContext,
   KeyboardSensor,
+  MeasuringStrategy,
   MouseSensor,
   TouchSensor,
   useSensor,
@@ -23,18 +24,19 @@ import {
 import { delay } from '@olivierpascal/helpers';
 
 import type { IMaybeAsync } from '~/utils/types';
-import type { ISortableThemeFactory } from './Sortable.css';
-import type { ISortableFactory, ISortableItem } from './Sortable.types';
-import { Box } from '~/components/Box';
-import { useComponentTheme, useProps } from '~/components/Theme';
-import { polymorphicComponentFactory } from '~/utils/component';
+import type {
+  ISortableFactory,
+  ISortableFactoryProps,
+  ISortableItem,
+} from './Sortable.types';
+import { useProps } from '~/components/Theme';
+import { componentFactory } from '~/utils/component';
 import { executeLazyPromise } from '~/utils/executeLazyPromise';
 import { COMPONENT_NAME } from './Sortable.constants';
 import { SortableContextProvider } from './Sortable.context';
 import { SortableItem } from './SortableItem';
-import { sortableTheme } from './Sortable.css';
 
-type IPendingChange = {
+export type ISortablePendingChange = {
   activeItem: {
     id: string;
     oldIndex: number;
@@ -47,184 +49,191 @@ type IPendingChange = {
   };
 };
 
-export const Sortable = polymorphicComponentFactory<ISortableFactory>(
-  (props, forwardedRef) => {
-    const {
-      classNames,
-      className,
-      styles,
-      style,
-      variant,
-      axis,
-      value = [],
-      onChange,
-      minChangeDuration,
-      disabled,
-      startSlot,
-      endSlot,
-      itemRenderer,
-      dndContextProps,
-      ...other
-    } = useProps({ componentName: COMPONENT_NAME, props });
+export const sortableFactory = <TItem,>(
+  factoryProps: ISortableFactoryProps<TItem>,
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+) => {
+  const Sortable = componentFactory<ISortableFactory<TItem>>(
+    (props, _forwardedRef) => {
+      const {
+        axis,
+        items = [],
+        getItemId = factoryProps.getItemId,
+        onReorder,
+        onDelete,
+        onChange,
+        minChangeDuration,
+        disabled,
+        startSlot,
+        endSlot,
+        dndContextProps,
+        children,
+      } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const { getStyles } = useComponentTheme<ISortableThemeFactory>({
-      componentName: COMPONENT_NAME,
-      classNames,
-      className,
-      styles,
-      style,
-      variant,
-      theme: sortableTheme,
-    });
+      const activationConstraint = {
+        distance: 8,
+      };
 
-    const activationConstraint = {
-      distance: 8,
-    };
+      const [dragging, setDragging] = useState(false);
+      const [processing, setProcessing] = useState(false);
+      const [sortableItems, setSortableItems] = useState<
+        Array<ISortableItem<TItem>>
+      >(items.map((item) => ({ item, id: getItemId(item) })));
 
-    const [dragging, setDragging] = useState(false);
-    const [pending, setPending] = useState(false);
-    const [items, setItems] = useState<Array<ISortableItem>>(
-      value.map((id) => ({ id })),
-    );
+      const mouseSensor = useSensor(MouseSensor, {
+        activationConstraint,
+      });
+      const touchSensor = useSensor(TouchSensor, {
+        activationConstraint: {
+          ...activationConstraint,
+          delay: 250,
+          tolerance: 8,
+        },
+      });
+      const keyboardSensor = useSensor(KeyboardSensor, {
+        coordinateGetter: sortableKeyboardCoordinates,
+      });
+      const sensors = useSensors(mouseSensor, touchSensor, keyboardSensor);
+      const processingChangesRef = useRef<Array<ISortablePendingChange>>([]);
+      const lastChangeRef = useRef<IMaybeAsync<unknown>>(undefined);
+      const lastValidItemsRef = useRef(sortableItems);
 
-    const mouseSensor = useSensor(MouseSensor, {
-      activationConstraint,
-    });
-    const touchSensor = useSensor(TouchSensor, {
-      activationConstraint: {
-        ...activationConstraint,
-        delay: 250,
-        tolerance: 8,
-      },
-    });
-    const keyboardSensor = useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    });
-    const sensors = useSensors(mouseSensor, touchSensor, keyboardSensor);
-    const pendingChangesRef = useRef<Array<IPendingChange>>([]);
-    const lastChangeRef = useRef<IMaybeAsync<unknown>>(undefined);
-    const lastValidItemsRef = useRef(items);
-
-    // Update items when initialValue changes.
-    useEffect(() => {
-      setItems((items) =>
-        value.map((id) => ({
-          id,
-          pending: items.some((item) => item.id === id && item.pending),
-        })),
-      );
-    }, [value]);
-
-    const handleDragEnd = useCallback(
-      (event: DragEndEvent) => {
-        setDragging(false);
-
-        const { active, over } = event;
-        if (!over || active.id === over.id) {
-          // No change.
-          return;
-        }
-
-        const activeId = active.id as string;
-        const overId = over.id as string;
-
-        const ids = items.map(({ id }) => id);
-        const oldIndex = ids.indexOf(activeId);
-        const newIndex = ids.indexOf(overId);
-        if (oldIndex < 0 || newIndex < 0) {
-          // Invalid state.
-          return;
-        }
-
-        pendingChangesRef.current.push({
-          activeItem: {
-            id: activeId,
-            oldIndex,
-            newIndex,
-          },
-          overItem: {
-            id: overId,
-            oldIndex: newIndex,
-            newIndex: oldIndex,
-          },
-        });
-
-        const reorderedItems = arrayMove(items, oldIndex, newIndex);
-        const reorderedIds = reorderedItems.map(({ id }) => id);
-        setItems(
-          reorderedItems.map((item) => ({
-            ...item,
-            pending: item.id === active.id ? true : item.pending,
+      // Update sortable items when items changes.
+      useEffect(() => {
+        setSortableItems((prevSortableItems) =>
+          items.map((item) => ({
+            item,
+            id: getItemId(item),
+            processing: prevSortableItems.some(
+              // (item) => item.id === id && item.processing,
+              (sortableItem) =>
+                sortableItem.id === getItemId(item) && sortableItem.processing,
+            ),
           })),
         );
+      }, [items, getItemId]);
 
-        lastChangeRef.current = Promise.resolve(lastChangeRef.current)
-          .then(
-            () =>
-              new Promise((resolve, reject) => {
-                Promise.all([
-                  executeLazyPromise(
-                    () => onChange?.(reorderedIds),
-                    setPending,
-                  ),
-                  minChangeDuration ? delay(minChangeDuration) : undefined,
-                ])
-                  .then(resolve)
-                  .catch(reject);
-              }),
-          )
-          .then(() => {
-            lastValidItemsRef.current = reorderedItems;
-          })
-          .catch(() => {
-            setItems(
-              reorderedItems.map((item) => ({
-                ...item,
-                pending: false,
-              })),
-            );
-          })
-          .finally(() => {
-            pendingChangesRef.current.shift();
-            if (pendingChangesRef.current.length <= 0) {
-              setItems(
-                lastValidItemsRef.current.map((item) => ({
+      const handleDragEnd = useCallback(
+        (event: DragEndEvent) => {
+          setDragging(false);
+
+          const { active, over } = event;
+          if (!over || active.id === over.id) {
+            // No change.
+            return;
+          }
+
+          const activeId = active.id as string;
+          const overId = over.id as string;
+
+          const ids = sortableItems.map(({ id }) => id);
+          const oldIndex = ids.indexOf(activeId);
+          const newIndex = ids.indexOf(overId);
+          if (oldIndex < 0 || newIndex < 0) {
+            // Invalid state.
+            return;
+          }
+
+          processingChangesRef.current.push({
+            activeItem: {
+              id: activeId,
+              oldIndex,
+              newIndex,
+            },
+            overItem: {
+              id: overId,
+              oldIndex: newIndex,
+              newIndex: oldIndex,
+            },
+          });
+
+          const reorderedItems = arrayMove(sortableItems, oldIndex, newIndex);
+          setSortableItems(
+            reorderedItems.map((item) => ({
+              ...item,
+              processing: item.id === active.id ? true : item.processing,
+            })),
+          );
+
+          lastChangeRef.current = Promise.resolve(lastChangeRef.current)
+            .then(
+              () =>
+                new Promise((resolve, reject) => {
+                  Promise.all([
+                    executeLazyPromise(async () => {
+                      await onReorder?.(reorderedItems.map(({ item }) => item));
+                      await onChange?.(reorderedItems.map(({ item }) => item));
+                    }, setProcessing),
+                    minChangeDuration ? delay(minChangeDuration) : undefined,
+                  ])
+                    .then(resolve)
+                    .catch(reject);
+                }),
+            )
+            .then(() => {
+              lastValidItemsRef.current = reorderedItems;
+            })
+            .catch(() => {
+              setSortableItems(
+                reorderedItems.map((item) => ({
                   ...item,
-                  pending: false,
+                  processing: false,
                 })),
               );
-            }
-          });
-      },
-      [onChange, items, minChangeDuration],
-    );
+            })
+            .finally(() => {
+              processingChangesRef.current.shift();
+              if (processingChangesRef.current.length <= 0) {
+                setSortableItems(
+                  lastValidItemsRef.current.map((item) => ({
+                    ...item,
+                    processing: false,
+                  })),
+                );
+              }
+            });
+        },
+        [onReorder, onChange, sortableItems, minChangeDuration],
+      );
 
-    const contextValue = useMemo(
-      () => ({
-        axis,
-        dragging,
-      }),
-      [axis, dragging],
-    );
+      const contextValue = useMemo(
+        () => ({
+          axis,
+          dragging,
+        }),
+        [axis, dragging],
+      );
 
-    const isItemPending = useCallback(
-      (id: string): boolean =>
-        pendingChangesRef.current.some(
-          ({ activeItem }) => activeItem.id === id,
-        ),
-      [],
-    );
+      const isItemProcessing = useCallback(
+        (id: string): boolean =>
+          processingChangesRef.current.some(
+            ({ activeItem }) => activeItem.id === id,
+          ),
+        [],
+      );
 
-    const handleDelete = useCallback(
-      (id: string) => {
-        onChange?.(items.filter((item) => item.id !== id).map(({ id }) => id));
-      },
-      [items, onChange],
-    );
+      const handleDelete = useCallback(
+        (deletedSortableItem: ISortableItem<TItem>) => {
+          onDelete?.(deletedSortableItem.item);
+          onChange?.(
+            sortableItems
+              .filter(
+                (sortableItem) => sortableItem.id !== deletedSortableItem.id,
+              )
+              .map(({ item }) => item),
+          );
+        },
+        [sortableItems, onDelete, onChange],
+      );
 
-    return (
-      <SortableContextProvider value={contextValue}>
-        <Box {...getStyles('root')} ref={forwardedRef} {...other}>
+      const measuringConfig = {
+        droppable: {
+          strategy: MeasuringStrategy.Always,
+        },
+      };
+
+      return (
+        <SortableContextProvider value={contextValue}>
           <DndContext
             sensors={sensors}
             collisionDetection={closestCenter}
@@ -245,12 +254,13 @@ export const Sortable = polymorphicComponentFactory<ISortableFactory>(
             onDragAbort={() => {
               setDragging(false);
             }}
+            measuring={measuringConfig}
             {...dndContextProps}
           >
             {startSlot}
 
             <SortableContext
-              items={items}
+              items={sortableItems}
               strategy={
                 axis === 'vertical'
                   ? verticalListSortingStrategy
@@ -260,28 +270,32 @@ export const Sortable = polymorphicComponentFactory<ISortableFactory>(
               }
               disabled={disabled}
             >
-              {items.map((item, index) =>
-                itemRenderer({
-                  ...item,
-                  index,
-                  pending,
-                  itemPending: isItemPending(item.id),
+              {children({
+                sortableItems: sortableItems.map((sortableItem) => ({
+                  ...sortableItem,
+                  processing,
+                  itemProcessing: isItemProcessing(sortableItem.id),
                   disabled,
                   onDelete: () => {
-                    handleDelete(item.id);
+                    handleDelete(sortableItem);
                   },
-                }),
-              )}
+                })),
+              })}
             </SortableContext>
 
             {endSlot}
           </DndContext>
-        </Box>
-      </SortableContextProvider>
-    );
-  },
-);
+        </SortableContextProvider>
+      );
+    },
+  );
 
-Sortable.theme = sortableTheme;
-Sortable.displayName = `@sixui/core/${COMPONENT_NAME}`;
-Sortable.Item = SortableItem;
+  Sortable.displayName = `@sixui/core/${COMPONENT_NAME}`;
+  Sortable.Item = SortableItem;
+
+  return Sortable;
+};
+
+export const Sortable = sortableFactory<string>({
+  getItemId: (id) => id,
+});

@@ -1,11 +1,10 @@
 import type { IMoveHandleThemeFactory } from './MoveHandle.css';
 import type { IMoveHandleFactory } from './MoveHandle.types';
-import { iconGripDotsHorizontal, iconGripDotsVertical } from '~/assets/icons';
 import { IconButton } from '~/components/IconButton';
-import { SvgIcon } from '~/components/SvgIcon';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './MoveHandle.constants';
+import { MoveHandleIndicator } from './MoveHandleIndicator';
 import { moveHandleTheme } from './MoveHandle.css';
 
 export const MoveHandle = componentFactory<IMoveHandleFactory>(
@@ -16,8 +15,8 @@ export const MoveHandle = componentFactory<IMoveHandleFactory>(
       styles,
       style,
       variant,
-      icon: iconProp,
-      orientation = 'horizontal',
+      orientation: orientationProp,
+      position,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -29,22 +28,20 @@ export const MoveHandle = componentFactory<IMoveHandleFactory>(
       style,
       variant,
       theme: moveHandleTheme,
+      modifiers: {
+        position,
+      },
     });
 
-    const icon = iconProp ?? (
-      <SvgIcon
-        icon={
-          orientation === 'horizontal'
-            ? iconGripDotsHorizontal
-            : iconGripDotsVertical
-        }
-      />
-    );
+    const orientation =
+      (orientationProp ?? (position === 'top' || position === 'bottom'))
+        ? 'horizontal'
+        : 'vertical';
 
     return (
       <IconButton
         {...getStyles('root')}
-        icon={icon}
+        icon={<MoveHandleIndicator orientation={orientation} />}
         ref={forwardedRef}
         {...other}
       />
@@ -54,3 +51,4 @@ export const MoveHandle = componentFactory<IMoveHandleFactory>(
 
 MoveHandle.theme = moveHandleTheme;
 MoveHandle.displayName = `@sixui/core/${COMPONENT_NAME}`;
+MoveHandle.Indicator = MoveHandleIndicator;

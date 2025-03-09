@@ -1,8 +1,8 @@
-import type { ISortableProps } from './Sortable.types';
+import type { IOrientation } from '~/utils/types';
 import { createOptionalContext } from '~/utils/react';
 
 export type ISortableContextValue = {
-  axis?: ISortableProps['axis'];
+  axis?: IOrientation;
   dragging?: boolean;
 };
 

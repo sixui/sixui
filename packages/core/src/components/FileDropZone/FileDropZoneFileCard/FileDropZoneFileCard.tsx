@@ -45,18 +45,16 @@ export const FileDropZoneFileCard =
         progress={file.progress}
         hasError={!!file.errorTextList?.length}
         errorText={file.errorTextList?.join(' / ')}
-        onDelete={onDelete ? () => void onDelete(file) : undefined}
+        onDelete={onDelete ? () => onDelete(file) : undefined}
         extraActions={
-          <>
-            {!!file.downloadUrl && (
-              <IconButton
-                icon={downloadIcon ?? <SvgIcon icon={iconArrowDownTray} />}
-                href={file.downloadUrl}
-                target="_blank"
-                variant="filled"
-              />
-            )}
-          </>
+          !!file.downloadUrl && (
+            <IconButton
+              icon={downloadIcon ?? <SvgIcon icon={iconArrowDownTray} />}
+              href={file.downloadUrl}
+              target="_blank"
+              variant="filled"
+            />
+          )
         }
         {...other}
       />

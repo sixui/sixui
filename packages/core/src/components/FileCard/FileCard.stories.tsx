@@ -28,7 +28,7 @@ const defaultArgs = {
   w: '320px',
 } satisfies Partial<IFileCardProps>;
 
-const states: Array<IComponentPresentation<IFileCardProps>> = [
+const rows: Array<IComponentPresentation<IFileCardProps>> = [
   {
     legend: 'Loading',
     props: {
@@ -103,10 +103,8 @@ const cols: Array<IComponentPresentation<IFileCardProps>> = [
 
 const FileCardShowcase = componentShowcaseFactory(FileCard);
 
-export const States: IStory = {
-  render: (props) => (
-    <FileCardShowcase props={props} rows={states} cols={cols} />
-  ),
+export const Configurations: IStory = {
+  render: (props) => <FileCardShowcase props={props} rows={rows} cols={cols} />,
   args: defaultArgs,
 };
 

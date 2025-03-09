@@ -70,6 +70,10 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
       error: themeTokens.colorScheme.error,
     },
   },
+  moveHandle: {
+    color: themeTokens.colorScheme.onSurfaceVariant,
+    opacity: '1',
+  },
 });
 
 const classNames = createStyles({
@@ -149,6 +153,7 @@ const classNames = createStyles({
   fileName: ({ root }) => ({
     ...typography(tokens.fileName.typography),
     color: tokens.fileName.color.normal,
+    wordBreak: 'break-word',
 
     selectors: {
       [modifierSelector<IModifier>('disabled', root)]: {
@@ -178,6 +183,10 @@ const classNames = createStyles({
       },
     },
   }),
+  moveHandle: {
+    color: tokens.moveHandle.color,
+    opacity: tokens.moveHandle.opacity,
+  },
 });
 
 export type IFileCardThemeFactory = IComponentThemeFactory<{

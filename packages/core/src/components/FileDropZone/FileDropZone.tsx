@@ -8,10 +8,16 @@ import { iconArrowUpTray } from '~/assets/icons';
 import { Box } from '~/components/Box';
 import { Button } from '~/components/Button';
 import { DropZone } from '~/components/DropZone';
+import { Flex } from '~/components/Flex';
 import { useOverlays } from '~/components/Overlays';
 import { SnackbarOverlay } from '~/components/Snackbar';
+import { sortableFactory } from '~/components/Sortable';
 import { SvgIcon } from '~/components/SvgIcon';
 import { useComponentTheme, useProps } from '~/components/Theme';
+import {
+  IFileDropZoneFileInfo,
+  useFileDropZone,
+} from '~/hooks/useFileDropZone';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { camelCaseFromKebabCase } from '~/utils/camelCaseFromKebabCase';
 import { componentFactory } from '~/utils/component/componentFactory';
@@ -23,6 +29,10 @@ import { FileDropZoneFileCard } from './FileDropZoneFileCard';
 import { getFormattedConstraints } from './utils/getFormattedConstraints';
 import { validateImageSize } from './utils/validateImageSize';
 import { fileDropZoneTheme } from './FileDropZone.css';
+
+const Sortable = sortableFactory<IFileDropZoneFileInfo>({
+  getItemId: (item) => item.internalId,
+});
 
 export const FileDropZone = componentFactory<IFileDropZoneFactory>(
   (props, forwardedRef) => {
@@ -36,20 +46,24 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
       trailingSupportingText: trailingSupportingTextProp,
       hasError: hasErrorProp,
       errorText: errorTextProp,
-      files = [],
+      initialFiles = [],
       maxFileCount,
       maxFileSize,
       capture,
       extraActions,
+      sortable: sortableProp,
       onAccept,
       onReject,
+      onDelete,
+      onReorder,
+      onChange,
+      getIconFromMimeType,
       disabled,
       acceptedFileTypes,
       rootRef,
       strings = fileDropZoneStrings,
       uploadIcon,
       acceptedImageSize,
-      children,
       ...other
     } = useProps({
       componentName: COMPONENT_NAME,
@@ -58,10 +72,20 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
 
     const overlays = useOverlays();
 
+    const { files, handleAccept, handleReject, handleDelete, handleReorder } =
+      useFileDropZone({
+        initialFiles,
+        onAccept,
+        onReject,
+        onDelete,
+        onReorder,
+        onChange,
+      });
+
     const acceptFile = useCallback(
       (file: File): IMaybeAsync<unknown> =>
-        onAccept?.({
-          key: getUid(),
+        handleAccept({
+          internalId: getUid(),
           thumbUrl: file.type.startsWith('image/')
             ? URL.createObjectURL(file)
             : undefined,
@@ -71,13 +95,13 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
           file: file,
           abortController: new AbortController(),
         }),
-      [onAccept],
+      [handleAccept],
     );
 
     const rejectFile = useCallback(
       (fileRejection: FileRejection): IMaybeAsync<unknown> =>
-        onReject?.({
-          key: getUid(),
+        handleReject({
+          internalId: getUid(),
           thumbUrl: fileRejection.file.type.startsWith('image/')
             ? URL.createObjectURL(fileRejection.file)
             : undefined,
@@ -92,7 +116,7 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
               ],
           ),
         }),
-      [onReject, strings],
+      [handleReject, strings],
     );
 
     const handleError = useCallback(
@@ -170,6 +194,7 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
         ? Math.max(maxFileCount - files.length, 0)
         : undefined;
     const multiple = maxFileCount === undefined || maxFileCount > 1;
+    const sortable = multiple && files.length > 0 && sortableProp;
 
     const {
       getRootProps,
@@ -209,6 +234,44 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
     const handleInputRef = useMergeRefs(forwardedRef, inputRef);
     const dropping = isDragActive && !disabled;
 
+    const renderChildren = (): React.ReactNode => (
+      <Flex direction="column" gap="$sm" w="100%">
+        {sortable ? (
+          <Sortable
+            items={files}
+            onReorder={handleReorder}
+            onDelete={handleDelete}
+            axis="vertical"
+          >
+            {({ sortableItems }) =>
+              sortableItems.map((sortableItem) => (
+                <Sortable.Item
+                  as={FileDropZone.FileCard}
+                  key={sortableItem.item.internalId}
+                  id={sortableItem.item.internalId}
+                  file={sortableItem.item}
+                  icon={getIconFromMimeType(sortableItem.item.mimeType)}
+                  onDelete={sortableItem.onDelete}
+                  loading={sortableItem.itemProcessing}
+                  moveHandle
+                />
+              ))
+            }
+          </Sortable>
+        ) : (
+          files.map((file) => (
+            <FileDropZone.FileCard
+              key={file.internalId}
+              id={file.internalId}
+              file={file}
+              icon={getIconFromMimeType(file.mimeType)}
+              onDelete={handleDelete}
+            />
+          ))
+        )}
+      </Flex>
+    );
+
     return (
       <Box {...getStyles('root')} ref={rootRef} {...other}>
         <input
@@ -218,55 +281,54 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
           capture={capture}
         />
         {!multiple && files.length > 0 ? (
-          children
+          renderChildren()
         ) : (
-          <div {...getRootProps()} {...getStyles('inputContainer')}>
-            <DropZone
-              {...getStyles('dropZone')}
-              dropping={dropping}
-              onClick={extraActions ? undefined : browse}
-              disabled={disabled}
-              label={
-                multiple ? strings.label.dragMultiple : strings.label.dragSingle
-              }
-              actionIcon={uploadIcon ?? <SvgIcon icon={iconArrowUpTray} />}
-              actionLabel={extraActions ? undefined : strings.actions.browse}
-              supportingText={
-                supportingText ??
-                getFormattedConstraints({
-                  acceptedFileTypes,
-                  acceptedImageSize,
-                  maxFileCount,
-                  maxFileSize,
-                  strings: strings.imageSizeConstraints,
-                })
-              }
-              trailingSupportingText={trailingSupportingText}
-              hasError={hasError}
-              errorText={errorText}
-            >
-              {extraActions && (
-                <div {...getStyles('dropActions')}>
-                  <>
-                    <Button
-                      variant="text"
-                      disabled={disabled}
-                      onClick={browse}
-                      leadingIcon={
-                        uploadIcon ?? <SvgIcon icon={iconArrowUpTray} />
-                      }
-                    >
-                      {strings.actions.browse}
-                    </Button>
-                    {extraActions}
-                  </>
-                </div>
-              )}
-            </DropZone>
-          </div>
+          <DropZone
+            {...getRootProps()}
+            {...getStyles('dropZone')}
+            dropping={dropping}
+            onClick={extraActions ? undefined : browse}
+            disabled={disabled}
+            label={
+              multiple ? strings.label.dragMultiple : strings.label.dragSingle
+            }
+            actionIcon={uploadIcon ?? <SvgIcon icon={iconArrowUpTray} />}
+            actionLabel={extraActions ? undefined : strings.actions.browse}
+            supportingText={
+              supportingText ??
+              getFormattedConstraints({
+                acceptedFileTypes,
+                acceptedImageSize,
+                maxFileCount,
+                maxFileSize,
+                strings: strings.imageSizeConstraints,
+              })
+            }
+            trailingSupportingText={trailingSupportingText}
+            hasError={hasError}
+            errorText={errorText}
+          >
+            {extraActions && (
+              <div {...getStyles('dropActions')}>
+                <>
+                  <Button
+                    variant="text"
+                    disabled={disabled}
+                    onClick={browse}
+                    leadingIcon={
+                      uploadIcon ?? <SvgIcon icon={iconArrowUpTray} />
+                    }
+                  >
+                    {strings.actions.browse}
+                  </Button>
+                  {extraActions}
+                </>
+              </div>
+            )}
+          </DropZone>
         )}
 
-        {multiple && files.length > 0 && children}
+        {multiple && files.length > 0 && renderChildren()}
       </Box>
     );
   },
