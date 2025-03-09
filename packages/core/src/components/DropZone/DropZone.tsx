@@ -32,7 +32,7 @@ export const DropZone = componentFactory<IDropZoneFactory>(
     } = useProps({ componentName: COMPONENT_NAME, props });
     const { boxProps, other: forwardedProps } = extractBoxProps(other);
 
-    const interactive = !disabled && !dropping && !!onClick;
+    const interactive = !disabled && !!onClick;
 
     const { getStyles } = useComponentTheme<IDropZoneThemeFactory>({
       componentName: COMPONENT_NAME,

@@ -1,7 +1,7 @@
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
-import { Card } from '~/components/Card';
+import { Card, CardContent } from '~/components/Card';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { space, typography } from '~/utils/css';
@@ -144,6 +144,10 @@ const classNames = createStyles({
   }),
   content: {
     justifyContent: 'center',
+
+    vars: overrideTokens(CardContent.theme.tokens, {
+      gap: px(space('$xs')),
+    }),
   },
   fileInfo: {
     display: 'flex',

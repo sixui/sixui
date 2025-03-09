@@ -1,23 +1,22 @@
 import { useCallback } from 'react';
 import { FileRejection, useDropzone } from 'react-dropzone';
 
+import type { IFileDropZoneFile } from '~/hooks/useFileDropZone';
 import type { IMaybeAsync } from '~/utils/types';
 import type { IFileDropZoneThemeFactory } from './FileDropZone.css';
 import type { IFileDropZoneFactory } from './FileDropZone.types';
-import { iconArrowUpTray } from '~/assets/icons';
+import { iconArrowPath, iconArrowUpTray } from '~/assets/icons';
 import { Box } from '~/components/Box';
 import { Button } from '~/components/Button';
 import { DropZone } from '~/components/DropZone';
 import { Flex } from '~/components/Flex';
+import { IconButton } from '~/components/IconButton';
 import { useOverlays } from '~/components/Overlays';
 import { SnackbarOverlay } from '~/components/Snackbar';
 import { sortableFactory } from '~/components/Sortable';
 import { SvgIcon } from '~/components/SvgIcon';
 import { useComponentTheme, useProps } from '~/components/Theme';
-import {
-  IFileDropZoneFileInfo,
-  useFileDropZone,
-} from '~/hooks/useFileDropZone';
+import { useFileDropZone } from '~/hooks/useFileDropZone';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { camelCaseFromKebabCase } from '~/utils/camelCaseFromKebabCase';
 import { componentFactory } from '~/utils/component/componentFactory';
@@ -30,7 +29,7 @@ import { getFormattedConstraints } from './utils/getFormattedConstraints';
 import { validateImageSize } from './utils/validateImageSize';
 import { fileDropZoneTheme } from './FileDropZone.css';
 
-const Sortable = sortableFactory<IFileDropZoneFileInfo>({
+const Sortable = sortableFactory<IFileDropZoneFile>({
   getItemId: (item) => item.internalId,
 });
 
@@ -54,8 +53,10 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
       sortable: sortableProp,
       onAccept,
       onReject,
+      onError,
       onDelete,
       onReorder,
+      onRetry,
       onChange,
       getIconFromMimeType,
       disabled,
@@ -64,6 +65,7 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
       strings = fileDropZoneStrings,
       uploadIcon,
       acceptedImageSize,
+      retryIcon: retryIconProp,
       ...other
     } = useProps({
       componentName: COMPONENT_NAME,
@@ -72,15 +74,23 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
 
     const overlays = useOverlays();
 
-    const { files, handleAccept, handleReject, handleDelete, handleReorder } =
-      useFileDropZone({
-        initialFiles,
-        onAccept,
-        onReject,
-        onDelete,
-        onReorder,
-        onChange,
-      });
+    const {
+      files,
+      handleAccept,
+      handleReject,
+      handleDelete,
+      handleReorder,
+      handleRetry,
+    } = useFileDropZone({
+      initialFiles,
+      onAccept,
+      onReject,
+      onError,
+      onDelete,
+      onReorder,
+      onChange,
+      onRetry,
+    });
 
     const acceptFile = useCallback(
       (file: File): IMaybeAsync<unknown> =>
@@ -120,11 +130,14 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
     );
 
     const handleError = useCallback(
-      (error: Error) =>
+      (error: Error) => {
+        onError?.(error);
+
         void overlays.open(SnackbarOverlay, {
           children: error.message,
-        }),
-      [overlays],
+        });
+      },
+      [onError, overlays],
     );
 
     const handleDrop = useCallback(
@@ -194,7 +207,7 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
         ? Math.max(maxFileCount - files.length, 0)
         : undefined;
     const multiple = maxFileCount === undefined || maxFileCount > 1;
-    const sortable = multiple && files.length > 0 && sortableProp;
+    const sortable = multiple && files.length > 1 && sortableProp;
 
     const {
       getRootProps,
@@ -252,7 +265,18 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
                   file={sortableItem.item}
                   icon={getIconFromMimeType(sortableItem.item.mimeType)}
                   onDelete={sortableItem.onDelete}
-                  loading={sortableItem.itemProcessing}
+                  loading={
+                    sortableItem.itemProcessing || sortableItem.item.loading
+                  }
+                  extraActions={
+                    sortableItem.item.canRetry &&
+                    onRetry && (
+                      <IconButton
+                        icon={retryIconProp ?? <SvgIcon icon={iconArrowPath} />}
+                        onClick={() => handleRetry(sortableItem.item)}
+                      />
+                    )
+                  }
                   moveHandle
                 />
               ))
@@ -265,7 +289,17 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
               id={file.internalId}
               file={file}
               icon={getIconFromMimeType(file.mimeType)}
+              loading={file.loading}
               onDelete={handleDelete}
+              extraActions={
+                file.canRetry &&
+                onRetry && (
+                  <IconButton
+                    icon={retryIconProp ?? <SvgIcon icon={iconArrowPath} />}
+                    onClick={() => handleRetry(file)}
+                  />
+                )
+              }
             />
           ))
         )}

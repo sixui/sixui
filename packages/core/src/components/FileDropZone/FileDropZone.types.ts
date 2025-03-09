@@ -1,8 +1,10 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IComponentThemeProps } from '~/components/Theme';
-import type { IFileDropZoneFileInfo } from '~/hooks/useFileDropZone';
+import type {
+  IFileDropZoneFile,
+  IUseFileDropZoneProps,
+} from '~/hooks/useFileDropZone';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IMaybeAsync } from '~/utils/types';
 import type {
   fileDropZoneTheme,
   IFileDropZoneThemeFactory,
@@ -29,15 +31,17 @@ export interface IFileDropZoneOwnProps {
   trailingSupportingText?: React.ReactNode;
   hasError?: boolean;
   errorText?: React.ReactNode;
-  initialFiles?: Array<IFileDropZoneFileInfo>;
+  initialFiles?: Array<IFileDropZoneFile>;
   capture?: 'user' | 'environment';
   extraActions?: React.ReactNode;
   sortable?: boolean;
-  onAccept?: (fileInfo: IFileDropZoneFileInfo) => IMaybeAsync<unknown>;
-  onReject?: (fileInfo: IFileDropZoneFileInfo) => IMaybeAsync<unknown>;
-  onDelete?: (fileInfo: IFileDropZoneFileInfo) => IMaybeAsync<unknown>;
-  onReorder?: (files: Array<IFileDropZoneFileInfo>) => IMaybeAsync<unknown>;
-  onChange?: (files: Array<IFileDropZoneFileInfo>) => IMaybeAsync<unknown>;
+  onAccept?: IUseFileDropZoneProps['onAccept'];
+  onReject?: IUseFileDropZoneProps['onReject'];
+  onError?: IUseFileDropZoneProps['onError'];
+  onDelete?: IUseFileDropZoneProps['onDelete'];
+  onReorder?: IUseFileDropZoneProps['onReorder'];
+  onRetry?: IUseFileDropZoneProps['onRetry'];
+  onChange?: IUseFileDropZoneProps['onChange'];
   getIconFromMimeType: (mimeType?: string) => React.ReactNode;
   disabled?: boolean;
   strings?: typeof fileDropZoneStrings;
@@ -46,6 +50,7 @@ export interface IFileDropZoneOwnProps {
   maxFileCount?: number;
   maxFileSize?: number;
   acceptedImageSize?: IImageSizeConstraints;
+  retryIcon?: React.ReactNode;
 
   /**
    * See types option for more information. Keep in mind that mime type

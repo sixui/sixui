@@ -1,7 +1,7 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IFileCardOwnProps } from '~/components/FileCard';
 import type { IComponentThemeProps } from '~/components/Theme';
-import type { IFileDropZoneFileInfo } from '~/hooks/useFileDropZone';
+import type { IFileDropZoneFile } from '~/hooks/useFileDropZone';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IMaybeAsync, IOmit } from '~/utils/types';
 import type {
@@ -11,8 +11,8 @@ import type {
 
 export interface IFileDropZoneFileCardOwnProps
   extends IOmit<IFileCardOwnProps, 'onDelete'> {
-  file: IFileDropZoneFileInfo;
-  onDelete?: (fileInfo: IFileDropZoneFileInfo) => IMaybeAsync<unknown>;
+  file: IFileDropZoneFile;
+  onDelete?: (file: IFileDropZoneFile) => IMaybeAsync<unknown>;
   downloadIcon?: React.ReactNode;
 }
 

@@ -138,8 +138,6 @@ const classNames = createStyles({
         }),
       },
       [modifierSelector<IModifier>(['dropping', '!with-error'], root)]: {
-        pointerEvents: 'none',
-
         vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: tokens.container.color.dropping,

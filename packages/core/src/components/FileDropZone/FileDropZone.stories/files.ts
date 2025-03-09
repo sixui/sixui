@@ -1,7 +1,7 @@
-import type { IFileDropZoneFileInfo } from '~/hooks/useFileDropZone';
+import type { IFileDropZoneFile } from '~/hooks/useFileDropZone';
 import { MIME_TYPES } from '../mimeTypes.constants';
 
-export const FILES: Array<IFileDropZoneFileInfo> = [
+export const FILES: Array<IFileDropZoneFile> = [
   {
     internalId: '0',
     thumbUrl:

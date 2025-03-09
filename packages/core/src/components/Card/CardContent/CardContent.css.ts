@@ -16,6 +16,7 @@ type IModifier = 'disabled';
 const DENSITY = px(density({ min: -4, max: 0 }));
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
+  gap: px(space('$lg')),
   text: {
     color: {
       normal: themeTokens.colorScheme.onSurface,
@@ -35,7 +36,7 @@ const classNames = createStyles({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    gap: calc.add(px(space('$lg')), DENSITY),
+    gap: calc.add(tokens.gap, DENSITY),
     color: tokens.text.color.normal,
     paddingTop: calc.add(tokens.topSpace, DENSITY),
     paddingBottom: calc.add(tokens.bottomSpace, DENSITY),

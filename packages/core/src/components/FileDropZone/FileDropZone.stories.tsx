@@ -24,7 +24,7 @@ const defaultArgs = {
   onReject: (...args) => sbHandleEvent('onReject', args),
   onDelete: (...args) => sbHandleEvent('onDelete', args),
   onReorder: (...args) => sbHandleEvent('onReorder', args),
-  onChange: (...args) => sbHandleEvent('onChange', args),
+  onChange: (...args) => void sbHandleEvent('onChange', args),
 } satisfies Partial<IFileDropZoneProps>;
 
 export const Empty: IStory = {
