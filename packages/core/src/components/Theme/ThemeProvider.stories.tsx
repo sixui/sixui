@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { IThemeProviderProps } from './ThemeProvider.types';
-import { ColorInputField } from '~/components/ColorInputField';
+import { ColorInput } from '~/components/ColorInput';
 import { ColorScheme } from '~/components/ColorScheme';
 import { Flex } from '~/components/Flex';
 import { Paper } from '~/components/Paper';
@@ -33,7 +33,7 @@ const DynamicThemeProviderDemo: React.FC = () => {
 
   return (
     <Flex direction="column" gap="$sm">
-      <ColorInputField onChange={handleChange} clearable />
+      <ColorInput onChange={handleChange} clearable />
 
       <Paper p="$lg" outline="$xs" outlineStyle="dashed">
         <ColorScheme />

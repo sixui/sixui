@@ -7,7 +7,7 @@ import { px } from '~/utils/css';
 import { createStyles } from '~/utils/css/createStyles';
 import { modifierSelector } from '~/utils/css/modifierSelector';
 import { themeTokens } from '~/components/Theme/theme.css';
-import { COMPONENT_NAME } from './TextInputField.constants';
+import { COMPONENT_NAME } from './TextInput.constants';
 
 type IModifier = 'disabled' | 'with-error' | 'no-spinner';
 
@@ -124,7 +124,7 @@ const classNames = createStyles({
   }),
 });
 
-export type ITextInputFieldThemeFactory = IComponentThemeFactory<{
+export type ITextInputThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   variant: IFieldBaseVariant;
@@ -132,7 +132,7 @@ export type ITextInputFieldThemeFactory = IComponentThemeFactory<{
 }>;
 
 export const textInputFieldTheme =
-  componentThemeFactory<ITextInputFieldThemeFactory>({
+  componentThemeFactory<ITextInputThemeFactory>({
     classNames,
     tokensClassName,
     tokens,

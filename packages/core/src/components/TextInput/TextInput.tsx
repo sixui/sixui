@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react';
 import { useFocus } from 'react-aria';
 
-import type { ITextInputFieldThemeFactory } from './TextInputField.css';
-import type { ITextInputFieldFactory } from './TextInputField.types';
+import type { ITextInputThemeFactory } from './TextInput.css';
+import type { ITextInputFactory } from './TextInput.types';
 import { iconEye, iconEyeSlash, iconXMark } from '~/assets/icons';
 import { FieldBase } from '~/components/FieldBase';
 import { IconButton } from '~/components/IconButton';
@@ -14,13 +14,13 @@ import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { mergeProps } from '~/utils/mergeProps';
 import { triggerChangeEvent } from '~/utils/react';
-import { COMPONENT_NAME } from './TextInputField.constants';
-import { textInputFieldTheme } from './TextInputField.css';
+import { COMPONENT_NAME } from './TextInput.constants';
+import { textInputFieldTheme } from './TextInput.css';
 
 /**
  * @see https://m3.material.io/components/text-fields/overview
  */
-export const TextInputField = componentFactory<ITextInputFieldFactory>(
+export const TextInput = componentFactory<ITextInputFactory>(
   (props, forwardedRef) => {
     const {
       classNames,
@@ -52,7 +52,7 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
 
     const disabledOrReadOnly = other.disabled || other.readOnly;
 
-    const { getStyles } = useComponentTheme<ITextInputFieldThemeFactory>({
+    const { getStyles } = useComponentTheme<ITextInputThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
       className,
@@ -201,5 +201,5 @@ export const TextInputField = componentFactory<ITextInputFieldFactory>(
   },
 );
 
-TextInputField.theme = textInputFieldTheme;
-TextInputField.displayName = `@sixui/core/${COMPONENT_NAME}`;
+TextInput.theme = textInputFieldTheme;
+TextInput.displayName = `@sixui/core/${COMPONENT_NAME}`;

@@ -1,5 +1,5 @@
 import type { IBoxProps } from '~/components/Box';
-import type { ITextInputFieldOwnProps } from '~/components/TextInputField';
+import type { ITextInputOwnProps } from '~/components/TextInput';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type {
@@ -10,20 +10,20 @@ import type {
 } from '~/utils/types';
 import type {
   colorInputFieldTheme,
-  IColorInputFieldThemeFactory,
-} from './ColorInputField.css';
+  IColorInputThemeFactory,
+} from './ColorInput.css';
 
-export interface IColorInputFieldColorPickerRendererProps {
+export interface IColorInputColorPickerRendererProps {
   onClick: (event: React.MouseEvent, color: string) => IMaybeAsync<unknown>;
   selectedColor?: string;
   customPalette?: IColorPalette;
 }
 
-export interface IColorInputFieldOwnProps
-  extends IOmit<ITextInputFieldOwnProps, 'onChange'> {
+export interface IColorInputOwnProps
+  extends IOmit<ITextInputOwnProps, 'onChange'> {
   placement?: IPlacement;
   colorPickerRenderer?: (
-    props: IColorInputFieldColorPickerRendererProps,
+    props: IColorInputColorPickerRendererProps,
   ) => React.JSX.Element;
   customPalette?: IColorPalette;
   onColorsQuantized?: (colors: Array<string>) => void;
@@ -31,13 +31,13 @@ export interface IColorInputFieldOwnProps
   onChange?: (color: string, isValid: boolean) => IMaybeAsync<unknown>;
 }
 
-export interface IColorInputFieldProps
+export interface IColorInputProps
   extends IBoxProps,
-    IComponentThemeProps<IColorInputFieldThemeFactory>,
-    IColorInputFieldOwnProps {}
+    IComponentThemeProps<IColorInputThemeFactory>,
+    IColorInputOwnProps {}
 
-export type IColorInputFieldFactory = IComponentFactory<{
-  props: IColorInputFieldProps;
+export type IColorInputFactory = IComponentFactory<{
+  props: IColorInputProps;
   ref: HTMLInputElement;
   theme: typeof colorInputFieldTheme;
 }>;

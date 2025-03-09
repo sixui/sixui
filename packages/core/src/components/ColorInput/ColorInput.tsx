@@ -2,9 +2,9 @@ import { useCallback, useRef, useState } from 'react';
 
 import type { IColorPalette } from '~/utils/types';
 import type {
-  IColorInputFieldColorPickerRendererProps,
-  IColorInputFieldFactory,
-} from './ColorInputField.types';
+  IColorInputColorPickerRendererProps,
+  IColorInputFactory,
+} from './ColorInput.types';
 import { iconPhoto } from '~/assets/icons';
 import { useColorPaletteGroupContext } from '~/components/ColorPaletteGroup/ColorPaletteGroup.context';
 import { ColorTag } from '~/components/ColorTag';
@@ -12,20 +12,20 @@ import { HslColorPickerContent } from '~/components/HslColorPickerContent';
 import { IconButton } from '~/components/IconButton';
 import { PopoverBase } from '~/components/PopoverBase';
 import { SvgIcon } from '~/components/SvgIcon';
-import { TextInputField } from '~/components/TextInputField';
+import { TextInput } from '~/components/TextInput';
 import { useProps } from '~/components/Theme';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { extractPaletteFromImage } from '~/utils/colors/extractPaletteFromImage';
 import { isValidHexColor } from '~/utils/colors/isValidHexColor';
 import { componentFactory } from '~/utils/component/componentFactory';
-import { COMPONENT_NAME } from './ColorInputField.constants';
-import { colorInputFieldTheme } from './ColorInputField.css';
+import { COMPONENT_NAME } from './ColorInput.constants';
+import { colorInputFieldTheme } from './ColorInput.css';
 
 const defaultColorPickerRenderer = (
-  props: IColorInputFieldColorPickerRendererProps,
+  props: IColorInputColorPickerRendererProps,
 ): React.JSX.Element => <HslColorPickerContent {...props} />;
 
-export const ColorInputField = componentFactory<IColorInputFieldFactory>(
+export const ColorInput = componentFactory<IColorInputFactory>(
   (props, forwardedRef) => {
     const {
       placement = {
@@ -135,7 +135,7 @@ export const ColorInputField = componentFactory<IColorInputFieldFactory>(
           positioned
         >
           {({ getProps, setRef, open }) => (
-            <TextInputField
+            <TextInput
               startSlot={
                 <ColorTag color={value} outlined mr="$2" onClick={open} />
               }
@@ -166,5 +166,5 @@ export const ColorInputField = componentFactory<IColorInputFieldFactory>(
   },
 );
 
-ColorInputField.theme = colorInputFieldTheme;
-ColorInputField.displayName = `@sixui/core/${COMPONENT_NAME}`;
+ColorInput.theme = colorInputFieldTheme;
+ColorInput.displayName = `@sixui/core/${COMPONENT_NAME}`;

@@ -7,7 +7,7 @@ import {
 import { floatingFilterableListBaseFactory } from '~/components/FloatingFilterableListBase';
 import { ListItem } from '~/components/List/ListItem';
 import { MenuList } from '~/components/Menu/MenuList';
-import { TextInputField } from '~/components/TextInputField';
+import { TextInput } from '~/components/TextInput';
 import { useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './SelectBase.constants';
@@ -55,7 +55,7 @@ export const selectBaseFactory = <
               noFocusRing
               header={
                 canFilter && (
-                  <TextInputField
+                  <TextInput
                     {...listProps.getInputFilterProps()}
                     clearable
                     type="text"

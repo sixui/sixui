@@ -4,11 +4,11 @@ import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IElementProps, IOmit } from '~/utils/types';
 import type {
-  ITextInputFieldThemeFactory,
+  ITextInputThemeFactory,
   textInputFieldTheme,
-} from './TextInputField.css';
+} from './TextInput.css';
 
-export interface ITextInputFieldOwnProps
+export interface ITextInputOwnProps
   extends IOmit<IFieldBaseOwnProps, 'children'>,
     IElementProps<'input', 'className'> {
   /**
@@ -47,13 +47,13 @@ export interface ITextInputFieldOwnProps
   defaultValue?: string;
 }
 
-export interface ITextInputFieldProps
+export interface ITextInputProps
   extends IBoxProps,
-    IComponentThemeProps<ITextInputFieldThemeFactory>,
-    ITextInputFieldOwnProps {}
+    IComponentThemeProps<ITextInputThemeFactory>,
+    ITextInputOwnProps {}
 
-export type ITextInputFieldFactory = IComponentFactory<{
-  props: ITextInputFieldProps;
+export type ITextInputFactory = IComponentFactory<{
+  props: ITextInputProps;
   ref: HTMLInputElement;
   theme: typeof textInputFieldTheme;
 }>;

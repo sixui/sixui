@@ -6,7 +6,7 @@ import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { createStyles } from '~/utils/css/createStyles';
 import { modifierSelector } from '~/utils/css/modifierSelector';
 import { themeTokens } from '~/components/Theme/theme.css';
-import { COMPONENT_NAME } from './TextAreaField.constants';
+import { COMPONENT_NAME } from './TextArea.constants';
 
 type IModifier = 'disabled' | 'with-error';
 
@@ -69,16 +69,15 @@ const classNames = createStyles({
   }),
 });
 
-export type ITextAreaFieldThemeFactory = IComponentThemeFactory<{
+export type ITextAreaThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   tokens: typeof tokens;
   variant: IFieldBaseVariant;
   modifier: IModifier;
 }>;
 
-export const textAreaFieldTheme =
-  componentThemeFactory<ITextAreaFieldThemeFactory>({
-    classNames,
-    tokensClassName,
-    tokens,
-  });
+export const textAreaFieldTheme = componentThemeFactory<ITextAreaThemeFactory>({
+  classNames,
+  tokensClassName,
+  tokens,
+});

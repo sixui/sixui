@@ -19,7 +19,7 @@ import {
 import { floatingFilterableListBaseFactory } from '~/components/FloatingFilterableListBase';
 import { ListItem } from '~/components/List/ListItem';
 import { MenuList } from '~/components/Menu/MenuList';
-import { TextInputField } from '~/components/TextInputField';
+import { TextInput } from '~/components/TextInput';
 
 export type IFloatingFilterableListBaseDemoProps = Partial<
   IFloatingFilterableListBaseProps<IMovie, HTMLDivElement>
@@ -64,7 +64,7 @@ export const FloatingFilterableListBaseDemo: React.FC<
           noFocusRing
           header={
             canFilter && (
-              <TextInputField
+              <TextInput
                 {...listProps.getInputFilterProps()}
                 clearable
                 type="text"

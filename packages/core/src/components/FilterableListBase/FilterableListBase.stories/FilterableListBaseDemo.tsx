@@ -3,7 +3,7 @@ import type { IFilterableListBaseProps } from '../FilterableListBase.types';
 import type { IMovie } from './movies';
 import { ListItem } from '~/components/List/ListItem';
 import { MenuList } from '~/components/Menu/MenuList';
-import { TextInputField } from '~/components/TextInputField';
+import { TextInput } from '~/components/TextInput';
 import { filterableListBaseFactory } from '../FilterableListBase';
 import {
   areMoviesEqual,
@@ -43,7 +43,7 @@ export const FilterableListBaseDemo: React.FC<IFilterableListBaseDemoProps> = (
         <MenuList
           header={
             canFilter ? (
-              <TextInputField
+              <TextInput
                 onChange={(event) => {
                   listProps.handleQueryChange(event.target.value);
                 }}

@@ -5,7 +5,7 @@ import type {
 import { filterableListBaseFactory } from '~/components/FilterableListBase';
 import { ListItem } from '~/components/List/ListItem';
 import { MenuList } from '~/components/Menu/MenuList';
-import { TextInputField } from '~/components/TextInputField';
+import { TextInput } from '~/components/TextInput';
 import { useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { COMPONENT_NAME } from './FilterableList.constants';
@@ -28,7 +28,7 @@ export const FilterableList =
           <MenuList
             header={
               canFilter ? (
-                <TextInputField
+                <TextInput
                   onChange={(event) => {
                     listProps.handleQueryChange(event.target.value);
                   }}

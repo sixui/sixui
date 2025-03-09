@@ -9,7 +9,7 @@ import {
 import { floatingFilterableListBaseFactory } from '~/components/FloatingFilterableListBase';
 import { ListItem } from '~/components/List/ListItem';
 import { MenuList } from '~/components/Menu/MenuList';
-import { TextInputField } from '~/components/TextInputField';
+import { TextInput } from '~/components/TextInput';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { IElementProps } from '~/utils/types';
@@ -234,7 +234,7 @@ export const multiSelectBaseFactory = <
             });
 
             return (
-              <TextInputField
+              <TextInput
                 endSlot={
                   <FilterableListBaseFieldTrailingIcon
                     onClear={
@@ -296,7 +296,7 @@ export const multiSelectBaseFactory = <
                       ),
                     )
                   : undefined}
-              </TextInputField>
+              </TextInput>
             );
           }}
         </FloatingFilterableListBase>

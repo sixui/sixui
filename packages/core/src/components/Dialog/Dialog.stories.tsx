@@ -7,7 +7,7 @@ import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Flex } from '~/components/Flex';
 import { useOverlays } from '~/components/Overlays';
-import { TextInputField } from '~/components/TextInputField';
+import { TextInput } from '~/components/TextInput';
 import { useDisclosure } from '~/hooks/useDisclosure';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { Dialog } from './Dialog';
@@ -126,7 +126,7 @@ const FormDialogDemo: React.FC<IDialogProps> = (props) => {
           </>
         )}
       >
-        <TextInputField name="name" />
+        <TextInput name="name" />
       </Dialog>
 
       <Flex direction="row" gap="$lg" align="center">

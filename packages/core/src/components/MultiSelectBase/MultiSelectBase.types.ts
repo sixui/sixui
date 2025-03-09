@@ -8,7 +8,7 @@ import type {
 import type { IMenuListProps } from '~/components/Menu/MenuList';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IOmit } from '~/utils/types';
-import { ITextInputFieldProps } from '~/components/TextInputField';
+import { ITextInputProps } from '~/components/TextInput';
 
 export interface IMultiSelectBaseOwnProps<TItem>
   extends IOmit<
@@ -16,7 +16,7 @@ export interface IMultiSelectBaseOwnProps<TItem>
       'onItemSelect' | 'renderer' | 'children'
     >,
     IUseMultiFilterableListBaseProps<TItem, HTMLElement>,
-    IOmit<ITextInputFieldProps, 'children' | 'onChange'> {
+    IOmit<ITextInputProps, 'children' | 'onChange'> {
   itemLabel: (item: TItem) => React.ReactNode | undefined;
   getValueFieldProps?: (
     props: IFloatingFilterableListBaseTriggerRenderProps<TItem>,

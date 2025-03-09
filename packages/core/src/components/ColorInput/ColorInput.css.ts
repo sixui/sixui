@@ -3,19 +3,19 @@ import type { IComponentThemeFactory } from '~/utils/component/componentThemeFac
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { createStyles } from '~/utils/css/createStyles';
-import { COMPONENT_NAME } from './ColorInputField.constants';
+import { COMPONENT_NAME } from './ColorInput.constants';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME);
 
 const classNames = createStyles();
 
-export type IColorInputFieldThemeFactory = IComponentThemeFactory<{
+export type IColorInputThemeFactory = IComponentThemeFactory<{
   styleName: keyof typeof classNames;
   variant: IFieldBaseVariant;
 }>;
 
 export const colorInputFieldTheme =
-  componentThemeFactory<IColorInputFieldThemeFactory>({
+  componentThemeFactory<IColorInputThemeFactory>({
     classNames,
     tokensClassName,
     tokens,

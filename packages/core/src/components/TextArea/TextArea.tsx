@@ -2,8 +2,8 @@ import { useRef, useState } from 'react';
 import { useFocus } from 'react-aria';
 
 import type { IAny } from '~/utils/types';
-import type { ITextAreaFieldThemeFactory } from './TextAreaField.css';
-import type { ITextAreaFieldFactory } from './TextAreaField.types';
+import type { ITextAreaThemeFactory } from './TextArea.css';
+import type { ITextAreaFactory } from './TextArea.types';
 import { iconXMark } from '~/assets/icons';
 import { FieldBase } from '~/components/FieldBase';
 import { IconButton } from '~/components/IconButton';
@@ -15,13 +15,13 @@ import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { mergeProps } from '~/utils/mergeProps';
 import { triggerChangeEvent } from '~/utils/react';
-import { COMPONENT_NAME } from './TextAreaField.constants';
-import { textAreaFieldTheme } from './TextAreaField.css';
+import { COMPONENT_NAME } from './TextArea.constants';
+import { textAreaFieldTheme } from './TextArea.css';
 
 /**
  * @see https://m3.material.io/components/text-fields/overview
  */
-export const TextAreaField = componentFactory<ITextAreaFieldFactory>(
+export const TextArea = componentFactory<ITextAreaFactory>(
   (props, forwardedRef) => {
     const {
       classNames,
@@ -48,7 +48,7 @@ export const TextAreaField = componentFactory<ITextAreaFieldFactory>(
 
     const disabledOrReadOnly = other.disabled || other.readOnly;
 
-    const { getStyles } = useComponentTheme<ITextAreaFieldThemeFactory>({
+    const { getStyles } = useComponentTheme<ITextAreaThemeFactory>({
       componentName: COMPONENT_NAME,
       classNames,
       className,
@@ -170,5 +170,5 @@ export const TextAreaField = componentFactory<ITextAreaFieldFactory>(
   },
 );
 
-TextAreaField.theme = textAreaFieldTheme;
-TextAreaField.displayName = `@sixui/core/${COMPONENT_NAME}`;
+TextArea.theme = textAreaFieldTheme;
+TextArea.displayName = `@sixui/core/${COMPONENT_NAME}`;

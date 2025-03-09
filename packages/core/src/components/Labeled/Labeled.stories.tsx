@@ -6,7 +6,7 @@ import { Checkbox } from '~/components/Checkbox';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Radio } from '~/components/Radio';
 import { Switch } from '~/components/Switch';
-import { TextInputField } from '~/components/TextInputField';
+import { TextInput } from '~/components/TextInput';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { Labeled } from './Labeled';
 
@@ -72,9 +72,7 @@ export const WithTextField: IStory = {
     ...defaultArgs,
     w: '256px',
     children: (
-      <TextInputField
-        onChange={(...args) => sbHandleEvent('onClick', args, 1000)}
-      />
+      <TextInput onChange={(...args) => sbHandleEvent('onClick', args, 1000)} />
     ),
     trailingAction: 'Action',
   },

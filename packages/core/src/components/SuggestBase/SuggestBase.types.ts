@@ -5,7 +5,7 @@ import type {
   IFloatingFilterableListBaseTriggerRenderProps,
 } from '~/components/FloatingFilterableListBase';
 import type { IMenuListProps } from '~/components/Menu/MenuList';
-import type { ITextInputFieldProps } from '~/components/TextInputField';
+import type { ITextInputProps } from '~/components/TextInput';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IOmit } from '~/utils/types';
 
@@ -21,12 +21,12 @@ export interface ISuggestBaseOwnProps<TItem>
       | 'defaultQuery'
     >,
     IUseSingleFilterableListBaseProps<TItem, HTMLElement>,
-    IOmit<ITextInputFieldProps, 'children' | 'onChange'> {
+    IOmit<ITextInputProps, 'children' | 'onChange'> {
   itemLabel: (item: TItem) => React.ReactNode | undefined;
   getValueFieldProps?: (
     props: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
     selectedItem?: TItem,
-  ) => Partial<ITextInputFieldProps>;
+  ) => Partial<ITextInputProps>;
   clearable?: boolean;
   menuListProps?: Partial<IMenuListProps>;
 }

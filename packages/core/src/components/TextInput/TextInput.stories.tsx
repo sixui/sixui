@@ -3,24 +3,25 @@ import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IFieldBaseVariant } from '~/components/FieldBase';
-import type { ITextAreaFieldProps } from './TextAreaField.types';
+import type { ITextInputProps } from './TextInput.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { Placeholder } from '~/components/Placeholder';
 import { px } from '~/utils/css/px';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
-import { TextAreaField } from './TextAreaField';
+import { TextInput } from './TextInput';
 
 const meta = {
-  component: TextAreaField,
-} satisfies Meta<typeof TextAreaField>;
+  component: TextInput,
+} satisfies Meta<typeof TextInput>;
 
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   w: px(260),
   onChange: (...args) => void sbHandleEvent('onChange', args),
-} satisfies Partial<ITextAreaFieldProps>;
+} satisfies Partial<ITextInputProps>;
 
-const states: Array<IComponentPresentation<ITextAreaFieldProps>> = [
+const states: Array<IComponentPresentation<ITextInputProps>> = [
   { legend: 'Normal' },
   { legend: 'Focused', props: { interactions: { focused: true } } },
   {
@@ -36,7 +37,7 @@ const states: Array<IComponentPresentation<ITextAreaFieldProps>> = [
   },
 ];
 
-const rows: Array<IComponentPresentation<ITextAreaFieldProps>> = [
+const rows: Array<IComponentPresentation<ITextInputProps>> = [
   { legend: 'Empty' },
   { legend: 'Label', props: { label: 'Label' } },
   {
@@ -45,22 +46,48 @@ const rows: Array<IComponentPresentation<ITextAreaFieldProps>> = [
   },
   {
     legend: 'Default value',
-    props: { defaultValue: 'Value' },
+    props: {
+      defaultValue: 'Value',
+      prefixText: '$',
+      suffixText: '.00',
+    },
   },
   { legend: 'Clearable', props: { clearable: true } },
   {
-    legend: 'Resizable',
-    props: { resizable: true },
+    legend: 'Password',
+    props: { type: 'password' },
+  },
+  {
+    legend: 'Date',
+    props: { type: 'datetime-local' },
+  },
+  {
+    legend: 'Color',
+    props: { type: 'color', defaultValue: '#0000ff' },
   },
   { legend: 'Error', props: { defaultValue: 'Value', hasError: true } },
   { legend: 'Loading', props: { loading: true } },
+  {
+    legend: 'Children',
+    props: {
+      children: (
+        <Placeholder
+          w="24px"
+          h="24px"
+          surface="$primary"
+          shape="$xs"
+          diagonals
+        />
+      ),
+    },
+  },
 ];
 
-const TextAreaFieldShowcase = componentShowcaseFactory(TextAreaField);
+const TextInputShowcase = componentShowcaseFactory(TextInput);
 
 export const Variants: IStory = {
   render: (props) => (
-    <TextAreaFieldShowcase
+    <TextInputShowcase
       props={props}
       cols={(['filled', 'outlined'] as Array<IFieldBaseVariant>).map(
         (variant) => ({
@@ -77,7 +104,7 @@ export const Variants: IStory = {
 
 export const Scales: IStory = {
   render: (props) => (
-    <TextAreaFieldShowcase
+    <TextInputShowcase
       props={props}
       cols={[
         { legend: 'Extra small', props: { scale: 'xs' } },
@@ -93,7 +120,7 @@ export const Scales: IStory = {
 
 export const Densities: IStory = {
   render: (props) => (
-    <TextAreaFieldShowcase
+    <TextInputShowcase
       props={props}
       cols={[
         { legend: '-2', props: { density: -2 } },
@@ -107,7 +134,7 @@ export const Densities: IStory = {
 
 export const Filled: IStory = {
   render: (props) => (
-    <TextAreaFieldShowcase props={props} cols={states} rows={rows} />
+    <TextInputShowcase props={props} cols={states} rows={rows} />
   ),
   args: {
     ...defaultArgs,
@@ -117,7 +144,7 @@ export const Filled: IStory = {
 
 export const Outlined: IStory = {
   render: (props) => (
-    <TextAreaFieldShowcase props={props} cols={states} rows={rows} />
+    <TextInputShowcase props={props} cols={states} rows={rows} />
   ),
   args: {
     ...defaultArgs,

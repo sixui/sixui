@@ -3,12 +3,9 @@ import type { IFieldBaseOwnProps } from '~/components/FieldBase';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IElementProps, IOmit } from '~/utils/types';
-import type {
-  ITextAreaFieldThemeFactory,
-  textAreaFieldTheme,
-} from './TextAreaField.css';
+import type { ITextAreaThemeFactory, textAreaFieldTheme } from './TextArea.css';
 
-export interface ITextAreaFieldOwnProps
+export interface ITextAreaOwnProps
   extends IOmit<IFieldBaseOwnProps, 'children'>,
     IElementProps<'textarea', 'className'> {
   /**
@@ -27,13 +24,13 @@ export interface ITextAreaFieldOwnProps
   defaultValue?: string;
 }
 
-export interface ITextAreaFieldProps
+export interface ITextAreaProps
   extends IBoxProps,
-    IComponentThemeProps<ITextAreaFieldThemeFactory>,
-    ITextAreaFieldOwnProps {}
+    IComponentThemeProps<ITextAreaThemeFactory>,
+    ITextAreaOwnProps {}
 
-export type ITextAreaFieldFactory = IComponentFactory<{
-  props: ITextAreaFieldProps;
+export type ITextAreaFactory = IComponentFactory<{
+  props: ITextAreaProps;
   ref: HTMLTextAreaElement;
   theme: typeof textAreaFieldTheme;
 }>;

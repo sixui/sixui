@@ -3,17 +3,17 @@ import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IFieldBaseVariant } from '~/components/FieldBase';
-import type { IColorInputFieldProps } from './ColorInputField.types';
+import type { IColorInputProps } from './ColorInput.types';
 import { ColorPaletteGroupProvider } from '~/components/ColorPaletteGroup';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Flex } from '~/components/Flex';
 import { HctColorPickerContent } from '~/components/HctColorPickerContent';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
-import { ColorInputField } from './ColorInputField';
+import { ColorInput } from './ColorInput';
 
 const meta = {
-  component: ColorInputField,
-} satisfies Meta<typeof ColorInputField>;
+  component: ColorInput,
+} satisfies Meta<typeof ColorInput>;
 
 type IStory = StoryObj<typeof meta>;
 
@@ -21,23 +21,23 @@ const defaultArgs = {
   onChange: (...args) => sbHandleEvent('change', args),
   onColorsQuantized: (...args) => void sbHandleEvent('colorsQuantized', args),
   w: '16px8',
-} satisfies Partial<IColorInputFieldProps>;
+} satisfies Partial<IColorInputProps>;
 
-const ColorInputFieldShowcase = componentShowcaseFactory(ColorInputField);
+const ColorInputShowcase = componentShowcaseFactory(ColorInput);
 
-const cols: Array<IComponentPresentation<IColorInputFieldProps>> = [
+const cols: Array<IComponentPresentation<IColorInputProps>> = [
   { props: { variant: 'filled', placeholder: 'Filled' } },
   { props: { variant: 'outlined', placeholder: 'Outlined' } },
 ];
 
 export const Variants: IStory = {
-  render: (props) => <ColorInputFieldShowcase props={props} cols={cols} />,
+  render: (props) => <ColorInputShowcase props={props} cols={cols} />,
   args: defaultArgs,
 };
 
 export const HctVariants: IStory = {
   render: (props) => (
-    <ColorInputFieldShowcase
+    <ColorInputShowcase
       props={props}
       cols={(['filled', 'outlined'] as Array<IFieldBaseVariant>).map(
         (variant) => ({
@@ -57,7 +57,7 @@ export const HctVariants: IStory = {
 
 export const WithErrorText: IStory = {
   render: (props) => (
-    <ColorInputFieldShowcase
+    <ColorInputShowcase
       props={props}
       cols={(['filled', 'outlined'] as Array<IFieldBaseVariant>).map(
         (variant) => ({
@@ -80,9 +80,9 @@ export const PaletteGroup: IStory = {
   render: (props) => (
     <ColorPaletteGroupProvider customPalette={['#ff2d55']}>
       <Flex direction="column" gap="$sm" align="start">
-        <ColorInputField {...props} />
-        <ColorInputField {...props} customPalette={['#000000']} />
-        <ColorInputField {...props} />
+        <ColorInput {...props} />
+        <ColorInput {...props} customPalette={['#000000']} />
+        <ColorInput {...props} />
       </Flex>
     </ColorPaletteGroupProvider>
   ),

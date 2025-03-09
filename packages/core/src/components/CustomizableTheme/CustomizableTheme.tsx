@@ -3,10 +3,10 @@ import { useState } from 'react';
 import type { IThemeOverride } from '~/components/Theme';
 import type { ICustomizableThemeThemeFactory } from './CustomizableTheme.css';
 import type { ICustomizableThemeFactory } from './CustomizableTheme.types';
-import { ColorInputField } from '~/components/ColorInputField';
+import { ColorInput } from '~/components/ColorInput';
 import { Flex } from '~/components/Flex';
 import { Paper } from '~/components/Paper';
-import { TextInputField } from '~/components/TextInputField';
+import { TextInput } from '~/components/TextInput';
 import { ThemeProvider, useComponentTheme, useProps } from '~/components/Theme';
 import { generateThemeFromSourceColor } from '~/utils/colors/generateThemeFromSourceColor';
 import { isValidHexColor } from '~/utils/colors/isValidHexColor';
@@ -75,13 +75,8 @@ export const CustomizableTheme = componentFactory<ICustomizableThemeFactory>(
             ref={forwardedRef}
             {...getStyles('controlBar')}
           >
-            <ColorInputField
-              w="224px"
-              label="Color"
-              onChange={setColor}
-              clearable
-            />
-            <TextInputField
+            <ColorInput w="224px" label="Color" onChange={setColor} clearable />
+            <TextInput
               w="96px"
               label="Scale"
               type="number"
@@ -93,7 +88,7 @@ export const CustomizableTheme = componentFactory<ICustomizableThemeFactory>(
               }}
               visibleFrom="medium"
             />
-            <TextInputField
+            <TextInput
               w="96px"
               label="Density"
               type="number"
@@ -104,7 +99,7 @@ export const CustomizableTheme = componentFactory<ICustomizableThemeFactory>(
               }}
               visibleFrom="medium"
             />
-            <TextInputField
+            <TextInput
               w="128px"
               label="Min. target size"
               type="number"
