@@ -72,6 +72,7 @@ const defaultArgs = {
   onSuccess: (...args) => void sbHandleEvent('onSuccess', args),
   onError: (...args) => void sbHandleEvent('onError', args),
   onDelete: (...args) => void sbHandleEvent('onDelete', args),
+  onReorder: (...args) => void sbHandleEvent('onReorder', args),
   allowRetryOnError: true,
   sortable: true,
 } satisfies Partial<IFileUploaderDemoProps>;
