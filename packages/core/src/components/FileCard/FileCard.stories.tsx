@@ -73,6 +73,12 @@ const rows: Array<IComponentPresentation<IFileCardProps>> = [
     },
   },
   {
+    legend: 'With move handle',
+    props: {
+      moveHandle: true,
+    },
+  },
+  {
     legend: 'Disabled',
     props: {
       disabled: true,
