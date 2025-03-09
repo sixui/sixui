@@ -80,7 +80,6 @@
     "@storybook/manager-api": "^8.6.4",
     "@storybook/react": "^8.6.4",
     "@storybook/react-vite": "^8.6.4",
-    "@storybook/test": "^8.6.4",
     "@storybook/theming": "^8.6.4",
     "@types/node": "^22.13.10",
     "@types/react": "^19.0.10",
@@ -100,7 +99,7 @@
     "vite": "^6.2.1"
   },
   "peerDependencies": {
-    "node": ">=22",
-    "react": "^19"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   }
 }

@@ -1,6 +1,6 @@
 import type { Decorator, Preview } from '@storybook/react';
 
-import { modes } from './modes';
+import { chromaticModes } from './chromaticModes';
 import { classNames } from './preview.css';
 
 import './storybook.css';
@@ -30,7 +30,7 @@ const preview: Preview = {
       },
     },
     chromatic: {
-      modes,
+      modes: chromaticModes,
       disableAutoSnapshot: true,
     },
     // This allows custom storybook body padding.

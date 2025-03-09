@@ -1,4 +1,4 @@
-export const modes = {
+export const chromaticModes = {
   // TODO: add mobile viewports
   // mobile: {
   //   viewport: 'small',
