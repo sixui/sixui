@@ -20,7 +20,7 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {
   onChange: (...args) => sbHandleEvent('change', args),
   onColorsQuantized: (...args) => void sbHandleEvent('colorsQuantized', args),
-  w: '16px8',
+  w: '256px',
 } satisfies Partial<IColorInputControlProps>;
 
 const ColorInputControlShowcase = componentShowcaseFactory(ColorInputControl);

@@ -29,7 +29,7 @@ const defaultArgs = {
   align: 'flex-start',
   direction: 'column',
   wrap: 'wrap',
-  h: '16px8',
+  h: '160px',
 } satisfies Partial<IFlexProps>;
 
 const FlexShowcase = componentShowcaseFactory((props: IFlexProps) => (

@@ -14,7 +14,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  w: '16px8',
+  w: '160px',
   children: (
     <>
       <List.Item onClick={(...args) => sbHandleEvent('onClick', args)}>

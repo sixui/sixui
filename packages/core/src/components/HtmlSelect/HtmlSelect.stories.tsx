@@ -40,18 +40,94 @@ const defaultArgs = {
     },
   ],
   onChange: (...args) => void sbHandleEvent('onChange', ...args),
-  w: '384px',
+  label: 'Label',
+  supportingText: 'Supporting text',
+  w: '256px',
 } satisfies Partial<IHtmlSelectProps>;
 
-const states: Array<IComponentPresentation<IHtmlSelectProps>> = [
-  { legend: 'Normal' },
-  { legend: 'Disabled', props: { disabled: true } },
+const cols: Array<IComponentPresentation<IHtmlSelectProps>> = [
+  {
+    legend: 'Normal',
+  },
+  {
+    legend: 'Error',
+    props: {
+      hasError: true,
+      errorText: 'Error text',
+    },
+  },
+  {
+    legend: 'Loading',
+    props: {
+      loading: true,
+    },
+  },
+  {
+    legend: 'Disabled',
+    props: {
+      disabled: true,
+    },
+  },
+];
+
+const rows: Array<IComponentPresentation<IHtmlSelectProps>> = [
+  {
+    legend: 'Filled',
+    props: {
+      variant: 'filled',
+    },
+  },
+  {
+    legend: 'Outlined',
+    props: {
+      variant: 'outlined',
+    },
+  },
 ];
 
 const HtmlSelectShowcase = componentShowcaseFactory(HtmlSelect);
 
 export const Basic: IStory = {
-  render: (props) => <HtmlSelectShowcase props={props} rows={states} />,
+  render: (props) => (
+    <HtmlSelectShowcase
+      props={props}
+      cols={cols}
+      rows={rows}
+      verticalAlign="start"
+    />
+  ),
+  args: defaultArgs,
+};
+
+export const Scales: IStory = {
+  render: (props) => (
+    <HtmlSelectShowcase
+      props={props}
+      cols={[
+        { legend: 'Extra small', props: { scale: 'xs' } },
+        { legend: 'Small', props: { scale: 'sm' } },
+        { legend: 'Medium', props: { scale: 'md' } },
+        { legend: 'Large', props: { scale: 'lg' } },
+        { legend: 'Extra large', props: { scale: 'xl' } },
+      ]}
+      rows={rows}
+    />
+  ),
+  args: defaultArgs,
+};
+
+export const Densities: IStory = {
+  render: (props) => (
+    <HtmlSelectShowcase
+      props={props}
+      cols={[
+        { legend: '-2', props: { density: -2 } },
+        { legend: '-1', props: { density: -1 } },
+        { legend: '0', props: { density: 0 } },
+      ]}
+      rows={rows}
+    />
+  ),
   args: defaultArgs,
 };
 

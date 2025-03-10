@@ -18,7 +18,7 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {
   onClick: (...args) => sbHandleEvent('onClick', args, 1000),
   outlineStyle: 'dashed',
-  w: '16px8',
+  w: '160px',
 } satisfies Partial<INavigationDrawerDestinationProps>;
 
 const states: Array<IComponentPresentation<INavigationDrawerDestinationProps>> =

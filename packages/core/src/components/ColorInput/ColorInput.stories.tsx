@@ -16,6 +16,7 @@ const defaultArgs = {
   onChange: (...args) => void sbHandleEvent('onChange', args),
   label: 'Label',
   supportingText: 'Supporting text',
+  w: '256px',
 } satisfies Partial<IColorInputProps>;
 
 const cols: Array<IComponentPresentation<IColorInputProps>> = [

@@ -53,7 +53,7 @@ export const CustomLayout: React.FC<ICustomLayoutProps> = (props) => {
         onClose={() => {
           toggleBottomSheet(false);
         }}
-        h="16px8"
+        h="160px"
       >
         <BottomSheetContent />
       </BottomSheet>

@@ -6,7 +6,6 @@ import type { IFieldBaseVariant } from '~/components/FieldBase';
 import type { ITextInputControlProps } from './TextInputControl.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Placeholder } from '~/components/Placeholder';
-import { px } from '~/utils/css/px';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { TextInputControl } from './TextInputControl';
 
@@ -17,7 +16,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  w: px(260),
+  w: '256px',
   onChange: (...args) => void sbHandleEvent('onChange', args),
 } satisfies Partial<ITextInputControlProps>;
 

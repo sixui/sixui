@@ -95,7 +95,7 @@ const rows: Array<IComponentPresentation<ICardProps>> = [
           </List.Item>
           <Card.Content>
             <Card.Title headline="Headline" />
-            <Card.Media src={MEDIA_URL} h="16px8" />
+            <Card.Media src={MEDIA_URL} h="160px" />
             <Card.Title
               subhead="Subhead"
               supportingText="Explain more about the topic shown in the headline and subhead through supporting text."
@@ -118,7 +118,7 @@ const rows: Array<IComponentPresentation<ICardProps>> = [
     props: {
       children: (
         <>
-          <Card.Media src={MEDIA_URL} h="16px8" />
+          <Card.Media src={MEDIA_URL} h="160px" />
           <Card.Content>
             <Card.Title
               headline="Headline"

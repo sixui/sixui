@@ -102,14 +102,14 @@ export const Lengths: IStory = {
           legend: 'Fixed width',
           props: {
             children: LOREM$SM,
-            w: '16px8',
+            w: '160px',
           },
         },
         {
           legend: 'Fixed width, two lines max',
           props: {
             children: LOREM$SM,
-            w: '16px8',
+            w: '160px',
             lineClamp: 2,
           },
         },
@@ -117,7 +117,7 @@ export const Lengths: IStory = {
           legend: 'Fixed width, one line max',
           props: {
             children: LOREM$SM,
-            w: '16px8',
+            w: '160px',
             lineClamp: 1,
           },
         },

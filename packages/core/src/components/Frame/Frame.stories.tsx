@@ -32,8 +32,8 @@ const defaultArgs = {
       </Button>
     </div>
   ),
-  w: '16px8',
-  h: '16px8',
+  w: '160px',
+  h: '160px',
 } satisfies Partial<IFrameProps>;
 
 const FrameShowcase = componentShowcaseFactory(Frame);
