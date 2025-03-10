@@ -1,11 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
-import type { IFieldBaseVariant } from '~/components/FieldBase';
 import type { ITextAreaProps } from './TextArea.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
-import { px } from '~/utils/css/px';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { TextArea } from './TextArea';
 
@@ -16,18 +13,28 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  w: px(260),
   onChange: (...args) => void sbHandleEvent('onChange', args),
+  label: 'Label',
+  supportingText: 'Supporting text',
 } satisfies Partial<ITextAreaProps>;
 
-const states: Array<IComponentPresentation<ITextAreaProps>> = [
-  { legend: 'Normal' },
-  { legend: 'Focused', props: { interactions: { focused: true } } },
+const cols: Array<IComponentPresentation<ITextAreaProps>> = [
   {
-    legend: 'Hovered',
-    props: { interactions: { hovered: true } },
+    legend: 'Normal',
   },
-  { legend: 'Read only', props: { readOnly: true } },
+  {
+    legend: 'Error',
+    props: {
+      hasError: true,
+      errorText: 'Error text',
+    },
+  },
+  {
+    legend: 'Loading',
+    props: {
+      loading: true,
+    },
+  },
   {
     legend: 'Disabled',
     props: {
@@ -37,39 +44,29 @@ const states: Array<IComponentPresentation<ITextAreaProps>> = [
 ];
 
 const rows: Array<IComponentPresentation<ITextAreaProps>> = [
-  { legend: 'Empty' },
-  { legend: 'Label', props: { label: 'Label' } },
   {
-    legend: 'Placeholder',
-    props: { label: 'Label', placeholder: 'Placeholder' },
+    legend: 'Filled',
+    props: {
+      variant: 'filled',
+    },
   },
   {
-    legend: 'Default value',
-    props: { defaultValue: 'Value' },
+    legend: 'Outlined',
+    props: {
+      variant: 'outlined',
+    },
   },
-  { legend: 'Clearable', props: { clearable: true } },
-  {
-    legend: 'Resizable',
-    props: { resizable: true },
-  },
-  { legend: 'Error', props: { defaultValue: 'Value', hasError: true } },
-  { legend: 'Loading', props: { loading: true } },
 ];
 
 const TextAreaShowcase = componentShowcaseFactory(TextArea);
 
-export const Variants: IStory = {
+export const Basic: IStory = {
   render: (props) => (
     <TextAreaShowcase
       props={props}
-      cols={(['filled', 'outlined'] as Array<IFieldBaseVariant>).map(
-        (variant) => ({
-          props: {
-            variant,
-            label: capitalizeFirstLetter(variant),
-          },
-        }),
-      )}
+      cols={cols}
+      rows={rows}
+      verticalAlign="start"
     />
   ),
   args: defaultArgs,
@@ -86,6 +83,7 @@ export const Scales: IStory = {
         { legend: 'Large', props: { scale: 'lg' } },
         { legend: 'Extra large', props: { scale: 'xl' } },
       ]}
+      rows={rows}
     />
   ),
   args: defaultArgs,
@@ -100,29 +98,10 @@ export const Densities: IStory = {
         { legend: '-1', props: { density: -1 } },
         { legend: '0', props: { density: 0 } },
       ]}
+      rows={rows}
     />
   ),
   args: defaultArgs,
-};
-
-export const Filled: IStory = {
-  render: (props) => (
-    <TextAreaShowcase props={props} cols={states} rows={rows} />
-  ),
-  args: {
-    ...defaultArgs,
-    variant: 'filled',
-  },
-};
-
-export const Outlined: IStory = {
-  render: (props) => (
-    <TextAreaShowcase props={props} cols={states} rows={rows} />
-  ),
-  args: {
-    ...defaultArgs,
-    variant: 'outlined',
-  },
 };
 
 export default meta;

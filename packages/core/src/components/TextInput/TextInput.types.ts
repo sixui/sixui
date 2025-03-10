@@ -2,12 +2,15 @@ import type { IBoxProps } from '~/components/Box';
 import type { ILabeledOwnProps, ILabeledProps } from '~/components/Labeled';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { ITextInputThemeFactory, textInputTheme } from './TextInput.css';
 import type {
   ITextInputControlOwnProps,
   ITextInputControlProps,
   TextInputControl,
 } from './TextInputControl';
+import {
+  ITextInputControlThemeFactory,
+  textInputControlTheme,
+} from './TextInputControl/TextInputControl.css';
 
 export interface ITextInputOwnProps
   extends ITextInputControlOwnProps,
@@ -27,13 +30,13 @@ export interface ITextInputOwnProps
 
 export interface ITextInputProps
   extends IBoxProps,
-    IComponentThemeProps<ITextInputThemeFactory>,
+    IComponentThemeProps<ITextInputControlThemeFactory>,
     ITextInputOwnProps {}
 
 export type ITextInputFactory = IComponentFactory<{
   props: ITextInputProps;
   ref: HTMLInputElement;
-  theme: typeof textInputTheme;
+  theme: typeof textInputControlTheme;
   staticComponents: {
     Control: typeof TextInputControl;
   };

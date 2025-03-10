@@ -14,8 +14,8 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   onChange: (...args) => sbHandleEvent('onChange', args, 1000),
-  label: 'Dark mode',
-  supportingText: 'Enhance readability at night',
+  label: 'Label',
+  supportingText: 'Supporting text',
 } satisfies Partial<ICheckboxProps>;
 
 const cols: Array<IComponentPresentation<ICheckboxProps>> = [
@@ -26,7 +26,7 @@ const cols: Array<IComponentPresentation<ICheckboxProps>> = [
     legend: 'Error',
     props: {
       hasError: true,
-      errorText: 'An error occurred.',
+      errorText: 'Error text',
     },
   },
   {

@@ -14,8 +14,8 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   onChange: (...args) => void sbHandleEvent('onChange', args),
-  label: 'Name',
-  supportingText: 'Pseudonym or real name',
+  label: 'Label',
+  supportingText: 'Supporting text',
 } satisfies Partial<ITextInputProps>;
 
 const cols: Array<IComponentPresentation<ITextInputProps>> = [
@@ -26,7 +26,7 @@ const cols: Array<IComponentPresentation<ITextInputProps>> = [
     legend: 'Error',
     props: {
       hasError: true,
-      errorText: 'An error occurred.',
+      errorText: 'Error text',
     },
   },
   {
@@ -43,11 +43,31 @@ const cols: Array<IComponentPresentation<ITextInputProps>> = [
   },
 ];
 
+const rows: Array<IComponentPresentation<ITextInputProps>> = [
+  {
+    legend: 'Filled',
+    props: {
+      variant: 'filled',
+    },
+  },
+  {
+    legend: 'Outlined',
+    props: {
+      variant: 'outlined',
+    },
+  },
+];
+
 const TextInputShowcase = componentShowcaseFactory(TextInput);
 
 export const Basic: IStory = {
   render: (props) => (
-    <TextInputShowcase props={props} cols={cols} verticalAlign="start" />
+    <TextInputShowcase
+      props={props}
+      cols={cols}
+      rows={rows}
+      verticalAlign="start"
+    />
   ),
   args: defaultArgs,
 };
@@ -63,6 +83,7 @@ export const Scales: IStory = {
         { legend: 'Large', props: { scale: 'lg' } },
         { legend: 'Extra large', props: { scale: 'xl' } },
       ]}
+      rows={rows}
     />
   ),
   args: defaultArgs,
@@ -77,6 +98,7 @@ export const Densities: IStory = {
         { legend: '-1', props: { density: -1 } },
         { legend: '0', props: { density: 0 } },
       ]}
+      rows={rows}
     />
   ),
   args: defaultArgs,
