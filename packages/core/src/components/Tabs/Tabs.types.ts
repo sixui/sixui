@@ -17,7 +17,6 @@ export interface ITabsProps extends IBoxProps, ITabsOwnProps {}
 export type ITabsFactory = IComponentFactory<{
   props: ITabsProps;
   ref: HTMLDivElement;
-
   staticComponents: {
     List: typeof TabsList;
     Tab: typeof TabsTab;

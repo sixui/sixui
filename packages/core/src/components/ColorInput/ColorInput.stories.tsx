@@ -1,13 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
-import type { IFieldBaseVariant } from '~/components/FieldBase';
 import type { IColorInputProps } from './ColorInput.types';
-import { ColorPaletteGroupProvider } from '~/components/ColorPaletteGroup';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
-import { Flex } from '~/components/Flex';
-import { HctColorPickerContent } from '~/components/HctColorPickerContent';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { ColorInput } from './ColorInput';
 
@@ -18,73 +13,93 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onChange: (...args) => sbHandleEvent('change', args),
-  onColorsQuantized: (...args) => void sbHandleEvent('colorsQuantized', args),
-  w: '16px8',
+  onChange: (...args) => void sbHandleEvent('onChange', args),
+  label: 'Label',
+  supportingText: 'Supporting text',
 } satisfies Partial<IColorInputProps>;
+
+const cols: Array<IComponentPresentation<IColorInputProps>> = [
+  {
+    legend: 'Normal',
+  },
+  {
+    legend: 'Error',
+    props: {
+      hasError: true,
+      errorText: 'Error text',
+    },
+  },
+  {
+    legend: 'Loading',
+    props: {
+      loading: true,
+    },
+  },
+  {
+    legend: 'Disabled',
+    props: {
+      disabled: true,
+    },
+  },
+];
+
+const rows: Array<IComponentPresentation<IColorInputProps>> = [
+  {
+    legend: 'Filled',
+    props: {
+      variant: 'filled',
+    },
+  },
+  {
+    legend: 'Outlined',
+    props: {
+      variant: 'outlined',
+    },
+  },
+];
 
 const ColorInputShowcase = componentShowcaseFactory(ColorInput);
 
-const cols: Array<IComponentPresentation<IColorInputProps>> = [
-  { props: { variant: 'filled', placeholder: 'Filled' } },
-  { props: { variant: 'outlined', placeholder: 'Outlined' } },
-];
-
-export const Variants: IStory = {
-  render: (props) => <ColorInputShowcase props={props} cols={cols} />,
+export const Basic: IStory = {
+  render: (props) => (
+    <ColorInputShowcase
+      props={props}
+      cols={cols}
+      rows={rows}
+      verticalAlign="start"
+    />
+  ),
   args: defaultArgs,
 };
 
-export const HctVariants: IStory = {
+export const Scales: IStory = {
   render: (props) => (
     <ColorInputShowcase
       props={props}
-      cols={(['filled', 'outlined'] as Array<IFieldBaseVariant>).map(
-        (variant) => ({
-          props: {
-            variant,
-            placeholder: capitalizeFirstLetter(variant),
-          },
-        }),
-      )}
+      cols={[
+        { legend: 'Extra small', props: { scale: 'xs' } },
+        { legend: 'Small', props: { scale: 'sm' } },
+        { legend: 'Medium', props: { scale: 'md' } },
+        { legend: 'Large', props: { scale: 'lg' } },
+        { legend: 'Extra large', props: { scale: 'xl' } },
+      ]}
+      rows={rows}
     />
   ),
-  args: {
-    ...defaultArgs,
-    colorPickerRenderer: (props) => <HctColorPickerContent {...props} />,
-  },
+  args: defaultArgs,
 };
 
-export const WithErrorText: IStory = {
+export const Densities: IStory = {
   render: (props) => (
     <ColorInputShowcase
       props={props}
-      cols={(['filled', 'outlined'] as Array<IFieldBaseVariant>).map(
-        (variant) => ({
-          props: {
-            variant,
-            placeholder: capitalizeFirstLetter(variant),
-          },
-        }),
-      )}
+      cols={[
+        { legend: '-2', props: { density: -2 } },
+        { legend: '-1', props: { density: -1 } },
+        { legend: '0', props: { density: 0 } },
+      ]}
+      rows={rows}
     />
-  ),
-  args: {
-    ...defaultArgs,
-    hasError: true,
-    errorText: 'Error text',
-  },
-};
-
-export const PaletteGroup: IStory = {
-  render: (props) => (
-    <ColorPaletteGroupProvider customPalette={['#ff2d55']}>
-      <Flex direction="column" gap="$sm" align="start">
-        <ColorInput {...props} />
-        <ColorInput {...props} customPalette={['#000000']} />
-        <ColorInput {...props} />
-      </Flex>
-    </ColorPaletteGroupProvider>
   ),
   args: defaultArgs,
 };

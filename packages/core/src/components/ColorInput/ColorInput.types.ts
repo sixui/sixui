@@ -1,43 +1,43 @@
 import type { IBoxProps } from '~/components/Box';
-import type { ITextInputControlOwnProps } from '~/components/TextInput';
-import type {
-  ITextInputControlThemeFactory,
-  textInputControlTheme,
-} from '~/components/TextInput/TextInputControl/TextInputControl.css';
+import type { ILabeledOwnProps, ILabeledProps } from '~/components/Labeled';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type {
-  IColorPalette,
-  IMaybeAsync,
-  IOmit,
-  IPlacement,
-} from '~/utils/types';
-
-export interface IColorInputColorPickerRendererProps {
-  onClick: (event: React.MouseEvent, color: string) => IMaybeAsync<unknown>;
-  selectedColor?: string;
-  customPalette?: IColorPalette;
-}
+  colorInputTheme,
+  IColorInputThemeFactory,
+} from './ColorInput.css';
+import type {
+  ColorInputControl,
+  IColorInputControlOwnProps,
+  IColorInputControlProps,
+} from './ColorInputControl';
 
 export interface IColorInputOwnProps
-  extends IOmit<ITextInputControlOwnProps, 'onChange'> {
-  placement?: IPlacement;
-  colorPickerRenderer?: (
-    props: IColorInputColorPickerRendererProps,
-  ) => React.JSX.Element;
-  customPalette?: IColorPalette;
-  onColorsQuantized?: (colors: Array<string>) => void;
-  quantizeColorCount?: number;
-  onChange?: (color: string, isValid: boolean) => IMaybeAsync<unknown>;
+  extends IColorInputControlOwnProps,
+    Pick<
+      ILabeledOwnProps,
+      | 'label'
+      | 'supportingText'
+      | 'requiredSign'
+      | 'hasError'
+      | 'errorText'
+      | 'loading'
+      | 'disableOnLoading'
+    > {
+  labeledProps?: ILabeledProps;
+  controlProps?: IColorInputControlProps;
 }
 
 export interface IColorInputProps
   extends IBoxProps,
-    IComponentThemeProps<ITextInputControlThemeFactory>,
+    IComponentThemeProps<IColorInputThemeFactory>,
     IColorInputOwnProps {}
 
 export type IColorInputFactory = IComponentFactory<{
   props: IColorInputProps;
   ref: HTMLInputElement;
-  theme: typeof textInputControlTheme;
+  theme: typeof colorInputTheme;
+  staticComponents: {
+    Control: typeof ColorInputControl;
+  };
 }>;

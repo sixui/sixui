@@ -3,9 +3,9 @@ import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IAppLayoutBodyOwnProps } from '../AppLayoutBody';
 import type {
-  appLayoutBodyTheme,
-  IAppLayoutBodyThemeFactory,
-} from '../AppLayoutBody/AppLayoutBody.css';
+  appLayoutSupportingPaneBodyTheme,
+  IAppLayoutSupportingPaneBodyThemeFactory,
+} from './AppLayoutSupportingPaneBody.css';
 
 export interface IAppLayoutSupportingPaneBodyFocusPaneRendererProps {
   hasBottomSheet: boolean;
@@ -27,11 +27,11 @@ export interface IAppLayoutSupportingPaneBodyOwnProps
 
 export interface IAppLayoutSupportingPaneBodyProps
   extends IBoxProps,
-    IComponentThemeProps<IAppLayoutBodyThemeFactory>,
+    IComponentThemeProps<IAppLayoutSupportingPaneBodyThemeFactory>,
     IAppLayoutSupportingPaneBodyOwnProps {}
 
 export type IAppLayoutSupportingPaneBodyFactory = IComponentFactory<{
   props: IAppLayoutSupportingPaneBodyProps;
   ref: HTMLDivElement;
-  theme: typeof appLayoutBodyTheme;
+  theme: typeof appLayoutSupportingPaneBodyTheme;
 }>;

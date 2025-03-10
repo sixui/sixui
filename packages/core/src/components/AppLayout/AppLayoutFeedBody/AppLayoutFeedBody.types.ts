@@ -3,9 +3,9 @@ import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IAppLayoutBodyOwnProps } from '../AppLayoutBody';
 import type {
-  appLayoutBodyTheme,
-  IAppLayoutBodyThemeFactory,
-} from '../AppLayoutBody/AppLayoutBody.css';
+  appLayoutFeedBodyTheme,
+  IAppLayoutFeedBodyThemeFactory,
+} from './AppLayoutFeedBody.css';
 
 export interface IAppLayoutFeedBodyFeedPaneRendererProps {
   grid?: boolean;
@@ -19,11 +19,11 @@ export interface IAppLayoutFeedBodyOwnProps extends IAppLayoutBodyOwnProps {
 
 export interface IAppLayoutFeedBodyProps
   extends IBoxProps,
-    IComponentThemeProps<IAppLayoutBodyThemeFactory>,
+    IComponentThemeProps<IAppLayoutFeedBodyThemeFactory>,
     IAppLayoutFeedBodyOwnProps {}
 
 export type IAppLayoutFeedBodyFactory = IComponentFactory<{
   props: IAppLayoutFeedBodyProps;
   ref: HTMLDivElement;
-  theme: typeof appLayoutBodyTheme;
+  theme: typeof appLayoutFeedBodyTheme;
 }>;

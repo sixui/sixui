@@ -1,12 +1,12 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IColorPickerContentOwnProps } from '~/components/ColorPickerContent';
-import type {
-  colorPickerContentTheme,
-  IColorPickerContentThemeFactory,
-} from '~/components/ColorPickerContent/ColorPickerContent.css';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IOmit } from '~/utils/types';
+import type {
+  hslColorPickerContentTheme,
+  IHslColorPickerContentThemeFactory,
+} from './HslColorPickerContent.css';
 
 export interface IHslColorPickerContentOwnProps
   extends IOmit<IColorPickerContentOwnProps, 'palettes'> {
@@ -18,11 +18,11 @@ export interface IHslColorPickerContentOwnProps
 
 export interface IHslColorPickerContentProps
   extends IBoxProps,
-    IComponentThemeProps<IColorPickerContentThemeFactory>,
+    IComponentThemeProps<IHslColorPickerContentThemeFactory>,
     IHslColorPickerContentOwnProps {}
 
 export type IHslColorPickerContentFactory = IComponentFactory<{
   props: IHslColorPickerContentProps;
   ref: HTMLDivElement;
-  theme: typeof colorPickerContentTheme;
+  theme: typeof hslColorPickerContentTheme;
 }>;

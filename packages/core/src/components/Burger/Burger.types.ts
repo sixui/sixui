@@ -1,12 +1,9 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IIconButtonOwnProps } from '~/components/IconButton';
-import type {
-  iconButtonTheme,
-  IIconButtonThemeFactory,
-} from '~/components/IconButton/IconButton.css';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IPolymorphicComponentFactory } from '~/utils/component';
 import type { IOmit } from '~/utils/types';
+import type { burgerTheme, IBurgerThemeFactory } from './Burger.css';
 import type {
   BurgerIndicator,
   IBurgerIndicatorOwnProps,
@@ -18,14 +15,14 @@ export interface IBurgerOwnProps
 
 export interface IBurgerProps
   extends IBoxProps,
-    IComponentThemeProps<IIconButtonThemeFactory>,
+    IComponentThemeProps<IBurgerThemeFactory>,
     IBurgerOwnProps {}
 
 export type IBurgerFactory = IPolymorphicComponentFactory<{
   props: IBurgerProps;
   defaultRef: HTMLButtonElement;
   defaultRoot: 'button';
-  theme: typeof iconButtonTheme;
+  theme: typeof burgerTheme;
   staticComponents: {
     Indicator: typeof BurgerIndicator;
   };
