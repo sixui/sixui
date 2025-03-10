@@ -1,61 +1,55 @@
-import type { IFilterableListItem } from '~/components/FilterableList';
-import type { IMultiSelectFactory } from './MultiSelect.types';
-import { areFilterableListItemsEqual } from '~/components/FilterableList/utils/areFilterableListItemsEqual';
-import { filterFilterableList } from '~/components/FilterableList/utils/filterFilterableList';
-import { getFilterableListItemLabel } from '~/components/FilterableList/utils/getFilterableListItemLabel';
-import { isFilterableListItemDisabled } from '~/components/FilterableList/utils/isFilterableListItemDisabled';
-import { renderFilterableListItem } from '~/components/FilterableList/utils/renderFilterableListItem';
-import { ListItem } from '~/components/List/ListItem';
-import { multiSelectBaseFactory } from '~/components/MultiSelectBase';
+import type {
+  IMultiSelectFactory,
+  IMultiSelectProps,
+} from './MultiSelect.types';
+import { extractBoxProps } from '~/components/Box/extractBoxProps';
+import { Labeled } from '~/components/Labeled';
 import { useProps } from '~/components/Theme';
-import { useMultiSelect } from '~/hooks/useMultiSelect';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './MultiSelect.constants';
-
-const MultiSelectBase = multiSelectBaseFactory<IFilterableListItem>();
+import { MultiSelectControl } from './MultiSelectControl';
 
 export const MultiSelect = componentFactory<IMultiSelectFactory>(
   (props, forwardedRef) => {
     const {
-      getValueFieldProps,
-      value,
-      defaultValue,
-      onChange,
-      noResultsLabel,
+      label,
+      supportingText,
+      requiredSign,
+      errorText,
+      disableOnLoading,
+      labeledProps,
+      controlProps,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
-
-    const { defaultItems, selectedItems } = useMultiSelect({
-      items: other.items,
-      defaultValue,
-      value,
-    });
+    const { boxProps, other: forwardedProps } =
+      extractBoxProps<IMultiSelectProps>(other);
 
     return (
-      <MultiSelectBase
-        itemsEqual={areFilterableListItemsEqual}
-        listPredicate={filterFilterableList}
-        itemDisabled={isFilterableListItemDisabled}
-        noResults={
-          noResultsLabel ? (
-            <ListItem disabled>{noResultsLabel}</ListItem>
-          ) : undefined
-        }
-        {...other}
-        itemRenderer={renderFilterableListItem}
-        itemLabel={getFilterableListItemLabel}
-        getValueFieldProps={(renderProps, item) => ({
-          icon: item.icon,
-          imageUrl: item.imageUrl,
-          ...getValueFieldProps?.(renderProps, item),
-        })}
-        defaultItems={defaultItems}
-        selectedItems={selectedItems}
-        onItemsChange={(items) => onChange?.(items.map((item) => item.value))}
-        ref={forwardedRef}
-      />
+      <Labeled
+        label={label}
+        supportingText={supportingText}
+        errorTextPosition="end"
+        requiredSign={requiredSign}
+        id={other.id}
+        required={other.required}
+        disabled={other.disabled}
+        readOnly={other.readOnly}
+        loading={other.loading}
+        disableOnLoading={disableOnLoading}
+        hasError={other.hasError}
+        errorText={errorText}
+        {...labeledProps}
+        {...boxProps}
+      >
+        <MultiSelectControl
+          ref={forwardedRef}
+          {...controlProps}
+          {...forwardedProps}
+        />
+      </Labeled>
     );
   },
 );
 
 MultiSelect.displayName = `@sixui/core/${COMPONENT_NAME}`;
+MultiSelect.Control = MultiSelectControl;

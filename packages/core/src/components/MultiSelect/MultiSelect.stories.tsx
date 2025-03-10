@@ -1,12 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
 
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IMultiSelectProps } from './MultiSelect.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { fruits } from '~/components/FilterableList/FilterableList.stories/fruits';
-import { Flex } from '~/components/Flex';
-import { ListItem } from '~/components/List/ListItem';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { MultiSelect } from './MultiSelect';
 
@@ -19,155 +16,96 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {
   onChange: (...args) => void sbHandleEvent('change', args),
   items: fruits,
-  w: '512px',
   keepMounted: true,
+  label: 'Label',
+  supportingText: 'Supporting text',
+  w: '320px',
 } satisfies Partial<IMultiSelectProps>;
 
-type IMultiSelectDemoProps = IMultiSelectProps;
-
-const MultiSelectDemo: React.FC<IMultiSelectDemoProps> = (props) => {
-  const [value, setValue] = useState<Array<string> | undefined>(
-    props.value ?? props.defaultValue,
-  );
-
-  const handleChange = (newValues?: Array<string>): void => {
-    setValue(newValues);
-    props.onChange?.(newValues);
-  };
-
-  return (
-    <Flex direction="column" gap="$sm">
-      <MultiSelect {...props} onChange={handleChange} />
-      <div>
-        Values:{' '}
-        {value === undefined ? <em>undefined</em> : JSON.stringify(value)}
-      </div>
-    </Flex>
-  );
-};
-
-const rows: Array<IComponentPresentation<IMultiSelectDemoProps>> = [
-  { legend: 'Filled' },
-  { legend: 'Outlined', props: { variant: 'outlined' } },
+const cols: Array<IComponentPresentation<IMultiSelectProps>> = [
+  {
+    legend: 'Normal',
+  },
+  {
+    legend: 'Error',
+    props: {
+      hasError: true,
+      errorText: 'Error text',
+    },
+  },
+  {
+    legend: 'Loading',
+    props: {
+      loading: true,
+    },
+  },
+  {
+    legend: 'Disabled',
+    props: {
+      disabled: true,
+    },
+  },
 ];
 
-const MultiSelectDemoShowcase = componentShowcaseFactory(MultiSelectDemo);
+const rows: Array<IComponentPresentation<IMultiSelectProps>> = [
+  {
+    legend: 'Filled',
+    props: {
+      variant: 'filled',
+    },
+  },
+  {
+    legend: 'Outlined',
+    props: {
+      variant: 'outlined',
+    },
+  },
+];
+
+const MultiSelectShowcase = componentShowcaseFactory(MultiSelect);
 
 export const Basic: IStory = {
-  render: (props) => <MultiSelectDemoShowcase props={props} rows={rows} />,
-  args: defaultArgs,
-};
-
-export const Empty: IStory = {
-  render: (props) => <MultiSelectDemoShowcase props={props} rows={rows} />,
-  args: {
-    ...defaultArgs,
-    items: [],
-  },
-};
-
-export const DefaultValue: IStory = {
-  render: (props) => <MultiSelectDemoShowcase props={props} rows={rows} />,
-  args: {
-    ...defaultArgs,
-    defaultValue: ['lemon', 'flowers'],
-  },
-};
-
-export const Clearable: IStory = {
-  render: (props) => <MultiSelectDemoShowcase props={props} rows={rows} />,
-  args: {
-    ...defaultArgs,
-    defaultValue: [fruits[1]!.value, fruits[3]!.value],
-    clearable: true,
-  },
-};
-
-export const DefaultQuery: IStory = {
-  render: (props) => <MultiSelectDemoShowcase props={props} rows={rows} />,
-  args: {
-    ...defaultArgs,
-    defaultQuery: 'app',
-  },
-};
-
-export const NoResults: IStory = {
-  render: (props) => <MultiSelectDemoShowcase props={props} rows={rows} />,
-  args: {
-    ...defaultArgs,
-    defaultQuery: 'Papaya',
-  },
-};
-
-export const InitialContent: IStory = {
-  render: (props) => <MultiSelectDemoShowcase props={props} rows={rows} />,
-  args: {
-    ...defaultArgs,
-    initialContent: <ListItem disabled>{fruits.length} items loaded.</ListItem>,
-  },
-};
-
-export const Disabled: IStory = {
-  render: (props) => <MultiSelectDemoShowcase props={props} rows={rows} />,
-  args: {
-    ...defaultArgs,
-    disabled: true,
-  },
-};
-
-const ControlledMultiSelectDemo: React.FC<IMultiSelectProps> = (props) => {
-  const [value, setValue] = useState<Array<string>>(props.defaultValue ?? []);
-
-  const handleChange = (newValue?: Array<string>): void => {
-    setValue(newValue ?? []);
-    props.onChange?.(newValue);
-  };
-
-  return <MultiSelectDemo {...props} value={value} onChange={handleChange} />;
-};
-
-const ControlledMultiSelectDemoShowcase = componentShowcaseFactory(
-  ControlledMultiSelectDemo,
-);
-
-export const Controlled: IStory = {
   render: (props) => (
-    <ControlledMultiSelectDemoShowcase props={props} rows={rows} />
+    <MultiSelectShowcase
+      props={props}
+      cols={cols}
+      rows={rows}
+      verticalAlign="start"
+    />
   ),
   args: defaultArgs,
 };
 
-export const ControlledAndClearable: IStory = {
+export const Scales: IStory = {
   render: (props) => (
-    <ControlledMultiSelectDemoShowcase props={props} rows={rows} />
+    <MultiSelectShowcase
+      props={props}
+      cols={[
+        { legend: 'Extra small', props: { scale: 'xs' } },
+        { legend: 'Small', props: { scale: 'sm' } },
+        { legend: 'Medium', props: { scale: 'md' } },
+        { legend: 'Large', props: { scale: 'lg' } },
+        { legend: 'Extra large', props: { scale: 'xl' } },
+      ]}
+      rows={rows}
+    />
   ),
-  args: {
-    ...defaultArgs,
-    defaultValue: [fruits[1]!.value],
-    clearable: true,
-  },
+  args: defaultArgs,
 };
 
-export const WithErrorText: IStory = {
+export const Densities: IStory = {
   render: (props) => (
-    <ControlledMultiSelectDemoShowcase props={props} rows={rows} />
+    <MultiSelectShowcase
+      props={props}
+      cols={[
+        { legend: '-2', props: { density: -2 } },
+        { legend: '-1', props: { density: -1 } },
+        { legend: '0', props: { density: 0 } },
+      ]}
+      rows={rows}
+    />
   ),
-  args: {
-    ...defaultArgs,
-    hasError: true,
-    errorText: 'Error text',
-  },
-};
-
-export const Grid: IStory = {
-  render: (props) => (
-    <ControlledMultiSelectDemoShowcase props={props} rows={rows} />
-  ),
-  args: {
-    ...defaultArgs,
-    cols: 3,
-    itemFocus: 'icon',
-  },
+  args: defaultArgs,
 };
 
 export default meta;

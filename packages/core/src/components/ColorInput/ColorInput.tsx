@@ -6,9 +6,6 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './ColorInput.constants';
 import { ColorInputControl } from './ColorInputControl';
 
-/**
- * @see https://m3.material.io/components/text-fields/overview
- */
 export const ColorInput = componentFactory<IColorInputFactory>(
   (props, forwardedRef) => {
     const {

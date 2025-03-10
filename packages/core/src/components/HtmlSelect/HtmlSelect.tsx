@@ -6,9 +6,6 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './HtmlSelect.constants';
 import { HtmlSelectControl } from './HtmlSelectControl';
 
-/**
- * @see https://m3.material.io/components/text-fields/overview
- */
 export const HtmlSelect = componentFactory<IHtmlSelectFactory>(
   (props, forwardedRef) => {
     const {

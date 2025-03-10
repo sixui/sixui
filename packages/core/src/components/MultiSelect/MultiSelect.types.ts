@@ -1,30 +1,43 @@
-import type { IFilterableListItem } from '~/components/FilterableList';
-import type { IMultiSelectBaseProps } from '~/components/MultiSelectBase';
+import type { IBoxProps } from '~/components/Box';
+import type { ILabeledOwnProps, ILabeledProps } from '~/components/Labeled';
+import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IOmit } from '~/utils/types';
+import type {
+  IMultiSelectThemeFactory,
+  multiSelectTheme,
+} from './MultiSelect.css';
+import type {
+  IMultiSelectControlOwnProps,
+  IMultiSelectControlProps,
+  MultiSelectControl,
+} from './MultiSelectControl';
 
-export type IMultiSelectOwnProps = {
-  value?: Array<string>;
-  defaultValue?: Array<string>;
-  onChange?: (value: Array<string> | undefined) => void;
-  noResultsLabel?: string;
-};
+export interface IMultiSelectOwnProps
+  extends IMultiSelectControlOwnProps,
+    Pick<
+      ILabeledOwnProps,
+      | 'label'
+      | 'supportingText'
+      | 'requiredSign'
+      | 'hasError'
+      | 'errorText'
+      | 'loading'
+      | 'disableOnLoading'
+    > {
+  labeledProps?: ILabeledProps;
+  controlProps?: IMultiSelectControlProps;
+}
 
 export interface IMultiSelectProps
-  extends Omit<
-      IOmit<
-        IMultiSelectBaseProps<IFilterableListItem>,
-        | 'itemRenderer'
-        | 'itemLabel'
-        | 'defaultItems'
-        | 'selectedItems'
-        | 'onItemsChange'
-      >,
-      keyof IMultiSelectOwnProps
-    >,
+  extends IBoxProps,
+    IComponentThemeProps<IMultiSelectThemeFactory>,
     IMultiSelectOwnProps {}
 
 export type IMultiSelectFactory = IComponentFactory<{
   props: IMultiSelectProps;
   ref: HTMLDivElement;
+  theme: typeof multiSelectTheme;
+  staticComponents: {
+    Control: typeof MultiSelectControl;
+  };
 }>;

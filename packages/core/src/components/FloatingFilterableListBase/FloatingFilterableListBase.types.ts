@@ -6,7 +6,7 @@ import type {
 
 import type { IBoxProps } from '~/components/Box';
 import type {
-  IFilterableListBaseProps,
+  IFilterableListBaseOwnProps,
   IFilterableListItemFocus,
 } from '~/components/FilterableListBase';
 import type { IMotionProps } from '~/components/Motion';
@@ -69,8 +69,11 @@ export type IFloatingFilterableListBaseTriggerRenderProps<TItem> = {
 
 export interface IFloatingFilterableListBaseOwnProps<
   TItem,
-  TItemElement extends HTMLElement,
-> extends IOmit<IFilterableListBaseProps<TItem, TItemElement>, 'onItemSelect'>,
+  TItemElement extends HTMLElement = HTMLElement,
+> extends IOmit<
+      IFilterableListBaseOwnProps<TItem, TItemElement>,
+      'onItemSelect'
+    >,
     IForwardableProps {
   /**
    * Element which triggers the select popover. In most cases, you should display

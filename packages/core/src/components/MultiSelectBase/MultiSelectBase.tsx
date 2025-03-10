@@ -10,14 +10,11 @@ import { floatingFilterableListBaseFactory } from '~/components/FloatingFilterab
 import { ListItem } from '~/components/List/ListItem';
 import { MenuList } from '~/components/Menu/MenuList';
 import { TextInput } from '~/components/TextInput';
-import { useComponentTheme, useProps } from '~/components/Theme';
+import { useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
+import { px } from '~/utils/css';
 import { IElementProps } from '~/utils/types';
 import { COMPONENT_NAME } from './MultiSelectBase.constants';
-import {
-  IMultiSelectBaseThemeFactory,
-  multiSelectBaseTheme,
-} from './MultiSelectBase.css';
 
 export const multiSelectBaseFactory = <
   TItem,
@@ -28,10 +25,6 @@ export const multiSelectBaseFactory = <
   const MultiSelectBase = componentFactory<IMultiSelectBaseFactory<TItem>>(
     (props, forwardedRef) => {
       const {
-        classNames,
-        className,
-        styles,
-        style,
         items,
         itemRenderer,
         itemLabel,
@@ -45,16 +38,6 @@ export const multiSelectBaseFactory = <
         menuListProps,
         ...other
       } = useProps({ componentName: COMPONENT_NAME, props });
-
-      const { getStyles } = useComponentTheme<IMultiSelectBaseThemeFactory>({
-        componentName: COMPONENT_NAME,
-        classNames,
-        className,
-        styles,
-        style,
-        theme: multiSelectBaseTheme,
-        variant,
-      });
 
       const multiFilterableListBase = useMultiFilterableListBase({
         items,
@@ -271,7 +254,7 @@ export const multiSelectBaseFactory = <
                   ? multiFilterableListBase.selectedItems.map(
                       (selectedItem, index) => (
                         <InputChip
-                          {...getStyles('chip')}
+                          mr={px(4)}
                           key={index}
                           interactions={{
                             focused:

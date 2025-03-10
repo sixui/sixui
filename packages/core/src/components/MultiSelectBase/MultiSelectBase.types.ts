@@ -2,21 +2,26 @@ import type { IBoxProps } from '~/components/Box';
 import type { IInputChipProps } from '~/components/Chip';
 import type { IUseMultiFilterableListBaseProps } from '~/components/FilterableListBase';
 import type {
-  IFloatingFilterableListBaseProps,
+  IFloatingFilterableListBaseOwnProps,
   IFloatingFilterableListBaseTriggerRenderProps,
 } from '~/components/FloatingFilterableListBase';
 import type { IMenuListProps } from '~/components/Menu/MenuList';
+import type { ITextInputControlOwnProps } from '~/components/TextInput';
+import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IOmit } from '~/utils/types';
-import { ITextInputProps } from '~/components/TextInput';
+import type {
+  IMultiSelectBaseThemeFactory,
+  multiSelectBaseTheme,
+} from './MultiSelectBase.css';
 
 export interface IMultiSelectBaseOwnProps<TItem>
   extends IOmit<
-      IFloatingFilterableListBaseProps<TItem>,
+      IFloatingFilterableListBaseOwnProps<TItem>,
       'onItemSelect' | 'renderer' | 'children'
     >,
     IUseMultiFilterableListBaseProps<TItem, HTMLElement>,
-    IOmit<ITextInputProps, 'children' | 'onChange'> {
+    IOmit<ITextInputControlOwnProps, 'children' | 'onChange'> {
   itemLabel: (item: TItem) => React.ReactNode | undefined;
   getValueFieldProps?: (
     props: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
@@ -28,9 +33,11 @@ export interface IMultiSelectBaseOwnProps<TItem>
 
 export interface IMultiSelectBaseProps<TItem>
   extends IBoxProps,
+    IComponentThemeProps<IMultiSelectBaseThemeFactory>,
     IMultiSelectBaseOwnProps<TItem> {}
 
 export type IMultiSelectBaseFactory<TItem> = IComponentFactory<{
   props: IMultiSelectBaseProps<TItem>;
   ref: HTMLDivElement;
+  theme: typeof multiSelectBaseTheme;
 }>;
