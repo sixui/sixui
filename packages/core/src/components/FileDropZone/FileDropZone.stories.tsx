@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IFileDropZoneProps } from './FileDropZone.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { IFileSizeUnit } from '~/utils/types';
 import { FileDropZone } from './FileDropZone';
 import { FILES } from './FileDropZone.stories/files';
 
@@ -15,29 +16,39 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {
   w: '344px',
   label: 'Attached images',
-  supportingText: 'Submit as many images as you want.',
+  supportingText: 'Images will not be uploaded.',
   acceptedFileTypes: {
     'image/*': [],
   },
+  maxFileSize: 1 * IFileSizeUnit.Megabyte,
   required: true,
   initialFiles: FILES.slice(0, 1),
 } satisfies Partial<IFileDropZoneProps>;
 
-const variants: Array<IComponentPresentation<IFileDropZoneProps>> = [
-  { legend: 'None', props: { variant: false } },
-  { legend: 'Primary', props: { variant: 'primary' } },
-];
-
-const states: Array<IComponentPresentation<IFileDropZoneProps>> = [
-  { legend: 'Normal' },
-  { legend: 'Disabled', props: { disabled: true } },
+const cols: Array<IComponentPresentation<IFileDropZoneProps>> = [
+  {
+    legend: 'Normal',
+  },
+  {
+    legend: 'Error',
+    props: {
+      hasError: true,
+      errorText: 'An error occurred.',
+    },
+  },
+  {
+    legend: 'Disabled',
+    props: {
+      disabled: true,
+    },
+  },
 ];
 
 const FileDropZoneShowcase = componentShowcaseFactory(FileDropZone);
 
 export const Basic: IStory = {
   render: (props) => (
-    <FileDropZoneShowcase props={props} cols={states} rows={variants} />
+    <FileDropZoneShowcase props={props} cols={cols} verticalAlign="start" />
   ),
   args: defaultArgs,
 };

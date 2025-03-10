@@ -59,6 +59,7 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
         required={other.required}
         disabled={other.disabled}
         readOnly={other.readOnly}
+        loading={other.loading}
         hasError={hasError}
         errorText={errorText}
         labelPosition={labelPosition}

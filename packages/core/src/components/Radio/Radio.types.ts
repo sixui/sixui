@@ -17,15 +17,7 @@ export interface IRadioOwnProps
   extends IRadioControlOwnProps,
     Pick<
       ILabeledOwnProps,
-      | 'label'
-      | 'supportingText'
-      | 'requiredSign'
-      | 'id'
-      | 'required'
-      | 'disabled'
-      | 'readOnly'
-      | 'hasError'
-      | 'errorText'
+      'label' | 'supportingText' | 'requiredSign' | 'hasError' | 'errorText'
     > {
   labelPosition?: IHorizontalSide;
   labeledProps?: ILabeledProps;

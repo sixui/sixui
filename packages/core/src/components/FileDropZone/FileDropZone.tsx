@@ -49,10 +49,6 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
         supportingText={supportingText}
         trailingSupportingText={trailingSupportingText}
         requiredSign={requiredSign}
-        id={other.id}
-        required={other.required}
-        disabled={other.disabled}
-        readOnly={other.readOnly}
         {...labeledProps}
         {...boxProps}
       >

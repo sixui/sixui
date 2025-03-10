@@ -13,42 +13,43 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  onChange: (...args) => sbHandleEvent('onChange', args),
+  onChange: (...args) => sbHandleEvent('onChange', args, 1000),
   label: 'Dark mode',
   supportingText: 'Enhance readability at night',
 } satisfies Partial<IRadioProps>;
 
-const states: Array<IComponentPresentation<IRadioProps>> = [
-  { legend: 'Normal' },
+const cols: Array<IComponentPresentation<IRadioProps>> = [
   {
-    legend: 'Focused',
-    props: { interactions: { focused: true } },
+    legend: 'Normal',
   },
   {
-    legend: 'Hovered',
-    props: { interactions: { hovered: true } },
+    legend: 'Error',
+    props: {
+      hasError: true,
+      errorText: 'An error occurred.',
+    },
   },
   {
-    legend: 'Pressed',
-    props: { interactions: { pressed: true } },
+    legend: 'Loading',
+    props: {
+      loading: true,
+    },
   },
-  { legend: 'Loading', props: { loading: true } },
-  { legend: 'Disabled', props: { disabled: true } },
+  {
+    legend: 'Disabled',
+    props: {
+      disabled: true,
+    },
+  },
 ];
 
 const RadioShowcase = componentShowcaseFactory(Radio);
 
 export const Basic: IStory = {
   render: (props) => (
-    <RadioShowcase
-      props={props}
-      cols={[{ props: { checked: false } }, { props: { checked: true } }]}
-    />
+    <RadioShowcase props={props} cols={cols} verticalAlign="start" />
   ),
-  args: {
-    ...defaultArgs,
-    checked: true,
-  },
+  args: defaultArgs,
 };
 
 export const Scales: IStory = {
@@ -64,10 +65,7 @@ export const Scales: IStory = {
       ]}
     />
   ),
-  args: {
-    ...defaultArgs,
-    checked: true,
-  },
+  args: defaultArgs,
 };
 
 export const Densities: IStory = {
@@ -75,25 +73,9 @@ export const Densities: IStory = {
     <RadioShowcase
       props={props}
       cols={[
+        { legend: '-2', props: { density: -2 } },
         { legend: '-1', props: { density: -1 } },
         { legend: '0', props: { density: 0 } },
-      ]}
-    />
-  ),
-  args: {
-    ...defaultArgs,
-    checked: true,
-  },
-};
-
-export const Configurations: IStory = {
-  render: (props) => (
-    <RadioShowcase
-      props={props}
-      cols={states}
-      rows={[
-        { legend: 'Unchecked', props: { checked: false } },
-        { legend: 'Checked', props: { checked: true } },
       ]}
     />
   ),

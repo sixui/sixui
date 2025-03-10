@@ -22,10 +22,6 @@ export interface IFileDropZoneOwnProps
       | 'supportingText'
       | 'trailingSupportingText'
       | 'requiredSign'
-      | 'id'
-      | 'required'
-      | 'disabled'
-      | 'readOnly'
     > {
   labeledProps?: ILabeledProps;
   controlProps?: IFileDropZoneControlProps;

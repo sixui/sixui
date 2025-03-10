@@ -58,6 +58,7 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
       required={other.required}
       disabled={other.disabled}
       readOnly={other.readOnly}
+      loading={other.loading}
       hasError={hasError}
       errorText={errorText}
       labelPosition={labelPosition}

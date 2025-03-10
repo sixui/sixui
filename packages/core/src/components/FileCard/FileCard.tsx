@@ -130,7 +130,7 @@ export const FileCard = componentFactory<IFileCardFactory>(
               <IconButton
                 icon={deleteIcon ?? <SvgIcon icon={iconXMark} />}
                 onClick={handleDelete}
-                // variant="danger"
+                disabled={disabled}
               />
             )}
 
