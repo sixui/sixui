@@ -64,7 +64,7 @@ export const FloatingFilterableListBaseDemo: React.FC<
           noFocusRing
           header={
             canFilter && (
-              <TextInput
+              <TextInput.Control
                 {...listProps.getInputFilterProps()}
                 clearable
                 type="text"

@@ -1,33 +1,16 @@
-import type { IAppLayoutFeedBodyThemeFactory } from './AppLayoutFeedBody.css';
 import type { IAppLayoutFeedBodyFactory } from './AppLayoutFeedBody.types';
-import { useComponentTheme, useProps } from '~/components/Theme';
+import { useProps } from '~/components/Theme';
 import { useCanonicalLayout } from '~/hooks/useCanonicalLayout';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { isFunction } from '~/utils/isFunction';
 import { AppLayoutBody } from '../AppLayoutBody';
 import { COMPONENT_NAME } from './AppLayoutFeedBody.constants';
-import { appLayoutFeedBodyTheme } from './AppLayoutFeedBody.css';
 
 export const AppLayoutFeedBody = componentFactory<IAppLayoutFeedBodyFactory>(
   (props, forwardedRef) => {
-    const {
-      classNames,
-      className,
-      styles,
-      style,
-      variant,
-      feedPane,
-      ...other
-    } = useProps({ componentName: COMPONENT_NAME, props });
-
-    const { getStyles } = useComponentTheme<IAppLayoutFeedBodyThemeFactory>({
+    const { feedPane, ...other } = useProps({
       componentName: COMPONENT_NAME,
-      classNames,
-      className,
-      styles,
-      style,
-      variant,
-      theme: appLayoutFeedBodyTheme,
+      props,
     });
 
     const canonicalLayout = useCanonicalLayout('feed');
@@ -38,7 +21,6 @@ export const AppLayoutFeedBody = componentFactory<IAppLayoutFeedBodyFactory>(
       <AppLayoutBody
         orientation={canonicalLayout.orientation}
         ref={forwardedRef}
-        {...getStyles('root')}
         {...other}
       >
         {isFunction(feedPane) ? feedPane({ grid }) : feedPane}
@@ -47,5 +29,4 @@ export const AppLayoutFeedBody = componentFactory<IAppLayoutFeedBodyFactory>(
   },
 );
 
-AppLayoutFeedBody.theme = appLayoutFeedBodyTheme;
 AppLayoutFeedBody.displayName = `@sixui/core/${COMPONENT_NAME}`;

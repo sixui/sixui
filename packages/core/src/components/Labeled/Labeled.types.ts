@@ -24,6 +24,7 @@ export interface ILabeledOwnProps extends ILabeledContextValue {
     | ((props: ILabeledChildrenRenderProps) => React.ReactNode);
   labelPosition?: ISide;
   supportingTextPosition?: 'start' | 'end';
+  disableOnLoading?: boolean;
   errorTextPosition?: 'start' | 'end';
   requiredSign?: React.ReactNode;
 }

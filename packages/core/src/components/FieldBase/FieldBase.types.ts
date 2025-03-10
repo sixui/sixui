@@ -24,7 +24,7 @@ export interface IFieldBaseOwnProps extends IForwardableProps {
   trailingIcon?: React.ReactNode;
   prefixText?: React.ReactNode;
   suffixText?: React.ReactNode;
-  label?: string;
+  label?: React.ReactNode;
   max?: number | string;
   maxLength?: number;
   populated?: boolean;

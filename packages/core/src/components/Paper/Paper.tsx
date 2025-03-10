@@ -1,16 +1,14 @@
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
-import type { IPaperThemeFactory } from './Paper.css';
 import type { IPaperFactory } from './Paper.types';
 import { PaperBase } from '~/components/PaperBase';
-import { useComponentTheme, useProps } from '~/components/Theme';
+import { useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { px } from '~/utils/css/px';
 import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
 import { paperBaseTheme } from '~/components/PaperBase/PaperBase.css';
 import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './Paper.constants';
-import { paperTheme } from './Paper.css';
 
 const getValue = <TKey extends string>(
   // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
@@ -37,11 +35,6 @@ const createThemeSprinkle = <TKey extends string>(
 export const Paper = polymorphicComponentFactory<IPaperFactory>(
   (props, forwardedRef) => {
     const {
-      classNames,
-      className,
-      styles,
-      style,
-      variant,
       surface,
       shape,
       outlineStyle,
@@ -54,52 +47,40 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
       props,
     });
 
-    const { getStyles } = useComponentTheme<IPaperThemeFactory>({
-      componentName: COMPONENT_NAME,
-      classNames,
-      className,
-      styles,
-      style,
-      variant,
-      theme: paperTheme,
-    });
-
     return (
       <PaperBase
-        {...getStyles('root', {
-          style: assignInlineVars({
-            ...createThemeSprinkle(
-              paperBaseTheme.tokens.container.color,
-              surface,
-              themeTokens.colorScheme,
-            ),
-            ...createThemeSprinkle(
-              paperBaseTheme.tokens.container.elevation,
-              elevation,
-              elevationLevelPreset,
-            ),
-            ...createThemeSprinkle(
-              paperBaseTheme.tokens.container.shape,
-              shape,
-              themeTokens.shape.corner,
-              px,
-            ),
-            ...createThemeSprinkle(
-              paperBaseTheme.tokens.outline.style,
-              outlineStyle,
-            ),
-            ...createThemeSprinkle(
-              paperBaseTheme.tokens.outline.color,
-              outlineColor,
-              themeTokens.colorScheme,
-            ),
-            ...createThemeSprinkle(
-              paperBaseTheme.tokens.outline.width,
-              outline,
-              themeTokens.outline.width,
-              px,
-            ),
-          }),
+        style={assignInlineVars({
+          ...createThemeSprinkle(
+            paperBaseTheme.tokens.container.color,
+            surface,
+            themeTokens.colorScheme,
+          ),
+          ...createThemeSprinkle(
+            paperBaseTheme.tokens.container.elevation,
+            elevation,
+            elevationLevelPreset,
+          ),
+          ...createThemeSprinkle(
+            paperBaseTheme.tokens.container.shape,
+            shape,
+            themeTokens.shape.corner,
+            px,
+          ),
+          ...createThemeSprinkle(
+            paperBaseTheme.tokens.outline.style,
+            outlineStyle,
+          ),
+          ...createThemeSprinkle(
+            paperBaseTheme.tokens.outline.color,
+            outlineColor,
+            themeTokens.colorScheme,
+          ),
+          ...createThemeSprinkle(
+            paperBaseTheme.tokens.outline.width,
+            outline,
+            themeTokens.outline.width,
+            px,
+          ),
         })}
         ref={forwardedRef}
         {...other}
@@ -108,5 +89,4 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
   },
 );
 
-Paper.theme = paperTheme;
 Paper.displayName = `@sixui/core/${COMPONENT_NAME}`;

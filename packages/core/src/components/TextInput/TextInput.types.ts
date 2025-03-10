@@ -1,47 +1,28 @@
 import type { IBoxProps } from '~/components/Box';
-import type { IFieldBaseOwnProps } from '~/components/FieldBase';
+import type { ILabeledOwnProps, ILabeledProps } from '~/components/Labeled';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IElementProps, IOmit } from '~/utils/types';
 import type { ITextInputThemeFactory, textInputTheme } from './TextInput.css';
+import type {
+  ITextInputControlOwnProps,
+  ITextInputControlProps,
+  TextInputControl,
+} from './TextInputControl';
 
 export interface ITextInputOwnProps
-  extends IOmit<IFieldBaseOwnProps, 'children'>,
-    IElementProps<'input', 'className'> {
-  /**
-   * When true, the password field can be unmasked for `type="passord"` input
-   * fields.
-   *
-   * @defaultValue true
-   */
-  unmaskable?: boolean;
-
-  /**
-   * An optional icon to mask the password for `type="passord"` input
-   * fields.
-   */
-  maskIcon?: React.ReactNode;
-
-  /**
-   * An optional icon to unmask the password for `type="passord"` input
-   * fields.
-   */
-  unmaskIcon?: React.ReactNode;
-
-  /**
-   * When true, a clear icon button will appear on the right side of the input.
-   */
-  clearable?: boolean;
-
-  /**
-   * The icon of the clear icon button.
-   */
-  clearIcon?: React.ReactNode;
-
-  rootRef?: React.Ref<HTMLDivElement>;
-
-  value?: string;
-  defaultValue?: string;
+  extends ITextInputControlOwnProps,
+    Pick<
+      ILabeledOwnProps,
+      | 'label'
+      | 'supportingText'
+      | 'requiredSign'
+      | 'hasError'
+      | 'errorText'
+      | 'loading'
+      | 'disableOnLoading'
+    > {
+  labeledProps?: ILabeledProps;
+  controlProps?: ITextInputControlProps;
 }
 
 export interface ITextInputProps
@@ -53,4 +34,7 @@ export type ITextInputFactory = IComponentFactory<{
   props: ITextInputProps;
   ref: HTMLInputElement;
   theme: typeof textInputTheme;
+  staticComponents: {
+    Control: typeof TextInputControl;
+  };
 }>;

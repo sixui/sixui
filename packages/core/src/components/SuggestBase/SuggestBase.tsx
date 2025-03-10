@@ -76,7 +76,7 @@ export const suggestBaseFactory = <
           ref={forwardedRef}
         >
           {(renderProps) => (
-            <TextInput
+            <TextInput.Control
               trailingIcon={
                 <FilterableListBaseFieldTrailingIcon
                   onClear={

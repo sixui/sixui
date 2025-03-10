@@ -3,7 +3,7 @@ import type { IFilterableListBaseProps } from '~/components/FilterableListBase';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IOmit } from '~/utils/types';
 
-export type IFilterableListItem = {
+export interface IFilterableListItem {
   leading?: React.ReactNode;
   icon?: React.ReactNode;
   imageUrl?: string;
@@ -16,7 +16,7 @@ export type IFilterableListItem = {
   disabled?: boolean;
   onClick?: (event: React.MouseEvent) => void;
   href?: string;
-};
+}
 
 export interface IFilterableListOwnProps
   extends IOmit<

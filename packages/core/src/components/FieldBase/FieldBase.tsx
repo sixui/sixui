@@ -212,9 +212,6 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
           wasFocused || focused || populated || animatingRef.current;
         const visible = floating ? isFloatingVisible : !isFloatingVisible;
 
-        // Add '*' if a label is present and the field is required.
-        const labelText = label ? `${label}${required ? '*' : ''}` : '';
-
         return (
           <div
             {...getStyles([
@@ -224,7 +221,8 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
             ])}
             ref={floating ? floatingLabelRef : restingLabelRef}
           >
-            {labelText}
+            {label}
+            {required ? '*' : ''}
           </div>
         );
       },

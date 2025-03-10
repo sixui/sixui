@@ -28,7 +28,7 @@ export const FilterableList =
           <MenuList
             header={
               canFilter ? (
-                <TextInput
+                <TextInput.Control
                   onChange={(event) => {
                     listProps.handleQueryChange(event.target.value);
                   }}

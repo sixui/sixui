@@ -1,10 +1,9 @@
 import { useCallback, useMemo, useRef } from 'react';
 
 import type { ITabsContextValue } from './Tabs.context';
-import type { ITabsThemeFactory } from './Tabs.css';
 import type { ITabsFactory } from './Tabs.types';
 import { Box } from '~/components/Box';
-import { useComponentTheme, useProps } from '~/components/Theme';
+import { useProps } from '~/components/Theme';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { useId } from '~/hooks/useId';
 import { componentFactory } from '~/utils/component/componentFactory';
@@ -14,17 +13,12 @@ import { TabsContextProvider } from './Tabs.context';
 import { TabsList } from './TabsList';
 import { TabsPanel } from './TabsPanel';
 import { TabsTab } from './TabsTab';
-import { basicTemplateTheme } from './Tabs.css';
 
 /**
  * @see https://m3.material.io/components/tabs/overview
  */
 export const Tabs = componentFactory<ITabsFactory>((props, forwardedRef) => {
   const {
-    classNames,
-    className,
-    styles,
-    style,
     variant,
     id: idProp,
     onChange,
@@ -37,16 +31,6 @@ export const Tabs = componentFactory<ITabsFactory>((props, forwardedRef) => {
   const id = useId(idProp);
   const previousTabRef = useRef<HTMLElement>(null);
   const indicatorAnimationRef = useRef<Animation>(null);
-
-  const { getStyles } = useComponentTheme<ITabsThemeFactory>({
-    componentName: COMPONENT_NAME,
-    classNames,
-    className,
-    styles,
-    style,
-    variant,
-    theme: basicTemplateTheme,
-  });
 
   const [anchor, setAnchor] = useControlledValue({
     controlled: anchorProp,
@@ -125,12 +109,11 @@ export const Tabs = componentFactory<ITabsFactory>((props, forwardedRef) => {
 
   return (
     <TabsContextProvider value={contextValue}>
-      <Box {...getStyles('root')} ref={forwardedRef} {...other} />
+      <Box ref={forwardedRef} {...other} />
     </TabsContextProvider>
   );
 });
 
-Tabs.theme = basicTemplateTheme;
 Tabs.displayName = `@sixui/core/${COMPONENT_NAME}`;
 Tabs.List = TabsList;
 Tabs.Tab = TabsTab;

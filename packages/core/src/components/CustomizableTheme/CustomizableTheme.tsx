@@ -76,7 +76,7 @@ export const CustomizableTheme = componentFactory<ICustomizableThemeFactory>(
             {...getStyles('controlBar')}
           >
             <ColorInput w="224px" label="Color" onChange={setColor} clearable />
-            <TextInput
+            <TextInput.Control
               w="96px"
               label="Scale"
               type="number"
@@ -88,7 +88,7 @@ export const CustomizableTheme = componentFactory<ICustomizableThemeFactory>(
               }}
               visibleFrom="medium"
             />
-            <TextInput
+            <TextInput.Control
               w="96px"
               label="Density"
               type="number"
@@ -99,7 +99,7 @@ export const CustomizableTheme = componentFactory<ICustomizableThemeFactory>(
               }}
               visibleFrom="medium"
             />
-            <TextInput
+            <TextInput.Control
               w="128px"
               label="Min. target size"
               type="number"

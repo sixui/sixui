@@ -2,8 +2,7 @@
 
 import type { IIcon } from './lib/my-icons.model';
 
-export type IIconNameSubset<T extends Readonly<Array<IIcon>>> =
-  T[number]['name'];
+export type IIconNameSubset<T extends Readonly<IIcon[]>> = T[number]['name'];
 
 export * from './lib/icon-ArrowDownTray.icon';
 export * from './lib/icon-ArrowPath.icon';

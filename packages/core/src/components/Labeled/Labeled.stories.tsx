@@ -105,7 +105,9 @@ export const WithTextField: IStory = {
     ...defaultArgs,
     w: '256px',
     children: (
-      <TextInput onChange={(...args) => sbHandleEvent('onClick', args, 1000)} />
+      <TextInput.Control
+        onChange={(...args) => sbHandleEvent('onClick', args, 1000)}
+      />
     ),
     trailingAction: 'Action',
   },

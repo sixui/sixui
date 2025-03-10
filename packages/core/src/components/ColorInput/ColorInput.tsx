@@ -12,14 +12,13 @@ import { HslColorPickerContent } from '~/components/HslColorPickerContent';
 import { IconButton } from '~/components/IconButton';
 import { PopoverBase } from '~/components/PopoverBase';
 import { SvgIcon } from '~/components/SvgIcon';
-import { TextInput } from '~/components/TextInput';
+import { TextInputControl } from '~/components/TextInput';
 import { useProps } from '~/components/Theme';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { extractPaletteFromImage } from '~/utils/colors/extractPaletteFromImage';
 import { isValidHexColor } from '~/utils/colors/isValidHexColor';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './ColorInput.constants';
-import { colorInputTheme } from './ColorInput.css';
 
 const defaultColorPickerRenderer = (
   props: IColorInputColorPickerRendererProps,
@@ -135,7 +134,7 @@ export const ColorInput = componentFactory<IColorInputFactory>(
           positioned
         >
           {({ getProps, setRef, open }) => (
-            <TextInput
+            <TextInputControl
               startSlot={
                 <ColorTag color={value} outlined mr="$2" onClick={open} />
               }
@@ -166,5 +165,4 @@ export const ColorInput = componentFactory<IColorInputFactory>(
   },
 );
 
-ColorInput.theme = colorInputTheme;
 ColorInput.displayName = `@sixui/core/${COMPONENT_NAME}`;

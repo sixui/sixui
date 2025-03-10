@@ -43,7 +43,7 @@ export const FilterableListBaseDemo: React.FC<IFilterableListBaseDemoProps> = (
         <MenuList
           header={
             canFilter ? (
-              <TextInput
+              <TextInput.Control
                 onChange={(event) => {
                   listProps.handleQueryChange(event.target.value);
                 }}

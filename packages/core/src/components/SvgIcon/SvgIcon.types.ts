@@ -1,7 +1,5 @@
 import type { IBoxProps } from '~/components/Box';
-import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { ISvgIconThemeFactory, svgIconTheme } from './SvgIcon.css';
 
 export interface ISvgIconOwnProps {
   icon: {
@@ -10,13 +8,9 @@ export interface ISvgIconOwnProps {
   };
 }
 
-export interface ISvgIconProps
-  extends IBoxProps,
-    IComponentThemeProps<ISvgIconThemeFactory>,
-    ISvgIconOwnProps {}
+export interface ISvgIconProps extends IBoxProps, ISvgIconOwnProps {}
 
 export type ISvgIconFactory = IComponentFactory<{
   props: ISvgIconProps;
   ref: HTMLDivElement;
-  theme: typeof svgIconTheme;
 }>;

@@ -1,28 +1,20 @@
 import type { IBoxProps } from '~/components/Box';
-import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
-import type { IElementProps } from '~/utils/types';
-import type { frameTheme, IFrameThemeFactory } from './Frame.css';
 
 export type IFrameChildrenRenderProps = {
   window: Window;
 };
 
-export interface IFrameOwnProps
-  extends IElementProps<'iframe', 'className' | 'children'> {
+export interface IFrameOwnProps {
   children:
     | React.ReactNode
     | ((props: IFrameChildrenRenderProps) => React.ReactNode);
   importParentStyles?: boolean;
 }
 
-export interface IFrameProps
-  extends IBoxProps,
-    IComponentThemeProps<IFrameThemeFactory>,
-    IFrameOwnProps {}
+export interface IFrameProps extends IBoxProps, IFrameOwnProps {}
 
 export type IFrameFactory = IComponentFactory<{
   props: IFrameProps;
   ref: HTMLIFrameElement;
-  theme: typeof frameTheme;
 }>;

@@ -234,7 +234,7 @@ export const multiSelectBaseFactory = <
             });
 
             return (
-              <TextInput
+              <TextInput.Control
                 endSlot={
                   <FilterableListBaseFieldTrailingIcon
                     onClear={
@@ -296,7 +296,7 @@ export const multiSelectBaseFactory = <
                       ),
                     )
                   : undefined}
-              </TextInput>
+              </TextInput.Control>
             );
           }}
         </FloatingFilterableListBase>

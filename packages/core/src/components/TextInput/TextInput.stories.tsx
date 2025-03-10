@@ -1,12 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
-import type { IFieldBaseVariant } from '~/components/FieldBase';
 import type { ITextInputProps } from './TextInput.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
-import { Placeholder } from '~/components/Placeholder';
-import { px } from '~/utils/css/px';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { TextInput } from './TextInput';
 
@@ -17,18 +13,28 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  w: px(260),
   onChange: (...args) => void sbHandleEvent('onChange', args),
+  label: 'Name',
+  supportingText: 'Pseudonym or real name',
 } satisfies Partial<ITextInputProps>;
 
-const states: Array<IComponentPresentation<ITextInputProps>> = [
-  { legend: 'Normal' },
-  { legend: 'Focused', props: { interactions: { focused: true } } },
+const cols: Array<IComponentPresentation<ITextInputProps>> = [
   {
-    legend: 'Hovered',
-    props: { interactions: { hovered: true } },
+    legend: 'Normal',
   },
-  { legend: 'Read only', props: { readOnly: true } },
+  {
+    legend: 'Error',
+    props: {
+      hasError: true,
+      errorText: 'An error occurred.',
+    },
+  },
+  {
+    legend: 'Loading',
+    props: {
+      loading: true,
+    },
+  },
   {
     legend: 'Disabled',
     props: {
@@ -37,67 +43,11 @@ const states: Array<IComponentPresentation<ITextInputProps>> = [
   },
 ];
 
-const rows: Array<IComponentPresentation<ITextInputProps>> = [
-  { legend: 'Empty' },
-  { legend: 'Label', props: { label: 'Label' } },
-  {
-    legend: 'Placeholder',
-    props: { label: 'Label', placeholder: 'Placeholder' },
-  },
-  {
-    legend: 'Default value',
-    props: {
-      defaultValue: 'Value',
-      prefixText: '$',
-      suffixText: '.00',
-    },
-  },
-  { legend: 'Clearable', props: { clearable: true } },
-  {
-    legend: 'Password',
-    props: { type: 'password' },
-  },
-  {
-    legend: 'Date',
-    props: { type: 'datetime-local' },
-  },
-  {
-    legend: 'Color',
-    props: { type: 'color', defaultValue: '#0000ff' },
-  },
-  { legend: 'Error', props: { defaultValue: 'Value', hasError: true } },
-  { legend: 'Loading', props: { loading: true } },
-  {
-    legend: 'Children',
-    props: {
-      children: (
-        <Placeholder
-          w="24px"
-          h="24px"
-          surface="$primary"
-          shape="$xs"
-          diagonals
-        />
-      ),
-    },
-  },
-];
-
 const TextInputShowcase = componentShowcaseFactory(TextInput);
 
-export const Variants: IStory = {
+export const Basic: IStory = {
   render: (props) => (
-    <TextInputShowcase
-      props={props}
-      cols={(['filled', 'outlined'] as Array<IFieldBaseVariant>).map(
-        (variant) => ({
-          props: {
-            variant,
-            label: capitalizeFirstLetter(variant),
-          },
-        }),
-      )}
-    />
+    <TextInputShowcase props={props} cols={cols} verticalAlign="start" />
   ),
   args: defaultArgs,
 };
@@ -130,26 +80,6 @@ export const Densities: IStory = {
     />
   ),
   args: defaultArgs,
-};
-
-export const Filled: IStory = {
-  render: (props) => (
-    <TextInputShowcase props={props} cols={states} rows={rows} />
-  ),
-  args: {
-    ...defaultArgs,
-    variant: 'filled',
-  },
-};
-
-export const Outlined: IStory = {
-  render: (props) => (
-    <TextInputShowcase props={props} cols={states} rows={rows} />
-  ),
-  args: {
-    ...defaultArgs,
-    variant: 'outlined',
-  },
 };
 
 export default meta;

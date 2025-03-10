@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
 
-import type { IAppLayoutSupportingPaneBodyThemeFactory } from './AppLayoutSupportingPaneBody.css';
 import type { IAppLayoutSupportingPaneBodyFactory } from './AppLayoutSupportingPaneBody.types';
 import { BottomSheet } from '~/components/BottomSheet';
 import { Box } from '~/components/Box';
 import { Flex } from '~/components/Flex';
-import { useComponentTheme, useProps } from '~/components/Theme';
+import { useProps } from '~/components/Theme';
 import { useCanonicalLayout } from '~/hooks/useCanonicalLayout';
 import { useToggle } from '~/hooks/useToggle';
 import { componentFactory } from '~/utils/component/componentFactory';
@@ -13,34 +12,17 @@ import { isFunction } from '~/utils/isFunction';
 import { AppLayoutBody } from '../AppLayoutBody';
 import { AppLayoutSideSheet } from '../AppLayoutSideSheet';
 import { COMPONENT_NAME } from './AppLayoutSupportingPaneBody.constants';
-import { appLayoutSupportingPaneBodyTheme } from './AppLayoutSupportingPaneBody.css';
 
 export const AppLayoutSupportingPaneBody =
   componentFactory<IAppLayoutSupportingPaneBodyFactory>(
     (props, forwardedRef) => {
       const {
-        classNames,
-        className,
-        styles,
-        style,
-        variant,
         focusPane,
         supportingPane,
         supportingPaneAside,
         supportingPaneBottomSheet,
         ...other
       } = useProps({ componentName: COMPONENT_NAME, props });
-
-      const { getStyles } =
-        useComponentTheme<IAppLayoutSupportingPaneBodyThemeFactory>({
-          componentName: COMPONENT_NAME,
-          classNames,
-          className,
-          styles,
-          style,
-          variant,
-          theme: appLayoutSupportingPaneBodyTheme,
-        });
 
       const canonicalLayout = useCanonicalLayout('supportingPane');
       const [bottomSheetOpened, toggleBottomSheet] = useToggle([false, true]);
@@ -63,7 +45,6 @@ export const AppLayoutSupportingPaneBody =
             <AppLayoutBody
               orientation={canonicalLayout.orientation}
               ref={forwardedRef}
-              {...getStyles('root')}
               {...other}
             >
               {canonicalLayout.panes
@@ -109,5 +90,4 @@ export const AppLayoutSupportingPaneBody =
     },
   );
 
-AppLayoutSupportingPaneBody.theme = appLayoutSupportingPaneBodyTheme;
 AppLayoutSupportingPaneBody.displayName = `@sixui/core/${COMPONENT_NAME}`;

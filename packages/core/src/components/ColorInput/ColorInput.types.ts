@@ -1,5 +1,9 @@
 import type { IBoxProps } from '~/components/Box';
-import type { ITextInputOwnProps } from '~/components/TextInput';
+import type { ITextInputControlOwnProps } from '~/components/TextInput';
+import type {
+  ITextInputControlThemeFactory,
+  textInputControlTheme,
+} from '~/components/TextInput/TextInputControl/TextInputControl.css';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type {
@@ -8,10 +12,6 @@ import type {
   IOmit,
   IPlacement,
 } from '~/utils/types';
-import type {
-  colorInputTheme,
-  IColorInputThemeFactory,
-} from './ColorInput.css';
 
 export interface IColorInputColorPickerRendererProps {
   onClick: (event: React.MouseEvent, color: string) => IMaybeAsync<unknown>;
@@ -20,7 +20,7 @@ export interface IColorInputColorPickerRendererProps {
 }
 
 export interface IColorInputOwnProps
-  extends IOmit<ITextInputOwnProps, 'onChange'> {
+  extends IOmit<ITextInputControlOwnProps, 'onChange'> {
   placement?: IPlacement;
   colorPickerRenderer?: (
     props: IColorInputColorPickerRendererProps,
@@ -33,11 +33,11 @@ export interface IColorInputOwnProps
 
 export interface IColorInputProps
   extends IBoxProps,
-    IComponentThemeProps<IColorInputThemeFactory>,
+    IComponentThemeProps<ITextInputControlThemeFactory>,
     IColorInputOwnProps {}
 
 export type IColorInputFactory = IComponentFactory<{
   props: IColorInputProps;
   ref: HTMLInputElement;
-  theme: typeof colorInputTheme;
+  theme: typeof textInputControlTheme;
 }>;

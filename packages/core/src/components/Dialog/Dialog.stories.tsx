@@ -126,7 +126,7 @@ const FormDialogDemo: React.FC<IDialogProps> = (props) => {
           </>
         )}
       >
-        <TextInput name="name" />
+        <TextInput.Control name="name" />
       </Dialog>
 
       <Flex direction="row" gap="$lg" align="center">
