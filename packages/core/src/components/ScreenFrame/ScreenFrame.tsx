@@ -1,5 +1,8 @@
 import type { IScreenFrameThemeFactory } from './ScreenFrame.css';
-import type { IScreenFrameFactory } from './ScreenFrame.types';
+import type {
+  IScreenFrameFactory,
+  IScreenFrameProps,
+} from './ScreenFrame.types';
 import { extractBoxProps } from '~/components/Box/extractBoxProps';
 import { Frame } from '~/components/Frame';
 import { Resizable } from '~/components/Resizable';
@@ -24,7 +27,8 @@ export const ScreenFrame = componentFactory<IScreenFrameFactory>(
       bounds = 'window',
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
-    const { boxProps, other: forwardedProps } = extractBoxProps(other);
+    const { boxProps, other: forwardedProps } =
+      extractBoxProps<IScreenFrameProps>(other);
 
     const { getStyles } = useComponentTheme<IScreenFrameThemeFactory>({
       componentName: COMPONENT_NAME,

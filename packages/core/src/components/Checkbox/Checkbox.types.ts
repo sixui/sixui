@@ -1,13 +1,14 @@
 import type { IBoxProps } from '~/components/Box';
+import type { ILabeledOwnProps, ILabeledProps } from '~/components/Labeled';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IHorizontalSide } from '~/utils/types';
-import type { ILabeledOwnProps } from '../Labeled';
 import type { checkboxTheme, ICheckboxThemeFactory } from './Checkbox.css';
 import type { CheckboxCard } from './CheckboxCard';
 import type {
   CheckboxControl,
   ICheckboxControlOwnProps,
+  ICheckboxControlProps,
 } from './CheckboxControl';
 import type { CheckboxGroup } from './CheckboxGroup';
 import type { CheckboxIndicator } from './CheckboxIndicator';
@@ -16,10 +17,19 @@ export interface ICheckboxOwnProps
   extends ICheckboxControlOwnProps,
     Pick<
       ILabeledOwnProps,
-      'label' | 'supportingText' | 'hasError' | 'errorText' | 'requiredSign'
+      | 'label'
+      | 'supportingText'
+      | 'requiredSign'
+      | 'id'
+      | 'required'
+      | 'disabled'
+      | 'readOnly'
+      | 'hasError'
+      | 'errorText'
     > {
   labelPosition?: IHorizontalSide;
-  labeledProps?: ILabeledOwnProps;
+  labeledProps?: ILabeledProps;
+  controlProps?: ICheckboxControlProps;
 }
 
 export interface ICheckboxProps

@@ -144,24 +144,28 @@ const classNames = createStyles({
       },
     },
   }),
-  supportingText: ({ root }) => ({
+  supportingTextContainer: ({ root }) => ({
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'start',
+    gap: px(space('$sm')),
     flexGrow: 0,
     ...typography(tokens.supportingText.typography),
     color: tokens.supportingText.color.normal,
 
     selectors: {
-      [modifierSelector<IModifier>('has-error', root)]: {
-        color: fallbackVar(
-          tokens.supportingText.color.error,
-          tokens.supportingText.color.normal,
-        ),
-      },
       [modifierSelector<IModifier>('disabled', root)]: {
         color: tokens.supportingText.color.disabled,
         opacity: tokens.supportingText.opacity.disabled,
       },
     },
   }),
+  supportingText: {
+    flexGrow: 1,
+  },
+  trailingSupportingText: {
+    flexGrow: 0,
+  },
   errorText: ({ root }) => ({
     flexGrow: 0,
     ...typography(tokens.errorText.typography),

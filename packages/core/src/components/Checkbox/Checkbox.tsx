@@ -1,5 +1,5 @@
 import type { ICheckboxThemeFactory } from './Checkbox.css';
-import type { ICheckboxFactory } from './Checkbox.types';
+import type { ICheckboxFactory, ICheckboxProps } from './Checkbox.types';
 import { extractBoxProps } from '~/components/Box/extractBoxProps';
 import { Labeled } from '~/components/Labeled';
 import { useComponentTheme, useProps } from '~/components/Theme';
@@ -25,15 +25,16 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
       variant,
       label,
       supportingText,
+      requiredSign,
       hasError,
       errorText,
-      requiredSign,
       labelPosition = 'right',
       labeledProps,
-      id,
+      controlProps,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
-    const { boxProps, other: forwardedProps } = extractBoxProps(other);
+    const { boxProps, other: forwardedProps } =
+      extractBoxProps<ICheckboxProps>(other);
 
     const { getStyles } = useComponentTheme<ICheckboxThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -53,19 +54,22 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
         })}
         label={label}
         supportingText={supportingText}
-        hasError={hasError}
-        errorText={errorText}
         requiredSign={requiredSign}
-        labelPosition={labelPosition}
-        loading={other.loading}
-        id={id}
+        id={other.id}
         required={other.required}
         disabled={other.disabled}
         readOnly={other.readOnly}
-        {...boxProps}
+        hasError={hasError}
+        errorText={errorText}
+        labelPosition={labelPosition}
         {...labeledProps}
+        {...boxProps}
       >
-        <CheckboxControl ref={forwardedRef} {...forwardedProps} />
+        <CheckboxControl
+          ref={forwardedRef}
+          {...controlProps}
+          {...forwardedProps}
+        />
       </Labeled>
     );
   },

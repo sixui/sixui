@@ -1,61 +1,70 @@
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { PaperBase } from '~/components/PaperBase';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
-import { modifierSelector, px, space, typography } from '~/utils/css';
 import { createStyles } from '~/utils/css/createStyles';
+import { modifierSelector } from '~/utils/css/modifierSelector';
+import { overrideTokens } from '~/utils/css/overrideTokens';
+import { px } from '~/utils/css/px';
+import { space } from '~/utils/css/space';
 import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './FileDropZone.constants';
 
-type IModifier = 'disabled' | 'with-error';
+type IModifier = 'disabled';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
-  supportingText: {
-    typography: themeTokens.typeScale.body.sm,
+  container: {
     color: {
-      normal: themeTokens.colorScheme.onSurfaceVariant,
-      error: themeTokens.colorScheme.error,
+      normal: themeTokens.colorScheme.primary,
+      disabled: themeTokens.colorScheme.onSurface,
+    },
+    opacity: {
+      disabled: themeTokens.state.containerOpacity.disabled,
+    },
+  },
+  label: {
+    typography: themeTokens.typeScale.label.md,
+    color: {
+      normal: themeTokens.colorScheme.onPrimary,
+      disabled: themeTokens.colorScheme.onSurface,
+    },
+    opacity: {
+      disabled: themeTokens.state.opacity.disabled,
     },
   },
 });
 
 const classNames = createStyles({
   root: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: px(space('$md')),
-  },
-  dropZoneContainer: {
-    flexGrow: 1,
-  },
-  dropZone: {
-    flexGrow: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    width: '100%',
-  },
-  dropActions: {
-    display: 'flex',
-    flexDirection: 'row',
-    gap: px(space('sm')),
-  },
-  supportingText: ({ root }) => ({
-    display: 'flex',
-    flexDirection: 'row',
-    ...typography(tokens.supportingText.typography),
-    color: tokens.supportingText.color.normal,
+    padding: px(space('$sm')),
+
+    vars: overrideTokens(PaperBase.theme.tokens, {
+      container: {
+        color: tokens.container.color.normal,
+      },
+    }),
 
     selectors: {
-      [modifierSelector<IModifier>('with-error', root)]: {
-        color: tokens.supportingText.color.error,
+      [modifierSelector<IModifier>('disabled')]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
+          container: {
+            color: tokens.container.color.disabled,
+            opacity: tokens.container.opacity.disabled,
+          },
+        }),
+      },
+    },
+  },
+  label: ({ root }) => ({
+    color: tokens.label.color.normal,
+
+    selectors: {
+      [modifierSelector<IModifier>('disabled', root)]: {
+        color: tokens.label.color.disabled,
+        opacity: tokens.label.opacity.disabled,
       },
     },
   }),
-  supportingTextLeft: {
-    flexGrow: 1,
-  },
-  supportingTextRight: {
-    flexGrow: 0,
-  },
 });
 
 export type IFileDropZoneThemeFactory = IComponentThemeFactory<{
@@ -64,7 +73,7 @@ export type IFileDropZoneThemeFactory = IComponentThemeFactory<{
   modifier: IModifier;
 }>;
 
-export const fileDropZoneTheme =
+export const fileDropZoneLabeledTheme =
   componentThemeFactory<IFileDropZoneThemeFactory>({
     classNames,
     tokensClassName,

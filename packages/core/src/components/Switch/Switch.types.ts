@@ -1,20 +1,33 @@
 import type { IBoxProps } from '~/components/Box';
+import type { ILabeledOwnProps, ILabeledProps } from '~/components/Labeled';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IHorizontalSide } from '~/utils/types';
-import type { ILabeledOwnProps } from '../Labeled';
 import type { ISwitchThemeFactory, switchTheme } from './Switch.css';
-import type { ISwitchControlOwnProps, SwitchControl } from './SwitchControl';
+import type {
+  ISwitchControlOwnProps,
+  ISwitchControlProps,
+  SwitchControl,
+} from './SwitchControl';
 import type { SwitchIndicator } from './SwitchIndicator';
 
 export interface ISwitchOwnProps
   extends ISwitchControlOwnProps,
     Pick<
       ILabeledOwnProps,
-      'label' | 'supportingText' | 'hasError' | 'errorText' | 'requiredSign'
+      | 'label'
+      | 'supportingText'
+      | 'requiredSign'
+      | 'id'
+      | 'required'
+      | 'disabled'
+      | 'readOnly'
+      | 'hasError'
+      | 'errorText'
     > {
   labelPosition?: IHorizontalSide;
-  labeledProps?: ILabeledOwnProps;
+  labeledProps?: ILabeledProps;
+  controlProps?: ISwitchControlProps;
 }
 
 export interface ISwitchProps

@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IFileDropZoneProps } from './FileDropZone.types';
-import { sbHandleEvent } from '~/utils/sbHandleEvent';
-import { IFileSizeUnit } from '~/utils/types';
+import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { FileDropZone } from './FileDropZone';
 import { FILES } from './FileDropZone.stories/files';
-import { getIconFromMimeType } from './FileDropZone.stories/getIconFromMimeType';
 
 const meta = {
   component: FileDropZone,
@@ -15,136 +14,62 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   w: '344px',
+  label: 'Attached images',
+  supportingText: 'Submit as many images as you want.',
   acceptedFileTypes: {
     'image/*': [],
   },
-  getIconFromMimeType,
-  maxFileSize: 1 * IFileSizeUnit.Megabyte,
-  onAccept: (...args) => sbHandleEvent('onAccept', args),
-  onReject: (...args) => sbHandleEvent('onReject', args),
-  onDelete: (...args) => sbHandleEvent('onDelete', args),
-  onReorder: (...args) => sbHandleEvent('onReorder', args),
-  onChange: (...args) => void sbHandleEvent('onChange', args),
+  required: true,
+  initialFiles: FILES.slice(0, 1),
 } satisfies Partial<IFileDropZoneProps>;
 
-export const Empty: IStory = {
-  render: (props) => <FileDropZone {...props} />,
+const variants: Array<IComponentPresentation<IFileDropZoneProps>> = [
+  { legend: 'None', props: { variant: false } },
+  { legend: 'Primary', props: { variant: 'primary' } },
+];
+
+const states: Array<IComponentPresentation<IFileDropZoneProps>> = [
+  { legend: 'Normal' },
+  { legend: 'Disabled', props: { disabled: true } },
+];
+
+const FileDropZoneShowcase = componentShowcaseFactory(FileDropZone);
+
+export const Basic: IStory = {
+  render: (props) => (
+    <FileDropZoneShowcase props={props} cols={states} rows={variants} />
+  ),
   args: defaultArgs,
 };
 
-export const ThrowErrorOnDrop: IStory = {
-  render: (props) => <FileDropZone {...props} />,
-  args: {
-    ...defaultArgs,
-    onAccept: () => {
-      throw new Error('Error on drop.');
-    },
-  },
+export const Scales: IStory = {
+  render: (props) => (
+    <FileDropZoneShowcase
+      props={props}
+      cols={[
+        { legend: 'Extra small', props: { scale: 'xs' } },
+        { legend: 'Small', props: { scale: 'sm' } },
+        { legend: 'Medium', props: { scale: 'md' } },
+        { legend: 'Large', props: { scale: 'lg' } },
+        { legend: 'Extra large', props: { scale: 'xl' } },
+      ]}
+    />
+  ),
+  args: defaultArgs,
 };
 
-export const ImageSizeConstraint: IStory = {
-  render: (props) => <FileDropZone {...props} />,
-  args: {
-    ...defaultArgs,
-    acceptedImageSize: {
-      width: {
-        min: 512,
-      },
-      height: {
-        min: 512,
-      },
-    },
-  },
-};
-
-export const Disabled: IStory = {
-  render: (props) => <FileDropZone {...props} />,
-  args: {
-    ...defaultArgs,
-    disabled: true,
-  },
-};
-
-export const OneFile: IStory = {
-  render: (props) => <FileDropZone {...props} />,
-  args: {
-    ...defaultArgs,
-    initialFiles: FILES.slice(0, 1),
-  },
-};
-
-export const OneFileLoading: IStory = {
-  render: (props) => <FileDropZone {...props} />,
-  args: {
-    ...defaultArgs,
-    initialFiles: [
-      {
-        ...FILES[0]!,
-        loading: true,
-      },
-    ],
-  },
-};
-
-export const OneFileWithProgress: IStory = {
-  render: (props) => <FileDropZone {...props} />,
-  args: {
-    ...defaultArgs,
-    initialFiles: [
-      {
-        ...FILES[0]!,
-        loading: true,
-        progress: 0.33,
-      },
-    ],
-  },
-};
-
-export const OneFileMax: IStory = {
-  render: (props) => <FileDropZone {...props} />,
-  args: {
-    ...defaultArgs,
-    initialFiles: FILES.slice(0, 1),
-    maxFileCount: 1,
-  },
-};
-
-export const TwoFiles: IStory = {
-  render: (props) => <FileDropZone {...props} />,
-  args: {
-    ...defaultArgs,
-    initialFiles: FILES.slice(0, 2),
-  },
-};
-
-export const FourFiles: IStory = {
-  render: (props) => <FileDropZone {...props} />,
-  args: {
-    ...defaultArgs,
-    initialFiles: FILES.slice(0, 4),
-  },
-};
-
-export const TooManyFiles: IStory = {
-  render: (props) => <FileDropZone {...props} />,
-  args: {
-    ...defaultArgs,
-    initialFiles: FILES.slice(0, 4),
-    maxFileCount: 3,
-  },
-};
-
-const SortableFileDropZone: React.FC<IFileDropZoneProps> = (props) => {
-  return <FileDropZone {...props}></FileDropZone>;
-};
-
-export const SortableFiles: IStory = {
-  render: (props) => <SortableFileDropZone {...props} />,
-  args: {
-    ...defaultArgs,
-    initialFiles: FILES.slice(0, 4),
-    sortable: true,
-  },
+export const Densities: IStory = {
+  render: (props) => (
+    <FileDropZoneShowcase
+      props={props}
+      cols={[
+        { legend: '-2', props: { density: -2 } },
+        { legend: '-1', props: { density: -1 } },
+        { legend: '0', props: { density: 0 } },
+      ]}
+    />
+  ),
+  args: defaultArgs,
 };
 
 export default meta;

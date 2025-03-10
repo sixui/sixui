@@ -28,6 +28,7 @@ export const Labeled = componentFactory<ILabeledFactory>(
       loading,
       label,
       trailingAction,
+      trailingSupportingText,
       supportingText,
       children,
       labelPosition = 'top',
@@ -58,12 +59,13 @@ export const Labeled = componentFactory<ILabeledFactory>(
     const errorTextPosition = errorTextPositionProp ?? supportingTextPosition;
     const hasLeading =
       (!!label && isLabelAtStart) ||
-      ((!!supportingText || !!errorText) &&
+      ((!!supportingText || !!trailingSupportingText || !!errorText) &&
         supportingTextPosition === 'start') ||
       (!!errorText && errorTextPosition === 'start');
     const hasTrailing =
       (!!label && !isLabelAtStart) ||
-      ((!!supportingText || !!errorText) && supportingTextPosition === 'end') ||
+      ((!!supportingText || !!trailingSupportingText || !!errorText) &&
+        supportingTextPosition === 'end') ||
       (!!errorText && errorTextPosition === 'end');
     const isHorizontal = orientation === 'horizontal';
 
@@ -102,10 +104,19 @@ export const Labeled = componentFactory<ILabeledFactory>(
 
     const renderSupportingText = useCallback(
       (): React.ReactNode =>
-        supportingText && (
-          <div {...getStyles('supportingText')}>{supportingText}</div>
+        (supportingText || trailingSupportingText) && (
+          <div {...getStyles('supportingTextContainer')}>
+            {supportingText && (
+              <div {...getStyles('supportingText')}>{supportingText}</div>
+            )}
+            {trailingSupportingText && (
+              <div {...getStyles('trailingSupportingText')}>
+                {trailingSupportingText}
+              </div>
+            )}
+          </div>
         ),
-      [getStyles, supportingText],
+      [getStyles, supportingText, trailingSupportingText],
     );
 
     const renderErrorText = useCallback(

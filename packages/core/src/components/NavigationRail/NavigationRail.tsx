@@ -1,5 +1,8 @@
 import type { INavigationRailThemeFactory } from './NavigationRail.css';
-import type { INavigationRailFactory } from './NavigationRail.types';
+import type {
+  INavigationRailFactory,
+  INavigationRailProps,
+} from './NavigationRail.types';
 import { extractBoxProps } from '~/components/Box/extractBoxProps';
 import { StandardAside } from '~/components/StandardAside';
 import { useComponentTheme, useProps } from '~/components/Theme';
@@ -26,7 +29,8 @@ export const NavigationRail = componentFactory<INavigationRailFactory>(
       wide: fullHeight,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
-    const { boxProps, other: boxForwardedProps } = extractBoxProps(other);
+    const { boxProps, other: boxForwardedProps } =
+      extractBoxProps<INavigationRailProps>(other);
     const { dataProps, other: forwardedProps } =
       extractDataProps(boxForwardedProps);
 

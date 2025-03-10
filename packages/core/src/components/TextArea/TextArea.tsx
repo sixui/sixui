@@ -16,7 +16,7 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { mergeProps } from '~/utils/mergeProps';
 import { triggerChangeEvent } from '~/utils/react';
 import { COMPONENT_NAME } from './TextArea.constants';
-import { textAreaFieldTheme } from './TextArea.css';
+import { textAreaTheme } from './TextArea.css';
 
 /**
  * @see https://m3.material.io/components/text-fields/overview
@@ -55,7 +55,7 @@ export const TextArea = componentFactory<ITextAreaFactory>(
       styles,
       style,
       variant,
-      theme: textAreaFieldTheme,
+      theme: textAreaTheme,
       modifiers: {
         disabled: disabledOrReadOnly,
         'with-error': !!other.hasError,
@@ -170,5 +170,5 @@ export const TextArea = componentFactory<ITextAreaFactory>(
   },
 );
 
-TextArea.theme = textAreaFieldTheme;
+TextArea.theme = textAreaTheme;
 TextArea.displayName = `@sixui/core/${COMPONENT_NAME}`;

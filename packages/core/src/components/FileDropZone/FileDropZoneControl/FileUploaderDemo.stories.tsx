@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { delay } from '@olivierpascal/helpers';
 
-import type { IFileUploaderDemoProps } from './FileDropZone.stories/FileUploaderDemo';
+import type { IFileUploaderDemoProps } from './FileDropZoneControl.stories/FileUploaderDemo';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
-import { FileUploaderDemo } from './FileDropZone.stories/FileUploaderDemo';
-import { getIconFromMimeType } from './FileDropZone.stories/getIconFromMimeType';
+import { FileUploaderDemo } from './FileDropZoneControl.stories/FileUploaderDemo';
+import { getIconFromMimeType } from './FileDropZoneControl.stories/getIconFromMimeType';
 
 const meta = {
   component: FileUploaderDemo,

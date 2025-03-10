@@ -1,5 +1,5 @@
 import type { IDisclosureThemeFactory } from './Disclosure.css';
-import type { IDisclosureFactory } from './Disclosure.types';
+import type { IDisclosureFactory, IDisclosureProps } from './Disclosure.types';
 import { Box } from '~/components/Box';
 import { extractBoxProps } from '~/components/Box/extractBoxProps';
 import { Expandable } from '~/components/Expandable';
@@ -21,7 +21,8 @@ export const Disclosure = componentFactory<IDisclosureFactory>(
       children,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
-    const { boxProps, other: forwardedProps } = extractBoxProps(other);
+    const { boxProps, other: forwardedProps } =
+      extractBoxProps<IDisclosureProps>(other);
 
     const { getStyles } = useComponentTheme<IDisclosureThemeFactory>({
       componentName: COMPONENT_NAME,

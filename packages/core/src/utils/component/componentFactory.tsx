@@ -67,7 +67,12 @@ export const componentFactory = <TPayload extends IComponentFactoryPayload>(
 ) => {
   type IComponent = React.ForwardRefExoticComponent<
     TPayload['props'] &
-      Omit<React.HTMLAttributes<TPayload['ref']>, keyof TPayload['props']> &
+      Omit<
+        TPayload['ref'] extends HTMLInputElement
+          ? React.InputHTMLAttributes<TPayload['ref']>
+          : React.HTMLAttributes<TPayload['ref']>,
+        keyof TPayload['props']
+      > &
       React.RefAttributes<TPayload['ref']>
   >;
 

@@ -1,4 +1,7 @@
-import type { ILinearProgressIndicatorFactory } from './LinearProgressIndicator.types';
+import type {
+  ILinearProgressIndicatorFactory,
+  ILinearProgressIndicatorProps,
+} from './LinearProgressIndicator.types';
 import { extractBoxProps } from '~/components/Box/extractBoxProps';
 import { DeterminateLinearProgressIndicator } from '~/components/DeterminateLinearProgressIndicator';
 import { IndeterminateLinearProgressIndicator } from '~/components/IndeterminateLinearProgressIndicator';
@@ -12,7 +15,7 @@ import { linearProgressIndicatorTheme } from './LinearProgressIndicator.css';
 export const LinearProgressIndicator =
   componentFactory<ILinearProgressIndicatorFactory>((props, forwardedRef) => {
     const { value, ...other } = props;
-    const { boxProps } = extractBoxProps(other);
+    const { boxProps } = extractBoxProps<ILinearProgressIndicatorProps>(other);
 
     return value === undefined ? (
       <IndeterminateLinearProgressIndicator

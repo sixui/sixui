@@ -4,7 +4,7 @@ import type { IComponentThemeFactory } from '~/utils/component/componentThemeFac
 import { Card, CardContent } from '~/components/Card';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
-import { space, typography } from '~/utils/css';
+import { density, space, typography } from '~/utils/css';
 import { createStyles } from '~/utils/css/createStyles';
 import { modifierSelector } from '~/utils/css/modifierSelector';
 import { overrideTokens } from '~/utils/css/overrideTokens';
@@ -13,6 +13,8 @@ import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './FileCard.constants';
 
 type IModifier = 'disabled' | 'with-error' | 'with-thumb' | 'loading';
+
+const DENSITY = px(density({ min: -2, max: 0 }));
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
@@ -80,7 +82,7 @@ const classNames = createStyles({
   root: {
     display: 'flex',
     flexDirection: 'row',
-    minHeight: tokens.container.minHeight,
+    minHeight: calc.add(tokens.container.minHeight, DENSITY),
     position: 'relative',
     flexGrow: 1,
 

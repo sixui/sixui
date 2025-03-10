@@ -9,7 +9,7 @@ import type {
   IPlacement,
 } from '~/utils/types';
 import type {
-  colorInputFieldTheme,
+  colorInputTheme,
   IColorInputThemeFactory,
 } from './ColorInput.css';
 
@@ -39,5 +39,5 @@ export interface IColorInputProps
 export type IColorInputFactory = IComponentFactory<{
   props: IColorInputProps;
   ref: HTMLInputElement;
-  theme: typeof colorInputFieldTheme;
+  theme: typeof colorInputTheme;
 }>;

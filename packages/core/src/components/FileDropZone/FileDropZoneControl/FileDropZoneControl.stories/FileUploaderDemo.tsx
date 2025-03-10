@@ -1,14 +1,14 @@
 import type { IFileDropZoneFile } from '~/hooks/useFileDropZone';
 import type { IMaybeAsync, IOmit } from '~/utils/types';
-import type { IFileDropZoneProps } from '../FileDropZone.types';
-import { FileDropZone } from '../FileDropZone';
+import type { IFileDropZoneControlProps } from '../FileDropZoneControl.types';
+import { FileDropZoneControl } from '../FileDropZoneControl';
 
 export interface IFileUploaderDemoProgressEvent {
   progress: number;
 }
 
 export interface IFileUploaderDemoProps
-  extends IOmit<IFileDropZoneProps, 'onAccept'> {
+  extends IOmit<IFileDropZoneControlProps, 'onAccept'> {
   generateUploadUrl: (file: IFileDropZoneFile) => IMaybeAsync<string>;
   upload: (
     file: IFileDropZoneFile,
@@ -31,7 +31,7 @@ export const FileUploaderDemo: React.FC<IFileUploaderDemoProps> = (props) => {
     ...other
   } = props;
 
-  const handleAccept: IFileDropZoneProps['onAccept'] = async (
+  const handleAccept: IFileDropZoneControlProps['onAccept'] = async (
     file,
     updateFile,
   ) => {
@@ -63,7 +63,7 @@ export const FileUploaderDemo: React.FC<IFileUploaderDemoProps> = (props) => {
     await onSuccess?.(file);
   };
 
-  const handleError: IFileDropZoneProps['onError'] = async (
+  const handleError: IFileDropZoneControlProps['onError'] = async (
     error,
     file,
     updateFile,
@@ -77,11 +77,13 @@ export const FileUploaderDemo: React.FC<IFileUploaderDemoProps> = (props) => {
     await onError?.(error, file);
   };
 
-  const handleRetry: IFileDropZoneProps['onRetry'] = (file, updateFile) =>
-    handleAccept(file, updateFile);
+  const handleRetry: IFileDropZoneControlProps['onRetry'] = (
+    file,
+    updateFile,
+  ) => handleAccept(file, updateFile);
 
   return (
-    <FileDropZone
+    <FileDropZoneControl
       onAccept={handleAccept}
       onError={handleError}
       onRetry={handleRetry}

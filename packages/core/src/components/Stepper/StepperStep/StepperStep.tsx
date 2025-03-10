@@ -1,6 +1,9 @@
 import type { IStepperStepContextValue } from './StepperStep.context';
 import type { IStepperStepThemeFactory } from './StepperStep.css';
-import type { IStepperStepFactory } from './StepperStep.types';
+import type {
+  IStepperStepFactory,
+  IStepperStepProps,
+} from './StepperStep.types';
 import { Box } from '~/components/Box';
 import { extractBoxProps } from '~/components/Box/extractBoxProps';
 import { Button } from '~/components/Button';
@@ -38,7 +41,8 @@ export const StepperStep = componentFactory<IStepperStepFactory>(
       children,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
-    const { boxProps, other: forwardedProps } = extractBoxProps(other);
+    const { boxProps, other: forwardedProps } =
+      extractBoxProps<IStepperStepProps>(other);
 
     const stepperStepperContext = useStepperContext();
 

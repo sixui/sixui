@@ -1,5 +1,8 @@
 import type { INavigationBarThemeFactory } from './NavigationBar.css';
-import type { INavigationBarFactory } from './NavigationBar.types';
+import type {
+  INavigationBarFactory,
+  INavigationBarProps,
+} from './NavigationBar.types';
 import { extractBoxProps } from '~/components/Box/extractBoxProps';
 import { Drawer } from '~/components/Drawer';
 import { useComponentTheme, useProps } from '~/components/Theme';
@@ -24,7 +27,8 @@ export const NavigationBar = componentFactory<INavigationBarFactory>(
       portalProps,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
-    const { boxProps, other: forwardedProps } = extractBoxProps(other);
+    const { boxProps, other: forwardedProps } =
+      extractBoxProps<INavigationBarProps>(other);
 
     const { getStyles } = useComponentTheme<INavigationBarThemeFactory>({
       componentName: COMPONENT_NAME,

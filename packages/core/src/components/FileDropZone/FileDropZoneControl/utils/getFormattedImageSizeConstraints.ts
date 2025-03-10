@@ -1,10 +1,10 @@
 import type { IImageSizeConstraints } from './validateImageSize';
 import { isObject } from '~/utils/isObject';
-import { fileDropZoneStrings } from '../FileDropZone.strings';
+import { fileDropZoneControlStrings } from '../FileDropZoneControl.strings';
 
 export const getFormattedImageSizeConstraints = (
   imageSizeConstraint: IImageSizeConstraints,
-  strings: typeof fileDropZoneStrings.imageSizeConstraints,
+  strings: typeof fileDropZoneControlStrings.imageSizeConstraints,
 ): Array<string> => {
   const { width, height } = imageSizeConstraint;
 

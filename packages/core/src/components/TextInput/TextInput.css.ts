@@ -131,9 +131,8 @@ export type ITextInputThemeFactory = IComponentThemeFactory<{
   modifier: IModifier;
 }>;
 
-export const textInputFieldTheme =
-  componentThemeFactory<ITextInputThemeFactory>({
-    classNames,
-    tokensClassName,
-    tokens,
-  });
+export const textInputTheme = componentThemeFactory<ITextInputThemeFactory>({
+  classNames,
+  tokensClassName,
+  tokens,
+});

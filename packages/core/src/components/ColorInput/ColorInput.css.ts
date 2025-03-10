@@ -14,9 +14,8 @@ export type IColorInputThemeFactory = IComponentThemeFactory<{
   variant: IFieldBaseVariant;
 }>;
 
-export const colorInputFieldTheme =
-  componentThemeFactory<IColorInputThemeFactory>({
-    classNames,
-    tokensClassName,
-    tokens,
-  });
+export const colorInputTheme = componentThemeFactory<IColorInputThemeFactory>({
+  classNames,
+  tokensClassName,
+  tokens,
+});

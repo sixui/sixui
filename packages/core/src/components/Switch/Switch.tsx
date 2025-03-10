@@ -1,5 +1,5 @@
 import type { ISwitchThemeFactory } from './Switch.css';
-import type { ISwitchFactory } from './Switch.types';
+import type { ISwitchFactory, ISwitchProps } from './Switch.types';
 import { extractBoxProps } from '~/components/Box/extractBoxProps';
 import { Labeled } from '~/components/Labeled';
 import { useComponentTheme, useProps } from '~/components/Theme';
@@ -23,14 +23,16 @@ export const Switch = componentFactory<ISwitchFactory>(
       variant,
       label,
       supportingText,
+      requiredSign,
       hasError,
       errorText,
-      requiredSign,
       labelPosition = 'right',
       labeledProps,
+      controlProps,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
-    const { boxProps, other: forwardedProps } = extractBoxProps(other);
+    const { boxProps, other: forwardedProps } =
+      extractBoxProps<ISwitchProps>(other);
 
     const { getStyles } = useComponentTheme<ISwitchThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -50,19 +52,22 @@ export const Switch = componentFactory<ISwitchFactory>(
         })}
         label={label}
         supportingText={supportingText}
-        hasError={hasError}
-        errorText={errorText}
         requiredSign={requiredSign}
-        labelPosition={labelPosition}
-        loading={other.loading}
         id={other.id}
         required={other.required}
         disabled={other.disabled}
         readOnly={other.readOnly}
-        {...boxProps}
+        hasError={hasError}
+        errorText={errorText}
+        labelPosition={labelPosition}
         {...labeledProps}
+        {...boxProps}
       >
-        <SwitchControl ref={forwardedRef} {...forwardedProps} />
+        <SwitchControl
+          ref={forwardedRef}
+          {...controlProps}
+          {...forwardedProps}
+        />
       </Labeled>
     );
   },

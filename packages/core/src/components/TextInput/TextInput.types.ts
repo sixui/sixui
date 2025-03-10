@@ -3,10 +3,7 @@ import type { IFieldBaseOwnProps } from '~/components/FieldBase';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IElementProps, IOmit } from '~/utils/types';
-import type {
-  ITextInputThemeFactory,
-  textInputFieldTheme,
-} from './TextInput.css';
+import type { ITextInputThemeFactory, textInputTheme } from './TextInput.css';
 
 export interface ITextInputOwnProps
   extends IOmit<IFieldBaseOwnProps, 'children'>,
@@ -55,5 +52,5 @@ export interface ITextInputProps
 export type ITextInputFactory = IComponentFactory<{
   props: ITextInputProps;
   ref: HTMLInputElement;
-  theme: typeof textInputFieldTheme;
+  theme: typeof textInputTheme;
 }>;

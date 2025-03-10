@@ -19,7 +19,7 @@ import { extractPaletteFromImage } from '~/utils/colors/extractPaletteFromImage'
 import { isValidHexColor } from '~/utils/colors/isValidHexColor';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './ColorInput.constants';
-import { colorInputFieldTheme } from './ColorInput.css';
+import { colorInputTheme } from './ColorInput.css';
 
 const defaultColorPickerRenderer = (
   props: IColorInputColorPickerRendererProps,
@@ -166,5 +166,5 @@ export const ColorInput = componentFactory<IColorInputFactory>(
   },
 );
 
-ColorInput.theme = colorInputFieldTheme;
+ColorInput.theme = colorInputTheme;
 ColorInput.displayName = `@sixui/core/${COMPONENT_NAME}`;

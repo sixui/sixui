@@ -1,14 +1,14 @@
-import type { fileDropZoneStrings } from '../FileDropZone.strings';
-import type { IFileDropZoneProps } from '../FileDropZone.types';
+import type { fileDropZoneControlStrings } from '../FileDropZoneControl.strings';
+import type { IFileDropZoneControlProps } from '../FileDropZoneControl.types';
 import { getFormattedFileSize } from '~/utils/getFormattedFileSize';
 import { getFormattedImageSizeConstraints } from './getFormattedImageSizeConstraints';
 
 export const getFormattedConstraints = (
   props: Pick<
-    IFileDropZoneProps,
+    IFileDropZoneControlProps,
     'acceptedFileTypes' | 'acceptedImageSize' | 'maxFileCount' | 'maxFileSize'
   > & {
-    strings: typeof fileDropZoneStrings.imageSizeConstraints;
+    strings: typeof fileDropZoneControlStrings.imageSizeConstraints;
   },
 ): string => {
   const { maxFileSize, acceptedImageSize, strings } = props;

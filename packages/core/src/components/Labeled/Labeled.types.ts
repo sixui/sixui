@@ -18,6 +18,7 @@ export interface ILabeledOwnProps extends ILabeledContextValue {
   label?: React.ReactNode;
   trailingAction?: React.ReactNode;
   supportingText?: React.ReactNode;
+  trailingSupportingText?: React.ReactNode;
   children?:
     | React.ReactNode
     | ((props: ILabeledChildrenRenderProps) => React.ReactNode);

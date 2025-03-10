@@ -76,7 +76,7 @@ export type ITextAreaThemeFactory = IComponentThemeFactory<{
   modifier: IModifier;
 }>;
 
-export const textAreaFieldTheme = componentThemeFactory<ITextAreaThemeFactory>({
+export const textAreaTheme = componentThemeFactory<ITextAreaThemeFactory>({
   classNames,
   tokensClassName,
   tokens,

@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { useFocus } from 'react-aria';
 
 import type { ISearchBarThemeFactory } from './SearchBar.css';
-import type { ISearchBarFactory } from './SearchBar.types';
+import type { ISearchBarFactory, ISearchBarProps } from './SearchBar.types';
 import { Avatar } from '~/components/Avatar';
 import { Paper } from '~/components/Paper';
 import { Slot } from '~/components/Slot';
@@ -37,7 +37,8 @@ export const SearchBar = componentFactory<ISearchBarFactory>(
       loading,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
-    const { paperProps, other: forwardedProps } = extractPaperProps(other);
+    const { paperProps, other: forwardedProps } =
+      extractPaperProps<ISearchBarProps>(other);
 
     const { getStyles } = useComponentTheme<ISearchBarThemeFactory>({
       componentName: COMPONENT_NAME,

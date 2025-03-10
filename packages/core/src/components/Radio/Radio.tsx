@@ -1,5 +1,5 @@
 import type { IRadioThemeFactory } from './Radio.css';
-import type { IRadioFactory } from './Radio.types';
+import type { IRadioFactory, IRadioProps } from './Radio.types';
 import { extractBoxProps } from '~/components/Box/extractBoxProps';
 import { Labeled } from '~/components/Labeled';
 import { useComponentTheme, useProps } from '~/components/Theme';
@@ -24,14 +24,16 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
     variant,
     label,
     supportingText,
+    requiredSign,
     hasError,
     errorText,
-    requiredSign,
     labelPosition = 'right',
     labeledProps,
+    controlProps,
     ...other
   } = useProps({ componentName: COMPONENT_NAME, props });
-  const { boxProps, other: forwardedProps } = extractBoxProps(other);
+  const { boxProps, other: forwardedProps } =
+    extractBoxProps<IRadioProps>(other);
 
   const { getStyles } = useComponentTheme<IRadioThemeFactory>({
     componentName: COMPONENT_NAME,
@@ -51,19 +53,18 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
       })}
       label={label}
       supportingText={supportingText}
-      hasError={hasError}
-      errorText={errorText}
       requiredSign={requiredSign}
-      labelPosition={labelPosition}
-      loading={other.loading}
       id={other.id}
       required={other.required}
       disabled={other.disabled}
       readOnly={other.readOnly}
-      {...boxProps}
+      hasError={hasError}
+      errorText={errorText}
+      labelPosition={labelPosition}
       {...labeledProps}
+      {...boxProps}
     >
-      <RadioControl ref={forwardedRef} {...forwardedProps} />
+      <RadioControl ref={forwardedRef} {...controlProps} {...forwardedProps} />
     </Labeled>
   );
 });

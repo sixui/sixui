@@ -6,6 +6,7 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { Box } from '../Box';
 import { extractBoxProps } from '../Box/extractBoxProps';
 import { COMPONENT_NAME } from './DropZone.constants';
+import { IDropZoneProps } from './DropZone.types';
 import { dropZoneTheme } from './DropZone.css';
 
 export const DropZone = componentFactory<IDropZoneFactory>(
@@ -30,7 +31,8 @@ export const DropZone = componentFactory<IDropZoneFactory>(
       rootRef,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
-    const { boxProps, other: forwardedProps } = extractBoxProps(other);
+    const { boxProps, other: forwardedProps } =
+      extractBoxProps<IDropZoneProps>(other);
 
     const interactive = !disabled && !!onClick;
 

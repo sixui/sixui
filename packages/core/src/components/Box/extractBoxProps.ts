@@ -1,13 +1,24 @@
 import { removeUndefineds } from '@olivierpascal/helpers';
 
+import type {
+  IComponentThemeFactoryPayload,
+  IWithAsProp,
+} from '~/utils/component';
 import type { IBoxProps } from './Box.types';
 
-export type IExtractBoxPropsResult = {
-  boxProps?: IBoxProps;
-  other: Record<string, unknown>;
-};
+export type IExtractBoxPropsForwardedProps<TForwardedComponentProps> = Omit<
+  TForwardedComponentProps,
+  keyof IBoxProps | keyof IComponentThemeFactoryPayload | keyof IWithAsProp
+>;
 
-export const extractBoxProps = (props: IBoxProps): IExtractBoxPropsResult => {
+export interface IExtractBoxPropsResult<TForwardedComponentProps> {
+  boxProps?: IBoxProps;
+  other: IExtractBoxPropsForwardedProps<TForwardedComponentProps>;
+}
+
+export const extractBoxProps = <TForwardedComponentProps>(
+  props: IBoxProps,
+): IExtractBoxPropsResult<TForwardedComponentProps> => {
   const {
     className,
     style,
@@ -135,6 +146,6 @@ export const extractBoxProps = (props: IBoxProps): IExtractBoxPropsResult => {
 
   return {
     boxProps,
-    other,
+    other: other as IExtractBoxPropsForwardedProps<TForwardedComponentProps>,
   };
 };

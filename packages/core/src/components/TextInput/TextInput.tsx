@@ -15,7 +15,7 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { mergeProps } from '~/utils/mergeProps';
 import { triggerChangeEvent } from '~/utils/react';
 import { COMPONENT_NAME } from './TextInput.constants';
-import { textInputFieldTheme } from './TextInput.css';
+import { textInputTheme } from './TextInput.css';
 
 /**
  * @see https://m3.material.io/components/text-fields/overview
@@ -59,7 +59,7 @@ export const TextInput = componentFactory<ITextInputFactory>(
       styles,
       style,
       variant,
-      theme: textInputFieldTheme,
+      theme: textInputTheme,
       modifiers: {
         disabled: disabledOrReadOnly,
         'with-error': !!other.hasError,
@@ -201,5 +201,5 @@ export const TextInput = componentFactory<ITextInputFactory>(
   },
 );
 
-TextInput.theme = textInputFieldTheme;
+TextInput.theme = textInputTheme;
 TextInput.displayName = `@sixui/core/${COMPONENT_NAME}`;

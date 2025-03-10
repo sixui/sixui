@@ -3,7 +3,7 @@ import type { IFieldBaseOwnProps } from '~/components/FieldBase';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IElementProps, IOmit } from '~/utils/types';
-import type { ITextAreaThemeFactory, textAreaFieldTheme } from './TextArea.css';
+import type { ITextAreaThemeFactory, textAreaTheme } from './TextArea.css';
 
 export interface ITextAreaOwnProps
   extends IOmit<IFieldBaseOwnProps, 'children'>,
@@ -32,5 +32,5 @@ export interface ITextAreaProps
 export type ITextAreaFactory = IComponentFactory<{
   props: ITextAreaProps;
   ref: HTMLTextAreaElement;
-  theme: typeof textAreaFieldTheme;
+  theme: typeof textAreaTheme;
 }>;

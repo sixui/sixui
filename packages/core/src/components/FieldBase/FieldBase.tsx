@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import type { IFieldBaseThemeFactory } from './FieldBase.css';
-import type { IFieldBaseFactory } from './FieldBase.types';
+import type { IFieldBaseFactory, IFieldBaseProps } from './FieldBase.types';
 import { Box } from '~/components/Box';
 import { extractBoxProps } from '~/components/Box/extractBoxProps';
 import { CircularProgressIndicator } from '~/components/CircularProgressIndicator';
@@ -15,7 +15,7 @@ import { polymorphicComponentFactory } from '~/utils/component/polymorphicCompon
 import { isFunction } from '~/utils/isFunction';
 import { mergeProps } from '~/utils/mergeProps';
 import { COMPONENT_NAME } from './FieldBase.constants';
-import { getLabelKeyframes } from './getLabelKeyframes';
+import { getLabelKeyframes } from './utils/getLabelKeyframes';
 import { fieldBaseTheme, fieldBaseThemeVariants } from './FieldBase.css';
 
 const EASING_STANDARD = 'cubic-bezier(0.2, 0, 0, 1)';
@@ -48,7 +48,7 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
       count = -1,
       maxLength = -1,
       multiline,
-      loading: loadingProp,
+      loading,
       containerRef,
       disabled: disabledProp,
       interactions: interactionsProp,
@@ -62,13 +62,13 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const { boxProps, other: forwardedProps } = extractBoxProps(other);
+    const { boxProps, other: forwardedProps } =
+      extractBoxProps<IFieldBaseProps>(other);
 
     const labeledContext = useLabeledContext();
     const disabled = disabledProp ?? labeledContext?.disabled;
     const readOnly = readOnlyProp ?? labeledContext?.readOnly;
     const required = requiredProp ?? labeledContext?.required;
-    const loading = loadingProp ?? labeledContext?.loading;
 
     const disabledOrReadOnly = disabled || readOnly;
     const hasStart = !!leadingIcon || !!startSlot;

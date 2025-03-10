@@ -21,31 +21,61 @@ const defaultArgs = {
 } satisfies Partial<ILabeledProps>;
 
 const colsHorizontal: Array<IComponentPresentation<ILabeledProps>> = [
-  { legend: 'Left', props: { labelPosition: 'left' } },
-  { legend: 'Right', props: { labelPosition: 'right' } },
+  {
+    legend: 'Left',
+    props: {
+      labelPosition: 'left',
+    },
+  },
+  {
+    legend: 'Right',
+    props: {
+      labelPosition: 'right',
+    },
+  },
 ];
 
 const colsVertical: Array<IComponentPresentation<ILabeledProps>> = [
-  { legend: 'Top', props: { labelPosition: 'top' } },
-  { legend: 'Bottom', props: { labelPosition: 'bottom' } },
+  {
+    legend: 'Top',
+    props: {
+      labelPosition: 'top',
+    },
+  },
+  {
+    legend: 'Bottom',
+    props: {
+      labelPosition: 'bottom',
+    },
+  },
+  {
+    legend: 'Dispatched',
+    props: {
+      labelPosition: 'top',
+      supportingTextPosition: 'end',
+    },
+  },
 ];
 
 const rows: Array<IComponentPresentation<ILabeledProps>> = [
-  { legend: 'With label' },
+  {
+    legend: 'With label',
+  },
   {
     legend: 'With supporting text',
-    props: { supportingText: 'Supporting text' },
+    props: {
+      supportingText: 'Supporting text',
+    },
   },
   {
-    legend: 'With error',
-    props: { hasError: true },
+    legend: 'With error text',
+    props: {
+      hasError: true,
+      errorText: 'Error',
+    },
   },
   {
-    legend: 'With error and error text',
-    props: { hasError: true, errorText: 'Error' },
-  },
-  {
-    legend: 'With error, error text and supporting text',
+    legend: 'With error text and supporting text',
     props: {
       hasError: true,
       errorText: 'Error',
@@ -54,7 +84,10 @@ const rows: Array<IComponentPresentation<ILabeledProps>> = [
   },
   {
     legend: 'Disabled',
-    props: { disabled: true },
+    props: {
+      supportingText: 'Supporting text',
+      disabled: true,
+    },
   },
 ];
 const LabeledShowcase = componentShowcaseFactory(Labeled);
