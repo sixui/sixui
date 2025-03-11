@@ -59,6 +59,6 @@ export const IndeterminateCircularProgressIndicator =
     },
   );
 
+IndeterminateCircularProgressIndicator.displayName = `@sixui/core/${COMPONENT_NAME}`;
 IndeterminateCircularProgressIndicator.theme =
   indeterminateCircularProgressIndicatorTheme;
-IndeterminateCircularProgressIndicator.displayName = `@sixui/core/${COMPONENT_NAME}`;

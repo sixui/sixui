@@ -59,5 +59,5 @@ export const StepperConnector = componentFactory<IStepperConnectorFactory>(
   },
 );
 
-StepperConnector.theme = dividerTheme;
 StepperConnector.displayName = `@sixui/core/${COMPONENT_NAME}`;
+StepperConnector.theme = dividerTheme;

@@ -83,5 +83,5 @@ export const ColorPickerContent = componentFactory<IColorPickerContentFactory>(
   },
 );
 
-ColorPickerContent.theme = colorPickerContentTheme;
 ColorPickerContent.displayName = `@sixui/core/${COMPONENT_NAME}`;
+ColorPickerContent.theme = colorPickerContentTheme;

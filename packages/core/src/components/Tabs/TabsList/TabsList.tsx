@@ -47,5 +47,5 @@ export const TabsList = componentFactory<ITabsListFactory>(
   },
 );
 
-TabsList.theme = tabsListTheme;
 TabsList.displayName = `@sixui/core/${COMPONENT_NAME}`;
+TabsList.theme = tabsListTheme;

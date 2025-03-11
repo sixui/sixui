@@ -7,6 +7,7 @@ import { useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { executeLazyPromise } from '~/utils/executeLazyPromise';
 import { COMPONENT_NAME } from './ConfirmDialog.constants';
+import { confirmDialogTheme } from './ConfirmDialog.css';
 
 const defaultLabels = {
   confirm: 'Confirm',
@@ -75,3 +76,4 @@ export const ConfirmDialog = componentFactory<IConfirmDialogFactory>(
 );
 
 ConfirmDialog.displayName = `@sixui/core/${COMPONENT_NAME}`;
+ConfirmDialog.theme = confirmDialogTheme;

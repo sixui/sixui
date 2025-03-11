@@ -34,5 +34,5 @@ export const LinearProgressIndicator =
     );
   });
 
-LinearProgressIndicator.theme = linearProgressIndicatorTheme;
 LinearProgressIndicator.displayName = `@sixui/core/${COMPONENT_NAME}`;
+LinearProgressIndicator.theme = linearProgressIndicatorTheme;

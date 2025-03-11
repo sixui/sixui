@@ -109,7 +109,7 @@ export const Stepper = componentFactory<IStepperFactory>(
   },
 );
 
-Stepper.theme = stepperTheme;
 Stepper.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Stepper.theme = stepperTheme;
 Stepper.Step = StepperStep;
 Stepper.Connector = StepperConnector;

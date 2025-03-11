@@ -70,5 +70,5 @@ export const Anchored = componentFactory<IAnchoredFactory>(
   },
 );
 
-Anchored.theme = anchoredTheme;
 Anchored.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Anchored.theme = anchoredTheme;

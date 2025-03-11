@@ -87,5 +87,5 @@ export const AppLayoutTopBar = componentFactory<IAppLayoutTopBarFactory>(
   },
 );
 
-AppLayoutTopBar.theme = appLayoutTopBarTheme;
 AppLayoutTopBar.displayName = `@sixui/core/${COMPONENT_NAME}`;
+AppLayoutTopBar.theme = appLayoutTopBarTheme;

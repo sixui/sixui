@@ -49,5 +49,5 @@ export const SimpleGrid = componentFactory<ISimpleGridFactory>(
   },
 );
 
-SimpleGrid.theme = simpleGridTheme;
 SimpleGrid.displayName = `@sixui/core/${COMPONENT_NAME}`;
+SimpleGrid.theme = simpleGridTheme;

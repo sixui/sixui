@@ -81,6 +81,6 @@ export const DeterminateCircularProgressIndicator =
     },
   );
 
+DeterminateCircularProgressIndicator.displayName = `@sixui/core/${COMPONENT_NAME}`;
 DeterminateCircularProgressIndicator.theme =
   determinateCircularProgressIndicatorTheme;
-DeterminateCircularProgressIndicator.displayName = `@sixui/core/${COMPONENT_NAME}`;

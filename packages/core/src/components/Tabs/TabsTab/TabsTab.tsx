@@ -167,5 +167,5 @@ export const TabsTab = polymorphicComponentFactory<ITabsTabFactory>(
   },
 );
 
-TabsTab.theme = tabsTabTheme;
 TabsTab.displayName = `@sixui/core/${COMPONENT_NAME}`;
+TabsTab.theme = tabsTabTheme;

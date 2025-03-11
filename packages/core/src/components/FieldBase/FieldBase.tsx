@@ -465,5 +465,5 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
   },
 );
 
-FieldBase.theme = fieldBaseTheme;
 FieldBase.displayName = `@sixui/core/${COMPONENT_NAME}`;
+FieldBase.theme = fieldBaseTheme;

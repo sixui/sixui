@@ -221,5 +221,5 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
   },
 );
 
-Chip.theme = chipTheme;
 Chip.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Chip.theme = chipTheme;

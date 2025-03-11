@@ -50,5 +50,5 @@ export const FocusRing = componentFactory<IFocusRingFactory>(
   },
 );
 
-FocusRing.theme = focusRingTheme;
 FocusRing.displayName = `@sixui/core/${COMPONENT_NAME}`;
+FocusRing.theme = focusRingTheme;

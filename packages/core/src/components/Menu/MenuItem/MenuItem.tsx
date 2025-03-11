@@ -71,5 +71,5 @@ export const MenuItem = polymorphicComponentFactory<IMenuItemFactory>(
   },
 );
 
-MenuItem.theme = ListItem.theme;
 MenuItem.displayName = `@sixui/core/${COMPONENT_NAME}`;
+MenuItem.theme = ListItem.theme;

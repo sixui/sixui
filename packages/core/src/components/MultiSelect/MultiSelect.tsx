@@ -8,6 +8,7 @@ import { useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './MultiSelect.constants';
 import { MultiSelectControl } from './MultiSelectControl';
+import { multiSelectTheme } from './MultiSelect.css';
 
 export const MultiSelect = componentFactory<IMultiSelectFactory>(
   (props, forwardedRef) => {
@@ -52,4 +53,5 @@ export const MultiSelect = componentFactory<IMultiSelectFactory>(
 );
 
 MultiSelect.displayName = `@sixui/core/${COMPONENT_NAME}`;
+MultiSelect.theme = multiSelectTheme;
 MultiSelect.Control = MultiSelectControl;

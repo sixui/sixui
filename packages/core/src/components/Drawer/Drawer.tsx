@@ -74,5 +74,5 @@ export const Drawer = componentFactory<IDrawerFactory>(
   },
 );
 
-Drawer.theme = drawerTheme;
 Drawer.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Drawer.theme = drawerTheme;

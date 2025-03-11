@@ -71,5 +71,5 @@ export const Skeleton = componentFactory<ISkeletonFactory>(
   },
 );
 
-Skeleton.theme = skeletonTheme;
 Skeleton.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Skeleton.theme = skeletonTheme;

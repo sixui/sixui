@@ -162,8 +162,8 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
   },
 );
 
-AppLayout.theme = appLayoutTheme;
 AppLayout.displayName = `@sixui/core/${COMPONENT_NAME}`;
+AppLayout.theme = appLayoutTheme;
 AppLayout.TopBar = AppLayoutTopBar;
 AppLayout.Body = AppLayoutBody;
 AppLayout.ListDetailBody = AppLayoutListDetailBody;

@@ -140,5 +140,5 @@ export const Breadcrumbs = componentFactory<IBreadcrumbsFactory>(
   },
 );
 
-Breadcrumbs.theme = breadcrumbsTheme;
 Breadcrumbs.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Breadcrumbs.theme = breadcrumbsTheme;

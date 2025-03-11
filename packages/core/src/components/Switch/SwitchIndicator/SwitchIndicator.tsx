@@ -90,5 +90,5 @@ export const SwitchIndicator = componentFactory<ISwitchIndicatorFactory>(
   },
 );
 
-SwitchIndicator.theme = basicTemplateTheme;
 SwitchIndicator.displayName = `@sixui/core/${COMPONENT_NAME}`;
+SwitchIndicator.theme = basicTemplateTheme;

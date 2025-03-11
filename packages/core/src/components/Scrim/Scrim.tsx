@@ -49,5 +49,5 @@ export const Scrim = polymorphicComponentFactory<IScrimFactory>(
   },
 );
 
-Scrim.theme = scrimTheme;
 Scrim.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Scrim.theme = scrimTheme;

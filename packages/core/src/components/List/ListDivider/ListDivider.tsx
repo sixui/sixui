@@ -9,5 +9,5 @@ export const ListDivider = Divider.withProps({
   my: '$2',
 });
 
-ListDivider.theme = dividerTheme;
 ListDivider.displayName = `@sixui/core/${COMPONENT_NAME}`;
+ListDivider.theme = dividerTheme;

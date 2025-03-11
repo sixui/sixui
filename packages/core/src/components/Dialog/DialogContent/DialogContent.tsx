@@ -168,5 +168,5 @@ export const DialogContent = polymorphicComponentFactory<IDialogContentFactory>(
   },
 );
 
-DialogContent.theme = dialogContentTheme;
 DialogContent.displayName = `@sixui/core/${COMPONENT_NAME}`;
+DialogContent.theme = dialogContentTheme;

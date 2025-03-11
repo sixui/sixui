@@ -40,5 +40,5 @@ export const ColorSchemeRole = componentFactory<IColorSchemeRoleFactory>(
   },
 );
 
-ColorSchemeRole.theme = colorSchemeRoleTheme;
 ColorSchemeRole.displayName = `@sixui/core/${COMPONENT_NAME}`;
+ColorSchemeRole.theme = colorSchemeRoleTheme;

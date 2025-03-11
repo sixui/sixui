@@ -67,5 +67,5 @@ export const PlainTooltip = componentFactory<IPlainTooltipFactory>(
   },
 );
 
-PlainTooltip.theme = plainTooltipTheme;
 PlainTooltip.displayName = `@sixui/core/${COMPONENT_NAME}`;
+PlainTooltip.theme = plainTooltipTheme;

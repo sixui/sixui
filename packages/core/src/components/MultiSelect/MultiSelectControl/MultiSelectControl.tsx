@@ -11,6 +11,7 @@ import { useProps } from '~/components/Theme';
 import { useMultiSelect } from '~/hooks/useMultiSelect';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './MultiSelectControl.constants';
+import { multiSelectControlTheme } from './MultiSelectControl.css';
 
 const MultiSelectBase = multiSelectBaseFactory<IFilterableListItem>();
 
@@ -59,3 +60,4 @@ export const MultiSelectControl = componentFactory<IMultiSelectControlFactory>(
 );
 
 MultiSelectControl.displayName = `@sixui/core/${COMPONENT_NAME}`;
+MultiSelectControl.theme = multiSelectControlTheme;

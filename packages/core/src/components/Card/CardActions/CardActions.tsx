@@ -39,5 +39,5 @@ export const CardActions = componentFactory<ICardActionsFactory>(
   },
 );
 
-CardActions.theme = cardActionsTheme;
 CardActions.displayName = `@sixui/core/${COMPONENT_NAME}`;
+CardActions.theme = cardActionsTheme;

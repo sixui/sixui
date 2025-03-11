@@ -4,6 +4,7 @@ import { useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component';
 import { COMPONENT_NAME } from './Burger.constants';
 import { BurgerIndicator } from './BurgerIndicator';
+import { burgerTheme } from './Burger.css';
 
 export const Burger = polymorphicComponentFactory<IBurgerFactory>(
   (props, forwardedRef) => {
@@ -24,4 +25,5 @@ export const Burger = polymorphicComponentFactory<IBurgerFactory>(
 );
 
 Burger.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Burger.theme = burgerTheme;
 Burger.Indicator = BurgerIndicator;

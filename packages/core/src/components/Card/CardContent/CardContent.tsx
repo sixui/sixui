@@ -39,5 +39,5 @@ export const CardContent = polymorphicComponentFactory<ICardContentFactory>(
   },
 );
 
-CardContent.theme = CardContentTheme;
 CardContent.displayName = `@sixui/core/${COMPONENT_NAME}`;
+CardContent.theme = CardContentTheme;

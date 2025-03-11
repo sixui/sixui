@@ -6,6 +6,7 @@ import { SvgIcon } from '~/components/SvgIcon';
 import { useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './FileDropZoneFileCard.constants';
+import { fileDropZoneFileCardTheme } from './FileDropZoneFileCard.css';
 
 export const FileDropZoneFileCard =
   componentFactory<IFileDropZoneFileCardFactory>((props, forwardedRef) => {
@@ -42,3 +43,4 @@ export const FileDropZoneFileCard =
   });
 
 FileDropZoneFileCard.displayName = `@sixui/core/${COMPONENT_NAME}`;
+FileDropZoneFileCard.theme = fileDropZoneFileCardTheme;

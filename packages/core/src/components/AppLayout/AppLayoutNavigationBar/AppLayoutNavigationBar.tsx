@@ -60,6 +60,6 @@ export const AppLayoutNavigationBar =
     );
   });
 
-AppLayoutNavigationBar.theme = appLayoutNavigationBarTheme;
 AppLayoutNavigationBar.displayName = `@sixui/core/${COMPONENT_NAME}`;
+AppLayoutNavigationBar.theme = appLayoutNavigationBarTheme;
 AppLayoutNavigationBar.Destination = NavigationBarDestination;

@@ -46,5 +46,5 @@ export const DrawerAside = componentFactory<IDrawerAsideFactory>(
   },
 );
 
-DrawerAside.theme = drawerAsideTheme;
 DrawerAside.displayName = `@sixui/core/${COMPONENT_NAME}`;
+DrawerAside.theme = drawerAsideTheme;

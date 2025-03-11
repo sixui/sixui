@@ -35,5 +35,5 @@ export const CircularProgressIndicator =
     );
   });
 
-CircularProgressIndicator.theme = circularProgressIndicatorTheme;
 CircularProgressIndicator.displayName = `@sixui/core/${COMPONENT_NAME}`;
+CircularProgressIndicator.theme = circularProgressIndicatorTheme;

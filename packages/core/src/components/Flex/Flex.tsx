@@ -74,5 +74,5 @@ export const Flex = polymorphicComponentFactory<IFlexFactory>(
   },
 );
 
-Flex.theme = flexTheme;
 Flex.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Flex.theme = flexTheme;

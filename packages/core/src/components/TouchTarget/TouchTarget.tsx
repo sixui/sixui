@@ -31,5 +31,5 @@ export const TouchTarget = componentFactory<ITouchTargetFactory>(
   },
 );
 
-TouchTarget.theme = touchTargetTheme;
 TouchTarget.displayName = `@sixui/core/${COMPONENT_NAME}`;
+TouchTarget.theme = touchTargetTheme;

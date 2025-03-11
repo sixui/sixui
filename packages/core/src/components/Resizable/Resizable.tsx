@@ -127,5 +127,5 @@ export const Resizable = polymorphicComponentFactory<IResizableFactory>(
   },
 );
 
-Resizable.theme = resizableTheme;
 Resizable.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Resizable.theme = resizableTheme;

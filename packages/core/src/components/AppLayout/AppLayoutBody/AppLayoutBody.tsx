@@ -58,5 +58,5 @@ export const AppLayoutBody = componentFactory<IAppLayoutBodyFactory>(
   },
 );
 
-AppLayoutBody.theme = appLayoutBodyTheme;
 AppLayoutBody.displayName = `@sixui/core/${COMPONENT_NAME}`;
+AppLayoutBody.theme = appLayoutBodyTheme;

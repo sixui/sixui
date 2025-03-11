@@ -43,5 +43,5 @@ export const Responsive = componentFactory<IResponsiveFactory>(
   },
 );
 
-Responsive.theme = responsiveTheme;
 Responsive.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Responsive.theme = responsiveTheme;

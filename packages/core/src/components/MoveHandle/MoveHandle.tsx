@@ -49,6 +49,6 @@ export const MoveHandle = componentFactory<IMoveHandleFactory>(
   },
 );
 
-MoveHandle.theme = moveHandleTheme;
 MoveHandle.displayName = `@sixui/core/${COMPONENT_NAME}`;
+MoveHandle.theme = moveHandleTheme;
 MoveHandle.Indicator = MoveHandleIndicator;

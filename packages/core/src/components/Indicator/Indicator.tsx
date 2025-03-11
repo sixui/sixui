@@ -40,5 +40,5 @@ export const Indicator = componentFactory<IIndicatorFactory>(
   },
 );
 
-Indicator.theme = indicatorTheme;
 Indicator.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Indicator.theme = indicatorTheme;

@@ -84,5 +84,5 @@ export const Item = polymorphicComponentFactory<IItemFactory>(
   },
 );
 
-Item.theme = itemTheme;
 Item.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Item.theme = itemTheme;

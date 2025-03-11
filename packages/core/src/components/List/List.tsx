@@ -77,7 +77,7 @@ export const List = componentFactory<IListFactory>((props, forwardedRef) => {
   );
 });
 
-List.theme = listTheme;
 List.displayName = `@sixui/core/${COMPONENT_NAME}`;
+List.theme = listTheme;
 List.Item = ListItem;
 List.Divider = ListDivider;

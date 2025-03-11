@@ -47,5 +47,5 @@ export const PaperBase = polymorphicComponentFactory<IPaperBaseFactory>(
   },
 );
 
-PaperBase.theme = paperBaseTheme;
 PaperBase.displayName = `@sixui/core/${COMPONENT_NAME}`;
+PaperBase.theme = paperBaseTheme;

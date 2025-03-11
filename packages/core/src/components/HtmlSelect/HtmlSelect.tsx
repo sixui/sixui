@@ -5,6 +5,7 @@ import { useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './HtmlSelect.constants';
 import { HtmlSelectControl } from './HtmlSelectControl';
+import { htmlSelectTheme } from './HtmlSelect.css';
 
 export const HtmlSelect = componentFactory<IHtmlSelectFactory>(
   (props, forwardedRef) => {
@@ -49,4 +50,5 @@ export const HtmlSelect = componentFactory<IHtmlSelectFactory>(
 );
 
 HtmlSelect.displayName = `@sixui/core/${COMPONENT_NAME}`;
+HtmlSelect.theme = htmlSelectTheme;
 HtmlSelect.Control = HtmlSelectControl;

@@ -85,5 +85,5 @@ export const AppLayoutListDetailBody =
     );
   });
 
-AppLayoutListDetailBody.theme = appLayoutListDetailBodyTheme;
 AppLayoutListDetailBody.displayName = `@sixui/core/${COMPONENT_NAME}`;
+AppLayoutListDetailBody.theme = appLayoutListDetailBodyTheme;

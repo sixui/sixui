@@ -55,5 +55,5 @@ export const ResizeHandle = componentFactory<IResizeHandleFactory>(
   },
 );
 
-ResizeHandle.theme = resizeHandleTheme;
 ResizeHandle.displayName = `@sixui/core/${COMPONENT_NAME}`;
+ResizeHandle.theme = resizeHandleTheme;

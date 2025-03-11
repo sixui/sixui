@@ -9,6 +9,7 @@ import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
 import { paperBaseTheme } from '~/components/PaperBase/PaperBase.css';
 import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './Paper.constants';
+import { paperTheme } from './Paper.css';
 
 const getValue = <TKey extends string>(
   // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
@@ -90,3 +91,4 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
 );
 
 Paper.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Paper.theme = paperTheme;

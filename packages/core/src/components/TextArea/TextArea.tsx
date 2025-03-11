@@ -5,6 +5,7 @@ import { useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './TextArea.constants';
 import { TextAreaControl } from './TextAreaControl';
+import { textAreaTheme } from './TextArea.css';
 
 /**
  * @see https://m3.material.io/components/text-fields/overview
@@ -52,4 +53,5 @@ export const TextArea = componentFactory<ITextAreaFactory>(
 );
 
 TextArea.displayName = `@sixui/core/${COMPONENT_NAME}`;
+TextArea.theme = textAreaTheme;
 TextArea.Control = TextAreaControl;

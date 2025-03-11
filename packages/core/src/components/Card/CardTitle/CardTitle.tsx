@@ -48,5 +48,5 @@ export const CardTitle = componentFactory<ICardTitleFactory>(
   },
 );
 
-CardTitle.theme = cardTitleTheme;
 CardTitle.displayName = `@sixui/core/${COMPONENT_NAME}`;
+CardTitle.theme = cardTitleTheme;

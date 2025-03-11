@@ -46,5 +46,5 @@ export const Diagonals = componentFactory<IDiagonalsFactory>(
   },
 );
 
-Diagonals.theme = diagonalsTheme;
 Diagonals.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Diagonals.theme = diagonalsTheme;

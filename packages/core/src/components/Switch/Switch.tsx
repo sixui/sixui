@@ -75,7 +75,7 @@ export const Switch = componentFactory<ISwitchFactory>(
   },
 );
 
-Switch.theme = switchTheme;
 Switch.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Switch.theme = switchTheme;
 Switch.Control = SwitchControl;
 Switch.Indicator = SwitchIndicator;

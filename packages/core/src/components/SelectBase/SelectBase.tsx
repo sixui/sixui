@@ -11,6 +11,7 @@ import { TextInput } from '~/components/TextInput';
 import { useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './SelectBase.constants';
+import { selectBaseTheme } from './SelectBase.css';
 
 export const selectBaseFactory = <
   TItem,
@@ -122,6 +123,7 @@ export const selectBaseFactory = <
   );
 
   SelectBase.displayName = `@sixui/core/${COMPONENT_NAME}`;
+  SelectBase.theme = selectBaseTheme;
 
   return SelectBase;
 };

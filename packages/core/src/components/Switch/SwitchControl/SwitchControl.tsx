@@ -135,5 +135,5 @@ export const SwitchControl = componentFactory<ISwitchControlFactory>(
   },
 );
 
-SwitchControl.theme = basicTemplateTheme;
 SwitchControl.displayName = `@sixui/core/${COMPONENT_NAME}`;
+SwitchControl.theme = basicTemplateTheme;

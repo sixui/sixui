@@ -63,5 +63,5 @@ export const RadioIndicator = componentFactory<IRadioIndicatorFactory>(
   },
 );
 
-RadioIndicator.theme = RadioIndicatorTheme;
 RadioIndicator.displayName = `@sixui/core/${COMPONENT_NAME}`;
+RadioIndicator.theme = RadioIndicatorTheme;

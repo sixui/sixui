@@ -74,7 +74,7 @@ export const AppLayoutNavigationDrawer =
     );
   });
 
-AppLayoutNavigationDrawer.theme = appLayoutNavigationDrawerTheme;
 AppLayoutNavigationDrawer.displayName = `@sixui/core/${COMPONENT_NAME}`;
+AppLayoutNavigationDrawer.theme = appLayoutNavigationDrawerTheme;
 AppLayoutNavigationDrawer.Section = NavigationDrawer.Section;
 AppLayoutNavigationDrawer.Destination = NavigationDrawer.Destination;

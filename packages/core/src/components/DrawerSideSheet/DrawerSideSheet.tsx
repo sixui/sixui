@@ -67,5 +67,5 @@ export const DrawerSideSheet = componentFactory<IDrawerSideSheetFactory>(
   },
 );
 
-DrawerSideSheet.theme = drawerSideSheetTheme;
 DrawerSideSheet.displayName = `@sixui/core/${COMPONENT_NAME}`;
+DrawerSideSheet.theme = drawerSideSheetTheme;

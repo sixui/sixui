@@ -62,8 +62,8 @@ export const Card = polymorphicComponentFactory<ICardFactory>(
   },
 );
 
-Card.theme = cardTheme;
 Card.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Card.theme = cardTheme;
 Card.Content = CardContent;
 Card.Title = CardTitle;
 Card.Media = CardMedia;

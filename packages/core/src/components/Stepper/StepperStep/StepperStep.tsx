@@ -226,6 +226,6 @@ export const StepperStep = componentFactory<IStepperStepFactory>(
   },
 );
 
-StepperStep.theme = stepperStepTheme;
 StepperStep.displayName = `@sixui/core/${COMPONENT_NAME}`;
+StepperStep.theme = stepperStepTheme;
 StepperStep.Indicator = StepperStepIndicator;

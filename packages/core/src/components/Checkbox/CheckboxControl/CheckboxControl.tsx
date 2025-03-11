@@ -127,5 +127,5 @@ export const CheckboxControl = componentFactory<ICheckboxControlFactory>(
   },
 );
 
-CheckboxControl.theme = checkboxControlTheme;
 CheckboxControl.displayName = `@sixui/core/${COMPONENT_NAME}`;
+CheckboxControl.theme = checkboxControlTheme;

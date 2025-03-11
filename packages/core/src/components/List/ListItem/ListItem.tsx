@@ -229,5 +229,5 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
   },
 );
 
-ListItem.theme = listItemTheme;
 ListItem.displayName = `@sixui/core/${COMPONENT_NAME}`;
+ListItem.theme = listItemTheme;

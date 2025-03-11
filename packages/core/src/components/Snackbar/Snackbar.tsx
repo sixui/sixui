@@ -122,5 +122,5 @@ export const Snackbar = componentFactory<ISnackbarFactory>(
   },
 );
 
-Snackbar.theme = snackbarTheme;
 Snackbar.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Snackbar.theme = snackbarTheme;

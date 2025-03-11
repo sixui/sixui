@@ -62,5 +62,5 @@ export const Checkmark = componentFactory<ICheckmarkFactory>(
   },
 );
 
-Checkmark.theme = checkmarkTheme;
 Checkmark.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Checkmark.theme = checkmarkTheme;

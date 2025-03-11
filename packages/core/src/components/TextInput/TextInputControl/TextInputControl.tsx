@@ -201,5 +201,5 @@ export const TextInputControl = componentFactory<ITextInputControlFactory>(
   },
 );
 
-TextInputControl.theme = textInputControlTheme;
 TextInputControl.displayName = `@sixui/core/${COMPONENT_NAME}`;
+TextInputControl.theme = textInputControlTheme;

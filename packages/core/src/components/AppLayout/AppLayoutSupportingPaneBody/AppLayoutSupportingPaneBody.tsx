@@ -12,6 +12,7 @@ import { isFunction } from '~/utils/isFunction';
 import { AppLayoutBody } from '../AppLayoutBody';
 import { AppLayoutSideSheet } from '../AppLayoutSideSheet';
 import { COMPONENT_NAME } from './AppLayoutSupportingPaneBody.constants';
+import { appLayoutSupportingPaneBodyTheme } from './AppLayoutSupportingPaneBody.css';
 
 export const AppLayoutSupportingPaneBody =
   componentFactory<IAppLayoutSupportingPaneBodyFactory>(
@@ -91,3 +92,4 @@ export const AppLayoutSupportingPaneBody =
   );
 
 AppLayoutSupportingPaneBody.displayName = `@sixui/core/${COMPONENT_NAME}`;
+AppLayoutSupportingPaneBody.theme = appLayoutSupportingPaneBodyTheme;

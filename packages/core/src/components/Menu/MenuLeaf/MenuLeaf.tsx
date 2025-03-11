@@ -269,5 +269,5 @@ export const MenuLeaf = componentFactory<IMenuLeafFactory>(
   },
 );
 
-MenuLeaf.theme = menuLeafTheme;
 MenuLeaf.displayName = `@sixui/core/${COMPONENT_NAME}`;
+MenuLeaf.theme = menuLeafTheme;

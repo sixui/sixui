@@ -103,5 +103,5 @@ export const DropZone = componentFactory<IDropZoneFactory>(
   },
 );
 
-DropZone.theme = dropZoneTheme;
 DropZone.displayName = `@sixui/core/${COMPONENT_NAME}`;
+DropZone.theme = dropZoneTheme;

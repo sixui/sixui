@@ -123,5 +123,5 @@ export const RadioControl = componentFactory<IRadioControlFactory>(
   },
 );
 
-RadioControl.theme = RadioControlTheme;
 RadioControl.displayName = `@sixui/core/${COMPONENT_NAME}`;
+RadioControl.theme = RadioControlTheme;

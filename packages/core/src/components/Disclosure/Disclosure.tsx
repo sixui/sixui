@@ -44,6 +44,6 @@ export const Disclosure = componentFactory<IDisclosureFactory>(
   },
 );
 
-Disclosure.theme = disclosureTheme;
 Disclosure.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Disclosure.theme = disclosureTheme;
 Disclosure.Trigger = DisclosureTrigger;

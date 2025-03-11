@@ -58,6 +58,6 @@ export const NavigationBar = componentFactory<INavigationBarFactory>(
   },
 );
 
-NavigationBar.theme = navigationBarTheme;
 NavigationBar.displayName = `@sixui/core/${COMPONENT_NAME}`;
+NavigationBar.theme = navigationBarTheme;
 NavigationBar.Destination = NavigationBarDestination;

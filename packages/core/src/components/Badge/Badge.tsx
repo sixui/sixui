@@ -70,5 +70,5 @@ export const Badge = polymorphicComponentFactory<IBadgeFactory>(
   },
 );
 
-Badge.theme = badgeTheme;
 Badge.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Badge.theme = badgeTheme;

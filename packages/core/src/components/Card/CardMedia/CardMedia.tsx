@@ -52,5 +52,5 @@ export const CardMedia = polymorphicComponentFactory<ICardMediaFactory>(
   },
 );
 
-CardMedia.theme = cardMediaTheme;
 CardMedia.displayName = `@sixui/core/${COMPONENT_NAME}`;
+CardMedia.theme = cardMediaTheme;

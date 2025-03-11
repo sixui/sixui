@@ -181,6 +181,6 @@ export const RadioCard = componentFactory<IRadioCardFactory>(
   },
 );
 
-RadioCard.theme = RadioCardTheme;
 RadioCard.displayName = `@sixui/core/${COMPONENT_NAME}`;
+RadioCard.theme = RadioCardTheme;
 RadioCard.Indicator = RadioIndicator;

@@ -40,5 +40,5 @@ export const BasicTemplate = componentFactory<IBasicTemplateFactory>(
   },
 );
 
-BasicTemplate.theme = basicTemplateTheme;
 BasicTemplate.displayName = `@sixui/core/${COMPONENT_NAME}`;
+BasicTemplate.theme = basicTemplateTheme;

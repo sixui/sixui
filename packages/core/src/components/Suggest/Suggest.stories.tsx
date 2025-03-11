@@ -1,16 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
 
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
-import type { IFilterableListItem } from '~/components/FilterableList';
 import type { ISuggestProps } from './Suggest.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
-import {
-  emptyItem,
-  fruits,
-} from '~/components/FilterableList/FilterableList.stories/fruits';
-import { Flex } from '~/components/Flex';
-import { ListItem } from '~/components/List/ListItem';
+import { fruits } from '~/components/FilterableList/FilterableList.stories/fruits';
+import { px } from '~/utils/css';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { Suggest } from './Suggest';
 
@@ -23,215 +17,96 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {
   onChange: (...args) => void sbHandleEvent('change', args),
   items: fruits,
-  w: '384px',
   keepMounted: true,
+  label: 'Label',
+  supportingText: 'Supporting text',
+  w: px(384),
 } satisfies Partial<ISuggestProps>;
 
-type ISuggestDemoProps = ISuggestProps;
-
-const SuggestDemo: React.FC<ISuggestDemoProps> = (props) => {
-  const [value, setValue] = useState<string | undefined>(
-    props.value ?? props.defaultValue,
-  );
-
-  const handleChange = (newValue?: string): void => {
-    setValue(newValue);
-    props.onChange?.(newValue);
-  };
-
-  return (
-    <Flex direction="column" gap="$sm">
-      <Suggest {...props} onChange={handleChange} />
-      <div>
-        Value:{' '}
-        {value === undefined ? <em>undefined</em> : JSON.stringify(value)}
-      </div>
-    </Flex>
-  );
-};
-
-const rows: Array<IComponentPresentation<ISuggestDemoProps>> = [
-  { legend: 'Filled' },
-  { legend: 'Outlined', props: { variant: 'outlined' } },
+const cols: Array<IComponentPresentation<ISuggestProps>> = [
+  {
+    legend: 'Normal',
+  },
+  {
+    legend: 'Error',
+    props: {
+      hasError: true,
+      errorText: 'Error text',
+    },
+  },
+  {
+    legend: 'Loading',
+    props: {
+      loading: true,
+    },
+  },
+  {
+    legend: 'Disabled',
+    props: {
+      disabled: true,
+    },
+  },
 ];
 
-const SuggestDemoShowcase = componentShowcaseFactory(SuggestDemo);
+const rows: Array<IComponentPresentation<ISuggestProps>> = [
+  {
+    legend: 'Filled',
+    props: {
+      variant: 'filled',
+    },
+  },
+  {
+    legend: 'Outlined',
+    props: {
+      variant: 'outlined',
+    },
+  },
+];
+
+const SuggestShowcase = componentShowcaseFactory(Suggest);
 
 export const Basic: IStory = {
-  render: (props) => <SuggestDemoShowcase props={props} rows={rows} />,
-  args: defaultArgs,
-};
-
-export const Empty: IStory = {
-  render: (props) => <SuggestDemoShowcase props={props} rows={rows} />,
-  args: {
-    ...defaultArgs,
-    items: [],
-  },
-};
-
-export const WithEmptyItem: IStory = {
-  render: (props) => <SuggestDemoShowcase props={props} rows={rows} />,
-  args: {
-    ...defaultArgs,
-    items: [emptyItem, ...fruits],
-  },
-};
-
-export const DefaultValue: IStory = {
-  render: (props) => <SuggestDemoShowcase props={props} rows={rows} />,
-  args: {
-    ...defaultArgs,
-    defaultValue: fruits[1]!.value,
-  },
-};
-
-export const Clearable: IStory = {
-  render: (props) => <SuggestDemoShowcase props={props} rows={rows} />,
-  args: {
-    ...defaultArgs,
-    defaultValue: fruits[1]!.value,
-    clearable: true,
-  },
-};
-
-export const ClearableWithEmptyItem: IStory = {
-  render: (props) => <SuggestDemoShowcase props={props} rows={rows} />,
-  args: {
-    ...defaultArgs,
-    defaultValue: fruits[1]!.value,
-    clearable: true,
-    items: [emptyItem, ...fruits],
-  },
-};
-
-export const NoResults: IStory = {
-  render: (props) => <SuggestDemoShowcase props={props} rows={rows} />,
-  args: {
-    ...defaultArgs,
-    items: [],
-  },
-};
-
-export const InitialContent: IStory = {
-  render: (props) => <SuggestDemoShowcase props={props} rows={rows} />,
-  args: {
-    ...defaultArgs,
-    initialContent: <ListItem disabled>{fruits.length} items loaded.</ListItem>,
-  },
-};
-
-export const Disabled: IStory = {
-  render: (props) => <SuggestDemoShowcase props={props} rows={rows} />,
-  args: {
-    ...defaultArgs,
-    disabled: true,
-  },
-};
-
-const ControlledSuggestDemo: React.FC<ISuggestProps> = (props) => {
-  const [value, setValue] = useState(props.defaultValue ?? '');
-
-  const handleChange = (newValue?: string): void => {
-    setValue(newValue ?? '');
-    props.onChange?.(newValue);
-  };
-
-  return <SuggestDemo {...props} value={value} onChange={handleChange} />;
-};
-
-const ControlledSuggestDemoShowcase = componentShowcaseFactory(
-  ControlledSuggestDemo,
-);
-
-export const Controlled: IStory = {
   render: (props) => (
-    <ControlledSuggestDemoShowcase props={props} rows={rows} />
-  ),
-  args: defaultArgs,
-};
-
-export const ControlledWithEmptyItem: IStory = {
-  render: (props) => (
-    <ControlledSuggestDemoShowcase props={props} rows={rows} />
-  ),
-  args: {
-    ...defaultArgs,
-    items: [emptyItem, ...fruits],
-  },
-};
-
-export const ControlledAndClearable: IStory = {
-  render: (props) => (
-    <ControlledSuggestDemoShowcase props={props} rows={rows} />
-  ),
-  args: {
-    ...defaultArgs,
-    defaultValue: fruits[1]!.value,
-    clearable: true,
-  },
-};
-
-export const WithErrorText: IStory = {
-  render: (props) => (
-    <ControlledSuggestDemoShowcase props={props} rows={rows} />
-  ),
-  args: {
-    ...defaultArgs,
-    hasError: true,
-    errorText: 'Error text',
-  },
-};
-
-export const Grid: IStory = {
-  render: (props) => (
-    <ControlledSuggestDemoShowcase props={props} rows={rows} />
-  ),
-  args: {
-    ...defaultArgs,
-    cols: 3,
-    itemFocus: 'icon',
-  },
-};
-
-const AsyncControlledSuggestDemo: React.FC<ISuggestProps> = (props) => {
-  const [items, setItems] = useState<Array<IFilterableListItem>>([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleQueryChange = (): void => {
-    setItems([]);
-    setIsLoading(true);
-
-    setTimeout(() => {
-      setItems(fruits);
-      setIsLoading(false);
-    }, 1000);
-  };
-
-  return (
-    <SuggestDemo
-      {...props}
-      onQueryChange={handleQueryChange}
-      items={items}
-      loading={isLoading}
+    <SuggestShowcase
+      props={props}
+      cols={cols}
+      rows={rows}
+      verticalAlign="start"
     />
-  );
+  ),
+  args: defaultArgs,
 };
 
-const AsyncControlledSuggestDemoShowcase = componentShowcaseFactory(
-  AsyncControlledSuggestDemo,
-);
-
-export const AsyncGrid: IStory = {
+export const Scales: IStory = {
   render: (props) => (
-    <AsyncControlledSuggestDemoShowcase props={props} rows={rows} />
+    <SuggestShowcase
+      props={props}
+      cols={[
+        { legend: 'Extra small', props: { scale: 'xs' } },
+        { legend: 'Small', props: { scale: 'sm' } },
+        { legend: 'Medium', props: { scale: 'md' } },
+        { legend: 'Large', props: { scale: 'lg' } },
+        { legend: 'Extra large', props: { scale: 'xl' } },
+      ]}
+      rows={rows}
+    />
   ),
-  args: {
-    ...defaultArgs,
-    cols: 3,
-    itemFocus: 'icon',
-    items: [],
-  },
+  args: defaultArgs,
+};
+
+export const Densities: IStory = {
+  render: (props) => (
+    <SuggestShowcase
+      props={props}
+      cols={[
+        { legend: '-2', props: { density: -2 } },
+        { legend: '-1', props: { density: -1 } },
+        { legend: '0', props: { density: 0 } },
+      ]}
+      rows={rows}
+    />
+  ),
+  args: defaultArgs,
 };
 
 export default meta;

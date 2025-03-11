@@ -40,5 +40,5 @@ export const PlainTooltipContent =
     );
   });
 
-PlainTooltipContent.theme = plainTooltipContentTheme;
 PlainTooltipContent.displayName = `@sixui/core/${COMPONENT_NAME}`;
+PlainTooltipContent.theme = plainTooltipContentTheme;

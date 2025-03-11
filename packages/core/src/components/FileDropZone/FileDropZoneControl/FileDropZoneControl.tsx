@@ -370,5 +370,5 @@ export const FileDropZoneControl =
     );
   });
 
-FileDropZoneControl.theme = fileDropZoneControlTheme;
 FileDropZoneControl.displayName = `@sixui/core/${COMPONENT_NAME}`;
+FileDropZoneControl.theme = fileDropZoneControlTheme;

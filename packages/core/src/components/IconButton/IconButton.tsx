@@ -55,5 +55,5 @@ export const IconButton = polymorphicComponentFactory<IIconButtonFactory>(
   },
 );
 
-IconButton.theme = iconButtonTheme;
 IconButton.displayName = `@sixui/core/${COMPONENT_NAME}`;
+IconButton.theme = iconButtonTheme;

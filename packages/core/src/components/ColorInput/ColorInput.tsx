@@ -5,6 +5,7 @@ import { useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './ColorInput.constants';
 import { ColorInputControl } from './ColorInputControl';
+import { colorInputTheme } from './ColorInput.css';
 
 export const ColorInput = componentFactory<IColorInputFactory>(
   (props, forwardedRef) => {
@@ -49,4 +50,5 @@ export const ColorInput = componentFactory<IColorInputFactory>(
 );
 
 ColorInput.displayName = `@sixui/core/${COMPONENT_NAME}`;
+ColorInput.theme = colorInputTheme;
 ColorInput.Control = ColorInputControl;

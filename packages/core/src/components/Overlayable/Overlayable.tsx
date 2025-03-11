@@ -44,5 +44,5 @@ export const Overlayable = polymorphicComponentFactory<IOverlayableFactory>(
   },
 );
 
-Overlayable.theme = overlayableTheme;
 Overlayable.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Overlayable.theme = overlayableTheme;

@@ -87,6 +87,6 @@ export const ColorTag = polymorphicComponentFactory<IColorTagFactory>(
   },
 );
 
-ColorTag.theme = colorTagTheme;
 ColorTag.displayName = `@sixui/core/${COMPONENT_NAME}`;
+ColorTag.theme = colorTagTheme;
 ColorTag.Indicator = ColorTagIndicator;

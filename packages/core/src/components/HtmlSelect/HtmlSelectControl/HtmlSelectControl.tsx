@@ -119,5 +119,5 @@ export const HtmlSelectControl = componentFactory<IHtmlSelectControlFactory>(
   },
 );
 
-HtmlSelectControl.theme = htmlSelectControlTheme;
 HtmlSelectControl.displayName = `@sixui/core/${COMPONENT_NAME}`;
+HtmlSelectControl.theme = htmlSelectControlTheme;

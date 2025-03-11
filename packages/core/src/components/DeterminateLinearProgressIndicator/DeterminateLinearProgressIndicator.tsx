@@ -66,6 +66,6 @@ export const DeterminateLinearProgressIndicator =
     },
   );
 
+DeterminateLinearProgressIndicator.displayName = `@sixui/core/${COMPONENT_NAME}`;
 DeterminateLinearProgressIndicator.theme =
   determinateLinearProgressIndicatorTheme;
-DeterminateLinearProgressIndicator.displayName = `@sixui/core/${COMPONENT_NAME}`;

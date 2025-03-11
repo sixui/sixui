@@ -75,5 +75,5 @@ export const BottomSheet = componentFactory<IBottomSheetFactory>(
   },
 );
 
-BottomSheet.theme = bottomSheetTheme;
 BottomSheet.displayName = `@sixui/core/${COMPONENT_NAME}`;
+BottomSheet.theme = bottomSheetTheme;

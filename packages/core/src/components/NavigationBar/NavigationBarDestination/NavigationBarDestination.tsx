@@ -3,6 +3,7 @@ import { NavigationRailDestination } from '~/components/NavigationRail/Navigatio
 import { useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { COMPONENT_NAME } from './NavigationBarDestination.constants';
+import { navigationBarDestinationTheme } from './NavigationBarDestination.css';
 
 /**
  * @see https://m3.material.io/components/navigation-bar/overview
@@ -17,3 +18,4 @@ export const NavigationBarDestination =
   );
 
 NavigationBarDestination.displayName = `@sixui/core/${COMPONENT_NAME}`;
+NavigationBarDestination.theme = navigationBarDestinationTheme;

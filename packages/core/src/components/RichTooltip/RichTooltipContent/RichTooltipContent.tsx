@@ -66,5 +66,5 @@ export const RichTooltipContent = componentFactory<IRichTooltipContentFactory>(
   },
 );
 
-RichTooltipContent.theme = richTooltipContentTheme;
 RichTooltipContent.displayName = `@sixui/core/${COMPONENT_NAME}`;
+RichTooltipContent.theme = richTooltipContentTheme;

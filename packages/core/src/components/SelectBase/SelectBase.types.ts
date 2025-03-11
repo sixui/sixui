@@ -1,5 +1,5 @@
 import type { IBoxProps } from '~/components/Box';
-import type { IFieldBaseProps } from '~/components/FieldBase';
+import type { IFieldBaseOwnProps } from '~/components/FieldBase';
 import type { IUseSingleFilterableListBaseProps } from '~/components/FilterableListBase';
 import type {
   IFloatingFilterableListBaseProps,
@@ -20,13 +20,13 @@ export interface ISelectBaseOwnProps<TItem>
       'onItemSelect' | 'renderer' | 'children'
     >,
     IUseSingleFilterableListBaseProps<TItem, HTMLElement>,
-    IOmit<IFieldBaseProps, 'children'> {
+    IOmit<IFieldBaseOwnProps, 'children'> {
   itemLabel: (item: TItem) => React.ReactNode | undefined;
   canFilter?: boolean;
   getValueFieldProps?: (
     props: IFloatingFilterableListBaseTriggerRenderProps<TItem>,
     selectedItem?: TItem,
-  ) => Partial<IFieldBaseProps>;
+  ) => Partial<IFieldBaseOwnProps>;
   clearable?: boolean;
   menuListProps?: Partial<IMenuListProps>;
 }

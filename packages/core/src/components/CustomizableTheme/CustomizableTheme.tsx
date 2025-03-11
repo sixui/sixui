@@ -122,3 +122,4 @@ export const CustomizableTheme = componentFactory<ICustomizableThemeFactory>(
 );
 
 CustomizableTheme.displayName = `@sixui/core/${COMPONENT_NAME}`;
+CustomizableTheme.theme = customizableThemeTheme;

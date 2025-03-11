@@ -64,5 +64,5 @@ export const ScreenFrame = componentFactory<IScreenFrameFactory>(
   },
 );
 
-ScreenFrame.theme = screenFrameTheme;
 ScreenFrame.displayName = `@sixui/core/${COMPONENT_NAME}`;
+ScreenFrame.theme = screenFrameTheme;

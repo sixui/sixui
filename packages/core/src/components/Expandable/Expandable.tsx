@@ -150,5 +150,5 @@ export const Expandable = componentFactory<IExpandableFactory>(
   },
 );
 
-Expandable.theme = expandableTheme;
 Expandable.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Expandable.theme = expandableTheme;

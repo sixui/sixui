@@ -72,5 +72,5 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
   },
 );
 
-AppLayoutSideSheet.theme = appLayoutSideSheetTheme;
 AppLayoutSideSheet.displayName = `@sixui/core/${COMPONENT_NAME}`;
+AppLayoutSideSheet.theme = appLayoutSideSheetTheme;

@@ -130,5 +130,5 @@ export const SearchBar = componentFactory<ISearchBarFactory>(
   },
 );
 
-SearchBar.theme = searchBarTheme;
 SearchBar.displayName = `@sixui/core/${COMPONENT_NAME}`;
+SearchBar.theme = searchBarTheme;

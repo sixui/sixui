@@ -217,8 +217,8 @@ export const componentShowcaseFactory = <TComponentProps extends object>(
     );
   });
 
-  ComponentShowcase.theme = componentShowcaseTheme;
   ComponentShowcase.displayName = `@sixui/core/${COMPONENT_NAME}`;
+  ComponentShowcase.theme = componentShowcaseTheme;
 
   return ComponentShowcase;
 };

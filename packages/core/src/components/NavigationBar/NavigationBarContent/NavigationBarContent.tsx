@@ -38,5 +38,5 @@ export const NavigationBarContent =
     );
   });
 
-NavigationBarContent.theme = navigationBarContentTheme;
 NavigationBarContent.displayName = `@sixui/core/${COMPONENT_NAME}`;
+NavigationBarContent.theme = navigationBarContentTheme;

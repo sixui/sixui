@@ -7,6 +7,7 @@ import { generateAnalogousColorPalette } from '~/utils/colors/generateAnalogousC
 import { generateAnalogousColorPalettes } from '~/utils/colors/generateAnalogousColorPalettes';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './HslColorPickerContent.constants';
+import { hslColorPickerContentTheme } from './HslColorPickerContent.css';
 
 export const HslColorPickerContent =
   componentFactory<IHslColorPickerContentFactory>((props, forwardedRef) => {
@@ -44,3 +45,4 @@ export const HslColorPickerContent =
   });
 
 HslColorPickerContent.displayName = `@sixui/core/${COMPONENT_NAME}`;
+HslColorPickerContent.theme = hslColorPickerContentTheme;

@@ -114,5 +114,5 @@ export const NavigationRailDestination =
     },
   );
 
-NavigationRailDestination.theme = navigationRailDestinationTheme;
 NavigationRailDestination.displayName = `@sixui/core/${COMPONENT_NAME}`;
+NavigationRailDestination.theme = navigationRailDestinationTheme;

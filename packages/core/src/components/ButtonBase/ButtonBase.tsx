@@ -161,5 +161,5 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
   },
 );
 
-ButtonBase.theme = buttonBaseTheme;
 ButtonBase.displayName = `@sixui/core/${COMPONENT_NAME}`;
+ButtonBase.theme = buttonBaseTheme;

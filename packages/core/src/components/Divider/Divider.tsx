@@ -81,5 +81,5 @@ export const Divider = componentFactory<IDividerFactory>(
   },
 );
 
-Divider.theme = dividerTheme;
 Divider.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Divider.theme = dividerTheme;

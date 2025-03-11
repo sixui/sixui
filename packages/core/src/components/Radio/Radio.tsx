@@ -71,8 +71,8 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
   );
 });
 
-Radio.theme = radioTheme;
 Radio.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Radio.theme = radioTheme;
 Radio.Control = RadioControl;
 Radio.Indicator = RadioIndicator;
 Radio.Group = RadioGroup;

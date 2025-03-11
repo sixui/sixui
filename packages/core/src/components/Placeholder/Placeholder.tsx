@@ -51,5 +51,5 @@ export const Placeholder = polymorphicComponentFactory<IPlaceholderFactory>(
   },
 );
 
-Placeholder.theme = placeholderTheme;
 Placeholder.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Placeholder.theme = placeholderTheme;

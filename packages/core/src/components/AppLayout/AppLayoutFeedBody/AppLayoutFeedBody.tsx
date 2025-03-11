@@ -5,6 +5,7 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { isFunction } from '~/utils/isFunction';
 import { AppLayoutBody } from '../AppLayoutBody';
 import { COMPONENT_NAME } from './AppLayoutFeedBody.constants';
+import { appLayoutFeedBodyTheme } from './AppLayoutFeedBody.css';
 
 export const AppLayoutFeedBody = componentFactory<IAppLayoutFeedBodyFactory>(
   (props, forwardedRef) => {
@@ -30,3 +31,4 @@ export const AppLayoutFeedBody = componentFactory<IAppLayoutFeedBodyFactory>(
 );
 
 AppLayoutFeedBody.displayName = `@sixui/core/${COMPONENT_NAME}`;
+AppLayoutFeedBody.theme = appLayoutFeedBodyTheme;

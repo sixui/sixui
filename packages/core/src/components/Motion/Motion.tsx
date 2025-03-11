@@ -90,5 +90,5 @@ export const Motion = polymorphicComponentFactory<IMotionFactory>(
   },
 );
 
-Motion.theme = motionTheme;
 Motion.displayName = `@sixui/${COMPONENT_NAME}`;
+Motion.theme = motionTheme;

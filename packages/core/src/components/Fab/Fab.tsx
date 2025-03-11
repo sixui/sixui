@@ -55,5 +55,5 @@ export const Fab = polymorphicComponentFactory<IFabFactory>(
   },
 );
 
-Fab.theme = fabTheme;
 Fab.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Fab.theme = fabTheme;

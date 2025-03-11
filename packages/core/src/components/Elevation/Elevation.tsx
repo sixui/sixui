@@ -42,5 +42,5 @@ export const Elevation = componentFactory<IElevationFactory>(
   },
 );
 
-Elevation.theme = elevationTheme;
 Elevation.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Elevation.theme = elevationTheme;

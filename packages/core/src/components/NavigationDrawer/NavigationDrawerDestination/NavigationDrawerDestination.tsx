@@ -64,5 +64,5 @@ export const NavigationDrawerDestination =
     },
   );
 
-NavigationDrawerDestination.theme = navigationDrawerDestinationTheme;
 NavigationDrawerDestination.displayName = `@sixui/core/${COMPONENT_NAME}`;
+NavigationDrawerDestination.theme = navigationDrawerDestinationTheme;

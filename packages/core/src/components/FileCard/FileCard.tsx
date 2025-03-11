@@ -147,5 +147,5 @@ export const FileCard = componentFactory<IFileCardFactory>(
   },
 );
 
-FileCard.theme = fileCardTheme;
 FileCard.displayName = `@sixui/core/${COMPONENT_NAME}`;
+FileCard.theme = fileCardTheme;

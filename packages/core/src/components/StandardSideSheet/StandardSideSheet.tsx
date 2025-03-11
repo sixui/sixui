@@ -63,5 +63,5 @@ export const StandardSideSheet = componentFactory<IStandardSideSheetFactory>(
   },
 );
 
-StandardSideSheet.theme = standardSideSheetTheme;
 StandardSideSheet.displayName = `@sixui/core/${COMPONENT_NAME}`;
+StandardSideSheet.theme = standardSideSheetTheme;

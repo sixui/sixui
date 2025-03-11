@@ -50,6 +50,6 @@ export const NavigationDrawerSection =
     );
   });
 
-NavigationDrawerSection.theme = navigationDrawerSectionTheme;
 NavigationDrawerSection.displayName = `@sixui/core/${COMPONENT_NAME}`;
+NavigationDrawerSection.theme = navigationDrawerSectionTheme;
 NavigationDrawerSection.Destination = NavigationDrawerDestination;

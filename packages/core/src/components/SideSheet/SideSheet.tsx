@@ -59,5 +59,5 @@ export const SideSheet = componentFactory<ISideSheetFactory>(
   },
 );
 
-SideSheet.theme = sideSheetTheme;
 SideSheet.displayName = `@sixui/core/${COMPONENT_NAME}`;
+SideSheet.theme = sideSheetTheme;

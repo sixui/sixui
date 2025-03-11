@@ -61,6 +61,6 @@ export const NavigationRailContent =
     );
   });
 
-NavigationRailContent.theme = navigationRailContentTheme;
 NavigationRailContent.displayName = `@sixui/core/${COMPONENT_NAME}`;
+NavigationRailContent.theme = navigationRailContentTheme;
 NavigationRailContent.Destination = NavigationRailDestination;

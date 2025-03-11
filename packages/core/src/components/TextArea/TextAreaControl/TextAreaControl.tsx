@@ -173,5 +173,5 @@ export const TextAreaControl = componentFactory<ITextAreaControlFactory>(
   },
 );
 
-TextAreaControl.theme = textAreaControlTheme;
 TextAreaControl.displayName = `@sixui/core/${COMPONENT_NAME}`;
+TextAreaControl.theme = textAreaControlTheme;

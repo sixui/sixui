@@ -405,6 +405,6 @@ export const ColorScheme = componentFactory<IColorSchemeFactory>(
   },
 );
 
-ColorScheme.theme = colorSchemeTheme;
 ColorScheme.displayName = `@sixui/core/${COMPONENT_NAME}`;
+ColorScheme.theme = colorSchemeTheme;
 ColorScheme.Role = ColorSchemeRole;

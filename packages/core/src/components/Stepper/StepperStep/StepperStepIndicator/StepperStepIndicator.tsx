@@ -72,5 +72,5 @@ export const StepperStepIndicator =
     );
   });
 
-StepperStepIndicator.theme = stepperStepIndicatorTheme;
 StepperStepIndicator.displayName = `@sixui/core/${COMPONENT_NAME}`;
+StepperStepIndicator.theme = stepperStepIndicatorTheme;

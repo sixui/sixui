@@ -40,5 +40,5 @@ export const AppLayoutFooter = componentFactory<IAppLayoutFooterFactory>(
   },
 );
 
-AppLayoutFooter.theme = appLayoutFooterTheme;
 AppLayoutFooter.displayName = `@sixui/core/${COMPONENT_NAME}`;
+AppLayoutFooter.theme = appLayoutFooterTheme;

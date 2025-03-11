@@ -84,5 +84,5 @@ export const CopyableText = componentFactory<ICopyableTextFactory>(
   },
 );
 
-CopyableText.theme = copyableTextTheme;
 CopyableText.displayName = `@sixui/core/${COMPONENT_NAME}`;
+CopyableText.theme = copyableTextTheme;

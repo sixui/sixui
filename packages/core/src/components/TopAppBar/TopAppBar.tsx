@@ -65,5 +65,5 @@ export const TopAppBar = polymorphicComponentFactory<ITopAppBarFactory>(
   },
 );
 
-TopAppBar.theme = topAppBarTheme;
 TopAppBar.displayName = `@sixui/core/${COMPONENT_NAME}`;
+TopAppBar.theme = topAppBarTheme;

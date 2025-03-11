@@ -81,5 +81,5 @@ export const CheckboxIndicator = componentFactory<ICheckboxIndicatorFactory>(
   },
 );
 
-CheckboxIndicator.theme = checkboxIndicatorTheme;
 CheckboxIndicator.displayName = `@sixui/core/${COMPONENT_NAME}`;
+CheckboxIndicator.theme = checkboxIndicatorTheme;

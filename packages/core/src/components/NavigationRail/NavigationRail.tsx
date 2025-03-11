@@ -65,6 +65,6 @@ export const NavigationRail = componentFactory<INavigationRailFactory>(
   },
 );
 
-NavigationRail.theme = navigationRailTheme;
 NavigationRail.displayName = `@sixui/core/${COMPONENT_NAME}`;
+NavigationRail.theme = navigationRailTheme;
 NavigationRail.Destination = NavigationRailContent.Destination;

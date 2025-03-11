@@ -95,5 +95,5 @@ export const Avatar = polymorphicComponentFactory<IAvatarFactory>(
   },
 );
 
-Avatar.theme = avatarTheme;
 Avatar.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Avatar.theme = avatarTheme;

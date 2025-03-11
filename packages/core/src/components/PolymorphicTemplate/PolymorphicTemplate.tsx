@@ -47,5 +47,5 @@ export const PolymorphicTemplate =
     },
   );
 
-PolymorphicTemplate.theme = polymorphicTemplateTheme;
 PolymorphicTemplate.displayName = `@sixui/core/${COMPONENT_NAME}`;
+PolymorphicTemplate.theme = polymorphicTemplateTheme;

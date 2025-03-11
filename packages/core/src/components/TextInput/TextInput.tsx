@@ -5,6 +5,7 @@ import { useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './TextInput.constants';
 import { TextInputControl } from './TextInputControl';
+import { textInputTheme } from './TextInput.css';
 
 /**
  * @see https://m3.material.io/components/text-fields/overview
@@ -52,4 +53,5 @@ export const TextInput = componentFactory<ITextInputFactory>(
 );
 
 TextInput.displayName = `@sixui/core/${COMPONENT_NAME}`;
+TextInput.theme = textInputTheme;
 TextInput.Control = TextInputControl;

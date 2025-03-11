@@ -32,5 +32,5 @@ export const BurgerIndicator = componentFactory<IBurgerIndicatorFactory>(
   },
 );
 
-BurgerIndicator.theme = burgerIndicatorTheme;
 BurgerIndicator.displayName = `@sixui/core/${COMPONENT_NAME}`;
+BurgerIndicator.theme = burgerIndicatorTheme;

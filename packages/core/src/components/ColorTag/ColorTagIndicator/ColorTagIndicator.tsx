@@ -64,5 +64,5 @@ export const ColorTagIndicator =
     },
   );
 
-ColorTagIndicator.theme = colorTagIndicatorTheme;
 ColorTagIndicator.displayName = `@sixui/core/${COMPONENT_NAME}`;
+ColorTagIndicator.theme = colorTagIndicatorTheme;

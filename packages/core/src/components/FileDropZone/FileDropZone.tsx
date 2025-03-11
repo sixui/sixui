@@ -8,6 +8,7 @@ import { useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './FileDropZone.constants';
 import { FileDropZoneControl } from './FileDropZoneControl';
+import { fileDropZoneTheme } from './FileDropZone.css';
 
 export const FileDropZone = componentFactory<IFileDropZoneFactory>(
   (props, forwardedRef) => {
@@ -45,3 +46,4 @@ export const FileDropZone = componentFactory<IFileDropZoneFactory>(
 );
 
 FileDropZone.displayName = `@sixui/core/${COMPONENT_NAME}`;
+FileDropZone.theme = fileDropZoneTheme;

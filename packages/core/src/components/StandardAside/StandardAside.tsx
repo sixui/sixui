@@ -83,5 +83,5 @@ export const StandardAside = componentFactory<IStandardAsideFactory>(
   },
 );
 
-StandardAside.theme = standardAsideTheme;
 StandardAside.displayName = `@sixui/core/${COMPONENT_NAME}`;
+StandardAside.theme = standardAsideTheme;

@@ -60,5 +60,5 @@ export const StateLayer = componentFactory<IStateLayerFactory>(
   },
 );
 
-StateLayer.theme = stateLayerTheme;
 StateLayer.displayName = `@sixui/core/${COMPONENT_NAME}`;
+StateLayer.theme = stateLayerTheme;

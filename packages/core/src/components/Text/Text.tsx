@@ -95,5 +95,5 @@ export const Text = polymorphicComponentFactory<ITextFactory>(
   },
 );
 
-Text.theme = textTheme;
 Text.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Text.theme = textTheme;

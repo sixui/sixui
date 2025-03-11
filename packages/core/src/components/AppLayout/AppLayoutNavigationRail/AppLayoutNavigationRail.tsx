@@ -72,6 +72,6 @@ export const AppLayoutNavigationRail =
     );
   });
 
-AppLayoutNavigationRail.theme = appLayoutNavigationRailTheme;
 AppLayoutNavigationRail.displayName = `@sixui/core/${COMPONENT_NAME}`;
+AppLayoutNavigationRail.theme = appLayoutNavigationRailTheme;
 AppLayoutNavigationRail.Destination = NavigationRailDestination;

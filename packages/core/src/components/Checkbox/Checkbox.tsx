@@ -77,8 +77,8 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
   },
 );
 
-Checkbox.theme = checkboxTheme;
 Checkbox.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Checkbox.theme = checkboxTheme;
 Checkbox.Control = CheckboxControl;
 Checkbox.Indicator = CheckboxIndicator;
 Checkbox.Group = CheckboxGroup;

@@ -5,6 +5,7 @@ import { useThemeContext } from '~/components/Theme/Theme.context';
 import { generateTonalColorPalettes } from '~/utils/colors/generateTonalColorPalettes';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './HctColorPickerContent.constants';
+import { hctColorPickerContentTheme } from './HctColorPickerContent.css';
 
 /**
  * @see https://m3.material.io/blog/science-of-color-design
@@ -34,3 +35,4 @@ export const HctColorPickerContent =
   });
 
 HctColorPickerContent.displayName = `@sixui/core/${COMPONENT_NAME}`;
+HctColorPickerContent.theme = hctColorPickerContentTheme;

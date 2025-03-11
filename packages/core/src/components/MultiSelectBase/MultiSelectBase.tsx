@@ -15,6 +15,7 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { px } from '~/utils/css';
 import { IElementProps } from '~/utils/types';
 import { COMPONENT_NAME } from './MultiSelectBase.constants';
+import { multiSelectBaseTheme } from './MultiSelectBase.css';
 
 export const multiSelectBaseFactory = <
   TItem,
@@ -289,6 +290,7 @@ export const multiSelectBaseFactory = <
   );
 
   MultiSelectBase.displayName = `@sixui/core/${COMPONENT_NAME}`;
+  MultiSelectBase.theme = multiSelectBaseTheme;
 
   return MultiSelectBase;
 };

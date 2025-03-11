@@ -190,5 +190,5 @@ export const Labeled = componentFactory<ILabeledFactory>(
   },
 );
 
-Labeled.theme = labeledTheme;
 Labeled.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Labeled.theme = labeledTheme;

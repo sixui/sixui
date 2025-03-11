@@ -12,6 +12,7 @@ import { useProps } from '~/components/Theme';
 import { useSelect } from '~/hooks/useSelect';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './SelectControl.constants';
+import { selectControlTheme } from './SelectControl.css';
 
 const SelectBase = selectBaseFactory<IFilterableListItem>();
 
@@ -62,3 +63,4 @@ export const SelectControl = componentFactory<ISelectControlFactory>(
 );
 
 SelectControl.displayName = `@sixui/core/${COMPONENT_NAME}`;
+SelectControl.theme = selectControlTheme;

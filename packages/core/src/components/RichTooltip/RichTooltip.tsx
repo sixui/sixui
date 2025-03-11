@@ -88,5 +88,5 @@ export const RichTooltip = componentFactory<IRichTooltipFactory>(
   },
 );
 
-RichTooltip.theme = richTooltipTheme;
 RichTooltip.displayName = `@sixui/core/${COMPONENT_NAME}`;
+RichTooltip.theme = richTooltipTheme;

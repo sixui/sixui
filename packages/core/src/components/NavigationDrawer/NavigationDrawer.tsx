@@ -37,7 +37,7 @@ export const NavigationDrawer = componentFactory<INavigationDrawerFactory>(
   },
 );
 
-NavigationDrawer.theme = navigationDrawerTheme;
 NavigationDrawer.displayName = `@sixui/core/${COMPONENT_NAME}`;
+NavigationDrawer.theme = navigationDrawerTheme;
 NavigationDrawer.Section = NavigationDrawerSection;
 NavigationDrawer.Destination = NavigationDrawerDestination;

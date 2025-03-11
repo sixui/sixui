@@ -133,5 +133,5 @@ export const CheckboxCard = componentFactory<ICheckboxCardFactory>(
   },
 );
 
-CheckboxCard.theme = checkboxCardTheme;
 CheckboxCard.displayName = `@sixui/core/${COMPONENT_NAME}`;
+CheckboxCard.theme = checkboxCardTheme;

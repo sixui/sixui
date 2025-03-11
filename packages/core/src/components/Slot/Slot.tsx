@@ -83,5 +83,5 @@ export const Slot = polymorphicComponentFactory<ISlotFactory>(
   },
 );
 
-Slot.theme = slotTheme;
 Slot.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Slot.theme = slotTheme;

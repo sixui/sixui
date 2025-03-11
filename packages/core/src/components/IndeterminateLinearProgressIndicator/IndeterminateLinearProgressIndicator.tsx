@@ -49,6 +49,6 @@ export const IndeterminateLinearProgressIndicator =
     },
   );
 
+IndeterminateLinearProgressIndicator.displayName = `@sixui/core/${COMPONENT_NAME}`;
 IndeterminateLinearProgressIndicator.theme =
   indeterminateLinearProgressIndicatorTheme;
-IndeterminateLinearProgressIndicator.displayName = `@sixui/core/${COMPONENT_NAME}`;

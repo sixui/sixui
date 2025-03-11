@@ -10,6 +10,7 @@ import { TextInput } from '~/components/TextInput';
 import { useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './SuggestBase.constants';
+import { suggestBaseTheme } from './SuggestBase.css';
 
 export const suggestBaseFactory = <
   TItem,
@@ -135,6 +136,7 @@ export const suggestBaseFactory = <
   );
 
   SuggestBase.displayName = `@sixui/core/${COMPONENT_NAME}`;
+  SuggestBase.theme = suggestBaseTheme;
 
   return SuggestBase;
 };

@@ -118,5 +118,5 @@ export const SideSheetContent = componentFactory<ISideSheetContentFactory>(
   },
 );
 
-SideSheetContent.theme = sideSheetContentTheme;
 SideSheetContent.displayName = `@sixui/core/${COMPONENT_NAME}`;
+SideSheetContent.theme = sideSheetContentTheme;

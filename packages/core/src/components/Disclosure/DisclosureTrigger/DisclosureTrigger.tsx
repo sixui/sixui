@@ -161,5 +161,5 @@ export const DisclosureTrigger = componentFactory<IDisclosureTriggerFactory>(
   },
 );
 
-DisclosureTrigger.theme = disclosureTriggerTheme;
 DisclosureTrigger.displayName = `@sixui/core/${COMPONENT_NAME}`;
+DisclosureTrigger.theme = disclosureTriggerTheme;
