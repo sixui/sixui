@@ -19,7 +19,7 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {
   onChange: (...args) => void sbHandleEvent('change', args),
   items: fruits,
-  w: '320px',
+  w: '384px',
   keepMounted: true,
 } satisfies Partial<IMultiSelectControlProps>;
 

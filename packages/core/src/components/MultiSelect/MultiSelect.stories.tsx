@@ -4,6 +4,7 @@ import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IMultiSelectProps } from './MultiSelect.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { fruits } from '~/components/FilterableList/FilterableList.stories/fruits';
+import { px } from '~/utils/css';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { MultiSelect } from './MultiSelect';
 
@@ -19,7 +20,7 @@ const defaultArgs = {
   keepMounted: true,
   label: 'Label',
   supportingText: 'Supporting text',
-  w: '320px',
+  w: px(384),
 } satisfies Partial<IMultiSelectProps>;
 
 const cols: Array<IComponentPresentation<IMultiSelectProps>> = [

@@ -19,7 +19,7 @@ export interface ITextInputOwnProps
       | 'hasError'
       | 'errorText'
       | 'loading'
-      | 'disableOnLoading'
+      | 'readOnlyOnLoading'
     > {
   labeledProps?: ILabeledProps;
   controlProps?: ITextInputControlProps;

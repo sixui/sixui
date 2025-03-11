@@ -16,7 +16,7 @@ export const TextArea = componentFactory<ITextAreaFactory>(
       supportingText,
       requiredSign,
       errorText,
-      disableOnLoading,
+      readOnlyOnLoading,
       labeledProps,
       controlProps,
       ...other
@@ -35,7 +35,7 @@ export const TextArea = componentFactory<ITextAreaFactory>(
         disabled={other.disabled}
         readOnly={other.readOnly}
         loading={other.loading}
-        disableOnLoading={disableOnLoading}
+        readOnlyOnLoading={readOnlyOnLoading}
         hasError={other.hasError}
         errorText={errorText}
         {...labeledProps}

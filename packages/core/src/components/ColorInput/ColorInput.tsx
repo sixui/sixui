@@ -13,7 +13,7 @@ export const ColorInput = componentFactory<IColorInputFactory>(
       supportingText,
       requiredSign,
       errorText,
-      disableOnLoading,
+      readOnlyOnLoading,
       labeledProps,
       controlProps,
       ...other
@@ -32,7 +32,7 @@ export const ColorInput = componentFactory<IColorInputFactory>(
         disabled={other.disabled}
         readOnly={other.readOnly}
         loading={other.loading}
-        disableOnLoading={disableOnLoading}
+        readOnlyOnLoading={readOnlyOnLoading}
         hasError={other.hasError}
         errorText={errorText}
         {...labeledProps}

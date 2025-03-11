@@ -22,7 +22,7 @@ export interface IHtmlSelectOwnProps
       | 'hasError'
       | 'errorText'
       | 'loading'
-      | 'disableOnLoading'
+      | 'readOnlyOnLoading'
     > {
   labeledProps?: ILabeledProps;
   controlProps?: IHtmlSelectControlProps;

@@ -1,64 +1,52 @@
-import type { IFilterableListItem } from '~/components/FilterableList';
-import type { ISelectFactory } from './Select.types';
-import { areFilterableListItemsEqual } from '~/components/FilterableList/utils/areFilterableListItemsEqual';
-import { filterFilterableList } from '~/components/FilterableList/utils/filterFilterableList';
-import { getFilterableListItemLabel } from '~/components/FilterableList/utils/getFilterableListItemLabel';
-import { isFilterableListItemDisabled } from '~/components/FilterableList/utils/isFilterableListItemDisabled';
-import { isFilterableListItemEmpty } from '~/components/FilterableList/utils/isFilterableListItemEmpty';
-import { renderFilterableListItem } from '~/components/FilterableList/utils/renderFilterableListItem';
-import { ListItem } from '~/components/List/ListItem';
-import { selectBaseFactory } from '~/components/SelectBase';
+import type { ISelectFactory, ISelectProps } from './Select.types';
+import { extractBoxProps } from '~/components/Box/extractBoxProps';
+import { Labeled } from '~/components/Labeled';
 import { useProps } from '~/components/Theme';
-import { useSelect } from '~/hooks/useSelect';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './Select.constants';
-
-const SelectBase = selectBaseFactory<IFilterableListItem>();
+import { SelectControl } from './SelectControl';
 
 export const Select = componentFactory<ISelectFactory>(
   (props, forwardedRef) => {
     const {
-      getValueFieldProps,
-      value,
-      defaultValue,
-      onChange,
-      noResultsLabel,
+      label,
+      supportingText,
+      requiredSign,
+      errorText,
+      readOnlyOnLoading,
+      labeledProps,
+      controlProps,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
-
-    const { defaultItem, selectedItem } = useSelect({
-      items: other.items,
-      itemEmpty: isFilterableListItemEmpty,
-      defaultValue,
-      value,
-    });
+    const { boxProps, other: forwardedProps } =
+      extractBoxProps<ISelectProps>(other);
 
     return (
-      <SelectBase
-        itemsEqual={areFilterableListItemsEqual}
-        itemEmpty={isFilterableListItemEmpty}
-        listPredicate={filterFilterableList}
-        itemDisabled={isFilterableListItemDisabled}
-        noResults={
-          noResultsLabel ? (
-            <ListItem disabled>{noResultsLabel}</ListItem>
-          ) : undefined
-        }
-        {...other}
-        itemRenderer={renderFilterableListItem}
-        itemLabel={getFilterableListItemLabel}
-        getValueFieldProps={(renderProps, selectedItem) => ({
-          leadingIcon: selectedItem?.icon,
-          ...getValueFieldProps?.(renderProps, selectedItem),
-        })}
-        defaultItem={defaultItem}
-        selectedItem={selectedItem}
-        onItemChange={(item) => onChange?.(item?.value)}
-        leadingIcon={selectedItem?.icon}
-        ref={forwardedRef}
-      />
+      <Labeled
+        label={label}
+        supportingText={supportingText}
+        errorTextPosition="end"
+        requiredSign={requiredSign}
+        id={other.id}
+        required={other.required}
+        disabled={other.disabled}
+        readOnly={other.readOnly}
+        loading={other.loading}
+        readOnlyOnLoading={readOnlyOnLoading}
+        hasError={other.hasError}
+        errorText={errorText}
+        {...labeledProps}
+        {...boxProps}
+      >
+        <SelectControl
+          ref={forwardedRef}
+          {...controlProps}
+          {...forwardedProps}
+        />
+      </Labeled>
     );
   },
 );
 
 Select.displayName = `@sixui/core/${COMPONENT_NAME}`;
+Select.Control = SelectControl;

@@ -19,7 +19,7 @@ export interface ITextAreaOwnProps
       | 'hasError'
       | 'errorText'
       | 'loading'
-      | 'disableOnLoading'
+      | 'readOnlyOnLoading'
     > {
   labeledProps?: ILabeledProps;
   controlProps?: ITextAreaControlProps;

@@ -112,9 +112,8 @@ export const selectBaseFactory = <
                 singleFilterableListBase.selectedItem,
               )}
             >
-              {singleFilterableListBase.selectedItem
-                ? itemLabel(singleFilterableListBase.selectedItem)
-                : null}
+              {singleFilterableListBase.selectedItem &&
+                itemLabel(singleFilterableListBase.selectedItem)}
             </FieldBase>
           )}
         </FloatingFilterableListBase>

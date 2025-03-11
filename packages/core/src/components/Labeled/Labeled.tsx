@@ -25,7 +25,7 @@ export const Labeled = componentFactory<ILabeledFactory>(
       readOnly: readOnlyProp,
       hasError: hasErrorProp,
       errorText: errorTextProp,
-      disableOnLoading,
+      readOnlyOnLoading,
       loading,
       label,
       trailingAction,
@@ -39,7 +39,7 @@ export const Labeled = componentFactory<ILabeledFactory>(
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const readOnly = readOnlyProp || (disableOnLoading && loading);
+    const readOnly = readOnlyProp || (readOnlyOnLoading && loading);
     const disabledOrReadOnly = disabled || readOnly;
 
     const id = useId(idProp);

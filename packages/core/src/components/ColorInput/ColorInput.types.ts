@@ -22,7 +22,7 @@ export interface IColorInputOwnProps
       | 'hasError'
       | 'errorText'
       | 'loading'
-      | 'disableOnLoading'
+      | 'readOnlyOnLoading'
     > {
   labeledProps?: ILabeledProps;
   controlProps?: IColorInputControlProps;

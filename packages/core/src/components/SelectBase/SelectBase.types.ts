@@ -6,8 +6,13 @@ import type {
   IFloatingFilterableListBaseTriggerRenderProps,
 } from '~/components/FloatingFilterableListBase';
 import type { IMenuListProps } from '~/components/Menu/MenuList';
+import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IOmit } from '~/utils/types';
+import type {
+  ISelectBaseThemeFactory,
+  selectBaseTheme,
+} from './SelectBase.css';
 
 export interface ISelectBaseOwnProps<TItem>
   extends IOmit<
@@ -28,9 +33,11 @@ export interface ISelectBaseOwnProps<TItem>
 
 export interface ISelectBaseProps<TItem>
   extends IBoxProps,
+    IComponentThemeProps<ISelectBaseThemeFactory>,
     ISelectBaseOwnProps<TItem> {}
 
 export type ISelectBaseFactory<TItem> = IComponentFactory<{
   props: ISelectBaseProps<TItem>;
   ref: HTMLDivElement;
+  theme: typeof selectBaseTheme;
 }>;

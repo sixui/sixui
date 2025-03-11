@@ -58,7 +58,7 @@ export const Switch = componentFactory<ISwitchFactory>(
         disabled={other.disabled}
         readOnly={other.readOnly}
         loading={other.loading}
-        disableOnLoading
+        readOnlyOnLoading
         hasError={hasError}
         errorText={errorText}
         labelPosition={labelPosition}

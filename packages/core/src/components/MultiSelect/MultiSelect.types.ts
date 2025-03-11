@@ -22,7 +22,7 @@ export interface IMultiSelectOwnProps
       | 'hasError'
       | 'errorText'
       | 'loading'
-      | 'disableOnLoading'
+      | 'readOnlyOnLoading'
     > {
   labeledProps?: ILabeledProps;
   controlProps?: IMultiSelectControlProps;

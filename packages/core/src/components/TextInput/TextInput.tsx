@@ -16,7 +16,7 @@ export const TextInput = componentFactory<ITextInputFactory>(
       supportingText,
       requiredSign,
       errorText,
-      disableOnLoading,
+      readOnlyOnLoading,
       labeledProps,
       controlProps,
       ...other
@@ -35,7 +35,7 @@ export const TextInput = componentFactory<ITextInputFactory>(
         disabled={other.disabled}
         readOnly={other.readOnly}
         loading={other.loading}
-        disableOnLoading={disableOnLoading}
+        readOnlyOnLoading={readOnlyOnLoading}
         hasError={other.hasError}
         errorText={errorText}
         {...labeledProps}

@@ -273,6 +273,7 @@ export const multiSelectBaseFactory = <
                             renderProps.afterItemsRemove([selectedItem], event);
                           }}
                           {...getValueFieldProps?.(renderProps, selectedItem)}
+                          nonInteractive
                         >
                           {itemLabel(selectedItem)}
                         </InputChip>
