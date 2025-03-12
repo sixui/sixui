@@ -23,6 +23,7 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   onChange: (...args) => sbHandleEvent('onChange', args, 1000),
+  value: 'toggled',
 } satisfies Partial<ISwitchControlProps>;
 
 const states: Array<IComponentPresentation<ISwitchControlProps>> = [

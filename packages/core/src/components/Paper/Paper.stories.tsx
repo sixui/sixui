@@ -21,9 +21,7 @@ const states: Array<IComponentPresentation<IPaperProps>> = [
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
-const PaperDemo: React.FC<IPaperProps> = (props) => <Paper {...props} />;
-
-const PaperShowcase = componentShowcaseFactory(PaperDemo);
+const PaperShowcase = componentShowcaseFactory(Paper);
 
 export const Elevation: IStory = {
   render: (props) => (

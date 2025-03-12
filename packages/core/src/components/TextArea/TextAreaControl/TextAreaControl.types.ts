@@ -25,6 +25,7 @@ export interface ITextAreaControlOwnProps
 
   value?: string;
   defaultValue?: string;
+  textAreaProps?: React.TextareaHTMLAttributes<HTMLTextAreaElement>;
 }
 
 export interface ITextAreaControlProps

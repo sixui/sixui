@@ -41,6 +41,18 @@ export const TextInputControl = componentFactory<ITextInputControlFactory>(
       loading,
       rootRef,
       id: idProp,
+      inputProps,
+      min,
+      max,
+      minLength,
+      maxLength,
+      pattern,
+      step,
+      autoComplete,
+      autoCapitalize,
+      autoCorrect,
+      autoFocus,
+      spellCheck,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -193,6 +205,18 @@ export const TextInputControl = componentFactory<ITextInputControlFactory>(
                 setValue(event.target.value);
                 onChange?.(event);
               }}
+              min={min}
+              max={max}
+              step={step}
+              minLength={minLength}
+              maxLength={maxLength}
+              pattern={pattern}
+              autoComplete={autoComplete}
+              autoCapitalize={autoCapitalize}
+              autoCorrect={autoCorrect}
+              autoFocus={autoFocus}
+              spellCheck={spellCheck}
+              {...inputProps}
             />
           </>
         )}

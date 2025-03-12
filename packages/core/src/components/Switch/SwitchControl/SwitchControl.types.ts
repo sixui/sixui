@@ -1,5 +1,4 @@
 import type { IBoxProps } from '~/components/Box';
-import type { IPaperBaseOwnProps } from '~/components/PaperBase';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IUseSwitchProps } from '~/hooks/useSwitch';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
@@ -8,9 +7,7 @@ import type {
   ISwitchControlThemeFactory,
 } from './SwitchControl.css';
 
-export interface ISwitchControlOwnProps
-  extends IUseSwitchProps,
-    IPaperBaseOwnProps {
+export interface ISwitchControlOwnProps extends IUseSwitchProps {
   checkedIcon?: React.ReactNode | true;
   uncheckedIcon?: React.ReactNode | true;
   rootRef?: React.Ref<HTMLDivElement>;

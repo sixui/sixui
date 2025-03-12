@@ -16,6 +16,7 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   onChange: (...args) => sbHandleEvent('onChange', args),
+  value: 'toggled',
 } satisfies Partial<ICheckboxControlProps>;
 
 const states: Array<IComponentPresentation<ICheckboxControlProps>> = [

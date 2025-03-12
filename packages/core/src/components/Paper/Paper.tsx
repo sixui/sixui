@@ -36,6 +36,7 @@ const createThemeSprinkle = <TKey extends string>(
 export const Paper = polymorphicComponentFactory<IPaperFactory>(
   (props, forwardedRef) => {
     const {
+      style,
       surface,
       shape,
       outlineStyle,
@@ -50,39 +51,42 @@ export const Paper = polymorphicComponentFactory<IPaperFactory>(
 
     return (
       <PaperBase
-        style={assignInlineVars({
-          ...createThemeSprinkle(
-            paperBaseTheme.tokens.container.color,
-            surface,
-            themeTokens.colorScheme,
-          ),
-          ...createThemeSprinkle(
-            paperBaseTheme.tokens.container.elevation,
-            elevation,
-            elevationLevelPreset,
-          ),
-          ...createThemeSprinkle(
-            paperBaseTheme.tokens.container.shape,
-            shape,
-            themeTokens.shape.corner,
-            px,
-          ),
-          ...createThemeSprinkle(
-            paperBaseTheme.tokens.outline.style,
-            outlineStyle,
-          ),
-          ...createThemeSprinkle(
-            paperBaseTheme.tokens.outline.color,
-            outlineColor,
-            themeTokens.colorScheme,
-          ),
-          ...createThemeSprinkle(
-            paperBaseTheme.tokens.outline.width,
-            outline,
-            themeTokens.outline.width,
-            px,
-          ),
-        })}
+        style={{
+          ...style,
+          ...assignInlineVars({
+            ...createThemeSprinkle(
+              paperBaseTheme.tokens.container.color,
+              surface,
+              themeTokens.colorScheme,
+            ),
+            ...createThemeSprinkle(
+              paperBaseTheme.tokens.container.elevation,
+              elevation,
+              elevationLevelPreset,
+            ),
+            ...createThemeSprinkle(
+              paperBaseTheme.tokens.container.shape,
+              shape,
+              themeTokens.shape.corner,
+              px,
+            ),
+            ...createThemeSprinkle(
+              paperBaseTheme.tokens.outline.style,
+              outlineStyle,
+            ),
+            ...createThemeSprinkle(
+              paperBaseTheme.tokens.outline.color,
+              outlineColor,
+              themeTokens.colorScheme,
+            ),
+            ...createThemeSprinkle(
+              paperBaseTheme.tokens.outline.width,
+              outline,
+              themeTokens.outline.width,
+              px,
+            ),
+          }),
+        }}
         ref={forwardedRef}
         {...other}
       />

@@ -45,6 +45,8 @@ export interface ITextInputControlOwnProps
 
   value?: string;
   defaultValue?: string;
+
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
 }
 
 export interface ITextInputControlProps

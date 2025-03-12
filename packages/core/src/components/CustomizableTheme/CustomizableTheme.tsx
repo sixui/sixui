@@ -5,7 +5,6 @@ import type { ICustomizableThemeThemeFactory } from './CustomizableTheme.css';
 import type { ICustomizableThemeFactory } from './CustomizableTheme.types';
 import { ColorInput } from '~/components/ColorInput';
 import { Flex } from '~/components/Flex';
-import { Paper } from '~/components/Paper';
 import { TextInput } from '~/components/TextInput';
 import { ThemeProvider, useComponentTheme, useProps } from '~/components/Theme';
 import { generateThemeFromSourceColor } from '~/utils/colors/generateThemeFromSourceColor';
@@ -24,7 +23,6 @@ export const CustomizableTheme = componentFactory<ICustomizableThemeFactory>(
       style,
       variant,
       children,
-      disabled,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -36,9 +34,6 @@ export const CustomizableTheme = componentFactory<ICustomizableThemeFactory>(
       style,
       variant,
       theme: customizableThemeTheme,
-      modifiers: {
-        disabled,
-      },
     });
 
     const [color, setColor] = useState('');
@@ -61,12 +56,11 @@ export const CustomizableTheme = componentFactory<ICustomizableThemeFactory>(
 
     return (
       <ThemeProvider theme={theme} inherit>
-        <Paper
-          as={Flex}
+        <Flex
+          {...getStyles('root')}
           direction="column"
           align="start"
           gap="$sm"
-          {...getStyles('root')}
           {...other}
         >
           <Flex
@@ -75,7 +69,12 @@ export const CustomizableTheme = componentFactory<ICustomizableThemeFactory>(
             ref={forwardedRef}
             {...getStyles('controlBar')}
           >
-            <ColorInput w="224px" label="Color" onChange={setColor} clearable />
+            <ColorInput.Control
+              w="224px"
+              label="Color"
+              onChange={setColor}
+              clearable
+            />
             <TextInput.Control
               w="96px"
               label="Scale"
@@ -115,7 +114,7 @@ export const CustomizableTheme = componentFactory<ICustomizableThemeFactory>(
           </Flex>
 
           {children}
-        </Paper>
+        </Flex>
       </ThemeProvider>
     );
   },

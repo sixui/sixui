@@ -35,7 +35,7 @@ export const Labeled = componentFactory<ILabeledFactory>(
       labelPosition = 'top',
       supportingTextPosition: supportingTextPositionProp,
       errorTextPosition: errorTextPositionProp,
-      requiredSign,
+      requiredSign = '*',
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 

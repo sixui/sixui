@@ -37,6 +37,14 @@ export const TextAreaControl = componentFactory<ITextAreaControlFactory>(
       children,
       loading,
       rootRef,
+      textAreaProps,
+      rows,
+      cols,
+      autoComplete,
+      autoCapitalize,
+      autoCorrect,
+      autoFocus,
+      spellCheck,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -165,6 +173,14 @@ export const TextAreaControl = componentFactory<ITextAreaControlFactory>(
                 onChange?.(event);
               }}
               ref={textAreaControlHandleRef}
+              rows={rows}
+              cols={cols}
+              autoComplete={autoComplete}
+              autoCapitalize={autoCapitalize}
+              autoCorrect={autoCorrect}
+              autoFocus={autoFocus}
+              spellCheck={spellCheck}
+              {...textAreaProps}
             />
           </>
         )}
