@@ -169,9 +169,6 @@ importers:
       react-transition-group:
         specifier: ^4.4.5
         version: 4.4.5(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      sortable:
-        specifier: link:@atlaskit/pragmatic-drag-and-drop/sortable
-        version: link:@atlaskit/pragmatic-drag-and-drop/sortable
     devDependencies:
       '@fortawesome/fontawesome-svg-core':
         specifier: ^6.7.2
