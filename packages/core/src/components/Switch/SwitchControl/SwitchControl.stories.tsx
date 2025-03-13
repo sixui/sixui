@@ -86,15 +86,12 @@ const ControlledSwitchControl: React.FC<
   const [checked, setChecked] = useState(props.defaultChecked ?? false);
 
   const handleChange: ISwitchControlProps['onChange'] = onChange
-    ? (value) => {
-        const checked = value !== undefined;
-
-        return Promise.resolve()
-          .then(() => onChange(value))
+    ? (checked) =>
+        Promise.resolve()
+          .then(() => onChange(checked))
           .then(() => {
             setChecked(checked);
-          });
-      }
+          })
     : undefined;
 
   return <SwitchControl {...other} checked={checked} onChange={handleChange} />;

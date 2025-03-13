@@ -12,9 +12,8 @@ const DENSITY = px(density({ min: -1, max: 0 }));
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME);
 
 const classNames = createStyles({
-  content: {
-    alignSelf: 'start',
-    marginTop: calc.divide(DENSITY, -2),
+  labelAndActionContainer: {
+    marginTop: calc.add(px(0), calc.divide(DENSITY, 2)),
   },
 });
 

@@ -69,7 +69,10 @@ export const RadioGroup = polymorphicComponentFactory<IRadioGroupFactory>(
     );
 
     const handleChange = useCallback(
-      (nextValue: string | undefined) => {
+      (
+        nextValue: string | undefined,
+        event: React.ChangeEvent<HTMLInputElement>,
+      ) => {
         if (handlingChange) {
           return;
         }
@@ -77,7 +80,7 @@ export const RadioGroup = polymorphicComponentFactory<IRadioGroupFactory>(
         setChangingValue(value);
 
         void executeLazyPromise(
-          () => onChange?.(nextValue) as Promise<void>,
+          () => onChange?.(nextValue, event) as Promise<void>,
           setHandlingChange,
         ).finally(() => {
           setValue(nextValue);

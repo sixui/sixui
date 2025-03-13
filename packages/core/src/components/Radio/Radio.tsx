@@ -49,8 +49,9 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
     <Labeled
       {...getStyles('root')}
       classNames={mergeClassNames(classNames, {
-        content: getStyles('content').className,
+        labelAndActionContainer: getStyles('labelAndActionContainer').className,
       })}
+      align="start"
       label={label}
       supportingText={supportingText}
       requiredSign={requiredSign}

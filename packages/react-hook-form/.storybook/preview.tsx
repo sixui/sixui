@@ -1,23 +1,15 @@
 import type { Decorator, Preview } from '@storybook/react';
 
-import './styles.css';
-import '@sixui/core/styles.css';
+import { ReactHookFormDecorator } from './addon-react-hook-form/decorators';
+import { SixuiProviderDecorator } from './decorators';
 
-import { SixuiProvider } from '@sixui/core';
+import './storybook.css';
+import '@sixui/core/styles.css';
 
 const preview: Preview = {
   parameters: {
-    // https://github.com/storybookjs/storybook/issues/17098#issuecomment-1049679681
-    docs: {
-      source: {
-        type: 'code',
-      },
-    },
-    // actions: { argTypesRegex: '^on[A-Z].*' },
+    actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
-      controls: {
-        expanded: true,
-      },
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
@@ -27,21 +19,8 @@ const preview: Preview = {
 };
 
 export const decorators: Array<Decorator> = [
-  (Story) => (
-    <SixuiProvider
-      colorSchemeVariant="light"
-      theme={{
-        tokens: {
-          typeFace: {
-            plain: 'Roboto',
-            brand: 'Roboto',
-          },
-        },
-      }}
-    >
-      <Story />
-    </SixuiProvider>
-  ),
+  ReactHookFormDecorator,
+  SixuiProviderDecorator,
 ];
 
 export default preview;

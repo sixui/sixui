@@ -50,8 +50,10 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
       <Labeled
         {...getStyles('root')}
         classNames={mergeClassNames(classNames, {
-          content: getStyles('content').className,
+          labelAndActionContainer: getStyles('labelAndActionContainer')
+            .className,
         })}
+        align="start"
         label={label}
         supportingText={supportingText}
         requiredSign={requiredSign}

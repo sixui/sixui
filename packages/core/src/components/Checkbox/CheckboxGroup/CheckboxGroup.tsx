@@ -61,8 +61,8 @@ export const CheckboxGroup = polymorphicComponentFactory<ICheckboxGroupFactory>(
 
     const handleChange = useCallback(
       (
-        event: React.ChangeEvent<HTMLInputElement>,
         nextValues: Array<string>,
+        event: React.ChangeEvent<HTMLInputElement>,
       ) => {
         if (handlingChange) {
           return;
@@ -71,7 +71,7 @@ export const CheckboxGroup = polymorphicComponentFactory<ICheckboxGroupFactory>(
         setChangingValues([event.target.value]);
 
         void executeLazyPromise(
-          () => onChange?.(event, nextValues) as Promise<void>,
+          () => onChange?.(nextValues, event) as Promise<void>,
           setHandlingChange,
         ).finally(() => {
           setValues(nextValues);

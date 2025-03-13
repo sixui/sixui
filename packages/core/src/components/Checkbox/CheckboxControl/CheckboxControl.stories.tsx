@@ -70,16 +70,13 @@ const ControlledCheckboxControl: React.FC<
   );
 
   const handleChange: ICheckboxControlProps['onChange'] = onChange
-    ? (value) => {
-        const checked = value !== undefined;
-
-        return Promise.resolve()
-          .then(() => onChange(value))
+    ? (checked) =>
+        Promise.resolve()
+          .then(() => onChange(checked))
           .then(() => {
             setIndeterminate(false);
             setChecked(checked);
-          });
-      }
+          })
     : undefined;
 
   return (

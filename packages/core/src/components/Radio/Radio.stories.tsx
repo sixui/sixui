@@ -15,12 +15,24 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {
   onChange: (...args) => sbHandleEvent('onChange', args, 1000),
   label: 'Label',
-  supportingText: 'Supporting text',
 } satisfies Partial<IRadioProps>;
 
 const cols: Array<IComponentPresentation<IRadioProps>> = [
   {
     legend: 'Normal',
+  },
+  {
+    legend: 'Supporting text',
+    props: {
+      supportingText: 'Supporting text',
+    },
+  },
+  {
+    legend: 'Error',
+    props: {
+      hasError: true,
+      errorText: 'Error text',
+    },
   },
   {
     legend: 'Error',
@@ -73,7 +85,6 @@ export const Densities: IStory = {
     <RadioShowcase
       props={props}
       cols={[
-        { legend: '-2', props: { density: -2 } },
         { legend: '-1', props: { density: -1 } },
         { legend: '0', props: { density: 0 } },
       ]}

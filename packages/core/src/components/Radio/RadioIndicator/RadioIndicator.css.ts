@@ -96,8 +96,8 @@ const classNames = createStyles({
     },
   },
   progressIndicator: {
-    width: tokens.container.size,
-    height: tokens.container.size,
+    width: calc.add(tokens.container.size, DENSITY),
+    height: calc.add(tokens.container.size, DENSITY),
   },
   icon: ({ root }) => ({
     inset: 0,

@@ -1,9 +1,10 @@
 import type { IBoxProps } from '~/components/Box';
+import type { IFlexOwnProps } from '~/components/Flex';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IOmit, ISide } from '~/utils/types';
 import type { ILabeledContextValue } from './Labeled.context';
 import type { ILabeledThemeFactory, labeledTheme } from './Labeled.css';
-import { ISide } from '~/utils/types';
 
 export type ILabeledChildrenRenderProps = {
   id: string;
@@ -14,7 +15,9 @@ export type ILabeledChildrenRenderProps = {
   loading?: boolean;
 };
 
-export interface ILabeledOwnProps extends ILabeledContextValue {
+export interface ILabeledOwnProps
+  extends IOmit<IFlexOwnProps, 'children'>,
+    ILabeledContextValue {
   label?: React.ReactNode;
   trailingAction?: React.ReactNode;
   supportingText?: React.ReactNode;

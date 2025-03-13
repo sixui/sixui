@@ -95,13 +95,12 @@ export const DisclosureTrigger = componentFactory<IDisclosureTriggerFactory>(
     }, [expanded, expandableContext]);
 
     const handleChange = useCallback(
-      async (value: string | undefined): Promise<void> => {
-        const newChecked = value !== undefined;
+      async (newChecked: boolean): Promise<void> => {
         if (newChecked === checked) {
           return;
         }
 
-        await onChange?.(value);
+        await onChange?.(newChecked);
 
         setChecked(newChecked);
         expandableContext?.expand(newChecked);

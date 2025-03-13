@@ -13,7 +13,10 @@ export interface IUseCheckboxProps {
   indeterminate?: boolean;
   defaultIndeterminate?: boolean;
   value?: string;
-  onChange?: (value: string | undefined) => IMaybeAsync<unknown>;
+  onChange?: (
+    checked: boolean,
+    event?: React.ChangeEvent<HTMLInputElement>,
+  ) => IMaybeAsync<unknown>;
   loading?: boolean;
   disabled?: boolean;
   readOnly?: boolean;
@@ -76,7 +79,6 @@ export const useCheckbox = (props: IUseCheckboxProps): IUseCheckboxResult => {
       }
 
       const nextChecked = event.target.checked;
-      const nextValue = nextChecked ? event.target.value : undefined;
       const nextValues = checkboxGroupContext
         ? [
             ...new Set(
@@ -92,8 +94,8 @@ export const useCheckbox = (props: IUseCheckboxProps): IUseCheckboxResult => {
         : [];
 
       void executeLazyPromise(async () => {
-        await props.onChange?.(nextValue);
-        await checkboxGroupContext?.onChange?.(event, nextValues);
+        await props.onChange?.(nextChecked, event);
+        await checkboxGroupContext?.onChange?.(nextValues, event);
       }, setHandlingChange).finally(() => {
         if (!checkboxGroupContext) {
           setCheckedValue(nextChecked);

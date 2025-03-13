@@ -3,8 +3,8 @@ import { createOptionalContext } from '~/utils/react/createOptionalContext';
 
 export interface ICheckboxGroupContextValue {
   onChange?: (
-    event: React.ChangeEvent<HTMLInputElement>,
     values: Array<string>,
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => IMaybeAsync<unknown>;
   defaultValues?: Array<string>;
   values?: Array<string>;

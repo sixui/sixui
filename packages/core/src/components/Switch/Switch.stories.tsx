@@ -15,12 +15,17 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {
   onChange: (...args) => sbHandleEvent('onChange', args, 1000),
   label: 'Label',
-  supportingText: 'Supporting text',
 } satisfies Partial<ISwitchProps>;
 
 const cols: Array<IComponentPresentation<ISwitchProps>> = [
   {
     legend: 'Normal',
+  },
+  {
+    legend: 'Supporting text',
+    props: {
+      supportingText: 'Supporting text',
+    },
   },
   {
     legend: 'Error',

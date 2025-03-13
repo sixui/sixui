@@ -14,6 +14,7 @@
     "src/**/*.tsx",
     "src/**/*.json",
     ".storybook/**/*.ts",
-    ".storybook/**/*.tsx"
+    ".storybook/**/*.tsx",
+    ".storybook/**/*.css"
   ]
 }

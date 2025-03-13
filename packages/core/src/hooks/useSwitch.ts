@@ -10,7 +10,10 @@ export interface IUseSwitchProps {
   checked?: boolean;
   defaultChecked?: boolean;
   value?: string;
-  onChange?: (value: string | undefined) => IMaybeAsync<unknown>;
+  onChange?: (
+    checked: boolean,
+    event?: React.ChangeEvent<HTMLInputElement>,
+  ) => IMaybeAsync<unknown>;
   loading?: boolean;
   readOnly?: boolean;
   disabled?: boolean;
@@ -52,11 +55,10 @@ export const useSwitch = (props: IUseSwitchProps): IUseSwitchResult => {
         return;
       }
 
+      const nextChecked = event.target.checked;
+
       void executeLazyPromise(
-        () =>
-          props.onChange?.(
-            event.target.checked ? event.target.value : undefined,
-          ),
+        () => props.onChange?.(nextChecked, event),
         setHandlingChange,
       ).finally(() => {
         setChecked(!event.target.checked);

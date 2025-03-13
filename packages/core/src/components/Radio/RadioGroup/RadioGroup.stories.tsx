@@ -57,8 +57,8 @@ const ControlledRadioGroupDemo: React.FC<IRadioGroupDemoProps> = (props) => {
         direction="row"
         gap="$xl"
         value={value}
-        onChange={async (value) => {
-          await onChange?.(value);
+        onChange={async (value, event) => {
+          await onChange?.(value, event);
           setValue(value ?? '');
         }}
         ref={ref}

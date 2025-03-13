@@ -59,8 +59,8 @@ const ControlledCheckboxGroupDemo: React.FC<ICheckboxGroupDemoProps> = (
         direction="row"
         gap="$xl"
         values={values}
-        onChange={async (event, values) => {
-          await onChange?.(event, values);
+        onChange={async (values, event) => {
+          await onChange?.(values, event);
           setValues(values);
         }}
         ref={ref}
