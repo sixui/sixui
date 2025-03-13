@@ -16,6 +16,8 @@ export interface ICheckboxCardOwnProps
   label?: React.ReactNode;
   supportingText?: React.ReactNode;
   children?: React.ReactNode;
+  hasError?: boolean;
+  errorText?: React.ReactNode;
 }
 
 export interface ICheckboxCardProps

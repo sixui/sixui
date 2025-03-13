@@ -30,6 +30,7 @@ const states: Array<IComponentPresentation<ICheckboxCardProps>> = [
   { legend: 'Focused', props: { interactions: { focused: true } } },
   { legend: 'Hovered', props: { interactions: { hovered: true } } },
   { legend: 'Pressed', props: { interactions: { pressed: true } } },
+  { legend: 'Error', props: { hasError: true } },
   { legend: 'Loading', props: { loading: true } },
   { legend: 'Disabled', props: { disabled: true } },
 ];

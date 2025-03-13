@@ -35,6 +35,7 @@ export const CheckboxControl = componentFactory<ICheckboxControlFactory>(
       required: requiredProp,
       id: idProp,
       rootRef,
+      hasError,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -105,6 +106,7 @@ export const CheckboxControl = componentFactory<ICheckboxControlFactory>(
           indeterminate={indeterminate}
           loading={loading}
           disabled={disabledOrReadOnly}
+          hasError={hasError}
           interactions={stateLayer.interactionsContext.state}
         />
 

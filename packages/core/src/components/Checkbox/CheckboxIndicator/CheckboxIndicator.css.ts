@@ -15,7 +15,13 @@ import { px } from '~/utils/css/px';
 import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './CheckboxIndicator.constants';
 
-type IModifier = IInteraction | 'disabled' | 'on' | 'was-disabled' | 'loading';
+type IModifier =
+  | IInteraction
+  | 'disabled'
+  | 'on'
+  | 'was-disabled'
+  | 'loading'
+  | 'with-error';
 
 const DENSITY = px(density({ min: -1, max: 0 }));
 
@@ -34,10 +40,18 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
       hovered: 'inherit',
       pressed: 'inherit',
       disabled: 'inherit',
+      error: 'transparent',
     },
     opacity: {
       disabled: themeTokens.state.opacity.disabled,
     },
+  },
+  outline$off: {
+    color: {
+      normal: themeTokens.colorScheme.onSurfaceVariant,
+      error: themeTokens.colorScheme.error,
+    },
+    width: px(themeTokens.outline.width.sm),
   },
   container$on: {
     color: {
@@ -46,6 +60,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
       hovered: 'inherit',
       pressed: 'inherit',
       disabled: themeTokens.colorScheme.onSurface,
+      error: themeTokens.colorScheme.error,
     },
     opacity: {
       disabled: themeTokens.state.opacity.disabled,
@@ -59,6 +74,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
       hovered: 'inherit',
       pressed: 'inherit',
       disabled: themeTokens.colorScheme.surface,
+      error: themeTokens.colorScheme.onError,
     },
     opacity: {
       disabled: '1',
@@ -80,30 +96,30 @@ const classNames = createStyles({
         color: tokens.container$off.color.normal,
       },
       outline: {
-        color: themeTokens.colorScheme.onSurfaceVariant,
-        width: px(themeTokens.outline.width.sm),
+        color: tokens.outline$off.color.normal,
+        width: tokens.outline$off.width,
       },
     }),
 
     selectors: {
-      [modifierSelector<IModifier>({ loading: true })]: {
+      [modifierSelector<IModifier>('loading')]: {
         vars: overrideTokens(PaperBase.theme.tokens, {
           outline: {
             width: px(themeTokens.outline.width.none),
           },
         }),
       },
-      [modifierSelector<IModifier>({ hovered: true })]: {
+      [modifierSelector<IModifier>('hovered')]: {
         zIndex: 1,
       },
-      [modifierSelector<IModifier>({ on: true, disabled: true })]: {
+      [modifierSelector<IModifier>(['on', 'disabled'])]: {
         vars: overrideTokens(PaperBase.theme.tokens, {
           outline: {
             width: px(themeTokens.outline.width.none),
           },
         }),
       },
-      [modifierSelector<IModifier>({ disabled: true })]: {
+      [modifierSelector<IModifier>('disabled')]: {
         vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             opacity: themeTokens.state.opacity.disabled,
@@ -111,6 +127,16 @@ const classNames = createStyles({
           outline: {
             color: tokens.container$on.color.disabled,
             opacity: tokens.container$on.opacity.disabled,
+          },
+        }),
+      },
+      [modifierSelector<IModifier>('with-error')]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
+          container: {
+            color: tokens.container$off.color.error,
+          },
+          outline: {
+            color: tokens.outline$off.color.error,
           },
         }),
       },
@@ -196,6 +222,9 @@ const classNames = createStyles({
         // is programmatically changed while disabled.
         animationDuration: '0s',
         transitionDuration: '0s',
+      },
+      [modifierSelector<IModifier>(['on', 'with-error'], root)]: {
+        backgroundColor: tokens.container$on.color.error,
       },
     },
   }),

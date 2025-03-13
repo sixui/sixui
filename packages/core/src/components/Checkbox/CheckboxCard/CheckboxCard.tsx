@@ -35,6 +35,8 @@ export const CheckboxCard = componentFactory<ICheckboxCardFactory>(
       label,
       supportingText,
       children,
+      hasError,
+      errorText,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -75,6 +77,7 @@ export const CheckboxCard = componentFactory<ICheckboxCardFactory>(
       modifiers: {
         disabled: disabledOrReadOnly,
         checked,
+        'with-error': hasError,
       },
     });
 
@@ -97,12 +100,15 @@ export const CheckboxCard = componentFactory<ICheckboxCardFactory>(
               labelPosition="right"
               label={label}
               disabled={disabledOrReadOnly}
+              hasError={hasError}
+              errorText={errorText}
             >
               <CheckboxIndicator
                 checked={checked}
                 indeterminate={indeterminate}
                 loading={loading}
                 disabled={disabledOrReadOnly}
+                hasError={hasError}
               />
             </Labeled>
 

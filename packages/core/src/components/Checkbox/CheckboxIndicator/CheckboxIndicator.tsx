@@ -24,6 +24,7 @@ export const CheckboxIndicator = componentFactory<ICheckboxIndicatorFactory>(
       indeterminate,
       loading,
       disabled: disabledProp,
+      hasError,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -48,6 +49,7 @@ export const CheckboxIndicator = componentFactory<ICheckboxIndicatorFactory>(
         'was-disabled': wasDisabled,
         loading,
         disabled,
+        'with-error': hasError,
       },
     });
 

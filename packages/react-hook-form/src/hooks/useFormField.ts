@@ -27,18 +27,17 @@ export type IUseFormFieldProps<
   };
 
 export type IUseFormFieldResult<TChangeEventValue extends IUnknownParamters> =
-  IFormFieldProps<TChangeEventValue> & {
-    value: IAny;
-    onChange: (...args: TChangeEventValue) => void;
-  };
+  IFormFieldProps<TChangeEventValue>;
 
 export type IUseFormFieldOptions = {
   emptyValue?: IAny;
   checkable?: true;
+  supportsErrorProps?: boolean;
 };
 
 const defaultOptions = {
   emptyValue: '',
+  supportsErrorProps: true,
 };
 
 export const useFormField = <
@@ -92,9 +91,13 @@ export const useFormField = <
       field.onChange(...args);
       onChange?.(...args);
     },
-    hasError,
-    errorText,
     required,
+    ...(options.supportsErrorProps
+      ? {
+          hasError,
+          errorText,
+        }
+      : undefined),
     ...(options.checkable
       ? {
           checked: !!field.value,

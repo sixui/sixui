@@ -9,6 +9,7 @@ import type {
 
 export interface ICheckboxControlOwnProps extends IUseCheckboxProps {
   rootRef?: React.Ref<HTMLDivElement>;
+  hasError?: boolean;
 }
 
 export interface ICheckboxControlProps

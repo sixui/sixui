@@ -70,6 +70,7 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
         {...boxProps}
       >
         <CheckboxControl
+          hasError={hasError}
           ref={forwardedRef}
           {...controlProps}
           {...forwardedProps}

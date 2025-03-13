@@ -1,2 +1,2 @@
 export * from './ComponentShowcase.types';
-export * from './ComponentShowcase';
+export * from './componentShowcaseFactory';
