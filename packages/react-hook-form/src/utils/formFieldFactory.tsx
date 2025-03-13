@@ -12,9 +12,13 @@ import type { IUnknownParamters } from './types';
 import { useFormField } from '~/hooks/useFormField';
 
 export type IFormFieldFactoryProps<
-  TComponentProps,
+  TComponentProps extends IFormFieldProps<TChangeEventValue>,
   TFieldValues extends FieldValues,
+  TChangeEventValue extends Array<unknown> = Parameters<
+    NonNullable<TComponentProps['onChange']>
+  >,
 > = TComponentProps &
+  IFormFieldProps<TChangeEventValue> &
   UseControllerProps<TFieldValues> & {
     getErrorText?: <TFieldValues extends FieldValues>(
       error: FieldError,

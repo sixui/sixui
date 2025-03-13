@@ -16,7 +16,7 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  items: ['1', '2', '3', '4'],
+  value: ['1', '2', '3', '4'],
   onReorder: (...args) => sbHandleEvent('onReorder', ...args),
   onDelete: (...args) => sbHandleEvent('onDelete', ...args),
   onChange: (...args) => sbHandleEvent('onChange', ...args),

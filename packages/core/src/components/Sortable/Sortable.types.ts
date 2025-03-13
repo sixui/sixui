@@ -20,7 +20,7 @@ export interface ISortableChildrenRenderProps<TItem> {
 
 export interface ISortableOwnProps<TItem> {
   axis?: IOrientation;
-  items?: Array<TItem>;
+  value?: Array<TItem>;
   getItemId?: (item: TItem) => string;
   onReorder?: (items: Array<TItem>) => IMaybeAsync<unknown>;
   onDelete?: (item: TItem) => IMaybeAsync<unknown>;

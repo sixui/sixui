@@ -188,7 +188,10 @@ export const floatingFilterableListBaseFactory = <
     });
 
     const handleItemSelect = (item: TItem): void => {
-      // If both `resetOnSelect` and `closeOnSelect` are true, the user may see a flash of the unfiltered list before it closes due to the closing animation duration. If `resetOnClose` is true, we can avoid this by not resetting the query until the list is actually closed.
+      // If both `resetOnSelect` and `closeOnSelect` are true, the user may see
+      // a flash of the unfiltered list before it closes due to the closing
+      // animation duration. If `resetOnClose` is true, we can avoid this by not
+      // resetting the query until the list is actually closed.
       const shouldResetQuery =
         resetOnSelect && (!closeOnSelect || !resetOnClose);
       if (shouldResetQuery) {
@@ -401,7 +404,7 @@ export const floatingFilterableListBaseFactory = <
               initialFocus={disabled ? -1 : initialFocus}
               returnFocus
               restoreFocus
-              modal
+              modal={false}
               // When the floating element is opened, floating-ui immediately
               // set `aria-hidden` on the reference element. When the floating
               // element is closed, floating-ui remove `aria-hidden` from the

@@ -13,10 +13,10 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
+  name: FIELD_NAME,
   onChange: (...args) => {
     action('onChange')(args);
   },
-  name: FIELD_NAME,
 } satisfies Partial<ISearchBarProps>;
 
 export const Basic: IStory = {

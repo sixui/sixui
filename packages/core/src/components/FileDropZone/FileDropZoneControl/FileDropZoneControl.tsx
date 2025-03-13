@@ -252,7 +252,7 @@ export const FileDropZoneControl =
       <Flex direction="column" gap="$sm" w="100%">
         {sortable ? (
           <Sortable
-            items={files}
+            value={files}
             onReorder={handleReorder}
             onDelete={handleDelete}
             axis="vertical"

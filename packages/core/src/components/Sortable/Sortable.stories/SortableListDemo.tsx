@@ -11,7 +11,7 @@ import { Sortable } from '../Sortable';
 export type ISortableListDemoProps = ISortableProps<IItem>;
 
 export const SortableListDemo: React.FC<ISortableListDemoProps> = (props) => {
-  const { items: initialItems, onChange, axis, ...other } = props;
+  const { value: initialItems, onChange, axis, ...other } = props;
   const [items, setItems] = useState(initialItems ?? []);
 
   const handleChange = useCallback(
@@ -35,7 +35,7 @@ export const SortableListDemo: React.FC<ISortableListDemoProps> = (props) => {
         w="min-content"
       >
         <Sortable
-          items={items}
+          value={items}
           onChange={handleChange}
           axis={axis}
           {...other}

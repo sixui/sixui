@@ -12,7 +12,7 @@ import { Sortable } from '../Sortable';
 export type ISortableGridDemoProps = ISortableProps<IItem>;
 
 export const SortableGridDemo: React.FC<ISortableGridDemoProps> = (props) => {
-  const { items: initialItems, onChange, ...other } = props;
+  const { value: initialItems, onChange, ...other } = props;
   const [items, setItems] = useState(initialItems ?? []);
 
   const handleChange = useCallback(
@@ -34,7 +34,7 @@ export const SortableGridDemo: React.FC<ISortableGridDemoProps> = (props) => {
         cols={3}
         spacing="$sm"
       >
-        <Sortable items={items} onChange={handleChange} {...other} />
+        <Sortable value={items} onChange={handleChange} {...other} />
       </SimpleGrid>
 
       <Flex direction="row" gap="$sm" align="center">

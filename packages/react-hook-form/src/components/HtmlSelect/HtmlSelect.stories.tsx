@@ -18,11 +18,11 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
+  name: FIELD_NAME,
   onChange: (...args) => {
     action('onChange')(args);
   },
   label: 'Label',
-  name: FIELD_NAME,
   items: ITEMS,
 } satisfies Partial<IHtmlSelectProps>;
 

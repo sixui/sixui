@@ -57,7 +57,7 @@ export const sortableFactory = <TItem,>(
     (props, _forwardedRef) => {
       const {
         axis,
-        items = [],
+        value = [],
         getItemId = factoryProps.getItemId,
         onReorder,
         onDelete,
@@ -78,7 +78,7 @@ export const sortableFactory = <TItem,>(
       const [processing, setProcessing] = useState(false);
       const [sortableItems, setSortableItems] = useState<
         Array<ISortableItem<TItem>>
-      >(items.map((item) => ({ item, id: getItemId(item) })));
+      >(value.map((item) => ({ item, id: getItemId(item) })));
 
       const mouseSensor = useSensor(MouseSensor, {
         activationConstraint,
@@ -101,7 +101,7 @@ export const sortableFactory = <TItem,>(
       // Update sortable items when items changes.
       useEffect(() => {
         setSortableItems((prevSortableItems) =>
-          items.map((item) => ({
+          value.map((item) => ({
             item,
             id: getItemId(item),
             processing: prevSortableItems.some(
@@ -111,7 +111,7 @@ export const sortableFactory = <TItem,>(
             ),
           })),
         );
-      }, [items, getItemId]);
+      }, [value, getItemId]);
 
       const handleDragEnd = useCallback(
         (event: DragEndEvent) => {

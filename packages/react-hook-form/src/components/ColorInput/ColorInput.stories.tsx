@@ -13,11 +13,11 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
+  name: FIELD_NAME,
   onChange: (...args) => {
     action('onChange')(args);
   },
   label: 'Label',
-  name: FIELD_NAME,
 } satisfies Partial<IColorInputProps>;
 
 export const Basic: IStory = {
