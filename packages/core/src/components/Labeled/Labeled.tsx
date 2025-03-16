@@ -3,12 +3,13 @@ import { useCallback, useMemo } from 'react';
 import type { ILabeledThemeFactory } from './Labeled.css';
 import type { ILabeledFactory } from './Labeled.types';
 import { Flex } from '~/components/Flex';
+import { extractFlexProps } from '~/components/Flex/extractFlexProps';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { useId } from '~/hooks/useId';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { isFunction } from '~/utils/isFunction';
 import { COMPONENT_NAME } from './Labeled.constants';
-import { LabeledContextProvider } from './Labeled.context';
+import { LabeledContextProvider, useLabeledContext } from './Labeled.context';
 import { labeledTheme } from './Labeled.css';
 
 export const Labeled = componentFactory<ILabeledFactory>(
@@ -19,14 +20,15 @@ export const Labeled = componentFactory<ILabeledFactory>(
       styles,
       style,
       variant,
+      forwardForeignProps,
       id: idProp,
-      required,
-      disabled,
+      required: requiredProp,
+      disabled: disabledProp,
       readOnly: readOnlyProp,
       hasError: hasErrorProp,
       errorText: errorTextProp,
       readOnlyOnLoading,
-      loading,
+      loading: loadingProp,
       label,
       trailingAction,
       trailingSupportingText,
@@ -35,15 +37,24 @@ export const Labeled = componentFactory<ILabeledFactory>(
       labelPosition = 'top',
       supportingTextPosition: supportingTextPositionProp,
       errorTextPosition: errorTextPositionProp,
+      withRequiredSign,
       requiredSign = '*',
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
+    const { flexProps, other: otherExceptFlexProps } = extractFlexProps(other);
 
-    const readOnly = readOnlyProp || (readOnlyOnLoading && loading);
-    const disabledOrReadOnly = disabled || readOnly;
-
+    const labeledContext = useLabeledContext();
     const id = useId(idProp);
-    const hasError = hasErrorProp && !disabledOrReadOnly;
+    const required = requiredProp || labeledContext?.required;
+    const disabled = disabledProp || labeledContext?.disabled;
+    const loading = loadingProp || labeledContext?.loading;
+    const readOnly =
+      readOnlyProp ||
+      (readOnlyOnLoading && loading) ||
+      labeledContext?.readOnly;
+    const disabledOrReadOnly = disabled || readOnly;
+    const hasError =
+      (hasErrorProp && !disabledOrReadOnly) || labeledContext?.hasError;
     const errorText = hasError ? errorTextProp : undefined;
     const orientation = ['top', 'bottom'].includes(labelPosition)
       ? 'vertical'
@@ -92,7 +103,7 @@ export const Labeled = componentFactory<ILabeledFactory>(
             <div {...getStyles('labelContainer')}>
               <label {...getStyles('label')} htmlFor={id}>
                 {label}
-                {required && requiredSign}
+                {required && withRequiredSign && requiredSign}
               </label>
             </div>
             {trailingAction && (
@@ -100,7 +111,15 @@ export const Labeled = componentFactory<ILabeledFactory>(
             )}
           </div>
         ),
-      [label, required, requiredSign, id, trailingAction, getStyles],
+      [
+        label,
+        required,
+        withRequiredSign,
+        requiredSign,
+        id,
+        trailingAction,
+        getStyles,
+      ],
     );
 
     const renderSupportingText = useCallback(
@@ -140,7 +159,12 @@ export const Labeled = componentFactory<ILabeledFactory>(
     );
 
     return (
-      <Flex {...getStyles('root')} ref={forwardedRef} {...other}>
+      <Flex
+        {...getStyles('root')}
+        ref={forwardedRef}
+        {...flexProps}
+        {...(forwardForeignProps ? undefined : otherExceptFlexProps)}
+      >
         {hasLeading && (
           <div {...getStyles('rows')}>
             {isLabelAtStart && renderLabelAndAction()}
@@ -156,9 +180,13 @@ export const Labeled = componentFactory<ILabeledFactory>(
                 children({
                   id,
                   required,
-                  disabled,
-                  readOnly,
                   loading,
+                  hasError,
+                  readOnly,
+                  disabled,
+                  foreignProps: forwardForeignProps
+                    ? otherExceptFlexProps
+                    : undefined,
                 })
               ) : (
                 <LabeledContextProvider value={labeledContextValue}>

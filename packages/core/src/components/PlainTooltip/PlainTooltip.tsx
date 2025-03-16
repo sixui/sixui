@@ -38,12 +38,12 @@ export const PlainTooltip = componentFactory<IPlainTooltipFactory>(
     return (
       <PopoverBase
         {...getStyles('root')}
-        contentRenderer={({ forwardedProps, renderCursor }) => (
+        contentRenderer={({ foreignProps, renderCursor }) => (
           <PlainTooltipContent
             renderCursor={renderCursor}
             {...mergeProps(
               { ref: forwardedRef },
-              forwardedProps as IPlainTooltipContentOwnProps,
+              foreignProps as IPlainTooltipContentOwnProps,
               plainTooltipContentProps,
             )}
           >
@@ -52,7 +52,7 @@ export const PlainTooltip = componentFactory<IPlainTooltipFactory>(
         )}
         role="tooltip"
         cursor="arrow"
-        forwardProps
+        forwardForeignProps
         openEvents={{ hover: true, focus: true }}
         positioned
         {...other}

@@ -15,6 +15,7 @@ export interface ITextAreaOwnProps
       ILabeledOwnProps,
       | 'label'
       | 'supportingText'
+      | 'withRequiredSign'
       | 'requiredSign'
       | 'hasError'
       | 'errorText'

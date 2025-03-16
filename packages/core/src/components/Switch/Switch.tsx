@@ -1,6 +1,6 @@
+import type { ILabeledProps } from '~/components/Labeled';
 import type { ISwitchThemeFactory } from './Switch.css';
-import type { ISwitchFactory, ISwitchProps } from './Switch.types';
-import { extractBoxProps } from '~/components/Box/extractBoxProps';
+import type { ISwitchFactory } from './Switch.types';
 import { Labeled } from '~/components/Labeled';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
@@ -21,18 +21,11 @@ export const Switch = componentFactory<ISwitchFactory>(
       styles,
       style,
       variant,
-      label,
-      supportingText,
-      requiredSign,
-      hasError,
-      errorText,
       labelPosition = 'right',
       labeledProps,
       controlProps,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
-    const { boxProps, other: forwardedProps } =
-      extractBoxProps<ISwitchProps>(other);
 
     const { getStyles } = useComponentTheme<ISwitchThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -52,26 +45,20 @@ export const Switch = componentFactory<ISwitchFactory>(
             .className,
         })}
         align="start"
-        label={label}
-        supportingText={supportingText}
-        requiredSign={requiredSign}
-        id={other.id}
-        required={other.required}
-        disabled={other.disabled}
-        readOnly={other.readOnly}
-        loading={other.loading}
         readOnlyOnLoading
-        hasError={hasError}
-        errorText={errorText}
         labelPosition={labelPosition}
         {...labeledProps}
-        {...boxProps}
+        {...(other as ILabeledProps)}
+        forwardForeignProps
       >
-        <SwitchControl
-          ref={forwardedRef}
-          {...controlProps}
-          {...forwardedProps}
-        />
+        {({ foreignProps, ...labeledControlProps }) => (
+          <SwitchControl
+            ref={forwardedRef}
+            {...labeledControlProps}
+            {...foreignProps}
+            {...controlProps}
+          />
+        )}
       </Labeled>
     );
   },

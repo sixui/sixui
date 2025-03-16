@@ -34,6 +34,7 @@ export const selectBaseFactory = <
         clearable,
         noResults,
         menuListProps,
+        children,
         ...other
       } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -75,7 +76,7 @@ export const selectBaseFactory = <
           matchTargetWidth
           closeOnSelect
           resetOnClose={canFilter}
-          forwardProps
+          forwardForeignProps
           noResults={noResults ?? <ListItem disabled>No results.</ListItem>}
           {...other}
         >
@@ -107,7 +108,7 @@ export const selectBaseFactory = <
               containerRef={renderProps.setTriggerRef}
               interactions={{ focused: renderProps.opened && !canFilter }}
               ref={forwardedRef}
-              {...renderProps.forwardedProps}
+              {...renderProps.foreignProps}
               {...getValueFieldProps?.(
                 renderProps,
                 singleFilterableListBase.selectedItem,
@@ -115,6 +116,7 @@ export const selectBaseFactory = <
             >
               {singleFilterableListBase.selectedItem &&
                 itemLabel(singleFilterableListBase.selectedItem)}
+              {children}
             </FieldBase>
           )}
         </FloatingFilterableListBase>

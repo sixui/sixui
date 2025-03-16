@@ -13,7 +13,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME);
 
 const classNames = createStyles({
   labelAndActionContainer: {
-    marginTop: calc.add(px(0), calc.divide(DENSITY, 2)),
+    marginTop: calc.add(px(-1), calc.divide(DENSITY, 2)),
   },
 });
 

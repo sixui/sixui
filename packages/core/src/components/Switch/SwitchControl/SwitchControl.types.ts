@@ -11,6 +11,7 @@ export interface ISwitchControlOwnProps extends IUseSwitchProps {
   checkedIcon?: React.ReactNode | true;
   uncheckedIcon?: React.ReactNode | true;
   rootRef?: React.Ref<HTMLDivElement>;
+  hasError?: boolean;
 }
 
 export interface ISwitchControlProps

@@ -33,16 +33,18 @@ export const formFieldFactory = <
   TChangeEventValue extends Array<unknown> = Parameters<
     NonNullable<TComponentProps['onChange']>
   >,
+  TComponent = React.FC<TComponentProps>,
 >(
-  component: React.FC<TComponentProps>,
+  component: TComponent,
   options?: IFormFieldFactoryOptions,
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 ) =>
   function SixuiReactHookFormField<TFieldValues extends FieldValues>(
     props: IFormFieldFactoryProps<
       Omit<TComponentProps, 'value' | 'defaultValue'>,
       TFieldValues
     >,
-  ): React.ReactNode {
+  ): TComponent {
     const formFieldProps = useFormField<TFieldValues, TChangeEventValue>(
       props,
       options,
@@ -50,24 +52,26 @@ export const formFieldFactory = <
 
     const Component = component as React.FC<IFormFieldProps<TChangeEventValue>>;
 
-    return <Component {...formFieldProps} />;
-  };
+    return (<Component {...formFieldProps} />) as TComponent;
+  } as TComponent;
 
 export const formCheckableFieldFactory = <
   TComponentProps extends IFormFieldProps<TChangeEventValue>,
   TChangeEventValue extends IUnknownParamters = Parameters<
     NonNullable<TComponentProps['onChange']>
   >,
+  TComponent = React.FC<TComponentProps>,
 >(
-  component: React.FC<TComponentProps>,
+  component: TComponent,
   options?: IFormFieldFactoryOptions,
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 ) =>
   function SixuiReactHookFormCheckableField<TFieldValues extends FieldValues>(
     props: IFormFieldFactoryProps<
       Omit<TComponentProps, 'checked' | 'defaultChecked'>,
       TFieldValues
     >,
-  ): React.ReactNode {
+  ): TComponent {
     const formFieldProps = useFormField<TFieldValues, TChangeEventValue>(
       props,
       {
@@ -78,5 +82,5 @@ export const formCheckableFieldFactory = <
 
     const Component = component as React.FC<IFormFieldProps<TChangeEventValue>>;
 
-    return <Component {...formFieldProps} />;
-  };
+    return (<Component {...formFieldProps} />) as TComponent;
+  } as TComponent;

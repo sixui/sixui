@@ -27,7 +27,7 @@ export const ScreenFrame = componentFactory<IScreenFrameFactory>(
       bounds = 'window',
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
-    const { boxProps, other: forwardedProps } =
+    const { boxProps, other: otherExceptBoxProps } =
       extractBoxProps<IScreenFrameProps>(other);
 
     const { getStyles } = useComponentTheme<IScreenFrameThemeFactory>({
@@ -47,7 +47,7 @@ export const ScreenFrame = componentFactory<IScreenFrameFactory>(
         defaultWidth={defaultWidth}
         defaultHeight={defaultHeight}
         bounds={bounds}
-        {...forwardedProps}
+        {...otherExceptBoxProps}
       >
         <Frame
           ref={forwardedRef}

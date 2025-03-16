@@ -24,7 +24,6 @@ const states: Array<IComponentPresentation<ICheckboxControlProps>> = [
   { legend: 'Focused', props: { interactions: { focused: true } } },
   { legend: 'Hovered', props: { interactions: { hovered: true } } },
   { legend: 'Pressed', props: { interactions: { pressed: true } } },
-  { legend: 'Error', props: { hasError: true } },
   { legend: 'Loading', props: { loading: true } },
   { legend: 'Disabled', props: { disabled: true } },
 ];
@@ -144,9 +143,32 @@ export const Configurations: IStory = {
       props={props}
       cols={states}
       rows={[
-        { legend: 'Unchecked' },
-        { legend: 'Indeterminate', props: { defaultIndeterminate: true } },
-        { legend: 'Checked', props: { defaultChecked: true } },
+        {
+          legend: 'Unchecked',
+        },
+        {
+          legend: 'Indeterminate',
+          props: {
+            defaultIndeterminate: true,
+          },
+        },
+        {
+          legend: 'Checked',
+          props: {
+            defaultChecked: true,
+          },
+        },
+      ]}
+      groups={[
+        {
+          legend: 'Normal',
+        },
+        {
+          legend: 'Error',
+          props: {
+            hasError: true,
+          },
+        },
       ]}
     />
   ),

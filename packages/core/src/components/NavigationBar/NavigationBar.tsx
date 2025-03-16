@@ -27,7 +27,7 @@ export const NavigationBar = componentFactory<INavigationBarFactory>(
       portalProps,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
-    const { boxProps, other: forwardedProps } =
+    const { boxProps, other: otherExceptBoxProps } =
       extractBoxProps<INavigationBarProps>(other);
 
     const { getStyles } = useComponentTheme<INavigationBarThemeFactory>({
@@ -51,7 +51,7 @@ export const NavigationBar = componentFactory<INavigationBarFactory>(
       >
         <NavigationBarContent
           {...getStyles('navigationBarContent')}
-          {...forwardedProps}
+          {...otherExceptBoxProps}
         />
       </Drawer>
     );

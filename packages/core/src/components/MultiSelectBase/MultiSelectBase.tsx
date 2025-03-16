@@ -37,6 +37,7 @@ export const multiSelectBaseFactory = <
         variant,
         noResults,
         menuListProps,
+        children,
         ...other
       } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -72,7 +73,7 @@ export const multiSelectBaseFactory = <
           initialFocus={-1}
           onQueryChange={multiFilterableListBase.handleQueryChange}
           {...other}
-          forwardProps
+          forwardForeignProps
           noResults={noResults ?? <ListItem disabled>No results.</ListItem>}
           ref={forwardedRef}
         >
@@ -218,70 +219,77 @@ export const multiSelectBaseFactory = <
             });
 
             return (
-              <TextInput.Control
-                endSlot={
-                  <FilterableListBaseFieldTrailingIcon
-                    onClear={
-                      clearable && multiFilterableListBase.selectedItems.length
-                        ? (event) => {
-                            multiFilterableListBase.handleClear(
-                              renderProps.afterItemsRemove,
-                              event,
-                            );
-                          }
-                        : undefined
-                    }
-                    opened={renderProps.opened}
-                  />
-                }
-                populated={
-                  renderProps.opened ||
-                  !!multiFilterableListBase.selectedItems.length ||
-                  !!renderProps.query
-                }
-                spellCheck="false"
-                variant={variant}
-                {...renderProps.forwardedProps}
-                {...getInputProps(
-                  renderProps.getInputFilterProps(
-                    renderProps.getTriggerProps(),
-                  ),
-                )}
-                containerRef={renderProps.setTriggerRef}
-                ref={renderProps.inputFilterRef}
-                autoComplete="off"
-              >
-                {multiFilterableListBase.selectedItems.length
-                  ? multiFilterableListBase.selectedItems.map(
-                      (selectedItem, index) => (
-                        <InputChip
-                          mr={px(4)}
-                          key={index}
-                          interactions={{
-                            focused:
-                              multiFilterableListBase.focusedSelectedItemIndex ===
-                              index
-                                ? true
-                                : undefined,
-                          }}
-                          onTrailingClick={(event) => {
-                            event.stopPropagation();
-                            onItemsChange?.(
-                              multiFilterableListBase.deselectItemAtIndex(
-                                index,
-                              ),
-                            );
-                            renderProps.afterItemsRemove([selectedItem], event);
-                          }}
-                          {...getValueFieldProps?.(renderProps, selectedItem)}
-                          nonInteractive
-                        >
-                          {itemLabel(selectedItem)}
-                        </InputChip>
-                      ),
-                    )
-                  : undefined}
-              </TextInput.Control>
+              <>
+                <TextInput.Control
+                  endSlot={
+                    <FilterableListBaseFieldTrailingIcon
+                      onClear={
+                        clearable &&
+                        multiFilterableListBase.selectedItems.length
+                          ? (event) => {
+                              multiFilterableListBase.handleClear(
+                                renderProps.afterItemsRemove,
+                                event,
+                              );
+                            }
+                          : undefined
+                      }
+                      opened={renderProps.opened}
+                    />
+                  }
+                  populated={
+                    renderProps.opened ||
+                    !!multiFilterableListBase.selectedItems.length ||
+                    !!renderProps.query
+                  }
+                  spellCheck="false"
+                  variant={variant}
+                  {...renderProps.foreignProps}
+                  {...getInputProps(
+                    renderProps.getInputFilterProps(
+                      renderProps.getTriggerProps(),
+                    ),
+                  )}
+                  containerRef={renderProps.setTriggerRef}
+                  ref={renderProps.inputFilterRef}
+                  autoComplete="off"
+                >
+                  {multiFilterableListBase.selectedItems.length
+                    ? multiFilterableListBase.selectedItems.map(
+                        (selectedItem, index) => (
+                          <InputChip
+                            mr={px(4)}
+                            key={index}
+                            interactions={{
+                              focused:
+                                multiFilterableListBase.focusedSelectedItemIndex ===
+                                index
+                                  ? true
+                                  : undefined,
+                            }}
+                            onTrailingClick={(event) => {
+                              event.stopPropagation();
+                              onItemsChange?.(
+                                multiFilterableListBase.deselectItemAtIndex(
+                                  index,
+                                ),
+                              );
+                              renderProps.afterItemsRemove(
+                                [selectedItem],
+                                event,
+                              );
+                            }}
+                            {...getValueFieldProps?.(renderProps, selectedItem)}
+                            nonInteractive
+                          >
+                            {itemLabel(selectedItem)}
+                          </InputChip>
+                        ),
+                      )
+                    : undefined}
+                </TextInput.Control>
+                {children}
+              </>
             );
           }}
         </FloatingFilterableListBase>

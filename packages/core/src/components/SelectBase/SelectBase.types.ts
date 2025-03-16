@@ -29,6 +29,7 @@ export interface ISelectBaseOwnProps<TItem>
   ) => Partial<IFieldBaseOwnProps>;
   clearable?: boolean;
   menuListProps?: Partial<IMenuListProps>;
+  children?: React.ReactNode;
 }
 
 export interface ISelectBaseProps<TItem>

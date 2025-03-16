@@ -35,6 +35,39 @@ const states: Array<IComponentPresentation<ISwitchControlProps>> = [
   { legend: 'Disabled', props: { disabled: true } },
 ];
 
+const configurationGroups: Array<IComponentPresentation<ISwitchControlProps>> =
+  [
+    {
+      legend: 'Basic',
+    },
+    {
+      legend: 'With checked icon',
+      props: { checkedIcon: true },
+    },
+    {
+      legend: 'With icons',
+      props: {
+        checkedIcon: true,
+        uncheckedIcon: true,
+      },
+    },
+    {
+      legend: 'With custom icons',
+      props: {
+        uncheckedIcon: <FontAwesomeIcon icon={faMinus} />,
+        checkedIcon: <FontAwesomeIcon icon={faPlus} />,
+      },
+    },
+    {
+      legend: 'Always on',
+      props: {
+        uncheckedIcon: <FontAwesomeIcon icon={faMoon} />,
+        checkedIcon: <FontAwesomeIcon icon={faSun} />,
+        alwaysOn: true,
+      },
+    },
+  ];
+
 const changeActions: Array<IComponentPresentation<ISwitchControlProps>> = [
   {
     legend: 'Immediate',
@@ -164,43 +197,45 @@ export const Configurations: IStory = {
       props={props}
       cols={states}
       rows={[
-        { legend: 'Unchecked' },
-        { legend: 'Checked', props: { defaultChecked: true } },
-      ]}
-      groups={[
         {
-          legend: 'Basic',
+          legend: 'Unchecked',
         },
         {
-          legend: 'With checked icon',
-          props: { checkedIcon: true },
-        },
-        {
-          legend: 'With icons',
+          legend: 'Checked',
           props: {
-            checkedIcon: true,
-            uncheckedIcon: true,
-          },
-        },
-        {
-          legend: 'With custom icons',
-          props: {
-            uncheckedIcon: <FontAwesomeIcon icon={faMinus} />,
-            checkedIcon: <FontAwesomeIcon icon={faPlus} />,
-          },
-        },
-        {
-          legend: 'Always on',
-          props: {
-            uncheckedIcon: <FontAwesomeIcon icon={faMoon} />,
-            checkedIcon: <FontAwesomeIcon icon={faSun} />,
-            alwaysOn: true,
+            defaultChecked: true,
           },
         },
       ]}
+      groups={configurationGroups}
     />
   ),
   args: defaultArgs,
+};
+
+export const ConfigurationsWithError: IStory = {
+  render: (props) => (
+    <SwitchControlShowcase
+      props={props}
+      cols={states}
+      rows={[
+        {
+          legend: 'Unchecked',
+        },
+        {
+          legend: 'Checked',
+          props: {
+            defaultChecked: true,
+          },
+        },
+      ]}
+      groups={configurationGroups}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    hasError: true,
+  },
 };
 
 export default meta;

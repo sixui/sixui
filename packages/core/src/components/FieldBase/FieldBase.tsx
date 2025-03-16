@@ -31,7 +31,7 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
       styles,
       style,
       variant = 'filled',
-      forwardProps,
+      forwardForeignProps,
       children,
       startSlot,
       endSlot,
@@ -62,7 +62,7 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const { boxProps, other: forwardedProps } =
+    const { boxProps, other: otherExceptBoxProps } =
       extractBoxProps<IFieldBaseProps>(other);
 
     const labeledContext = useLabeledContext();
@@ -387,7 +387,10 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
         {...getStyles('root')}
         interactions={stateLayer.interactionsContext.state}
         ref={handleRef}
-        {...mergeProps(wrapperProps, forwardProps ? undefined : forwardedProps)}
+        {...mergeProps(
+          wrapperProps,
+          forwardForeignProps ? undefined : otherExceptBoxProps,
+        )}
       >
         <Paper
           disabled={disabled}
@@ -431,8 +434,8 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
                     <div {...getStyles('inputWrapper')}>
                       {isFunction(children)
                         ? children({
-                            forwardedProps: forwardProps
-                              ? forwardedProps
+                            foreignProps: forwardForeignProps
+                              ? otherExceptBoxProps
                               : undefined,
                           })
                         : children}

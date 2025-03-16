@@ -21,6 +21,7 @@ export const RadioIndicator = componentFactory<IRadioIndicatorFactory>(
       checked,
       loading,
       disabled: disabledProp,
+      hasError,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -38,6 +39,7 @@ export const RadioIndicator = componentFactory<IRadioIndicatorFactory>(
         disabled,
         loading,
         checked,
+        'with-error': hasError,
       },
     });
 

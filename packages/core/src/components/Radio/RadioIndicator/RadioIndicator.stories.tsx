@@ -15,6 +15,7 @@ const defaultArgs = {} satisfies Partial<IRadioIndicatorProps>;
 
 const states: Array<IComponentPresentation<IRadioIndicatorProps>> = [
   { legend: 'Normal' },
+  { legend: 'Error', props: { hasError: true } },
   { legend: 'Disabled', props: { disabled: true } },
   { legend: 'Loading', props: { loading: true } },
 ];

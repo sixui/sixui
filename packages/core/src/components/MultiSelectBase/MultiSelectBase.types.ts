@@ -29,6 +29,7 @@ export interface IMultiSelectBaseOwnProps<TItem>
   ) => IInputChipProps;
   clearable?: boolean;
   menuListProps?: Partial<IMenuListProps>;
+  children?: React.ReactNode;
 }
 
 export interface IMultiSelectBaseProps<TItem>

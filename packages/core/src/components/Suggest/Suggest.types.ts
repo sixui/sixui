@@ -2,6 +2,7 @@ import type { IBoxProps } from '~/components/Box';
 import type { ILabeledOwnProps, ILabeledProps } from '~/components/Labeled';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IOmit } from '~/utils/types';
 import type { ISuggestThemeFactory, suggestTheme } from './Suggest.css';
 import type {
   ISuggestControlOwnProps,
@@ -11,16 +12,7 @@ import type {
 
 export interface ISuggestOwnProps
   extends ISuggestControlOwnProps,
-    Pick<
-      ILabeledOwnProps,
-      | 'label'
-      | 'supportingText'
-      | 'requiredSign'
-      | 'hasError'
-      | 'errorText'
-      | 'loading'
-      | 'readOnlyOnLoading'
-    > {
+    IOmit<ILabeledOwnProps, 'children'> {
   labeledProps?: ILabeledProps;
   controlProps?: ISuggestControlProps;
 }

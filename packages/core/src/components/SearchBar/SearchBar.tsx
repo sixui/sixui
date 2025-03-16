@@ -37,7 +37,7 @@ export const SearchBar = componentFactory<ISearchBarFactory>(
       loading,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
-    const { paperProps, other: forwardedProps } =
+    const { paperProps, other: otherExceptPaperProps } =
       extractPaperProps<ISearchBarProps>(other);
 
     const { getStyles } = useComponentTheme<ISearchBarThemeFactory>({
@@ -114,7 +114,7 @@ export const SearchBar = componentFactory<ISearchBarFactory>(
         <input
           {...getStyles('input')}
           ref={inputHandleRef}
-          {...mergeProps(focus.focusProps, forwardedProps)}
+          {...mergeProps(focus.focusProps, otherExceptPaperProps)}
         />
 
         {hasEndSlot && (

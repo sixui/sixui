@@ -40,7 +40,7 @@ export const RichTooltip = componentFactory<IRichTooltipFactory>(
     return (
       <PopoverBase
         {...getStyles('root')}
-        contentRenderer={({ forwardedProps, close, renderCursor }) => (
+        contentRenderer={({ foreignProps, close, renderCursor }) => (
           <RichTooltipContent
             renderCursor={renderCursor}
             {...mergeProps(
@@ -48,7 +48,7 @@ export const RichTooltip = componentFactory<IRichTooltipFactory>(
                 onClose: close,
                 ref: forwardedRef,
               },
-              forwardedProps as IRichTooltipContentOwnProps,
+              foreignProps as IRichTooltipContentOwnProps,
               richTooltipContentProps,
             )}
           >
@@ -57,7 +57,7 @@ export const RichTooltip = componentFactory<IRichTooltipFactory>(
         )}
         role="tooltip"
         cursor="dot"
-        forwardProps
+        forwardForeignProps
         placement={placement}
         openEvents={{
           click: !!persistent,

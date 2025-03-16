@@ -11,6 +11,7 @@ export interface IRadioIndicatorOwnProps extends IPaperBaseOwnProps {
   checked?: boolean;
   loading?: boolean;
   disabled?: boolean;
+  hasError?: boolean;
 }
 
 export interface IRadioIndicatorProps

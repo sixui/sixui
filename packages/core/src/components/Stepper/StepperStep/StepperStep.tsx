@@ -41,7 +41,7 @@ export const StepperStep = componentFactory<IStepperStepFactory>(
       children,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
-    const { boxProps, other: forwardedProps } =
+    const { boxProps, other: otherExceptBoxProps } =
       extractBoxProps<IStepperStepProps>(other);
 
     const stepperStepperContext = useStepperContext();
@@ -163,7 +163,7 @@ export const StepperStep = componentFactory<IStepperStepFactory>(
                     disabled={disabled}
                   />
                 }
-                {...forwardedProps}
+                {...otherExceptBoxProps}
               >
                 {(label || supportingText) && (
                   <>

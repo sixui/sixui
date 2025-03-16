@@ -81,7 +81,7 @@ export const floatingFilterableListBaseFactory = <
       floatingMotionProps,
       portalProps,
       keepMounted,
-      forwardProps,
+      forwardForeignProps,
       ...other
     } = useProps({
       componentName: COMPONENT_NAME,
@@ -393,7 +393,7 @@ export const floatingFilterableListBaseFactory = <
               query,
               inputFilterRef,
               getInputFilterProps,
-              forwardedProps: forwardProps ? other : undefined,
+              foreignProps: forwardForeignProps ? other : undefined,
             })
           : children}
 
@@ -460,7 +460,7 @@ export const floatingFilterableListBaseFactory = <
                       createNewItemFromQuery={createNewItemFromQuery}
                       createNewItemPosition={createNewItemPosition}
                       cols={cols}
-                      {...(forwardProps ? undefined : other)}
+                      {...(forwardForeignProps ? undefined : other)}
                     />
                   </FloatingList>
                 </Motion>

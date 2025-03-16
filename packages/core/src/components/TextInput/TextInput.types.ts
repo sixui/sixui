@@ -15,6 +15,7 @@ export interface ITextInputOwnProps
       ILabeledOwnProps,
       | 'label'
       | 'supportingText'
+      | 'withRequiredSign'
       | 'requiredSign'
       | 'hasError'
       | 'errorText'

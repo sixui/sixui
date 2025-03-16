@@ -36,6 +36,7 @@ export const SwitchControl = componentFactory<ISwitchControlFactory>(
       id: idProp,
       value,
       rootRef,
+      hasError,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -114,6 +115,7 @@ export const SwitchControl = componentFactory<ISwitchControlFactory>(
           stateLayer={
             <StateLayer {...getStyles('stateLayer')} context={stateLayer} />
           }
+          hasError={hasError}
         />
 
         <input

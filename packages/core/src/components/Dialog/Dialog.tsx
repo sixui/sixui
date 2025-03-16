@@ -39,12 +39,12 @@ export const Dialog = polymorphicComponentFactory<IDialogFactory>(
     return (
       <PopoverBase
         {...getStyles('root')}
-        contentRenderer={({ close, forwardedProps }) => (
+        contentRenderer={({ close, foreignProps }) => (
           <DialogContent
             ref={forwardedRef}
             {...mergeProps(
               { onClose: close },
-              forwardedProps as IDialogContentOwnProps,
+              foreignProps as IDialogContentOwnProps,
             )}
           >
             {children}
@@ -52,7 +52,7 @@ export const Dialog = polymorphicComponentFactory<IDialogFactory>(
         )}
         closeEvents={{ focusOut: false }}
         middlewares={false}
-        forwardProps
+        forwardForeignProps
         scrim={scrim}
         {...other}
       />

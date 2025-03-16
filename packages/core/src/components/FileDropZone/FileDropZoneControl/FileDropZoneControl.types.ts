@@ -26,6 +26,7 @@ export type IFileDropZoneControlStrings = Record<
 >;
 
 export interface IFileDropZoneControlOwnProps {
+  id?: string;
   supportingText?: React.ReactNode;
   trailingSupportingText?: React.ReactNode;
   hasError?: boolean;

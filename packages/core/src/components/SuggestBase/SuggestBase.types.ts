@@ -34,6 +34,7 @@ export interface ISuggestBaseOwnProps<TItem>
   ) => Partial<ITextInputControlOwnProps>;
   clearable?: boolean;
   menuListProps?: Partial<IMenuListProps>;
+  children?: React.ReactNode;
 }
 
 export interface ISuggestBaseProps<TItem>

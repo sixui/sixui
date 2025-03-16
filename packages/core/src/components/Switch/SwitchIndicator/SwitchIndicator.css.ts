@@ -3,6 +3,7 @@ import { calc } from '@vanilla-extract/css-utils';
 
 import type { IInteraction } from '~/hooks/useInteractions';
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { CircularProgressIndicator } from '~/components/CircularProgressIndicator';
 import { PaperBase } from '~/components/PaperBase';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
@@ -20,7 +21,8 @@ type IModifier =
   | 'on'
   | 'checked'
   | 'with-icon'
-  | 'loading';
+  | 'loading'
+  | 'with-error';
 
 const DENSITY = px(density({ min: -2, max: 0 }));
 
@@ -33,6 +35,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
     color: {
       normal: themeTokens.colorScheme.surfaceContainerHighest,
       disabled: themeTokens.colorScheme.surfaceContainerHighest,
+      error: themeTokens.colorScheme.surfaceContainerHighest,
     },
     opacity: {
       disabled: themeTokens.state.opacity.disabled,
@@ -42,22 +45,37 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
     color: {
       normal: themeTokens.colorScheme.primary,
       disabled: themeTokens.colorScheme.onSurface,
+      error: themeTokens.colorScheme.error,
     },
     opacity: {
       disabled: themeTokens.state.containerOpacity.disabled,
     },
   },
   outline$off: {
+    color: {
+      normal: themeTokens.colorScheme.outlineVariant,
+      disabled: themeTokens.colorScheme.onSurface,
+      error: themeTokens.colorScheme.error,
+    },
     width: {
       normal: px(themeTokens.outline.width.sm),
+      disabled: px(themeTokens.outline.width.none),
+      error: px(themeTokens.outline.width.sm),
     },
     opacity: {
-      disabled: themeTokens.state.opacity.disabled,
+      disabled: themeTokens.state.outlineOpacity.disabled,
     },
   },
   outline$on: {
+    color: {
+      normal: themeTokens.colorScheme.outlineVariant,
+      disabled: themeTokens.colorScheme.onSurface,
+      error: themeTokens.colorScheme.error,
+    },
     width: {
       normal: px(themeTokens.outline.width.none),
+      disabled: px(themeTokens.outline.width.none),
+      error: px(themeTokens.outline.width.none),
     },
     opacity: {
       // disabled: themeTokens.state.outlineOpacity.disabled,
@@ -81,6 +99,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
       focused: themeTokens.colorScheme.onSurfaceVariant,
       pressed: themeTokens.colorScheme.onSurfaceVariant,
       disabled: themeTokens.colorScheme.onSurfaceVariant,
+      error: themeTokens.colorScheme.outline,
     },
     opacity: {
       disabled: themeTokens.state.opacity.disabled,
@@ -103,6 +122,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
       focused: themeTokens.colorScheme.primaryContainer,
       pressed: themeTokens.colorScheme.primaryContainer,
       disabled: themeTokens.colorScheme.surface,
+      error: themeTokens.colorScheme.onError,
     },
     opacity: {
       disabled: '1',
@@ -127,7 +147,8 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
       focused: 'inherit',
       hovered: 'inherit',
       pressed: 'inherit',
-      disabled: themeTokens.colorScheme.surface,
+      disabled: themeTokens.colorScheme.outlineVariant,
+      error: themeTokens.colorScheme.error,
     },
     opacity: {
       disabled: themeTokens.state.opacity.disabled,
@@ -145,16 +166,33 @@ const classNames = createStyles({
 
     vars: overrideTokens(PaperBase.theme.tokens, {
       container: {
-        color: tokens.container$off.color.normal,
         shape: px(themeTokens.shape.corner.full),
+        color: tokens.container$off.color.normal,
       },
       outline: {
-        width: px(tokens.outline$off.width.normal),
-        opacity: tokens.container$off.opacity.disabled,
+        width: tokens.outline$off.width.normal,
+        color: tokens.outline$off.color.normal,
       },
     }),
 
     selectors: {
+      [modifierSelector<IModifier>('with-error')]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
+          container: {
+            color: tokens.container$off.color.error,
+          },
+          outline: {
+            color: fallbackVar(
+              tokens.outline$off.color.error,
+              tokens.outline$off.color.normal,
+            ),
+            width: fallbackVar(
+              tokens.outline$off.width.error,
+              tokens.outline$off.width.normal,
+            ),
+          },
+        }),
+      },
       [modifierSelector<IModifier>('disabled')]: {
         vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
@@ -162,7 +200,8 @@ const classNames = createStyles({
             opacity: tokens.container$off.opacity.disabled,
           },
           outline: {
-            opacity: tokens.outline$off.opacity.disabled,
+            color: tokens.outline$off.color.disabled,
+            width: tokens.outline$off.width.disabled,
           },
         }),
       },
@@ -172,7 +211,25 @@ const classNames = createStyles({
             color: tokens.container$on.color.normal,
           },
           outline: {
-            width: px(tokens.outline$on.width.normal),
+            color: tokens.outline$on.color.normal,
+            width: tokens.outline$on.width.normal,
+          },
+        }),
+      },
+      [modifierSelector<IModifier>(['on', 'with-error'])]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
+          container: {
+            color: tokens.container$on.color.error,
+          },
+          outline: {
+            color: fallbackVar(
+              tokens.outline$on.color.error,
+              tokens.outline$on.color.normal,
+            ),
+            width: fallbackVar(
+              tokens.outline$on.width.error,
+              tokens.outline$on.width.normal,
+            ),
           },
         }),
       },
@@ -183,6 +240,8 @@ const classNames = createStyles({
             opacity: tokens.container$on.opacity.disabled,
           },
           outline: {
+            color: tokens.outline$on.color.disabled,
+            width: tokens.outline$on.width.disabled,
             opacity: tokens.outline$on.opacity.disabled,
           },
         }),
@@ -245,6 +304,26 @@ const classNames = createStyles({
       }),
     },
     selectors: {
+      [modifierSelector<IModifier>(['!on', 'with-error'], root)]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
+          container: {
+            color: fallbackVar(
+              tokens.handle$off.color.error,
+              tokens.handle$off.color.normal,
+            ),
+          },
+        }),
+      },
+      [modifierSelector<IModifier>(['on', 'with-error'], root)]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
+          container: {
+            color: fallbackVar(
+              tokens.handle$on.color.error,
+              tokens.handle$on.color.normal,
+            ),
+          },
+        }),
+      },
       [modifierSelector<IModifier>(
         {
           on: false,
@@ -328,7 +407,8 @@ const classNames = createStyles({
       [modifierSelector<IModifier>({ on: true }, root)]: {
         width: calc.add(tokens.handle$on.width.normal, DENSITY),
         height: calc.add(tokens.handle$on.height.normal, DENSITY),
-
+      },
+      [modifierSelector<IModifier>({ on: true, 'with-error': false }, root)]: {
         vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: tokens.handle$on.color.normal,
@@ -338,6 +418,7 @@ const classNames = createStyles({
       [modifierSelector<IModifier>(
         {
           on: true,
+          'with-error': false,
           focused: true,
         },
         root,
@@ -354,6 +435,7 @@ const classNames = createStyles({
       [modifierSelector<IModifier>(
         {
           on: true,
+          'with-error': false,
           hovered: true,
         },
         root,
@@ -370,15 +452,11 @@ const classNames = createStyles({
       [modifierSelector<IModifier>(
         {
           on: true,
+          'with-error': false,
           pressed: true,
         },
         root,
       )]: {
-        width: calc.add(tokens.handle$on.width.pressed, DENSITY),
-        height: calc.add(tokens.handle$on.height.pressed, DENSITY),
-        transitionTimingFunction: themeTokens.motion.easing.standard.normal,
-        transitionDuration: themeTokens.motion.duration.short3,
-
         vars: overrideTokens(PaperBase.theme.tokens, {
           container: {
             color: fallbackVar(
@@ -387,6 +465,18 @@ const classNames = createStyles({
             ),
           },
         }),
+      },
+      [modifierSelector<IModifier>(
+        {
+          on: true,
+          pressed: true,
+        },
+        root,
+      )]: {
+        width: calc.add(tokens.handle$on.width.pressed, DENSITY),
+        height: calc.add(tokens.handle$on.height.pressed, DENSITY),
+        transitionTimingFunction: themeTokens.motion.easing.standard.normal,
+        transitionDuration: themeTokens.motion.duration.short3,
       },
       [modifierSelector<IModifier>(
         {
@@ -448,7 +538,10 @@ const classNames = createStyles({
         opacity: 1,
       },
       [modifierSelector<IModifier>(['on', 'disabled'], root)]: {
-        color: themeTokens.colorScheme.outlineVariant,
+        color: tokens.icon$checked.color.disabled,
+      },
+      [modifierSelector<IModifier>(['on', '!disabled', 'with-error'], root)]: {
+        color: tokens.icon$checked.color.error,
       },
     },
   }),
@@ -477,8 +570,17 @@ const classNames = createStyles({
     },
   }),
   progressIndicator: {
-    width: tokens.icon.size,
-    height: tokens.icon.size,
+    width: calc.add(tokens.icon.size, DENSITY),
+    height: calc.add(tokens.icon.size, DENSITY),
+
+    vars: overrideTokens(CircularProgressIndicator.theme.tokens, {
+      activeIndicator: {
+        color: {
+          normal: themeTokens.colorScheme.onSurface,
+          disabled: themeTokens.colorScheme.onSurface,
+        },
+      },
+    }),
   },
 });
 

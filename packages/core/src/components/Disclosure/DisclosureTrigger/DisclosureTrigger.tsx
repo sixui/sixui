@@ -43,7 +43,7 @@ export const DisclosureTrigger = componentFactory<IDisclosureTriggerFactory>(
       onClick,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
-    const { boxProps, other: forwardedProps } = extractBoxProps(other);
+    const { boxProps, other: otherExceptBoxProps } = extractBoxProps(other);
 
     const expandableContext = useExpandableContext();
     const [checked, setChecked] = useControlledValue({
@@ -129,7 +129,7 @@ export const DisclosureTrigger = componentFactory<IDisclosureTriggerFactory>(
           disabled={disabled}
           readOnly={readOnly}
           onClick={handleClick}
-          {...forwardedProps}
+          {...otherExceptBoxProps}
         />
 
         {toggleable && (

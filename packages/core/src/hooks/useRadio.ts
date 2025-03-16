@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 
 import type { IMaybeAsync } from '~/utils/types';
 import { useLabeledContext } from '~/components/Labeled/Labeled.context';
-import { useRadioGroupContext } from '~/components/Radio/RadioGroup/RadioGroup.context';
+import { useRadioGroupControlContext } from '~/components/RadioGroup//RadioGroupControl/RadioGroupControl.context';
 import { executeLazyPromise } from '~/utils/executeLazyPromise';
 
 export interface IUseRadioProps {
@@ -18,6 +18,7 @@ export interface IUseRadioProps {
   required?: boolean;
   id?: string;
   name?: string;
+  hasError?: boolean;
 }
 
 export interface IUseRadioResult {
@@ -29,31 +30,40 @@ export interface IUseRadioResult {
   id?: string;
   handleChange: React.ChangeEventHandler<HTMLInputElement>;
   name?: string;
+  hasError?: boolean;
 }
 
 export const useRadio = (props: IUseRadioProps): IUseRadioResult => {
   const labeledContext = useLabeledContext();
-  const radioGroupContext = useRadioGroupContext();
+  const radioGroupControlContext = useRadioGroupControlContext();
   const [handlingChange, setHandlingChange] = useState(false);
 
   const loading =
     props.loading ||
     handlingChange ||
     labeledContext?.loading ||
-    (radioGroupContext?.loading &&
-      radioGroupContext.changingValue === props.value);
+    (radioGroupControlContext?.loading &&
+      radioGroupControlContext.changingValue === props.value);
   const readOnly =
     props.readOnly ||
     labeledContext?.readOnly ||
-    radioGroupContext?.loading ||
+    radioGroupControlContext?.readOnly ||
+    radioGroupControlContext?.loading ||
     loading;
-  const disabled = props.disabled || labeledContext?.disabled;
+  const disabled =
+    props.disabled ||
+    labeledContext?.disabled ||
+    radioGroupControlContext?.disabled;
   const required = props.required ?? labeledContext?.required;
+  const hasError =
+    props.hasError ??
+    radioGroupControlContext?.hasError ??
+    labeledContext?.hasError;
   const id = props.id ?? labeledContext?.id;
-  const name = radioGroupContext?.name ?? props.name;
+  const name = radioGroupControlContext?.name ?? props.name;
   const checked = !!(
-    (radioGroupContext?.value !== undefined &&
-      radioGroupContext.value === props.value) ||
+    (radioGroupControlContext?.value !== undefined &&
+      radioGroupControlContext.value === props.value) ||
     props.checked
   );
 
@@ -68,10 +78,10 @@ export const useRadio = (props: IUseRadioProps): IUseRadioResult => {
 
       void executeLazyPromise(async () => {
         await props.onChange?.(nextChecked, event);
-        await radioGroupContext?.onChange?.(nextValue, event);
+        await radioGroupControlContext?.onChange?.(nextValue, event);
       }, setHandlingChange);
     },
-    [props, handlingChange, radioGroupContext],
+    [props, handlingChange, radioGroupControlContext],
   );
 
   return {
@@ -83,5 +93,6 @@ export const useRadio = (props: IUseRadioProps): IUseRadioResult => {
     id,
     handleChange,
     name,
+    hasError,
   };
 };

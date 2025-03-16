@@ -25,7 +25,7 @@ export const StandardSideSheet = componentFactory<IStandardSideSheetFactory>(
       onClosed,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
-    const { dataProps, other: forwardedProps } = extractDataProps(other);
+    const { dataProps, other: otherExceptDataProps } = extractDataProps(other);
 
     const { getStyles } = useComponentTheme<IStandardSideSheetThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -56,7 +56,7 @@ export const StandardSideSheet = componentFactory<IStandardSideSheetFactory>(
           onClose={onClose}
           divider={divider}
           {...getStyles('sideSheetContent')}
-          {...forwardedProps}
+          {...otherExceptDataProps}
         />
       </StandardAside>
     );

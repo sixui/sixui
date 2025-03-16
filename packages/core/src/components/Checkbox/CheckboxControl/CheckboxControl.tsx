@@ -35,7 +35,7 @@ export const CheckboxControl = componentFactory<ICheckboxControlFactory>(
       required: requiredProp,
       id: idProp,
       rootRef,
-      hasError,
+      hasError: hasErrorProp,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -48,6 +48,7 @@ export const CheckboxControl = componentFactory<ICheckboxControlFactory>(
       indeterminate,
       id,
       handleChange,
+      hasError,
     } = useCheckbox({
       componentName: COMPONENT_NAME,
       checked: checkedProp,
@@ -61,6 +62,7 @@ export const CheckboxControl = componentFactory<ICheckboxControlFactory>(
       readOnly: readOnlyProp,
       required: requiredProp,
       id: idProp,
+      hasError: hasErrorProp,
     });
 
     const disabledOrReadOnly = disabled || readOnly;

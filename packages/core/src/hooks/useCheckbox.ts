@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 
 import type { IMaybeAsync } from '~/utils/types';
-import { useCheckboxGroupContext } from '~/components/Checkbox/CheckboxGroup/CheckboxGroup.context';
+import { useCheckboxGroupControlContext } from '~/components/CheckboxGroup/CheckboxGroupControl/CheckboxGroupControl.context';
 import { useLabeledContext } from '~/components/Labeled/Labeled.context';
 import { useControlledValue } from '~/hooks/useControlledValue';
 import { executeLazyPromise } from '~/utils/executeLazyPromise';
@@ -22,6 +22,7 @@ export interface IUseCheckboxProps {
   readOnly?: boolean;
   required?: boolean;
   id?: string;
+  hasError?: boolean;
 }
 
 export interface IUseCheckboxResult {
@@ -33,11 +34,12 @@ export interface IUseCheckboxResult {
   indeterminate?: boolean;
   id?: string;
   handleChange: React.ChangeEventHandler<HTMLInputElement>;
+  hasError?: boolean;
 }
 
 export const useCheckbox = (props: IUseCheckboxProps): IUseCheckboxResult => {
   const labeledContext = useLabeledContext();
-  const checkboxGroupContext = useCheckboxGroupContext();
+  const checkboxGroupControlContext = useCheckboxGroupControlContext();
   const [handlingChange, setHandlingChange] = useState(false);
   const [checkedValue, setCheckedValue] = useControlledValue({
     controlled: props.checked,
@@ -54,21 +56,29 @@ export const useCheckbox = (props: IUseCheckboxProps): IUseCheckboxResult => {
     props.loading ||
     handlingChange ||
     labeledContext?.loading ||
-    (checkboxGroupContext?.loading &&
+    (checkboxGroupControlContext?.loading &&
       props.value !== undefined &&
-      checkboxGroupContext.changingValues?.includes(props.value));
+      checkboxGroupControlContext.changingValues?.includes(props.value));
   const readOnly =
     props.readOnly ||
     labeledContext?.readOnly ||
-    checkboxGroupContext?.loading ||
+    checkboxGroupControlContext?.readOnly ||
+    checkboxGroupControlContext?.loading ||
     loading;
-  const disabled = props.disabled || labeledContext?.disabled;
+  const disabled =
+    props.disabled ||
+    labeledContext?.disabled ||
+    checkboxGroupControlContext?.disabled;
   const required = props.required ?? labeledContext?.required;
+  const hasError =
+    props.hasError ??
+    checkboxGroupControlContext?.hasError ??
+    labeledContext?.hasError;
   const id = props.id ?? labeledContext?.id;
   const checked =
     !!(
       (props.value !== undefined &&
-        checkboxGroupContext?.values?.includes(props.value)) ||
+        checkboxGroupControlContext?.value?.includes(props.value)) ||
       checkedValue
     ) && !indeterminate;
 
@@ -79,13 +89,16 @@ export const useCheckbox = (props: IUseCheckboxProps): IUseCheckboxResult => {
       }
 
       const nextChecked = event.target.checked;
-      const nextValues = checkboxGroupContext
+      const nextValues = checkboxGroupControlContext
         ? [
             ...new Set(
               event.target.checked
-                ? [...(checkboxGroupContext.values ?? []), event.target.value]
+                ? [
+                    ...(checkboxGroupControlContext.value ?? []),
+                    event.target.value,
+                  ]
                 : [
-                    ...(checkboxGroupContext.values?.filter(
+                    ...(checkboxGroupControlContext.value?.filter(
                       (value) => value !== event.target.value,
                     ) ?? []),
                   ],
@@ -95,9 +108,9 @@ export const useCheckbox = (props: IUseCheckboxProps): IUseCheckboxResult => {
 
       void executeLazyPromise(async () => {
         await props.onChange?.(nextChecked, event);
-        await checkboxGroupContext?.onChange?.(nextValues, event);
+        await checkboxGroupControlContext?.onChange?.(nextValues, event);
       }, setHandlingChange).finally(() => {
-        if (!checkboxGroupContext) {
+        if (!checkboxGroupControlContext) {
           setCheckedValue(nextChecked);
         }
         setIndeterminate(false);
@@ -108,7 +121,7 @@ export const useCheckbox = (props: IUseCheckboxProps): IUseCheckboxResult => {
       handlingChange,
       setCheckedValue,
       setIndeterminate,
-      checkboxGroupContext,
+      checkboxGroupControlContext,
     ],
   );
 
@@ -121,5 +134,6 @@ export const useCheckbox = (props: IUseCheckboxProps): IUseCheckboxResult => {
     indeterminate,
     id,
     handleChange,
+    hasError,
   };
 };

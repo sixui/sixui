@@ -15,6 +15,7 @@ export interface ISwitchIndicatorOwnProps extends IPaperBaseOwnProps {
   uncheckedIcon?: React.ReactNode | true;
   alwaysOn?: boolean;
   stateLayer?: React.ReactNode;
+  hasError?: boolean;
 }
 
 export interface ISwitchIndicatorProps

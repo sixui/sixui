@@ -1,14 +1,12 @@
+import type { ILabeledProps } from '~/components/Labeled';
 import type { ICheckboxThemeFactory } from './Checkbox.css';
-import type { ICheckboxFactory, ICheckboxProps } from './Checkbox.types';
-import { extractBoxProps } from '~/components/Box/extractBoxProps';
+import type { ICheckboxFactory } from './Checkbox.types';
 import { Labeled } from '~/components/Labeled';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { mergeClassNames } from '~/utils/css';
 import { COMPONENT_NAME } from './Checkbox.constants';
-import { CheckboxCard } from './CheckboxCard';
 import { CheckboxControl } from './CheckboxControl';
-import { CheckboxGroup } from './CheckboxGroup';
 import { CheckboxIndicator } from './CheckboxIndicator';
 import { checkboxTheme } from './Checkbox.css';
 
@@ -23,18 +21,11 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
       styles,
       style,
       variant,
-      label,
-      supportingText,
-      requiredSign,
-      hasError,
-      errorText,
       labelPosition = 'right',
       labeledProps,
       controlProps,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
-    const { boxProps, other: forwardedProps } =
-      extractBoxProps<ICheckboxProps>(other);
 
     const { getStyles } = useComponentTheme<ICheckboxThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -54,27 +45,20 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
             .className,
         })}
         align="start"
-        label={label}
-        supportingText={supportingText}
-        requiredSign={requiredSign}
-        id={other.id}
-        required={other.required}
-        disabled={other.disabled}
-        readOnly={other.readOnly}
-        loading={other.loading}
         readOnlyOnLoading
-        hasError={hasError}
-        errorText={errorText}
         labelPosition={labelPosition}
         {...labeledProps}
-        {...boxProps}
+        {...(other as ILabeledProps)}
+        forwardForeignProps
       >
-        <CheckboxControl
-          hasError={hasError}
-          ref={forwardedRef}
-          {...controlProps}
-          {...forwardedProps}
-        />
+        {({ foreignProps, ...labeledControlProps }) => (
+          <CheckboxControl
+            ref={forwardedRef}
+            {...labeledControlProps}
+            {...foreignProps}
+            {...controlProps}
+          />
+        )}
       </Labeled>
     );
   },
@@ -84,5 +68,3 @@ Checkbox.displayName = `@sixui/core/${COMPONENT_NAME}`;
 Checkbox.theme = checkboxTheme;
 Checkbox.Control = CheckboxControl;
 Checkbox.Indicator = CheckboxIndicator;
-Checkbox.Group = CheckboxGroup;
-Checkbox.Card = CheckboxCard;

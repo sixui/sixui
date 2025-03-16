@@ -36,6 +36,7 @@ const Sortable = sortableFactory<IFileDropZoneFile>({
 export const FileDropZoneControl =
   componentFactory<IFileDropZoneControlFactory>((props, forwardedRef) => {
     const {
+      id,
       classNames,
       className,
       styles,
@@ -313,6 +314,7 @@ export const FileDropZoneControl =
       <Box {...getStyles('root')} ref={rootRef} {...other}>
         <input
           {...getInputProps()}
+          id={id}
           ref={handleInputRef}
           capture={capture}
           required={required}

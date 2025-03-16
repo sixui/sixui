@@ -33,6 +33,7 @@ export const RadioControl = componentFactory<IRadioControlFactory>(
       value,
       id: idProp,
       rootRef,
+      hasError: hasErrorProp,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -45,6 +46,7 @@ export const RadioControl = componentFactory<IRadioControlFactory>(
       id,
       handleChange,
       name,
+      hasError,
     } = useRadio({
       checked: checkedProp,
       value,
@@ -55,6 +57,7 @@ export const RadioControl = componentFactory<IRadioControlFactory>(
       required: requiredProp,
       id: idProp,
       name: nameProp,
+      hasError: hasErrorProp,
     });
 
     const disabledOrReadOnly = disabled || readOnly;
@@ -102,6 +105,7 @@ export const RadioControl = componentFactory<IRadioControlFactory>(
           loading={loading}
           disabled={disabledOrReadOnly}
           interactions={stateLayer.interactionsContext.state}
+          hasError={hasError}
         />
 
         <input

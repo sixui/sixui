@@ -1,7 +1,6 @@
 import { fallbackVar } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
-import type { IInteraction } from '~/hooks/useInteractions';
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { Checkmark } from '~/components/Checkmark';
 import { PaperBase } from '~/components/PaperBase';
@@ -15,13 +14,7 @@ import { px } from '~/utils/css/px';
 import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './CheckboxIndicator.constants';
 
-type IModifier =
-  | IInteraction
-  | 'disabled'
-  | 'on'
-  | 'was-disabled'
-  | 'loading'
-  | 'with-error';
+type IModifier = 'disabled' | 'on' | 'was-disabled' | 'loading' | 'with-error';
 
 const DENSITY = px(density({ min: -1, max: 0 }));
 
@@ -36,9 +29,6 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container$off: {
     color: {
       normal: 'transparent',
-      focused: 'inherit',
-      hovered: 'inherit',
-      pressed: 'inherit',
       disabled: 'inherit',
       error: 'transparent',
     },
@@ -56,9 +46,6 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container$on: {
     color: {
       normal: themeTokens.colorScheme.primary,
-      focused: 'inherit',
-      hovered: 'inherit',
-      pressed: 'inherit',
       disabled: themeTokens.colorScheme.onSurface,
       error: themeTokens.colorScheme.error,
     },
@@ -70,9 +57,6 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
     size: px(12),
     color: {
       normal: themeTokens.colorScheme.onPrimary,
-      focused: 'inherit',
-      hovered: 'inherit',
-      pressed: 'inherit',
       disabled: themeTokens.colorScheme.surface,
       error: themeTokens.colorScheme.onError,
     },
@@ -108,9 +92,6 @@ const classNames = createStyles({
             width: px(themeTokens.outline.width.none),
           },
         }),
-      },
-      [modifierSelector<IModifier>('hovered')]: {
-        zIndex: 1,
       },
       [modifierSelector<IModifier>(['on', 'disabled'])]: {
         vars: overrideTokens(PaperBase.theme.tokens, {
@@ -158,6 +139,7 @@ const classNames = createStyles({
     transitionDuration: `${themeTokens.motion.duration.short3}, ${themeTokens.motion.duration.short1}`,
     transitionTimingFunction: `${themeTokens.motion.easing.emphasized.accelerate}, linear`,
     transform: 'scale(0.6)',
+    transformOrigin: 'center',
 
     selectors: {
       [modifierSelector<IModifier>('disabled', root)]: {
@@ -166,15 +148,6 @@ const classNames = createStyles({
         // checkboxIndicator state is programmatically changed while disabled.
         animationDuration: '0s',
         transitionDuration: '0s',
-      },
-      [modifierSelector<IModifier>('focused', root)]: {
-        backgroundColor: tokens.container$off.color.focused,
-      },
-      [modifierSelector<IModifier>('hovered', root)]: {
-        backgroundColor: tokens.container$off.color.hovered,
-      },
-      [modifierSelector<IModifier>('pressed', root)]: {
-        backgroundColor: tokens.container$off.color.pressed,
       },
       [modifierSelector<IModifier>('disabled', root)]: {
         backgroundColor: tokens.container$off.color.disabled,
@@ -186,24 +159,6 @@ const classNames = createStyles({
         transform: 'scale(1)',
         opacity: 1,
         backgroundColor: tokens.container$on.color.normal,
-      },
-      [modifierSelector<IModifier>(['on', 'focused'], root)]: {
-        backgroundColor: fallbackVar(
-          tokens.container$on.color.focused,
-          tokens.container$on.color.normal,
-        ),
-      },
-      [modifierSelector<IModifier>(['on', 'hovered'], root)]: {
-        backgroundColor: fallbackVar(
-          tokens.container$on.color.hovered,
-          tokens.container$on.color.normal,
-        ),
-      },
-      [modifierSelector<IModifier>(['on', 'pressed'], root)]: {
-        backgroundColor: fallbackVar(
-          tokens.container$on.color.pressed,
-          tokens.container$on.color.normal,
-        ),
       },
       [modifierSelector<IModifier>(['on', 'disabled'], root)]: {
         animationDuration: '0s',
@@ -245,6 +200,7 @@ const classNames = createStyles({
     transitionDuration: `${themeTokens.motion.duration.short3}, ${themeTokens.motion.duration.short1}`,
     transitionTimingFunction: `${themeTokens.motion.easing.emphasized.accelerate}, linear`,
     transform: 'scale(0.6)',
+    transformOrigin: 'center',
     opacity: 0,
 
     vars: overrideTokens(Checkmark.theme.tokens, {
@@ -258,15 +214,6 @@ const classNames = createStyles({
         transitionTimingFunction: `${themeTokens.motion.easing.emphasized.decelerate}, linear`,
         transform: 'scale(1)',
         opacity: 1,
-      },
-      [modifierSelector<IModifier>('focused', root)]: {
-        fill: fallbackVar(tokens.icon.color.focused, tokens.icon.color.normal),
-      },
-      [modifierSelector<IModifier>('hovered', root)]: {
-        fill: fallbackVar(tokens.icon.color.hovered, tokens.icon.color.normal),
-      },
-      [modifierSelector<IModifier>('pressed', root)]: {
-        fill: fallbackVar(tokens.icon.color.pressed, tokens.icon.color.normal),
       },
       [modifierSelector<IModifier>('disabled', root)]: {
         // Don't animate to/from disabled states because the outline is hidden

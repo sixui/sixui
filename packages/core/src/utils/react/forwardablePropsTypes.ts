@@ -1,6 +1,6 @@
 export type IRendererPropsWithForwardedProps<TRenderProps, TForwardedProps> =
   TRenderProps & {
-    forwardedProps?: TForwardedProps;
+    foreignProps?: TForwardedProps;
   };
 
 export type IRendererWithForwardedProps<
@@ -13,5 +13,5 @@ export type IRendererWithForwardedProps<
     ) => React.ReactNode);
 
 export type IForwardableProps = {
-  forwardProps?: boolean;
+  forwardForeignProps?: boolean;
 };

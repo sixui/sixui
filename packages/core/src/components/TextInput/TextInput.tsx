@@ -15,6 +15,7 @@ export const TextInput = componentFactory<ITextInputFactory>(
     const {
       label,
       supportingText,
+      withRequiredSign,
       requiredSign,
       errorText,
       readOnlyOnLoading,
@@ -22,7 +23,7 @@ export const TextInput = componentFactory<ITextInputFactory>(
       controlProps,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
-    const { boxProps, other: forwardedProps } =
+    const { boxProps, other: otherExceptBoxProps } =
       extractBoxProps<ITextInputProps>(other);
 
     return (
@@ -30,6 +31,7 @@ export const TextInput = componentFactory<ITextInputFactory>(
         label={label}
         supportingText={supportingText}
         errorTextPosition="end"
+        withRequiredSign={withRequiredSign}
         requiredSign={requiredSign}
         id={other.id}
         required={other.required}
@@ -45,7 +47,7 @@ export const TextInput = componentFactory<ITextInputFactory>(
         <TextInputControl
           ref={forwardedRef}
           {...controlProps}
-          {...forwardedProps}
+          {...otherExceptBoxProps}
         />
       </Labeled>
     );

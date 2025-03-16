@@ -12,26 +12,29 @@ import { useProps } from '~/components/Theme';
 import { useSelect } from '~/hooks/useSelect';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './SelectControl.constants';
-import { selectControlTheme } from './SelectControl.css';
+import { classNames, selectControlTheme } from './SelectControl.css';
 
 const SelectBase = selectBaseFactory<IFilterableListItem>();
 
 export const SelectControl = componentFactory<ISelectControlFactory>(
   (props, forwardedRef) => {
     const {
+      id,
+      name,
       getValueFieldProps,
-      value,
+      value: valueProp,
       defaultValue,
       onChange,
       noResultsLabel,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const { defaultItem, selectedItem } = useSelect({
+    const { defaultItem, selectedItem, onItemChange, value } = useSelect({
       items: other.items,
       itemEmpty: isFilterableListItemEmpty,
       defaultValue,
-      value,
+      value: valueProp,
+      onChange,
     });
 
     return (
@@ -54,10 +57,22 @@ export const SelectControl = componentFactory<ISelectControlFactory>(
         })}
         defaultItem={defaultItem}
         selectedItem={selectedItem}
-        onItemChange={(item) => onChange?.(item?.value)}
+        onItemChange={onItemChange}
         leadingIcon={selectedItem?.icon}
         ref={forwardedRef}
-      />
+      >
+        <input
+          className={classNames.input}
+          aria-invalid="false"
+          aria-hidden="true"
+          inert
+          id={id}
+          name={name}
+          tabIndex={-1}
+          value={value ?? ''}
+          readOnly
+        />
+      </SelectBase>
     );
   },
 );

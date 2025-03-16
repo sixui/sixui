@@ -4,20 +4,23 @@ import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IHorizontalSide } from '~/utils/types';
 import type { checkboxTheme, ICheckboxThemeFactory } from './Checkbox.css';
-import type { CheckboxCard } from './CheckboxCard';
 import type {
   CheckboxControl,
   ICheckboxControlOwnProps,
   ICheckboxControlProps,
 } from './CheckboxControl';
-import type { CheckboxGroup } from './CheckboxGroup';
 import type { CheckboxIndicator } from './CheckboxIndicator';
 
 export interface ICheckboxOwnProps
   extends ICheckboxControlOwnProps,
     Pick<
       ILabeledOwnProps,
-      'label' | 'supportingText' | 'requiredSign' | 'hasError' | 'errorText'
+      | 'label'
+      | 'supportingText'
+      | 'withRequiredSign'
+      | 'requiredSign'
+      | 'hasError'
+      | 'errorText'
     > {
   labelPosition?: IHorizontalSide;
   labeledProps?: ILabeledProps;
@@ -36,7 +39,5 @@ export type ICheckboxFactory = IComponentFactory<{
   staticComponents: {
     Control: typeof CheckboxControl;
     Indicator: typeof CheckboxIndicator;
-    Group: typeof CheckboxGroup;
-    Card: typeof CheckboxCard;
   };
 }>;

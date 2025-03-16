@@ -148,19 +148,19 @@ export const TextAreaControl = componentFactory<ITextAreaControlFactory>(
         disabled={disabled}
         readOnly={readOnly}
         endSlot={renderEndSection()}
-        forwardProps
+        forwardForeignProps
         withoutRippleEffect
         managedFocus
         loading={loading}
         multiline
         ref={rootRef}
       >
-        {({ forwardedProps }) => (
+        {({ foreignProps }) => (
           <>
             {children}
 
             <textarea
-              {...mergeProps(focus.focusProps, forwardedProps)}
+              {...mergeProps(focus.focusProps, foreignProps)}
               {...getStyles('textarea')}
               placeholder={other.placeholder}
               id={id}

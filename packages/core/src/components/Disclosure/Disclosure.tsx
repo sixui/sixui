@@ -21,7 +21,7 @@ export const Disclosure = componentFactory<IDisclosureFactory>(
       children,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
-    const { boxProps, other: forwardedProps } =
+    const { boxProps, other: otherExceptBoxProps } =
       extractBoxProps<IDisclosureProps>(other);
 
     const { getStyles } = useComponentTheme<IDisclosureThemeFactory>({
@@ -36,7 +36,11 @@ export const Disclosure = componentFactory<IDisclosureFactory>(
 
     return (
       <Box {...getStyles('root')} ref={forwardedRef} {...boxProps}>
-        <Expandable trigger={trigger} ref={forwardedRef} {...forwardedProps}>
+        <Expandable
+          trigger={trigger}
+          ref={forwardedRef}
+          {...otherExceptBoxProps}
+        >
           <div {...getStyles('panel')}>{children}</div>
         </Expandable>
       </Box>

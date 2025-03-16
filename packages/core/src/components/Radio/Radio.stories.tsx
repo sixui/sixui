@@ -35,13 +35,6 @@ const cols: Array<IComponentPresentation<IRadioProps>> = [
     },
   },
   {
-    legend: 'Error',
-    props: {
-      hasError: true,
-      errorText: 'Error text',
-    },
-  },
-  {
     legend: 'Loading',
     props: {
       loading: true,

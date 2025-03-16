@@ -1,3 +1,5 @@
+import { asArray } from '@olivierpascal/helpers';
+
 import type { IFilterableListItem } from '~/components/FilterableList';
 import type { IMultiSelectControlFactory } from './MultiSelectControl.types';
 import { areFilterableListItemsEqual } from '~/components/FilterableList/utils/areFilterableListItemsEqual';
@@ -11,26 +13,30 @@ import { useProps } from '~/components/Theme';
 import { useMultiSelect } from '~/hooks/useMultiSelect';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './MultiSelectControl.constants';
-import { multiSelectControlTheme } from './MultiSelectControl.css';
+import { classNames, multiSelectControlTheme } from './MultiSelectControl.css';
 
 const MultiSelectBase = multiSelectBaseFactory<IFilterableListItem>();
 
 export const MultiSelectControl = componentFactory<IMultiSelectControlFactory>(
   (props, forwardedRef) => {
     const {
+      id,
+      name,
       getValueFieldProps,
-      value,
+      value: valueProp,
       defaultValue,
       onChange,
       noResultsLabel,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const { defaultItems, selectedItems } = useMultiSelect({
-      items: other.items,
-      defaultValue,
-      value,
-    });
+    const { defaultItems, selectedItems, onItemsChange, value } =
+      useMultiSelect({
+        items: other.items,
+        defaultValue,
+        value: valueProp,
+        onChange,
+      });
 
     return (
       <MultiSelectBase
@@ -42,6 +48,7 @@ export const MultiSelectControl = componentFactory<IMultiSelectControlFactory>(
             <ListItem disabled>{noResultsLabel}</ListItem>
           ) : undefined
         }
+        id={id}
         {...other}
         itemRenderer={renderFilterableListItem}
         itemLabel={getFilterableListItemLabel}
@@ -52,9 +59,20 @@ export const MultiSelectControl = componentFactory<IMultiSelectControlFactory>(
         })}
         defaultItems={defaultItems}
         selectedItems={selectedItems}
-        onItemsChange={(items) => onChange?.(items.map((item) => item.value))}
+        onItemsChange={onItemsChange}
         ref={forwardedRef}
-      />
+      >
+        <input
+          className={classNames.input}
+          aria-invalid="false"
+          aria-hidden="true"
+          inert
+          name={name}
+          tabIndex={-1}
+          value={asArray(value).join(',')}
+          readOnly
+        />
+      </MultiSelectBase>
     );
   },
 );

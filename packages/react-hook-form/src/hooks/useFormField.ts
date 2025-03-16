@@ -8,7 +8,10 @@ import { useController } from 'react-hook-form';
 
 import type { IUnknownParamters } from '~/utils/types';
 
-export interface IFormFieldProps<TChangeEventValue extends IUnknownParamters> {
+export interface IFormFieldProps<
+  TChangeEventValue extends IUnknownParamters = [string],
+> {
+  name?: string;
   onChange?: (...args: TChangeEventValue) => void;
   hasError?: boolean;
   errorText?: React.ReactNode;

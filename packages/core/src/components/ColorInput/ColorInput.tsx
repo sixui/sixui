@@ -1,5 +1,5 @@
-import type { IColorInputFactory, IColorInputProps } from './ColorInput.types';
-import { extractBoxProps } from '~/components/Box/extractBoxProps';
+import type { ILabeledProps } from '~/components/Labeled';
+import type { IColorInputFactory } from './ColorInput.types';
 import { Labeled } from '~/components/Labeled';
 import { useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
@@ -9,41 +9,25 @@ import { colorInputTheme } from './ColorInput.css';
 
 export const ColorInput = componentFactory<IColorInputFactory>(
   (props, forwardedRef) => {
-    const {
-      label,
-      supportingText,
-      requiredSign,
-      errorText,
-      readOnlyOnLoading,
-      labeledProps,
-      controlProps,
-      ...other
-    } = useProps({ componentName: COMPONENT_NAME, props });
-    const { boxProps, other: forwardedProps } =
-      extractBoxProps<IColorInputProps>(other);
+    const { labeledProps, controlProps, ...other } = useProps({
+      componentName: COMPONENT_NAME,
+      props,
+    });
 
     return (
       <Labeled
-        label={label}
-        supportingText={supportingText}
-        errorTextPosition="end"
-        requiredSign={requiredSign}
-        id={other.id}
-        required={other.required}
-        disabled={other.disabled}
-        readOnly={other.readOnly}
-        loading={other.loading}
-        readOnlyOnLoading={readOnlyOnLoading}
-        hasError={other.hasError}
-        errorText={errorText}
         {...labeledProps}
-        {...boxProps}
+        {...(other as ILabeledProps)}
+        forwardForeignProps
       >
-        <ColorInputControl
-          ref={forwardedRef}
-          {...controlProps}
-          {...forwardedProps}
-        />
+        {({ foreignProps, ...labeledControlProps }) => (
+          <ColorInputControl
+            ref={forwardedRef}
+            {...labeledControlProps}
+            {...foreignProps}
+            {...controlProps}
+          />
+        )}
       </Labeled>
     );
   },

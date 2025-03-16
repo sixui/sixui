@@ -15,6 +15,7 @@ export const TextArea = componentFactory<ITextAreaFactory>(
     const {
       label,
       supportingText,
+      withRequiredSign,
       requiredSign,
       errorText,
       readOnlyOnLoading,
@@ -22,7 +23,7 @@ export const TextArea = componentFactory<ITextAreaFactory>(
       controlProps,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
-    const { boxProps, other: forwardedProps } =
+    const { boxProps, other: otherExceptBoxProps } =
       extractBoxProps<ITextAreaProps>(other);
 
     return (
@@ -30,6 +31,7 @@ export const TextArea = componentFactory<ITextAreaFactory>(
         label={label}
         supportingText={supportingText}
         errorTextPosition="end"
+        withRequiredSign={withRequiredSign}
         requiredSign={requiredSign}
         id={other.id}
         required={other.required}
@@ -45,7 +47,7 @@ export const TextArea = componentFactory<ITextAreaFactory>(
         <TextAreaControl
           ref={forwardedRef}
           {...controlProps}
-          {...forwardedProps}
+          {...otherExceptBoxProps}
         />
       </Labeled>
     );

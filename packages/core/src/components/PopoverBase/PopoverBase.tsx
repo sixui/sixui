@@ -81,7 +81,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       onOpen,
       onClose,
       onClosed,
-      forwardProps,
+      forwardForeignProps,
       disabled,
       role: roleProp,
       trapFocus,
@@ -367,7 +367,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
                 )}
                 <div
                   {...getStyles('root')}
-                  {...(forwardProps ? undefined : other)}
+                  {...(forwardForeignProps ? undefined : other)}
                 >
                   <Motion
                     status={transitionStatus.status}
@@ -406,7 +406,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
                           close: () => {
                             setOpened(false);
                           },
-                          forwardedProps: forwardProps ? other : undefined,
+                          foreignProps: forwardForeignProps ? other : undefined,
                           renderCursor: cursorType ? renderCursor : undefined,
                         })
                       ) : (

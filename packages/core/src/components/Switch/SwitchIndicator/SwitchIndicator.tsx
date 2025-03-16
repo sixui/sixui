@@ -27,6 +27,7 @@ export const SwitchIndicator = componentFactory<ISwitchIndicatorFactory>(
       uncheckedIcon,
       alwaysOn,
       stateLayer,
+      hasError,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -49,6 +50,7 @@ export const SwitchIndicator = componentFactory<ISwitchIndicatorFactory>(
         'with-icon': hasIcon,
         loading,
         on: isOn,
+        'with-error': hasError,
       },
     });
 
@@ -63,6 +65,7 @@ export const SwitchIndicator = componentFactory<ISwitchIndicatorFactory>(
                 {loading ? (
                   <IndeterminateCircularProgressIndicator
                     {...getStyles('progressIndicator')}
+                    disabled={disabled}
                   />
                 ) : checkedIcon === true ? (
                   <SvgIcon icon={iconCheckmark} />
@@ -75,6 +78,7 @@ export const SwitchIndicator = componentFactory<ISwitchIndicatorFactory>(
                 {loading ? (
                   <IndeterminateCircularProgressIndicator
                     {...getStyles('progressIndicator')}
+                    disabled={disabled}
                   />
                 ) : uncheckedIcon === true ? (
                   <SvgIcon icon={iconXMark} />

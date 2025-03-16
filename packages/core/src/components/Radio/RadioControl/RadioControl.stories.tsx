@@ -93,6 +93,17 @@ export const Configurations: IStory = {
         { legend: 'Unchecked', props: { checked: false } },
         { legend: 'Checked', props: { checked: true } },
       ]}
+      groups={[
+        {
+          legend: 'Normal',
+        },
+        {
+          legend: 'Error',
+          props: {
+            hasError: true,
+          },
+        },
+      ]}
     />
   ),
   args: defaultArgs,

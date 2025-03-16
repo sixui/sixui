@@ -87,7 +87,7 @@ export const FloatingFilterableListBaseDemo: React.FC<
       resetOnClose={canFilter}
       closeOnSelect
       matchTargetWidth
-      forwardProps
+      forwardForeignProps
       {...other}
     >
       {(renderProps) => (
@@ -105,7 +105,7 @@ export const FloatingFilterableListBaseDemo: React.FC<
           wrapperProps={renderProps.getTriggerProps()}
           containerRef={renderProps.setTriggerRef}
           interactions={{ focused: renderProps.opened && !canFilter }}
-          {...renderProps.forwardedProps}
+          {...renderProps.foreignProps}
         >
           {singleFilterableListBase.selectedItem &&
             getMovieLabel(singleFilterableListBase.selectedItem)}

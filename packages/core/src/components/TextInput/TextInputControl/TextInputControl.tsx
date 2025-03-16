@@ -180,18 +180,18 @@ export const TextInputControl = componentFactory<ITextInputControlFactory>(
         disabled={disabled}
         readOnly={readOnly}
         endSlot={renderEndSlot()}
-        forwardProps
+        forwardForeignProps
         withoutRippleEffect
         managedFocus
         loading={loading}
         ref={rootRef}
       >
-        {({ forwardedProps }) => (
+        {({ foreignProps }) => (
           <>
             {children}
 
             <input
-              {...mergeProps(focus.focusProps, forwardedProps)}
+              {...mergeProps(focus.focusProps, foreignProps)}
               {...getStyles('input')}
               ref={inputHandleRef}
               placeholder={other.placeholder}

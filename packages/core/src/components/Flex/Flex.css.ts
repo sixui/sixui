@@ -35,7 +35,7 @@ const sprinklesProps = defineProperties({
     rowGap: keys(themeTokens.spacing).reduce(
       (acc, key) => ({
         ...acc,
-        [key]: space(`$${key}`, DENSITY),
+        [key]: px(space(`$${key}`, DENSITY)),
       }),
       {},
     ),

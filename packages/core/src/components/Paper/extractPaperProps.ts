@@ -18,7 +18,7 @@ export const extractPaperProps = <TForwardedComponentProps>(
   props: IPaperProps,
 ): IExtractPaperPropsResult<TForwardedComponentProps> => {
   const { shape, outline, outlineStyle, elevation, surface, ...other } = props;
-  const { boxProps, other: forwardedProps } = extractBoxProps(other);
+  const { boxProps, other: otherExceptBoxProps } = extractBoxProps(other);
 
   const paperProps: IPaperProps = removeUndefineds({
     ...boxProps,
@@ -32,6 +32,6 @@ export const extractPaperProps = <TForwardedComponentProps>(
   return {
     paperProps,
     other:
-      forwardedProps as IExtractPaperPropsForwardedProps<TForwardedComponentProps>,
+      otherExceptBoxProps as IExtractPaperPropsForwardedProps<TForwardedComponentProps>,
   };
 };

@@ -15,7 +15,12 @@ export interface ISwitchOwnProps
   extends ISwitchControlOwnProps,
     Pick<
       ILabeledOwnProps,
-      'label' | 'supportingText' | 'requiredSign' | 'hasError' | 'errorText'
+      | 'label'
+      | 'supportingText'
+      | 'withRequiredSign'
+      | 'requiredSign'
+      | 'hasError'
+      | 'errorText'
     > {
   labelPosition?: IHorizontalSide;
   labeledProps?: ILabeledProps;

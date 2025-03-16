@@ -21,6 +21,8 @@ export interface IMultiSelectControlOwnProps
     | 'defaultValue'
     | 'onChange'
   > {
+  id?: string;
+  name?: string;
   value?: Array<string>;
   defaultValue?: Array<string>;
   onChange?: (value: Array<string> | undefined) => void;

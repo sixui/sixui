@@ -34,6 +34,7 @@ export const suggestBaseFactory = <
         noResults,
         placeholder,
         menuListProps,
+        children,
         ...other
       } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -72,63 +73,66 @@ export const suggestBaseFactory = <
           closeOnSelect
           initialFocus={-1}
           {...other}
-          forwardProps
+          forwardForeignProps
           noResults={noResults ?? <ListItem disabled>No results.</ListItem>}
           ref={forwardedRef}
         >
           {(renderProps) => (
-            <TextInput.Control
-              trailingIcon={
-                <FilterableListBaseFieldTrailingIcon
-                  onClear={
-                    clearable &&
-                    singleFilterableListBase.selectedItem &&
-                    !itemEmpty?.(singleFilterableListBase.selectedItem)
-                      ? (event) => {
-                          singleFilterableListBase.handleClear(
-                            renderProps.afterItemsRemove,
-                            event,
-                          );
-                        }
-                      : undefined
-                  }
-                  opened={renderProps.opened}
-                />
-              }
-              populated={
-                renderProps.opened ||
-                !!singleFilterableListBase.selectedItem ||
-                !!renderProps.query
-              }
-              {...renderProps.forwardedProps}
-              {...renderProps.getInputFilterProps(
-                renderProps.getTriggerProps(),
-              )}
-              value={
-                renderProps.opened || renderProps.hasFocus
-                  ? renderProps.query
-                  : ((typeof selectedItemLabel === 'string'
+            <>
+              <TextInput.Control
+                trailingIcon={
+                  <FilterableListBaseFieldTrailingIcon
+                    onClear={
+                      clearable &&
+                      singleFilterableListBase.selectedItem &&
+                      !itemEmpty?.(singleFilterableListBase.selectedItem)
+                        ? (event) => {
+                            singleFilterableListBase.handleClear(
+                              renderProps.afterItemsRemove,
+                              event,
+                            );
+                          }
+                        : undefined
+                    }
+                    opened={renderProps.opened}
+                  />
+                }
+                populated={
+                  renderProps.opened ||
+                  !!singleFilterableListBase.selectedItem ||
+                  !!renderProps.query
+                }
+                {...renderProps.foreignProps}
+                {...renderProps.getInputFilterProps(
+                  renderProps.getTriggerProps(),
+                )}
+                value={
+                  renderProps.opened || renderProps.hasFocus
+                    ? renderProps.query
+                    : ((typeof selectedItemLabel === 'string'
+                        ? selectedItemLabel
+                        : undefined) ?? '')
+                }
+                placeholder={
+                  (renderProps.opened || renderProps.hasFocus) &&
+                  selectedItemLabel
+                    ? typeof selectedItemLabel === 'string'
                       ? selectedItemLabel
-                      : undefined) ?? '')
-              }
-              placeholder={
-                (renderProps.opened || renderProps.hasFocus) &&
-                selectedItemLabel
-                  ? typeof selectedItemLabel === 'string'
-                    ? selectedItemLabel
-                    : undefined
-                  : placeholder
-              }
-              variant={variant}
-              {...getValueFieldProps?.(
-                renderProps,
-                singleFilterableListBase.selectedItem,
-              )}
-              containerRef={renderProps.setTriggerRef}
-              ref={renderProps.inputFilterRef}
-              spellCheck="false"
-              autoComplete="off"
-            />
+                      : undefined
+                    : placeholder
+                }
+                variant={variant}
+                {...getValueFieldProps?.(
+                  renderProps,
+                  singleFilterableListBase.selectedItem,
+                )}
+                containerRef={renderProps.setTriggerRef}
+                ref={renderProps.inputFilterRef}
+                spellCheck="false"
+                autoComplete="off"
+              />
+              {children}
+            </>
           )}
         </FloatingFilterableListBase>
       );

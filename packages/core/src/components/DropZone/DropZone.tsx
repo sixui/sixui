@@ -31,7 +31,7 @@ export const DropZone = componentFactory<IDropZoneFactory>(
       rootRef,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
-    const { boxProps, other: forwardedProps } =
+    const { boxProps, other: otherExceptBoxProps } =
       extractBoxProps<IDropZoneProps>(other);
 
     const interactive = !disabled && !!onClick;
@@ -58,7 +58,7 @@ export const DropZone = componentFactory<IDropZoneFactory>(
     const hasFooter = supportingOrErrorText || !!trailingSupportingText;
 
     return (
-      <Box {...getStyles('root')} ref={rootRef} {...forwardedProps}>
+      <Box {...getStyles('root')} ref={rootRef} {...otherExceptBoxProps}>
         <ButtonBase
           {...getStyles('button')}
           ref={forwardedRef}

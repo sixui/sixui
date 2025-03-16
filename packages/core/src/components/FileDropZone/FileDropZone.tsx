@@ -1,8 +1,5 @@
-import type {
-  IFileDropZoneFactory,
-  IFileDropZoneProps,
-} from './FileDropZone.types';
-import { extractBoxProps } from '~/components/Box/extractBoxProps';
+import type { ILabeledProps } from '~/components/Labeled';
+import type { IFileDropZoneFactory } from './FileDropZone.types';
 import { Labeled } from '~/components/Labeled';
 import { useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
@@ -12,34 +9,25 @@ import { fileDropZoneTheme } from './FileDropZone.css';
 
 export const FileDropZone = componentFactory<IFileDropZoneFactory>(
   (props, forwardedRef) => {
-    const {
-      label,
-      trailingAction,
-      supportingText,
-      trailingSupportingText,
-      requiredSign,
-      labeledProps,
-      controlProps,
-      ...other
-    } = useProps({ componentName: COMPONENT_NAME, props });
-    const { boxProps, other: forwardedProps } =
-      extractBoxProps<IFileDropZoneProps>(other);
+    const { labeledProps, controlProps, ...other } = useProps({
+      componentName: COMPONENT_NAME,
+      props,
+    });
 
     return (
       <Labeled
-        label={label}
-        trailingAction={trailingAction}
-        supportingText={supportingText}
-        trailingSupportingText={trailingSupportingText}
-        requiredSign={requiredSign}
         {...labeledProps}
-        {...boxProps}
+        {...(other as ILabeledProps)}
+        forwardForeignProps
       >
-        <FileDropZoneControl
-          ref={forwardedRef}
-          {...controlProps}
-          {...forwardedProps}
-        />
+        {({ foreignProps, ...labeledControlProps }) => (
+          <FileDropZoneControl
+            ref={forwardedRef}
+            {...labeledControlProps}
+            {...foreignProps}
+            {...controlProps}
+          />
+        )}
       </Labeled>
     );
   },

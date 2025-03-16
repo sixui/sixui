@@ -54,6 +54,10 @@ const classNames = createStyles({
     transform: 'translate(-50%, -50%)',
     left: '50%',
 
+    ':hover': {
+      zIndex: 2,
+    },
+
     selectors: {
       [modifierSelector<IModifier>('disabled', root)]: {
         cursor: 'default',

@@ -18,6 +18,8 @@ export interface ISuggestControlOwnProps
     | 'selectedItem'
     | 'onItemChange'
   > {
+  id?: string;
+  name?: string;
   value?: string;
   defaultValue?: string;
   onChange?: (value: string | undefined) => void;

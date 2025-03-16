@@ -18,11 +18,11 @@ type IModifier =
   | 'was-disabled';
 
 // The coordinates in an 18px viewBox of the bottom left corner of the
-// indeterminate icon. Y is negative to fix an issue in Safari (see below).
-const indeterminateBottomLeft = '1px, -10px';
+// indeterminate icon.
+const indeterminateBottomLeft = '1px, 7px';
 // The coordinates in an 18px viewBox of the bottom left corner of the checkmark
-// icon. Y is negative to fix an issue in Safari (see below).
-const checkmarkBottomLeft = '6px, -16px';
+// icon.
+const checkmarkBottomLeft = '-2px, 6px';
 
 const prevUnselectedToCheckedKeyframes = keyframes({
   from: {
@@ -49,6 +49,7 @@ const classNames = createStyles({
     transitionDuration: themeTokens.motion.duration.short3,
     transitionTimingFunction: themeTokens.motion.easing.emphasized.accelerate,
     transform: 'scale(0)',
+    transformOrigin: 'center',
     vectorEffect: 'non-scaling-stroke',
 
     selectors: {
@@ -60,9 +61,7 @@ const classNames = createStyles({
       },
       [modifierSelector<IModifier>('checked', root)]: {
         // Transform from the bottom left of the rectangles, which turn into the
-        // bottom-most point of the checkmark. Fix Safari's transform-origin bug
-        // from "top left" to "bottom left" Move the "bottom left" corner to the
-        // checkmark location. Rotate the checkmark.
+        // bottom-most point of the checkmark. Rotate the checkmark.
         transform: `scaleY(-1) translate(${checkmarkBottomLeft}) rotate(45deg)`,
       },
       [modifierSelector<IModifier>('indeterminate', root)]: {

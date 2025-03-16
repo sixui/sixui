@@ -31,7 +31,7 @@ export const NavigationRail = componentFactory<INavigationRailFactory>(
     } = useProps({ componentName: COMPONENT_NAME, props });
     const { boxProps, other: boxForwardedProps } =
       extractBoxProps<INavigationRailProps>(other);
-    const { dataProps, other: forwardedProps } =
+    const { dataProps, other: otherExceptDataProps } =
       extractDataProps(boxForwardedProps);
 
     const { getStyles } = useComponentTheme<INavigationRailThemeFactory>({
@@ -58,7 +58,7 @@ export const NavigationRail = componentFactory<INavigationRailFactory>(
           side={side}
           divider={divider}
           {...getStyles('navigationRailContent')}
-          {...forwardedProps}
+          {...otherExceptDataProps}
         />
       </StandardAside>
     );

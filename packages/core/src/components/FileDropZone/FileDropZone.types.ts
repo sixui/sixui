@@ -2,6 +2,7 @@ import type { IBoxProps } from '~/components/Box';
 import type { ILabeledOwnProps, ILabeledProps } from '~/components/Labeled';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IOmit } from '~/utils/types';
 import type {
   fileDropZoneTheme,
   IFileDropZoneThemeFactory,
@@ -15,14 +16,7 @@ import type { FileDropZoneFileCard } from './FileDropZoneFileCard';
 
 export interface IFileDropZoneOwnProps
   extends IFileDropZoneControlOwnProps,
-    Pick<
-      ILabeledOwnProps,
-      | 'label'
-      | 'trailingAction'
-      | 'supportingText'
-      | 'trailingSupportingText'
-      | 'requiredSign'
-    > {
+    IOmit<ILabeledOwnProps, 'children'> {
   labeledProps?: ILabeledProps;
   controlProps?: IFileDropZoneControlProps;
 }
