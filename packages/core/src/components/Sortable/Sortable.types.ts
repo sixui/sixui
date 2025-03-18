@@ -22,7 +22,11 @@ export interface ISortableOwnProps<TItem> {
   axis?: IOrientation;
   value?: Array<TItem>;
   getItemId?: (item: TItem) => string;
-  onReorder?: (items: Array<TItem>) => IMaybeAsync<unknown>;
+  onReorder?: (
+    items: Array<TItem>,
+    oldIndex: number,
+    newIndex: number,
+  ) => IMaybeAsync<unknown>;
   onDelete?: (item: TItem) => IMaybeAsync<unknown>;
   onChange?: (items: Array<TItem>) => IMaybeAsync<unknown>;
   minChangeDuration?: number;

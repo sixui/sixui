@@ -39,7 +39,7 @@ const defaultArgs = {
       value: 'goldfish',
     },
   ],
-  onChange: (...args) => void sbHandleEvent('onChange', ...args),
+  onChange: (...args) => void sbHandleEvent('onChange', args),
   label: 'Label',
   supportingText: 'Supporting text',
   w: '256px',

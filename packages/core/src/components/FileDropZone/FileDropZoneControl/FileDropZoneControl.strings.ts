@@ -1,5 +1,6 @@
 export const fileDropZoneControlStrings = {
-  label: {
+  loading: 'Loading...',
+  labels: {
     dragSingle: 'Drag and drop a file here, or:',
     dragMultiple: 'Drag and drop files here, or:',
   },

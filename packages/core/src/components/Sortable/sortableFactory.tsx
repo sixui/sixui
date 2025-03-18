@@ -161,7 +161,11 @@ export const sortableFactory = <TItem,>(
                 new Promise((resolve, reject) => {
                   Promise.all([
                     executeLazyPromise(async () => {
-                      await onReorder?.(reorderedItems.map(({ item }) => item));
+                      await onReorder?.(
+                        reorderedItems.map(({ item }) => item),
+                        oldIndex,
+                        newIndex,
+                      );
                       await onChange?.(reorderedItems.map(({ item }) => item));
                     }, setProcessing),
                     minChangeDuration ? delay(minChangeDuration) : undefined,

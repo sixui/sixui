@@ -84,6 +84,12 @@ const rows: Array<IComponentPresentation<IFileCardProps>> = [
       disabled: true,
     },
   },
+  {
+    legend: 'Initializing',
+    props: {
+      initializing: true,
+    },
+  },
 ];
 
 const cols: Array<IComponentPresentation<IFileCardProps>> = [

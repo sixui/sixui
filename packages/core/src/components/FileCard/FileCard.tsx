@@ -12,6 +12,7 @@ import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { getFormattedFileSize } from '~/utils/getFormattedFileSize';
 import { isFunction } from '~/utils/isFunction';
+import { Skeleton } from '../Skeleton';
 import { COMPONENT_NAME } from './FileCard.constants';
 import { fileCardTheme } from './FileCard.css';
 
@@ -39,6 +40,7 @@ export const FileCard = componentFactory<IFileCardFactory>(
       hasError,
       errorText,
       children,
+      initializing,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -47,7 +49,8 @@ export const FileCard = componentFactory<IFileCardFactory>(
     const disabled = disabledProp || handling;
     const canDelete = !!onDelete;
     const loaded = !loading && !hasError;
-    const hasActions = canDelete || !!extraActions || !!moveHandle;
+    const hasActions =
+      !disabled && (canDelete || !!extraActions || !!moveHandle);
 
     const { getStyles } = useComponentTheme<IFileCardThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -82,26 +85,28 @@ export const FileCard = componentFactory<IFileCardFactory>(
         disabled={disabled}
         {...other}
       >
-        <Card.Media
-          {...getStyles('media')}
-          classNames={{
-            content: getStyles('mediaContent').className,
-          }}
-          src={thumbUrl}
-        >
-          {loading ? (
-            <CircularProgressIndicator
-              {...getStyles('progressIndicator')}
-              value={progress}
-              withLabel
-              hideInactiveTrack
-            />
-          ) : thumbUrl ? undefined : icon ? (
-            <div {...getStyles('icon')}>{icon}</div>
-          ) : (
-            media
-          )}
-        </Card.Media>
+        <Skeleton {...getStyles('skeleton')} loaded={!initializing}>
+          <Card.Media
+            {...getStyles('media')}
+            classNames={{
+              content: getStyles('mediaContent').className,
+            }}
+            src={thumbUrl}
+          >
+            {loading ? (
+              <CircularProgressIndicator
+                {...getStyles('progressIndicator')}
+                value={progress}
+                withLabel
+                hideInactiveTrack
+              />
+            ) : thumbUrl ? undefined : icon ? (
+              <div {...getStyles('icon')}>{icon}</div>
+            ) : (
+              media
+            )}
+          </Card.Media>
+        </Skeleton>
 
         <Card.Content {...getStyles('content')}>
           <div {...getStyles('fileInfo')}>
@@ -138,6 +143,7 @@ export const FileCard = componentFactory<IFileCardFactory>(
               <MoveHandleIndicator
                 {...getStyles('moveHandle')}
                 orientation="vertical"
+                disabled={disabled}
               />
             )}
           </Card.Actions>

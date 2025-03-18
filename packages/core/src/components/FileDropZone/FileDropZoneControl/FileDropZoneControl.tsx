@@ -3,6 +3,7 @@ import { FileRejection, useDropzone } from 'react-dropzone';
 
 import type { IFileDropZoneFile } from '~/hooks/useFileDropZone';
 import type { IMaybeAsync } from '~/utils/types';
+import type { IFileDropZoneFileCardProps } from '../FileDropZoneFileCard';
 import type { IFileDropZoneControlThemeFactory } from './FileDropZoneControl.css';
 import type { IFileDropZoneControlFactory } from './FileDropZoneControl.types';
 import { iconArrowPath, iconArrowUpTray } from '~/assets/icons';
@@ -16,7 +17,10 @@ import { SnackbarOverlay } from '~/components/Snackbar';
 import { sortableFactory } from '~/components/Sortable';
 import { SvgIcon } from '~/components/SvgIcon';
 import { useComponentTheme, useProps } from '~/components/Theme';
-import { useFileDropZone } from '~/hooks/useFileDropZone';
+import {
+  IFileDropZoneFileState,
+  useFileDropZone,
+} from '~/hooks/useFileDropZone';
 import { useMergeRefs } from '~/hooks/useMergeRefs';
 import { camelCaseFromKebabCase } from '~/utils/camelCaseFromKebabCase';
 import { componentFactory } from '~/utils/component/componentFactory';
@@ -46,13 +50,15 @@ export const FileDropZoneControl =
       trailingSupportingText: trailingSupportingTextProp,
       hasError: hasErrorProp,
       errorText: errorTextProp,
-      initialFiles = [],
+      value,
+      defaultValue,
       maxFileCount,
       maxFileSize,
       capture,
       required,
       extraActions,
       sortable: sortableProp,
+      initializeFile,
       onAccept,
       onReject,
       onError,
@@ -60,6 +66,8 @@ export const FileDropZoneControl =
       onReorder,
       onRetry,
       onChange,
+      onSuccess,
+      onProcessing,
       getIconFromMimeType,
       disabled,
       acceptedFileTypes,
@@ -84,20 +92,25 @@ export const FileDropZoneControl =
       handleReorder,
       handleRetry,
     } = useFileDropZone({
-      initialFiles,
+      value,
+      defaultValue,
+      initializeFile,
       onAccept,
       onReject,
       onError,
       onDelete,
       onReorder,
-      onChange,
       onRetry,
+      onChange,
+      onSuccess,
+      onProcessing,
     });
 
     const acceptFile = useCallback(
       (file: File): IMaybeAsync<unknown> =>
         handleAccept({
           internalId: getUid(),
+          state: IFileDropZoneFileState.Initialized,
           thumbUrl: file.type.startsWith('image/')
             ? URL.createObjectURL(file)
             : undefined,
@@ -114,6 +127,7 @@ export const FileDropZoneControl =
       (fileRejection: FileRejection): IMaybeAsync<unknown> =>
         handleReject({
           internalId: getUid(),
+          state: IFileDropZoneFileState.Initialized,
           thumbUrl: fileRejection.file.type.startsWith('image/')
             ? URL.createObjectURL(fileRejection.file)
             : undefined,
@@ -249,6 +263,34 @@ export const FileDropZoneControl =
     const handleInputRef = useMergeRefs(forwardedRef, inputRef);
     const dropping = isDragActive && !disabled;
 
+    const renderFileCard = (
+      file: IFileDropZoneFile,
+      other: Partial<IFileDropZoneFileCardProps>,
+    ): React.ReactNode => (
+      <FileDropZoneFileCard
+        key={file.internalId}
+        file={file}
+        supportingText={
+          file.state === IFileDropZoneFileState.Initializing
+            ? strings.loading
+            : file.supportingText
+        }
+        icon={getIconFromMimeType?.(file.mimeType)}
+        disabled={disabled}
+        extraActions={
+          file.canRetry &&
+          onRetry && (
+            <IconButton
+              icon={retryIconProp ?? <SvgIcon icon={iconArrowPath} />}
+              onClick={() => handleRetry(file)}
+            />
+          )
+        }
+        moveHandle={sortable}
+        {...other}
+      />
+    );
+
     const renderFiles = (): React.ReactNode => (
       <Flex direction="column" gap="$sm" w="100%">
         {sortable ? (
@@ -261,51 +303,30 @@ export const FileDropZoneControl =
             {({ sortableItems }) =>
               sortableItems.map((sortableItem) => (
                 <Sortable.Item
-                  as={FileDropZoneFileCard}
                   key={sortableItem.item.internalId}
                   id={sortableItem.item.internalId}
-                  file={sortableItem.item}
-                  icon={getIconFromMimeType?.(sortableItem.item.mimeType)}
-                  onDelete={sortableItem.onDelete}
-                  loading={
-                    sortableItem.itemProcessing || sortableItem.item.loading
+                >
+                  {({ getItemProps, getDragHandleProps }) =>
+                    renderFileCard(sortableItem.item, {
+                      ...getItemProps(),
+                      ...getDragHandleProps(),
+                      onDelete: sortableItem.onDelete,
+                      loading:
+                        sortableItem.item.state ===
+                          IFileDropZoneFileState.Uploading ||
+                        sortableItem.itemProcessing,
+                    })
                   }
-                  disabled={disabled}
-                  extraActions={
-                    sortableItem.item.canRetry &&
-                    onRetry && (
-                      <IconButton
-                        icon={retryIconProp ?? <SvgIcon icon={iconArrowPath} />}
-                        onClick={() => handleRetry(sortableItem.item)}
-                      />
-                    )
-                  }
-                  moveHandle
-                />
+                </Sortable.Item>
               ))
             }
           </Sortable>
         ) : (
-          files.map((file) => (
-            <FileDropZoneFileCard
-              key={file.internalId}
-              id={file.internalId}
-              file={file}
-              icon={getIconFromMimeType?.(file.mimeType)}
-              loading={file.loading}
-              disabled={disabled}
-              onDelete={handleDelete}
-              extraActions={
-                file.canRetry &&
-                onRetry && (
-                  <IconButton
-                    icon={retryIconProp ?? <SvgIcon icon={iconArrowPath} />}
-                    onClick={() => handleRetry(file)}
-                  />
-                )
-              }
-            />
-          ))
+          files.map((file) =>
+            renderFileCard(file, {
+              onDelete: handleDelete,
+            }),
+          )
         )}
       </Flex>
     );
@@ -329,7 +350,7 @@ export const FileDropZoneControl =
             onClick={extraActions ? undefined : browse}
             disabled={disabled}
             label={
-              multiple ? strings.label.dragMultiple : strings.label.dragSingle
+              multiple ? strings.labels.dragMultiple : strings.labels.dragSingle
             }
             actionIcon={uploadIcon ?? <SvgIcon icon={iconArrowUpTray} />}
             actionLabel={extraActions ? undefined : strings.actions.browse}

@@ -69,7 +69,11 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
     typography: themeTokens.typeScale.body.sm,
     color: {
       normal: themeTokens.colorScheme.onSurfaceVariant,
+      disabled: themeTokens.colorScheme.onSurfaceVariant,
       error: themeTokens.colorScheme.error,
+    },
+    opacity: {
+      disabled: themeTokens.state.opacity.disabled,
     },
   },
   moveHandle: {
@@ -126,8 +130,13 @@ const classNames = createStyles({
     color: tokens.progressIndicator.color,
     fontSize: tokens.progressIndicator.size,
   },
+  skeleton: {
+    borderRadius: 'inherit',
+  },
   icon: ({ root }) => ({
     display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     fill: 'currentColor',
     color: tokens.icon.color.normal,
     fontSize: tokens.icon.size,
@@ -186,6 +195,10 @@ const classNames = createStyles({
     selectors: {
       [modifierSelector<IModifier>('with-error', root)]: {
         color: tokens.supportingText.color.error,
+      },
+      [modifierSelector<IModifier>('disabled', root)]: {
+        color: tokens.icon.color.disabled,
+        opacity: tokens.icon.opacity.disabled,
       },
     },
   }),

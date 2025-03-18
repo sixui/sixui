@@ -29,6 +29,7 @@ export interface IFileCardOwnProps {
   hasError?: boolean;
   errorText?: string;
   children?: React.ReactNode;
+  initializing?: boolean;
 }
 
 export interface IFileCardProps

@@ -39,6 +39,10 @@ const states: Array<IComponentPresentation<IMoveHandleProps>> = [
     legend: 'Dragged',
     props: { interactions: { dragged: true } },
   },
+  {
+    legend: 'Disabled',
+    props: { disabled: true },
+  },
 ];
 
 const MoveHandleShowcase = componentShowcaseFactory(MoveHandle);

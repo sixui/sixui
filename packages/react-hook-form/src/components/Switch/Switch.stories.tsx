@@ -1,38 +1,32 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import type { ISwitchProps } from './Switch';
 import { Switch } from './Switch';
 
 const FIELD_NAME = 'fieldName';
 
 const meta = {
   component: Switch,
+  args: {
+    name: FIELD_NAME,
+    onChange: (...args) => {
+      action('onChange')(args);
+    },
+    label: 'Label',
+  },
 } satisfies Meta<typeof Switch>;
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {
-  name: FIELD_NAME,
-  onChange: (...args) => {
-    action('onChange')(args);
-  },
-  label: 'Label',
-} satisfies Partial<ISwitchProps>;
-
-export const Basic: IStory = {
-  args: defaultArgs,
-};
+export const Basic: IStory = {};
 
 export const Required: IStory = {
   args: {
-    ...defaultArgs,
     required: true,
   },
 };
 
 export const DefaultChecked: IStory = {
-  args: defaultArgs,
   parameters: {
     form: {
       defaultValues: {

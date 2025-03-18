@@ -35,3 +35,4 @@ export * from './camelCaseFromKebabCase';
 export * from './getImageSizeFromFile';
 export * from './validateNumericValue';
 export * from './getFormattedFileSize';
+export * from './scheduleNextTick';

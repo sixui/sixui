@@ -5,6 +5,7 @@ import {
   componentShowcaseFactory,
   IComponentPresentation,
 } from '~/components/ComponentShowcase';
+import { IFileDropZoneFileState } from '~/hooks/useFileDropZone';
 import { FileDropZoneFileCard } from './FileDropZoneFileCard';
 
 const meta = {
@@ -15,6 +16,7 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   file: {
+    state: IFileDropZoneFileState.Initialized,
     internalId: '0',
     thumbUrl:
       'https://images.unsplash.com/photo-1554494583-c4e1649bfe71?q=80&w=200',

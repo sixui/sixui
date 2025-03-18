@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import type { IMultiSelectProps } from './MultiSelect';
 import { MultiSelect } from './MultiSelect';
 
 const FIELD_NAME = 'fieldName';
@@ -13,32 +12,27 @@ const ITEMS = [
 
 const meta = {
   component: MultiSelect,
+  args: {
+    name: FIELD_NAME,
+    onChange: (...args) => {
+      action('onChange')(args);
+    },
+    label: 'Label',
+    items: ITEMS,
+  },
 } satisfies Meta<typeof MultiSelect>;
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {
-  name: FIELD_NAME,
-  onChange: (...args) => {
-    action('onChange')(args);
-  },
-  label: 'Label',
-  items: ITEMS,
-} satisfies Partial<IMultiSelectProps>;
-
-export const Basic: IStory = {
-  args: defaultArgs,
-};
+export const Basic: IStory = {};
 
 export const Required: IStory = {
   args: {
-    ...defaultArgs,
     required: true,
   },
 };
 
 export const WithDefaultValue: IStory = {
-  args: defaultArgs,
   parameters: {
     form: {
       defaultValues: {

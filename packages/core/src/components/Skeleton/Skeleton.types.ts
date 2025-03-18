@@ -13,6 +13,7 @@ export interface ISkeletonOwnProps extends IPaperOwnProps {
   loaded?: boolean;
   animation?: 'pulse' | 'wave' | false;
   length?: number | IRange;
+  disabled?: boolean;
 }
 
 export interface ISkeletonProps

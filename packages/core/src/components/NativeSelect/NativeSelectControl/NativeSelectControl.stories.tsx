@@ -39,7 +39,7 @@ const defaultArgs = {
       value: 'goldfish',
     },
   ],
-  onChange: (...args) => void sbHandleEvent('onChange', ...args),
+  onChange: (...args) => void sbHandleEvent('onChange', args),
   w: '256px',
 } satisfies Partial<INativeSelectControlProps>;
 

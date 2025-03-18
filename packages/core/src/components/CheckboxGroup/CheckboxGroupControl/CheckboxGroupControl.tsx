@@ -109,7 +109,16 @@ export const CheckboxGroupControl =
             readOnly,
             hasError,
           }) satisfies ICheckboxGroupControlContextValue,
-        [handleChange, handlingChange, value, defaultValue, changingValues],
+        [
+          handleChange,
+          value,
+          defaultValue,
+          changingValues,
+          loading,
+          disabled,
+          readOnly,
+          hasError,
+        ],
       );
 
       return (

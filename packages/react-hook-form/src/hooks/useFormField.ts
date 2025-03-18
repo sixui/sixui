@@ -53,7 +53,7 @@ export const useFormField = <
   const {
     name,
     control,
-    defaultValue: defaultValueProp,
+    defaultValue,
     rules: rulesProp,
     shouldUnregister,
     onChange,
@@ -77,7 +77,7 @@ export const useFormField = <
   const { field, fieldState } = useController<TFieldValues>({
     name,
     control,
-    defaultValue: defaultValueProp,
+    defaultValue,
     rules,
     shouldUnregister,
     disabled,

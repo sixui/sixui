@@ -30,12 +30,24 @@ const variants: Array<IComponentPresentation<IMoveHandleIndicatorProps>> = [
   },
 ];
 
+const states: Array<IComponentPresentation<IMoveHandleIndicatorProps>> = [
+  {
+    legend: 'Normal',
+  },
+  {
+    legend: 'Disabled',
+    props: {
+      disabled: true,
+    },
+  },
+];
+
 const MoveHandleIndicatorShowcase =
   componentShowcaseFactory(MoveHandleIndicator);
 
 export const Variants: IStory = {
   render: (props) => (
-    <MoveHandleIndicatorShowcase props={props} cols={variants} />
+    <MoveHandleIndicatorShowcase props={props} rows={variants} cols={states} />
   ),
   args: defaultArgs,
 };

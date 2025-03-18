@@ -106,7 +106,7 @@ export const RadioGroupControl =
             changingValue,
             hasError,
           }) satisfies IRadioGroupControlContextValue,
-        [name, handleChange, value, changingValue, handlingChange],
+        [name, handleChange, value, changingValue, loading, hasError],
       );
 
       return (

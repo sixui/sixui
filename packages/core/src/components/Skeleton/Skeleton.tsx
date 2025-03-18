@@ -20,10 +20,13 @@ export const Skeleton = componentFactory<ISkeletonFactory>(
       variant = 'rectangular',
       children,
       loaded,
-      animation,
+      animation: animationProp = 'pulse',
       length: lengthProp,
+      disabled,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
+
+    const animation = disabled ? undefined : animationProp;
 
     const { getStyles } = useComponentTheme<ISkeletonThemeFactory>({
       componentName: COMPONENT_NAME,

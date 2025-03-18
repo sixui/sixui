@@ -1,9 +1,6 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IComponentThemeProps } from '~/components/Theme';
-import type {
-  IFileDropZoneFile,
-  IUseFileDropZoneProps,
-} from '~/hooks/useFileDropZone';
+import type { IUseFileDropZoneProps } from '~/hooks/useFileDropZone';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type {
   fileDropZoneControlTheme,
@@ -25,24 +22,31 @@ export type IFileDropZoneControlStrings = Record<
   string
 >;
 
-export interface IFileDropZoneControlOwnProps {
+export interface IFileDropZoneControlOwnProps
+  extends Pick<
+    IUseFileDropZoneProps,
+    | 'value'
+    | 'defaultValue'
+    | 'initializeFile'
+    | 'onAccept'
+    | 'onReject'
+    | 'onError'
+    | 'onDelete'
+    | 'onReorder'
+    | 'onRetry'
+    | 'onSuccess'
+    | 'onChange'
+    | 'onProcessing'
+  > {
   id?: string;
   supportingText?: React.ReactNode;
   trailingSupportingText?: React.ReactNode;
   hasError?: boolean;
   errorText?: React.ReactNode;
-  initialFiles?: Array<IFileDropZoneFile>;
   capture?: 'user' | 'environment';
   required?: boolean;
   extraActions?: React.ReactNode;
   sortable?: boolean;
-  onAccept?: IUseFileDropZoneProps['onAccept'];
-  onReject?: IUseFileDropZoneProps['onReject'];
-  onError?: IUseFileDropZoneProps['onError'];
-  onDelete?: IUseFileDropZoneProps['onDelete'];
-  onReorder?: IUseFileDropZoneProps['onReorder'];
-  onRetry?: IUseFileDropZoneProps['onRetry'];
-  onChange?: IUseFileDropZoneProps['onChange'];
   getIconFromMimeType?: (mimeType?: string) => React.ReactNode;
   disabled?: boolean;
   strings?: typeof fileDropZoneControlStrings;

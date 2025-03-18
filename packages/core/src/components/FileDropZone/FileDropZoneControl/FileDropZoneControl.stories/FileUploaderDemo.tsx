@@ -1,6 +1,10 @@
-import type { IFileDropZoneFile } from '~/hooks/useFileDropZone';
+import type { IFileDropZoneInputFile } from '~/hooks/useFileDropZone';
 import type { IMaybeAsync, IOmit } from '~/utils/types';
 import type { IFileDropZoneControlProps } from '../FileDropZoneControl.types';
+import {
+  IFileDropZoneFile,
+  IFileDropZoneFileState,
+} from '~/hooks/useFileDropZone';
 import { FileDropZoneControl } from '../FileDropZoneControl';
 
 export interface IFileUploaderDemoProgressEvent {
@@ -15,8 +19,7 @@ export interface IFileUploaderDemoProps
     uploadUrl: string,
     progressEvent: (event: IFileUploaderDemoProgressEvent) => void,
   ) => IMaybeAsync<void>;
-  register?: (file: IFileDropZoneFile) => IMaybeAsync<void>;
-  onSuccess?: (file: IFileDropZoneFile) => IMaybeAsync<void>;
+  register?: (file: IFileDropZoneFile) => IMaybeAsync<IFileDropZoneInputFile>;
   allowRetryOnError?: boolean;
 }
 
@@ -25,7 +28,6 @@ export const FileUploaderDemo: React.FC<IFileUploaderDemoProps> = (props) => {
     generateUploadUrl,
     upload,
     register,
-    onSuccess,
     onError,
     allowRetryOnError,
     ...other
@@ -33,37 +35,25 @@ export const FileUploaderDemo: React.FC<IFileUploaderDemoProps> = (props) => {
 
   const handleAccept: IFileDropZoneControlProps['onAccept'] = async (
     file,
-    updateFile,
+    updateInternalFile,
   ) => {
-    updateFile({
-      loading: true,
-      progress: undefined,
-      canRetry: false,
-    });
-
     const uploadUrl = await generateUploadUrl(file);
     await upload(file, uploadUrl, (event) => {
-      updateFile({
+      updateInternalFile({
+        state: IFileDropZoneFileState.Uploading,
         progress: event.progress,
       });
     });
 
-    updateFile({
-      loading: true,
+    updateInternalFile({
+      state: IFileDropZoneFileState.Uploading,
       progress: undefined,
     });
 
     await register?.(file);
-
-    updateFile({
-      loading: false,
-      progress: undefined,
-    });
-
-    await onSuccess?.(file);
   };
 
-  const handleError: IFileDropZoneControlProps['onError'] = async (
+  const handleError: IFileDropZoneControlProps['onError'] = (
     error,
     file,
     updateFile,
@@ -74,7 +64,7 @@ export const FileUploaderDemo: React.FC<IFileUploaderDemoProps> = (props) => {
       });
     }
 
-    await onError?.(error, file);
+    onError?.(error, file);
   };
 
   const handleRetry: IFileDropZoneControlProps['onRetry'] = (

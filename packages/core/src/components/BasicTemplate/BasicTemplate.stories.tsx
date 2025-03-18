@@ -7,13 +7,12 @@ import { BasicTemplate } from './BasicTemplate';
 
 const meta = {
   component: BasicTemplate,
+  args: {
+    children: 'BasicTemplate',
+  },
 } satisfies Meta<typeof BasicTemplate>;
 
 type IStory = StoryObj<typeof meta>;
-
-const defaultArgs = {
-  children: 'BasicTemplate',
-} satisfies Partial<IBasicTemplateProps>;
 
 const variants: Array<IComponentPresentation<IBasicTemplateProps>> = [
   { legend: 'None', props: { variant: false } },
@@ -31,7 +30,6 @@ export const Basic: IStory = {
   render: (props) => (
     <BasicTemplateShowcase props={props} cols={states} rows={variants} />
   ),
-  args: defaultArgs,
 };
 
 export default meta;

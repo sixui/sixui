@@ -58,7 +58,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
       disabled: themeTokens.colorScheme.onSurface,
     },
     opacity: {
-      disabled: themeTokens.state.opacity.disabled,
+      disabled: themeTokens.state.outlineOpacity.disabled,
     },
   },
 });

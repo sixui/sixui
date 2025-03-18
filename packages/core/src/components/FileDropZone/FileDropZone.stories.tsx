@@ -3,27 +3,26 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IFileDropZoneProps } from './FileDropZone.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { IFileSizeUnit } from '~/utils/types';
 import { FileDropZone } from './FileDropZone';
-import { FILES } from './FileDropZone.stories/files';
 
 const meta = {
   component: FileDropZone,
+  args: {
+    w: '344px',
+    label: 'Attached images',
+    supportingText: 'Images will not be uploaded.',
+    acceptedFileTypes: {
+      'image/*': [],
+    },
+    maxFileSize: 1 * IFileSizeUnit.Megabyte,
+    required: true,
+    onChange: (...args) => void sbHandleEvent('onChange', args),
+  },
 } satisfies Meta<typeof FileDropZone>;
 
 type IStory = StoryObj<typeof meta>;
-
-const defaultArgs = {
-  w: '344px',
-  label: 'Attached images',
-  supportingText: 'Images will not be uploaded.',
-  acceptedFileTypes: {
-    'image/*': [],
-  },
-  maxFileSize: 1 * IFileSizeUnit.Megabyte,
-  required: true,
-  initialFiles: FILES.slice(0, 1),
-} satisfies Partial<IFileDropZoneProps>;
 
 const cols: Array<IComponentPresentation<IFileDropZoneProps>> = [
   {
@@ -50,7 +49,6 @@ export const Basic: IStory = {
   render: (props) => (
     <FileDropZoneShowcase props={props} cols={cols} verticalAlign="start" />
   ),
-  args: defaultArgs,
 };
 
 export const Scales: IStory = {
@@ -66,7 +64,6 @@ export const Scales: IStory = {
       ]}
     />
   ),
-  args: defaultArgs,
 };
 
 export const Densities: IStory = {
@@ -80,7 +77,6 @@ export const Densities: IStory = {
       ]}
     />
   ),
-  args: defaultArgs,
 };
 
 export default meta;
