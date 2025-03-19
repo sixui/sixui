@@ -84,7 +84,7 @@ export const RadioGroupControl =
             return;
           }
 
-          setChangingValue(value);
+          setChangingValue(nextValue);
 
           void executeLazyPromise(
             () => onChange?.(nextValue, event) as Promise<void>,
@@ -93,7 +93,7 @@ export const RadioGroupControl =
             setValue(nextValue);
           });
         },
-        [handlingChange, onChange, setValue, value],
+        [handlingChange, onChange, setValue],
       );
 
       const contextValue = useMemo(
