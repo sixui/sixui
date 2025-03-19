@@ -45,11 +45,6 @@ export const FileUploaderDemo: React.FC<IFileUploaderDemoProps> = (props) => {
       });
     });
 
-    updateInternalFile({
-      state: IFileDropZoneFileState.Uploading,
-      progress: undefined,
-    });
-
     await register?.(file);
   };
 
