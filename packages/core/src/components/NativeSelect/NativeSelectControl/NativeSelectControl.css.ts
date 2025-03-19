@@ -22,7 +22,6 @@ const classNames = createStyles({
     paddingRight: FieldBase.theme.tokens.trailingSpace,
     paddingTop: FieldBase.theme.tokens.topSpace.normal,
     paddingBottom: FieldBase.theme.tokens.bottomSpace.normal,
-    padding: 0,
   },
   section$start: {
     position: 'absolute',

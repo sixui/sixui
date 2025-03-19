@@ -689,7 +689,6 @@ const classNames = createStyles({
     alignItems: 'center',
     height: '100%',
     minWidth: px(48),
-    position: 'relative',
 
     flexWrap: 'wrap',
     flexDirection: 'row',
