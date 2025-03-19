@@ -1,7 +1,7 @@
 {
   "name": "@sixui/core",
-  "version": "2.0.0",
   "description": "Material Design 3 for the web",
+  "version": "2.0.0",
   "homepage": "https://sixui.com",
   "license": "MIT",
   "repository": {

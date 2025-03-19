@@ -1,7 +1,15 @@
 {
-  "private": true,
   "name": "@sixui/eslint-config",
+  "description": "ESLint config for Sixui",
   "version": "0.1.0",
+  "homepage": "https://sixui.com",
+  "license": "MIT",
+  "repository": {
+    "url": "git+https://github.com/sixui/sixui.git",
+    "type": "git",
+    "directory": "packages/eslint-config"
+  },
+  "author": "Olivier Pascal <olivier@pascal.re>",
   "type": "module",
   "exports": {
     ".": "./src/base.js",
