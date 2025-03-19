@@ -116,12 +116,12 @@ export const multiSelectBaseFactory = <
                 const hasFocusedChip = focusedChipIndex !== undefined;
 
                 switch (event.key) {
-                  // If no query is present when the user presses the backspace key,
-                  // we want to move the focus to the last chip. If the user keep
-                  // the backspace key pressed (ie. to clear the query), this event
-                  // will be triggered multiple times. In this case, we don't move
-                  // the focus and wait for the user to release the key and press it
-                  // again.
+                  // If no query is present when the user presses the backspace
+                  // key, we want to move the focus to the last chip. If the
+                  // user keep the backspace key pressed (ie. to clear the
+                  // query), this event will be triggered multiple times. In
+                  // this case, we don't move the focus and wait for the user to
+                  // release the key and press it again.
                   case 'Backspace':
                     if (!query && isBackspaceKeyFreshlyPressed.current) {
                       multiFilterableListBase.handleRemoveFocusedChip();
@@ -130,8 +130,8 @@ export const multiSelectBaseFactory = <
                     isBackspaceKeyFreshlyPressed.current = false;
                     break;
 
-                  // If the user presses the enter key while a chip is focused, we
-                  // want to remove it instead of the default behavior.
+                  // If the user presses the enter key while a chip is focused,
+                  // we want to remove it instead of the default behavior.
                   case 'Enter':
                     if (hasFocusedChip) {
                       multiFilterableListBase.handleRemoveFocusedChip();
@@ -140,24 +140,25 @@ export const multiSelectBaseFactory = <
                     }
                     break;
 
-                  // If the user presses the up or down arrow keys, we want to blur
-                  // the focused chip while preserving the default behavior.
+                  // If the user presses the up or down arrow keys, we want to
+                  // blur the focused chip while preserving the default
+                  // behavior.
                   case 'ArrowDown':
                   case 'ArrowUp':
                     multiFilterableListBase.handleBlurChip();
                     userProps?.onKeyDown?.(event);
                     break;
 
-                  // When the user presses the left or the right arrow key, we want
-                  // to move the focus to the previous chip if any of the following
-                  // conditions are met:
+                  // When the user presses the left or the right arrow key, we
+                  // want to move the focus to the previous chip if any of the
+                  // following conditions are met:
                   // - A chip is currently focused ;
                   // - The query is empty (*) ;
-                  // - The query is not empty and the text cursor is at an extremity
-                  //   of the query field (*) ;
+                  // - The query is not empty and the text cursor is at an
+                  //   extremity of the query field (*) ;
                   //
-                  // (*) in case of a grid, only if the list is not open because the
-                  //   user might want to navigate the grid.
+                  // (*) in case of a grid, only if the list is not open because
+                  //   the user might want to navigate the grid.
 
                   case 'ArrowLeft':
                     if (

@@ -196,6 +196,7 @@ export const renderMovieListItem: IFilterableListItemRenderer<
       interactionsMergeStrategy="override"
       selected={props.modifiers.selected}
       disabled={props.modifiers.disabled}
+      propagateClick
       {...buttonAttributes}
       ref={props.buttonRef}
     />

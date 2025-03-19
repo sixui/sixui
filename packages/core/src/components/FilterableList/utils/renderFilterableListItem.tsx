@@ -26,6 +26,7 @@ export const renderFilterableListItem: IFilterableListItemRenderer<
       disabled={props.modifiers.disabled}
       {...props.getButtonAttributes()}
       tabIndex={props.modifiers.active ? 0 : -1}
+      propagateClick
       ref={props.buttonRef}
     />
   );
