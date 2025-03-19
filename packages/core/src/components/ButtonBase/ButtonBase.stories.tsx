@@ -10,20 +10,19 @@ import { ButtonBase } from './ButtonBase';
 
 const meta = {
   component: ButtonBase,
+  args: {
+    children: (
+      <>
+        <FontAwesomeIcon icon={faCartPlus} />
+        <Box as="span" pl="$2">
+          Add to cart
+        </Box>
+      </>
+    ),
+  },
 } satisfies Meta<typeof ButtonBase>;
 
 type IStory = StoryObj<typeof meta>;
-
-const defaultArgs = {
-  children: (
-    <>
-      <FontAwesomeIcon icon={faCartPlus} />
-      <Box as="span" pl="$2">
-        Add to cart
-      </Box>
-    </>
-  ),
-} satisfies Partial<IButtonBaseProps>;
 
 const rows: Array<IComponentPresentation<IButtonBaseProps>> = [
   { legend: 'Normal' },
@@ -58,7 +57,6 @@ export const Unstyled: IStory = {
   render: (props) => (
     <ButtonBaseShowcase props={props} cols={interactionsStates} rows={rows} />
   ),
-  args: defaultArgs,
 };
 
 export const Styled: IStory = {
@@ -66,7 +64,6 @@ export const Styled: IStory = {
     <ButtonBaseShowcase props={props} cols={interactionsStates} rows={rows} />
   ),
   args: {
-    ...defaultArgs,
     display: 'flex',
     alignItems: 'center',
     elevation: '$1',

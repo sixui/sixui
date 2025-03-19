@@ -12,8 +12,6 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {} satisfies Partial<IBurgerProps>;
-
 const states: Array<IComponentPresentation<IBurgerProps>> = [
   { legend: 'Normal' },
   { legend: 'Focused', props: { interactions: { focused: true } } },
@@ -32,7 +30,6 @@ const BurgerShowcase = componentShowcaseFactory(Burger);
 
 export const Standard: IStory = {
   render: (props) => <BurgerShowcase props={props} cols={states} rows={rows} />,
-  args: defaultArgs,
 };
 
 const BurgerDemo: React.FC<IBurgerProps> = (props) => {
@@ -51,7 +48,6 @@ const BurgerDemo: React.FC<IBurgerProps> = (props) => {
 
 export const Interactive: IStory = {
   render: (props) => <BurgerDemo {...props} />,
-  args: defaultArgs,
 };
 
 export default meta;

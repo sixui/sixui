@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
-import type { IBoxProps } from './Box.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { windowSizeClassNames } from '~/components/Theme';
 import { themeTokens } from '~/components/Theme/theme.css';
@@ -12,8 +11,6 @@ const meta = {
 } satisfies Meta<typeof Box>;
 
 type IStory = StoryObj<typeof meta>;
-
-const defaultArgs = {} satisfies Partial<IBoxProps>;
 
 const BoxShowcase = componentShowcaseFactory(Box);
 
@@ -47,7 +44,6 @@ export const ResponsiveVisibility: IStory = {
     />
   ),
   args: {
-    ...defaultArgs,
     w: '32px',
     h: '32px',
     br: '4px',
@@ -75,7 +71,6 @@ export const ResponsiveProperties: IStory = {
     />
   ),
   args: {
-    ...defaultArgs,
     w: '32px',
     h: '32px',
     br: '4px',

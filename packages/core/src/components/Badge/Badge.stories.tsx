@@ -15,8 +15,6 @@ const meta = {
 
 type IStory = StoryObj<IBadgeDemoProps>;
 
-const defaultArgs = {} satisfies Partial<IBadgeProps>;
-
 const BadgeDemo: React.FC<IBadgeDemoProps> = ({ overlap, ...props }) =>
   overlap ? (
     <Anchored content={<Badge {...props} />} overlap={overlap}>
@@ -62,7 +60,6 @@ export const Variants: IStory = {
       ]}
     />
   ),
-  args: defaultArgs,
 };
 
 export const Scales: IStory = {
@@ -79,7 +76,6 @@ export const Scales: IStory = {
     />
   ),
   args: {
-    ...defaultArgs,
     value: 888,
   },
 };
@@ -87,7 +83,6 @@ export const Scales: IStory = {
 export const Dot: IStory = {
   render: (props) => <BadgeDemoShowcase props={props} cols={cols} />,
   args: {
-    ...defaultArgs,
     dot: true,
   },
 };
@@ -95,7 +90,6 @@ export const Dot: IStory = {
 export const SingleDigit: IStory = {
   render: (props) => <BadgeDemoShowcase props={props} cols={cols} />,
   args: {
-    ...defaultArgs,
     value: 3,
   },
 };
@@ -103,7 +97,6 @@ export const SingleDigit: IStory = {
 export const MultipleDigits: IStory = {
   render: (props) => <BadgeDemoShowcase props={props} cols={cols} />,
   args: {
-    ...defaultArgs,
     value: 32,
   },
 };
@@ -111,7 +104,6 @@ export const MultipleDigits: IStory = {
 export const MultipleDigitsThresholded: IStory = {
   render: (props) => <BadgeDemoShowcase props={props} cols={cols} />,
   args: {
-    ...defaultArgs,
     value: 8000,
     maxValue: 999,
   },
@@ -120,7 +112,6 @@ export const MultipleDigitsThresholded: IStory = {
 export const ShowZeroValue: IStory = {
   render: (props) => <BadgeDemoShowcase props={props} cols={cols} />,
   args: {
-    ...defaultArgs,
     value: 0,
     showZero: true,
   },
@@ -129,7 +120,6 @@ export const ShowZeroValue: IStory = {
 export const HideZeroValue: IStory = {
   render: (props) => <BadgeDemoShowcase props={props} cols={cols} />,
   args: {
-    ...defaultArgs,
     value: 0,
   },
 };

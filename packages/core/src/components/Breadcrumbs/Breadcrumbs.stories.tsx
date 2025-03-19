@@ -3,7 +3,6 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { createSequence } from '@olivierpascal/helpers';
 
-import type { IBreadcrumbsProps } from './Breadcrumbs.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Breadcrumbs } from './Breadcrumbs';
 
@@ -12,8 +11,6 @@ const meta = {
 } satisfies Meta<typeof Breadcrumbs>;
 
 type IStory = StoryObj<typeof meta>;
-
-const defaultArgs = {} satisfies Partial<IBreadcrumbsProps>;
 
 const BreadcrumbsShowcase = componentShowcaseFactory(Breadcrumbs);
 
@@ -49,7 +46,6 @@ export const Variants: IStory = {
     />
   ),
   args: {
-    ...defaultArgs,
     children: createSequence(3).map((index) => (
       <span key={index}>Item {index + 1}</span>
     )),

@@ -18,14 +18,13 @@ import { buttonVariants } from './Button.types';
 
 const meta = {
   component: Button,
+  args: {
+    onClick: (...args) => sbHandleEvent('onClick', args, 1000),
+    children: 'Button',
+  },
 } satisfies Meta<typeof Button>;
 
 type IStory = StoryObj<typeof meta>;
-
-const defaultArgs = {
-  onClick: (...args) => sbHandleEvent('onClick', args, 1000),
-  children: 'Button',
-} satisfies Partial<IButtonProps>;
 
 const states: Array<IComponentPresentation<IButtonProps>> = [
   {
@@ -108,7 +107,6 @@ export const Variants: IStory = {
       }))}
     />
   ),
-  args: defaultArgs,
 };
 
 export const Scales: IStory = {
@@ -125,7 +123,6 @@ export const Scales: IStory = {
     />
   ),
   args: {
-    ...defaultArgs,
     variant: 'filled',
   },
 };
@@ -144,7 +141,6 @@ export const Densities: IStory = {
     />
   ),
   args: {
-    ...defaultArgs,
     variant: 'filled',
   },
 };
@@ -152,7 +148,6 @@ export const Densities: IStory = {
 export const Elevated: IStory = {
   render: (props) => <ButtonShowcase props={props} cols={states} rows={rows} />,
   args: {
-    ...defaultArgs,
     variant: 'elevated',
   },
 };
@@ -160,7 +155,6 @@ export const Elevated: IStory = {
 export const Filled: IStory = {
   render: (props) => <ButtonShowcase props={props} cols={states} rows={rows} />,
   args: {
-    ...defaultArgs,
     variant: 'filled',
   },
 };
@@ -168,7 +162,6 @@ export const Filled: IStory = {
 export const FilledTonal: IStory = {
   render: (props) => <ButtonShowcase props={props} cols={states} rows={rows} />,
   args: {
-    ...defaultArgs,
     variant: 'filledTonal',
   },
 };
@@ -176,7 +169,6 @@ export const FilledTonal: IStory = {
 export const Outlined: IStory = {
   render: (props) => <ButtonShowcase props={props} cols={states} rows={rows} />,
   args: {
-    ...defaultArgs,
     variant: 'outlined',
   },
 };
@@ -184,7 +176,6 @@ export const Outlined: IStory = {
 export const Text: IStory = {
   render: (props) => <ButtonShowcase props={props} cols={states} rows={rows} />,
   args: {
-    ...defaultArgs,
     variant: 'text',
   },
 };
@@ -192,7 +183,6 @@ export const Text: IStory = {
 export const Danger: IStory = {
   render: (props) => <ButtonShowcase props={props} cols={states} rows={rows} />,
   args: {
-    ...defaultArgs,
     variant: 'danger',
   },
 };
@@ -200,7 +190,6 @@ export const Danger: IStory = {
 export const Snackbar: IStory = {
   render: (props) => <ButtonShowcase props={props} cols={states} rows={rows} />,
   args: {
-    ...defaultArgs,
     variant: 'snackbar',
   },
 };
@@ -208,7 +197,6 @@ export const Snackbar: IStory = {
 export const Inline: IStory = {
   render: (props) => <ButtonShowcase props={props} cols={states} rows={rows} />,
   args: {
-    ...defaultArgs,
     variant: 'inline',
   },
 };
@@ -265,7 +253,6 @@ export const InlineWithText: IStory = {
     />
   ),
   args: {
-    ...defaultArgs,
     variant: 'inline',
     children: 'click me',
     trailingIcon: <FontAwesomeIcon icon={faArrowUpRightFromSquare} />,
@@ -275,7 +262,6 @@ export const InlineWithText: IStory = {
 export const Raw: IStory = {
   render: (props) => <ButtonShowcase props={props} cols={states} rows={rows} />,
   args: {
-    ...defaultArgs,
     variant: false,
   },
 };

@@ -17,28 +17,27 @@ import { BottomSheetOverlay } from './BottomSheetOverlay';
 
 const meta = {
   component: BottomSheet,
+  args: {
+    showCloseButton: true,
+    children: (
+      <Text p="$xl">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+        tincidunt dictum vulputate. Lorem ipsum dolor sit amet, consectetur
+        adipiscing elit. Nullam ultrices leo non urna sollicitudin faucibus.
+        Curabitur interdum, massa at venenatis sodales, metus tellus aliquet
+        erat, vitae lacinia mi mi consectetur dolor. Phasellus blandit porta
+        urna at semper. Donec vehicula lectus in eleifend elementum. Vestibulum
+        quis massa massa. Vivamus porta risus ac metus dictum tristique.
+        Curabitur pulvinar nunc eget eros condimentum, sit amet fermentum dui
+        blandit. Nam lorem orci, ultricies quis justo eget, gravida finibus
+        sapien. Cras lorem odio, sagittis sed risus sed, tristique malesuada
+        leo. In odio enim, pulvinar ut felis ac, vulputate auctor massa.
+      </Text>
+    ),
+  },
 } satisfies Meta<IBottomSheetProps>;
 
 type IStory = StoryObj<IBottomSheetProps>;
-
-const defaultArgs = {
-  showCloseButton: true,
-  children: (
-    <Text p="$xl">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-      tincidunt dictum vulputate. Lorem ipsum dolor sit amet, consectetur
-      adipiscing elit. Nullam ultrices leo non urna sollicitudin faucibus.
-      Curabitur interdum, massa at venenatis sodales, metus tellus aliquet erat,
-      vitae lacinia mi mi consectetur dolor. Phasellus blandit porta urna at
-      semper. Donec vehicula lectus in eleifend elementum. Vestibulum quis massa
-      massa. Vivamus porta risus ac metus dictum tristique. Curabitur pulvinar
-      nunc eget eros condimentum, sit amet fermentum dui blandit. Nam lorem
-      orci, ultricies quis justo eget, gravida finibus sapien. Cras lorem odio,
-      sagittis sed risus sed, tristique malesuada leo. In odio enim, pulvinar ut
-      felis ac, vulputate auctor massa.
-    </Text>
-  ),
-} satisfies Partial<IBottomSheetProps>;
 
 const BottomSheetScreenFrame: React.FC<IBottomSheetProps> = (props) => {
   const { ...other } = props;
@@ -102,7 +101,6 @@ const BottomSheetScreenFrame: React.FC<IBottomSheetProps> = (props) => {
 
 export const Basic: IStory = {
   render: (props) => <BottomSheetScreenFrame {...props} />,
-  args: defaultArgs,
 };
 
 const AsOverlayDemo: React.FC<IBottomSheetOverlayProps> = (props) => {
@@ -124,7 +122,6 @@ export const AsOverlay: IStory = {
       rows={[{ legend: 'Normal' }, { legend: 'Modal', props: { modal: true } }]}
     />
   ),
-  args: defaultArgs,
 };
 
 export default meta;

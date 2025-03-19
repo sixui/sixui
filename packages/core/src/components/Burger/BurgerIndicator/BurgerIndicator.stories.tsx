@@ -12,8 +12,6 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {} satisfies Partial<IBurgerIndicatorProps>;
-
 const BurgerIndicatorDemo: React.FC<IBurgerIndicatorProps> = (props) => {
   const [opened, toggleOpened] = useToggle([false, true]);
 
@@ -35,7 +33,6 @@ const BurgerIndicatorDemo: React.FC<IBurgerIndicatorProps> = (props) => {
 
 export const Basic: IStory = {
   render: (props) => <BurgerIndicatorDemo {...props} />,
-  args: defaultArgs,
 };
 
 export default meta;
