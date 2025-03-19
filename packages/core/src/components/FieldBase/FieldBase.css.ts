@@ -169,11 +169,11 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
       },
       focused: {
         regular: themeTokens.colorScheme.onSurfaceVariant,
-        error: themeTokens.colorScheme.onSurfaceVariant,
+        error: themeTokens.colorScheme.error,
       },
       hovered: {
         regular: themeTokens.colorScheme.onSurfaceVariant,
-        error: themeTokens.colorScheme.onSurfaceVariant,
+        error: themeTokens.colorScheme.error,
       },
       disabled: themeTokens.colorScheme.onSurface,
     },
