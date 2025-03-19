@@ -18,7 +18,7 @@ export const compile = async (
   );
 
   for (const rollupOptions of rollupOptionsList) {
-    logger.note('Compile:', rollupOptions.output);
+    logger.info('Compiling...');
 
     const build = await rollup(rollupOptions);
 

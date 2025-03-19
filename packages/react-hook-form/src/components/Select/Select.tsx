@@ -1,7 +1,25 @@
+import type { ISelectProps as $ISelectProps, IOmit } from '@sixui/core';
+import type { FieldValues, UseControllerProps } from 'react-hook-form';
 import { Select as $Select } from '@sixui/core';
 
-import { formFieldFactory } from '~/utils/formFieldFactory';
+import { useFormField } from '~/hooks/useFormField';
 
-export const Select = formFieldFactory($Select);
+export type ISelectProps<TFieldValues extends FieldValues> =
+  UseControllerProps<TFieldValues> &
+    IOmit<$ISelectProps, 'value' | 'defaultValue'>;
 
-export type ISelectProps = React.ComponentProps<typeof Select>;
+type ISelect = <TFieldValues extends FieldValues>(
+  props: ISelectProps<TFieldValues>,
+) => React.JSX.Element;
+
+export const Select: ISelect = <TFieldValues extends FieldValues>(
+  props: ISelectProps<TFieldValues>,
+) => {
+  const formFieldProps = useFormField<
+    TFieldValues,
+    $ISelectProps,
+    Parameters<NonNullable<$ISelectProps['onChange']>>
+  >(props);
+
+  return <$Select {...formFieldProps} />;
+};

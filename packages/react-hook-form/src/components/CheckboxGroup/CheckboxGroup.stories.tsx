@@ -1,3 +1,4 @@
+import type { IAny } from '@sixui/core';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Flex } from '@sixui/core';
 import { action } from '@storybook/addon-actions';
@@ -7,7 +8,7 @@ import { CheckboxGroup } from './CheckboxGroup';
 
 const FIELD_NAME = 'fieldName';
 
-const CheckboxGroupDemo: React.FC<ICheckboxGroupProps> = (props) => (
+const CheckboxGroupDemo: React.FC<ICheckboxGroupProps<IAny>> = (props) => (
   <CheckboxGroup {...props}>
     <Flex direction="column" mt="$sm" gap="$md">
       <CheckboxGroup.Item value="a" label="Option A" />
@@ -18,31 +19,26 @@ const CheckboxGroupDemo: React.FC<ICheckboxGroupProps> = (props) => (
 
 const meta = {
   component: CheckboxGroupDemo,
+  args: {
+    name: FIELD_NAME,
+    onChange: (...args) => {
+      action('onChange')(args);
+    },
+    label: 'Label',
+  },
 } satisfies Meta<typeof CheckboxGroupDemo>;
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {
-  name: FIELD_NAME,
-  onChange: (...args) => {
-    action('onChange')(args);
-  },
-  label: 'Label',
-} satisfies Partial<ICheckboxGroupProps>;
-
-export const Basic: IStory = {
-  args: defaultArgs,
-};
+export const Basic: IStory = {};
 
 export const Required: IStory = {
   args: {
-    ...defaultArgs,
     required: true,
   },
 };
 
 export const WithDefaultValue: IStory = {
-  args: defaultArgs,
   parameters: {
     form: {
       defaultValues: {

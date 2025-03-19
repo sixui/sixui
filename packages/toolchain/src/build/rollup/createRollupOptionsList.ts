@@ -28,7 +28,7 @@ export const createRollupOptionsList = (
   const emittedCssFiles = new Set<string>();
 
   const tsconfigPath = getPath(buildOptions.tsconfig, buildOptions.cwd);
-  const outDirPath = getPath(buildOptions.outDir, buildOptions.cwd);
+  const outDirPath = getPath(buildOptions.outputDirPath, buildOptions.cwd);
 
   const plugins = [
     postcssPlugin({
@@ -74,14 +74,16 @@ export const createRollupOptionsList = (
 
         return undefined;
       }),
-      bundleCssEmitsPlugin({
-        cssBundleKey: BUNDLE_CSS_KEY,
-        shouldStrip: (assetPath) => emittedCssFiles.has(assetPath),
-        onReset: () => {
-          emittedCssFiles.clear();
-        },
-        getEmittedAssets: () => Array.from(emittedCssFiles),
-      }),
+      buildOptions.outputCssBundle
+        ? bundleCssEmitsPlugin({
+            cssBundleKey: BUNDLE_CSS_KEY,
+            shouldStrip: (assetPath) => emittedCssFiles.has(assetPath),
+            onReset: () => {
+              emittedCssFiles.clear();
+            },
+            getEmittedAssets: () => Array.from(emittedCssFiles),
+          })
+        : undefined,
     ],
     output: [
       {
@@ -97,7 +99,7 @@ export const createRollupOptionsList = (
           );
 
           if (name === BUNDLE_CSS_KEY) {
-            return buildOptions.cssOutputBundleName;
+            return buildOptions.outputCssBundleName;
           }
 
           if (assetPath.endsWith('.css')) {

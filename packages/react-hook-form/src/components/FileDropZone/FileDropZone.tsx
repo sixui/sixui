@@ -1,9 +1,30 @@
+import type {
+  IFileDropZoneProps as $IFileDropZoneProps,
+  IOmit,
+} from '@sixui/core';
+import type { FieldValues, UseControllerProps } from 'react-hook-form';
 import { FileDropZone as $FileDropZone } from '@sixui/core';
 
-import { formFieldFactory } from '~/utils/formFieldFactory';
+import { useFormField } from '~/hooks/useFormField';
 
-export const FileDropZone = formFieldFactory($FileDropZone, {
-  emptyValue: [],
-});
+export type IFileDropZoneProps<TFieldValues extends FieldValues> =
+  UseControllerProps<TFieldValues> &
+    IOmit<$IFileDropZoneProps, 'value' | 'defaultValue'>;
 
-export type IFileDropZoneProps = React.ComponentProps<typeof FileDropZone>;
+type IFileDropZone = <TFieldValues extends FieldValues>(
+  props: IFileDropZoneProps<TFieldValues>,
+) => React.JSX.Element;
+
+export const FileDropZone: IFileDropZone = <TFieldValues extends FieldValues>(
+  props: IFileDropZoneProps<TFieldValues>,
+) => {
+  const formFieldProps = useFormField<
+    TFieldValues,
+    $IFileDropZoneProps,
+    Parameters<NonNullable<$IFileDropZoneProps['onChange']>>
+  >(props, {
+    emptyValue: [],
+  });
+
+  return <$FileDropZone {...formFieldProps} />;
+};

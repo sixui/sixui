@@ -1,7 +1,30 @@
+import type {
+  ICheckboxCardProps as $ICheckboxCardProps,
+  IOmit,
+} from '@sixui/core';
+import type { FieldValues, UseControllerProps } from 'react-hook-form';
 import { CheckboxCard as $CheckboxCard } from '@sixui/core';
 
-import { formCheckableFieldFactory } from '~/utils/formFieldFactory';
+import { useFormField } from '~/hooks/useFormField';
 
-export const CheckboxCard = formCheckableFieldFactory($CheckboxCard);
+export type ICheckboxCardProps<TFieldValues extends FieldValues> =
+  UseControllerProps<TFieldValues> &
+    IOmit<$ICheckboxCardProps, 'checked' | 'defaultChecked'>;
 
-export type ICheckboxCardProps = React.ComponentProps<typeof CheckboxCard>;
+type ICheckboxCard = <TFieldValues extends FieldValues>(
+  props: ICheckboxCardProps<TFieldValues>,
+) => React.JSX.Element;
+
+export const CheckboxCard: ICheckboxCard = <TFieldValues extends FieldValues>(
+  props: ICheckboxCardProps<TFieldValues>,
+) => {
+  const formFieldProps = useFormField<
+    TFieldValues,
+    $ICheckboxCardProps,
+    Parameters<NonNullable<$ICheckboxCardProps['onChange']>>
+  >(props, {
+    checkable: true,
+  });
+
+  return <$CheckboxCard {...formFieldProps} />;
+};

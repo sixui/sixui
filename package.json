@@ -15,7 +15,7 @@
     "dev": "nx run core:dev",
     "check:all": "nx run-many -t check:all",
     "pre-commit": "nx run-many -t pre-commit",
-    "build": "nx run core:build",
+    "build": "nx run-many -t build",
     "release:dry": "nx release --dry-run",
     "release": "nx release"
   },
@@ -35,6 +35,7 @@
     "npm-run-all": "^4.1.5",
     "nx": "20.6.1",
     "prettier": "^3.5.3",
+    "typescript": "^5.8.2",
     "validate-branch-name": "^1.3.2"
   },
   "packageManager": "pnpm@10.6.4",

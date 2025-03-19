@@ -1,7 +1,26 @@
+import type { IRadioCardProps as $IRadioCardProps } from '@sixui/core';
+import type { FieldValues, UseControllerProps } from 'react-hook-form';
 import { RadioCard as $RadioCard } from '@sixui/core';
 
-import { formCheckableFieldFactory } from '~/utils/formFieldFactory';
+import { useFormField } from '~/hooks/useFormField';
 
-export const RadioCard = formCheckableFieldFactory($RadioCard);
+export type IRadioCardProps<TFieldValues extends FieldValues> =
+  UseControllerProps<TFieldValues> & $IRadioCardProps;
 
-export type IRadioCardProps = React.ComponentProps<typeof RadioCard>;
+type IRadioCard = <TFieldValues extends FieldValues>(
+  props: IRadioCardProps<TFieldValues>,
+) => React.JSX.Element;
+
+export const RadioCard: IRadioCard = <TFieldValues extends FieldValues>(
+  props: IRadioCardProps<TFieldValues>,
+) => {
+  const formFieldProps = useFormField<
+    TFieldValues,
+    $IRadioCardProps,
+    Parameters<NonNullable<$IRadioCardProps['onChange']>>
+  >(props, {
+    checkable: true,
+  });
+
+  return <$RadioCard {...formFieldProps} />;
+};

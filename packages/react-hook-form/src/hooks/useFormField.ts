@@ -3,6 +3,7 @@ import type {
   FieldError,
   FieldValues,
   UseControllerProps,
+  UseControllerReturn,
 } from 'react-hook-form';
 import { useController } from 'react-hook-form';
 
@@ -45,11 +46,12 @@ const defaultOptions = {
 
 export const useFormField = <
   TFieldValues extends FieldValues,
+  TComponentProps extends object,
   TChangeEventValue extends IUnknownParamters = [string],
 >(
-  props: IUseFormFieldProps<TChangeEventValue, TFieldValues>,
+  props: TComponentProps & IUseFormFieldProps<TChangeEventValue, TFieldValues>,
   optionsProp?: IUseFormFieldOptions,
-): IUseFormFieldResult<TChangeEventValue> => {
+): TComponentProps & UseControllerReturn<TFieldValues> => {
   const {
     name,
     control,
@@ -109,5 +111,5 @@ export const useFormField = <
           value: field.value ?? options.emptyValue,
         }),
     ...other,
-  };
+  } as unknown as TComponentProps & UseControllerReturn<TFieldValues>;
 };

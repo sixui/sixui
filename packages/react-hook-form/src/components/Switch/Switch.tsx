@@ -1,7 +1,27 @@
+import type { ISwitchProps as $ISwitchProps, IOmit } from '@sixui/core';
+import type { FieldValues, UseControllerProps } from 'react-hook-form';
 import { Switch as $Switch } from '@sixui/core';
 
-import { formCheckableFieldFactory } from '~/utils/formFieldFactory';
+import { useFormField } from '~/hooks/useFormField';
 
-export const Switch = formCheckableFieldFactory($Switch);
+export type ISwitchProps<TFieldValues extends FieldValues> =
+  UseControllerProps<TFieldValues> &
+    IOmit<$ISwitchProps, 'checked' | 'defaultChecked'>;
 
-export type ISwitchProps = React.ComponentProps<typeof Switch>;
+type ISwitch = <TFieldValues extends FieldValues>(
+  props: ISwitchProps<TFieldValues>,
+) => React.JSX.Element;
+
+export const Switch: ISwitch = <TFieldValues extends FieldValues>(
+  props: ISwitchProps<TFieldValues>,
+) => {
+  const formFieldProps = useFormField<
+    TFieldValues,
+    $ISwitchProps,
+    Parameters<NonNullable<$ISwitchProps['onChange']>>
+  >(props, {
+    checkable: true,
+  });
+
+  return <$Switch {...formFieldProps} />;
+};
