@@ -7,14 +7,13 @@ import { AppLayoutFooter } from './AppLayoutFooter';
 
 const meta = {
   component: AppLayoutFooter,
+  args: {
+    children: <Placeholder diagonals h="288px" />,
+    divider: true,
+  },
 } satisfies Meta<typeof AppLayoutFooter>;
 
 type IStory = StoryObj<typeof meta>;
-
-const defaultArgs = {
-  children: <Placeholder diagonals h="288px" />,
-  divider: true,
-} satisfies Partial<IAppLayoutFooterProps>;
 
 const AppLayoutFooterScreenFrame: React.FC<IAppLayoutFooterProps> = (props) => {
   return (
@@ -33,7 +32,6 @@ const AppLayoutFooterScreenFrame: React.FC<IAppLayoutFooterProps> = (props) => {
 
 export const Basic: IStory = {
   render: (props) => <AppLayoutFooterScreenFrame {...props} />,
-  args: defaultArgs,
 };
 
 export default meta;

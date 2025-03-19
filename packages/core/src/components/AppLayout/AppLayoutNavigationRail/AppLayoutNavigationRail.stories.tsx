@@ -23,37 +23,36 @@ import { AppLayoutNavigationRail } from './AppLayoutNavigationRail';
 
 const meta = {
   component: AppLayoutNavigationRail,
+  args: {
+    children: (
+      <>
+        <NavigationRail.Destination
+          onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
+          icon={<FontAwesomeIcon icon={faSquare} />}
+          activeIcon={<FontAwesomeIcon icon={fasSquare} />}
+          label="Item 1"
+          active
+        />
+        <NavigationRail.Destination
+          onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
+          icon={<FontAwesomeIcon icon={faCircle} />}
+          activeIcon={<FontAwesomeIcon icon={fasCircle} />}
+          label="Item 2"
+        />
+        <NavigationRail.Destination
+          onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
+          icon={<FontAwesomeIcon icon={faHeart} />}
+          activeIcon={<FontAwesomeIcon icon={fasHeart} />}
+          label="Item 3"
+          disabled
+        />
+      </>
+    ),
+    divider: true,
+  },
 } satisfies Meta<typeof AppLayoutNavigationRail>;
 
 type IStory = StoryObj<typeof meta>;
-
-const defaultArgs = {
-  children: (
-    <>
-      <NavigationRail.Destination
-        onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
-        icon={<FontAwesomeIcon icon={faSquare} />}
-        activeIcon={<FontAwesomeIcon icon={fasSquare} />}
-        label="Item 1"
-        active
-      />
-      <NavigationRail.Destination
-        onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
-        icon={<FontAwesomeIcon icon={faCircle} />}
-        activeIcon={<FontAwesomeIcon icon={fasCircle} />}
-        label="Item 2"
-      />
-      <NavigationRail.Destination
-        onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
-        icon={<FontAwesomeIcon icon={faHeart} />}
-        activeIcon={<FontAwesomeIcon icon={fasHeart} />}
-        label="Item 3"
-        disabled
-      />
-    </>
-  ),
-  divider: true,
-} satisfies Partial<IAppLayoutNavigationRailProps>;
 
 const AppLayoutNavigationRailScreenFrame: React.FC<
   IAppLayoutNavigationRailProps
@@ -91,7 +90,6 @@ const AppLayoutNavigationRailScreenFrame: React.FC<
 export const Left: IStory = {
   render: (props) => <AppLayoutNavigationRailScreenFrame {...props} />,
   args: {
-    ...defaultArgs,
     side: 'left',
   },
 };
@@ -99,7 +97,6 @@ export const Left: IStory = {
 export const Right: IStory = {
   render: (props) => <AppLayoutNavigationRailScreenFrame {...props} />,
   args: {
-    ...defaultArgs,
     side: 'right',
   },
 };

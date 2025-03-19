@@ -7,21 +7,20 @@ import { AppLayoutTopBar } from './AppLayoutTopBar';
 
 const meta = {
   component: AppLayoutTopBar,
+  args: {
+    headline: 'Headline',
+    leadingNavigation: <Placeholder diagonals w="32px" h="32px" shape="$xs" />,
+    trailingActions: (
+      <>
+        <Placeholder diagonals w="32px" h="32px" shape="$xs" />
+        <Placeholder diagonals w="32px" h="32px" shape="$xs" />
+      </>
+    ),
+    divider: true,
+  },
 } satisfies Meta<typeof AppLayoutTopBar>;
 
 type IStory = StoryObj<typeof meta>;
-
-const defaultArgs = {
-  headline: 'Headline',
-  leadingNavigation: <Placeholder diagonals w="32px" h="32px" shape="$xs" />,
-  trailingActions: (
-    <>
-      <Placeholder diagonals w="32px" h="32px" shape="$xs" />
-      <Placeholder diagonals w="32px" h="32px" shape="$xs" />
-    </>
-  ),
-  divider: true,
-} satisfies Partial<IAppLayoutTopBarProps>;
 
 const AppLayoutTopBarScreenFrame: React.FC<IAppLayoutTopBarProps> = (props) => {
   return (
@@ -33,7 +32,6 @@ const AppLayoutTopBarScreenFrame: React.FC<IAppLayoutTopBarProps> = (props) => {
 
 export const Basic: IStory = {
   render: (props) => <AppLayoutTopBarScreenFrame {...props} />,
-  args: defaultArgs,
 };
 
 export default meta;

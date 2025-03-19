@@ -8,15 +8,14 @@ import { AppLayoutBody } from './AppLayoutBody';
 
 const meta = {
   component: AppLayoutBody,
+  args: {
+    children: createSequence(3).map((index) => (
+      <Placeholder key={index} grow={1} diagonals />
+    )),
+  },
 } satisfies Meta<typeof AppLayoutBody>;
 
 type IStory = StoryObj<typeof meta>;
-
-const defaultArgs = {
-  children: createSequence(3).map((index) => (
-    <Placeholder key={index} grow={1} diagonals />
-  )),
-} satisfies Partial<IAppLayoutBodyProps>;
 
 const AppLayoutBodyScreenFrame: React.FC<IAppLayoutBodyProps> = (props) => {
   return (
@@ -28,7 +27,6 @@ const AppLayoutBodyScreenFrame: React.FC<IAppLayoutBodyProps> = (props) => {
 
 export const Basic: IStory = {
   render: (props) => <AppLayoutBodyScreenFrame {...props} />,
-  args: defaultArgs,
 };
 
 export default meta;

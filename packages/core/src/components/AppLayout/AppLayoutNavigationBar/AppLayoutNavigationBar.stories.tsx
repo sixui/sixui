@@ -23,36 +23,35 @@ import { AppLayoutNavigationBar } from './AppLayoutNavigationBar';
 
 const meta = {
   component: AppLayoutNavigationBar,
+  args: {
+    children: (
+      <>
+        <NavigationBar.Destination
+          onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
+          icon={<FontAwesomeIcon icon={faSquare} />}
+          activeIcon={<FontAwesomeIcon icon={fasSquare} />}
+          label="Item 1"
+          active
+        />
+        <NavigationBar.Destination
+          onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
+          icon={<FontAwesomeIcon icon={faCircle} />}
+          activeIcon={<FontAwesomeIcon icon={fasCircle} />}
+          label="Item 2"
+        />
+        <NavigationBar.Destination
+          onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
+          icon={<FontAwesomeIcon icon={faHeart} />}
+          activeIcon={<FontAwesomeIcon icon={fasHeart} />}
+          label="Item 3"
+          disabled
+        />
+      </>
+    ),
+  },
 } satisfies Meta<typeof AppLayoutNavigationBar>;
 
 type IStory = StoryObj<typeof meta>;
-
-const defaultArgs = {
-  children: (
-    <>
-      <NavigationBar.Destination
-        onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
-        icon={<FontAwesomeIcon icon={faSquare} />}
-        activeIcon={<FontAwesomeIcon icon={fasSquare} />}
-        label="Item 1"
-        active
-      />
-      <NavigationBar.Destination
-        onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
-        icon={<FontAwesomeIcon icon={faCircle} />}
-        activeIcon={<FontAwesomeIcon icon={fasCircle} />}
-        label="Item 2"
-      />
-      <NavigationBar.Destination
-        onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
-        icon={<FontAwesomeIcon icon={faHeart} />}
-        activeIcon={<FontAwesomeIcon icon={fasHeart} />}
-        label="Item 3"
-        disabled
-      />
-    </>
-  ),
-} satisfies Partial<IAppLayoutNavigationBarProps>;
 
 const AppLayoutNavigationBarScreenFrame: React.FC<
   IAppLayoutNavigationBarProps
@@ -85,7 +84,6 @@ const AppLayoutNavigationBarScreenFrame: React.FC<
 
 export const Basic: IStory = {
   render: (props) => <AppLayoutNavigationBarScreenFrame {...props} />,
-  args: defaultArgs,
 };
 
 export default meta;

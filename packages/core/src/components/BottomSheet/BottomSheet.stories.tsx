@@ -49,7 +49,7 @@ const BottomSheetScreenFrame: React.FC<IBottomSheetProps> = (props) => {
 
   return (
     <Flex direction="column" gap="$sm">
-      <Flex direction="row" gap="$xl">
+      <Flex direction="row" gap="$xl" align="center">
         <Button
           onClick={() => {
             toggleOpened();

@@ -14,11 +14,12 @@ import { Anchored } from './Anchored';
 
 const meta = {
   component: Anchored,
+  args: {
+    children: <Placeholder w="48px" h="48px" shape="$sm" />,
+  },
 } satisfies Meta<typeof Anchored>;
 
 type IStory = StoryObj<typeof meta>;
-
-const defaultArgs = {} satisfies Partial<IAnchoredProps>;
 
 const BadgeDemo: React.FC<IPlaceholderProps & { size: 'sm' | 'lg' }> = ({
   size,
@@ -61,7 +62,6 @@ export const Variants: IStory = {
       ]}
     />
   ),
-  args: defaultArgs as IAnchoredProps,
 };
 
 const AnchoredAnimatedShowcase: React.FC<
@@ -111,7 +111,6 @@ export const RectangularOverlap: IStory = {
     />
   ),
   args: {
-    ...defaultArgs,
     overlap: 'rectangular',
     children: <Placeholder w="48px" h="48px" shape="$sm" />,
   },
@@ -126,7 +125,6 @@ export const CircularOverlap: IStory = {
     />
   ),
   args: {
-    ...defaultArgs,
     overlap: 'circular',
     children: <Placeholder w="48px" h="48px" shape="$circle" />,
   },

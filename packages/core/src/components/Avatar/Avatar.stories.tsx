@@ -22,8 +22,6 @@ const AVATAR_IMAGE_URL_2 =
 const AVATAR_IMAGE_URL_3 =
   'https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80';
 
-const defaultArgs = {} satisfies Partial<IAvatarProps>;
-
 const rows: Array<IComponentPresentation<IAvatarProps>> = [
   { legend: 'Rounded' },
   { legend: 'Squared', props: { shape: '$sm' } },
@@ -49,9 +47,6 @@ export const Variants: IStory = {
       rows={rows}
     />
   ),
-  args: {
-    ...defaultArgs,
-  },
 };
 
 export const Scales: IStory = {
@@ -67,7 +62,6 @@ export const Scales: IStory = {
       ]}
     />
   ),
-  args: defaultArgs,
 };
 
 export const Densities: IStory = {
@@ -82,7 +76,6 @@ export const Densities: IStory = {
       ]}
     />
   ),
-  args: defaultArgs,
 };
 
 export const Image: IStory = {
@@ -112,7 +105,6 @@ export const Image: IStory = {
       rows={rows}
     />
   ),
-  args: defaultArgs,
 };
 
 export const Letter: IStory = {
@@ -126,7 +118,6 @@ export const Letter: IStory = {
       ]}
     />
   ),
-  args: defaultArgs,
 };
 
 export const Icon: IStory = {
@@ -141,7 +132,6 @@ export const Icon: IStory = {
       rows={rows}
     />
   ),
-  args: defaultArgs,
 };
 
 export const Fallback: IStory = {
@@ -156,7 +146,6 @@ export const Fallback: IStory = {
       rows={rows}
     />
   ),
-  args: defaultArgs,
 };
 
 export const Colors: IStory = {
@@ -177,7 +166,6 @@ export const Colors: IStory = {
     />
   ),
   args: {
-    ...defaultArgs,
     fallbackToRandomColor: true,
   },
 };

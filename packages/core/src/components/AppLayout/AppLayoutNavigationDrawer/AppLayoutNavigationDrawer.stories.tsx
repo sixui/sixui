@@ -24,41 +24,40 @@ import { AppLayoutNavigationDrawer } from './AppLayoutNavigationDrawer';
 
 const meta = {
   component: AppLayoutNavigationDrawer,
+  args: {
+    children: (
+      <>
+        <AppLayoutNavigationDrawer.Section headline="Section">
+          <AppLayoutNavigationDrawer.Destination
+            onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
+            leadingIcon={<FontAwesomeIcon icon={faSquare} />}
+            activeLeadingIcon={<FontAwesomeIcon icon={fasSquare} />}
+            active
+          >
+            Item 1
+          </AppLayoutNavigationDrawer.Destination>
+          <AppLayoutNavigationDrawer.Destination
+            onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
+            leadingIcon={<FontAwesomeIcon icon={faCircle} />}
+            activeLeadingIcon={<FontAwesomeIcon icon={fasCircle} />}
+          >
+            Item 2
+          </AppLayoutNavigationDrawer.Destination>
+          <AppLayoutNavigationDrawer.Destination
+            onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
+            leadingIcon={<FontAwesomeIcon icon={faHeart} />}
+            activeLeadingIcon={<FontAwesomeIcon icon={fasHeart} />}
+            disabled
+          >
+            Item 3
+          </AppLayoutNavigationDrawer.Destination>
+        </AppLayoutNavigationDrawer.Section>
+      </>
+    ),
+  },
 } satisfies Meta<typeof AppLayoutNavigationDrawer>;
 
 type IStory = StoryObj<typeof meta>;
-
-const defaultArgs = {
-  children: (
-    <>
-      <AppLayoutNavigationDrawer.Section headline="Section">
-        <AppLayoutNavigationDrawer.Destination
-          onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
-          leadingIcon={<FontAwesomeIcon icon={faSquare} />}
-          activeLeadingIcon={<FontAwesomeIcon icon={fasSquare} />}
-          active
-        >
-          Item 1
-        </AppLayoutNavigationDrawer.Destination>
-        <AppLayoutNavigationDrawer.Destination
-          onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
-          leadingIcon={<FontAwesomeIcon icon={faCircle} />}
-          activeLeadingIcon={<FontAwesomeIcon icon={fasCircle} />}
-        >
-          Item 2
-        </AppLayoutNavigationDrawer.Destination>
-        <AppLayoutNavigationDrawer.Destination
-          onClick={(...args) => sbHandleEvent('onClick', args, 1000)}
-          leadingIcon={<FontAwesomeIcon icon={faHeart} />}
-          activeLeadingIcon={<FontAwesomeIcon icon={fasHeart} />}
-          disabled
-        >
-          Item 3
-        </AppLayoutNavigationDrawer.Destination>
-      </AppLayoutNavigationDrawer.Section>
-    </>
-  ),
-} satisfies Partial<IAppLayoutNavigationDrawerProps>;
 
 const AppLayoutNavigationDrawerScreenFrame: React.FC<
   IAppLayoutNavigationDrawerProps
@@ -131,7 +130,6 @@ const AppLayoutNavigationDrawerScreenFrame: React.FC<
 export const Left: IStory = {
   render: (props) => <AppLayoutNavigationDrawerScreenFrame {...props} />,
   args: {
-    ...defaultArgs,
     side: 'left',
   },
 };
@@ -139,7 +137,6 @@ export const Left: IStory = {
 export const Right: IStory = {
   render: (props) => <AppLayoutNavigationDrawerScreenFrame {...props} />,
   args: {
-    ...defaultArgs,
     side: 'right',
   },
 };

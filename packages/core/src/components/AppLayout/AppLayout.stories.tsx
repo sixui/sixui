@@ -17,8 +17,6 @@ const meta = {
 
 type IStory = StoryObj<typeof meta>;
 
-const defaultArgs = {} satisfies Partial<IAppLayoutProps>;
-
 const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => (
   <AppLayoutFrame {...props}>
     {({
@@ -122,12 +120,10 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => (
 
 export const LayoutA: IStory = {
   render: (props) => <AppLayoutFrameA {...props} />,
-  args: defaultArgs,
 };
 
 export const LayoutB: IStory = {
   render: (props) => <AppLayoutFrameB {...props} />,
-  args: defaultArgs,
 };
 
 export default meta;
