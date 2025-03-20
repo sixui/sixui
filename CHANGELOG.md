@@ -1,3 +1,13 @@
+## 2.1.1 (2025-03-20)
+
+### 🩹 Fixes
+
+- **react-hook-form:** correctly exposing ref props ([62030fcd](https://github.com/sixui/sixui/commit/62030fcd))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.1.0 (2025-03-20)
 
 ### 🚀 Features
