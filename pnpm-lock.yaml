@@ -195,8 +195,8 @@ importers:
         specifier: ^3.28.0
         version: 3.28.0(react@19.0.0)
       '@sixui/eslint-config':
-        specifier: 2.0.1
-        version: 2.0.1(jiti@2.4.2)(prettier@3.5.3)
+        specifier: 2.1.0
+        version: 2.1.0(jiti@2.4.2)(prettier@3.5.3)
       '@sixui/toolchain':
         specifier: workspace:*
         version: link:../toolchain
@@ -349,8 +349,8 @@ importers:
         version: 3.5.3
     devDependencies:
       '@sixui/eslint-config':
-        specifier: 2.0.1
-        version: 2.0.1(jiti@2.4.2)(prettier@3.5.3)
+        specifier: 2.1.0
+        version: 2.1.0(jiti@2.4.2)(prettier@3.5.3)
       '@sixui/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
@@ -386,8 +386,8 @@ importers:
         specifier: ^3.28.0
         version: 3.28.0(react@19.0.0)
       '@sixui/eslint-config':
-        specifier: 2.0.1
-        version: 2.0.1(jiti@2.4.2)(prettier@3.5.3)
+        specifier: 2.1.0
+        version: 2.1.0(jiti@2.4.2)(prettier@3.5.3)
       '@sixui/toolchain':
         specifier: workspace:*
         version: link:../toolchain
@@ -2484,8 +2484,8 @@ packages:
   '@sinclair/typebox@0.27.8':
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
 
-  '@sixui/eslint-config@2.0.1':
-    resolution: {integrity: sha512-tJMCvOTDaX9jj31foVVfPAoD6QR6vTzycTm3KQ7OlvPH/MWaR87MkkCf5PQcOxwcNWdawev4xb79RPwIxPNZRw==}
+  '@sixui/eslint-config@2.1.0':
+    resolution: {integrity: sha512-KcgUHS3zA/+xoJiW0A8IECBk0ky9oglxsGR7FJJ2fI+2fvauCZMqB6pjhouG+c9+jGIef3ciq2wyn+ADbVeuhA==}
 
   '@storybook/addon-actions@8.6.7':
     resolution: {integrity: sha512-XgZCwIcZGThEyD7e2q7rN/jzg7ZHUxn/ln403eex04jWAGBBbtC2IVuowwCWV8HwDihnhpCZEP6HlgjakOYZbQ==}
@@ -8685,7 +8685,7 @@ snapshots:
 
   '@sinclair/typebox@0.27.8': {}
 
-  '@sixui/eslint-config@2.0.1(jiti@2.4.2)(prettier@3.5.3)':
+  '@sixui/eslint-config@2.1.0(jiti@2.4.2)(prettier@3.5.3)':
     dependencies:
       '@eslint/compat': 1.2.7(eslint@9.22.0(jiti@2.4.2))
       '@eslint/js': 9.22.0
