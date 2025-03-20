@@ -1,4 +1,4 @@
-import type { ISearchBarProps as $ISearchBarProps, IOmit } from '@sixui/core';
+import type { IOmit, ISearchBarFactory } from '@sixui/core';
 import type { FieldValues, UseControllerProps } from 'react-hook-form';
 import { SearchBar as $SearchBar } from '@sixui/core';
 
@@ -6,31 +6,24 @@ import { useFormField } from '~/hooks/useFormField';
 
 export type ISearchBarProps<TFieldValues extends FieldValues> =
   UseControllerProps<TFieldValues> &
-    IOmit<$ISearchBarProps, 'value' | 'defaultValue'>;
+    IOmit<ISearchBarFactory['props'], 'value' | 'defaultValue'> & {
+      ref?: ISearchBarFactory['ref'];
+    };
 
-type ISearchBarStaticComponents = {
-  Item: typeof $SearchBar.Item;
-  Card: typeof $SearchBar.Card;
-};
-
-type ISearchBar = (<TFieldValues extends FieldValues>(
+type ISearchBar = <TFieldValues extends FieldValues>(
   props: ISearchBarProps<TFieldValues>,
-) => React.JSX.Element) &
-  ISearchBarStaticComponents;
+) => React.JSX.Element;
 
 export const SearchBar: ISearchBar = <TFieldValues extends FieldValues>(
   props: ISearchBarProps<TFieldValues>,
 ) => {
   const formFieldProps = useFormField<
     TFieldValues,
-    $ISearchBarProps,
-    Parameters<NonNullable<$ISearchBarProps['onChange']>>
+    ISearchBarFactory['props'],
+    Parameters<NonNullable<ISearchBarFactory['props']['onChange']>>
   >(props, {
     supportsErrorProps: false,
   });
 
   return <$SearchBar {...formFieldProps} />;
 };
-
-SearchBar.Item = $SearchBar.Item;
-SearchBar.Card = $SearchBar.Card;

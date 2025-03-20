@@ -1,4 +1,4 @@
-import type { IRadioGroupProps as $IRadioGroupProps, IOmit } from '@sixui/core';
+import type { IOmit, IRadioGroupFactory } from '@sixui/core';
 import type { FieldValues, UseControllerProps } from 'react-hook-form';
 import { RadioGroup as $RadioGroup } from '@sixui/core';
 
@@ -6,25 +6,22 @@ import { useFormField } from '~/hooks/useFormField';
 
 export type IRadioGroupProps<TFieldValues extends FieldValues> =
   UseControllerProps<TFieldValues> &
-    IOmit<$IRadioGroupProps, 'value' | 'defaultValue'>;
-
-type IRadioGroupStaticComponents = {
-  Item: typeof $RadioGroup.Item;
-  Card: typeof $RadioGroup.Card;
-};
+    IOmit<IRadioGroupFactory['props'], 'value' | 'defaultValue'> & {
+      ref?: IRadioGroupFactory['ref'];
+    };
 
 type IRadioGroup = (<TFieldValues extends FieldValues>(
   props: IRadioGroupProps<TFieldValues>,
 ) => React.JSX.Element) &
-  IRadioGroupStaticComponents;
+  IRadioGroupFactory['staticComponents'];
 
 export const RadioGroup: IRadioGroup = <TFieldValues extends FieldValues>(
   props: IRadioGroupProps<TFieldValues>,
 ) => {
   const formFieldProps = useFormField<
     TFieldValues,
-    $IRadioGroupProps,
-    Parameters<NonNullable<$IRadioGroupProps['onChange']>>
+    IRadioGroupFactory['props'],
+    Parameters<NonNullable<IRadioGroupFactory['props']['onChange']>>
   >(props, {
     emptyValue: [],
   });
