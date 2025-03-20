@@ -1,7 +1,7 @@
 {
   "name": "@sixui/react-hook-form",
   "description": "React Hook Form bindings for Sixui components",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "homepage": "https://sixui.com",
   "license": "MIT",
   "repository": {
@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@react-types/shared": "^3.28.0",
-    "@sixui/eslint-config": "2.0.1",
+    "@sixui/eslint-config": "2.1.0",
     "@sixui/toolchain": "workspace:*",
     "@sixui/typescript-config": "workspace:*",
     "@storybook/addon-actions": "^8.6.7",
