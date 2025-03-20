@@ -1,14 +1,16 @@
-import type { IColorInputFactory, IOmit } from '@sixui/core';
-import type { FieldValues, UseControllerProps } from 'react-hook-form';
+import type { IColorInputFactory } from '@sixui/core';
+import type { FieldValues } from 'react-hook-form';
 import { ColorInput as $ColorInput } from '@sixui/core';
 
+import type { IFormComponentPropsFactory } from '~/utils/types';
 import { useFormField } from '~/hooks/useFormField';
 
 export type IColorInputProps<TFieldValues extends FieldValues> =
-  UseControllerProps<TFieldValues> &
-    IOmit<IColorInputFactory['props'], 'value' | 'defaultValue'> & {
-      ref?: IColorInputFactory['ref'];
-    };
+  IFormComponentPropsFactory<
+    IColorInputFactory,
+    TFieldValues,
+    'value' | 'defaultValue'
+  >;
 
 type IColorInput = (<TFieldValues extends FieldValues>(
   props: IColorInputProps<TFieldValues>,

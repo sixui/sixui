@@ -1,14 +1,12 @@
 import type { IRadioCardFactory } from '@sixui/core';
-import type { FieldValues, UseControllerProps } from 'react-hook-form';
+import type { FieldValues } from 'react-hook-form';
 import { RadioCard as $RadioCard } from '@sixui/core';
 
+import type { IFormComponentPropsFactory } from '~/utils/types';
 import { useFormField } from '~/hooks/useFormField';
 
 export type IRadioCardProps<TFieldValues extends FieldValues> =
-  UseControllerProps<TFieldValues> &
-    IRadioCardFactory['props'] & {
-      ref?: IRadioCardFactory['ref'];
-    };
+  IFormComponentPropsFactory<IRadioCardFactory, TFieldValues>;
 
 type IRadioCard = (<TFieldValues extends FieldValues>(
   props: IRadioCardProps<TFieldValues>,

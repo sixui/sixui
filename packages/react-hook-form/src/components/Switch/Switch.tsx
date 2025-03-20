@@ -1,14 +1,16 @@
-import type { IOmit, ISwitchFactory } from '@sixui/core';
-import type { FieldValues, UseControllerProps } from 'react-hook-form';
+import type { ISwitchFactory } from '@sixui/core';
+import type { FieldValues } from 'react-hook-form';
 import { Switch as $Switch } from '@sixui/core';
 
+import type { IFormComponentPropsFactory } from '~/utils/types';
 import { useFormField } from '~/hooks/useFormField';
 
 export type ISwitchProps<TFieldValues extends FieldValues> =
-  UseControllerProps<TFieldValues> &
-    IOmit<ISwitchFactory['props'], 'checked' | 'defaultChecked'> & {
-      ref?: ISwitchFactory['ref'];
-    };
+  IFormComponentPropsFactory<
+    ISwitchFactory,
+    TFieldValues,
+    'checked' | 'defaultChecked'
+  >;
 
 type ISwitch = (<TFieldValues extends FieldValues>(
   props: ISwitchProps<TFieldValues>,

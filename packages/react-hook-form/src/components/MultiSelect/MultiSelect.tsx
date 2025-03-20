@@ -1,14 +1,16 @@
-import type { IMultiSelectFactory, IOmit } from '@sixui/core';
-import type { FieldValues, UseControllerProps } from 'react-hook-form';
+import type { IMultiSelectFactory } from '@sixui/core';
+import type { FieldValues } from 'react-hook-form';
 import { MultiSelect as $MultiSelect } from '@sixui/core';
 
+import type { IFormComponentPropsFactory } from '~/utils/types';
 import { useFormField } from '~/hooks/useFormField';
 
 export type IMultiSelectProps<TFieldValues extends FieldValues> =
-  UseControllerProps<TFieldValues> &
-    IOmit<IMultiSelectFactory['props'], 'value' | 'defaultValue'> & {
-      ref?: IMultiSelectFactory['ref'];
-    };
+  IFormComponentPropsFactory<
+    IMultiSelectFactory,
+    TFieldValues,
+    'value' | 'defaultValue'
+  >;
 
 type IMultiSelect = (<TFieldValues extends FieldValues>(
   props: IMultiSelectProps<TFieldValues>,

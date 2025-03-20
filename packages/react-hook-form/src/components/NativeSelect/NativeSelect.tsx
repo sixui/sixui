@@ -1,14 +1,16 @@
-import type { INativeSelectFactory, IOmit } from '@sixui/core';
-import type { FieldValues, UseControllerProps } from 'react-hook-form';
+import type { INativeSelectFactory } from '@sixui/core';
+import type { FieldValues } from 'react-hook-form';
 import { NativeSelect as $NativeSelect } from '@sixui/core';
 
+import type { IFormComponentPropsFactory } from '~/utils/types';
 import { useFormField } from '~/hooks/useFormField';
 
 export type INativeSelectProps<TFieldValues extends FieldValues> =
-  UseControllerProps<TFieldValues> &
-    IOmit<INativeSelectFactory['props'], 'value' | 'defaultValue'> & {
-      ref?: INativeSelectFactory['ref'];
-    };
+  IFormComponentPropsFactory<
+    INativeSelectFactory,
+    TFieldValues,
+    'value' | 'defaultValue'
+  >;
 
 type INativeSelect = (<TFieldValues extends FieldValues>(
   props: INativeSelectProps<TFieldValues>,

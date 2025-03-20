@@ -1,14 +1,16 @@
-import type { ICheckboxFactory, IOmit } from '@sixui/core';
-import type { FieldValues, UseControllerProps } from 'react-hook-form';
+import type { ICheckboxFactory } from '@sixui/core';
+import type { FieldValues } from 'react-hook-form';
 import { Checkbox as $Checkbox } from '@sixui/core';
 
+import type { IFormComponentPropsFactory } from '~/utils/types';
 import { useFormField } from '~/hooks/useFormField';
 
 export type ICheckboxProps<TFieldValues extends FieldValues> =
-  UseControllerProps<TFieldValues> &
-    IOmit<ICheckboxFactory['props'], 'checked' | 'defaultChecked'> & {
-      ref?: ICheckboxFactory['ref'];
-    };
+  IFormComponentPropsFactory<
+    ICheckboxFactory,
+    TFieldValues,
+    'checked' | 'defaultChecked'
+  >;
 
 type ICheckbox = (<TFieldValues extends FieldValues>(
   props: ICheckboxProps<TFieldValues>,

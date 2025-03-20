@@ -1,14 +1,16 @@
-import type { IOmit, IRadioGroupFactory } from '@sixui/core';
-import type { FieldValues, UseControllerProps } from 'react-hook-form';
+import type { IRadioGroupFactory } from '@sixui/core';
+import type { FieldValues } from 'react-hook-form';
 import { RadioGroup as $RadioGroup } from '@sixui/core';
 
+import type { IFormComponentPropsFactory } from '~/utils/types';
 import { useFormField } from '~/hooks/useFormField';
 
 export type IRadioGroupProps<TFieldValues extends FieldValues> =
-  UseControllerProps<TFieldValues> &
-    IOmit<IRadioGroupFactory['props'], 'value' | 'defaultValue'> & {
-      ref?: IRadioGroupFactory['ref'];
-    };
+  IFormComponentPropsFactory<
+    IRadioGroupFactory,
+    TFieldValues,
+    'value' | 'defaultValue'
+  >;
 
 type IRadioGroup = (<TFieldValues extends FieldValues>(
   props: IRadioGroupProps<TFieldValues>,

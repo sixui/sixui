@@ -1,14 +1,16 @@
-import type { IOmit, ITextInputFactory } from '@sixui/core';
-import type { FieldValues, UseControllerProps } from 'react-hook-form';
+import type { ITextInputFactory } from '@sixui/core';
+import type { FieldValues } from 'react-hook-form';
 import { TextInput as $TextInput } from '@sixui/core';
 
+import type { IFormComponentPropsFactory } from '~/utils/types';
 import { useFormField } from '~/hooks/useFormField';
 
 export type ITextInputProps<TFieldValues extends FieldValues> =
-  UseControllerProps<TFieldValues> &
-    IOmit<ITextInputFactory['props'], 'value' | 'defaultValue'> & {
-      ref?: ITextInputFactory['ref'];
-    };
+  IFormComponentPropsFactory<
+    ITextInputFactory,
+    TFieldValues,
+    'value' | 'defaultValue'
+  >;
 
 type ITextInput = (<TFieldValues extends FieldValues>(
   props: ITextInputProps<TFieldValues>,

@@ -1,14 +1,16 @@
-import type { IFileDropZoneFactory, IOmit } from '@sixui/core';
-import type { FieldValues, UseControllerProps } from 'react-hook-form';
+import type { IFileDropZoneFactory } from '@sixui/core';
+import type { FieldValues } from 'react-hook-form';
 import { FileDropZone as $FileDropZone } from '@sixui/core';
 
+import type { IFormComponentPropsFactory } from '~/utils/types';
 import { useFormField } from '~/hooks/useFormField';
 
 export type IFileDropZoneProps<TFieldValues extends FieldValues> =
-  UseControllerProps<TFieldValues> &
-    IOmit<IFileDropZoneFactory['props'], 'value' | 'defaultValue'> & {
-      ref?: IFileDropZoneFactory['ref'];
-    };
+  IFormComponentPropsFactory<
+    IFileDropZoneFactory,
+    TFieldValues,
+    'value' | 'defaultValue'
+  >;
 
 type IFileDropZone = (<TFieldValues extends FieldValues>(
   props: IFileDropZoneProps<TFieldValues>,

@@ -1,14 +1,16 @@
-import type { IOmit, ISearchBarFactory } from '@sixui/core';
-import type { FieldValues, UseControllerProps } from 'react-hook-form';
+import type { ISearchBarFactory } from '@sixui/core';
+import type { FieldValues } from 'react-hook-form';
 import { SearchBar as $SearchBar } from '@sixui/core';
 
+import type { IFormComponentPropsFactory } from '~/utils/types';
 import { useFormField } from '~/hooks/useFormField';
 
 export type ISearchBarProps<TFieldValues extends FieldValues> =
-  UseControllerProps<TFieldValues> &
-    IOmit<ISearchBarFactory['props'], 'value' | 'defaultValue'> & {
-      ref?: ISearchBarFactory['ref'];
-    };
+  IFormComponentPropsFactory<
+    ISearchBarFactory,
+    TFieldValues,
+    'value' | 'defaultValue'
+  >;
 
 type ISearchBar = <TFieldValues extends FieldValues>(
   props: ISearchBarProps<TFieldValues>,

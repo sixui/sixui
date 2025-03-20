@@ -1,14 +1,16 @@
-import type { IOmit, ISuggestFactory } from '@sixui/core';
-import type { FieldValues, UseControllerProps } from 'react-hook-form';
+import type { ISuggestFactory } from '@sixui/core';
+import type { FieldValues } from 'react-hook-form';
 import { Suggest as $Suggest } from '@sixui/core';
 
+import type { IFormComponentPropsFactory } from '~/utils/types';
 import { useFormField } from '~/hooks/useFormField';
 
 export type ISuggestProps<TFieldValues extends FieldValues> =
-  UseControllerProps<TFieldValues> &
-    IOmit<ISuggestFactory['props'], 'value' | 'defaultValue'> & {
-      ref?: ISuggestFactory['ref'];
-    };
+  IFormComponentPropsFactory<
+    ISuggestFactory,
+    TFieldValues,
+    'value' | 'defaultValue'
+  >;
 
 type ISuggest = (<TFieldValues extends FieldValues>(
   props: ISuggestProps<TFieldValues>,
