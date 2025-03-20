@@ -1,3 +1,16 @@
+## 2.0.1 (2025-03-20)
+
+### 🩹 Fixes
+
+- **core:** RadioGroupControl loading state ([3f47ea16](https://github.com/sixui/sixui/commit/3f47ea16))
+- **core:** keyboard navigation in Select/SelectBase ([5e3b38c9](https://github.com/sixui/sixui/commit/5e3b38c9))
+- **core:** FieldBase trailing content style ([d43852d3](https://github.com/sixui/sixui/commit/d43852d3))
+- **core:** NativeSelect style ([16ef6a14](https://github.com/sixui/sixui/commit/16ef6a14))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 # 2.0.0 (2025-03-19)
 
 ### 🚀 Features

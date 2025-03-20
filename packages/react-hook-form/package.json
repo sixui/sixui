@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@react-types/shared": "^3.28.0",
-    "@sixui/eslint-config": "workspace:*",
+    "@sixui/eslint-config": "2.0.1",
     "@sixui/toolchain": "workspace:*",
     "@sixui/typescript-config": "workspace:*",
     "@storybook/addon-actions": "^8.6.7",
