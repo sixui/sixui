@@ -1,3 +1,13 @@
+## 2.2.0 (2025-03-26)
+
+### 🚀 Features
+
+- **eslint-config:** rule `@typescript-eslint/no-unnecessary-type-parameters` is now off ([e9c5fe28](https://github.com/sixui/sixui/commit/e9c5fe28))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.1.1 (2025-03-20)
 
 ### 🩹 Fixes
