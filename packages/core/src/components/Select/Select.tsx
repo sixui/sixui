@@ -6,6 +6,7 @@ import { useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './Select.constants';
 import { SelectControl } from './SelectControl';
+import { SelectSkeleton } from './SelectSkeleton';
 
 export const Select = componentFactory<ISelectFactory>(
   (props, forwardedRef) => {
@@ -35,3 +36,4 @@ export const Select = componentFactory<ISelectFactory>(
 
 Select.displayName = `@sixui/core/${COMPONENT_NAME}`;
 Select.Control = SelectControl;
+Select.Skeleton = SelectSkeleton;

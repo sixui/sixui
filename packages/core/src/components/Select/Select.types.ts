@@ -9,6 +9,7 @@ import type {
   ISelectControlProps,
   SelectControl,
 } from './SelectControl';
+import type { SelectSkeleton } from './SelectSkeleton';
 
 export interface ISelectOwnProps
   extends ISelectControlOwnProps,
@@ -28,5 +29,6 @@ export type ISelectFactory = IComponentFactory<{
   theme: typeof selectTheme;
   staticComponents: {
     Control: typeof SelectControl;
+    Skeleton: typeof SelectSkeleton;
   };
 }>;

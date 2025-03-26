@@ -15,6 +15,7 @@ import { polymorphicComponentFactory } from '~/utils/component/polymorphicCompon
 import { isFunction } from '~/utils/isFunction';
 import { mergeProps } from '~/utils/mergeProps';
 import { COMPONENT_NAME } from './FieldBase.constants';
+import { FieldBaseSkeleton } from './FieldBaseSkeleton';
 import { getLabelKeyframes } from './utils/getLabelKeyframes';
 import { fieldBaseTheme, fieldBaseThemeVariants } from './FieldBase.css';
 
@@ -470,3 +471,4 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
 
 FieldBase.displayName = `@sixui/core/${COMPONENT_NAME}`;
 FieldBase.theme = fieldBaseTheme;
+FieldBase.Skeleton = FieldBaseSkeleton;

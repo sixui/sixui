@@ -8,6 +8,7 @@ import type {
   IRendererWithForwardedProps,
 } from '~/utils/react/forwardablePropsTypes';
 import type { fieldBaseTheme, IFieldBaseThemeFactory } from './FieldBase.css';
+import type { FieldBaseSkeleton } from './FieldBaseSkeleton';
 
 export const fieldBaseVariants = ['filled', 'outlined'] as const;
 export type IFieldBaseVariant = (typeof fieldBaseVariants)[number];
@@ -53,4 +54,7 @@ export type IFieldBaseFactory = IPolymorphicComponentFactory<{
   defaultRoot: 'div';
   theme: typeof fieldBaseTheme;
   variant: IFieldBaseVariant;
+  staticComponents: {
+    Skeleton: typeof FieldBaseSkeleton;
+  };
 }>;
