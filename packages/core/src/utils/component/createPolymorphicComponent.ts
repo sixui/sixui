@@ -73,10 +73,8 @@ export type IPolymorphicComponentPropsWithRef<
 };
 
 export const createPolymorphicComponent = <
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
   TDefaultRoot extends React.ElementType,
   TProps,
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
   TStaticProps = Record<string, never>,
 >(
   component: IAny,
