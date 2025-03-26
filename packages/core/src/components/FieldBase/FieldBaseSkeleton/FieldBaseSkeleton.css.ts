@@ -1,6 +1,8 @@
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { PaperBase } from '~/components/PaperBase';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
-import { createStyles } from '~/utils/css';
+import { createStyles, overrideTokens, px } from '~/utils/css';
+import { themeTokens } from '~/components/Theme/theme.css';
 import { fieldBaseTheme } from '../FieldBase.css';
 
 const tokensClassName = fieldBaseTheme.tokensClassName;
@@ -15,6 +17,12 @@ const classNames = createStyles({
     flexShrink: 1,
     flexBasis: '0%',
     maxWidth: '100%',
+
+    vars: overrideTokens(PaperBase.theme.tokens, {
+      container: {
+        shape: `${px(themeTokens.shape.corner.xs)} ${px(themeTokens.shape.corner.xs)} 0 0`,
+      },
+    }),
   },
 });
 
