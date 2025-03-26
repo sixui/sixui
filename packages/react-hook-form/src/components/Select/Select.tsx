@@ -30,3 +30,4 @@ export const Select: ISelect = <TFieldValues extends FieldValues>(
 };
 
 Select.Control = $Select.Control;
+Select.Skeleton = $Select.Skeleton;

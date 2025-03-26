@@ -1,3 +1,13 @@
+## 2.3.0 (2025-03-26)
+
+### 🚀 Features
+
+- **core:** FieldBaseSkeleton, SelectSkeleton ([7e37c026](https://github.com/sixui/sixui/commit/7e37c026))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.2.0 (2025-03-26)
 
 ### 🚀 Features
