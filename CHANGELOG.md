@@ -1,3 +1,13 @@
+## 2.4.0 (2025-03-27)
+
+### 🚀 Features
+
+- **core:** Select/MultiSelect/NativeSelect/Suggest error text position and skeleton flag ([ba118812](https://github.com/sixui/sixui/commit/ba118812))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.3.1 (2025-03-26)
 
 ### 🩹 Fixes
