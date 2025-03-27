@@ -16,8 +16,8 @@ import type {
 export interface IColorInputOwnProps
   extends IColorInputControlOwnProps,
     IOmit<ILabeledOwnProps, 'children'> {
-  labeledProps?: ILabeledProps;
-  controlProps?: IColorInputControlProps;
+  labeledProps?: Partial<ILabeledProps>;
+  controlProps?: Partial<IColorInputControlProps>;
 }
 
 export interface IColorInputProps

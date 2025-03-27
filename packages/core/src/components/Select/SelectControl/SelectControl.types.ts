@@ -1,3 +1,4 @@
+import type { FieldBaseSkeleton } from '~/components/FieldBase';
 import type { IFilterableListItem } from '~/components/FilterableList';
 import type { ISelectBaseProps } from '~/components/SelectBase';
 import type { IComponentThemeProps } from '~/components/Theme';
@@ -33,4 +34,7 @@ export type ISelectControlFactory = IComponentFactory<{
   props: ISelectControlProps;
   ref: HTMLDivElement;
   theme: typeof selectControlTheme;
+  staticComponents: {
+    Skeleton: typeof FieldBaseSkeleton;
+  };
 }>;

@@ -16,8 +16,9 @@ import type {
 export interface IMultiSelectOwnProps
   extends IMultiSelectControlOwnProps,
     IOmit<ILabeledOwnProps, 'children'> {
-  labeledProps?: ILabeledProps;
-  controlProps?: IMultiSelectControlProps;
+  labeledProps?: Partial<ILabeledProps>;
+  controlProps?: Partial<IMultiSelectControlProps>;
+  skeleton?: boolean;
 }
 
 export interface IMultiSelectProps

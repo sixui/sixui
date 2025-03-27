@@ -9,13 +9,13 @@ import type {
   ISelectControlProps,
   SelectControl,
 } from './SelectControl';
-import type { SelectSkeleton } from './SelectSkeleton';
 
 export interface ISelectOwnProps
   extends ISelectControlOwnProps,
     IOmit<ILabeledOwnProps, 'children'> {
-  labeledProps?: ILabeledProps;
-  controlProps?: ISelectControlProps;
+  labeledProps?: Partial<ILabeledProps>;
+  controlProps?: Partial<ISelectControlProps>;
+  skeleton?: boolean;
 }
 
 export interface ISelectProps
@@ -29,6 +29,5 @@ export type ISelectFactory = IComponentFactory<{
   theme: typeof selectTheme;
   staticComponents: {
     Control: typeof SelectControl;
-    Skeleton: typeof SelectSkeleton;
   };
 }>;

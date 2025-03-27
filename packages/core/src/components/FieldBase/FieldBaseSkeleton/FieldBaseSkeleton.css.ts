@@ -15,7 +15,6 @@ const classNames = createStyles({
     flexDirection: 'column',
     flexGrow: 1,
     flexShrink: 1,
-    flexBasis: '0%',
     maxWidth: '100%',
 
     vars: overrideTokens(PaperBase.theme.tokens, {

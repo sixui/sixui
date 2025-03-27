@@ -1,4 +1,5 @@
 import type { IBoxProps } from '~/components/Box';
+import type { FieldBaseSkeleton } from '~/components/FieldBase';
 import type { IFilterableListItem } from '~/components/FilterableList';
 import type { ISuggestBaseProps } from '~/components/SuggestBase';
 import type { IComponentThemeProps } from '~/components/Theme';
@@ -35,4 +36,7 @@ export type ISuggestControlFactory = IComponentFactory<{
   props: ISuggestControlProps;
   ref: HTMLDivElement;
   theme: typeof suggestControlTheme;
+  staticComponents: {
+    Skeleton: typeof FieldBaseSkeleton;
+  };
 }>;

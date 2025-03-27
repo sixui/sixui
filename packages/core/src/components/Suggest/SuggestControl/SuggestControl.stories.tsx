@@ -62,6 +62,11 @@ export const Basic: IStory = {
   args: defaultArgs,
 };
 
+export const Skeleton: IStory = {
+  render: () => <SuggestControl.Skeleton w="384px" />,
+  args: defaultArgs,
+};
+
 export const Empty: IStory = {
   render: (props) => <SuggestControlDemoShowcase props={props} rows={rows} />,
   args: {

@@ -1,5 +1,8 @@
 import type { IBoxProps } from '~/components/Box';
-import type { IFieldBaseOwnProps } from '~/components/FieldBase';
+import type {
+  FieldBaseSkeleton,
+  IFieldBaseOwnProps,
+} from '~/components/FieldBase';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IElementProps } from '~/utils/types';
@@ -41,4 +44,7 @@ export type INativeSelectControlFactory = IComponentFactory<{
   props: INativeSelectControlProps;
   ref: HTMLSelectElement;
   theme: typeof nativeSelectControlTheme;
+  staticComponents: {
+    Skeleton: typeof FieldBaseSkeleton;
+  };
 }>;

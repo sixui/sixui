@@ -16,8 +16,9 @@ import type {
 export interface INativeSelectOwnProps
   extends INativeSelectControlOwnProps,
     IOmit<ILabeledOwnProps, 'children'> {
-  labeledProps?: ILabeledProps;
-  controlProps?: INativeSelectControlProps;
+  labeledProps?: Partial<ILabeledProps>;
+  controlProps?: Partial<INativeSelectControlProps>;
+  skeleton?: boolean;
 }
 
 export interface INativeSelectProps

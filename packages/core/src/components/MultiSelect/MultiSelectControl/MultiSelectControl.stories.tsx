@@ -64,6 +64,11 @@ export const Basic: IStory = {
   args: defaultArgs,
 };
 
+export const Skeleton: IStory = {
+  render: () => <MultiSelectControl.Skeleton w="384px" />,
+  args: defaultArgs,
+};
+
 export const Empty: IStory = {
   render: (props) => (
     <MultiSelectControlDemoShowcase props={props} rows={rows} />

@@ -1,5 +1,6 @@
 import type { IFilterableListItem } from '~/components/FilterableList';
 import type { ISuggestControlFactory } from './SuggestControl.types';
+import { FieldBaseSkeleton } from '~/components/FieldBase';
 import { areFilterableListItemsEqual } from '~/components/FilterableList/utils/areFilterableListItemsEqual';
 import { filterFilterableList } from '~/components/FilterableList/utils/filterFilterableList';
 import { getFilterableListItemLabel } from '~/components/FilterableList/utils/getFilterableListItemLabel';
@@ -81,3 +82,4 @@ export const SuggestControl = componentFactory<ISuggestControlFactory>(
 
 SuggestControl.displayName = `@sixui/core/${COMPONENT_NAME}`;
 SuggestControl.theme = suggestControlTheme;
+SuggestControl.Skeleton = FieldBaseSkeleton;

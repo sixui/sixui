@@ -17,8 +17,8 @@ import type { FileDropZoneFileCard } from './FileDropZoneFileCard';
 export interface IFileDropZoneOwnProps
   extends IFileDropZoneControlOwnProps,
     IOmit<ILabeledOwnProps, 'children'> {
-  labeledProps?: ILabeledProps;
-  controlProps?: IFileDropZoneControlProps;
+  labeledProps?: Partial<ILabeledProps>;
+  controlProps?: Partial<IFileDropZoneControlProps>;
 }
 
 export interface IFileDropZoneProps

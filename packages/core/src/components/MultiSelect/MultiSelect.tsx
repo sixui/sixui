@@ -10,24 +10,35 @@ import { multiSelectTheme } from './MultiSelect.css';
 
 export const MultiSelect = componentFactory<IMultiSelectFactory>(
   (props, forwardedRef) => {
-    const { labeledProps, controlProps, ...other } = useProps({
+    const {
+      labeledProps,
+      controlProps,
+      errorTextPosition = 'end',
+      skeleton,
+      ...other
+    } = useProps({
       componentName: COMPONENT_NAME,
       props,
     });
 
     return (
       <Labeled
+        errorTextPosition={errorTextPosition}
         {...labeledProps}
         {...(other as ILabeledProps)}
         forwardForeignProps
       >
-        {({ foreignProps, ...labeledControlProps }) => (
-          <MultiSelectControl
-            ref={forwardedRef}
-            {...labeledControlProps}
-            {...(foreignProps as unknown as IMultiSelectControlProps)}
-            {...controlProps}
-          />
+        {skeleton ? (
+          <MultiSelectControl.Skeleton disabled={other.disabled} />
+        ) : (
+          ({ foreignProps, ...labeledControlProps }) => (
+            <MultiSelectControl
+              ref={forwardedRef}
+              {...labeledControlProps}
+              {...(foreignProps as unknown as IMultiSelectControlProps)}
+              {...controlProps}
+            />
+          )
         )}
       </Labeled>
     );

@@ -12,8 +12,8 @@ export interface IRadioGroupOwnProps
   extends IRadioGroupControlOwnProps,
     IOmit<ILabeledOwnProps, 'children'> {
   labelPosition?: IHorizontalSide;
-  labeledProps?: ILabeledProps;
-  controlProps?: IRadioGroupControlProps;
+  labeledProps?: Partial<ILabeledProps>;
+  controlProps?: Partial<IRadioGroupControlProps>;
 }
 
 export interface IRadioGroupProps extends IBoxProps, IRadioGroupOwnProps {}

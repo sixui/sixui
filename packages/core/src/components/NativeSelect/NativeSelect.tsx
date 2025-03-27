@@ -15,6 +15,7 @@ export const NativeSelect = componentFactory<INativeSelectFactory>(
       labeledProps,
       controlProps,
       errorTextPosition = 'end',
+      skeleton,
       ...other
     } = useProps({
       componentName: COMPONENT_NAME,
@@ -28,14 +29,18 @@ export const NativeSelect = componentFactory<INativeSelectFactory>(
         {...(other as ILabeledProps)}
         forwardForeignProps
       >
-        {({ foreignProps, ...labeledControlProps }) => (
-          <NativeSelectControl
-            ref={forwardedRef}
-            onChange={onChange}
-            {...labeledControlProps}
-            {...(foreignProps as unknown as INativeSelectControlProps)}
-            {...controlProps}
-          />
+        {skeleton ? (
+          <NativeSelectControl.Skeleton disabled={other.disabled} />
+        ) : (
+          ({ foreignProps, ...labeledControlProps }) => (
+            <NativeSelectControl
+              ref={forwardedRef}
+              onChange={onChange}
+              {...labeledControlProps}
+              {...(foreignProps as unknown as INativeSelectControlProps)}
+              {...controlProps}
+            />
+          )
         )}
       </Labeled>
     );

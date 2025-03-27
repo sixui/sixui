@@ -58,4 +58,9 @@ export const Basic: IStory = {
   args: defaultArgs,
 };
 
+export const Skeleton: IStory = {
+  render: () => <NativeSelectControl.Skeleton w="256px" />,
+  args: defaultArgs,
+};
+
 export default meta;

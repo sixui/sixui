@@ -9,24 +9,35 @@ import { SuggestControl } from './SuggestControl';
 
 export const Suggest = componentFactory<ISuggestFactory>(
   (props, forwardedRef) => {
-    const { labeledProps, controlProps, ...other } = useProps({
+    const {
+      labeledProps,
+      controlProps,
+      errorTextPosition = 'end',
+      skeleton,
+      ...other
+    } = useProps({
       componentName: COMPONENT_NAME,
       props,
     });
 
     return (
       <Labeled
+        errorTextPosition={errorTextPosition}
         {...labeledProps}
         {...(other as ILabeledProps)}
         forwardForeignProps
       >
-        {({ foreignProps, ...labeledControlProps }) => (
-          <SuggestControl
-            ref={forwardedRef}
-            {...labeledControlProps}
-            {...(foreignProps as unknown as ISuggestControlProps)}
-            {...controlProps}
-          />
+        {skeleton ? (
+          <SuggestControl.Skeleton disabled={other.disabled} />
+        ) : (
+          ({ foreignProps, ...labeledControlProps }) => (
+            <SuggestControl
+              ref={forwardedRef}
+              {...labeledControlProps}
+              {...(foreignProps as unknown as ISuggestControlProps)}
+              {...controlProps}
+            />
+          )
         )}
       </Labeled>
     );

@@ -12,8 +12,8 @@ export interface ICheckboxGroupOwnProps
   extends ICheckboxGroupControlOwnProps,
     IOmit<ILabeledOwnProps, 'children'> {
   labelPosition?: IHorizontalSide;
-  labeledProps?: ILabeledProps;
-  controlProps?: ICheckboxGroupControlProps;
+  labeledProps?: Partial<ILabeledProps>;
+  controlProps?: Partial<ICheckboxGroupControlProps>;
 }
 
 export interface ICheckboxGroupProps

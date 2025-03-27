@@ -1,5 +1,6 @@
 import type { IFilterableListItem } from '~/components/FilterableList';
 import type { ISelectControlFactory } from './SelectControl.types';
+import { FieldBaseSkeleton } from '~/components/FieldBase';
 import { areFilterableListItemsEqual } from '~/components/FilterableList/utils/areFilterableListItemsEqual';
 import { filterFilterableList } from '~/components/FilterableList/utils/filterFilterableList';
 import { getFilterableListItemLabel } from '~/components/FilterableList/utils/getFilterableListItemLabel';
@@ -79,3 +80,4 @@ export const SelectControl = componentFactory<ISelectControlFactory>(
 
 SelectControl.displayName = `@sixui/core/${COMPONENT_NAME}`;
 SelectControl.theme = selectControlTheme;
+SelectControl.Skeleton = FieldBaseSkeleton;

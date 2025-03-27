@@ -13,8 +13,9 @@ import type {
 export interface ISuggestOwnProps
   extends ISuggestControlOwnProps,
     IOmit<ILabeledOwnProps, 'children'> {
-  labeledProps?: ILabeledProps;
-  controlProps?: ISuggestControlProps;
+  labeledProps?: Partial<ILabeledProps>;
+  controlProps?: Partial<ISuggestControlProps>;
+  skeleton?: boolean;
 }
 
 export interface ISuggestProps

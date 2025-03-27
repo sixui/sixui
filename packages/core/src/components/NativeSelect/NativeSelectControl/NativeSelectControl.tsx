@@ -7,7 +7,7 @@ import type {
   INativeSelectControlOption,
 } from './NativeSelectControl.types';
 import { iconTriangleDown } from '~/assets/icons';
-import { FieldBase } from '~/components/FieldBase';
+import { FieldBase, FieldBaseSkeleton } from '~/components/FieldBase';
 import { useLabeledContext } from '~/components/Labeled/Labeled.context';
 import { SvgIcon } from '~/components/SvgIcon';
 import { useComponentTheme, useProps } from '~/components/Theme';
@@ -120,3 +120,4 @@ export const NativeSelectControl =
 
 NativeSelectControl.displayName = `@sixui/core/${COMPONENT_NAME}`;
 NativeSelectControl.theme = nativeSelectControlTheme;
+NativeSelectControl.Skeleton = FieldBaseSkeleton;

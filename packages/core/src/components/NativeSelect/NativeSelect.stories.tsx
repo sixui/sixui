@@ -74,13 +74,23 @@ const rows: Array<IComponentPresentation<INativeSelectProps>> = [
   {
     legend: 'Filled',
     props: {
-      variant: 'filled',
+      controlProps: {
+        variant: 'filled',
+      },
     },
   },
   {
     legend: 'Outlined',
     props: {
-      variant: 'outlined',
+      controlProps: {
+        variant: 'outlined',
+      },
+    },
+  },
+  {
+    legend: 'Skeleton',
+    props: {
+      skeleton: true,
     },
   },
 ];

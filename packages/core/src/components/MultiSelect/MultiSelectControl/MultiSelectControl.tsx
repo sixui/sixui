@@ -2,6 +2,7 @@ import { asArray } from '@olivierpascal/helpers';
 
 import type { IFilterableListItem } from '~/components/FilterableList';
 import type { IMultiSelectControlFactory } from './MultiSelectControl.types';
+import { FieldBaseSkeleton } from '~/components/FieldBase';
 import { areFilterableListItemsEqual } from '~/components/FilterableList/utils/areFilterableListItemsEqual';
 import { filterFilterableList } from '~/components/FilterableList/utils/filterFilterableList';
 import { getFilterableListItemLabel } from '~/components/FilterableList/utils/getFilterableListItemLabel';
@@ -79,3 +80,4 @@ export const MultiSelectControl = componentFactory<IMultiSelectControlFactory>(
 
 MultiSelectControl.displayName = `@sixui/core/${COMPONENT_NAME}`;
 MultiSelectControl.theme = multiSelectControlTheme;
+MultiSelectControl.Skeleton = FieldBaseSkeleton;
