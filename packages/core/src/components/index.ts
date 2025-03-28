@@ -66,6 +66,7 @@ export * from './MultiSelect';
 export * from './MultiSelectBase';
 export * from './NativeSelect';
 export * from './NavigationBar';
+export * from './NavigationDrawer';
 export * from './NavigationRail';
 export * from './Overlayable';
 export * from './Overlays';
