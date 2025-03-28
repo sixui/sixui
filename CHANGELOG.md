@@ -1,3 +1,13 @@
+## 2.4.3 (2025-03-28)
+
+### 🩹 Fixes
+
+- **core:** NavigationDrawerDestination is now polymorphic ([56834428](https://github.com/sixui/sixui/commit/56834428))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.4.2 (2025-03-28)
 
 ### 🩹 Fixes
