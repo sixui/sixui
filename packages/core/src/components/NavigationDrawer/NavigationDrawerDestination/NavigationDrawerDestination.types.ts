@@ -1,7 +1,7 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IListItemOwnProps } from '~/components/List';
 import type { IComponentThemeProps } from '~/components/Theme';
-import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type {
   INavigationDrawerDestinationThemeFactory,
   navigationDrawerDestinationTheme,
@@ -21,8 +21,9 @@ export interface INavigationDrawerDestinationProps
     IComponentThemeProps<INavigationDrawerDestinationThemeFactory>,
     INavigationDrawerDestinationOwnProps {}
 
-export type INavigationDrawerDestinationFactory = IComponentFactory<{
+export type INavigationDrawerDestinationFactory = IPolymorphicComponentFactory<{
   props: INavigationDrawerDestinationProps;
-  ref: HTMLDivElement;
+  defaultRef: HTMLDivElement;
+  defaultRoot: 'div';
   theme: typeof navigationDrawerDestinationTheme;
 }>;

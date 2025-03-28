@@ -2,7 +2,7 @@ import type { INavigationDrawerDestinationThemeFactory } from './NavigationDrawe
 import type { INavigationDrawerDestinationFactory } from './NavigationDrawerDestination.types';
 import { ListItem } from '~/components/List/ListItem';
 import { useComponentTheme, useProps } from '~/components/Theme';
-import { componentFactory } from '~/utils/component/componentFactory';
+import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { COMPONENT_NAME } from './NavigationDrawerDestination.constants';
 import { navigationDrawerDestinationTheme } from './NavigationDrawerDestination.css';
@@ -11,7 +11,7 @@ import { navigationDrawerDestinationTheme } from './NavigationDrawerDestination.
  * @see https://m3.material.io/components/navigation-drawer/overview
  */
 export const NavigationDrawerDestination =
-  componentFactory<INavigationDrawerDestinationFactory>(
+  polymorphicComponentFactory<INavigationDrawerDestinationFactory>(
     (props, forwardedRef) => {
       const {
         classNames,
