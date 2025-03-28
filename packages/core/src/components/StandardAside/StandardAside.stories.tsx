@@ -44,9 +44,17 @@ const StandardAsideScreenFrame: React.FC<IStandardAsideProps> = (props) => {
         </Button>
       </Flex>
 
-      <ScreenFrame defaultHeight={350}>
+      <ScreenFrame defaultHeight={640}>
         <Flex
-          direction={other.side === 'right' ? 'row' : 'row-reverse'}
+          direction={
+            other.side === 'right'
+              ? 'row'
+              : other.side === 'left'
+                ? 'row-reverse'
+                : other.side === 'top'
+                  ? 'column-reverse'
+                  : 'column'
+          }
           align="start"
           h="100%"
         >
@@ -77,6 +85,22 @@ export const FromRight: IStory = {
   args: {
     ...defaultArgs,
     side: 'right',
+  },
+};
+
+export const FromTop: IStory = {
+  render: (props) => <StandardAsideScreenFrame {...props} />,
+  args: {
+    ...defaultArgs,
+    side: 'top',
+  },
+};
+
+export const FromBottom: IStory = {
+  render: (props) => <StandardAsideScreenFrame {...props} />,
+  args: {
+    ...defaultArgs,
+    side: 'bottom',
   },
 };
 

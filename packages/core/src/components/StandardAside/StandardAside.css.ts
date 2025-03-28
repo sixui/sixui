@@ -82,8 +82,6 @@ const classNames = createStyles({
     },
   },
   transitionContainer: ({ root }) => ({
-    height: '100%',
-
     selectors: {
       [modifierSelector<IModifier>({ orientation: 'horizontal' })]: {
         width: tokens.container.size,
