@@ -85,8 +85,10 @@ const classNames = createStyles({
     selectors: {
       [modifierSelector<IModifier>({ orientation: 'horizontal' })]: {
         width: tokens.container.size,
+        height: '100%',
       },
       [modifierSelector<IModifier>({ orientation: 'vertical' })]: {
+        width: '100%',
         height: tokens.container.size,
       },
       [modifierSelector<IModifier>({ side: 'left' }, root)]: {
