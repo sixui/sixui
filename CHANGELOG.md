@@ -1,3 +1,13 @@
+## 2.4.1 (2025-03-28)
+
+### 🩹 Fixes
+
+- **core:** useWindowSizeClass() should not crash if window is not defined ([d0176b2c](https://github.com/sixui/sixui/commit/d0176b2c))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.4.0 (2025-03-27)
 
 ### 🚀 Features
