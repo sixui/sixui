@@ -1,3 +1,13 @@
+## 2.4.2 (2025-03-28)
+
+### 🩹 Fixes
+
+- **core:** exporting NavigationDrawer ([94650a02](https://github.com/sixui/sixui/commit/94650a02))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.4.1 (2025-03-28)
 
 ### 🩹 Fixes
