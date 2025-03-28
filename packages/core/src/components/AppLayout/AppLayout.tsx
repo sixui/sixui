@@ -103,7 +103,7 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
     });
 
     const contextValue: IAppLayoutContextValue = {
-      window: window,
+      window,
       root: rootElement,
       navigationDrawer: {
         ...navigationDrawer,

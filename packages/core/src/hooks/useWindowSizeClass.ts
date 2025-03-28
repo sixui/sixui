@@ -51,7 +51,8 @@ export const useWindowSizeClass = (
 ): IUseWindowSizeClassResult | undefined => {
   const { theme } = useThemeContext();
   const windowSizeClasses = theme.windowSizeClasses;
-  const container = props?.window ?? window;
+  const container =
+    props?.window ?? (typeof window !== 'undefined' ? window : undefined);
 
   const listenersRef = useRef<
     Array<{
@@ -69,7 +70,7 @@ export const useWindowSizeClass = (
   );
 
   useEffect(() => {
-    if (!('matchMedia' in container)) {
+    if ((container && !('matchMedia' in container)) || !container) {
       return;
     }
 

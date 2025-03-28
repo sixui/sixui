@@ -383,6 +383,7 @@ const classNames = createStyles({
     paddingInlineEnd: px(space('$sm')),
     color: tokens.trailingContent.color.normal.regular,
     minWidth: tokens.trailingContent.minWidth,
+    gap: px(space('$sm')),
 
     selectors: {
       [modifierSelector<IModifier>('with-error', root)]: {
