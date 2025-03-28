@@ -19,6 +19,8 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
 
 const classNames = createStyles({
   root: {
+    height: '100%',
+
     vars: {
       ...overrideTokens(DrawerAside.theme.tokens, {
         container: {

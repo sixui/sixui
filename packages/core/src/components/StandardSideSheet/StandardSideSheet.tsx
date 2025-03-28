@@ -20,7 +20,7 @@ export const StandardSideSheet = componentFactory<IStandardSideSheetFactory>(
       opened,
       divider = true,
       side = 'left',
-      wide: fullHeight,
+      wide,
       onClose,
       onClosed,
       ...other
@@ -46,7 +46,7 @@ export const StandardSideSheet = componentFactory<IStandardSideSheetFactory>(
         })}
         opened={opened}
         side={side}
-        wide={fullHeight}
+        wide={wide}
         onClose={onClose}
         onClosed={onClosed}
         ref={forwardedRef}
