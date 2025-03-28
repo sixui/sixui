@@ -1,3 +1,13 @@
+## 2.4.4 (2025-03-28)
+
+### 🩹 Fixes
+
+- **core:** StandardSideSheet height ([85587c98](https://github.com/sixui/sixui/commit/85587c98))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.4.3 (2025-03-28)
 
 ### 🩹 Fixes
