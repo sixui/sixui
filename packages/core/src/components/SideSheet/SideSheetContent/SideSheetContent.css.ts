@@ -60,6 +60,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
 const classNames = createStyles({
   root: {
     flexShrink: 0,
+    height: '100%',
 
     transitionProperty: 'border-radius',
     transitionDuration: themeTokens.motion.duration.short2,
