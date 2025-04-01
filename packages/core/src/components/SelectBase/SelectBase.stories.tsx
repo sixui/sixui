@@ -17,7 +17,6 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {
   w: '384px',
   label: 'Movie',
-  keepMounted: true,
   onItemChange: (...args) => void sbHandleEvent('onItemChange', args),
 } satisfies Partial<ISelectBaseDemoProps>;
 

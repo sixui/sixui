@@ -105,7 +105,6 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
     const handleRef = useMergeRefs(forwardedRef, stateLayer.triggerRef);
 
     const renderFocusRing = (): React.ReactNode =>
-      !nonInteractive &&
       !disabled &&
       !noFocusRing && (
         <FocusRing

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import type {
   IFilterableListBaseFactory,
@@ -50,6 +50,7 @@ export const filterableListBaseFactory = <
       componentName: COMPONENT_NAME,
       props,
     });
+
     const isCreateItemFirst = createNewItemPosition === 'first';
     const canCreateItems = !!createNewItemFromQuery && !!createNewItemRenderer;
     const [query, setQuery] = useControlledValue({
@@ -103,88 +104,113 @@ export const filterableListBaseFactory = <
 
     // Search only the filtered items, not the full items list, because we
     // only need to check items that match the current query.
-    const wouldCreatedItemMatchSomeExistingItem = (
-      createNewItem: TItem | Array<TItem>,
-    ): boolean =>
-      filteredItems.some((item) => {
-        const newItems = Array.isArray(createNewItem)
-          ? createNewItem
-          : [createNewItem];
+    const wouldCreatedItemMatchSomeExistingItem = useMemo(
+      () =>
+        (createNewItem: TItem | Array<TItem>): boolean =>
+          filteredItems.some((item) => {
+            const newItems = Array.isArray(createNewItem)
+              ? createNewItem
+              : [createNewItem];
 
-        return newItems.some((newItem) =>
-          executeFilterableItemsEqual(itemsEqual, item, newItem),
-        );
-      });
+            return newItems.some((newItem) =>
+              executeFilterableItemsEqual(itemsEqual, item, newItem),
+            );
+          }),
+      [filteredItems, itemsEqual],
+    );
 
-    const isCreateItemRendered = (
-      createNewItem: TItem | Array<TItem>,
-    ): boolean =>
-      canCreateItems &&
-      !!query.length &&
-      // this check is unfortunately O(N) on the number of items, but
-      // alas, hiding the "Create Item" option when it exactly matches an
-      // existing item is much clearer.
-      !wouldCreatedItemMatchSomeExistingItem(createNewItem);
+    const isCreateItemRendered = useMemo(
+      () =>
+        (createNewItem: TItem | Array<TItem>): boolean =>
+          canCreateItems &&
+          !!query.length &&
+          // This check is unfortunately O(N) on the number of items, but alas,
+          // hiding the "Create Item" option when it exactly matches an existing
+          // item is much clearer.
+          !wouldCreatedItemMatchSomeExistingItem(createNewItem),
+      [canCreateItems, query, wouldCreatedItemMatchSomeExistingItem],
+    );
 
-    const handleQueryChange = (
-      newQuery: string,
-      event?: React.ChangeEvent<HTMLInputElement>,
-    ): void => {
-      if (query === newQuery) {
-        return;
-      }
+    const handleQueryChange = useCallback(
+      (newQuery: string, event?: React.ChangeEvent<HTMLInputElement>): void => {
+        if (query === newQuery) {
+          return;
+        }
 
-      setQuery(newQuery);
-      onQueryChange?.(newQuery, event);
-    };
+        setQuery(newQuery);
+        onQueryChange?.(newQuery, event);
+      },
+      [onQueryChange, query, setQuery],
+    );
 
-    const renderCreateItem = (): React.JSX.Element | null | undefined => {
-      if (!query) {
-        return undefined;
-      }
+    const renderCreateItem = useMemo(
+      () => (): React.JSX.Element | null | undefined => {
+        if (!query) {
+          return undefined;
+        }
 
-      const createNewItem = createNewItemFromQuery?.(query);
-      if (!createNewItem || !isCreateItemRendered(createNewItem)) {
-        return null;
-      }
+        const createNewItem = createNewItemFromQuery?.(query);
+        if (!createNewItem || !isCreateItemRendered(createNewItem)) {
+          return null;
+        }
 
-      const trimmedQuery = query.trim();
-      const modifiers: IFilterableListItemModifiers = {
-        active: false,
-        selected: false,
-        disabled: false,
-        matchesPredicate: false,
-      };
+        const trimmedQuery = query.trim();
+        const modifiers: IFilterableListItemModifiers = {
+          active: false,
+          selected: false,
+          disabled: false,
+          matchesPredicate: false,
+        };
 
-      return createNewItemRenderer?.({
-        index: filteredItems.length,
-        modifiers,
-        query: trimmedQuery,
-        handleClick: (event) => {
-          onItemSelect(createNewItem, event);
-        },
-        getButtonAttributes: (userProps) => ({ ...userProps }),
-      });
-    };
-
-    const renderItem = (item: TItem, index: number): React.ReactNode => {
-      const modifiers: IFilterableListItemModifiers = {
-        active: false,
-        selected: false,
-        disabled: disabled || isItemDisabled(item, index, itemDisabled),
-        matchesPredicate: filteredItems.includes(item),
-      };
-
-      return itemRenderer(item, {
-        index,
-        modifiers,
+        return createNewItemRenderer?.({
+          index: filteredItems.length,
+          modifiers,
+          query: trimmedQuery,
+          handleClick: (event) => {
+            onItemSelect(createNewItem, event);
+          },
+          getButtonAttributes: (userProps) => ({ ...userProps }),
+        });
+      },
+      [
+        createNewItemFromQuery,
+        createNewItemRenderer,
+        filteredItems.length,
+        isCreateItemRendered,
+        onItemSelect,
         query,
-        handleClick: (event) => {
-          onItemSelect(item, event);
+      ],
+    );
+
+    const renderItem = useMemo(
+      () =>
+        (item: TItem, index: number): React.ReactNode => {
+          const modifiers: IFilterableListItemModifiers = {
+            active: false,
+            selected: false,
+            disabled: disabled || isItemDisabled(item, index, itemDisabled),
+            matchesPredicate: filteredItems.includes(item),
+          };
+
+          return itemRenderer(item, {
+            index,
+            modifiers,
+            query,
+            handleClick: (event) => {
+              onItemSelect(item, event);
+            },
+            getButtonAttributes: (userProps) => ({ ...userProps }),
+          });
         },
-        getButtonAttributes: (userProps) => ({ ...userProps }),
-      });
-    };
+      [
+        disabled,
+        filteredItems,
+        itemDisabled,
+        itemRenderer,
+        onItemSelect,
+        query,
+      ],
+    );
 
     return (
       <Box ref={forwardedRef} {...other}>

@@ -4,7 +4,7 @@ import type { IMovie } from './movies';
 import { ListItem } from '~/components/List/ListItem';
 import { MenuList } from '~/components/Menu/MenuList';
 import { TextInput } from '~/components/TextInput';
-import { filterableListBaseFactory } from '../FilterableListBase';
+import { filterableListBaseFactory } from '../filterableListBaseFactory';
 import {
   areMoviesEqual,
   createMovie,

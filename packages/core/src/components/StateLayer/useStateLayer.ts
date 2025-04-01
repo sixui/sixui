@@ -54,7 +54,7 @@ export const useStateLayer = <TElement extends HTMLElement>(
     triggerRef,
     surfaceRef,
     disabled: withoutRippleEffect || disabled || isStaticState,
-    propagateClick,
+    propagateEvents: propagateClick,
   });
 
   return {

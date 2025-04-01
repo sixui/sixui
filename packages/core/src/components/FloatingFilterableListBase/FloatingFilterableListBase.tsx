@@ -1,5 +1,5 @@
 import type { ElementRects, Elements } from '@floating-ui/react';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   autoUpdate,
   flip,
@@ -36,6 +36,8 @@ import { mergeProps } from '~/utils/mergeProps';
 import { objectFromPlacement } from '~/utils/objectFromPlacement';
 import { IElementProps } from '~/utils/types';
 import { COMPONENT_NAME } from './FloatingFilterableListBase.constants';
+import { useFocusManagement } from './hooks/useFocusManagement';
+import { useKeyboardNavigation } from './hooks/useKeyboardNavigation';
 import { floatingFilterableListBaseClassNames } from './FloatingFilterableListBase.css';
 
 export const floatingFilterableListBaseFactory = <
@@ -89,7 +91,6 @@ export const floatingFilterableListBaseFactory = <
     });
 
     const [opened, setOpened] = useState(false);
-    const [hasFocus, setHasFocus] = useState(false);
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
     const elementsRef = useRef<Array<HTMLElement | null>>([]);
@@ -176,164 +177,176 @@ export const floatingFilterableListBaseFactory = <
       default: defaultQuery ?? '',
       name: COMPONENT_NAME,
     });
-    const interactions = useInteractions([
-      click,
-      role,
-      dismiss,
-      listNavigation,
-      typeahead,
-    ]);
+    const { getItemProps, getFloatingProps, getReferenceProps } =
+      useInteractions([click, role, dismiss, listNavigation, typeahead]);
     const transitionStatus = useTransitionStatus(floating.context, {
       duration: 150, // motionTokens.duration$short3
     });
 
-    const handleItemSelect = (item: TItem): void => {
-      // If both `resetOnSelect` and `closeOnSelect` are true, the user may see
-      // a flash of the unfiltered list before it closes due to the closing
-      // animation duration. If `resetOnClose` is true, we can avoid this by not
-      // resetting the query until the list is actually closed.
-      const shouldResetQuery =
-        resetOnSelect && (!closeOnSelect || !resetOnClose);
-      if (shouldResetQuery) {
-        setQuery('');
-      }
-
-      if (closeOnSelect) {
-        setOpened(false);
-      } else {
-        inputFilterRef.current?.focus();
-      }
-
-      const selectedIndex = onItemSelect(item) ?? activeIndex;
-      setSelectedIndex(selectedIndex);
-    };
-
-    const handleAfterItemsRemove = (): void => {
-      if (inputFilterRef.current) {
-        inputFilterRef.current.focus();
-      } else {
-        buttonRef.current?.focus();
-      }
-
-      if (closeOnSelect) {
-        setOpened(false);
-      }
-    };
-
-    const handleQueryChange = (
-      newQuery: string,
-      event?: React.ChangeEvent<HTMLInputElement>,
-    ): void => {
-      if (query === newQuery) {
-        return;
-      }
-
-      setQuery(newQuery);
-      onQueryChange?.(newQuery, event);
-      setActiveIndex(null);
-
-      if (!opened) {
-        setOpened(true);
-      }
-    };
-
-    const isEnterKeyPressedRef = useRef(false);
-    const getInputFilterProps = (
-      userProps?: IElementProps<'input'>,
-    ): Record<string, unknown> => ({
-      ...userProps,
-      value: userProps?.value ?? query,
-      disabled,
-      onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
-        handleQueryChange(event.target.value, event);
-        userProps?.onChange?.(event);
-      },
-      onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>): void => {
-        switch (event.key) {
-          case 'Enter':
-            if (opened) {
-              event.preventDefault();
-              isEnterKeyPressedRef.current = true;
-            } else {
-              userProps?.onKeyDown?.(event);
-            }
-            break;
-
-          case ' ':
-            break;
-
-          default:
-            userProps?.onKeyDown?.(event);
+    const handleItemSelect = useCallback(
+      (item: TItem): void => {
+        // If both `resetOnSelect` and `closeOnSelect` are true, the user may see
+        // a flash of the unfiltered list before it closes due to the closing
+        // animation duration. If `resetOnClose` is true, we can avoid this by not
+        // resetting the query until the list is actually closed.
+        const shouldResetQuery =
+          resetOnSelect && (!closeOnSelect || !resetOnClose);
+        if (shouldResetQuery) {
+          setQuery('');
         }
-      },
-      onKeyUp: (event: React.KeyboardEvent<HTMLInputElement>): void => {
-        if (
-          opened &&
-          event.key === 'Enter' &&
-          activeIndex != null &&
-          isEnterKeyPressedRef.current
-        ) {
-          // We handle ENTER in keyup here to play nice with the Button
-          // component's keyboard clicking. Button is commonly used as the only
-          // child of Select. If we were to instead process ENTER on keydown,
-          // then Button would click itself on keyup and the Select popover
-          // would re-open.
-          event.preventDefault();
-          elementsRef.current[activeIndex]?.click();
-          isEnterKeyPressedRef.current = false;
+
+        if (closeOnSelect) {
+          setOpened(false);
         } else {
-          userProps?.onKeyUp?.(event);
+          inputFilterRef.current?.focus();
         }
-      },
-    });
 
-    const rendererWrapper: IFilterableListBaseRenderer<TItem> = (listProps) =>
-      renderer({
-        ...listProps,
-        handleQueryChange: listProps.handleQueryChange,
+        const selectedIndex = onItemSelect(item) ?? activeIndex;
+        setSelectedIndex(selectedIndex);
+      },
+      [
+        activeIndex,
+        closeOnSelect,
+        onItemSelect,
+        resetOnSelect,
+        setQuery,
         inputFilterRef,
-        getInputFilterProps,
+        resetOnClose,
+      ],
+    );
+
+    const { hasFocus, getFocusProps, focusAfterOperation } = useFocusManagement(
+      {
+        resetOnBlur,
+        opened,
+        setQuery,
+        autoFocusRef: inputFilterRef,
+        triggerRef: buttonRef,
+      },
+    );
+
+    const { getInputKeyDownHandler, getInputKeyUpHandler } =
+      useKeyboardNavigation({
+        opened,
+        activeIndex,
+        elementsRef,
+        closeOnSelect,
+        inputFilterRef,
+        onItemSelect: handleItemSelect,
       });
 
-    const getItemRendererProps = (
-      itemProps: IFilterableListItemRendererProps<TItemElement>,
-    ): IFilterableListItemRendererProps<TItemElement> => {
-      const active = activeIndex === itemProps.index;
+    const handleAfterItemsRemove = useCallback((): void => {
+      focusAfterOperation();
 
-      return {
-        ...itemProps,
-        modifiers: {
-          ...itemProps.modifiers,
-          active,
-        },
-        focus: itemFocus,
-        buttonRef: (node) => {
-          elementsRef.current[itemProps.index] = node;
-          labelsRef.current[itemProps.index] = node?.textContent ?? null;
-        },
-        getButtonAttributes: (userProps) =>
-          interactions.getItemProps({
-            ...userProps,
-            role: 'option',
-            tabIndex: active ? 0 : -1,
-            'aria-selected': active,
-            onClick: (event: React.MouseEvent<TItemElement>) => {
-              userProps?.onClick?.(event);
-              itemProps.handleClick(event);
+      if (closeOnSelect) {
+        setOpened(false);
+      }
+    }, [focusAfterOperation, closeOnSelect]);
+
+    const handleQueryChange = useCallback(
+      (newQuery: string, event?: React.ChangeEvent<HTMLInputElement>): void => {
+        if (query === newQuery) {
+          return;
+        }
+
+        setQuery(newQuery);
+        onQueryChange?.(newQuery, event);
+        setActiveIndex(null);
+
+        if (!opened) {
+          setOpened(true);
+        }
+      },
+      [opened, query, setQuery, onQueryChange],
+    );
+
+    const getInputFilterProps = useMemo(
+      () =>
+        (userProps?: IElementProps<'input'>): Record<string, unknown> => ({
+          ...userProps,
+          value: userProps?.value ?? query,
+          disabled,
+          onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+            handleQueryChange(event.target.value, event);
+            userProps?.onChange?.(event);
+          },
+          onKeyDown: getInputKeyDownHandler(userProps?.onKeyDown),
+          onKeyUp: getInputKeyUpHandler(userProps?.onKeyUp),
+        }),
+      [
+        query,
+        handleQueryChange,
+        disabled,
+        getInputKeyDownHandler,
+        getInputKeyUpHandler,
+      ],
+    );
+
+    const rendererWrapper = useMemo<IFilterableListBaseRenderer<TItem>>(
+      () => (listProps) =>
+        renderer({
+          ...listProps,
+          handleQueryChange: listProps.handleQueryChange,
+          inputFilterRef,
+          getInputFilterProps,
+        }),
+      [inputFilterRef, renderer, getInputFilterProps],
+    );
+
+    const getItemRendererProps = useMemo(
+      () =>
+        (
+          itemProps: IFilterableListItemRendererProps<TItemElement>,
+        ): IFilterableListItemRendererProps<TItemElement> => {
+          const active = activeIndex === itemProps.index;
+
+          return {
+            ...itemProps,
+            modifiers: {
+              ...itemProps.modifiers,
+              active,
             },
-          }),
-      };
-    };
+            focus: itemFocus,
+            buttonRef: (node) => {
+              elementsRef.current[itemProps.index] = node;
+              labelsRef.current[itemProps.index] = node?.textContent ?? null;
+            },
+            getButtonAttributes: (userProps) => ({
+              ...getItemProps({
+                ...userProps,
+                role: 'option',
+                tabIndex: active ? 0 : -1,
+                'aria-selected': active,
+                onClick: (event: React.MouseEvent<TItemElement>) => {
+                  userProps?.onClick?.(event);
+                  itemProps.handleClick(event);
+                },
+              }),
+              // I don't know why `getItemProps()` does return a
+              // `onMouseMove` event handler. But this is a performance concern
+              // because
+              onMouseMove: userProps?.onMouseMove,
+            }),
+          };
+        },
+      [itemFocus, activeIndex, getItemProps],
+    );
 
     const itemRendererWrapper: IFilterableListItemRenderer<
       TItem,
       TItemElement
-    > = (item, itemProps) =>
-      itemRenderer(item, getItemRendererProps(itemProps));
+    > = useMemo(
+      () => (item, itemProps) =>
+        itemRenderer(item, getItemRendererProps(itemProps)),
+      [itemRenderer, getItemRendererProps],
+    );
 
-    const createNewItemRendererWrapper: IFilterableCreateNewListItemRenderer<
-      TItemElement
-    > = (itemProps) => createNewItemRenderer?.(getItemRendererProps(itemProps));
+    const createNewItemRendererWrapper: IFilterableCreateNewListItemRenderer<TItemElement> =
+      useMemo(
+        () => (itemProps) =>
+          createNewItemRenderer?.(getItemRendererProps(itemProps)),
+        [createNewItemRenderer, getItemRendererProps],
+      );
 
     // Restore the query when the list is re-mounted.
     const previousIsMounted = usePrevious(transitionStatus.isMounted);
@@ -352,17 +365,6 @@ export const floatingFilterableListBaseFactory = <
       setQuery,
     ]);
 
-    const handleFocus = (): void => {
-      setHasFocus(true);
-    };
-    const handleBlur = (): void => {
-      setHasFocus(false);
-
-      if (resetOnBlur && !opened) {
-        setQuery('');
-      }
-    };
-
     const FilterableListBase = useMemo(
       () => filterableListBaseFactory<TItem>(),
       [],
@@ -376,17 +378,7 @@ export const floatingFilterableListBaseFactory = <
               hasFocus,
               setTriggerRef: buttonHandleRef,
               getTriggerProps: (userProps) => ({
-                ...interactions.getReferenceProps({
-                  ...userProps,
-                  onFocus: (...args) => {
-                    handleFocus();
-                    userProps?.onFocus?.(...args);
-                  },
-                  onBlur: (...args) => {
-                    handleBlur();
-                    userProps?.onBlur?.(...args);
-                  },
-                }),
+                ...getReferenceProps(getFocusProps(userProps)),
                 'aria-autocomplete': 'none',
               }),
               afterItemsRemove: handleAfterItemsRemove,
@@ -435,7 +427,7 @@ export const floatingFilterableListBaseFactory = <
                       style: { left: floating.x, top: floating.y },
                       ref: floating.refs.setFloating,
                     },
-                    interactions.getFloatingProps(),
+                    getFloatingProps(),
                     floatingMotionProps,
                   )}
                 >
