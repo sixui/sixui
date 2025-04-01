@@ -59,7 +59,7 @@ export const CustomizableTheme = componentFactory<ICustomizableThemeFactory>(
         <Flex
           {...getStyles('root')}
           direction="column"
-          align="start"
+          align="flex-start"
           gap="$sm"
           {...other}
         >

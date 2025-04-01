@@ -79,7 +79,7 @@ export const WithErrorText: IStory = {
 export const PaletteGroup: IStory = {
   render: (props) => (
     <ColorPaletteGroupProvider customPalette={['#ff2d55']}>
-      <Flex direction="column" gap="$sm" align="start">
+      <Flex direction="column" gap="$sm" align="flex-start">
         <ColorInputControl {...props} />
         <ColorInputControl {...props} customPalette={['#000000']} />
         <ColorInputControl {...props} />

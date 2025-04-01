@@ -44,7 +44,7 @@ export const Switch = componentFactory<ISwitchFactory>(
           labelAndActionContainer: getStyles('labelAndActionContainer')
             .className,
         })}
-        align="start"
+        align="flex-start"
         readOnlyOnLoading
         labelPosition={labelPosition}
         {...labeledProps}

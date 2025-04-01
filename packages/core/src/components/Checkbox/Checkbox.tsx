@@ -44,7 +44,7 @@ export const Checkbox = componentFactory<ICheckboxFactory>(
           labelAndActionContainer: getStyles('labelAndActionContainer')
             .className,
         })}
-        align="start"
+        align="flex-start"
         readOnlyOnLoading
         labelPosition={labelPosition}
         {...labeledProps}

@@ -55,7 +55,7 @@ const StandardAsideScreenFrame: React.FC<IStandardAsideProps> = (props) => {
                   ? 'column-reverse'
                   : 'column'
           }
-          align="start"
+          align="flex-start"
           h="100%"
         >
           <Placeholder label="Page" grow={1} expanded diagonals />

@@ -52,7 +52,7 @@ const classNames = createStyles({
       },
       [modifierSelector<IModifier>({ justify: 'start' })]: {
         left: tokens.fixedHorizontalSpace.normal,
-        justifyContent: 'start',
+        justifyContent: 'flex-start',
       },
       [modifierSelector<IModifier>({ justify: 'center' })]: {
         left: `max(50%, ${tokens.fixedHorizontalSpace.compact})`,

@@ -35,7 +35,7 @@ const DrawerDemo: React.FC<IDrawerDemoProps> = (props) => {
     <Drawer {...other}>
       {({ close }) => (
         <Paper p="$lg" surface="$inverseSurface" grow={1}>
-          <Flex direction="column" align="start">
+          <Flex direction="column" align="flex-start">
             <Text color="$inverseOnSurface">
               Press escape to close the drawer.
             </Text>

@@ -20,7 +20,7 @@ const classNames = createStyles({
     },
   },
   inner: {
-    alignItems: 'end',
+    alignItems: 'flex-end',
     height: '100%',
     overflow: 'inherit',
     justifyContent: 'space-between',

@@ -50,7 +50,13 @@ const defaultArgs = {
 } satisfies Partial<IExpandableProps>;
 
 const ExpandableDemo: React.FC<IExpandableProps> = (props) => (
-  <Flex direction="column" align="start" grow={1} maw={px(400)} pos="relative">
+  <Flex
+    direction="column"
+    align="flex-start"
+    grow={1}
+    maw={px(400)}
+    pos="relative"
+  >
     <Expandable {...props} />
   </Flex>
 );

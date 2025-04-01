@@ -350,7 +350,7 @@ const classNames = createStyles({
   },
   section$start: ({ root }) => ({
     alignItems: 'center',
-    justifyContent: 'start',
+    justifyContent: 'flex-start',
     paddingInlineStart: px(space('$sm')),
     color: tokens.leadingContent.color.normal.regular,
     minWidth: tokens.leadingContent.minWidth,
@@ -379,7 +379,7 @@ const classNames = createStyles({
   }),
   section$end: ({ root }) => ({
     alignItems: 'center',
-    justifyContent: 'end',
+    justifyContent: 'flex-end',
     paddingInlineEnd: px(space('$sm')),
     color: tokens.trailingContent.color.normal.regular,
     minWidth: tokens.trailingContent.minWidth,

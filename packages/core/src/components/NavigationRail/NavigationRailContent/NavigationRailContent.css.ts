@@ -70,7 +70,7 @@ const classNames = createStyles({
     flexDirection: 'column',
     flexBasis: 0,
     alignItems: 'center',
-    justifyContent: 'start',
+    justifyContent: 'flex-start',
 
     selectors: {
       [modifierSelector<IModifier>({ justify: 'center' }, root)]: {
@@ -96,7 +96,7 @@ const classNames = createStyles({
     flexDirection: 'column',
     flexBasis: 0,
     alignItems: 'center',
-    justifyContent: 'end',
+    justifyContent: 'flex-end',
 
     selectors: {
       [modifierSelector<IModifier>({ justify: 'center' }, root)]: {

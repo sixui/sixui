@@ -45,7 +45,7 @@ const classNames = createStyles({
     display: 'flex',
     gap: px(space('$md')),
     flexDirection: 'row',
-    alignItems: 'start',
+    alignItems: 'flex-start',
     flexGrow: 'initial',
     flexWrap: 'wrap',
 

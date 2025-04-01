@@ -14,7 +14,7 @@ const classNames = createStyles({
     flexDirection: 'row',
     gap: px(space('$sm')),
     alignItems: 'center',
-    justifyContent: 'end',
+    justifyContent: 'flex-end',
     padding: px(space('$lg')),
     position: 'relative',
   },

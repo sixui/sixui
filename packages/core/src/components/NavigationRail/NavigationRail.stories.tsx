@@ -73,7 +73,7 @@ const NavigationRailScreenFrame: React.FC<INavigationRailProps> = (props) => {
       <ScreenFrame defaultHeight={350}>
         <Flex
           direction={other.side === 'right' ? 'row' : 'row-reverse'}
-          align="start"
+          align="flex-start"
           h="100%"
         >
           <Placeholder label="Page" grow={1} expanded diagonals />

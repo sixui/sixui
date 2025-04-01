@@ -32,7 +32,7 @@ const AppLayoutFrameA: React.FC<IAppLayoutProps> = (props) => (
         <Flex direction="column">
           {hasTopBar && <TopBar divider={hasDividers} wide />}
 
-          <Flex direction="row" align="start">
+          <Flex direction="row" align="flex-start">
             {hasNavigationRail && (
               <MainNavigationRail
                 activeDestination={activeDestination}
@@ -77,7 +77,7 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => (
     }) => (
       <>
         <Flex direction="column">
-          <Flex direction="row" align="start">
+          <Flex direction="row" align="flex-start">
             {hasNavigationRail && (
               <MainNavigationRail
                 activeDestination={activeDestination}
@@ -100,7 +100,7 @@ const AppLayoutFrameB: React.FC<IAppLayoutProps> = (props) => (
             <Flex direction="column" align="stretch" grow={1}>
               {hasTopBar && <TopBar divider={hasDividers} />}
 
-              <Flex direction="row" align="start">
+              <Flex direction="row" align="flex-start">
                 <Body type={activeDestination} detached={!hasDividers} />
               </Flex>
             </Flex>

@@ -49,7 +49,7 @@ const classNames = createStyles({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'start',
+    alignItems: 'flex-start',
     width: '100%',
     height: tokens.container.height,
 
@@ -101,7 +101,7 @@ const classNames = createStyles({
     paddingLeft: px(calc.add(tokens.container.leadingSpace, space('$md'))),
     paddingRight: px(calc.add(tokens.container.leadingSpace, space('$md'))),
     display: 'flex',
-    alignItems: 'end',
+    alignItems: 'flex-end',
     width: '100%',
     flexGrow: 1,
   },

@@ -31,13 +31,13 @@ const classNames = createStyles({
     justifyContent: 'flex-end',
   },
   align$start: {
-    alignItems: 'start',
+    alignItems: 'flex-start',
   },
   align$center: {
     alignItems: 'center',
   },
   align$end: {
-    alignItems: 'end',
+    alignItems: 'flex-end',
   },
   align$stretch: {
     alignItems: 'stretch',

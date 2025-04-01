@@ -142,7 +142,7 @@ const classNames = createStyles({
   supportingTextContainer: ({ root }) => ({
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'start',
+    alignItems: 'flex-start',
     gap: px(space('$sm')),
     flexGrow: 0,
     ...typography(tokens.supportingText.typography),

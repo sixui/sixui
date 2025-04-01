@@ -42,7 +42,7 @@ export const Radio = componentFactory<IRadioFactory>((props, forwardedRef) => {
       classNames={mergeClassNames(classNames, {
         labelAndActionContainer: getStyles('labelAndActionContainer').className,
       })}
-      align="start"
+      align="flex-start"
       readOnlyOnLoading
       labelPosition={labelPosition}
       {...labeledProps}
