@@ -1,3 +1,13 @@
+## 2.5.0 (2025-04-01)
+
+### 🚀 Features
+
+- **core:** floatingFilterableListBaseFactory better performances ([d680a817](https://github.com/sixui/sixui/commit/d680a817))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.4.6 (2025-03-29)
 
 ### 🩹 Fixes
