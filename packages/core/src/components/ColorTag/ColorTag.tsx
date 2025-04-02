@@ -42,9 +42,6 @@ export const ColorTag = polymorphicComponentFactory<IColorTagFactory>(
       style,
       variant,
       theme: colorTagTheme,
-      modifiers: {
-        disabled,
-      },
     });
 
     return (
@@ -53,6 +50,9 @@ export const ColorTag = polymorphicComponentFactory<IColorTagFactory>(
           style: assignInlineVars({
             [colorTagTheme.tokens.foreground.color]: contrastColor,
           }),
+          modifiers: {
+            disabled,
+          },
         })}
         classNames={mergeClassNames(classNames, {
           stateLayer: getStyles('stateLayer').className,

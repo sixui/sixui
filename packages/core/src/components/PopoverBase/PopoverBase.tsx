@@ -158,10 +158,6 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       style,
       variant,
       theme: popoverBaseTheme,
-      modifiers: {
-        shake: isShaking,
-        positioned,
-      },
     });
 
     const [opened, setOpened] = useControlledValue({
@@ -366,7 +362,12 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
                   </div>
                 )}
                 <div
-                  {...getStyles('root')}
+                  {...getStyles('root', {
+                    modifiers: {
+                      shake: isShaking,
+                      positioned,
+                    },
+                  })}
                   {...(forwardForeignProps ? undefined : other)}
                 >
                   <Motion

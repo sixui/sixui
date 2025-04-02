@@ -36,9 +36,6 @@ export const Card = polymorphicComponentFactory<ICardFactory>(
       variant,
       theme: cardTheme,
       themeVariants: cardThemeVariants,
-      modifiers: {
-        disabled,
-      },
     });
 
     const rootElement = as ?? (other.href ? undefined : 'div');
@@ -49,7 +46,11 @@ export const Card = polymorphicComponentFactory<ICardFactory>(
 
     return (
       <ButtonBase
-        {...getStyles('root')}
+        {...getStyles('root', {
+          modifiers: {
+            disabled,
+          },
+        })}
         as={rootElement}
         ref={forwardedRef}
         touchTargetRenderer={null}

@@ -45,10 +45,6 @@ export const Stepper = componentFactory<IStepperFactory>(
       style,
       variant,
       theme: stepperTheme,
-      modifiers: {
-        orientation,
-        'label-position': labelPosition,
-      },
     });
 
     type IStep = React.ReactElement<IStepperStepProps>;
@@ -101,7 +97,16 @@ export const Stepper = componentFactory<IStepperFactory>(
 
     return (
       <StepperContextProvider value={contextValue}>
-        <Box {...getStyles('root')} ref={forwardedRef} {...other}>
+        <Box
+          {...getStyles('root', {
+            modifiers: {
+              orientation,
+              'label-position': labelPosition,
+            },
+          })}
+          ref={forwardedRef}
+          {...other}
+        >
           {steps}
         </Box>
       </StepperContextProvider>

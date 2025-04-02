@@ -1,6 +1,6 @@
 import type { INavigationDrawerDestinationThemeFactory } from './NavigationDrawerDestination.css';
 import type { INavigationDrawerDestinationFactory } from './NavigationDrawerDestination.types';
-import { ListItem } from '~/components/List/ListItem';
+import { ListItemButton } from '~/components/List/ListItemButton';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
@@ -47,10 +47,11 @@ export const NavigationDrawerDestination =
         : trailingIconProp;
 
       return (
-        <ListItem
+        <ListItemButton
           {...getStyles('root')}
           classNames={mergeClassNames(classNames, {
-            item: getStyles('item').className,
+            root: getStyles('listItemButton').className,
+            listItem: getStyles('listItem').className,
           })}
           variant={false}
           ref={forwardedRef}

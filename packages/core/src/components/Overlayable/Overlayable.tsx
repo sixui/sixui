@@ -29,14 +29,19 @@ export const Overlayable = polymorphicComponentFactory<IOverlayableFactory>(
       style,
       variant,
       theme: overlayableTheme,
-      modifiers: {
-        visible,
-        'keep-content-visible': keepContentVisible,
-      },
     });
 
     return (
-      <Box {...getStyles('root')} ref={forwardedRef} {...other}>
+      <Box
+        {...getStyles('root', {
+          modifiers: {
+            visible,
+            'keep-content-visible': keepContentVisible,
+          },
+        })}
+        ref={forwardedRef}
+        {...other}
+      >
         <div {...getStyles('content')}>{children}</div>
         {visible && <div {...getStyles('overlay')}>{overlay}</div>}
       </Box>

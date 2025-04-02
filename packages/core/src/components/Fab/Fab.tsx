@@ -33,16 +33,17 @@ export const Fab = polymorphicComponentFactory<IFabFactory>(
       variant,
       theme: fabTheme,
       themeVariants: fabThemeVariants,
-      modifiers: {
-        extended: !!other.children,
-        flat,
-        size,
-      },
     });
 
     return (
       <Button
-        {...getStyles('root')}
+        {...getStyles('root', {
+          modifiers: {
+            extended: !!other.children,
+            flat,
+            size,
+          },
+        })}
         variant={false}
         classNames={mergeClassNames(classNames, {
           stateLayer: getStyles('stateLayer').className,

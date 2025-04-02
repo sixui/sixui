@@ -65,10 +65,6 @@ export const Expandable = componentFactory<IExpandableFactory>(
       style,
       variant,
       theme: expandableTheme,
-      modifiers: {
-        disabled,
-        orientation,
-      },
     });
 
     const transitionProperty =
@@ -131,6 +127,10 @@ export const Expandable = componentFactory<IExpandableFactory>(
                   [expandableTheme.tokens.transitionProperty]:
                     transitionProperty,
                 }),
+                modifiers: {
+                  disabled,
+                  orientation,
+                },
               })}
               modifiers={{
                 expanded: expanded && status === 'entered',

@@ -51,10 +51,6 @@ export const DeterminateCircularProgressIndicator =
           style,
           theme: determinateCircularProgressIndicatorTheme,
           variant,
-          modifiers: {
-            disabled,
-            negative: isNegative,
-          },
         });
 
       return (
@@ -64,6 +60,10 @@ export const DeterminateCircularProgressIndicator =
               [determinateCircularProgressIndicatorTheme.tokens.progressPct]:
                 `${normalizedProgress * 100}%`,
             }),
+            modifiers: {
+              disabled,
+              negative: isNegative,
+            },
           })}
           ref={forwardedRef}
           role="progressbar"

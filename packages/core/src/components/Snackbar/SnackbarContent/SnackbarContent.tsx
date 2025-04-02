@@ -37,14 +37,19 @@ export const SnackbarContent = componentFactory<ISnackbarContentFactory>(
       style,
       variant,
       theme: snackbarContentTheme,
-      modifiers: {
-        'with-trailing-action': !!actionLabel,
-        'with-trailing-icon': !!showCloseButton,
-      },
     });
 
     return (
-      <PaperBase {...getStyles('root')} ref={forwardedRef} {...other}>
+      <PaperBase
+        {...getStyles('root', {
+          modifiers: {
+            'with-trailing-action': !!actionLabel,
+            'with-trailing-icon': !!showCloseButton,
+          },
+        })}
+        ref={forwardedRef}
+        {...other}
+      >
         <div {...getStyles('supportingText')}>{children}</div>
 
         {(actionLabel ?? showCloseButton) && (

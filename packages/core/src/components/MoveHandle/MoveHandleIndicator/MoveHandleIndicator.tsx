@@ -31,14 +31,15 @@ export const MoveHandleIndicator =
       style,
       variant,
       theme: moveHandleIndicatorTheme,
-      modifiers: {
-        disabled,
-      },
     });
 
     return (
       <SvgIcon
-        {...getStyles('root')}
+        {...getStyles('root', {
+          modifiers: {
+            disabled,
+          },
+        })}
         ref={forwardedRef}
         {...other}
         icon={

@@ -51,22 +51,31 @@ export const Motion = polymorphicComponentFactory<IMotionFactory>(
       style,
       variant,
       theme: motionTheme,
-      modifiers: {
-        status: resolvedStatus,
-        side,
-        alignment,
-        orientation,
-        pattern:
-          typeof pattern === 'string'
-            ? pattern
-            : ['entered', 'exiting'].includes(status)
-              ? pattern.exit
-              : pattern.enter,
-      },
     });
 
+    const modifiers = {
+      status: resolvedStatus,
+      side,
+      alignment,
+      orientation,
+      pattern:
+        typeof pattern === 'string'
+          ? pattern
+          : ['entered', 'exiting'].includes(status)
+            ? pattern.exit
+            : pattern.enter,
+    };
+
     if (disabled) {
-      return <Box {...getStyles('root')} ref={forwardedRef} {...other} />;
+      return (
+        <Box
+          {...getStyles('root', {
+            modifiers,
+          })}
+          ref={forwardedRef}
+          {...other}
+        />
+      );
     }
 
     return (
@@ -82,6 +91,7 @@ export const Motion = polymorphicComponentFactory<IMotionFactory>(
                     ? customTransformOrigin
                     : 'center',
           }),
+          modifiers,
         })}
         ref={forwardedRef}
         {...other}

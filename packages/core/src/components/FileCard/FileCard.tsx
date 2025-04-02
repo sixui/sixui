@@ -60,12 +60,6 @@ export const FileCard = componentFactory<IFileCardFactory>(
       style,
       variant,
       theme: fileCardTheme,
-      modifiers: {
-        disabled,
-        'with-error': hasError,
-        'with-thumb': !!thumbUrl,
-        loading: !loaded,
-      },
     });
 
     const handleDelete = async (): Promise<void> => {
@@ -79,7 +73,14 @@ export const FileCard = componentFactory<IFileCardFactory>(
 
     return (
       <Card
-        {...getStyles('root')}
+        {...getStyles('root', {
+          modifiers: {
+            disabled,
+            'with-error': hasError,
+            'with-thumb': !!thumbUrl,
+            loading: !loaded,
+          },
+        })}
         ref={forwardedRef}
         variant="outlined"
         disabled={disabled}

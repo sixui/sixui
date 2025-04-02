@@ -149,6 +149,7 @@ export const floatingFilterableListBaseFactory = <
       loop: true,
       cols,
       orientation: isGrid ? 'both' : 'vertical',
+      focusItemOnHover: false,
     });
     const typeahead = useTypeahead(floating.context, {
       listRef: labelsRef,
@@ -185,10 +186,10 @@ export const floatingFilterableListBaseFactory = <
 
     const handleItemSelect = useCallback(
       (item: TItem): void => {
-        // If both `resetOnSelect` and `closeOnSelect` are true, the user may see
-        // a flash of the unfiltered list before it closes due to the closing
-        // animation duration. If `resetOnClose` is true, we can avoid this by not
-        // resetting the query until the list is actually closed.
+        // If both `resetOnSelect` and `closeOnSelect` are true, the user may
+        // see a flash of the unfiltered list before it closes due to the
+        // closing animation duration. If `resetOnClose` is true, we can avoid
+        // this by not resetting the query until the list is actually closed.
         const shouldResetQuery =
           resetOnSelect && (!closeOnSelect || !resetOnClose);
         if (shouldResetQuery) {
@@ -299,6 +300,7 @@ export const floatingFilterableListBaseFactory = <
           itemProps: IFilterableListItemRendererProps<TItemElement>,
         ): IFilterableListItemRendererProps<TItemElement> => {
           const active = activeIndex === itemProps.index;
+          const disabled = itemProps.modifiers.disabled;
 
           return {
             ...itemProps,
@@ -316,16 +318,13 @@ export const floatingFilterableListBaseFactory = <
                 ...userProps,
                 role: 'option',
                 tabIndex: active ? 0 : -1,
+                'aria-disabled': disabled,
                 'aria-selected': active,
                 onClick: (event: React.MouseEvent<TItemElement>) => {
                   userProps?.onClick?.(event);
                   itemProps.handleClick(event);
                 },
               }),
-              // I don't know why `getItemProps()` does return a
-              // `onMouseMove` event handler. But this is a performance concern
-              // because
-              onMouseMove: userProps?.onMouseMove,
             }),
           };
         },

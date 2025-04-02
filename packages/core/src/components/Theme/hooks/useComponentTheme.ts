@@ -51,13 +51,6 @@ export interface IUseComponentThemeProps<
    * @defaultValue 'root'
    */
   rootStyleName?: string;
-
-  /**
-   * The modifiers to apply to the root selector.
-   */
-  modifiers?: TPayload['modifier'] extends string
-    ? Partial<IModifiers<TPayload['modifier']>>
-    : never;
 }
 
 export interface IGetStylesOptions {
@@ -93,7 +86,6 @@ export const useComponentTheme = <
     style,
     variant,
     rootStyleName = 'root',
-    modifiers,
   } = props;
   const { theme } = useThemeContext();
 
@@ -134,14 +126,13 @@ export const useComponentTheme = <
             ),
             ...options?.style,
           },
+          ...(options?.modifiers
+            ? getDataAttributes(options.modifiers)
+            : undefined),
           ...(includesRoot
             ? getDataAttributes({
                 variant,
-                ...modifiers,
               })
-            : undefined),
-          ...(options?.modifiers
-            ? getDataAttributes(options.modifiers)
             : undefined),
         };
       },
@@ -151,7 +142,6 @@ export const useComponentTheme = <
         theme.components,
         classNames,
         rootStyleName,
-        modifiers,
         variant,
         style,
         styles,

@@ -34,15 +34,16 @@ export const IconButton = polymorphicComponentFactory<IIconButtonFactory>(
       variant,
       theme: iconButtonTheme,
       themeVariants: iconButtonThemeVariants,
-      modifiers: {
-        toggle,
-        selected,
-      },
     });
 
     return (
       <Button
-        {...getStyles('root')}
+        {...getStyles('root', {
+          modifiers: {
+            toggle,
+            selected,
+          },
+        })}
         variant={false}
         classNames={mergeClassNames(classNames, {
           stateLayer: getStyles('stateLayer').className,

@@ -35,9 +35,6 @@ export const ColorPickerContent = componentFactory<IColorPickerContentFactory>(
       style,
       variant,
       theme: colorPickerContentTheme,
-      modifiers: {
-        disabled,
-      },
     });
 
     const renderPalette = (palette: IColorPalette): React.ReactNode =>
@@ -55,7 +52,15 @@ export const ColorPickerContent = componentFactory<IColorPickerContentFactory>(
       ));
 
     return (
-      <PaperBase {...getStyles('root')} ref={forwardedRef} {...other}>
+      <PaperBase
+        {...getStyles('root', {
+          modifiers: {
+            disabled,
+          },
+        })}
+        ref={forwardedRef}
+        {...other}
+      >
         <div {...getStyles('section')}>
           <Flex direction="row" gap="$sm" justify="space-between">
             {palettes.map((palette, paletteIndex) => (

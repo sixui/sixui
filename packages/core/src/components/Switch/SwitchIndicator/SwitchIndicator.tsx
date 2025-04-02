@@ -44,18 +44,23 @@ export const SwitchIndicator = componentFactory<ISwitchIndicatorFactory>(
       style,
       variant,
       theme: basicTemplateTheme,
-      modifiers: {
-        disabled,
-        checked,
-        'with-icon': hasIcon,
-        loading,
-        on: isOn,
-        'with-error': hasError,
-      },
     });
 
     return (
-      <PaperBase {...getStyles('root')} ref={forwardedRef} {...other}>
+      <PaperBase
+        {...getStyles('root', {
+          modifiers: {
+            disabled,
+            checked,
+            'with-icon': hasIcon,
+            loading,
+            on: isOn,
+            'with-error': hasError,
+          },
+        })}
+        ref={forwardedRef}
+        {...other}
+      >
         <div {...getStyles('track')}>
           <div {...getStyles('handleContainer')}>
             {!disabled && stateLayer}

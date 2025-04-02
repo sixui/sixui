@@ -96,10 +96,6 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
       style,
       variant,
       theme: appLayoutTheme,
-      modifiers: {
-        'navigation-mode': navigationMode,
-        'with-top-bar': componentsSet.has('topBar'),
-      },
     });
 
     const contextValue: IAppLayoutContextValue = {
@@ -152,7 +148,16 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
       <AppLayoutProvider value={contextValue}>
         <AppLayoutSetterProvider value={setterContextValue}>
           <InlineStyles selector=":root" styles={{ backgroundColor }} />
-          <Box {...getStyles('root')} ref={forwardedRef} {...other}>
+          <Box
+            {...getStyles('root', {
+              modifiers: {
+                'navigation-mode': navigationMode,
+                'with-top-bar': componentsSet.has('topBar'),
+              },
+            })}
+            ref={forwardedRef}
+            {...other}
+          >
             <div ref={setRootElement} />
             {isFunction(children) ? children(contextValue) : children}
           </Box>

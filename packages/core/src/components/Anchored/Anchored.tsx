@@ -37,10 +37,6 @@ export const Anchored = componentFactory<IAnchoredFactory>(
       style,
       variant,
       theme: anchoredTheme,
-      modifiers: {
-        position,
-        invisible,
-      },
     });
 
     return (
@@ -50,6 +46,10 @@ export const Anchored = componentFactory<IAnchoredFactory>(
             [anchoredTheme.tokens.offset.x]: offsetX ? px(offsetX) : undefined,
             [anchoredTheme.tokens.offset.y]: offsetY ? px(offsetY) : undefined,
           }),
+          modifiers: {
+            position,
+            invisible,
+          },
         })}
         ref={forwardedRef}
         {...other}

@@ -7,7 +7,7 @@ import { Box } from '~/components/Box';
 import { extractBoxProps } from '~/components/Box/extractBoxProps';
 import { Checkbox } from '~/components/Checkbox';
 import { useExpandableContext } from '~/components/Expandable';
-import { ListItem } from '~/components/List/ListItem';
+import { ListItemButton } from '~/components/List/ListItemButton';
 import { SvgIcon } from '~/components/SvgIcon';
 import { Switch } from '~/components/Switch';
 import { useComponentTheme, useProps } from '~/components/Theme';
@@ -66,12 +66,6 @@ export const DisclosureTrigger = componentFactory<IDisclosureTriggerFactory>(
       style,
       variant,
       theme: disclosureTriggerTheme,
-      modifiers: {
-        disabled,
-        expanded,
-        checkable,
-        switchable,
-      },
     });
 
     const icon = expanded ? (
@@ -117,11 +111,22 @@ export const DisclosureTrigger = componentFactory<IDisclosureTriggerFactory>(
     );
 
     return (
-      <Box {...getStyles('root')} {...boxProps} ref={rootRef}>
-        <ListItem
+      <Box
+        {...getStyles('root', {
+          modifiers: {
+            disabled,
+            expanded,
+            checkable,
+            switchable,
+          },
+        })}
+        {...boxProps}
+        ref={rootRef}
+      >
+        <ListItemButton
           classNames={mergeClassNames(classNames, {
-            root: getStyles('listItem').className,
-            item: getStyles('item').className,
+            root: getStyles('listItemButton').className,
+            listItem: getStyles('listItem').className,
           })}
           ref={forwardedRef}
           trailingIcon={icon}

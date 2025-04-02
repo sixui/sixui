@@ -30,11 +30,6 @@ export const Scrim = polymorphicComponentFactory<IScrimFactory>(
       style,
       variant,
       theme: scrimTheme,
-      modifiers: {
-        fixed,
-        center,
-        blurred,
-      },
     });
 
     if (disabled) {
@@ -42,7 +37,17 @@ export const Scrim = polymorphicComponentFactory<IScrimFactory>(
     }
 
     return (
-      <Box {...getStyles('root')} ref={forwardedRef} {...other}>
+      <Box
+        {...getStyles('root', {
+          modifiers: {
+            fixed,
+            center,
+            blurred,
+          },
+        })}
+        ref={forwardedRef}
+        {...other}
+      >
         {children}
       </Box>
     );

@@ -33,11 +33,17 @@ export const Elevation = componentFactory<IElevationFactory>(
       style,
       variant,
       theme: elevationTheme,
-      modifiers: { level, disabled },
     });
 
     return (
-      <Box {...getStyles('root')} aria-hidden ref={forwardedRef} {...other} />
+      <Box
+        {...getStyles('root', {
+          modifiers: { level, disabled },
+        })}
+        aria-hidden
+        ref={forwardedRef}
+        {...other}
+      />
     );
   },
 );

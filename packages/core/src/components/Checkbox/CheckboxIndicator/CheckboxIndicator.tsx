@@ -44,18 +44,19 @@ export const CheckboxIndicator = componentFactory<ICheckboxIndicatorFactory>(
       style,
       variant,
       theme: checkboxIndicatorTheme,
-      modifiers: {
-        on,
-        'was-disabled': wasDisabled,
-        loading,
-        disabled,
-        'with-error': hasError,
-      },
     });
 
     return (
       <PaperBase
-        {...getStyles('root')}
+        {...getStyles('root', {
+          modifiers: {
+            on,
+            'was-disabled': wasDisabled,
+            loading,
+            disabled,
+            'with-error': hasError,
+          },
+        })}
         ref={forwardedRef}
         disabled={disabled}
         {...other}

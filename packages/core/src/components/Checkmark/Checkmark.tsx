@@ -36,18 +36,23 @@ export const Checkmark = componentFactory<ICheckmarkFactory>(
       style,
       variant,
       theme: checkmarkTheme,
-      modifiers: {
-        disabled,
-        on,
-        checked,
-        indeterminate,
-        'was-unchecked': wasUnchecked,
-        'was-disabled': wasDisabled,
-      },
     });
 
     return (
-      <Box {...getStyles('root')} ref={forwardedRef} {...other}>
+      <Box
+        {...getStyles('root', {
+          modifiers: {
+            disabled,
+            on,
+            checked,
+            indeterminate,
+            'was-unchecked': wasUnchecked,
+            'was-disabled': wasDisabled,
+          },
+        })}
+        ref={forwardedRef}
+        {...other}
+      >
         <svg
           {...getStyles('svg')}
           xmlns="http://www.w3.org/2000/svg"

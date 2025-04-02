@@ -36,7 +36,7 @@
     "@ianvs/prettier-plugin-sort-imports": "^4.4.1"
   },
   "devDependencies": {
-    "@sixui/eslint-config": "workspace:*",
+    "@sixui/eslint-config": "2.6.0",
     "@sixui/typescript-config": "workspace:*",
     "@types/node": "^22.13.16",
     "eslint": "^9.23.0",

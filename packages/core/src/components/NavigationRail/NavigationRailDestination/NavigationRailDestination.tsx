@@ -48,11 +48,6 @@ export const NavigationRailDestination =
           style,
           variant,
           theme: navigationRailDestinationTheme,
-          modifiers: {
-            'icon-only': !label,
-            active,
-            disabled: disabledOrReadOnly,
-          },
         });
 
       const handleClick: React.MouseEventHandler = (event) => {
@@ -71,7 +66,13 @@ export const NavigationRailDestination =
 
       return (
         <ButtonBase
-          {...getStyles('root')}
+          {...getStyles('root', {
+            modifiers: {
+              'icon-only': !label,
+              active,
+              disabled: disabledOrReadOnly,
+            },
+          })}
           classNames={mergeClassNames(classNames, {
             stateLayer: getStyles('stateLayer').className,
           })}

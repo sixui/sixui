@@ -10,6 +10,7 @@ import { COMPONENT_NAME } from './List.constants';
 import { ListContextProvider } from './List.context';
 import { ListDivider } from './ListDivider';
 import { ListItem } from './ListItem';
+import { ListItemButton } from './ListItemButton';
 import { listTheme } from './List.css';
 
 /**
@@ -41,16 +42,17 @@ export const List = componentFactory<IListFactory>((props, forwardedRef) => {
     style,
     theme: listTheme,
     variant,
-    modifiers: {
-      grid: isGrid,
-      empty: !children,
-    },
   });
 
   return (
     <ListContextProvider value={{ noFocusRing }}>
       <Paper
-        {...getStyles('root')}
+        {...getStyles('root', {
+          modifiers: {
+            grid: isGrid,
+            empty: !children,
+          },
+        })}
         classNames={classNames}
         ref={forwardedRef}
         {...other}
@@ -80,4 +82,5 @@ export const List = componentFactory<IListFactory>((props, forwardedRef) => {
 List.displayName = `@sixui/core/${COMPONENT_NAME}`;
 List.theme = listTheme;
 List.Item = ListItem;
+List.ItemButton = ListItemButton;
 List.Divider = ListDivider;

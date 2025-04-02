@@ -81,18 +81,19 @@ export const SwitchControl = componentFactory<ISwitchControlFactory>(
       style,
       variant,
       theme: basicTemplateTheme,
-      modifiers: {
-        disabled: disabledOrReadOnly,
-        checked,
-        'with-icon': hasIcon,
-        loading,
-        on: isOn,
-      },
     });
 
     return (
       <Box
-        {...getStyles('root')}
+        {...getStyles('root', {
+          modifiers: {
+            disabled: disabledOrReadOnly,
+            checked,
+            'with-icon': hasIcon,
+            loading,
+            on: isOn,
+          },
+        })}
         interactions={stateLayer.interactionsContext.state}
         ref={rootRef}
         {...other}

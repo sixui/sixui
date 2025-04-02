@@ -28,14 +28,15 @@ export const ResizeHandle = componentFactory<IResizeHandleFactory>(
       style,
       variant,
       theme: resizeHandleTheme,
-      modifiers: {
-        orientation,
-      },
     });
 
     return (
       <ButtonBase
-        {...getStyles('root')}
+        {...getStyles('root', {
+          modifiers: {
+            orientation,
+          },
+        })}
         ref={forwardedRef}
         classNames={mergeClassNames(classNames, {
           stateLayer: getStyles('stateLayer').className,

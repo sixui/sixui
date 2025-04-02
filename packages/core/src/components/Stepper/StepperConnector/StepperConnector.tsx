@@ -39,16 +39,17 @@ export const StepperConnector = componentFactory<IStepperConnectorFactory>(
       style,
       variant,
       theme: dividerTheme,
-      modifiers: {
-        orientation,
-        'step-label-position': stepLabelPosition,
-        completed: stepContext.completed,
-      },
     });
 
     return (
       <Divider
-        {...getStyles('root')}
+        {...getStyles('root', {
+          modifiers: {
+            orientation,
+            'step-label-position': stepLabelPosition,
+            completed: stepContext.completed,
+          },
+        })}
         ref={forwardedRef}
         orientation={orientation}
         labelPosition={contentPosition}

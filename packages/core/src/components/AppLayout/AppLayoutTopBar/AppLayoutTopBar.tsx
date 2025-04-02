@@ -36,9 +36,6 @@ export const AppLayoutTopBar = componentFactory<IAppLayoutTopBarFactory>(
       style,
       variant,
       theme: appLayoutTopBarTheme,
-      modifiers: {
-        'with-divider': divider,
-      },
     });
 
     const hasNavigationDrawer =
@@ -49,7 +46,11 @@ export const AppLayoutTopBar = componentFactory<IAppLayoutTopBarFactory>(
 
     return (
       <TopAppBar
-        {...getStyles('root')}
+        {...getStyles('root', {
+          modifiers: {
+            'with-divider': divider,
+          },
+        })}
         as="header"
         ref={forwardedRef}
         leadingNavigation={

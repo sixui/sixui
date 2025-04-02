@@ -180,19 +180,16 @@ export const renderMovieListItem: IFilterableListItemRenderer<
     return null;
   }
 
-  const buttonAttributes = props.getButtonAttributes();
-
   return (
     <ListItem
       {...getMovieItemProps(movie, props)}
       key={props.index}
       as="button"
-      interactions={{ hovered: !!props.modifiers.active }}
-      interactionsMergeStrategy="accumulate"
+      active={props.modifiers.active}
       selected={props.modifiers.selected}
       disabled={props.modifiers.disabled}
-      propagateClick
-      {...buttonAttributes}
+      hoverable
+      {...props.getButtonAttributes()}
       ref={props.buttonRef}
     />
   );

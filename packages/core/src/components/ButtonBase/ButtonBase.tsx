@@ -62,10 +62,6 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
       style,
       variant,
       theme: buttonBaseTheme,
-      modifiers: {
-        disabled: disabledOrReadOnly,
-        'non-interactive': nonInteractive,
-      },
     });
 
     const ownStateLayer = useStateLayer<HTMLDivElement>({
@@ -133,7 +129,12 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
 
     return (
       <Paper
-        {...getStyles('root')}
+        {...getStyles('root', {
+          modifiers: {
+            disabled: disabledOrReadOnly,
+            'non-interactive': nonInteractive,
+          },
+        })}
         {...attributes}
         ref={handleRef}
         as={rootElement}

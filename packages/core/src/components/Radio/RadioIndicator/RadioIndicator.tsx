@@ -35,16 +35,21 @@ export const RadioIndicator = componentFactory<IRadioIndicatorFactory>(
       style,
       variant,
       theme: RadioIndicatorTheme,
-      modifiers: {
-        disabled,
-        loading,
-        checked,
-        'with-error': hasError,
-      },
     });
 
     return (
-      <PaperBase {...getStyles('root')} ref={forwardedRef} {...other}>
+      <PaperBase
+        {...getStyles('root', {
+          modifiers: {
+            disabled,
+            loading,
+            checked,
+            'with-error': hasError,
+          },
+        })}
+        ref={forwardedRef}
+        {...other}
+      >
         {loading && (
           <IndeterminateCircularProgressIndicator
             {...getStyles('progressIndicator')}

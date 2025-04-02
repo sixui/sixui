@@ -38,10 +38,6 @@ export const BottomSheet = componentFactory<IBottomSheetFactory>(
       style,
       variant,
       theme: bottomSheetTheme,
-      modifiers: {
-        'full-height': fullHeight,
-        detached,
-      },
     });
 
     const bottomSheetOpened =
@@ -49,7 +45,12 @@ export const BottomSheet = componentFactory<IBottomSheetFactory>(
 
     return (
       <Drawer
-        {...getStyles('root')}
+        {...getStyles('root', {
+          modifiers: {
+            'full-height': fullHeight,
+            detached,
+          },
+        })}
         portalProps={{ root: appLayoutContext?.root }}
         opened={bottomSheetOpened}
         onClose={() => {

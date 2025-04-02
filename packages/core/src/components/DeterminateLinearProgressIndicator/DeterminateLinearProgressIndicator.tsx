@@ -40,9 +40,6 @@ export const DeterminateLinearProgressIndicator =
           style,
           variant,
           theme: determinateLinearProgressIndicatorTheme,
-          modifiers: {
-            disabled,
-          },
         });
 
       return (
@@ -52,6 +49,9 @@ export const DeterminateLinearProgressIndicator =
               [determinateLinearProgressIndicatorTheme.tokens.progress]:
                 String(normalizedProgress),
             }),
+            modifiers: {
+              disabled,
+            },
           })}
           ref={forwardedRef}
           {...other}

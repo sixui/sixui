@@ -47,10 +47,6 @@ export const Snackbar = componentFactory<ISnackbarFactory>(
       style,
       variant,
       theme: snackbarTheme,
-      modifiers: {
-        justify,
-        opened,
-      },
     });
 
     const overlaysStateContext = useOverlaysStateContext();
@@ -96,6 +92,10 @@ export const Snackbar = componentFactory<ISnackbarFactory>(
                   lastOpenOverlayInstancePosition.current,
                 ),
               }),
+              modifiers: {
+                justify,
+                opened,
+              },
             })}
           >
             <Motion

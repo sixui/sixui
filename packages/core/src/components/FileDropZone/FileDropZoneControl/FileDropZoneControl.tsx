@@ -254,10 +254,6 @@ export const FileDropZoneControl =
       style,
       variant,
       theme: fileDropZoneControlTheme,
-      modifiers: {
-        disabled,
-        'with-error': hasError,
-      },
     });
 
     const handleInputRef = useMergeRefs(forwardedRef, inputRef);
@@ -332,7 +328,16 @@ export const FileDropZoneControl =
     );
 
     return (
-      <Box {...getStyles('root')} ref={rootRef} {...other}>
+      <Box
+        {...getStyles('root', {
+          modifiers: {
+            disabled,
+            'with-error': hasError,
+          },
+        })}
+        ref={rootRef}
+        {...other}
+      >
         <input
           {...getInputProps()}
           id={id}

@@ -27,13 +27,18 @@ export const ColorSchemeRole = componentFactory<IColorSchemeRoleFactory>(
       style,
       variant,
       theme: colorSchemeRoleTheme,
-      modifiers: {
-        size,
-      },
     });
 
     return (
-      <Paper {...getStyles('root')} ref={forwardedRef} {...other}>
+      <Paper
+        {...getStyles('root', {
+          modifiers: {
+            size,
+          },
+        })}
+        ref={forwardedRef}
+        {...other}
+      >
         {label}
       </Paper>
     );

@@ -38,13 +38,6 @@ export const Divider = componentFactory<IDividerFactory>(
       style,
       variant,
       theme: dividerTheme,
-      modifiers: {
-        orientation,
-        'inset-start': hasInsetStart,
-        'inset-end': hasInsetEnd,
-        'label-position': labelPosition,
-        'vertical-align': verticalAlign,
-      },
     });
 
     const renderText = (): React.ReactNode => (
@@ -54,7 +47,19 @@ export const Divider = componentFactory<IDividerFactory>(
     );
 
     return (
-      <Box {...getStyles('root')} ref={forwardedRef} {...other}>
+      <Box
+        {...getStyles('root', {
+          modifiers: {
+            orientation,
+            'inset-start': hasInsetStart,
+            'inset-end': hasInsetEnd,
+            'label-position': labelPosition,
+            'vertical-align': verticalAlign,
+          },
+        })}
+        ref={forwardedRef}
+        {...other}
+      >
         {label ? (
           labelPosition === 'top' ? (
             <>

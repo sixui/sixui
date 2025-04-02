@@ -18,6 +18,7 @@ import { px } from '~/utils/css/px';
 import { sbHandleEvent } from '~/utils/sbHandleEvent';
 import { List } from './List';
 import { ListItem } from './ListItem';
+import { ListItemButton } from './ListItemButton';
 
 const meta = {
   component: List,
@@ -200,9 +201,11 @@ export const Configurations: IStory = {
                   Item with trailing supporting text
                 </ListItem>
                 <ListItem selected>Selected item</ListItem>
-                <ListItem onClick={(...args) => sbHandleEvent('onClick', args)}>
+                <ListItemButton
+                  onClick={(...args) => sbHandleEvent('onClick', args)}
+                >
                   Interactive item
-                </ListItem>
+                </ListItemButton>
                 <ListItem
                   leadingIcon={<FontAwesomeIcon icon={faCalendarDays} />}
                   disabled

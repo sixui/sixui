@@ -30,13 +30,9 @@
     }
   },
   "release": {
-    "projectsRelationship": "independent",
     "version": {
       "conventionalCommits": true,
-      "preVersionCommand": "npx nx run-many -t build",
-      "generatorOptions": {
-        "fallbackCurrentVersionResolver": "disk"
-      }
+      "preVersionCommand": "npx nx run-many -t build"
     },
     "changelog": {
       "projectChangelogs": true

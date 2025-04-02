@@ -31,14 +31,15 @@ export const Placeholder = polymorphicComponentFactory<IPlaceholderFactory>(
       style,
       variant,
       theme: placeholderTheme,
-      modifiers: {
-        disabled,
-      },
     });
 
     return (
       <Paper
-        {...getStyles('root')}
+        {...getStyles('root', {
+          modifiers: {
+            disabled,
+          },
+        })}
         surface={surface}
         ref={forwardedRef}
         {...other}

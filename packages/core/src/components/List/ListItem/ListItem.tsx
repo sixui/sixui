@@ -1,19 +1,14 @@
-import { useCallback, useState } from 'react';
+import { useMemo } from 'react';
 
 import type { IListItemThemeFactory } from './ListItem.css';
 import type { IListItemFactory } from './ListItem.types';
-import { ButtonBase } from '~/components/ButtonBase';
 import { IndeterminateCircularProgressIndicator } from '~/components/IndeterminateCircularProgressIndicator';
 import { Item } from '~/components/Item';
-import { useListContext } from '~/components/List/List.context';
 import { Overlayable } from '~/components/Overlayable';
-import { Paper } from '~/components/Paper';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { polymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
-import { mergeClassNames } from '~/utils/css/mergeClassNames';
-import { executeLazyPromise } from '~/utils/executeLazyPromise';
 import { COMPONENT_NAME } from './ListItem.constants';
-import { listItemTheme, listItemThemeVariants } from './ListItem.css';
+import { listItemTheme } from './ListItem.css';
 
 /**
  * @see https://m3.material.io/components/items/overview
@@ -34,30 +29,25 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
       end,
       disabled,
       selected: selectedProp,
-      loading: loadingProp,
-      onClick,
+      loading,
       leading,
       leadingIcon,
       leadingImage,
       leadingVideo,
       trailing,
       trailingIcon,
-      lineClamp,
-      noFocusRing: noFocusRingProp,
-      interactionsMergeStrategy,
+      active: activeProp,
+      hoverable: hoverableProp,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
-    const listContext = useListContext();
-    const [handlingClick, setHandlingClick] = useState(false);
-
-    const loading = loadingProp || handlingClick;
     const readOnly = loading;
     const disabledOrReadOnly = disabled || readOnly;
-    const selected = !disabled && selectedProp;
+    const active = !disabledOrReadOnly && activeProp;
+    const selected = !disabledOrReadOnly && selectedProp;
+    const hoverable = !disabledOrReadOnly && hoverableProp;
     const hasLeading = !!start || !!leadingVideo;
     const hasTrailing = !!end;
-    const noFocusRing = listContext?.noFocusRing ?? noFocusRingProp;
     const hasStartSlot =
       !!start || !!leadingIcon || !!leadingImage || !!leadingVideo || !!leading;
     const hasEndSlot = !!end || !!trailingIcon || !!trailing;
@@ -70,37 +60,26 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
       style,
       variant,
       theme: listItemTheme,
-      themeVariants: listItemThemeVariants,
-      modifiers: {
-        selected,
-        disabled: disabledOrReadOnly,
-        'with-leading': hasLeading,
-        'with-trailing': hasTrailing,
-        'with-start-slot': hasStartSlot,
-        'with-end-slot': hasEndSlot,
-      },
     });
 
-    const handleClick: React.MouseEventHandler = useCallback(
-      (event) => {
-        if (handlingClick || !onClick) {
-          return;
-        }
+    const modifiers = {
+      selected,
+      disabled: disabledOrReadOnly,
+      'with-leading': hasLeading,
+      'with-trailing': hasTrailing,
+      'with-start-slot': hasStartSlot,
+      'with-end-slot': hasEndSlot,
+      active,
+    };
 
-        void executeLazyPromise(
-          () => onClick(event) as Promise<void>,
-          setHandlingClick,
-        );
-      },
-      [handlingClick, onClick],
-    );
-
-    const renderStartSlot = useCallback(
+    const startSlot = useMemo(
       (): React.ReactNode =>
         hasStartSlot && (
           <Overlayable
             overlay={
-              <IndeterminateCircularProgressIndicator {...getStyles('icon')} />
+              <IndeterminateCircularProgressIndicator
+                {...getStyles(['icon', 'icon$leading'])}
+              />
             }
             visible={loading && (!!leadingIcon || !trailingIcon)}
           >
@@ -144,12 +123,14 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
       ],
     );
 
-    const renderEndSlot = useCallback(
+    const endSlot = useMemo(
       (): React.ReactNode =>
         hasEndSlot ? (
           <Overlayable
             overlay={
-              <IndeterminateCircularProgressIndicator {...getStyles('icon')} />
+              <IndeterminateCircularProgressIndicator
+                {...getStyles(['icon', 'icon$trailing'])}
+              />
             }
             visible={loading && !leadingIcon}
           >
@@ -163,7 +144,9 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
               ))}
           </Overlayable>
         ) : loading && !hasStartSlot ? (
-          <IndeterminateCircularProgressIndicator {...getStyles('icon')} />
+          <IndeterminateCircularProgressIndicator
+            {...getStyles(['icon', 'icon$trailing'])}
+          />
         ) : undefined,
       [
         end,
@@ -177,54 +160,19 @@ export const ListItem = polymorphicComponentFactory<IListItemFactory>(
       ],
     );
 
-    const shouldRenderAsButton =
-      other.as === 'button' || other.as === 'a' || !!onClick || !!other.href;
-
-    const renderItem = (): React.JSX.Element => (
+    return (
       <Item
-        {...getStyles('item')}
+        {...getStyles(['root', hoverable && 'root$hoverable'], { modifiers })}
         overline={overline}
-        start={renderStartSlot()}
+        start={startSlot}
         supportingText={supportingText}
         trailingSupportingText={trailingSupportingText}
-        end={renderEndSlot()}
-        lineClamp={lineClamp}
-      >
-        {children}
-      </Item>
-    );
-
-    if (shouldRenderAsButton) {
-      return (
-        <ButtonBase
-          {...getStyles('root')}
-          classNames={mergeClassNames(classNames, {
-            stateLayer: getStyles('stateLayer').className,
-          })}
-          noFocusRing={noFocusRing}
-          focusRingProps={{ variant: 'inward' }}
-          ref={forwardedRef}
-          interactionsMergeStrategy={interactionsMergeStrategy}
-          disabled={disabled}
-          onClick={handleClick}
-          {...other}
-        >
-          {renderItem()}
-        </ButtonBase>
-      );
-    }
-
-    return (
-      <Paper
-        {...getStyles('root')}
-        classNames={mergeClassNames(classNames, {
-          stateLayer: getStyles('stateLayer').className,
-        })}
+        end={endSlot}
         ref={forwardedRef}
         {...other}
       >
-        {renderItem()}
-      </Paper>
+        {children}
+      </Item>
     );
   },
 );

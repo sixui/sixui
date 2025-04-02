@@ -27,13 +27,18 @@ export const Indicator = componentFactory<IIndicatorFactory>(
       style,
       variant,
       theme: indicatorTheme,
-      modifiers: {
-        processing,
-      },
     });
 
     return (
-      <Box {...getStyles('root')} ref={forwardedRef} {...other}>
+      <Box
+        {...getStyles('root', {
+          modifiers: {
+            processing,
+          },
+        })}
+        ref={forwardedRef}
+        {...other}
+      >
         {children}
       </Box>
     );

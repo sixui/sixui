@@ -1,6 +1,7 @@
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { Item } from '~/components/Item';
 import { ListItem } from '~/components/List/ListItem';
+import { ListItemButton } from '~/components/List/ListItemButton';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { createStyles } from '~/utils/css/createStyles';
@@ -21,22 +22,9 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
 
 const classNames = createStyles({
   root: {
-    vars: overrideTokens(ListItem.theme.tokens, {
+    vars: overrideTokens(ListItemButton.theme.tokens, {
       container: {
-        leadingSpace: {
-          normal: px(space('$xl')),
-          withStart: px(space('$lg')),
-        },
-        trailingSpace: {
-          normal: px(space('$xl')),
-          withEnd: px(space('$lg')),
-        },
         shape: px(themeTokens.shape.corner.full),
-        color: {
-          normal: {
-            selected: themeTokens.colorScheme.secondaryContainer,
-          },
-        },
       },
       text: {
         color: {
@@ -55,8 +43,7 @@ const classNames = createStyles({
           },
         },
       },
-      leadingIcon: {
-        size: px(24),
+      nonText: {
         color: {
           normal: {
             regular: themeTokens.colorScheme.onSurfaceVariant,
@@ -76,32 +63,58 @@ const classNames = createStyles({
       stateLayer: {
         color: {
           hovered: {
-            regular: themeTokens.colorScheme.onSurface,
+            normal: themeTokens.colorScheme.onSurface,
             selected: themeTokens.colorScheme.onSecondaryContainer,
           },
           pressed: {
-            regular: themeTokens.colorScheme.onSurface,
+            normal: themeTokens.colorScheme.onSurface,
             selected: themeTokens.colorScheme.onSecondaryContainer,
           },
         },
       },
-      leadingImage: {
-        shape: px(themeTokens.shape.corner.circle),
-      },
-      leadingVideo: {
-        shape: px(themeTokens.shape.corner.circle),
-      },
     }),
   },
-  item: {
-    vars: overrideTokens(Item.theme.tokens, {
-      label: {
-        typography: tokens.label.typography,
-      },
-      trailingSupportingText: {
-        typography: tokens.badgeLabel.typography,
-      },
-    }),
+  listItemButton: {
+    display: 'block',
+    width: '100%',
+  },
+  listItem: {
+    vars: {
+      ...overrideTokens(ListItem.theme.tokens, {
+        container: {
+          color: {
+            normal: {
+              selected: themeTokens.colorScheme.secondaryContainer,
+            },
+          },
+          leadingSpace: {
+            normal: px(space('$xl')),
+            withStart: px(space('$lg')),
+          },
+          trailingSpace: {
+            normal: px(space('$xl')),
+            withEnd: px(space('$lg')),
+          },
+        },
+        leadingIcon: {
+          size: px(24),
+        },
+        leadingImage: {
+          shape: px(themeTokens.shape.corner.circle),
+        },
+        leadingVideo: {
+          shape: px(themeTokens.shape.corner.circle),
+        },
+      }),
+      ...overrideTokens(Item.theme.tokens, {
+        label: {
+          typography: tokens.label.typography,
+        },
+        trailingSupportingText: {
+          typography: tokens.badgeLabel.typography,
+        },
+      }),
+    },
   },
 });
 

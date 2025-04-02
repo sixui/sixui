@@ -41,9 +41,6 @@ export const Resizable = polymorphicComponentFactory<IResizableFactory>(
       className,
       style,
       theme: resizableTheme,
-      modifiers: {
-        'handle-location': handleLocation,
-      },
     });
 
     return (
@@ -120,7 +117,11 @@ export const Resizable = polymorphicComponentFactory<IResizableFactory>(
           setDraggingVertically(false);
         }}
         ref={forwardedRef}
-        {...getStyles('root')}
+        {...getStyles('root', {
+          modifiers: {
+            'handle-location': handleLocation,
+          },
+        })}
         {...other}
       />
     );

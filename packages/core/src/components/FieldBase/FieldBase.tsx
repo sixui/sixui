@@ -96,16 +96,6 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
       variant,
       theme: fieldBaseTheme,
       themeVariants: fieldBaseThemeVariants,
-      modifiers: {
-        resizable,
-        populated,
-        disabled: disabledOrReadOnly,
-        'with-start-section': hasStart,
-        'with-end-section': hasEnd,
-        'with-label': hasLabel,
-        'with-error': hasError,
-        multiline,
-      },
     });
 
     const [refreshErrorAlert, setRefreshErrorAlert] = useState(false);
@@ -385,7 +375,18 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
     return (
       <Box
         {...boxProps}
-        {...getStyles('root')}
+        {...getStyles('root', {
+          modifiers: {
+            resizable,
+            populated,
+            disabled: disabledOrReadOnly,
+            'with-start-section': hasStart,
+            'with-end-section': hasEnd,
+            'with-label': hasLabel,
+            'with-error': hasError,
+            multiline,
+          },
+        })}
         interactions={stateLayer.interactionsContext.state}
         ref={handleRef}
         {...mergeProps(

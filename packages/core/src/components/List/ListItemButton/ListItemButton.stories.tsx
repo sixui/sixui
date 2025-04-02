@@ -1,31 +1,54 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { faCheck, faLink } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCalendarDays,
+  faCheck,
+  faChevronRight,
+  faLink,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
-import type { IListItemProps } from './ListItem.types';
+import type { IListItemButtonProps } from './ListItemButton.types';
 import { Avatar } from '~/components/Avatar';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
-import { ListItem } from './ListItem';
+import { sbHandleEvent } from '~/utils/sbHandleEvent';
+import { ListItemButton } from './ListItemButton';
+import { listItemButtonVariants } from './ListItemButton.types';
 
 const meta = {
-  component: ListItem,
-  args: {
-    w: '160px',
-  },
-} satisfies Meta<typeof ListItem>;
+  component: ListItemButton,
+} satisfies Meta<typeof ListItemButton>;
 
 type IStory = StoryObj<typeof meta>;
 
-const states: Array<IComponentPresentation<IListItemProps>> = [
+const defaultArgs = {
+  onClick: (...args) => sbHandleEvent('onClick', args, 1000),
+  outlineStyle: 'dashed',
+  w: '160px',
+} satisfies Partial<IListItemButtonProps>;
+
+const states: Array<IComponentPresentation<IListItemButtonProps>> = [
   { legend: 'Normal', props: { children: 'Normal' } },
+  {
+    legend: 'Focused',
+    props: { children: 'Focused', interactions: { focused: true } },
+  },
+  {
+    legend: 'Hovered',
+    props: { children: 'Hovered', interactions: { hovered: true } },
+  },
+  {
+    legend: 'Pressed',
+    props: { children: 'Pressed', interactions: { pressed: true } },
+  },
   { legend: 'Active', props: { children: 'Selected', active: true } },
   { legend: 'Selected', props: { children: 'Selected', selected: true } },
   { legend: 'Loading', props: { children: 'Loading', loading: true } },
   { legend: 'Disabled', props: { children: 'Disabled', disabled: true } },
 ];
 
-const rows: Array<IComponentPresentation<IListItemProps>> = [
+const rows: Array<IComponentPresentation<IListItemButtonProps>> = [
   { legend: 'Basic' },
   {
     legend: 'With leading icon',
@@ -87,11 +110,28 @@ const rows: Array<IComponentPresentation<IListItemProps>> = [
   },
 ];
 
-const ListItemShowcase = componentShowcaseFactory(ListItem);
+const ListItemButtonShowcase = componentShowcaseFactory(ListItemButton);
 
-export const Basic: IStory = {
+export const Variants: IStory = {
   render: (props) => (
-    <ListItemShowcase
+    <ListItemButtonShowcase
+      props={props}
+      cols={listItemButtonVariants.map((variant) => ({
+        props: {
+          variant,
+          children: capitalizeFirstLetter(variant),
+          leadingIcon: <FontAwesomeIcon icon={faCalendarDays} />,
+          trailingIcon: <FontAwesomeIcon icon={faChevronRight} />,
+        },
+      }))}
+    />
+  ),
+  args: defaultArgs,
+};
+
+export const Standard: IStory = {
+  render: (props) => (
+    <ListItemButtonShowcase
       horizontalAlign="start"
       props={props}
       cols={states}
@@ -99,6 +139,24 @@ export const Basic: IStory = {
     />
   ),
   args: {
+    ...defaultArgs,
+    variant: 'standard',
+    children: 'Label',
+  },
+};
+
+export const Danger: IStory = {
+  render: (props) => (
+    <ListItemButtonShowcase
+      horizontalAlign="start"
+      props={props}
+      cols={states}
+      rows={rows}
+    />
+  ),
+  args: {
+    ...defaultArgs,
+    variant: 'danger',
     children: 'Label',
   },
 };

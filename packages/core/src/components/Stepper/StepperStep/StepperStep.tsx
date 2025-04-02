@@ -81,10 +81,6 @@ export const StepperStep = componentFactory<IStepperStepFactory>(
       style,
       variant,
       theme: stepperStepTheme,
-      modifiers: {
-        'label-position': labelPosition,
-        orientation,
-      },
     });
 
     const stepperStepContextValue: IStepperStepContextValue = {
@@ -139,7 +135,14 @@ export const StepperStep = componentFactory<IStepperStepFactory>(
 
     return (
       <StepperStepContextProvider value={stepperStepContextValue}>
-        <div {...getStyles('root')}>
+        <div
+          {...getStyles('root', {
+            modifiers: {
+              'label-position': labelPosition,
+              orientation,
+            },
+          })}
+        >
           <Box {...getStyles('wrapper')} {...boxProps}>
             <div {...getStyles('buttonContainer')}>
               {orientation === 'vertical' && renderInnerConnectors?.()}

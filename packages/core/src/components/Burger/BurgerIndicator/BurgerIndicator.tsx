@@ -19,13 +19,18 @@ export const BurgerIndicator = componentFactory<IBurgerIndicatorFactory>(
       style,
       variant,
       theme: burgerIndicatorTheme,
-      modifiers: {
-        opened,
-      },
     });
 
     return (
-      <Box {...getStyles('root')} ref={forwardedRef} {...other}>
+      <Box
+        {...getStyles('root', {
+          modifiers: {
+            opened,
+          },
+        })}
+        ref={forwardedRef}
+        {...other}
+      >
         <div {...getStyles('burger')} />
       </Box>
     );

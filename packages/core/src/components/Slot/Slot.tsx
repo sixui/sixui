@@ -36,10 +36,11 @@ export const Slot = polymorphicComponentFactory<ISlotFactory>(
       style,
       variant,
       theme: slotTheme,
-      modifiers: {
-        animated,
-      },
     });
+
+    const modifiers = {
+      animated,
+    };
 
     const transitionNodeRef = useRef<HTMLDivElement>(null);
     const transitionNodeHandleRef = useMergeRefs(
@@ -57,7 +58,10 @@ export const Slot = polymorphicComponentFactory<ISlotFactory>(
         {(status) => (
           <Box
             {...getStyles('root', {
-              modifiers: { 'animation-status': status },
+              modifiers: {
+                ...modifiers,
+                'animation-status': status,
+              },
             })}
             ref={transitionNodeHandleRef}
             {...other}
@@ -71,7 +75,7 @@ export const Slot = polymorphicComponentFactory<ISlotFactory>(
     ) : (
       !hidden && (
         <Overlayable
-          {...getStyles('root')}
+          {...getStyles('root', { modifiers })}
           overlay={loadingOverlay}
           visible={loading}
           {...other}

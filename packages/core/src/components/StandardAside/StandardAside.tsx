@@ -42,12 +42,6 @@ export const StandardAside = componentFactory<IStandardAsideFactory>(
       style,
       variant,
       theme: standardAsideTheme,
-      modifiers: {
-        opened,
-        side,
-        wide,
-        orientation,
-      },
     });
 
     const transitionNodeRef = useRef<HTMLDivElement>(null);
@@ -57,7 +51,17 @@ export const StandardAside = componentFactory<IStandardAsideFactory>(
     );
 
     return (
-      <Box {...getStyles('root')} {...other}>
+      <Box
+        {...getStyles('root', {
+          modifiers: {
+            opened,
+            side,
+            wide,
+            orientation,
+          },
+        })}
+        {...other}
+      >
         <CSSTransition
           nodeRef={transitionNodeRef}
           in={opened}

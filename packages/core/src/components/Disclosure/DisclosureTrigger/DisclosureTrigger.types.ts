@@ -1,5 +1,5 @@
 import type { IBoxProps } from '~/components/Box';
-import type { IListItemOwnProps } from '~/components/List/ListItem';
+import type { IListItemButtonOwnProps } from '~/components/List/ListItemButton';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IUseCheckboxProps } from '~/hooks/useCheckbox';
 import type { IUseSwitchProps } from '~/hooks/useSwitch';
@@ -11,7 +11,7 @@ import type {
 } from './DisclosureTrigger.css';
 
 export interface IDisclosureTriggerOwnProps
-  extends IListItemOwnProps,
+  extends IListItemButtonOwnProps,
     IOmit<IUseCheckboxProps, 'indeterminate' | 'defaultIndeterminate'>,
     IUseSwitchProps {
   collapseIcon?: React.ReactNode;

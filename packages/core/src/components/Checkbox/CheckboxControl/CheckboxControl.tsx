@@ -81,14 +81,15 @@ export const CheckboxControl = componentFactory<ICheckboxControlFactory>(
       style,
       variant,
       theme: checkboxControlTheme,
-      modifiers: {
-        disabled: disabledOrReadOnly,
-      },
     });
 
     return (
       <Box
-        {...getStyles('root')}
+        {...getStyles('root', {
+          modifiers: {
+            disabled: disabledOrReadOnly,
+          },
+        })}
         interactions={stateLayer.interactionsContext.state}
         ref={rootRef}
         {...other}

@@ -27,13 +27,19 @@ export const AppLayoutFooter = componentFactory<IAppLayoutFooterFactory>(
       style,
       variant,
       theme: appLayoutFooterTheme,
-      modifiers: {
-        'with-divider': divider,
-      },
     });
 
     return (
-      <Paper {...getStyles('root')} as="footer" ref={forwardedRef} {...other}>
+      <Paper
+        {...getStyles('root', {
+          modifiers: {
+            'with-divider': divider,
+          },
+        })}
+        as="footer"
+        ref={forwardedRef}
+        {...other}
+      >
         <div {...getStyles('inner')}>{children}</div>
       </Paper>
     );

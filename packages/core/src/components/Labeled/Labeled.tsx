@@ -89,11 +89,6 @@ export const Labeled = componentFactory<ILabeledFactory>(
       style,
       variant,
       theme: labeledTheme,
-      modifiers: {
-        disabled: disabledOrReadOnly,
-        'has-error': hasError,
-        horizontal: isHorizontal,
-      },
     });
 
     const renderLabelAndAction = useCallback(
@@ -160,7 +155,13 @@ export const Labeled = componentFactory<ILabeledFactory>(
 
     return (
       <Flex
-        {...getStyles('root')}
+        {...getStyles('root', {
+          modifiers: {
+            disabled: disabledOrReadOnly,
+            'has-error': hasError,
+            horizontal: isHorizontal,
+          },
+        })}
         ref={forwardedRef}
         {...flexProps}
         {...(forwardForeignProps ? undefined : otherExceptFlexProps)}

@@ -41,17 +41,22 @@ export const StepperStepIndicator =
       style,
       variant,
       theme: stepperStepIndicatorTheme,
-      modifiers: {
-        'has-error': hasError,
-        completed,
-        active,
-        disabled,
-        'icon-only': isIconOnly,
-      },
     });
 
     return (
-      <Paper {...getStyles('root')} ref={forwardedRef} {...other}>
+      <Paper
+        {...getStyles('root', {
+          modifiers: {
+            'has-error': hasError,
+            completed,
+            active,
+            disabled,
+            'icon-only': isIconOnly,
+          },
+        })}
+        ref={forwardedRef}
+        {...other}
+      >
         {loading || icon || hasError ? (
           <div {...getStyles('icon')}>
             {loading ? (

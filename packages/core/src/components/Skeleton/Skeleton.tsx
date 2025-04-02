@@ -37,9 +37,6 @@ export const Skeleton = componentFactory<ISkeletonFactory>(
       variant,
       theme: skeletonTheme,
       themeVariants: skeletonThemeVariants,
-      modifiers: {
-        animation,
-      },
     });
 
     const lengthRef = useRef(
@@ -64,6 +61,9 @@ export const Skeleton = componentFactory<ISkeletonFactory>(
                 [skeletonTheme.tokens.width]: length,
               })
             : undefined,
+          modifiers: {
+            animation,
+          },
         })}
         ref={forwardedRef}
         {...other}

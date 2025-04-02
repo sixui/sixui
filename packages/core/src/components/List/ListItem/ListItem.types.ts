@@ -1,22 +1,14 @@
 import type { IBoxProps } from '~/components/Box';
-import type { IButtonBaseOwnProps } from '~/components/ButtonBase';
 import type { IItemOwnProps } from '~/components/Item';
 import type { IPaperOwnProps } from '~/components/Paper';
 import type { IComponentThemeProps } from '~/components/Theme';
-import type { IInteractionsMergeStrategy } from '~/hooks/useInteractions';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
+import type { IMaybeAsync } from '~/utils/types';
 import type { IListItemThemeFactory, listItemTheme } from './ListItem.css';
-import { IOmit } from '~/utils/types';
 
-export const listItemVariants = ['standard', 'danger'] as const;
-export type IListItemVariant = (typeof listItemVariants)[number];
-
-export interface IListItemOwnProps
-  extends IItemOwnProps,
-    IPaperOwnProps,
-    IOmit<IButtonBaseOwnProps, 'children'> {
-  interactionsMergeStrategy?: IInteractionsMergeStrategy;
+export interface IListItemOwnProps extends IItemOwnProps, IPaperOwnProps {
   selected?: boolean;
+  active?: boolean;
   loading?: boolean;
   leading?: React.ReactNode;
   leadingIcon?: React.ReactNode;
@@ -24,8 +16,8 @@ export interface IListItemOwnProps
   leadingVideo?: Array<{ type: string; src: string }>;
   trailing?: React.ReactNode;
   trailingIcon?: React.ReactNode;
-  noFocusRing?: boolean;
-  lineClamp?: number;
+  onClick?: (event: React.MouseEvent) => IMaybeAsync<unknown>;
+  hoverable?: boolean;
 }
 
 export interface IListItemProps
@@ -38,5 +30,4 @@ export type IListItemFactory = IPolymorphicComponentFactory<{
   defaultRef: HTMLDivElement;
   defaultRoot: 'div';
   theme: typeof listItemTheme;
-  variant: IListItemVariant;
 }>;

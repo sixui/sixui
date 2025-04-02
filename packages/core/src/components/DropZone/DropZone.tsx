@@ -44,12 +44,6 @@ export const DropZone = componentFactory<IDropZoneFactory>(
       style,
       variant,
       theme: dropZoneTheme,
-      modifiers: {
-        disabled,
-        dropping,
-        interactive,
-        'with-error': hasError,
-      },
     });
 
     const hasAction = !!actionIcon || !!actionLabel;
@@ -58,7 +52,18 @@ export const DropZone = componentFactory<IDropZoneFactory>(
     const hasFooter = supportingOrErrorText || !!trailingSupportingText;
 
     return (
-      <Box {...getStyles('root')} ref={rootRef} {...otherExceptBoxProps}>
+      <Box
+        {...getStyles('root', {
+          modifiers: {
+            disabled,
+            dropping,
+            interactive,
+            'with-error': hasError,
+          },
+        })}
+        ref={rootRef}
+        {...otherExceptBoxProps}
+      >
         <ButtonBase
           {...getStyles('button')}
           ref={forwardedRef}

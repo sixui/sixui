@@ -64,10 +64,6 @@ export const TextAreaControl = componentFactory<ITextAreaControlFactory>(
       style,
       variant,
       theme: textAreaControlTheme,
-      modifiers: {
-        disabled: disabledOrReadOnly,
-        'with-error': !!other.hasError,
-      },
     });
 
     const [value, setValue] = useControlledValue({
@@ -139,7 +135,12 @@ export const TextAreaControl = componentFactory<ITextAreaControlFactory>(
     return (
       <FieldBase
         {...(other as IAny)}
-        {...getStyles('root')}
+        {...getStyles('root', {
+          modifiers: {
+            disabled: disabledOrReadOnly,
+            'with-error': !!other.hasError,
+          },
+        })}
         wrapperProps={{ onClick: handleClick }}
         classNames={classNames}
         variant={variant}

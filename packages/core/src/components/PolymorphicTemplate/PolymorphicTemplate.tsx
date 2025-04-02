@@ -33,14 +33,19 @@ export const PolymorphicTemplate =
           theme: polymorphicTemplateTheme,
           themeVariants: polymorphicTemplateThemeVariants,
           variant,
-          modifiers: {
-            disabled,
-          },
         },
       );
 
       return (
-        <Paper {...getStyles('root')} ref={forwardedRef} {...other}>
+        <Paper
+          {...getStyles('root', {
+            modifiers: {
+              disabled,
+            },
+          })}
+          ref={forwardedRef}
+          {...other}
+        >
           <div {...getStyles('label')}>{children}</div>
         </Paper>
       );

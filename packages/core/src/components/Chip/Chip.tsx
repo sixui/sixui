@@ -68,12 +68,6 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
       style,
       variant,
       theme: chipTheme,
-      modifiers: {
-        elevated,
-        avatar: isAvatar,
-        selected,
-        disabled: disabledOrReadOnly,
-      },
     });
 
     const leadingIcon =
@@ -203,7 +197,14 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
 
     return (
       <Button
-        {...getStyles('root')}
+        {...getStyles('root', {
+          modifiers: {
+            elevated,
+            avatar: isAvatar,
+            selected,
+            disabled: disabledOrReadOnly,
+          },
+        })}
         classNames={classNames}
         variant={false}
         leadingIcon={leadingIcon}

@@ -38,11 +38,6 @@ export const ColorTagIndicator =
         style,
         variant,
         theme: colorTagIndicatorTheme,
-        modifiers: {
-          empty: isEmpty,
-          invalid: !isValid,
-          outlined,
-        },
       });
 
       return (
@@ -53,6 +48,11 @@ export const ColorTagIndicator =
               [colorTagIndicatorTheme.tokens.outline.color.normal]:
                 contrastColor,
             }),
+            modifiers: {
+              empty: isEmpty,
+              invalid: !isValid,
+              outlined,
+            },
           })}
           ref={forwardedRef}
           {...other}

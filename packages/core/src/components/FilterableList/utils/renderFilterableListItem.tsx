@@ -21,12 +21,12 @@ export const renderFilterableListItem: IFilterableListItemRenderer<
       {...listItemProps}
       as="button"
       key={props.index}
-      interactions={{ hovered: props.modifiers.active }}
+      active={props.modifiers.active}
       selected={props.modifiers.selected}
       disabled={props.modifiers.disabled}
+      hoverable
       {...props.getButtonAttributes()}
       tabIndex={props.modifiers.active ? 0 : -1}
-      propagateClick
       ref={props.buttonRef}
     />
   );

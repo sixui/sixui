@@ -6,6 +6,7 @@ import type { IListContextValue } from './List.context';
 import type { IListThemeFactory, listTheme } from './List.css';
 import type { ListDivider } from './ListDivider';
 import type { ListItem } from './ListItem';
+import type { ListItemButton } from './ListItemButton';
 
 export interface IListOwnProps extends IListContextValue, IPaperOwnProps {
   children?: React.ReactNode;
@@ -26,6 +27,7 @@ export type IListFactory = IComponentFactory<{
   theme: typeof listTheme;
   staticComponents: {
     Item: typeof ListItem;
+    ItemButton: typeof ListItemButton;
     Divider: typeof ListDivider;
   };
 }>;

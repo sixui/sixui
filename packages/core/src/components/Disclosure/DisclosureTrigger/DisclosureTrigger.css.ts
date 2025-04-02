@@ -1,8 +1,10 @@
 import { calc } from '@vanilla-extract/css-utils';
 
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
+import { ButtonBase } from '~/components/ButtonBase';
 import { Item } from '~/components/Item';
 import { ListItem } from '~/components/List/ListItem';
+import { PaperBase } from '~/components/PaperBase';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
 import { createStyles } from '~/utils/css/createStyles';
@@ -58,65 +60,80 @@ const classNames = createStyles({
   root: {
     position: 'relative',
   },
-  listItem: ({ root }) => ({
+  listItemButton: ({ root }) => ({
     display: 'block',
     width: '100%',
 
-    vars: overrideTokens(ListItem.theme.tokens, {
-      container: {
-        shape: tokens.container.shape,
-        color: {
-          normal: {
-            regular: tokens.container.color.normal,
+    vars: {
+      ...overrideTokens(PaperBase.theme.tokens, {
+        container: {
+          color: tokens.container.color.normal,
+        },
+      }),
+      ...overrideTokens(ButtonBase.theme.tokens, {
+        container: {
+          shape: tokens.container.shape,
+        },
+      }),
+    },
+
+    selectors: {
+      [modifierSelector<IModifier>('disabled', root)]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
+          container: {
+            color: tokens.container.color.disabled,
+            opacity: tokens.container.opacity.disabled,
           },
-          disabled: tokens.container.color.disabled,
-        },
-        opacity: {
-          disabled: tokens.container.opacity.disabled,
-        },
+        }),
       },
-      leadingIcon: {
-        color: {
-          normal: {
-            regular: tokens.icon.color.normal,
+      [modifierSelector<IModifier>('expanded', root)]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
+          container: {
+            color: tokens.container.color.expanded,
           },
-          disabled: tokens.icon.color.disabled,
-        },
+        }),
       },
-      text: {
-        color: {
-          normal: {
-            regular: tokens.label.color.normal,
+    },
+  }),
+  listItem: ({ root }) => ({
+    vars: {
+      ...overrideTokens(ListItem.theme.tokens, {
+        container: {
+          shape: tokens.container.shape,
+        },
+        leadingIcon: {
+          color: {
+            normal: tokens.icon.color.normal,
+            disabled: tokens.icon.color.disabled,
           },
-          disabled: tokens.label.color.disabled,
         },
-        opacity: {
-          disabled: tokens.label.opacity.disabled,
+        text: {
+          color: {
+            normal: tokens.label.color.normal,
+            disabled: tokens.label.color.disabled,
+          },
+          opacity: {
+            disabled: tokens.label.opacity.disabled,
+          },
         },
-      },
-    }),
+      }),
+      ...overrideTokens(Item.theme.tokens, {
+        label: {
+          typography: tokens.label.typography,
+        },
+      }),
+    },
     selectors: {
       [modifierSelector<IModifier>('expanded', root)]: {
         vars: overrideTokens(ListItem.theme.tokens, {
-          container: {
-            color: {
-              normal: {
-                regular: tokens.container.color.expanded,
-              },
-            },
-          },
           leadingIcon: {
             color: {
-              normal: {
-                regular: tokens.icon.color.expanded,
-              },
+              normal: tokens.icon.color.expanded,
             },
           },
           text: {
             color: {
-              normal: {
-                regular: tokens.label.color.expanded,
-              },
+              normal: tokens.label.color.expanded,
             },
           },
         }),
@@ -159,13 +176,6 @@ const classNames = createStyles({
       },
     },
   }),
-  item: {
-    vars: overrideTokens(Item.theme.tokens, {
-      label: {
-        typography: tokens.label.typography,
-      },
-    }),
-  },
   icon: ({ root }) => ({
     transitionProperty: 'transform',
     transitionDuration: themeTokens.motion.duration.short2,

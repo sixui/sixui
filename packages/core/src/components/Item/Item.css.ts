@@ -49,6 +49,7 @@ const classNames = createStyles({
   root: {
     alignItems: 'stretch',
     display: 'flex',
+    flexShrink: 0,
     position: 'relative',
     height: '100%',
     gap: tokens.gap,

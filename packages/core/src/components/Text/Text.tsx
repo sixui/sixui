@@ -67,13 +67,6 @@ export const Text = polymorphicComponentFactory<ITextFactory>(
       style,
       variant,
       theme: textTheme,
-      modifiers: {
-        dimmed,
-        truncate,
-        ['line-clamp']: lineClamp,
-        ['gutter-bottom']: gutterBottom,
-        size,
-      },
     });
 
     const rootElement = as ?? (variant ? textTagMap[variant][size] : 'div');
@@ -87,6 +80,13 @@ export const Text = polymorphicComponentFactory<ITextFactory>(
                 [textTheme.tokens.lineClamp]: String(lineClamp),
               })
             : undefined,
+          modifiers: {
+            dimmed,
+            truncate,
+            ['line-clamp']: lineClamp,
+            ['gutter-bottom']: gutterBottom,
+            size,
+          },
         })}
         ref={forwardedRef}
         {...other}

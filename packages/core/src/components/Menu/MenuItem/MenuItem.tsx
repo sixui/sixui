@@ -2,7 +2,7 @@ import { useFloatingTree, useListItem } from '@floating-ui/react';
 
 import type { IMenuItemFactory } from './MenuItem.types';
 import { iconTriangleRight } from '~/assets/icons';
-import { ListItem } from '~/components/List/ListItem';
+import { ListItemButton } from '~/components/List/ListItemButton';
 import { MenuLeaf } from '~/components/Menu/MenuLeaf';
 import { SvgIcon } from '~/components/SvgIcon';
 import { useProps } from '~/components/Theme';
@@ -31,7 +31,7 @@ export const MenuItem = polymorphicComponentFactory<IMenuItemFactory>(
       item.index === menuItemContext.activeIndex;
 
     const renderListItem = (): React.JSX.Element => (
-      <ListItem
+      <ListItemButton
         role="menuitem"
         tabIndex={isActive ? 0 : -1}
         interactions={{ hovered: isActive }}
@@ -48,7 +48,7 @@ export const MenuItem = polymorphicComponentFactory<IMenuItemFactory>(
         ref={handleRef}
       >
         {label}
-      </ListItem>
+      </ListItemButton>
     );
 
     const renderNestedMenuItem = (): React.JSX.Element => (
@@ -72,4 +72,4 @@ export const MenuItem = polymorphicComponentFactory<IMenuItemFactory>(
 );
 
 MenuItem.displayName = `@sixui/core/${COMPONENT_NAME}`;
-MenuItem.theme = ListItem.theme;
+MenuItem.theme = ListItemButton.theme;

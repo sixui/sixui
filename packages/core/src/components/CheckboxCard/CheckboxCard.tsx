@@ -74,11 +74,6 @@ export const CheckboxCard = componentFactory<ICheckboxCardFactory>(
       style,
       variant,
       theme: checkboxCardTheme,
-      modifiers: {
-        disabled: disabledOrReadOnly,
-        checked,
-        'with-error': hasError,
-      },
     });
 
     const inputRef = useRef<HTMLInputElement>(null);
@@ -86,7 +81,13 @@ export const CheckboxCard = componentFactory<ICheckboxCardFactory>(
 
     return (
       <Card
-        {...getStyles('root')}
+        {...getStyles('root', {
+          modifiers: {
+            disabled: disabledOrReadOnly,
+            checked,
+            'with-error': hasError,
+          },
+        })}
         as="button"
         ref={rootRef}
         onClick={() => inputRef.current?.click()}

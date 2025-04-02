@@ -41,21 +41,27 @@ export const StateLayer = componentFactory<IStateLayerFactory>(
       style,
       variant,
       theme: stateLayerTheme,
-      modifiers: {
-        focused: !context?.animating && interactions?.focused,
-        hovered: !context?.animating && interactions?.hovered,
-        dragged: !context?.animating && interactions?.dragged,
-        'static-pressed': staticPressed,
-        'no-ripple-effect': context?.withoutRippleEffect,
-        animating: context?.animating,
-        disabled: context?.disabled,
-      },
     });
 
     const handleRef = useMergeRefs(forwardedRef, context?.surfaceRef);
 
     return (
-      <Box {...getStyles('root')} aria-hidden ref={handleRef} {...other} />
+      <Box
+        {...getStyles('root', {
+          modifiers: {
+            focused: !context?.animating && interactions?.focused,
+            hovered: !context?.animating && interactions?.hovered,
+            dragged: !context?.animating && interactions?.dragged,
+            'static-pressed': staticPressed,
+            'no-ripple-effect': context?.withoutRippleEffect,
+            animating: context?.animating,
+            disabled: context?.disabled,
+          },
+        })}
+        aria-hidden
+        ref={handleRef}
+        {...other}
+      />
     );
   },
 );

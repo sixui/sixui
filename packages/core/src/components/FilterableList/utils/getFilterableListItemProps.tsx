@@ -18,7 +18,6 @@ export const getFilterableListItemProps = <TElement extends HTMLElement>(
   return {
     disabled: modifiers.disabled,
     onClick: item.onClick,
-    href: item.href,
     ...(focus === 'icon'
       ? {
           leading: undefined,

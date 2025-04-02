@@ -15,7 +15,6 @@ export interface IFilterableListItem {
   value: string;
   disabled?: boolean;
   onClick?: (event: React.MouseEvent) => void;
-  href?: string;
 }
 
 export interface IFilterableListOwnProps

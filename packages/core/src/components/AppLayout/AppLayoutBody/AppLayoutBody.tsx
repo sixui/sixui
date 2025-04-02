@@ -40,18 +40,24 @@ export const AppLayoutBody = componentFactory<IAppLayoutBodyFactory>(
       style,
       variant,
       theme: appLayoutBodyTheme,
-      modifiers: {
-        orientation,
-        detached,
-        'with-top-bar': hasTopBar,
-        'with-side-navigation': hasSideNavigation,
-        'with-side-sheet': hasSideSheet,
-        'fixed-height': fixedHeight,
-      },
     });
 
     return (
-      <Paper as="main" {...getStyles('root')} ref={forwardedRef} {...other}>
+      <Paper
+        as="main"
+        {...getStyles('root', {
+          modifiers: {
+            orientation,
+            detached,
+            'with-top-bar': hasTopBar,
+            'with-side-navigation': hasSideNavigation,
+            'with-side-sheet': hasSideSheet,
+            'fixed-height': fixedHeight,
+          },
+        })}
+        ref={forwardedRef}
+        {...other}
+      >
         <div {...getStyles('inner')}>{children}</div>
       </Paper>
     );

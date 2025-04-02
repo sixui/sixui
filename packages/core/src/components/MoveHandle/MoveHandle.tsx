@@ -28,9 +28,6 @@ export const MoveHandle = componentFactory<IMoveHandleFactory>(
       style,
       variant,
       theme: moveHandleTheme,
-      modifiers: {
-        position,
-      },
     });
 
     const orientation =
@@ -40,7 +37,11 @@ export const MoveHandle = componentFactory<IMoveHandleFactory>(
 
     return (
       <IconButton
-        {...getStyles('root')}
+        {...getStyles('root', {
+          modifiers: {
+            position,
+          },
+        })}
         icon={<MoveHandleIndicator orientation={orientation} />}
         ref={forwardedRef}
         {...other}

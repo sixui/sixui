@@ -39,11 +39,6 @@ export const Drawer = componentFactory<IDrawerFactory>(
       variant,
       theme: drawerTheme,
       themeVariants: drawerThemeVariants,
-      modifiers: {
-        side,
-        'full-height': fullHeight,
-        'full-width': fullWidth,
-      },
     });
 
     return (
@@ -65,7 +60,16 @@ export const Drawer = componentFactory<IDrawerFactory>(
         }}
         floatingMotionProps={other}
         middlewares={false}
-        popoverProps={{ ...getStyles('root'), ...other }}
+        popoverProps={{
+          ...getStyles('root', {
+            modifiers: {
+              side,
+              'full-height': fullHeight,
+              'full-width': fullWidth,
+            },
+          }),
+          ...other,
+        }}
         disabled={disabled}
         preventAutoFocus
         ref={forwardedRef}

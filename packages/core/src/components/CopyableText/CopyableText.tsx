@@ -38,9 +38,6 @@ export const CopyableText = componentFactory<ICopyableTextFactory>(
       style,
       variant,
       theme: copyableTextTheme,
-      modifiers: {
-        disabled,
-      },
     });
 
     const [copied, setCopied] = useState(false);
@@ -67,7 +64,11 @@ export const CopyableText = componentFactory<ICopyableTextFactory>(
         disabled={disabled}
       >
         <Button
-          {...getStyles('root')}
+          {...getStyles('root', {
+            modifiers: {
+              disabled,
+            },
+          })}
           variant="inline"
           classNames={mergeClassNames(classNames, {
             label: getStyles('label').className,

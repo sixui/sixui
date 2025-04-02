@@ -37,20 +37,37 @@ export const Item = polymorphicComponentFactory<IItemFactory>(
       style,
       variant,
       theme: itemTheme,
-      modifiers: {
-        'line-clamp': lineClamp,
-      },
     });
 
     return (
-      <Box {...getStyles('root')} ref={forwardedRef} {...other}>
+      <Box
+        {...getStyles('root', {
+          modifiers: {
+            'line-clamp': lineClamp,
+          },
+        })}
+        ref={forwardedRef}
+        {...other}
+      >
         {start && (
-          <div {...getStyles('section')} data-section="start">
+          <div
+            {...getStyles('section', {
+              modifiers: {
+                section: 'start',
+              },
+            })}
+          >
             {start}
           </div>
         )}
 
-        <div {...getStyles('section')} data-section="main">
+        <div
+          {...getStyles('section', {
+            modifiers: {
+              section: 'main',
+            },
+          })}
+        >
           <div
             {...getStyles('main', {
               style: lineClamp
@@ -69,13 +86,25 @@ export const Item = polymorphicComponentFactory<IItemFactory>(
         </div>
 
         {trailingSupportingText && (
-          <div {...getStyles('section')} data-section="trailingSupportingText">
+          <div
+            {...getStyles('section', {
+              modifiers: {
+                section: 'trailingSupportingText',
+              },
+            })}
+          >
             {trailingSupportingText}
           </div>
         )}
 
         {end && (
-          <div {...getStyles('section')} data-section="end">
+          <div
+            {...getStyles('section', {
+              modifiers: {
+                section: 'end',
+              },
+            })}
+          >
             {end}
           </div>
         )}

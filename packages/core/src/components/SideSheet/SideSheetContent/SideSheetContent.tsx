@@ -45,11 +45,6 @@ export const SideSheetContent = componentFactory<ISideSheetContentFactory>(
       variant,
       theme: sideSheetContentTheme,
       themeVariants: sideSheetContentThemeVariants,
-      modifiers: {
-        side,
-        'with-divider': divider,
-        'with-leading-actions': !!leadingActions,
-      },
     });
 
     const hasHeader =
@@ -61,7 +56,17 @@ export const SideSheetContent = componentFactory<ISideSheetContentFactory>(
     const hasFooter = footer ?? bottomActions;
 
     return (
-      <Paper {...getStyles('root')} ref={forwardedRef} {...other}>
+      <Paper
+        {...getStyles('root', {
+          modifiers: {
+            side,
+            'with-divider': divider,
+            'with-leading-actions': !!leadingActions,
+          },
+        })}
+        ref={forwardedRef}
+        {...other}
+      >
         <div {...getStyles('inner')}>
           {hasHeader && (
             <div {...getStyles('headerContainer')}>

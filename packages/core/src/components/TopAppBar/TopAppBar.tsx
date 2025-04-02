@@ -34,16 +34,21 @@ export const TopAppBar = polymorphicComponentFactory<ITopAppBarFactory>(
       variant,
       theme: topAppBarTheme,
       themeVariants: topAppBarThemeVariants,
-      modifiers: {
-        scrolling,
-      },
     });
 
     const consolidated = variant === 'centerAligned';
     const hasMultilineHeadline = variant === 'medium' || variant === 'large';
 
     return (
-      <Paper {...getStyles('root')} ref={forwardedRef} {...other}>
+      <Paper
+        {...getStyles('root', {
+          modifiers: {
+            scrolling,
+          },
+        })}
+        ref={forwardedRef}
+        {...other}
+      >
         <div {...getStyles('mainSection')}>
           <div {...getStyles('leadingNavigationSlot')}>{leadingNavigation}</div>
           <div {...getStyles(['headlineSlot', 'headlineText'])}>

@@ -35,16 +35,21 @@ export const NavigationRailContent =
         style,
         variant,
         theme: navigationRailContentTheme,
-        modifiers: {
-          'with-divider': divider,
-          side,
-          justify,
-        },
       },
     );
 
     return (
-      <PaperBase {...getStyles('root')} ref={forwardedRef} {...other}>
+      <PaperBase
+        {...getStyles('root', {
+          modifiers: {
+            'with-divider': divider,
+            side,
+            justify,
+          },
+        })}
+        ref={forwardedRef}
+        {...other}
+      >
         <div {...getStyles('header')}>
           {headerSlot ?? (
             <>

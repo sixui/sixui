@@ -29,13 +29,18 @@ export const IndeterminateLinearProgressIndicator =
           style,
           variant,
           theme: indeterminateLinearProgressIndicatorTheme,
-          modifiers: {
-            disabled,
-          },
         });
 
       return (
-        <Box {...getStyles('root')} ref={forwardedRef} {...other}>
+        <Box
+          {...getStyles('root', {
+            modifiers: {
+              disabled,
+            },
+          })}
+          ref={forwardedRef}
+          {...other}
+        >
           <div {...getStyles('inactiveTrack')} />
           <div {...getStyles(['bar', 'primaryBar'])}>
             <div {...getStyles(['barInner', 'primaryBarInner'])} />

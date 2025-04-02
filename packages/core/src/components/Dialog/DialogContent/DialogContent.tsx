@@ -41,13 +41,6 @@ export const DialogContent = polymorphicComponentFactory<IDialogContentFactory>(
       style,
       variant,
       theme: dialogContentTheme,
-      modifiers: {
-        size,
-        scrollable,
-        'with-icon': !!icon,
-        'with-headline': !!headline,
-        'with-actions': !!actions,
-      },
     });
 
     const headlineId = useId();
@@ -113,7 +106,15 @@ export const DialogContent = polymorphicComponentFactory<IDialogContentFactory>(
 
     return (
       <Paper
-        {...getStyles('root')}
+        {...getStyles('root', {
+          modifiers: {
+            size,
+            scrollable,
+            'with-icon': !!icon,
+            'with-headline': !!headline,
+            'with-actions': !!actions,
+          },
+        })}
         aria-labelledby={headline ? headlineId : undefined}
         aria-describedby={childrenId}
         role={type === 'alert' ? 'alertdialog' : undefined}

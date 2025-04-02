@@ -72,14 +72,6 @@ export const TabsTab = polymorphicComponentFactory<ITabsTabFactory>(
       variant,
       theme: tabsTabTheme,
       themeVariants: tabsTabThemeVariants,
-      modifiers: {
-        disabled: disabledOrReadOnly,
-        active,
-        'with-icon': hasIcon,
-        'with-label': hasLabel,
-        'with-inline-badge': hasInlineBadge,
-        'with-anchored-badge': hasAnchoredBadge,
-      },
     });
 
     const renderIcon = (): React.ReactNode =>
@@ -122,7 +114,16 @@ export const TabsTab = polymorphicComponentFactory<ITabsTabFactory>(
 
     return (
       <Button
-        {...getStyles('root')}
+        {...getStyles('root', {
+          modifiers: {
+            disabled: disabledOrReadOnly,
+            active,
+            'with-icon': hasIcon,
+            'with-label': hasLabel,
+            'with-inline-badge': hasInlineBadge,
+            'with-anchored-badge': hasAnchoredBadge,
+          },
+        })}
         classNames={mergeClassNames(classNames, {
           stateLayer: getStyles('stateLayer').className,
         })}

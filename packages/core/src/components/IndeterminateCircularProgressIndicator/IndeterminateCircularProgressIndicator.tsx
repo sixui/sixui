@@ -32,12 +32,13 @@ export const IndeterminateCircularProgressIndicator =
           style,
           theme: indeterminateCircularProgressIndicatorTheme,
           variant,
-          modifiers: { disabled },
         });
 
       return (
         <Box
-          {...getStyles('root')}
+          {...getStyles('root', {
+            modifiers: { disabled },
+          })}
           ref={forwardedRef}
           role="progressbar"
           {...other}

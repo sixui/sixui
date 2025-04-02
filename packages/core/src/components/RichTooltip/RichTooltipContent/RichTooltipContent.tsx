@@ -35,13 +35,18 @@ export const RichTooltipContent = componentFactory<IRichTooltipContentFactory>(
       style,
       variant,
       theme: richTooltipContentTheme,
-      modifiers: {
-        'with-actions': !!actions,
-      },
     });
 
     return (
-      <Paper {...getStyles('root')} ref={forwardedRef} {...other}>
+      <Paper
+        {...getStyles('root', {
+          modifiers: {
+            'with-actions': !!actions,
+          },
+        })}
+        ref={forwardedRef}
+        {...other}
+      >
         <Flex direction="column">
           {renderCursor?.(getStyles('cursor'))}
           <Flex {...getStyles('content')} direction="column" gap="$sm">

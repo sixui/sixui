@@ -72,10 +72,6 @@ export const TextInputControl = componentFactory<ITextInputControlFactory>(
       style,
       variant,
       theme: textInputControlTheme,
-      modifiers: {
-        disabled: disabledOrReadOnly,
-        'with-error': !!other.hasError,
-      },
     });
 
     const [value, setValue] = useControlledValue({
@@ -171,7 +167,12 @@ export const TextInputControl = componentFactory<ITextInputControlFactory>(
     return (
       <FieldBase
         {...other}
-        {...getStyles('root')}
+        {...getStyles('root', {
+          modifiers: {
+            disabled: disabledOrReadOnly,
+            'with-error': !!other.hasError,
+          },
+        })}
         wrapperProps={{ onClick: handleClick }}
         classNames={classNames}
         variant={variant}

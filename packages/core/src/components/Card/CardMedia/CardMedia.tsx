@@ -30,13 +30,18 @@ export const CardMedia = polymorphicComponentFactory<ICardMediaFactory>(
       style,
       variant,
       theme: cardMediaTheme,
-      modifiers: {
-        type: 'image',
-      },
     });
 
     return (
-      <Box {...getStyles('root')} ref={forwardedRef} {...other}>
+      <Box
+        {...getStyles('root', {
+          modifiers: {
+            type: 'image',
+          },
+        })}
+        ref={forwardedRef}
+        {...other}
+      >
         <div
           role="img"
           {...getStyles('content', {

@@ -76,16 +76,17 @@ export const RadioControl = componentFactory<IRadioControlFactory>(
       style,
       variant,
       theme: RadioControlTheme,
-      modifiers: {
-        disabled: disabledOrReadOnly,
-        loading,
-        checked,
-      },
     });
 
     return (
       <Box
-        {...getStyles('root')}
+        {...getStyles('root', {
+          modifiers: {
+            disabled: disabledOrReadOnly,
+            loading,
+            checked,
+          },
+        })}
         interactions={stateLayer.interactionsContext.state}
         ref={rootRef}
         {...other}

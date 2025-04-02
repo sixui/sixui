@@ -86,14 +86,6 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       variant,
       theme: buttonTheme,
       themeVariants: buttonThemeVariants,
-      modifiers: {
-        disabled: disabledOrReadOnly,
-        loading,
-        'with-children': !!children,
-        'with-start': hasStart,
-        'with-end': hasEnd,
-        'icon-animation': iconAnimation,
-      },
     });
 
     const handleAnimationIteration = useCallback((): void => {
@@ -192,7 +184,16 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
 
     return (
       <ButtonBase
-        {...getStyles('root')}
+        {...getStyles('root', {
+          modifiers: {
+            disabled: disabledOrReadOnly,
+            loading,
+            'with-children': !!children,
+            'with-start': hasStart,
+            'with-end': hasEnd,
+            'icon-animation': iconAnimation,
+          },
+        })}
         onClick={onClick ? handleClick : undefined}
         classNames={mergeClassNames(classNames, {
           stateLayer: getStyles('stateLayer').className,

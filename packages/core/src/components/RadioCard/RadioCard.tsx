@@ -73,12 +73,6 @@ export const RadioCard = componentFactory<IRadioCardFactory>(
       style,
       variant,
       theme: RadioCardTheme,
-      modifiers: {
-        disabled: disabledOrReadOnly,
-        loading,
-        checked,
-        'with-error': hasError,
-      },
     });
 
     const handleKeyDown: React.KeyboardEventHandler = (event) => {
@@ -127,7 +121,14 @@ export const RadioCard = componentFactory<IRadioCardFactory>(
 
     return (
       <Card
-        {...getStyles('root')}
+        {...getStyles('root', {
+          modifiers: {
+            disabled: disabledOrReadOnly,
+            loading,
+            checked,
+            'with-error': hasError,
+          },
+        })}
         as="button"
         ref={rootRef}
         onClick={() => inputRef.current?.click()}
