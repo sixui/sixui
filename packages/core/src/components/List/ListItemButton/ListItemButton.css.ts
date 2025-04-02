@@ -47,7 +47,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
     shape: 'inherit',
     color: {
       normal: 'unset',
-      selected: 'unset',
+      selected: themeTokens.colorScheme.primaryContainer,
     },
   },
   nonText: slotTokens,
@@ -95,11 +95,25 @@ const classNames = createStyles({
         },
       }),
     },
+
+    selectors: {
+      [modifierSelector<IModifier>('selected')]: {
+        vars: overrideTokens(PaperBase.theme.tokens, {
+          container: {
+            color: tokens.container.color.selected,
+          },
+        }),
+      },
+    },
   },
   listItem: ({ root }) => ({
     vars: overrideTokens(ListItem.theme.tokens, {
       container: {
         shape: tokens.container.shape,
+        color: {
+          normal: 'unset',
+          selected: 'unset',
+        },
       },
       nonText: {
         color: {
@@ -304,19 +318,24 @@ export const listItemButtonThemeVariants = {
   danger: createStyles({
     root: {
       vars: overrideTokens(tokens, {
+        container: {
+          color: {
+            selected: themeTokens.colorScheme.errorContainer,
+          },
+        },
         nonText: {
           color: {
             normal: {
               regular: themeTokens.colorScheme.error,
-              selected: themeTokens.colorScheme.error,
+              selected: themeTokens.colorScheme.onErrorContainer,
             },
             hovered: {
               regular: themeTokens.colorScheme.onError,
-              selected: themeTokens.colorScheme.onError,
+              selected: themeTokens.colorScheme.onErrorContainer,
             },
             pressed: {
               regular: themeTokens.colorScheme.onError,
-              selected: themeTokens.colorScheme.onError,
+              selected: themeTokens.colorScheme.onErrorContainer,
             },
           },
         },
@@ -324,15 +343,15 @@ export const listItemButtonThemeVariants = {
           color: {
             normal: {
               regular: themeTokens.colorScheme.error,
-              selected: themeTokens.colorScheme.error,
+              selected: themeTokens.colorScheme.onErrorContainer,
             },
             hovered: {
               regular: themeTokens.colorScheme.onError,
-              selected: themeTokens.colorScheme.onError,
+              selected: themeTokens.colorScheme.onErrorContainer,
             },
             pressed: {
               regular: themeTokens.colorScheme.onError,
-              selected: themeTokens.colorScheme.onError,
+              selected: themeTokens.colorScheme.onErrorContainer,
             },
           },
         },
@@ -364,9 +383,7 @@ export const listItemButtonThemeVariants = {
       vars: overrideTokens(ListItem.theme.tokens, {
         container: {
           color: {
-            normal: {
-              selected: themeTokens.colorScheme.errorContainer,
-            },
+            selected: themeTokens.colorScheme.errorContainer,
           },
         },
       }),

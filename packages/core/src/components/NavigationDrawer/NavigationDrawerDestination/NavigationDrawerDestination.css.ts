@@ -76,13 +76,15 @@ const classNames = createStyles({
   },
   listItem: {
     vars: {
-      ...overrideTokens(ListItem.theme.tokens, {
+      ...overrideTokens(ListItemButton.theme.tokens, {
         container: {
           color: {
-            normal: {
-              selected: themeTokens.colorScheme.secondaryContainer,
-            },
+            selected: themeTokens.colorScheme.secondaryContainer,
           },
+        },
+      }),
+      ...overrideTokens(ListItem.theme.tokens, {
+        container: {
           leadingSpace: {
             normal: px(space('$xl')),
             withStart: px(space('$lg')),

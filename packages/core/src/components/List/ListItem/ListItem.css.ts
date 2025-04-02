@@ -28,13 +28,11 @@ const DENSITY = px(density({ min: -6, max: 2 }));
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   container: {
     color: {
-      normal: {
-        regular: 'inherit',
-        active: `color-mix(in srgb, ${themeTokens.colorScheme.onSurface} calc(${
-          themeTokens.state.stateLayerOpacity.hovered
-        } * 100%), transparent)`,
-        selected: themeTokens.colorScheme.primaryContainer,
-      },
+      normal: 'inherit',
+      active: `color-mix(in srgb, ${themeTokens.colorScheme.onSurface} calc(${
+        themeTokens.state.stateLayerOpacity.hovered
+      } * 100%), transparent)`,
+      selected: themeTokens.colorScheme.primaryContainer,
     },
     shape: 'unset',
     leadingSpace: {
@@ -119,7 +117,7 @@ const classNames = createStyles({
     listStyle: 'none',
     borderRadius: tokens.container.shape,
     textAlign: 'start',
-    backgroundColor: tokens.container.color.normal.regular,
+    backgroundColor: tokens.container.color.normal,
     minHeight: tokens.container.minHeight,
     paddingTop: tokens.container.topSpace,
     paddingBottom: tokens.container.bottomSpace,
@@ -170,10 +168,10 @@ const classNames = createStyles({
         paddingInlineEnd: px(0),
       },
       [modifierSelector<IModifier>('active')]: {
-        backgroundColor: tokens.container.color.normal.active,
+        backgroundColor: tokens.container.color.active,
       },
       [modifierSelector<IModifier>('selected')]: {
-        backgroundColor: tokens.container.color.normal.selected,
+        backgroundColor: tokens.container.color.selected,
         vars: overrideTokens(Item.theme.tokens, {
           nonText: {
             color: fallbackVar(
@@ -238,7 +236,7 @@ const classNames = createStyles({
   },
   root$hoverable: {
     ':hover': {
-      backgroundColor: tokens.container.color.normal.active,
+      backgroundColor: tokens.container.color.active,
       cursor: 'pointer',
     },
   },
