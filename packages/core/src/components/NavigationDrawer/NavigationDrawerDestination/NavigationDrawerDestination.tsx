@@ -50,7 +50,6 @@ export const NavigationDrawerDestination =
         <ListItemButton
           {...getStyles('root')}
           classNames={mergeClassNames(classNames, {
-            root: getStyles('listItemButton').className,
             listItem: getStyles('listItem').className,
           })}
           variant={false}

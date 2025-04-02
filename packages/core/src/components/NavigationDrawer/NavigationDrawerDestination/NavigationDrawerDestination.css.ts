@@ -74,10 +74,6 @@ const classNames = createStyles({
       },
     }),
   },
-  listItemButton: {
-    display: 'block',
-    width: '100%',
-  },
   listItem: {
     vars: {
       ...overrideTokens(ListItem.theme.tokens, {
