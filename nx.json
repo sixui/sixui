@@ -35,7 +35,9 @@
       "preVersionCommand": "npx nx run-many -t build"
     },
     "changelog": {
-      "projectChangelogs": true
+      "workspaceChangelog": {
+        "createRelease": "github"
+      }
     }
   }
 }

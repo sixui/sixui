@@ -14,6 +14,7 @@ const classNames = createStyles({
   root: {
     borderRadius: cardTheme.tokens.container.shape,
     flexShrink: 0,
+    position: 'relative',
   },
   content: ({ root }) => ({
     height: '100%',
