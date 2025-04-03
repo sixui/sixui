@@ -1,7 +1,7 @@
 {
   "name": "@sixui/prettier-config",
   "description": "Prettier config for Sixui",
-  "version": "2.6.1",
+  "version": "2.6.2",
   "homepage": "https://sixui.com",
   "license": "MIT",
   "repository": {
@@ -36,7 +36,7 @@
     "@ianvs/prettier-plugin-sort-imports": "^4.4.1"
   },
   "devDependencies": {
-    "@sixui/eslint-config": "2.6.1",
+    "@sixui/eslint-config": "workspace:*",
     "@sixui/typescript-config": "workspace:*",
     "@types/node": "^22.13.16",
     "eslint": "^9.23.0",

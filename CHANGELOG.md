@@ -1,3 +1,13 @@
+## 2.6.2 (2025-04-03)
+
+### 🩹 Fixes
+
+- styles ([3b3aa464](https://github.com/sixui/sixui/commit/3b3aa464))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.6.1 (2025-04-03)
 
 ### 🩹 Fixes
