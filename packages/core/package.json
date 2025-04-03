@@ -1,7 +1,7 @@
 {
   "name": "@sixui/core",
   "description": "Material Design 3 for the web",
-  "version": "2.6.0",
+  "version": "2.6.1",
   "homepage": "https://sixui.com",
   "license": "MIT",
   "repository": {
@@ -70,7 +70,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@react-types/shared": "^3.28.0",
-    "@sixui/eslint-config": "workspace:*",
+    "@sixui/eslint-config": "2.6.1",
     "@sixui/toolchain": "workspace:*",
     "@sixui/typescript-config": "workspace:*",
     "@storybook/addon-actions": "^8.6.11",
