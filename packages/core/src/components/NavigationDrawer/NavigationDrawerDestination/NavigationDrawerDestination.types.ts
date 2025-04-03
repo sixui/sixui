@@ -1,5 +1,5 @@
 import type { IBoxProps } from '~/components/Box';
-import type { IListItemOwnProps } from '~/components/List';
+import type { IListItemButtonOwnProps } from '~/components/List/ListItemButton';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type {
@@ -9,7 +9,10 @@ import type {
 import { IOmit } from '~/utils/types';
 
 export interface INavigationDrawerDestinationOwnProps
-  extends IOmit<IListItemOwnProps, 'selected' | 'trailingSupportingText'> {
+  extends IOmit<
+    IListItemButtonOwnProps,
+    'selected' | 'trailingSupportingText'
+  > {
   active?: boolean;
   activeLeadingIcon?: React.ReactNode;
   activeTrailingIcon?: React.ReactNode;
