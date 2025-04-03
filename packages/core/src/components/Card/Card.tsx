@@ -53,11 +53,16 @@ export const Card = polymorphicComponentFactory<ICardFactory>(
         })}
         as={rootElement}
         ref={forwardedRef}
-        touchTargetRenderer={null}
         nonInteractive={!interactive}
         {...other}
       >
-        {children}
+        {({ renderFocusRing, renderStateLayer }) => (
+          <>
+            {renderFocusRing()}
+            {children}
+            {renderStateLayer()}
+          </>
+        )}
       </ButtonBase>
     );
   },
