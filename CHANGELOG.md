@@ -1,3 +1,13 @@
+## 2.7.0 (2025-04-03)
+
+### 🚀 Features
+
+- **core:** in Card, the state layer is now rendered over the children ([f4a58050](https://github.com/sixui/sixui/commit/f4a58050))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.6.2 (2025-04-03)
 
 ### 🩹 Fixes
