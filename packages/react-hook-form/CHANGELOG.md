@@ -1,3 +1,7 @@
+## 2.6.1 (2025-04-03)
+
+This was a version bump only for @sixui/react-hook-form to align it with other projects, there were no code changes.
+
 ## 2.6.0 (2025-04-02)
 
 ### 🚀 Features
