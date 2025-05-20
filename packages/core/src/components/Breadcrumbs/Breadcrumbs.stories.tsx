@@ -3,6 +3,7 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { createSequence } from '@olivierpascal/helpers';
 
+import { Button } from '~/components/Button';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';
 import { Breadcrumbs } from './Breadcrumbs';
 
@@ -47,7 +48,9 @@ export const Variants: IStory = {
   ),
   args: {
     children: createSequence(3).map((index) => (
-      <span key={index}>Item {index + 1}</span>
+      <Button key={index} variant="inline">
+        Item {index + 1}
+      </Button>
     )),
   },
 };

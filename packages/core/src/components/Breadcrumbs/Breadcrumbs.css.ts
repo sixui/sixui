@@ -1,5 +1,3 @@
-import { calc } from '@vanilla-extract/css-utils';
-
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
@@ -22,31 +20,23 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
 
 const classNames = createStyles({
   root: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: tokens.separator.space,
+    display: 'inline',
     listStyle: 'none',
   },
   item: {
     color: tokens.item.color,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    display: 'inline',
+    verticalAlign: 'middle',
   },
-  more: {
-    height: '0',
-    display: 'flex',
-    alignContent: 'center',
-    alignItems: 'center',
-    marginLeft: calc.negate(px(space('$sm'))),
-    marginRight: calc.negate(px(space('$sm'))),
+  moreButton: {
+    verticalAlign: 'middle',
   },
   separator: {
     color: tokens.separator.color,
-    display: 'flex',
+    display: 'inline',
     userSelect: 'none',
     fontSize: tokens.separator.size,
+    marginInline: tokens.separator.space,
   },
 });
 

@@ -4,12 +4,12 @@ import type { IBreadcrumbsThemeFactory } from './Breadcrumbs.css';
 import type { IBreadcrumbsFactory } from './Breadcrumbs.types';
 import { iconEllipsisHorizontal } from '~/assets/icons';
 import { Box } from '~/components/Box';
-import { IconButton } from '~/components/IconButton';
 import { SvgIcon } from '~/components/SvgIcon';
 import { useComponentTheme, useProps } from '~/components/Theme';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { isProduction } from '~/utils/isProduction';
 import { isFragment } from '~/utils/react/isFragment';
+import { Button } from '../Button';
 import { COMPONENT_NAME } from './Breadcrumbs.constants';
 import { breadcrumbsTheme } from './Breadcrumbs.css';
 
@@ -95,12 +95,15 @@ export const Breadcrumbs = componentFactory<IBreadcrumbsFactory>(
 
       return [
         ...items.slice(0, itemCountBeforeCollapse),
-        <li key="ellipsis" {...getStyles(['item', 'more'])}>
-          <IconButton
+        <li key="ellipsis" {...getStyles('item')}>
+          <Button
+            variant="inline"
             aria-label={expandText}
             onClick={handleClickExpand}
-            icon={expandIcon}
-          />
+            {...getStyles('moreButton')}
+          >
+            {expandIcon}
+          </Button>
         </li>,
         ...items.slice(items.length - itemCountAfterCollapse, items.length),
       ];
