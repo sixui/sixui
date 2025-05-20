@@ -31,6 +31,7 @@ export interface IButtonBaseOwnProps extends IOmit<IPaperOwnProps, 'children'> {
   onClick?: (event: React.MouseEvent) => IMaybeAsync<unknown>;
   touchTargetRenderer?: (() => React.ReactNode) | null;
   nonInteractive?: boolean;
+  noTouchTarget?: boolean;
 
   /**
    * If `true`, the component will be rendered in a disabled state, but will

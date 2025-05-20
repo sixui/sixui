@@ -1,6 +1,7 @@
 import type { IComponentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { componentThemeFactory } from '~/utils/component/componentThemeFactory';
 import { createComponentTheme } from '~/utils/component/createComponentTheme';
+import { px } from '~/utils/css';
 import { createStyles } from '~/utils/css/createStyles';
 import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './TouchTarget.constants';
@@ -15,8 +16,8 @@ const classNames = createStyles({
     position: 'absolute',
     top: '50%',
     left: '50%',
-    width: `max(${tokens.width}, 100%)`,
-    height: `max(${tokens.height}, 100%)`,
+    width: `max(${px(tokens.width)}, 100%)`,
+    height: `max(${px(tokens.height)}, 100%)`,
     transform: 'translate(-50%, -50%)',
   },
 });

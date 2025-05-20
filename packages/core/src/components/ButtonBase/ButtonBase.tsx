@@ -40,6 +40,7 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
       touchTargetRenderer,
       nonInteractive,
       propagateClick: propagateClickProp,
+      noTouchTarget,
       ...other
     } = useProps({
       componentName: COMPONENT_NAME,
@@ -111,6 +112,7 @@ export const ButtonBase = polymorphicComponentFactory<IButtonBaseFactory>(
       );
 
     const renderTouchTarget = (): React.ReactNode =>
+      !noTouchTarget &&
       !nonInteractive &&
       (touchTargetRenderer !== undefined ? (
         touchTargetRenderer?.()
