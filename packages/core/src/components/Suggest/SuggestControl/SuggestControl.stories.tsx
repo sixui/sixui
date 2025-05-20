@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IFilterableListItem } from '~/components/FilterableList';
@@ -209,7 +209,7 @@ const AsyncControlledSuggestControlDemo: React.FC<ISuggestControlProps> = (
   const [items, setItems] = useState<Array<IFilterableListItem>>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleQueryChange = (): void => {
+  const handleQueryChange = useCallback((): void => {
     setItems([]);
     setIsLoading(true);
 
@@ -217,7 +217,7 @@ const AsyncControlledSuggestControlDemo: React.FC<ISuggestControlProps> = (
       setItems(fruits);
       setIsLoading(false);
     }, 1000);
-  };
+  }, []);
 
   return (
     <SuggestControlDemo

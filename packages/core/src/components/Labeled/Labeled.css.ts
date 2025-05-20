@@ -19,6 +19,7 @@ const DENSITY = px(density({ min: -1, max: 0 }));
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   label: {
+    width: '100%',
     typography: themeTokens.typeScale.label.lg,
     color: {
       normal: 'inherit',
