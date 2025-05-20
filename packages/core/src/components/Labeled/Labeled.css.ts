@@ -19,7 +19,6 @@ const DENSITY = px(density({ min: -1, max: 0 }));
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   label: {
-    width: '100%',
     typography: themeTokens.typeScale.label.lg,
     color: {
       normal: 'inherit',
@@ -112,6 +111,7 @@ const classNames = createStyles({
   },
   label: ({ root }) => ({
     ...typography(tokens.label.typography),
+    width: '100%',
     color: tokens.label.color.normal,
     cursor: 'pointer',
 
