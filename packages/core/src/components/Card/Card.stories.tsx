@@ -65,6 +65,13 @@ const states: Array<IComponentPresentation<ICardProps>> = [
     },
   },
   {
+    legend: 'Read-only',
+    props: {
+      onClick: (...args) => sbHandleEvent('onClick', args),
+      disabled: true,
+    },
+  },
+  {
     legend: 'Disabled',
     props: {
       onClick: (...args) => sbHandleEvent('onClick', args),
@@ -72,8 +79,6 @@ const states: Array<IComponentPresentation<ICardProps>> = [
     },
   },
 ];
-
-const rows: Array<IComponentPresentation<ICardProps>> = [{ legend: 'Basic' }];
 
 const CardShowcase = componentShowcaseFactory(Card);
 
@@ -91,7 +96,7 @@ export const Variants: IStory = {
 };
 
 export const Filled: IStory = {
-  render: (props) => <CardShowcase props={props} cols={states} rows={rows} />,
+  render: (props) => <CardShowcase props={props} rows={states} />,
   args: {
     ...defaultArgs,
     variant: 'filled',
@@ -99,7 +104,7 @@ export const Filled: IStory = {
 };
 
 export const Elevated: IStory = {
-  render: (props) => <CardShowcase props={props} cols={states} rows={rows} />,
+  render: (props) => <CardShowcase props={props} rows={states} />,
   args: {
     ...defaultArgs,
     variant: 'elevated',
@@ -107,7 +112,7 @@ export const Elevated: IStory = {
 };
 
 export const Outlined: IStory = {
-  render: (props) => <CardShowcase props={props} cols={states} rows={rows} />,
+  render: (props) => <CardShowcase props={props} rows={states} />,
   args: {
     ...defaultArgs,
     variant: 'outlined',

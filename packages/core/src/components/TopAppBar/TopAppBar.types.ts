@@ -19,6 +19,7 @@ export interface ITopAppBarOwnProps extends IPaperOwnProps {
     | React.ReactNode
     | (({ consolidated }: { consolidated: boolean }) => React.ReactNode);
   scrolling?: boolean;
+  children?: React.ReactNode;
 }
 
 export interface ITopAppBarProps

@@ -35,6 +35,7 @@ export interface ISuggestBaseOwnProps<TItem>
   clearable?: boolean;
   menuListProps?: Partial<IMenuListProps>;
   children?: React.ReactNode;
+  noFilter?: boolean;
 }
 
 export interface ISuggestBaseProps<TItem>

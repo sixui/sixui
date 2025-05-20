@@ -22,6 +22,7 @@ export const TopAppBar = polymorphicComponentFactory<ITopAppBarFactory>(
       leadingNavigation,
       trailingActions,
       scrolling,
+      children,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -54,6 +55,7 @@ export const TopAppBar = polymorphicComponentFactory<ITopAppBarFactory>(
           <div {...getStyles(['headlineSlot', 'headlineText'])}>
             {!hasMultilineHeadline && headline}
           </div>
+          {children}
           <div {...getStyles('trailingActionsSlot')}>
             {isFunction(trailingActions)
               ? trailingActions({ consolidated })

@@ -70,15 +70,15 @@ export const AppLayoutTopBar = componentFactory<IAppLayoutTopBarFactory>(
         trailingActions={(renderProps) =>
           (hasSideSheet ?? trailingActions) && (
             <>
+              {isFunction(trailingActions)
+                ? trailingActions(renderProps)
+                : trailingActions}
               {hasSideSheet && (
                 <Burger
                   opened={appLayoutContext?.sideSheet?.state?.opened}
                   onClick={appLayoutContext?.sideSheet?.state?.toggle}
                 />
               )}
-              {isFunction(trailingActions)
-                ? trailingActions(renderProps)
-                : trailingActions}
             </>
           )
         }

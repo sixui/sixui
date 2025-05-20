@@ -39,6 +39,7 @@ export const Labeled = componentFactory<ILabeledFactory>(
       errorTextPosition: errorTextPositionProp,
       withRequiredSign,
       requiredSign = '*',
+      isLabelIndependent,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
     const { flexProps, other: otherExceptFlexProps } = extractFlexProps(other);
@@ -96,7 +97,10 @@ export const Labeled = componentFactory<ILabeledFactory>(
         label && (
           <div {...getStyles('labelAndActionContainer')}>
             <div {...getStyles('labelContainer')}>
-              <label {...getStyles('label')} htmlFor={id}>
+              <label
+                {...getStyles('label')}
+                htmlFor={isLabelIndependent ? undefined : id}
+              >
                 {label}
                 {required && withRequiredSign && requiredSign}
               </label>
@@ -114,6 +118,7 @@ export const Labeled = componentFactory<ILabeledFactory>(
         id,
         trailingAction,
         getStyles,
+        isLabelIndependent,
       ],
     );
 

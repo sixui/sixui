@@ -26,7 +26,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
       hovered: 'inherit',
       pressed: 'inherit',
       dragged: 'inherit',
-      disabled: themeTokens.colorScheme.onSurface,
+      disabled: themeTokens.colorScheme.surface,
     },
     opacity: {
       disabled: themeTokens.state.opacity.disabled,
@@ -218,6 +218,7 @@ export const cardThemeVariants = {
         container: {
           color: {
             normal: themeTokens.colorScheme.surfaceContainerHighest,
+            disabled: themeTokens.colorScheme.surfaceVariant,
           },
           elevation: {
             normal: elevationLevelPreset[0],
@@ -237,6 +238,7 @@ export const cardThemeVariants = {
         container: {
           color: {
             normal: themeTokens.colorScheme.surfaceContainerLow,
+            disabled: themeTokens.colorScheme.surface,
           },
           elevation: {
             normal: elevationLevelPreset[1],
@@ -256,7 +258,7 @@ export const cardThemeVariants = {
         container: {
           color: {
             normal: themeTokens.colorScheme.surface,
-            disabled: themeTokens.colorScheme.surfaceContainerHighest,
+            disabled: themeTokens.colorScheme.surface,
           },
           elevation: {
             normal: elevationLevelPreset[0],

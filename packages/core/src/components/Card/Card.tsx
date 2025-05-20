@@ -24,6 +24,7 @@ export const Card = polymorphicComponentFactory<ICardFactory>(
       variant = 'filled',
       children,
       disabled,
+      readOnly,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -43,14 +44,17 @@ export const Card = polymorphicComponentFactory<ICardFactory>(
       !!other.href ||
       !!other.onClick ||
       (other as React.HTMLAttributes<HTMLElement>).draggable;
+    const disabledOrReadOnly = disabled || readOnly;
 
     return (
       <ButtonBase
         {...getStyles('root', {
           modifiers: {
-            disabled,
+            disabled: disabledOrReadOnly,
           },
         })}
+        disabled={disabled}
+        readOnly={readOnly}
         as={rootElement}
         ref={forwardedRef}
         nonInteractive={!interactive}

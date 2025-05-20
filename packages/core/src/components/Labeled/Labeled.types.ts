@@ -34,6 +34,7 @@ export interface ILabeledOwnProps
   errorTextPosition?: 'start' | 'end';
   withRequiredSign?: boolean;
   requiredSign?: React.ReactNode;
+  isLabelIndependent?: boolean;
 }
 
 export interface ILabeledProps

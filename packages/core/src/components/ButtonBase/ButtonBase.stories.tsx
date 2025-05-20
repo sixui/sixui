@@ -26,7 +26,7 @@ type IStory = StoryObj<typeof meta>;
 
 const rows: Array<IComponentPresentation<IButtonBaseProps>> = [
   { legend: 'Normal' },
-  { legend: 'Read only', props: { readOnly: true } },
+  { legend: 'Read-only', props: { readOnly: true } },
   { legend: 'Disabled', props: { disabled: true } },
 ];
 

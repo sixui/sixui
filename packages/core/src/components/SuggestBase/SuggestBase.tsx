@@ -35,6 +35,7 @@ export const suggestBaseFactory = <
         placeholder,
         menuListProps,
         children,
+        noFilter,
         ...other
       } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -73,6 +74,7 @@ export const suggestBaseFactory = <
           closeOnSelect
           initialFocus={-1}
           {...other}
+          listPredicate={noFilter ? (items) => items : other.listPredicate}
           forwardForeignProps
           noResults={noResults ?? <ListItem disabled>No results.</ListItem>}
           ref={forwardedRef}

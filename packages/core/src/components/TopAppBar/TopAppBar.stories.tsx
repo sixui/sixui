@@ -25,7 +25,6 @@ const meta = {
 type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  children: 'TopAppBar',
   w: '4px12',
   leadingNavigation: (
     <IconButton

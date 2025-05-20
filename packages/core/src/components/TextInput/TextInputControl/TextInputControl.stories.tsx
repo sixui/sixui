@@ -27,7 +27,7 @@ const states: Array<IComponentPresentation<ITextInputControlProps>> = [
     legend: 'Hovered',
     props: { interactions: { hovered: true } },
   },
-  { legend: 'Read only', props: { readOnly: true } },
+  { legend: 'Read-only', props: { readOnly: true } },
   {
     legend: 'Disabled',
     props: {

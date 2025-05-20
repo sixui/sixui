@@ -33,6 +33,14 @@ export const Basic: IStory = {
   args: defaultArgs,
 };
 
+export const DoNotFilter: IStory = {
+  render: (props) => <SuggestBaseDemoShowcase props={props} rows={rows} />,
+  args: {
+    ...defaultArgs,
+    noFilter: true,
+  },
+};
+
 export const DefaultValue: IStory = {
   render: (props) => <SuggestBaseDemoShowcase props={props} rows={rows} />,
   args: {
