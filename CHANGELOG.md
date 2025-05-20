@@ -1,3 +1,13 @@
+## 2.10.0 (2025-05-20)
+
+### 🚀 Features
+
+- small fixes ([80114b73](https://github.com/sixui/sixui/commit/80114b73))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.9.0 (2025-05-20)
 
 ### 🚀 Features
