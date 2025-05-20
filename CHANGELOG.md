@@ -1,3 +1,13 @@
+## 2.9.0 (2025-05-20)
+
+### 🚀 Features
+
+- Labeled label ui fix ([00421dd9](https://github.com/sixui/sixui/commit/00421dd9))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.8.0 (2025-05-20)
 
 ### 🚀 Features
