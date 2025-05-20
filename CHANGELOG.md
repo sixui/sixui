@@ -1,3 +1,13 @@
+## 2.12.0 (2025-05-20)
+
+### 🚀 Features
+
+- Breadcrumbs improvements ([8e5451be](https://github.com/sixui/sixui/commit/8e5451be))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.11.0 (2025-05-20)
 
 ### 🚀 Features
