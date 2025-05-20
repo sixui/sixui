@@ -13,7 +13,7 @@ import { typography } from '~/utils/css/typography';
 import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './Labeled.constants';
 
-type IModifier = 'disabled' | 'has-error' | 'horizontal';
+type IModifier = 'disabled' | 'has-error' | 'horizontal' | 'unassociated';
 
 const DENSITY = px(density({ min: -1, max: 0 }));
 
@@ -116,6 +116,9 @@ const classNames = createStyles({
     cursor: 'pointer',
 
     selectors: {
+      [modifierSelector<IModifier>('unassociated', root)]: {
+        cursor: 'unset',
+      },
       [modifierSelector<IModifier>('has-error', root)]: {
         color: fallbackVar(tokens.label.color.error, tokens.label.color.normal),
       },
