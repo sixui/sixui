@@ -1,3 +1,13 @@
+## 2.14.0 (2025-05-21)
+
+### 🚀 Features
+
+- Chip: autoHeight prop ([0c3e3eea](https://github.com/sixui/sixui/commit/0c3e3eea))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.13.0 (2025-05-20)
 
 ### 🚀 Features
