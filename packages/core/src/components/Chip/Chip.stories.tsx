@@ -59,52 +59,68 @@ const states: Array<IComponentPresentation<IChipProps>> = [
   { legend: 'Disabled', props: { children: 'Disabled', disabled: true } },
 ];
 
+const variants: Array<IComponentPresentation<IChipProps>> = [
+  {
+    props: {
+      variant: 'assist',
+      children: 'Assist',
+      icon: <FontAwesomeIcon icon={faCalendarDays} />,
+    },
+  },
+  {
+    props: { variant: 'filter', children: 'Filter', selected: true },
+  },
+  {
+    props: {
+      variant: 'input',
+      children: 'Input',
+      onTrailingClick: (...args) => sbHandleEvent('delete', args, 1000),
+      imageUrl: IMAGE_URL,
+    },
+  },
+  {
+    props: {
+      variant: 'input',
+      children: 'Avatar',
+      onTrailingClick: (...args) => sbHandleEvent('delete', args, 1000),
+      imageUrl: IMAGE_URL,
+      avatar: true,
+    },
+  },
+  {
+    props: {
+      variant: 'suggestion',
+      children: 'Suggestion',
+    },
+  },
+];
+
 const ChipShowcase = componentShowcaseFactory(Chip);
 
 export const Variants: IStory = {
-  render: (props) => (
-    <ChipShowcase
-      props={props}
-      cols={[
-        {
-          props: {
-            variant: 'assist',
-            children: 'Assist',
-            icon: <FontAwesomeIcon icon={faCalendarDays} />,
-          },
-        },
-        {
-          props: { variant: 'filter', children: 'Filter', selected: true },
-        },
-        {
-          props: {
-            variant: 'input',
-            children: 'Input',
-            onTrailingClick: (...args) => sbHandleEvent('delete', args, 1000),
-            imageUrl: IMAGE_URL,
-          },
-        },
-        {
-          props: {
-            variant: 'input',
-            children: 'Avatar',
-            onTrailingClick: (...args) => sbHandleEvent('delete', args, 1000),
-            imageUrl: IMAGE_URL,
-            avatar: true,
-          },
-        },
-        {
-          props: {
-            variant: 'suggestion',
-            children: 'Suggestion',
-          },
-        },
-      ]}
-    />
-  ),
+  render: (props) => <ChipShowcase props={props} cols={variants} />,
   args: {
     ...defaultArgs,
     onClick: (...args) => sbHandleEvent('onClick', args, 1000),
+  },
+};
+
+export const Wrap: IStory = {
+  render: (props) => (
+    <ChipShowcase
+      props={props}
+      cols={variants.map((variant) => ({
+        ...variant,
+        props: {
+          ...variant.props,
+          children: 'Lorem ipsum dolor sit amet',
+        },
+      }))}
+    />
+  ),
+  args: {
+    wrap: true,
+    w: '180px',
   },
 };
 

@@ -30,7 +30,8 @@ type IModifier =
   | 'with-children'
   | 'with-start'
   | 'with-end'
-  | 'icon-animation';
+  | 'icon-animation'
+  | 'wrap';
 
 const DENSITY = px(density({ min: -4, max: 0 }));
 
@@ -380,6 +381,9 @@ const classNames = createStyles({
     opacity: tokens.label.opacity.normal,
 
     selectors: {
+      [modifierSelector<IModifier>('wrap', root)]: {
+        textWrap: 'wrap',
+      },
       [modifierSelector<IModifier>('focused', root)]: {
         color: fallbackVar(
           tokens.label.color.focused,

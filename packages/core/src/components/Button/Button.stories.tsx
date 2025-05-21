@@ -109,6 +109,24 @@ export const Variants: IStory = {
   ),
 };
 
+export const Wrap: IStory = {
+  render: (props) => (
+    <ButtonShowcase
+      props={props}
+      cols={buttonVariants.map((variant) => ({
+        props: {
+          variant,
+        },
+      }))}
+    />
+  ),
+  args: {
+    children: 'Lorem ipsum dolor sit amet',
+    wrap: true,
+    w: '150px',
+  },
+};
+
 export const Scales: IStory = {
   render: (props) => (
     <ButtonShowcase

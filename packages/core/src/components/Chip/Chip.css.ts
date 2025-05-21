@@ -26,7 +26,7 @@ type IModifier =
   | 'selected'
   | 'avatar'
   | 'disabled'
-  | 'auto-height';
+  | 'wrap';
 
 const DENSITY = px(density({ min: -2, max: 0 }));
 
@@ -117,7 +117,7 @@ const classNames = createStyles({
       label: tokens.label,
     }),
     selectors: {
-      [modifierSelector<IModifier>('auto-height')]: {
+      [modifierSelector<IModifier>('wrap')]: {
         height: 'auto',
         minHeight: calc.add(tokens.height, DENSITY),
       },

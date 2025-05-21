@@ -28,7 +28,7 @@ export interface IChipOwnProps
   avatar?: boolean;
   icon?: React.ReactNode;
   selectedIcon?: React.ReactNode;
-  autoHeight?: boolean;
+  wrap?: boolean;
 }
 
 export interface IChipProps

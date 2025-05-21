@@ -41,6 +41,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
       animatedLeadingIconSlot,
       animatedTrailingIconSlot,
       loadingIndicatorPosition,
+      wrap,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -192,6 +193,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
             'with-start': hasStart,
             'with-end': hasEnd,
             'icon-animation': iconAnimation,
+            wrap,
           },
         })}
         onClick={onClick ? handleClick : undefined}

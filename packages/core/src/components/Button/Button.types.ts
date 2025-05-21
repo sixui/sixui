@@ -42,6 +42,7 @@ export interface IButtonOwnProps
   animatedLeadingIconSlot?: boolean;
   animatedTrailingIconSlot?: boolean;
   loadingIndicatorPosition?: 'start' | 'label' | 'end';
+  wrap?: boolean;
 }
 
 export interface IButtonProps

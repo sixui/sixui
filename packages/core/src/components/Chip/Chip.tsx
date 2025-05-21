@@ -36,7 +36,7 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
       onClick,
       avatar: avatarProp,
       readOnly: readOnlyProp,
-      autoHeight,
+      wrap,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -204,7 +204,7 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
             avatar: isAvatar,
             selected,
             disabled: disabledOrReadOnly,
-            'auto-height': autoHeight,
+            wrap,
           },
         })}
         classNames={classNames}
@@ -218,6 +218,7 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
         onKeyDown={handleKeyDown}
         readOnly={readOnly}
         animatedLeadingIconSlot={animatedLeadingIconSlot}
+        wrap={wrap}
         {...other}
       />
     );
