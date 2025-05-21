@@ -36,6 +36,7 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
       onClick,
       avatar: avatarProp,
       readOnly: readOnlyProp,
+      autoHeight,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -203,6 +204,7 @@ export const Chip = polymorphicComponentFactory<IChipFactory>(
             avatar: isAvatar,
             selected,
             disabled: disabledOrReadOnly,
+            'auto-height': autoHeight,
           },
         })}
         classNames={classNames}

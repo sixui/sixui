@@ -28,6 +28,7 @@ export interface IChipOwnProps
   avatar?: boolean;
   icon?: React.ReactNode;
   selectedIcon?: React.ReactNode;
+  autoHeight?: boolean;
 }
 
 export interface IChipProps
