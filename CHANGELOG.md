@@ -1,3 +1,13 @@
+## 2.15.0 (2025-05-21)
+
+### 🚀 Features
+
+- Button/Chip: wrap prop ([5c00e256](https://github.com/sixui/sixui/commit/5c00e256))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.14.0 (2025-05-21)
 
 ### 🚀 Features
