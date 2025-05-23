@@ -29,6 +29,7 @@ const sprinklesProps = defineProperties({
     flexDirection: true,
     justifyContent: true,
     flexWrap: true,
+    flexBasis: true,
   },
   staticProperties: {
     columnGap: themeTokens.spacing,
@@ -46,6 +47,7 @@ const sprinklesProps = defineProperties({
     direction: ['flexDirection'],
     justify: ['justifyContent'],
     wrap: ['flexWrap'],
+    basis: ['flexBasis'],
   },
 });
 
@@ -53,7 +55,14 @@ export const flexSprinkles = createRainbowSprinkles(sprinklesProps);
 
 export type IFlexSprinkles = Pick<
   Parameters<typeof flexSprinkles>[0],
-  'align' | 'columnGap' | 'direction' | 'gap' | 'justify' | 'rowGap' | 'wrap'
+  | 'align'
+  | 'columnGap'
+  | 'direction'
+  | 'gap'
+  | 'justify'
+  | 'rowGap'
+  | 'wrap'
+  | 'basis'
 >;
 
 export type IFlexThemeFactory = IComponentThemeFactory<{
