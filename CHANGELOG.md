@@ -1,3 +1,13 @@
+## 2.16.0 (2025-05-23)
+
+### 🚀 Features
+
+- Flex: basis prop ([1a2dfe00](https://github.com/sixui/sixui/commit/1a2dfe00))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.15.0 (2025-05-21)
 
 ### 🚀 Features
