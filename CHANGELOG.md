@@ -1,3 +1,13 @@
+## 2.17.0 (2025-05-28)
+
+### 🚀 Features
+
+- ThemeSetterProvider can override color scheme variant ([e98178b4](https://github.com/sixui/sixui/commit/e98178b4))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.16.0 (2025-05-23)
 
 ### 🚀 Features
