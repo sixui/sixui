@@ -12,6 +12,7 @@ import { partialAssignInlineVars } from '~/utils/css/partialAssignInlineVars';
 import { deepMerge } from '~/utils/deepMerge';
 import { cssLayers } from '~/components/Theme/cssLayers.css';
 import { ThemeContext } from './Theme.context';
+import { IThemeColorSchemeVariant } from './theme.types';
 import { COMPONENT_NAME } from './ThemeProvider.constants';
 import { ThemeSetterProvider } from './ThemeSetter.context';
 import { mergeThemeOverrides } from './utils/mergeThemeOverrides';
@@ -52,7 +53,10 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
     [inherit, inheritedThemeContext?.theme, themeOverrides, dynamicTheme],
   );
 
+  const [overridenColorSchemeVariant, setOverridenColorSchemeVariant] =
+    useState<IThemeColorSchemeVariant>();
   const colorSchemeVariant =
+    overridenColorSchemeVariant ??
     colorSchemeVariantProp ??
     inheritedThemeContext?.colorSchemeVariant ??
     'light';
@@ -69,7 +73,10 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
   );
 
   const themeSetterContextValue: IThemeSetterContextValue = useMemo(
-    () => ({ setTheme: setDynamicTheme }),
+    () => ({
+      setTheme: setDynamicTheme,
+      setColorSchemeVariant: setOverridenColorSchemeVariant,
+    }),
     [],
   );
 
