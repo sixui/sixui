@@ -1,3 +1,13 @@
+## 2.17.1 (2025-05-29)
+
+### 🩹 Fixes
+
+- **Item:** auto height ([e89d2015](https://github.com/sixui/sixui/commit/e89d2015))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.17.0 (2025-05-28)
 
 ### 🚀 Features
