@@ -51,7 +51,6 @@ const classNames = createStyles({
     display: 'flex',
     flexShrink: 0,
     position: 'relative',
-    height: '100%',
     gap: tokens.gap,
     overflow: 'hidden',
   },
