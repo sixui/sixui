@@ -1,3 +1,13 @@
+## 2.18.1 (2025-06-11)
+
+### 🩹 Fixes
+
+- **core:** MultiSelect: preserve selected items even if they do not exist anymore in item list ([b8394fa4](https://github.com/sixui/sixui/commit/b8394fa4))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.18.0 (2025-06-11)
 
 ### 🚀 Features
