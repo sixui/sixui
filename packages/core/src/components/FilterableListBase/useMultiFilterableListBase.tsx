@@ -237,6 +237,14 @@ export const useMultiFilterableListBase = <
     }
   };
 
+  const allItems = [
+    ...items,
+    ...selectedItems.filter(
+      (item) => !arrayContainsItem(itemsEqual, items, item),
+    ),
+    ...createdItems,
+  ];
+
   return {
     itemRenderer,
     handleItemSelect,
@@ -248,7 +256,7 @@ export const useMultiFilterableListBase = <
     handleClear,
     getFocusedChipIndex: () => focusedSelectedItemIndex,
     deselectItemAtIndex,
-    items: [...items, ...createdItems],
+    items: allItems,
     selectedItems,
     focusedSelectedItemIndex,
   };
