@@ -1,3 +1,14 @@
+## 2.17.2 (2025-06-11)
+
+### 🩹 Fixes
+
+- **FileDropZoneControl:** set files on drop ([556e763d](https://github.com/sixui/sixui/commit/556e763d))
+- **FileDropZoneControl:** sync internal input file state with initialized and uploaded files ([b836478a](https://github.com/sixui/sixui/commit/b836478a))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.17.1 (2025-05-29)
 
 ### 🩹 Fixes
