@@ -1,3 +1,13 @@
+## 2.18.0 (2025-06-11)
+
+### 🚀 Features
+
+- **core:** exposing onItemChange on MultiSelectControl, SelectControl and SuggestControl ([92cbad13](https://github.com/sixui/sixui/commit/92cbad13))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.17.2 (2025-06-11)
 
 ### 🩹 Fixes
