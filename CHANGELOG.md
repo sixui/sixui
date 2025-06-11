@@ -1,3 +1,13 @@
+## 2.18.2 (2025-06-11)
+
+### 🩹 Fixes
+
+- **core:** MultiSelect: revert: preserve selected items even if they do not exist anymore in item list ([2773688e](https://github.com/sixui/sixui/commit/2773688e))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.18.1 (2025-06-11)
 
 ### 🩹 Fixes
