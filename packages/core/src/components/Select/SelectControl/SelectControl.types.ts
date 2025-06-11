@@ -12,11 +12,7 @@ import type {
 export interface ISelectControlOwnProps
   extends IOmit<
     ISelectBaseProps<IFilterableListItem>,
-    | 'itemRenderer'
-    | 'itemLabel'
-    | 'defaultItem'
-    | 'selectedItem'
-    | 'onItemChange'
+    'itemRenderer' | 'itemLabel' | 'defaultItem' | 'selectedItem'
   > {
   id?: string;
   name?: string;

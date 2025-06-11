@@ -13,11 +13,7 @@ import type {
 export interface ISuggestControlOwnProps
   extends IOmit<
     ISuggestBaseProps<IFilterableListItem>,
-    | 'itemRenderer'
-    | 'itemLabel'
-    | 'defaultItem'
-    | 'selectedItem'
-    | 'onItemChange'
+    'itemRenderer' | 'itemLabel' | 'defaultItem' | 'selectedItem'
   > {
   id?: string;
   name?: string;

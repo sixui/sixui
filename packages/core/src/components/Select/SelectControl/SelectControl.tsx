@@ -27,6 +27,7 @@ export const SelectControl = componentFactory<ISelectControlFactory>(
       defaultValue,
       onChange,
       noResultsLabel,
+      onItemChange: onItemChangeProp,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -58,7 +59,10 @@ export const SelectControl = componentFactory<ISelectControlFactory>(
         })}
         defaultItem={defaultItem}
         selectedItem={selectedItem}
-        onItemChange={onItemChange}
+        onItemChange={(item) => {
+          onItemChange?.(item);
+          onItemChangeProp?.(item);
+        }}
         leadingIcon={selectedItem?.icon}
         ref={forwardedRef}
       >

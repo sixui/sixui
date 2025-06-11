@@ -28,6 +28,7 @@ export const MultiSelectControl = componentFactory<IMultiSelectControlFactory>(
       defaultValue,
       onChange,
       noResultsLabel,
+      onItemsChange: onItemsChangeProp,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -60,7 +61,10 @@ export const MultiSelectControl = componentFactory<IMultiSelectControlFactory>(
         })}
         defaultItems={defaultItems}
         selectedItems={selectedItems}
-        onItemsChange={onItemsChange}
+        onItemsChange={(items) => {
+          onItemsChange?.(items);
+          onItemsChangeProp?.(items);
+        }}
         ref={forwardedRef}
       >
         <input

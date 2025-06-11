@@ -27,6 +27,7 @@ export const SuggestControl = componentFactory<ISuggestControlFactory>(
       defaultValue,
       onChange,
       noResultsLabel,
+      onItemChange: onItemChangeProp,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -61,7 +62,10 @@ export const SuggestControl = componentFactory<ISuggestControlFactory>(
         })}
         defaultItem={defaultItem}
         selectedItem={selectedItem}
-        onItemChange={onItemChange}
+        onItemChange={(item) => {
+          onItemChange?.(item);
+          onItemChangeProp?.(item);
+        }}
         ref={forwardedRef}
       >
         <input

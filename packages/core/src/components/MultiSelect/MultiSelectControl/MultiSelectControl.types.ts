@@ -17,7 +17,6 @@ export interface IMultiSelectControlOwnProps
     | 'itemLabel'
     | 'defaultItems'
     | 'selectedItems'
-    | 'onItemsChange'
     | 'value'
     | 'defaultValue'
     | 'onChange'

@@ -16,6 +16,7 @@ type IStory = StoryObj<typeof meta>;
 
 const defaultArgs = {
   onChange: (...args) => void sbHandleEvent('change', args),
+  onItemsChange: (...args) => void sbHandleEvent('itemsChange', args),
   items: fruits,
   keepMounted: true,
   label: 'Label',
