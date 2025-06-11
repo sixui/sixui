@@ -108,7 +108,12 @@ export const OneFileWithProgress: IStory = {
 };
 
 export const OneFileMax: IStory = {
-  render: (props) => <FileDropZoneControl {...props} />,
+  render: (props) => (
+    <form>
+      <FileDropZoneControl {...props} required />
+      <button type="submit">SUBMIT</button>
+    </form>
+  ),
   args: {
     defaultValue: Object.values(FILES).slice(0, 1),
     maxFileCount: 1,

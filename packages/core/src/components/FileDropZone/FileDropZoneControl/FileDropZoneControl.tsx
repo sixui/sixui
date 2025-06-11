@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useRef } from 'react';
 import { FileRejection, useDropzone } from 'react-dropzone';
 
 import type { IFileDropZoneFile } from '~/hooks/useFileDropZone';
@@ -83,6 +83,7 @@ export const FileDropZoneControl =
     });
 
     const overlays = useOverlays();
+    const internalInputRef = useRef<HTMLInputElement>(null);
 
     const {
       files,
@@ -199,12 +200,19 @@ export const FileDropZoneControl =
               });
           } else {
             acceptFile(file);
+
+            if (internalInputRef.current) {
+              // Manually set the files property of the input element
+              const dataTransfer = new DataTransfer();
+              acceptedFiles.forEach((file) => dataTransfer.items.add(file));
+              internalInputRef.current.files = dataTransfer.files;
+            }
           }
         });
 
         rejectedFiles.forEach(rejectFile);
       },
-      [acceptFile, rejectFile, acceptedImageSize],
+      [acceptFile, rejectFile, acceptedImageSize, internalInputRef],
     );
 
     const fileCount = files.length;
@@ -256,7 +264,11 @@ export const FileDropZoneControl =
       theme: fileDropZoneControlTheme,
     });
 
-    const handleInputRef = useMergeRefs(forwardedRef, inputRef);
+    const handleInputRef = useMergeRefs(
+      forwardedRef,
+      internalInputRef,
+      inputRef,
+    );
     const dropping = isDragActive && !disabled;
 
     const renderFileCard = (
