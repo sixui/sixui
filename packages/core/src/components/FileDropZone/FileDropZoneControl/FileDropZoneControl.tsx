@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useEffect } from 'react';
 import { FileRejection, useDropzone } from 'react-dropzone';
 
 import type { IFileDropZoneFile } from '~/hooks/useFileDropZone';
@@ -55,7 +55,7 @@ export const FileDropZoneControl =
       maxFileCount,
       maxFileSize,
       capture,
-      required,
+      required: requiredProp,
       extraActions,
       sortable: sortableProp,
       initializeFile,
@@ -83,7 +83,6 @@ export const FileDropZoneControl =
     });
 
     const overlays = useOverlays();
-    const internalInputRef = useRef<HTMLInputElement>(null);
 
     const {
       files,
@@ -128,7 +127,7 @@ export const FileDropZoneControl =
       (fileRejection: FileRejection): IMaybeAsync<unknown> =>
         handleReject({
           internalId: getUid(),
-          state: IFileDropZoneFileState.Initialized,
+          state: IFileDropZoneFileState.Error,
           thumbUrl: fileRejection.file.type.startsWith('image/')
             ? URL.createObjectURL(fileRejection.file)
             : undefined,
@@ -200,26 +199,17 @@ export const FileDropZoneControl =
               });
           } else {
             acceptFile(file);
-
-            if (internalInputRef.current) {
-              // Manually set the files property of the input element
-              const dataTransfer = new DataTransfer();
-              acceptedFiles.forEach((file) => dataTransfer.items.add(file));
-              internalInputRef.current.files = dataTransfer.files;
-            }
           }
         });
 
         rejectedFiles.forEach(rejectFile);
       },
-      [acceptFile, rejectFile, acceptedImageSize, internalInputRef],
+      [acceptFile, rejectFile, acceptedImageSize],
     );
 
     const fileCount = files.length;
     const hasTooManyFiles =
-      maxFileCount !== undefined &&
-      maxFileCount > 1 &&
-      fileCount > maxFileCount;
+      maxFileCount !== undefined && fileCount > maxFileCount;
     const errorText = hasTooManyFiles
       ? strings.errors.tooManyFiles
       : errorTextProp;
@@ -251,6 +241,24 @@ export const FileDropZoneControl =
       onDrop: disabled ? undefined : handleDrop,
     });
 
+    const initializedOrUploadedFiles = files.filter(
+      ({ state }) =>
+        state === IFileDropZoneFileState.Initialized ||
+        state === IFileDropZoneFileState.Uploaded,
+    );
+    const required = !initializedOrUploadedFiles.length && requiredProp;
+
+    // Sync the internal input files state with initialized or uploaded files.
+    useEffect(() => {
+      const dataTransfer = new DataTransfer();
+      const validFiles = initializedOrUploadedFiles
+        .map(({ file }) => file)
+        .filter((file) => file !== undefined);
+
+      validFiles.forEach((file) => dataTransfer.items.add(file));
+      inputRef.current.files = dataTransfer.files;
+    }, [initializedOrUploadedFiles, inputRef]);
+
     const hasError =
       hasTooManyFiles || hasErrorProp || (isDragActive && isDragReject);
 
@@ -264,11 +272,7 @@ export const FileDropZoneControl =
       theme: fileDropZoneControlTheme,
     });
 
-    const handleInputRef = useMergeRefs(
-      forwardedRef,
-      internalInputRef,
-      inputRef,
-    );
+    const handleInputRef = useMergeRefs(forwardedRef, inputRef);
     const dropping = isDragActive && !disabled;
 
     const renderFileCard = (
