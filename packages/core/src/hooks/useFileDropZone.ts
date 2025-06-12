@@ -131,6 +131,14 @@ export const useFileDropZone = (
   };
 
   useEffect(() => {
+    setInternalFiles((prevInternalFiles) =>
+      prevInternalFiles.filter(
+        (prevFile) =>
+          value.some((currentFile) => currentFile.id === prevFile.id) ||
+          prevFile.state !== IFileDropZoneFileState.Uploaded,
+      ),
+    );
+
     value.forEach((currentInputFile) => {
       const file = filesRef.current.find(
         (file) => file.id === currentInputFile.id,
