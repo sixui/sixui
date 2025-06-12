@@ -20,9 +20,9 @@ export interface IAppLayoutSupportingPaneBodyOwnProps
     | ((
         props: IAppLayoutSupportingPaneBodyFocusPaneRendererProps,
       ) => React.ReactNode);
-  supportingPane: React.ReactNode;
-  supportingPaneAside: React.ReactNode;
-  supportingPaneBottomSheet: React.ReactNode;
+  supportingPaneAside?: React.ReactNode;
+  supportingPane?: React.ReactNode;
+  supportingPaneBottomSheet?: React.ReactNode;
 }
 
 export interface IAppLayoutSupportingPaneBodyProps

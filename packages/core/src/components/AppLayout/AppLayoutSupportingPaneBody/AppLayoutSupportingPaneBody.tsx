@@ -19,8 +19,8 @@ export const AppLayoutSupportingPaneBody =
     (props, forwardedRef) => {
       const {
         focusPane,
-        supportingPane,
-        supportingPaneAside,
+        supportingPane: supportingPaneProp,
+        supportingPaneAside: supportingPaneAsideProp,
         supportingPaneBottomSheet,
         ...other
       } = useProps({ componentName: COMPONENT_NAME, props });
@@ -39,6 +39,9 @@ export const AppLayoutSupportingPaneBody =
           toggleBottomSheet(false);
         }
       });
+
+      const supportingPane = supportingPaneProp ?? supportingPaneAsideProp;
+      const supportingPaneAside = supportingPaneAsideProp ?? supportingPaneProp;
 
       return (
         <>
