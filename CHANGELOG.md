@@ -1,3 +1,13 @@
+## 2.19.0 (2025-06-12)
+
+### 🚀 Features
+
+- **core:** AppLayoutSupportingPaneBody: optional secondary panes ([f7ef9bb3](https://github.com/sixui/sixui/commit/f7ef9bb3))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.18.2 (2025-06-11)
 
 ### 🩹 Fixes
