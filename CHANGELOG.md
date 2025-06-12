@@ -1,3 +1,14 @@
+## 2.19.1 (2025-06-12)
+
+### 🩹 Fixes
+
+- **core:** CardMedia: overflow hidden ([2f12dc53](https://github.com/sixui/sixui/commit/2f12dc53))
+- **core:** FileDropZoneControl: sync controlled value with internal files ([17054d57](https://github.com/sixui/sixui/commit/17054d57))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.19.0 (2025-06-12)
 
 ### 🚀 Features
