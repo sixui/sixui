@@ -17,7 +17,7 @@ export type ISideSheetContentVariant =
   (typeof sideSheetContentVariants)[number];
 
 export type ISideSheetContentChildrenRenderProps = {
-  close: (event: React.MouseEvent) => void;
+  close: () => void;
 };
 
 export interface ISideSheetContentOwnProps
