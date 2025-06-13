@@ -1,3 +1,13 @@
+## 2.19.2 (2025-06-13)
+
+### 🩹 Fixes
+
+- **core:** ISideSheetContentChildrenRenderProps: removed close event prop ([162625a4](https://github.com/sixui/sixui/commit/162625a4))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.19.1 (2025-06-12)
 
 ### 🩹 Fixes
