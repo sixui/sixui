@@ -20,13 +20,6 @@ type IModifier =
   | 'with-error';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
-  container: {
-    color: {
-      normal: themeTokens.colorScheme.surfaceContainerHigh,
-      error: themeTokens.colorScheme.surfaceContainerHigh,
-      disabled: themeTokens.colorScheme.surfaceContainerHigh,
-    },
-  },
   outline: {
     color: {
       normal: themeTokens.colorScheme.outlineVariant,
@@ -53,12 +46,6 @@ const classNames = createStyles({
     textAlign: 'left',
 
     vars: overrideTokens(Card.theme.tokens, {
-      container: {
-        color: {
-          normal: tokens.container.color.normal,
-          disabled: tokens.container.color.disabled,
-        },
-      },
       outline: {
         width: {
           normal: tokens.outline.width.normal,
@@ -88,11 +75,6 @@ const classNames = createStyles({
       },
       [modifierSelector<IModifier>('with-error')]: {
         vars: overrideTokens(Card.theme.tokens, {
-          container: {
-            color: {
-              normal: tokens.container.color.error,
-            },
-          },
           outline: {
             color: {
               normal: tokens.outline.color.error,
