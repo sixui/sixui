@@ -1,3 +1,13 @@
+## 2.20.0 (2025-06-19)
+
+### 🚀 Features
+
+- **RadioCard:** container is no more styled by default, inheriting from card variant styles ([00f5b883](https://github.com/sixui/sixui/commit/00f5b883))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.19.2 (2025-06-13)
 
 ### 🩹 Fixes
