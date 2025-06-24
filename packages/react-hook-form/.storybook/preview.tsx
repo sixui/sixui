@@ -1,4 +1,4 @@
-import type { Decorator, Preview } from '@storybook/react';
+import type { Decorator, Preview } from '@storybook/react-vite';
 
 import { ReactHookFormDecorator } from './addon-react-hook-form/decorators';
 import { SixuiProviderDecorator } from './decorators';

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import type { IFloatingFilterableListBaseDemoProps } from './FloatingFilterableListBase.stories/FloatingFilterableListBaseDemo';
 import { TOP_100_MOVIES } from '~/components/FilterableListBase/FilterableListBase.stories/movies';

@@ -14,16 +14,16 @@
   },
   "dependencies": {
     "@sixui/core": "workspace:*",
-    "next": "15.2.4",
+    "next": "15.3.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
     "@sixui/eslint-config": "workspace:*",
-    "@types/node": "^22",
+    "@types/node": "^24",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9.23.0",
+    "eslint": "^9.29.0",
     "typescript": "^5"
   }
 }

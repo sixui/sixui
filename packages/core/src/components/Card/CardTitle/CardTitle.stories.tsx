@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import type { ICardTitleProps } from './CardTitle.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';

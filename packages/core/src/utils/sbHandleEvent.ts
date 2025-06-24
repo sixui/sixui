@@ -1,5 +1,5 @@
 import { delay } from '@olivierpascal/helpers';
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 
 import type { IAny } from './types';
 

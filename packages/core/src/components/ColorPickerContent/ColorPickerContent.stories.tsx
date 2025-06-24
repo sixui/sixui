@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import type { IColorPickerContentProps } from './ColorPickerContent.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';

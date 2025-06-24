@@ -1,8 +1,8 @@
 // eslint-disable-next-line
 import React from 'react';
-import { useAddonState, useChannel } from '@storybook/manager-api';
 import { AddonPanel, TabsState } from 'storybook/internal/components';
 import { useTheme } from 'storybook/internal/theming';
+import { useAddonState, useChannel } from 'storybook/manager-api';
 
 import { EVENTS } from '../../constants';
 import { Tab } from '../Tab';

@@ -1,6 +1,10 @@
-import type { Decorator } from '@storybook/react';
+import type { Decorator } from '@storybook/react-vite';
 import { SixuiProvider } from '@sixui/core';
-import { useDarkMode } from 'storybook-dark-mode';
+
+// TODO: migrate to storybook 9
+// import { useDarkMode } from 'storybook-dark-mode';
+
+const useDarkMode = (): boolean => false;
 
 export const SixuiProviderDecorator: Decorator = (Story) => {
   const isDarkMode = useDarkMode();

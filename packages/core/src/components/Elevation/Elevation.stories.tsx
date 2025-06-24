@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import type { IElevationProps } from './Elevation.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';

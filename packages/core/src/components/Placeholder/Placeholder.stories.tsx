@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import type { IPlaceholderProps } from './Placeholder.types';
 import { componentShowcaseFactory } from '~/components/ComponentShowcase';

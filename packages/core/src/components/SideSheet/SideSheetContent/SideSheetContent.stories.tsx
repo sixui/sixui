@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { capitalizeFirstLetter } from '@olivierpascal/helpers';
 
 import type { ISideSheetContentProps } from './SideSheetContent.types';

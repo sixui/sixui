@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import type { IPlaceholderProps } from '~/components/Placeholder';
 import type { IFlexProps } from './Flex.types';

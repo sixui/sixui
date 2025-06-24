@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import type { IComponentPresentation } from '~/components/ComponentShowcase';
 import type { IRadioIndicatorProps } from './RadioIndicator.types';

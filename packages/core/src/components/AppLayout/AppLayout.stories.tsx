@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import type { IAppLayoutProps } from './AppLayout.types';
 import { Flex } from '~/components/Flex';

@@ -1,7 +1,7 @@
 import type { IAny } from '@sixui/core';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Flex } from '@sixui/core';
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 
 import type { ICheckboxGroupProps } from './CheckboxGroup';
 import { CheckboxGroup } from './CheckboxGroup';

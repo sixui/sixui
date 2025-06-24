@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { createSequence } from '@olivierpascal/helpers';
 
 import type { INavigationBarContentProps } from './NavigationBarContent.types';

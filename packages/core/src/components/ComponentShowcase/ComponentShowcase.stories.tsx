@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import type { IDemoComponentProps } from './ComponentShowcase.stories/DemoComponent';
 import { DemoComponent } from './ComponentShowcase.stories/DemoComponent';

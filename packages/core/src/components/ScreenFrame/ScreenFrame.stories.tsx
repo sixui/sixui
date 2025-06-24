@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import type { IScreenFrameProps } from './ScreenFrame.types';
 import { themeTokens } from '~/components/Theme/theme.css';

@@ -1,7 +1,7 @@
 // eslint-disable-next-line
 import React from 'react';
-import { useChannel } from '@storybook/manager-api';
 import { Button } from 'storybook/internal/components';
+import { useChannel } from 'storybook/manager-api';
 
 import { EVENTS } from '../../constants';
 

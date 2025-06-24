@@ -1,8 +1,8 @@
-import type { Decorator } from '@storybook/react';
+import type { Decorator } from '@storybook/react-vite';
 import { useEffect } from 'react';
 import { Box } from '@sixui/core';
-import { useChannel } from '@storybook/preview-api';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useChannel } from 'storybook/preview-api';
 
 import { EVENTS } from '../constants';
 
