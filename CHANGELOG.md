@@ -1,3 +1,13 @@
+## 2.22.1 (2025-06-30)
+
+### 🩹 Fixes
+
+- **Drawer:** expose closeEvents prop ([d92ac367](https://github.com/sixui/sixui/commit/d92ac367))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.22.0 (2025-06-30)
 
 ### 🚀 Features
