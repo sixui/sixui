@@ -16,15 +16,19 @@ export const DrawerSideSheet = componentFactory<IDrawerSideSheetFactory>(
       styles,
       style,
       variant,
-      opened,
-      modal,
       detached,
       side = 'left',
-      onClose,
-      onClosed,
       drawerAsideProps,
       portalProps,
       withoutPortal,
+      opened,
+      defaultOpened,
+      onClose,
+      onClosed,
+      disabled,
+      modal,
+      jail,
+      closeEvents,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -44,15 +48,19 @@ export const DrawerSideSheet = componentFactory<IDrawerSideSheetFactory>(
         classNames={mergeClassNames(classNames, {
           drawerSideSheetContent: getStyles('sideSheetContent').className,
         })}
-        opened={opened}
-        modal={modal}
         detached={detached}
         side={side}
-        onClose={onClose}
-        onClosed={onClosed}
         ref={forwardedRef}
         portalProps={portalProps}
         withoutPortal={withoutPortal}
+        opened={opened}
+        defaultOpened={defaultOpened}
+        onClose={onClose}
+        onClosed={onClosed}
+        disabled={disabled}
+        modal={modal}
+        jail={jail}
+        closeEvents={closeEvents}
         {...drawerAsideProps}
       >
         <SideSheetContent
