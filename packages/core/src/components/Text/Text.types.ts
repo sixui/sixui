@@ -20,6 +20,7 @@ export interface ITextOwnProps {
   gutterBottom?: boolean;
   dimmed?: boolean;
   truncate?: boolean;
+  nowrap?: boolean;
   lineClamp?: number;
 }
 

@@ -56,6 +56,7 @@ export const Text = polymorphicComponentFactory<ITextFactory>(
       dimmed,
       truncate,
       lineClamp,
+      nowrap,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -82,10 +83,11 @@ export const Text = polymorphicComponentFactory<ITextFactory>(
             : undefined,
           modifiers: {
             dimmed,
-            truncate,
             ['line-clamp']: lineClamp,
             ['gutter-bottom']: gutterBottom,
             size,
+            truncate,
+            nowrap,
           },
         })}
         ref={forwardedRef}

@@ -14,9 +14,10 @@ type IModifier =
   | 'variant'
   | 'size'
   | 'dimmed'
-  | 'truncate'
   | 'line-clamp'
-  | 'gutter-bottom';
+  | 'gutter-bottom'
+  | 'truncate'
+  | 'nowrap';
 
 const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
   lineClamp: 'unset',
@@ -33,6 +34,9 @@ const classNames = createStyles({
       [modifierSelector<IModifier>('truncate')]: {
         overflow: 'hidden',
         textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+      },
+      [modifierSelector<IModifier>('nowrap')]: {
         whiteSpace: 'nowrap',
       },
       [modifierSelector<IModifier>('line-clamp')]: {
