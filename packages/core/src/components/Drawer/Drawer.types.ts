@@ -24,6 +24,7 @@ export interface IDrawerOwnProps
     | 'disabled'
     | 'modal'
     | 'jail'
+    | 'closeEvents'
   > {
   side?: ISide;
   children:
