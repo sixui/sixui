@@ -1,3 +1,13 @@
+## 2.22.0 (2025-06-30)
+
+### 🚀 Features
+
+- **Drawer:** expose closeEvents prop ([2b1f209a](https://github.com/sixui/sixui/commit/2b1f209a))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.21.0 (2025-06-24)
 
 This was a version bump only, there were no code changes.
