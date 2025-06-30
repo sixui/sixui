@@ -1,3 +1,13 @@
+## 2.23.0 (2025-06-30)
+
+### 🚀 Features
+
+- **core:** Text: nowrap prop ([2c59e91f](https://github.com/sixui/sixui/commit/2c59e91f))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.22.2 (2025-06-30)
 
 ### 🩹 Fixes
