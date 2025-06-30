@@ -27,6 +27,7 @@ export const Drawer = componentFactory<IDrawerFactory>(
       fullWidth,
       modal,
       jail,
+      closeEvents,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -55,6 +56,7 @@ export const Drawer = componentFactory<IDrawerFactory>(
         modal={modal}
         scrim={modal || jail}
         jail={jail}
+        closeEvents={closeEvents}
         floatingFocusManagerProps={{
           visuallyHiddenDismiss: true,
         }}
