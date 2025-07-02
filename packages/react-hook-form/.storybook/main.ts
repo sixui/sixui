@@ -9,7 +9,7 @@ const config: StorybookConfig = {
   addons: [
     // TODO: migrate to storybook 9
     // getAbsolutePath("storybook-dark-mode"),
-    getAbsolutePath('./addon-react-hook-form/preset'),
+    dirname(require.resolve('./addon-react-hook-form/preset')),
     getAbsolutePath('@storybook/addon-docs'),
   ],
   framework: getAbsolutePath('@storybook/react-vite'),

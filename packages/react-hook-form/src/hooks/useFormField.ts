@@ -37,6 +37,7 @@ export type IUseFormFieldOptions = {
   emptyValue?: IAny;
   checkable?: true;
   supportsErrorProps?: boolean;
+  asNumber?: boolean;
 };
 
 const defaultOptions = {
@@ -93,7 +94,23 @@ export const useFormField = <
   return {
     ...field,
     onChange: (...args: TChangeEventValue) => {
-      field.onChange(...args);
+      const event =
+        args[0] && typeof args[0] === 'object' && 'target' in args[0]
+          ? (args[0] as React.ChangeEvent)
+          : undefined;
+      const inputEvent =
+        event?.target instanceof HTMLInputElement
+          ? (event as React.ChangeEvent<HTMLInputElement>)
+          : undefined;
+      if (
+        inputEvent &&
+        (options.asNumber || inputEvent.target.type === 'number')
+      ) {
+        const event = args[0] as React.ChangeEvent<HTMLInputElement>;
+        field.onChange(Number(event.target.value));
+      } else {
+        field.onChange(...args);
+      }
       onChange?.(...args);
     },
     required,

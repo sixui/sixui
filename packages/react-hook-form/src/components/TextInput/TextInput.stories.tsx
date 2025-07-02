@@ -20,6 +20,12 @@ type IStory = StoryObj<typeof meta>;
 
 export const Basic: IStory = {};
 
+export const AsNumber: IStory = {
+  args: {
+    type: 'number',
+  },
+};
+
 export const Required: IStory = {
   args: {
     required: true,
