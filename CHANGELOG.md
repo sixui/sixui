@@ -1,3 +1,13 @@
+## 2.24.0 (2025-07-02)
+
+### 🚀 Features
+
+- **react-hook-form:** input element can now emit values as number ([d16917e2](https://github.com/sixui/sixui/commit/d16917e2))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.23.0 (2025-06-30)
 
 ### 🚀 Features
