@@ -60,8 +60,8 @@ export interface IFileDropZoneControlOwnProps
   /**
    * See types option for more information. Keep in mind that mime type
    * determination is not reliable across platforms. CSV files, for example, are
-   * reported as `text/plain` under macOS but as `application/vnd.ms-excel` under
-   * Windows. In some cases there might not be a mime type set at all
+   * reported as `text/plain` under macOS but as `application/vnd.ms-excel`
+   * under Windows. In some cases there might not be a mime type set at all
    * (https://github.com/react-dropzone/react-dropzone/issues/276).
    *
    * @see
