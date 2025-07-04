@@ -141,7 +141,7 @@ export const useFileDropZone = (
 
     value.forEach((currentInputFile) => {
       const file = filesRef.current.find(
-        (file) => file.id === currentInputFile.id,
+        (file) => file.id && file.id === currentInputFile.id,
       );
 
       const internalId = file?.internalId ?? currentInputFile.id ?? getUid();
@@ -167,27 +167,17 @@ export const useFileDropZone = (
       }
 
       if (!file) {
-        setInternalFiles((prevInternalFiles) => {
-          // eslint-disable-next-line no-console
-          console.log('__SET.prev', prevInternalFiles);
-          // eslint-disable-next-line no-console
-          console.log('__SET.new', {
+        setInternalFiles((prevInternalFiles) => [
+          ...prevInternalFiles.filter(
+            (prevFile) => !prevFile.id || prevFile.id !== currentInputFile.id,
+          ),
+          {
             ...currentInputFile,
             internalId,
             state:
               currentInputFile.state ?? IFileDropZoneFileState.Initializing,
-          });
-
-          return [
-            ...prevInternalFiles,
-            {
-              ...currentInputFile,
-              internalId,
-              state:
-                currentInputFile.state ?? IFileDropZoneFileState.Initializing,
-            },
-          ];
-        });
+          },
+        ]);
       }
     });
   }, [value, initializeFile]);
