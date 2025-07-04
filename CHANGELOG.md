@@ -1,3 +1,13 @@
+## 2.24.1 (2025-07-04)
+
+### 🩹 Fixes
+
+- **react-hook-form:** empty field on clear ([2ace8b26](https://github.com/sixui/sixui/commit/2ace8b26))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.24.0 (2025-07-02)
 
 ### 🚀 Features
