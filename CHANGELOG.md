@@ -1,3 +1,13 @@
+## 2.24.2 (2025-07-04)
+
+### 🩹 Fixes
+
+- **core:** FileDropZoneControl: duplicated files ([f3651922](https://github.com/sixui/sixui/commit/f3651922))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.24.1 (2025-07-04)
 
 ### 🩹 Fixes

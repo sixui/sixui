@@ -1,7 +1,7 @@
 {
   "name": "@sixui/eslint-config",
   "description": "ESLint config for Sixui",
-  "version": "2.24.1",
+  "version": "2.24.2",
   "homepage": "https://sixui.com",
   "license": "MIT",
   "repository": {
