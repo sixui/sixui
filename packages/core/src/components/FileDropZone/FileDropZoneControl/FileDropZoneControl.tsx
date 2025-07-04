@@ -275,13 +275,6 @@ export const FileDropZoneControl =
     const handleInputRef = useMergeRefs(forwardedRef, inputRef);
     const dropping = isDragActive && !disabled;
 
-    // eslint-disable-next-line no-console
-    console.log('__files', files);
-    // eslint-disable-next-line no-console
-    console.log('__initializedOrUploadedFiles', initializedOrUploadedFiles);
-    // eslint-disable-next-line no-console
-    console.log('__defaultValue', defaultValue);
-
     const renderFileCard = (
       file: IFileDropZoneFile,
       other: Partial<IFileDropZoneFileCardProps>,

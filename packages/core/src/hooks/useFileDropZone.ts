@@ -167,15 +167,27 @@ export const useFileDropZone = (
       }
 
       if (!file) {
-        setInternalFiles((prevInternalFiles) => [
-          ...prevInternalFiles,
-          {
+        setInternalFiles((prevInternalFiles) => {
+          // eslint-disable-next-line no-console
+          console.log('__SET.prev', prevInternalFiles);
+          // eslint-disable-next-line no-console
+          console.log('__SET.new', {
             ...currentInputFile,
             internalId,
             state:
               currentInputFile.state ?? IFileDropZoneFileState.Initializing,
-          },
-        ]);
+          });
+
+          return [
+            ...prevInternalFiles,
+            {
+              ...currentInputFile,
+              internalId,
+              state:
+                currentInputFile.state ?? IFileDropZoneFileState.Initializing,
+            },
+          ];
+        });
       }
     });
   }, [value, initializeFile]);
