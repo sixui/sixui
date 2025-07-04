@@ -36,7 +36,7 @@ export const WithDefaultValue: IStory = {
   parameters: {
     form: {
       defaultValues: {
-        [FIELD_NAME]: ['option2', 'option3'],
+        [FIELD_NAME]: 'option2',
       },
     },
   },

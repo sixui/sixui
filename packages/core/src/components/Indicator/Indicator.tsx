@@ -2,11 +2,11 @@ import type { IIndicatorThemeFactory } from './Indicator.css';
 import type { IIndicatorFactory } from './Indicator.types';
 import { Box } from '~/components/Box';
 import { useComponentTheme, useProps } from '~/components/Theme';
-import { componentFactory } from '~/utils/component/componentFactory';
+import { polymorphicComponentFactory } from '~/utils';
 import { COMPONENT_NAME } from './Indicator.constants';
 import { indicatorTheme } from './Indicator.css';
 
-export const Indicator = componentFactory<IIndicatorFactory>(
+export const Indicator = polymorphicComponentFactory<IIndicatorFactory>(
   (props, forwardedRef) => {
     const {
       classNames,

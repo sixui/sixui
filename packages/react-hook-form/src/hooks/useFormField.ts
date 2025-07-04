@@ -102,6 +102,11 @@ export const useFormField = <
         event?.target instanceof HTMLInputElement
           ? (event as React.ChangeEvent<HTMLInputElement>)
           : undefined;
+      const isEmpty =
+        [...args].length === 0 ||
+        ([...args].length === 1 &&
+          (args[0] === undefined ||
+            (Array.isArray(args[0]) && args[0].length === 0)));
       if (
         inputEvent &&
         (options.asNumber || inputEvent.target.type === 'number')
@@ -109,8 +114,13 @@ export const useFormField = <
         const event = args[0] as React.ChangeEvent<HTMLInputElement>;
         field.onChange(Number(event.target.value));
       } else {
-        field.onChange(...args);
+        if (isEmpty) {
+          field.onChange(options.emptyValue);
+        } else {
+          field.onChange(...args);
+        }
       }
+
       onChange?.(...args);
     },
     required,

@@ -1,6 +1,6 @@
 import type { IBoxProps } from '~/components/Box';
 import type { IComponentThemeProps } from '~/components/Theme';
-import type { IComponentFactory } from '~/utils/component/componentFactory';
+import type { IPolymorphicComponentFactory } from '~/utils/component/polymorphicComponentFactory';
 import type { IIndicatorThemeFactory, indicatorTheme } from './Indicator.css';
 
 export interface IIndicatorOwnProps {
@@ -13,8 +13,9 @@ export interface IIndicatorProps
     IComponentThemeProps<IIndicatorThemeFactory>,
     IIndicatorOwnProps {}
 
-export type IIndicatorFactory = IComponentFactory<{
+export type IIndicatorFactory = IPolymorphicComponentFactory<{
   props: IIndicatorProps;
-  ref: HTMLDivElement;
+  defaultRef: HTMLDivElement;
+  defaultRoot: 'div';
   theme: typeof indicatorTheme;
 }>;
