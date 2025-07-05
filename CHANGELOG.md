@@ -1,3 +1,13 @@
+## 2.25.0 (2025-07-05)
+
+### 🚀 Features
+
+- **eslint-config:** allow double leading underscore in vars ([6447fb99](https://github.com/sixui/sixui/commit/6447fb99))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.24.4 (2025-07-04)
 
 ### 🩹 Fixes
