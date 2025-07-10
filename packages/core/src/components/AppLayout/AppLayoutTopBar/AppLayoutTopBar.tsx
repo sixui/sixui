@@ -68,7 +68,7 @@ export const AppLayoutTopBar = componentFactory<IAppLayoutTopBarFactory>(
           )
         }
         trailingActions={(renderProps) =>
-          (hasSideSheet ?? trailingActions) && (
+          (hasSideSheet || trailingActions) && (
             <>
               {isFunction(trailingActions)
                 ? trailingActions(renderProps)
