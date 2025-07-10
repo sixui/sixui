@@ -1,3 +1,13 @@
+## 2.25.1 (2025-07-10)
+
+### 🩹 Fixes
+
+- **core:** AppLayoutTopBar: show trailing actions even if no side sheet ([58bf3dc9](https://github.com/sixui/sixui/commit/58bf3dc9))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.25.0 (2025-07-05)
 
 ### 🚀 Features
