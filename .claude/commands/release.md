@@ -10,6 +10,7 @@ Perform a complete package release using Nx's automated release workflow. This p
 ### Overview
 
 The Sixui release process:
+
 1. Analyzes conventional commits since last release
 2. Determines semantic version bumps (major/minor/patch)
 3. Builds all packages with dependency graph awareness
@@ -19,10 +20,11 @@ The Sixui release process:
 7. Publishes packages to npm registry
 
 **Nx configuration:**
+
 - Uses conventional commits for versioning
 - Runs `nx run-many -t build` before versioning
 - Creates GitHub releases automatically
-- Preserves local dependency protocols (workspace:*)
+- Preserves local dependency protocols (workspace:\*)
 
 ### 1. Pre-Release Validation
 
@@ -46,6 +48,7 @@ pnpm build
 ```
 
 **Pre-release checklist:**
+
 - [ ] All commits follow conventional format
 - [ ] Working directory is clean (no uncommitted changes)
 - [ ] On main branch
@@ -63,6 +66,7 @@ pnpm release:dry
 ```
 
 **Review the dry-run output carefully:**
+
 - Version bump calculations (which packages, what versions)
 - Changelog entries that will be generated
 - GitHub release details
@@ -70,6 +74,7 @@ pnpm release:dry
 - Dependencies that will be updated
 
 **Common scenarios:**
+
 - `feat:` commits → minor version bump (0.x.0)
 - `fix:` commits → patch version bump (0.0.x)
 - `BREAKING CHANGE:` in footer → major version bump (x.0.0)
@@ -80,7 +85,7 @@ pnpm release:dry
 **If dry-run looks correct, proceed with actual release:**
 
 ```bash
-pnpm release
+echo "y" | pnpm nx release publish
 ```
 
 **What happens during release:**
@@ -132,11 +137,13 @@ git ls-remote --tags origin
 ```
 
 **On GitHub:**
+
 - [ ] Release appears in Releases section
 - [ ] Release notes are properly formatted
 - [ ] Tags are created correctly
 
 **On npm:**
+
 - [ ] Packages published successfully
 - [ ] New versions visible on npm registry
 - [ ] Package metadata is correct
@@ -161,6 +168,7 @@ git push
 ```
 
 **Note:** npm publishes cannot be undone, only deprecated:
+
 ```bash
 npm deprecate @sixui/core@x.x.x "Accidental release, use x.x.y instead"
 ```
@@ -188,21 +196,25 @@ Use `appearance` prop instead.
 ## Troubleshooting
 
 **Build fails during pre-version:**
+
 - Fix build errors before attempting release
 - Ensure all packages build successfully
 - Check TypeScript errors and lint issues
 
 **Version not bumping as expected:**
+
 - Verify commits follow conventional format
 - Check if commits are since last release tag
 - Review dry-run output for version calculation details
 
 **GitHub release creation fails:**
+
 - Verify `GH_TOKEN` or `GITHUB_TOKEN` environment variable is set
 - Ensure GitHub CLI (`gh`) is authenticated
 - Check repository permissions for creating releases
 
 **npm publish fails:**
+
 - Verify npm authentication (`npm whoami`)
 - Check npm registry permissions
 - Ensure package names are available/not taken
@@ -211,6 +223,7 @@ Use `appearance` prop instead.
 ## Best Practices
 
 **Before releasing:**
+
 - ✅ Run dry-run first, always
 - ✅ Verify all CI checks pass
 - ✅ Review generated changelog for accuracy
@@ -218,18 +231,21 @@ Use `appearance` prop instead.
 - ✅ Test built packages in isolation if possible
 
 **Commit hygiene:**
+
 - ✅ Use meaningful conventional commit messages
 - ✅ Include BREAKING CHANGE footer for breaking changes
 - ✅ Reference issue numbers in commit bodies
 - ✅ Keep commit history clean and logical
 
 **During release:**
+
 - ✅ Monitor the release process output
 - ✅ Watch for errors or warnings
 - ✅ Don't interrupt the process once started
 - ✅ Verify each step completes successfully
 
 **After release:**
+
 - ✅ Verify packages on npm registry
 - ✅ Check GitHub release page
 - ✅ Update documentation if needed
