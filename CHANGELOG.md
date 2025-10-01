@@ -1,3 +1,13 @@
+## 2.26.2 (2025-10-01)
+
+### 🩹 Fixes
+
+- **core:** prevent hydration mismatch in AppLayout navigation components ([12bd2c1c](https://github.com/sixui/sixui/commit/12bd2c1c))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.26.1 (2025-10-01)
 
 ### 🩹 Fixes
