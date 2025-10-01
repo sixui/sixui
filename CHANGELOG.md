@@ -1,3 +1,13 @@
+## 2.26.1 (2025-10-01)
+
+### 🩹 Fixes
+
+- **core:** prevent hydration mismatch in SimpleGrid component ([03981951](https://github.com/sixui/sixui/commit/03981951))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.26.0 (2025-10-01)
 
 ### 🚀 Features
