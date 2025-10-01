@@ -3,6 +3,7 @@ import type { IAppLayoutNavigationDrawerFactory } from './AppLayoutNavigationDra
 import { useAppLayoutContext } from '~/components/AppLayout/AppLayout.context';
 import { NavigationDrawer } from '~/components/NavigationDrawer';
 import { useComponentTheme, useProps } from '~/components/Theme';
+import { useAfterHydration } from '~/hooks/useAfterHydration';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { useAppLayoutComponent } from '../hooks/useAppLayoutComponent';
@@ -39,9 +40,13 @@ export const AppLayoutNavigationDrawer =
         theme: appLayoutNavigationDrawerTheme,
       });
 
+    const isAfterHydration = useAfterHydration();
     const hasAppLayoutNavigationDrawer =
       appLayoutContext?.components.includes('navigationDrawer') ?? true;
-    if (!hasAppLayoutNavigationDrawer) {
+
+    // Only conditionally return null after hydration to prevent tree structure
+    // mismatch.
+    if (isAfterHydration && !hasAppLayoutNavigationDrawer) {
       return null;
     }
 

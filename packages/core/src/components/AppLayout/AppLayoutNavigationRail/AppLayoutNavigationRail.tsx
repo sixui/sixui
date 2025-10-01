@@ -5,6 +5,7 @@ import { Burger } from '~/components/Burger';
 import { NavigationRail } from '~/components/NavigationRail';
 import { NavigationRailDestination } from '~/components/NavigationRail/NavigationRailDestination';
 import { useComponentTheme, useProps } from '~/components/Theme';
+import { useAfterHydration } from '~/hooks/useAfterHydration';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { useAppLayoutComponent } from '../hooks/useAppLayoutComponent';
 import { COMPONENT_NAME } from './AppLayoutNavigationRail.constants';
@@ -45,9 +46,13 @@ export const AppLayoutNavigationRail =
         theme: appLayoutNavigationRailTheme,
       });
 
+    const isAfterHydration = useAfterHydration();
     const hasAppLayoutNavigationRail =
       appLayoutContext?.components.includes('navigationRail') ?? true;
-    if (!hasAppLayoutNavigationRail) {
+
+    // Only conditionally return null after hydration to prevent tree structure
+    // mismatch.
+    if (isAfterHydration && !hasAppLayoutNavigationRail) {
       return null;
     }
 

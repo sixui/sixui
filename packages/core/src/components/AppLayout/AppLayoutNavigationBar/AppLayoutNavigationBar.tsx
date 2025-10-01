@@ -4,6 +4,7 @@ import { useAppLayoutContext } from '~/components/AppLayout/AppLayout.context';
 import { NavigationBar } from '~/components/NavigationBar';
 import { NavigationBarDestination } from '~/components/NavigationBar/NavigationBarDestination';
 import { useComponentTheme, useProps } from '~/components/Theme';
+import { useAfterHydration } from '~/hooks/useAfterHydration';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { useAppLayoutComponent } from '../hooks/useAppLayoutComponent';
@@ -37,9 +38,13 @@ export const AppLayoutNavigationBar =
         theme: appLayoutNavigationBarTheme,
       });
 
+    const isAfterHydration = useAfterHydration();
     const hasAppLayoutNavigationBar =
       appLayoutContext?.components.includes('navigationBar') ?? true;
-    if (!hasAppLayoutNavigationBar) {
+
+    // Only conditionally return null after hydration to prevent tree structure
+    // mismatch.
+    if (isAfterHydration && !hasAppLayoutNavigationBar) {
       return null;
     }
 

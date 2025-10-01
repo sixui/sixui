@@ -3,6 +3,7 @@ import type { IAppLayoutSideSheetFactory } from './AppLayoutSideSheet.types';
 import { useAppLayoutContext } from '~/components/AppLayout/AppLayout.context';
 import { SideSheet } from '~/components/SideSheet';
 import { useComponentTheme, useProps } from '~/components/Theme';
+import { useAfterHydration } from '~/hooks/useAfterHydration';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { mergeClassNames } from '~/utils/css/mergeClassNames';
 import { useAppLayoutComponent } from '../hooks/useAppLayoutComponent';
@@ -38,9 +39,13 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
       theme: appLayoutSideSheetTheme,
     });
 
+    const isAfterHydration = useAfterHydration();
     const hasAppLayoutAside =
       appLayoutContext?.components.includes('sideSheet') ?? true;
-    if (!hasAppLayoutAside) {
+
+    // Only conditionally return null after hydration to prevent tree structure
+    // mismatch.
+    if (isAfterHydration && !hasAppLayoutAside) {
       return null;
     }
 
