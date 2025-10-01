@@ -1,4 +1,5 @@
 export * from './useRippleEffect';
+export * from './useAfterHydration';
 export * from './useCanonicalLayout';
 export * from './useCheckbox';
 export * from './useControlledValue';
@@ -7,6 +8,7 @@ export * from './useElementSize';
 export * from './useId';
 export * from './useImageLoaded';
 export * from './useInteractions';
+export * from './useIsMounted';
 export * from './useIsomorphicLayoutEffect';
 export * from './useMergeRefs';
 export * from './useMultiSelect';
