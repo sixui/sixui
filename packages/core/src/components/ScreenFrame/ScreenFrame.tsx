@@ -11,6 +11,10 @@ import { componentFactory } from '~/utils/component/componentFactory';
 import { COMPONENT_NAME } from './ScreenFrame.constants';
 import { screenFrameTheme } from './ScreenFrame.css';
 
+const DEFAULT_ASPECT_RATIO = 0.65;
+const DEFAULT_WIDTH = 1300;
+const MIN_WIDTH = 375;
+
 export const ScreenFrame = componentFactory<IScreenFrameFactory>(
   (props, forwardedRef) => {
     const {
@@ -20,10 +24,10 @@ export const ScreenFrame = componentFactory<IScreenFrameFactory>(
       style,
       variant,
       children,
-      minWidth = 375,
-      minHeight = 375 * 0.65,
-      defaultWidth = 1300,
-      defaultHeight = 1300 * 0.65,
+      minWidth = MIN_WIDTH,
+      minHeight = MIN_WIDTH * DEFAULT_ASPECT_RATIO,
+      defaultWidth = DEFAULT_WIDTH,
+      defaultHeight = DEFAULT_WIDTH * DEFAULT_ASPECT_RATIO,
       bounds = 'window',
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
