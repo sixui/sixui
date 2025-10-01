@@ -1,3 +1,17 @@
+## 2.26.0 (2025-10-01)
+
+### 🚀 Features
+
+- **core:** add useAfterHydration and useIsMounted hooks ([4fb2cd24](https://github.com/sixui/sixui/commit/4fb2cd24))
+
+### 🩹 Fixes
+
+- **core:** prevent hydration mismatch in AppLayout navigation mode ([b9f2eee6](https://github.com/sixui/sixui/commit/b9f2eee6))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.25.1 (2025-07-10)
 
 ### 🩹 Fixes
