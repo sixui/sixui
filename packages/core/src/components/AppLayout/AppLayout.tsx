@@ -52,10 +52,11 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
 
     const window = windowProp ?? globalThis.window;
 
-    // Initialize componentsSet with all possible components to ensure consistent
-    // components array during SSR and client hydration. Components will register
-    // themselves via useEffect, but we start with a full set to prevent hydration
-    // mismatches when user code conditionally renders based on components.includes().
+    // Initialize componentsSet with all possible components to ensure
+    // consistent components array during SSR and client hydration. Components
+    // will register themselves via useEffect, but we start with a full set to
+    // prevent hydration mismatches when user code conditionally renders based
+    // on components.includes().
     const componentsSet = useSet<IAppLayoutComponentName>([
       'topBar',
       'navigationBar',
