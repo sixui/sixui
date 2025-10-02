@@ -1,3 +1,13 @@
+## 2.26.5 (2025-10-02)
+
+### 🩹 Fixes
+
+- **core:** hide AppLayout components until after hydration ([057d7880](https://github.com/sixui/sixui/commit/057d7880))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.26.4 (2025-10-02)
 
 ### 🩹 Fixes
