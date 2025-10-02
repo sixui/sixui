@@ -15,8 +15,8 @@
     "clean": {
       "cache": false
     },
-    "check:all": {
-      "dependsOn": ["^check:all"],
+    "check": {
+      "dependsOn": ["^check"],
       "cache": true
     },
     "pre-commit": {
@@ -32,10 +32,7 @@
   "release": {
     "version": {
       "conventionalCommits": true,
-      "preVersionCommand": "npx nx run-many -t build",
-      "generatorOptions": {
-        "preserveLocalDependencyProtocols": true
-      }
+      "preVersionCommand": "npx nx run-many -t build"
     },
     "changelog": {
       "workspaceChangelog": {
