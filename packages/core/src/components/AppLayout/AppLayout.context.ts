@@ -27,10 +27,10 @@ export type IAppLayoutContextValue = Pick<
   'window' | 'preferredNavigationMode'
 > & {
   navigationDrawer?: IAppLayoutProps['navigationDrawer'] & {
-    state?: IAppLayoutSideSheetState;
+    state: IAppLayoutSideSheetState;
   };
   sideSheet?: IAppLayoutProps['sideSheet'] & {
-    state?: IAppLayoutSideSheetState;
+    state: IAppLayoutSideSheetState;
   };
   bottomSheet?: {
     state?: IAppLayoutDisclosureState;

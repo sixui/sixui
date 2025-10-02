@@ -104,29 +104,29 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
       root: rootElement,
       navigationDrawer: {
         ...navigationDrawer,
-        state: hasNavigationDrawer
-          ? {
-              opened: navigationDrawerOpened,
-              isDrawer: navigationDrawerState.modal,
-              type: navigationDrawerType,
-              toggle: navigationDrawerCallbacks.toggle,
-              open: navigationDrawerCallbacks.open,
-              close: navigationDrawerCallbacks.close,
-            }
-          : undefined,
+        state: {
+          // Always provide state to prevent uncontrolled → controlled warnings
+          // and ensure consistent props during hydration
+          opened: hasNavigationDrawer ? navigationDrawerOpened : false,
+          isDrawer: hasNavigationDrawer ? navigationDrawerState.modal : false,
+          type: navigationDrawerType,
+          toggle: navigationDrawerCallbacks.toggle,
+          open: navigationDrawerCallbacks.open,
+          close: navigationDrawerCallbacks.close,
+        },
       },
       sideSheet: {
         ...sideSheet,
-        state: hasSideSheet
-          ? {
-              opened: sideSheetOpened,
-              isDrawer: sideSheetState.modal,
-              type: sideSheetType,
-              toggle: sideSheetCallbacks.toggle,
-              open: sideSheetCallbacks.open,
-              close: sideSheetCallbacks.close,
-            }
-          : undefined,
+        state: {
+          // Always provide state to prevent uncontrolled → controlled warnings
+          // and ensure consistent props during hydration
+          opened: hasSideSheet ? sideSheetOpened : false,
+          isDrawer: hasSideSheet ? sideSheetState.modal : false,
+          type: sideSheetType,
+          toggle: sideSheetCallbacks.toggle,
+          open: sideSheetCallbacks.open,
+          close: sideSheetCallbacks.close,
+        },
       },
       navigationMode,
       preferredNavigationMode,

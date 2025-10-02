@@ -51,15 +51,15 @@ export const AppLayoutNavigationDrawer =
     }
 
     const opened =
-      openedProp ?? appLayoutContext?.navigationDrawer?.state?.opened;
+      openedProp ?? appLayoutContext?.navigationDrawer?.state.opened;
     const drawer =
-      drawerProp ?? appLayoutContext?.navigationDrawer?.state?.isDrawer;
+      drawerProp ?? appLayoutContext?.navigationDrawer?.state.isDrawer;
     const modal = modalProp ?? drawer;
     const root = portalProps?.root ?? appLayoutContext?.root;
 
     const handleClose = (): void => {
       onClose?.();
-      appLayoutContext?.navigationDrawer?.state?.close();
+      appLayoutContext?.navigationDrawer?.state.close();
     };
 
     return (

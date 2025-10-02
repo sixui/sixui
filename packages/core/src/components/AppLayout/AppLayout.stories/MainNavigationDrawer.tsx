@@ -33,7 +33,7 @@ export const MainNavigationDrawer: React.FC<IMainNavigationDrawerProps> = (
 
   const changeRoute = (destination?: ICanonicalLayoutType): void => {
     onClick?.(destination);
-    if (appLayoutContext?.navigationDrawer?.state?.isDrawer) {
+    if (appLayoutContext?.navigationDrawer?.state.isDrawer) {
       appLayoutContext.navigationDrawer.state.close();
     }
   };

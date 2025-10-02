@@ -67,7 +67,7 @@ export const AppLayoutNavigationRail =
         menuIcon={
           showMenuIcon && (
             <Burger
-              onClick={appLayoutContext?.navigationDrawer?.state?.toggle}
+              onClick={appLayoutContext?.navigationDrawer?.state.toggle}
             />
           )
         }

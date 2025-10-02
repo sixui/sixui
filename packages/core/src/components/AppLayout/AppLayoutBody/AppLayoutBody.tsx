@@ -27,10 +27,10 @@ export const AppLayoutBody = componentFactory<IAppLayoutBodyFactory>(
     const hasSideNavigation =
       (appLayoutContext?.navigationMode === 'standard' &&
         appLayoutContext.components.includes('navigationDrawer') &&
-        appLayoutContext.navigationDrawer?.state?.opened) ||
+        appLayoutContext.navigationDrawer?.state.opened) ||
       (appLayoutContext?.navigationMode === 'rail' &&
         appLayoutContext.components.includes('navigationRail'));
-    const hasSideSheet = appLayoutContext?.sideSheet?.state?.opened;
+    const hasSideSheet = appLayoutContext?.sideSheet?.state.opened;
 
     const { getStyles } = useComponentTheme<IAppLayoutBodyThemeFactory>({
       componentName: COMPONENT_NAME,

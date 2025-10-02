@@ -49,14 +49,14 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
       return null;
     }
 
-    const opened = openedProp ?? appLayoutContext?.sideSheet?.state?.opened;
-    const drawer = drawerProp ?? appLayoutContext?.sideSheet?.state?.isDrawer;
+    const opened = openedProp ?? appLayoutContext?.sideSheet?.state.opened;
+    const drawer = drawerProp ?? appLayoutContext?.sideSheet?.state.isDrawer;
     const modal = modalProp ?? drawer;
     const root = portalProps?.root ?? appLayoutContext?.root;
 
     const handleClose = (): void => {
       onClose?.();
-      appLayoutContext?.sideSheet?.state?.close();
+      appLayoutContext?.sideSheet?.state.close();
     };
 
     return (
