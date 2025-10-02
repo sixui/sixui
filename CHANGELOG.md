@@ -1,3 +1,13 @@
+## 2.26.3 (2025-10-02)
+
+### 🩹 Fixes
+
+- **core:** stabilize AppLayout context values to prevent hydration mismatches ([560bb471](https://github.com/sixui/sixui/commit/560bb471))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.26.2 (2025-10-01)
 
 ### 🩹 Fixes
