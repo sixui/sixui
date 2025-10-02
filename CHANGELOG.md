@@ -1,3 +1,13 @@
+## 2.26.8 (2025-10-02)
+
+### 🩹 Fixes
+
+- **core:** render children in SimpleGrid component ([33ba8104](https://github.com/sixui/sixui/commit/33ba8104))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.26.7 (2025-10-02)
 
 ### 🚀 Features
