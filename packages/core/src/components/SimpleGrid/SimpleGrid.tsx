@@ -20,7 +20,17 @@ export const SimpleGrid = componentFactory<ISimpleGridFactory>(
       props: rawProps,
       defaultProps,
     });
-    const { classNames, className, styles, style, variant, ...other } = props;
+    const {
+      classNames,
+      className,
+      styles,
+      style,
+      variant,
+      cols,
+      spacing,
+      verticalSpacing,
+      ...other
+    } = props;
 
     const { getStyles } = useComponentTheme<ISimpleGridThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -36,7 +46,12 @@ export const SimpleGrid = componentFactory<ISimpleGridFactory>(
 
     return (
       <>
-        <SimpleGridInlineStyles selector={`.${randomClassName}`} />
+        <SimpleGridInlineStyles
+          selector={`.${randomClassName}`}
+          cols={cols}
+          spacing={spacing}
+          verticalSpacing={verticalSpacing}
+        />
         <Box
           {...getStyles('root', {
             className: randomClassName,
