@@ -38,6 +38,7 @@ export interface IAppLayoutOwnProps {
   };
   preferredNavigationMode?: IAppLayoutNavigationMode;
   backgroundColor?: string;
+  defaultComponentSet?: Array<IAppLayoutComponentName>;
 }
 
 export interface IAppLayoutProps

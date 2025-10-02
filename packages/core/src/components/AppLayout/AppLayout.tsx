@@ -9,6 +9,7 @@ import type { IAppLayoutSetterContextValue } from './AppLayoutSetter.context';
 import { Box } from '~/components/Box';
 import { InlineStyles } from '~/components/InlineStyles';
 import { useComponentTheme, useProps } from '~/components/Theme';
+import { useAfterHydration } from '~/hooks';
 import { useDisclosure } from '~/hooks/useDisclosure';
 import { useSet } from '~/hooks/useSet';
 import { useSideSheet } from '~/hooks/useSideSheet';
@@ -46,21 +47,22 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
       sideSheet,
       preferredNavigationMode = 'standard',
       backgroundColor = themeTokens.colorScheme.surface,
+      defaultComponentSet = [],
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
     const window = windowProp ?? globalThis.window;
 
-    const componentsSet = useSet<IAppLayoutComponentName>([]);
+    const componentsSet = useSet<IAppLayoutComponentName>(defaultComponentSet);
     const [rootElement, setRootElement] = useState<HTMLDivElement | null>(null);
     const windowSizeClass = useWindowSizeClass({
       window,
     });
 
-    const navigationMode = resolveNavigationMode(
-      windowSizeClass,
-      preferredNavigationMode,
-    );
+    const isAfterHydration = useAfterHydration();
+    const navigationMode = isAfterHydration
+      ? resolveNavigationMode(windowSizeClass, preferredNavigationMode)
+      : preferredNavigationMode;
     const [navigationDrawerOpened, navigationDrawerCallbacks] = useDisclosure(
       !navigationDrawer?.defaultClosed,
     );

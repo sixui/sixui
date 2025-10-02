@@ -36,7 +36,7 @@ export const SimpleGrid = componentFactory<ISimpleGridFactory>(
 
     return (
       <>
-        <SimpleGridInlineStyles selector={`.${randomClassName}`} {...props} />
+        <SimpleGridInlineStyles selector={`.${randomClassName}`} />
         <Box
           {...getStyles('root', {
             className: randomClassName,
