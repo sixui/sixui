@@ -2,7 +2,7 @@ import { Flex, ThemeProvider } from '@sixui/core';
 
 import { Demo } from './Demo';
 
-const Home: React.FC = () => (
+const HomeRoute: React.FC = () => (
   <Flex direction="row" w="100%" mih="100vh">
     <Demo />
     <ThemeProvider colorSchemeVariant="dark">
@@ -11,4 +11,4 @@ const Home: React.FC = () => (
   </Flex>
 );
 
-export default Home;
+export default HomeRoute;
