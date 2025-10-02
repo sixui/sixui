@@ -21,6 +21,14 @@ The repository contains multiple packages in `packages/`:
 - **`@sixui/prettier-config`** - Shared Prettier configuration
 - **`@sixui/typescript-config`** - Shared TypeScript base configuration
 
+### Nx Troubleshooting
+
+If you encounter Nx errors like `(0 , native_1.isAiAgent) is not a function` or `ELIFECYCLE Command failed with exit code 1`, disable the Nx TUI before running commands:
+
+```bash
+export NX_TUI=false
+```
+
 ## Development Commands
 
 ### Running Development Server
