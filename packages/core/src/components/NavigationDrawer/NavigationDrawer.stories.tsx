@@ -85,14 +85,14 @@ const NavigationDrawerScreenFrame: React.FC<INavigationDrawerProps> = (
           label="Drawer"
           checked={isDrawer}
           onChange={(value) => {
-            setDrawer(!!value);
+            setDrawer(value);
           }}
         />
         <Checkbox
           label="Modal"
           checked={isModal}
           onChange={(value) => {
-            setModal(!!value);
+            setModal(value);
           }}
           disabled={!isDrawer}
         />
@@ -100,7 +100,7 @@ const NavigationDrawerScreenFrame: React.FC<INavigationDrawerProps> = (
           label="Detached"
           checked={detached}
           onChange={(value) => {
-            setDetached(!!value);
+            setDetached(value);
           }}
           disabled={!isDrawer}
         />

@@ -1,5 +1,5 @@
 // https://stackoverflow.com/a/175787/7628220
-export const isNumeric = (value: unknown): value is number => {
+export const isNumeric = (value: unknown): boolean => {
   if (typeof value === 'number') {
     return true;
   }

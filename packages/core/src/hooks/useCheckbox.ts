@@ -76,11 +76,10 @@ export const useCheckbox = (props: IUseCheckboxProps): IUseCheckboxResult => {
     labeledContext?.hasError;
   const id = props.id ?? labeledContext?.id;
   const checked =
-    !!(
-      (props.value !== undefined &&
-        checkboxGroupControlContext?.value?.includes(props.value)) ||
-      checkedValue
-    ) && !indeterminate;
+    ((props.value !== undefined &&
+      checkboxGroupControlContext?.value?.includes(props.value)) ||
+      checkedValue) &&
+    !indeterminate;
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = useCallback(
     (event) => {

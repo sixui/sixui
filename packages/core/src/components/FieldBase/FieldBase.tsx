@@ -240,7 +240,7 @@ export const FieldBase = polymorphicComponentFactory<IFieldBaseFactory>(
     );
 
     const getCounterText = useCallback(() => {
-      const maxLengthAsNumber = Number(maxLength) || -1;
+      const maxLengthAsNumber = maxLength || -1;
       // Counter does not show if count is negative or 0, or max is negative or
       // 0.
       if (count <= 0 || maxLengthAsNumber <= 0) {

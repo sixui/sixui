@@ -14,9 +14,9 @@ interface IUseFocusManagementResult {
   handleFocus: (event?: React.FocusEvent) => void;
   handleBlur: (event?: React.FocusEvent) => void;
   focusAfterOperation: () => void;
-  getFocusProps: <T extends HTMLElement = HTMLElement>(
-    userProps?: React.HTMLAttributes<T>,
-  ) => React.HTMLAttributes<T>;
+  getFocusProps: <T extends Element = Element>(
+    userProps?: React.HTMLProps<T>,
+  ) => React.HTMLProps<T>;
 }
 
 export function useFocusManagement(
@@ -62,9 +62,9 @@ export function useFocusManagement(
   }, [autoFocusRef, triggerRef]);
 
   const getFocusProps = useCallback(
-    <T extends HTMLElement = HTMLElement>(
-      userProps?: React.HTMLAttributes<T>,
-    ): React.HTMLAttributes<T> => ({
+    <T extends Element = Element>(
+      userProps?: React.HTMLProps<T>,
+    ): React.HTMLProps<T> => ({
       ...userProps,
       onFocus: (event: React.FocusEvent<T>) => {
         handleFocus(event);

@@ -58,10 +58,7 @@ export const TabsTab = polymorphicComponentFactory<ITabsTabFactory>(
     const hasAnchoredBadge =
       !!badge && !disabled && (variant === 'primary' || !hasLabel);
     const hasInlineBadge =
-      !!badge &&
-      !disabled &&
-      !!hasLabel &&
-      (variant === 'secondary' || !hasIcon);
+      !!badge && !disabled && hasLabel && (variant === 'secondary' || !hasIcon);
 
     const { getStyles } = useComponentTheme<ITabsTabThemeFactory>({
       componentName: COMPONENT_NAME,

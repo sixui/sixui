@@ -61,21 +61,21 @@ const BottomSheetScreenFrame: React.FC<IBottomSheetProps> = (props) => {
           label="Modal"
           checked={isModal}
           onChange={(value) => {
-            setModal(!!value);
+            setModal(value);
           }}
         />
         <Checkbox
           label="Detached"
           checked={detached}
           onChange={(value) => {
-            setDetached(!!value);
+            setDetached(value);
           }}
         />
         <Checkbox
           label="Full height"
           checked={isFullHeight}
           onChange={(value) => {
-            setFullHeight(!!value);
+            setFullHeight(value);
           }}
         />
       </Flex>

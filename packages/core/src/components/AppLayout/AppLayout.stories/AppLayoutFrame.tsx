@@ -40,35 +40,35 @@ export const AppLayoutFrame: React.FC<IAppLayoutFrameProps> = (props) => {
           label="Top bar"
           checked={hasTopBar}
           onChange={(value) => {
-            setHasTopBar(!!value);
+            setHasTopBar(value);
           }}
         />
         <Checkbox
           label="Navigation rail"
           checked={hasNavigationRail}
           onChange={(value) => {
-            setHasNavigationRail(!!value);
+            setHasNavigationRail(value);
           }}
         />
         <Checkbox
           label="Navigation drawer"
           checked={hasNavigationDrawer}
           onChange={(value) => {
-            setHasNavigationDrawer(!!value);
+            setHasNavigationDrawer(value);
           }}
         />
         <Checkbox
           label="Footer"
           checked={hasFooter}
           onChange={(value) => {
-            setHasFooter(!!value);
+            setHasFooter(value);
           }}
         />
         <Checkbox
           label="Dividers"
           checked={hasDividers}
           onChange={(value) => {
-            setHasDividers(!!value);
+            setHasDividers(value);
           }}
         />
       </Flex>

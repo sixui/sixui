@@ -24,8 +24,8 @@ export const useSideSheet = (
   const isModal = type === 'drawer';
   const [modalOpened, setModalOpened] = useState(false);
   const savedStandardOpenedRef = useRef(opened);
-  const previousOpened = usePrevious(!!opened);
-  const previousIsModal = usePrevious(!!isModal);
+  const previousOpened = usePrevious(opened);
+  const previousIsModal = usePrevious(isModal);
 
   useEffect(() => {
     // This effect is triggered when the state of the side sheet changes
@@ -38,7 +38,7 @@ export const useSideSheet = (
 
     // If the window size is compact, the side sheet should be displayed as
     // a modal side sheet.
-    setModalOpened(!!isModal && !!opened);
+    setModalOpened(isModal && !!opened);
   }, [isModal, opened, previousOpened]);
 
   useEffect(() => {

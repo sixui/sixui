@@ -69,14 +69,14 @@ const DrawerSideSheetScreenFrame: React.FC<IDrawerSideSheetProps> = (props) => {
           label="Modal"
           checked={isModal}
           onChange={(value) => {
-            setModal(!!value);
+            setModal(value);
           }}
         />
         <Checkbox
           label="Detached"
           checked={detached}
           onChange={(value) => {
-            setDetached(!!value);
+            setDetached(value);
           }}
         />
       </Flex>
