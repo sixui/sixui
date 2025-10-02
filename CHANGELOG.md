@@ -1,3 +1,19 @@
+## 2.26.1 (2025-10-02)
+
+### 🚀 Features
+
+- **core:** add useAfterHydration and useIsMounted hooks ([4fb2cd24](https://github.com/sixui/sixui/commit/4fb2cd24))
+- **core:** improve AppLayout hydration and add defaultComponentSet prop ([8af75ba2](https://github.com/sixui/sixui/commit/8af75ba2))
+- **example-nextjs:** add AppLayout demo page and rename home component ([660567f0](https://github.com/sixui/sixui/commit/660567f0))
+
+### 🩹 Fixes
+
+- **core:** pass grid props to SimpleGridInlineStyles ([fa82d6cc](https://github.com/sixui/sixui/commit/fa82d6cc))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.26.0 (2025-10-02)
 
 ### 🚀 Features
