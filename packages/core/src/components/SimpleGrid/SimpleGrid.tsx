@@ -23,6 +23,7 @@ export const SimpleGrid = componentFactory<ISimpleGridFactory>(
     const {
       classNames,
       className,
+      children,
       styles,
       style,
       variant,
@@ -45,21 +46,21 @@ export const SimpleGrid = componentFactory<ISimpleGridFactory>(
     const randomClassName = useClassName();
 
     return (
-      <>
+      <Box
+        {...getStyles('root', {
+          className: randomClassName,
+        })}
+        ref={forwardedRef}
+        {...other}
+      >
         <SimpleGridInlineStyles
           selector={`.${randomClassName}`}
           cols={cols}
           spacing={spacing}
           verticalSpacing={verticalSpacing}
         />
-        <Box
-          {...getStyles('root', {
-            className: randomClassName,
-          })}
-          ref={forwardedRef}
-          {...other}
-        />
-      </>
+        {children}
+      </Box>
     );
   },
 );
