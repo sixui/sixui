@@ -1,3 +1,13 @@
+## 2.26.4 (2025-10-02)
+
+### 🩹 Fixes
+
+- **core:** ensure AppLayout components array is consistent during SSR ([1d4a866f](https://github.com/sixui/sixui/commit/1d4a866f))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.26.3 (2025-10-02)
 
 ### 🩹 Fixes
