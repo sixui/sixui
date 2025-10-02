@@ -9,21 +9,21 @@
     "start": "next start",
     "lint:check": "eslint src --fix",
     "ts:check": "tsc --pretty --noEmit",
-    "check:all": "run-s lint:check ts:check",
+    "check": "run-s lint:check ts:check",
     "clean": "rm -rf dist"
   },
   "dependencies": {
     "@sixui/core": "workspace:*",
-    "next": "15.3.4",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "next": "15.5.4",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
     "@sixui/eslint-config": "workspace:*",
     "@types/node": "^24",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9.29.0",
+    "eslint": "^9.36.0",
     "typescript": "^5"
   }
 }

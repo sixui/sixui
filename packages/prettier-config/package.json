@@ -25,12 +25,12 @@
   "scripts": {
     "lint:check": "eslint . --fix",
     "ts:check": "tsc --pretty --noEmit",
-    "check:all": "run-s lint:check ts:check",
+    "check": "run-s lint:check ts:check",
     "clean": "rm -rf dist",
     "build": "tsc --project tsconfig.build.json && tsc-alias --project tsconfig.build.json"
   },
   "dependencies": {
-    "prettier": "^3.6.0"
+    "prettier": "^3.6.2"
   },
   "peerDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.4.1"
@@ -38,9 +38,10 @@
   "devDependencies": {
     "@sixui/eslint-config": "workspace:*",
     "@sixui/typescript-config": "workspace:*",
-    "@types/node": "^24.0.3",
-    "eslint": "^9.29.0",
-    "globals": "^16.2.0",
-    "tsc-alias": "^1.8.16"
+    "@types/node": "^24.6.2",
+    "eslint": "^9.36.0",
+    "globals": "^16.4.0",
+    "tsc-alias": "^1.8.16",
+    "typescript": "^5"
   }
 }
