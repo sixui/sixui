@@ -52,7 +52,17 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
 
     const window = windowProp ?? globalThis.window;
 
-    const componentsSet = useSet<IAppLayoutComponentName>([]);
+    // Initialize componentsSet with all possible components to ensure consistent
+    // components array during SSR and client hydration. Components will register
+    // themselves via useEffect, but we start with a full set to prevent hydration
+    // mismatches when user code conditionally renders based on components.includes().
+    const componentsSet = useSet<IAppLayoutComponentName>([
+      'topBar',
+      'navigationBar',
+      'navigationDrawer',
+      'navigationRail',
+      'sideSheet',
+    ]);
     const [rootElement, setRootElement] = useState<HTMLDivElement | null>(null);
     const isAfterHydration = useAfterHydration();
     const windowSizeClass = useWindowSizeClass({
@@ -73,7 +83,6 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
       onOpen: navigationDrawerCallbacks.open,
       onClose: navigationDrawerCallbacks.close,
     });
-    const hasNavigationDrawer = componentsSet.has('navigationDrawer');
 
     const [sideSheetOpened, sideSheetCallbacks] = useDisclosure(
       !sideSheet?.defaultClosed,
@@ -87,7 +96,6 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
       onOpen: sideSheetCallbacks.open,
       onClose: sideSheetCallbacks.close,
     });
-    const hasSideSheet = componentsSet.has('sideSheet');
 
     const { getStyles } = useComponentTheme<IAppLayoutThemeFactory>({
       componentName: COMPONENT_NAME,
@@ -107,8 +115,8 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
         state: {
           // Always provide state to prevent uncontrolled → controlled warnings
           // and ensure consistent props during hydration
-          opened: hasNavigationDrawer ? navigationDrawerOpened : false,
-          isDrawer: hasNavigationDrawer ? navigationDrawerState.modal : false,
+          opened: navigationDrawerOpened,
+          isDrawer: navigationDrawerState.modal,
           type: navigationDrawerType,
           toggle: navigationDrawerCallbacks.toggle,
           open: navigationDrawerCallbacks.open,
@@ -120,8 +128,8 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
         state: {
           // Always provide state to prevent uncontrolled → controlled warnings
           // and ensure consistent props during hydration
-          opened: hasSideSheet ? sideSheetOpened : false,
-          isDrawer: hasSideSheet ? sideSheetState.modal : false,
+          opened: sideSheetOpened,
+          isDrawer: sideSheetState.modal,
           type: sideSheetType,
           toggle: sideSheetCallbacks.toggle,
           open: sideSheetCallbacks.open,
