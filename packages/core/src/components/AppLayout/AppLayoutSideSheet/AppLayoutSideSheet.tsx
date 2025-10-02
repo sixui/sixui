@@ -40,14 +40,6 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
     });
 
     const isAfterHydration = useAfterHydration();
-    const hasAppLayoutAside =
-      appLayoutContext?.components.includes('sideSheet') ?? true;
-
-    // Only conditionally return null after hydration to prevent tree structure
-    // mismatch.
-    if (isAfterHydration && !hasAppLayoutAside) {
-      return null;
-    }
 
     const opened = openedProp ?? appLayoutContext?.sideSheet?.state.opened;
     const drawer = drawerProp ?? appLayoutContext?.sideSheet?.state.isDrawer;
@@ -59,6 +51,8 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
       appLayoutContext?.sideSheet?.state.close();
     };
 
+    // Always render to prevent tree structure mismatch during hydration.
+    // Hide component via visibility until after hydration completes.
     return (
       <SideSheet
         {...getStyles('root')}
@@ -71,6 +65,10 @@ export const AppLayoutSideSheet = componentFactory<IAppLayoutSideSheetFactory>(
         onClose={handleClose}
         portalProps={{ root }}
         ref={forwardedRef}
+        style={{
+          visibility: isAfterHydration ? 'visible' : 'hidden',
+          ...style,
+        }}
         {...other}
       />
     );

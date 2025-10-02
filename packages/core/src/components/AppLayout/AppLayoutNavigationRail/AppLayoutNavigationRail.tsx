@@ -47,18 +47,12 @@ export const AppLayoutNavigationRail =
       });
 
     const isAfterHydration = useAfterHydration();
-    const hasAppLayoutNavigationRail =
-      appLayoutContext?.components.includes('navigationRail') ?? true;
-
-    // Only conditionally return null after hydration to prevent tree structure
-    // mismatch.
-    if (isAfterHydration && !hasAppLayoutNavigationRail) {
-      return null;
-    }
 
     const opened = openedProp ?? appLayoutContext?.navigationMode === 'rail';
     const showMenuIcon = (wide || !hasTopBar) && hasNavigationDrawer;
 
+    // Always render to prevent tree structure mismatch during hydration.
+    // Hide component via visibility until after hydration completes.
     return (
       <NavigationRail
         {...getStyles('root')}
@@ -72,6 +66,10 @@ export const AppLayoutNavigationRail =
           )
         }
         wide={wide}
+        style={{
+          visibility: isAfterHydration ? 'visible' : 'hidden',
+          ...style,
+        }}
         {...other}
       />
     );

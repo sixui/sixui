@@ -39,18 +39,12 @@ export const AppLayoutNavigationBar =
       });
 
     const isAfterHydration = useAfterHydration();
-    const hasAppLayoutNavigationBar =
-      appLayoutContext?.components.includes('navigationBar') ?? true;
-
-    // Only conditionally return null after hydration to prevent tree structure
-    // mismatch.
-    if (isAfterHydration && !hasAppLayoutNavigationBar) {
-      return null;
-    }
 
     const opened = openedProp ?? appLayoutContext?.navigationMode === 'bar';
     const root = portalProps?.root ?? appLayoutContext?.root;
 
+    // Always render to prevent tree structure mismatch during hydration.
+    // Hide component via visibility until after hydration completes.
     return (
       <NavigationBar
         {...getStyles('root')}
@@ -60,6 +54,10 @@ export const AppLayoutNavigationBar =
         opened={opened}
         ref={forwardedRef}
         portalProps={{ root }}
+        style={{
+          visibility: isAfterHydration ? 'visible' : 'hidden',
+          ...style,
+        }}
         {...other}
       />
     );

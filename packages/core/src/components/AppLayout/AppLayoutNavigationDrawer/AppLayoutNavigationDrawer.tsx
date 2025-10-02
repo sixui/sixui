@@ -41,14 +41,6 @@ export const AppLayoutNavigationDrawer =
       });
 
     const isAfterHydration = useAfterHydration();
-    const hasAppLayoutNavigationDrawer =
-      appLayoutContext?.components.includes('navigationDrawer') ?? true;
-
-    // Only conditionally return null after hydration to prevent tree structure
-    // mismatch.
-    if (isAfterHydration && !hasAppLayoutNavigationDrawer) {
-      return null;
-    }
 
     const opened =
       openedProp ?? appLayoutContext?.navigationDrawer?.state.opened;
@@ -62,6 +54,8 @@ export const AppLayoutNavigationDrawer =
       appLayoutContext?.navigationDrawer?.state.close();
     };
 
+    // Always render to prevent tree structure mismatch during hydration.
+    // Hide component via visibility until after hydration completes.
     return (
       <NavigationDrawer
         {...getStyles('root')}
@@ -74,6 +68,10 @@ export const AppLayoutNavigationDrawer =
         onClose={handleClose}
         portalProps={{ root }}
         ref={forwardedRef}
+        style={{
+          visibility: isAfterHydration ? 'visible' : 'hidden',
+          ...style,
+        }}
         {...other}
       />
     );

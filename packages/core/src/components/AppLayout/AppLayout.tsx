@@ -52,18 +52,10 @@ export const AppLayout = componentFactory<IAppLayoutFactory>(
 
     const window = windowProp ?? globalThis.window;
 
-    // Initialize componentsSet with all possible components to ensure
-    // consistent components array during SSR and client hydration. Components
-    // will register themselves via useEffect, but we start with a full set to
-    // prevent hydration mismatches when user code conditionally renders based
-    // on components.includes().
-    const componentsSet = useSet<IAppLayoutComponentName>([
-      'topBar',
-      'navigationBar',
-      'navigationDrawer',
-      'navigationRail',
-      'sideSheet',
-    ]);
+    // Start with empty componentsSet - components will register via useEffect.
+    // Components handle visibility themselves using useAfterHydration() to prevent
+    // hydration mismatches (they render hidden initially, then show after hydration).
+    const componentsSet = useSet<IAppLayoutComponentName>([]);
     const [rootElement, setRootElement] = useState<HTMLDivElement | null>(null);
     const isAfterHydration = useAfterHydration();
     const windowSizeClass = useWindowSizeClass({
