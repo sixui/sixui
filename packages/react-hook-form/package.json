@@ -1,7 +1,7 @@
 {
   "name": "@sixui/react-hook-form",
   "description": "React Hook Form bindings for Sixui components",
-  "version": "2.26.6",
+  "version": "2.26.0",
   "homepage": "https://sixui.com",
   "license": "MIT",
   "repository": {
