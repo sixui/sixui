@@ -19,7 +19,7 @@ export const getVisibilityCssStyles = (
 
       const visibleFromCss = stringFromStyles({
         selector: `.sixui-visible-from-${rangeName}`,
-        mediaQueries: [
+        queries: [
           {
             query: `(max-width: ${breakpointWidth})`,
             styles: { display: 'none !important' },
@@ -29,7 +29,7 @@ export const getVisibilityCssStyles = (
 
       const hiddenFromCss = stringFromStyles({
         selector: `.sixui-hidden-from-${rangeName}`,
-        mediaQueries: [
+        queries: [
           {
             query: `(min-width: ${getBreakpointPlusEpsilon(breakpointWidth)})`,
             styles: { display: 'none !important' },

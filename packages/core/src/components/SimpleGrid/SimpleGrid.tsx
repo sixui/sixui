@@ -60,7 +60,7 @@ export const SimpleGrid = componentFactory<ISimpleGridFactory>(
           {children}
         </Box>
       ),
-      [getStyles, randomClassName, forwardedRef, other],
+      [children, getStyles, randomClassName, forwardedRef, other],
     );
 
     return (

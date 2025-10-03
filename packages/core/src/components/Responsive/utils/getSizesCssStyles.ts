@@ -34,7 +34,7 @@ export const getSizesCssStyles = (ranges: IWindowSizeClassRanges): string => {
 
     const css = stringFromStyles({
       selector: `.${responsiveTheme.classNames.root}`,
-      mediaQueries: [
+      queries: [
         {
           query: `(min-width: ${range.minWidth})${range.maxWidth !== undefined ? ` and (max-width: ${range.maxWidth})` : ''}`,
           styles: responsiveVars,
