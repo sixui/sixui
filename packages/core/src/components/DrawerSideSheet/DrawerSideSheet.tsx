@@ -69,6 +69,7 @@ export const DrawerSideSheet = componentFactory<IDrawerSideSheetFactory>(
           onClose={onClose}
           {...getStyles('sideSheetContent')}
           {...other}
+          divider={false}
         />
       </DrawerAside>
     );
