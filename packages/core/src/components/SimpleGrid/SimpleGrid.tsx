@@ -1,3 +1,5 @@
+import { useCallback } from 'react';
+
 import type { ISimpleGridThemeFactory } from './SimpleGrid.css';
 import type { ISimpleGridFactory, ISimpleGridProps } from './SimpleGrid.types';
 import { Box } from '~/components/Box';
@@ -30,6 +32,7 @@ export const SimpleGrid = componentFactory<ISimpleGridFactory>(
       cols,
       spacing,
       verticalSpacing,
+      type = 'media',
       ...other
     } = props;
 
@@ -45,22 +48,36 @@ export const SimpleGrid = componentFactory<ISimpleGridFactory>(
 
     const randomClassName = useClassName();
 
+    const renderRoot = useCallback(
+      () => (
+        <Box
+          {...getStyles('root', {
+            className: randomClassName,
+          })}
+          ref={forwardedRef}
+          {...other}
+        >
+          {children}
+        </Box>
+      ),
+      [getStyles, randomClassName, forwardedRef, other],
+    );
+
     return (
-      <Box
-        {...getStyles('root', {
-          className: randomClassName,
-        })}
-        ref={forwardedRef}
-        {...other}
-      >
+      <>
         <SimpleGridInlineStyles
           selector={`.${randomClassName}`}
           cols={cols}
           spacing={spacing}
           verticalSpacing={verticalSpacing}
+          queriesType={type}
         />
-        {children}
-      </Box>
+        {type === 'media' ? (
+          renderRoot()
+        ) : (
+          <div {...getStyles('container')}>{renderRoot()}</div>
+        )}
+      </>
     );
   },
 );

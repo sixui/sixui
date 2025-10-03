@@ -1,6 +1,7 @@
+import { useMemo } from 'react';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
-import type { IStringFromStylesMediaQuery } from '~/utils/css';
+import type { IStringFromStylesQuery } from '~/utils/css';
 import type { ISimpleGridOwnProps } from './SimpleGrid.types';
 import { InlineStyles } from '~/components/InlineStyles';
 import { useThemeContext } from '~/components/Theme/Theme.context';
@@ -11,12 +12,19 @@ import { simpleGridTheme } from './SimpleGrid.css';
 
 export interface ISimpleGridInlineStylesProps extends ISimpleGridOwnProps {
   selector: string;
+  queriesType?: 'media' | 'container';
 }
 
 export const SimpleGridInlineStyles: React.FC<ISimpleGridInlineStylesProps> = (
   props,
 ) => {
-  const { selector, cols, spacing, verticalSpacing } = props;
+  const {
+    selector,
+    cols,
+    spacing,
+    verticalSpacing,
+    queriesType = 'media',
+  } = props;
 
   const { theme } = useThemeContext();
 
@@ -33,17 +41,9 @@ export const SimpleGridInlineStyles: React.FC<ISimpleGridInlineStylesProps> = (
     ? space(verticalSpacingBaseValue)
     : spacingTokenValue;
 
-  return (
-    <InlineStyles
-      selector={selector}
-      styles={assignInlineVars({
-        [simpleGridTheme.tokens.cols]: getStylePropBaseValue(cols)?.toString(),
-        [simpleGridTheme.tokens.horizontalSpacing]: spacingTokenValue,
-        [simpleGridTheme.tokens.verticalSpacing]: verticalSpacingTokenValue,
-      })}
-      mediaQueries={keys(windowSizeClassRanges).reduce<
-        Array<IStringFromStylesMediaQuery>
-      >(
+  const queries = useMemo(
+    () =>
+      keys(windowSizeClassRanges).reduce<Array<IStringFromStylesQuery>>(
         (acc, rangeName) => [
           ...acc,
           {
@@ -66,7 +66,20 @@ export const SimpleGridInlineStyles: React.FC<ISimpleGridInlineStylesProps> = (
           },
         ],
         [],
-      )}
+      ),
+    [windowSizeClassRanges, cols, spacing, verticalSpacing],
+  );
+
+  return (
+    <InlineStyles
+      selector={selector}
+      styles={assignInlineVars({
+        [simpleGridTheme.tokens.cols]: getStylePropBaseValue(cols)?.toString(),
+        [simpleGridTheme.tokens.horizontalSpacing]: spacingTokenValue,
+        [simpleGridTheme.tokens.verticalSpacing]: verticalSpacingTokenValue,
+      })}
+      queries={queries}
+      queriesType={queriesType}
     />
   );
 };

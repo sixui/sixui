@@ -21,6 +21,9 @@ const classNames = createStyles({
     gridTemplateColumns: `repeat(${tokens.cols}, minmax(0, 1fr))`,
     gap: `max(1px, ${calc.add(tokens.verticalSpacing, DENSITY)}) ${tokens.horizontalSpacing}`,
   },
+  container: {
+    container: 'simple-grid / inline-size',
+  },
 });
 
 export type ISimpleGridThemeFactory = IComponentThemeFactory<{

@@ -112,7 +112,7 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
                 ...partialAssignInlineVars(themeTokens, themeTokensVars),
                 color: themeTokens.colorScheme.onSurface,
               }}
-              mediaQueries={[
+              queries={[
                 {
                   query: '(pointer: fine)',
                   styles: {

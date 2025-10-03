@@ -15,6 +15,7 @@ export interface ISimpleGridOwnProps {
   cols?: IResponsiveProp<number>;
   spacing?: IResponsiveProp<ISpacingProp>;
   verticalSpacing?: IResponsiveProp<ISpacingProp>;
+  type?: 'media' | 'container';
 }
 
 export interface ISimpleGridProps
