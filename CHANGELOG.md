@@ -1,3 +1,18 @@
+## 2.27.0 (2025-10-03)
+
+### 🚀 Features
+
+- **core:** add container query support to SimpleGrid ([1e155165](https://github.com/sixui/sixui/commit/1e155165))
+
+### 🩹 Fixes
+
+- **core:** trigger patch release for className format fix ([97fa701b](https://github.com/sixui/sixui/commit/97fa701b))
+- **core:** update stringFromStyles API usage in Responsive utils ([cb8e2bee](https://github.com/sixui/sixui/commit/cb8e2bee))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.26.8 (2025-10-02)
 
 ### 🩹 Fixes
