@@ -9,7 +9,7 @@ export interface IUseClassNameProps {
 export const useClassName = (props?: IUseClassNameProps): string => {
   const id = useId(props?.id).replace(/:/g, '');
   const prefix = props?.prefix ? `__${props.prefix}` : '';
-  const className = `__sixui${prefix}__-${id}`;
+  const className = `__sixui${prefix}__${id}`;
 
   return props?.overrideClassName ?? className;
 };

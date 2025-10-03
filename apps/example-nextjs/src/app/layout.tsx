@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
+import { sixuiHtmlProps, SixuiProvider } from '@sixui/core';
 
 import './index.css';
 import '@sixui/core/styles.css';
-
-import { sixuiHtmlProps, SixuiProvider } from '@sixui/core';
 
 export const metadata: Metadata = {
   title: 'Next.js + React + TS + Sixui',

@@ -85,7 +85,7 @@ pnpm release:dry
 **If dry-run looks correct, proceed with actual release:**
 
 ```bash
-echo "y" | pnpm nx release publish
+pnpm release -y
 ```
 
 **What happens during release:**
