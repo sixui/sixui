@@ -1,3 +1,13 @@
+## 2.27.1 (2025-10-03)
+
+### 🩹 Fixes
+
+- **core:** improve SideSheet component prop handling ([5ce9775c](https://github.com/sixui/sixui/commit/5ce9775c))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.27.0 (2025-10-03)
 
 ### 🚀 Features
