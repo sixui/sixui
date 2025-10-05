@@ -10,7 +10,7 @@ import { getOverlayId } from '../utils/getOverlayId';
 export interface IUseOverlaysResult {
   open: <TProps extends object>(
     overlayIdOrComponent: string | IOverlayFC<TProps>,
-    props?: TProps,
+    props?: TProps & { instanceId?: string },
   ) => Promise<unknown>;
   close: (instanceId: string) => void;
   closeAll: (options?: {
@@ -25,8 +25,9 @@ export const useOverlays = (): IUseOverlaysResult => {
 
   const open: IUseOverlaysResult['open'] = useCallback(
     (overlayIdOrComponent, props) => {
+      const { instanceId: instanceIdProp, ...otherProps } = props ?? {};
       const overlayId = getOverlayId(overlayIdOrComponent);
-      const instanceId = getUid(overlayId);
+      const instanceId = instanceIdProp || getUid(overlayId);
 
       const registeredOverlay = overlaysGlobals.registry[overlayId];
       if (!registeredOverlay) {
@@ -40,7 +41,7 @@ export const useOverlays = (): IUseOverlaysResult => {
         payload: {
           overlayId,
           instanceId,
-          props,
+          props: otherProps,
           layer: registeredOverlay.layer,
         },
       });
