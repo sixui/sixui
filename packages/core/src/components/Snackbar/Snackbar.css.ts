@@ -56,7 +56,6 @@ const classNames = createStyles({
       },
       [modifierSelector<IModifier>({ justify: 'center' })]: {
         left: `max(50%, ${tokens.fixedHorizontalSpace.compact})`,
-        right: `max(50%, ${tokens.fixedHorizontalSpace.compact})`,
         transform: 'translateX(-50%)',
         justifyContent: 'center',
       },
