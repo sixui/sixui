@@ -1,3 +1,19 @@
+## 2.28.0 (2025-10-05)
+
+### 🚀 Features
+
+- **core:** add instanceId prop support to useOverlays hook ([5eaeb3e0](https://github.com/sixui/sixui/commit/5eaeb3e0))
+- **core:** add useIntersection hook for Intersection Observer API ([d1fedc53](https://github.com/sixui/sixui/commit/d1fedc53))
+
+### 🩹 Fixes
+
+- **core:** update Placeholder story to use circle shape ([f149fe03](https://github.com/sixui/sixui/commit/f149fe03))
+- **core:** remove redundant right property in Snackbar center positioning ([21aa0832](https://github.com/sixui/sixui/commit/21aa0832))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.27.1 (2025-10-03)
 
 ### 🩹 Fixes
