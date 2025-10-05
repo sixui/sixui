@@ -21,7 +21,7 @@ export const Basic: IStory = {
   render: (props) => (
     <PlaceholderShowcase
       props={props}
-      cols={[{}, { props: { shape: '$lg' } }, { props: { shape: '$full' } }]}
+      cols={[{}, { props: { shape: '$lg' } }, { props: { shape: '$circle' } }]}
       rows={[
         { legend: 'Normal' },
         { legend: 'Disabled', props: { disabled: true } },
