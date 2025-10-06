@@ -5,7 +5,7 @@ import { Demo } from './Demo';
 export const App: React.FC = () => (
   <Flex direction="row" w="100%" mih="100vh">
     <Demo />
-    <ThemeProvider colorSchemeVariant="dark">
+    <ThemeProvider defaultColorScheme="dark">
       <Demo />
     </ThemeProvider>
   </Flex>

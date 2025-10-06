@@ -5,18 +5,18 @@ import type {
 import { useThemeContext } from '~/components/Theme/Theme.context';
 import { useThemeSetterContext } from '~/components/Theme/ThemeSetter.context';
 
-export type IUseColorSchemeVariantResult = {
-  colorSchemeVariant: IThemeColorSchemeVariant;
+export type IUseColorSchemeResult = {
+  colorScheme: IThemeColorSchemeVariant;
   setColorScheme: (variant: IOsColorScheme) => void;
   toggleColorScheme: () => void;
 };
 
-export const useColorSchemeVariant = (): IUseColorSchemeVariantResult => {
+export const useColorScheme = (): IUseColorSchemeResult => {
   const themeContext = useThemeContext();
   const themeSetterContext = useThemeSetterContext();
 
   return {
-    colorSchemeVariant: themeContext.colorSchemeVariant,
+    colorScheme: themeContext.colorSchemeVariant,
     setColorScheme: themeSetterContext.setColorSchemeVariant,
     toggleColorScheme: themeSetterContext.toggleColorScheme,
   };

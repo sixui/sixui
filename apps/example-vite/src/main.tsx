@@ -18,7 +18,7 @@ createRoot(document.getElementById('root')!).render(
           },
         },
       }}
-      colorSchemeVariant="light"
+      defaultColorScheme="light"
     >
       <App />
     </SixuiProvider>
