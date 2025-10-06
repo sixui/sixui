@@ -1,5 +1,10 @@
 @import './preflight.css' layer(sixui-reset);
 
+body {
+  background-color: var(--sixui-colorScheme-surface);
+  color: var(--sixui-colorScheme-onSurface);
+}
+
 :focus {
   outline: none;
 }

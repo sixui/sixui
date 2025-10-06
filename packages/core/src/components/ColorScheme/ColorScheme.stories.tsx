@@ -13,7 +13,6 @@ type IStory = StoryObj<typeof meta>;
 const defaultArgs = {} satisfies Partial<IColorSchemeProps>;
 
 const ColorSchemeShowcase = componentShowcaseFactory(ColorScheme);
-
 export const Basic: IStory = {
   render: (props) => <ColorSchemeShowcase props={props} />,
   args: defaultArgs,

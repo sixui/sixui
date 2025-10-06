@@ -1,7 +1,7 @@
-const EXCLUDE_LIST = ['index'];
+const ROLLUP_EXCLUDE_USE_CLIENT = ['index', 'components/Sixui/sixuiHtmlProps'];
 
 export const shouldPrependUseClient = (fileName: string): boolean =>
-  !EXCLUDE_LIST.reduce<Array<string>>(
+  !ROLLUP_EXCLUDE_USE_CLIENT.reduce<Array<string>>(
     (acc, name) => [...acc, `${name}.js`],
     [],
   ).includes(fileName);

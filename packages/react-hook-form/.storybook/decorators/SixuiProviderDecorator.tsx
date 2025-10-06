@@ -11,7 +11,7 @@ export const SixuiProviderDecorator: Decorator = (Story) => {
 
   return (
     <SixuiProvider
-      colorSchemeVariant={isDarkMode ? 'dark' : 'light'}
+      defaultColorScheme={isDarkMode ? 'dark' : 'light'}
       theme={{
         tokens: {
           typeFace: {

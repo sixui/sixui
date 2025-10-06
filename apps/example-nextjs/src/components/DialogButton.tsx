@@ -1,15 +1,15 @@
 'use client';
 
-import { Box, Button, ConfirmDialogOverlay, useOverlays } from '@sixui/core';
+import { Button, ConfirmDialogOverlay, useOverlays } from '@sixui/core';
 
-export const Demo: React.FC = () => {
+export const DialogButton: React.FC = () => {
   const overlays = useOverlays();
 
   return (
-    <Box grow={1} p="$md" bg="$surface">
-      <Button
-        onClick={() =>
-          overlays.open(ConfirmDialogOverlay, {
+    <Button
+      onClick={() =>
+        overlays
+          .open(ConfirmDialogOverlay, {
             modal: true,
             headline: 'Do you enjoy Sixui?',
             children:
@@ -19,10 +19,12 @@ export const Demo: React.FC = () => {
               cancel: 'Ask me later',
             },
           })
-        }
-      >
-        Open a confirm dialog
-      </Button>
-    </Box>
+          .catch(() => {
+            // canceled
+          })
+      }
+    >
+      Open a confirm dialog
+    </Button>
   );
 };

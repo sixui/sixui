@@ -1,13 +1,13 @@
 import type { PartialDeep } from 'type-fest';
 
-import type { ITheme, IThemeColorSchemeVariant } from './theme.types';
+import type { IOsColorScheme, ITheme } from './theme.types';
 import { createSafeContext } from '~/utils/react/createSafeContext';
 
 export type IThemeSetterContextValue = {
   setTheme: (theme: PartialDeep<ITheme> | undefined) => void;
-  setColorSchemeVariant: (
-    colorSchemeVariant: IThemeColorSchemeVariant | undefined,
-  ) => void;
+  setColorSchemeVariant: (variant: IOsColorScheme) => void;
+  toggleColorScheme: () => void;
+  clearColorScheme: () => void;
 };
 
 export const [ThemeSetterProvider, useThemeSetterContext] =

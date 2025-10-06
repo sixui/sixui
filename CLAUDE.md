@@ -14,7 +14,7 @@ Sixui is a React component library implementing Google's Material Design 3 speci
 
 The repository contains multiple packages in `packages/`:
 
-- **`@sixui/core`** - Main component library with 100+ Material Design 3 components
+- **`@sixui/core`** - Main component library with 110+ Material Design 3 components
 - **`@sixui/react-hook-form`** - React Hook Form integration for Sixui components
 - **`@sixui/toolchain`** - Build tooling (Rollup, PostCSS, TypeScript compilation)
 - **`@sixui/eslint-config`** - Shared ESLint configuration
@@ -106,9 +106,95 @@ The theming system is based on Material Design 3's dynamic color:
 
 - **ThemeProvider**: Root component wrapping the app
 - **Dynamic theming**: Supports runtime theme changes via context
-- **Color schemes**: Light/dark mode variants
+- **Color schemes**: Light/dark mode variants with optional localStorage persistence
 - **CSS Variables**: Theme tokens exposed via Vanilla Extract
 - **Token system**: Uses `@material/material-color-utilities`
+
+#### Color Scheme Persistence & SSR
+
+Sixui provides a complete SSR-safe color scheme system that prevents hydration mismatches:
+
+**The Hydration Challenge:**
+- Server renders with a default color scheme
+- Client may have a different scheme stored in localStorage
+- Without proper handling, this causes a flash of incorrect theme (FOIT) and hydration mismatches
+
+**The Solution:**
+Sixui uses a three-part approach:
+
+1. **ColorSchemeScript** - Inline script placed in `<head>` that:
+   - Executes before React hydration
+   - Reads color scheme from localStorage
+   - Sets `data-sixui-color-scheme` attribute on the root element
+   - Prevents FOIT by applying the correct theme immediately
+
+2. **ThemeProvider Dual CSS Generation** - Generates CSS variables for BOTH light and dark modes:
+   - Base styles on the root selector
+   - Light theme on `[data-sixui-color-scheme="light"]`
+   - Dark theme on `[data-sixui-color-scheme="dark"]`
+   - CSS automatically applies correct theme based on the attribute
+
+3. **sixuiHtmlProps** - Utility for HTML element to suppress hydration warnings:
+   ```tsx
+   import { sixuiHtmlProps } from '@sixui/core';
+   <html {...sixuiHtmlProps}>
+   ```
+
+**useColorScheme Hook:**
+Provides methods to control color scheme from any component:
+- `colorScheme` - Current scheme ('light' or 'dark')
+- `setColorScheme(variant)` - Set specific scheme
+- `toggleColorScheme()` - Toggle between light/dark
+
+**ThemeProvider Props:**
+- `enableColorSchemePersistence` - Enable localStorage persistence
+- `defaultColorScheme` - Default scheme ('light', 'dark', or 'auto')
+- `forceColorScheme` - Override user preference
+- `colorSchemeStorageKey` - Custom localStorage key (default: 'sixui-color-scheme')
+- `colorSchemeManager` - Custom storage implementation (default: localStorage with cross-tab sync)
+
+**Example for Next.js:**
+```tsx
+// app/layout.tsx
+import { ColorSchemeScript, SixuiProvider, sixuiHtmlProps } from '@sixui/core';
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en" {...sixuiHtmlProps}>
+      <head>
+        <ColorSchemeScript defaultColorScheme="light" />
+      </head>
+      <body>
+        <SixuiProvider enableColorSchemePersistence defaultColorScheme="light">
+          {children}
+        </SixuiProvider>
+      </body>
+    </html>
+  );
+}
+
+// Any component
+import { useColorScheme, Switch } from '@sixui/core';
+
+function ColorSchemeToggle() {
+  const { colorScheme, toggleColorScheme } = useColorScheme();
+  return (
+    <Switch
+      label="Dark mode"
+      checked={colorScheme === 'dark'}
+      onChange={toggleColorScheme}
+    />
+  );
+}
+```
+
+**Color Scheme Manager:**
+The color scheme storage is pluggable via the `colorSchemeManager` prop. The default `localStorageColorSchemeManager` provides:
+- localStorage persistence
+- Cross-tab synchronization
+- SSR-safe implementation
+
+Custom managers can be implemented following the `IColorSchemeManager` interface.
 
 ### Path Aliases
 
@@ -134,9 +220,28 @@ Located in `packages/core/src/utils/`:
 
 Located in `packages/core/src/hooks/`:
 
-- Form control hooks (`useCheckbox`, `useRadio`, `useSwitch`, `useSelect`)
-- UI interaction hooks (`useRippleEffect`, `useDisclosure`, `useSideSheet`)
-- Utility hooks (`useControlledValue`, `useMergeRefs`, `useClassName`)
+- **Theme & Color Scheme**:
+  - `useColorScheme` - Manage color scheme (get, set, toggle)
+  - `useTheme` - Access theme context
+  - `useOsColorScheme` - Detect OS color scheme preference
+- **Form control hooks**: `useCheckbox`, `useRadio`, `useSwitch`, `useSelect`, `useMultiSelect`
+- **UI interaction hooks**: `useRippleEffect`, `useDisclosure`, `useSideSheet`, `useOverlays` (with instanceId support)
+- **Browser APIs & Observers**:
+  - `useMediaQuery` - Media query matching with SSR support
+  - `useIntersection` - Intersection Observer API
+  - `useElementSize` - Element size tracking
+- **State & Storage**:
+  - `useControlledValue` - Controlled/uncontrolled component state
+  - `useLocalStorage` - SSR-safe localStorage with cross-tab sync
+  - `useToggle`, `usePrevious` - Common state utilities
+- **SSR & Hydration**:
+  - `useHydrated` - Check if component is hydrated (client-side)
+  - `useIsMounted` - Check if component is mounted
+  - `useIsomorphicLayoutEffect` - SSR-safe layout effect
+- **Other Utilities**:
+  - `useMergeRefs` - Merge multiple refs
+  - `useClassName` - Generate unique class names
+  - `useTimeout` - Declarative timeout
 
 ### Icon Generation
 
@@ -173,10 +278,25 @@ Build output goes to `dist/` in each package.
 - **Husky**: Git hooks for pre-commit validation
 - **Main branch**: `main`
 
+## Example Applications
+
+The repository includes example apps demonstrating Sixui usage:
+
+- **`apps/example-nextjs`** - Next.js 15.5 app with SSR, color scheme persistence
+- **`apps/example-vite`** - Vite app with React 19
+
+Both examples demonstrate:
+- Theme setup with ThemeProvider/SixuiProvider
+- Color scheme persistence (Next.js example)
+- Component usage and styling
+
 ## Key Dependencies
 
 - **React 19**: Peer dependency
+- **Next.js 15**: Used in example-nextjs app
 - **Vanilla Extract**: CSS-in-TypeScript solution
 - **Floating UI**: Positioning engine for popovers, tooltips, etc.
 - **react-aria**: Accessible UI primitives
 - **dnd-kit**: Drag and drop functionality
+- **pnpm 10.17+**: Package manager
+- **Nx 21.6**: Monorepo orchestration

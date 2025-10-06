@@ -1,1 +1,3 @@
-export const sixuiHtmlProps = {};
+export const sixuiHtmlProps = {
+  suppressHydrationWarning: true,
+};

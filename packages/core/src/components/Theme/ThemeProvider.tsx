@@ -11,8 +11,10 @@ import { useClassName } from '~/hooks/useClassName';
 import { partialAssignInlineVars } from '~/utils/css/partialAssignInlineVars';
 import { deepMerge } from '~/utils/deepMerge';
 import { cssLayers } from '~/components/Theme/cssLayers.css';
+import { localStorageColorSchemeManager } from './colorSchemeManager/localStorageColorSchemeManager';
+import { DEFAULT_COLOR_SCHEME_STORAGE_KEY } from './ColorSchemeScript';
+import { useProviderColorSchemeVariant } from './hooks/useProviderColorSchemeVariant';
 import { ThemeContext } from './Theme.context';
-import { IThemeColorSchemeVariant } from './theme.types';
 import { COMPONENT_NAME } from './ThemeProvider.constants';
 import { ThemeSetterProvider } from './ThemeSetter.context';
 import { mergeThemeOverrides } from './utils/mergeThemeOverrides';
@@ -26,14 +28,32 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
   const {
     children,
     theme: themeOverrides,
-    colorSchemeVariant: colorSchemeVariantProp,
     inherit,
     cssVariablesSelector: cssVariableSelectorProp,
     getRootElement = () => document.documentElement,
+    colorSchemeManager = localStorageColorSchemeManager(),
+    defaultColorScheme = 'light',
+    enableColorSchemePersistence: _enableColorSchemePersistence = false,
+    forceColorScheme,
+    colorSchemeStorageKey:
+      _colorSchemeStorageKey = DEFAULT_COLOR_SCHEME_STORAGE_KEY,
     ...other
   } = props;
 
   const inheritedThemeContext = useContext(ThemeContext);
+  const {
+    colorSchemeVariant,
+    setColorScheme,
+    toggleColorScheme,
+    clearColorScheme,
+  } = useProviderColorSchemeVariant({
+    defaultColorScheme,
+    inheritedColorSchemeVariant: inheritedThemeContext?.colorSchemeVariant,
+    forceColorScheme,
+    manager: colorSchemeManager,
+    getRootElement,
+  });
+
   const randomClassName = useClassName({
     prefix: COMPONENT_NAME,
   });
@@ -53,20 +73,12 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
     [inherit, inheritedThemeContext?.theme, themeOverrides, dynamicTheme],
   );
 
-  const [overridenColorSchemeVariant, setOverridenColorSchemeVariant] =
-    useState<IThemeColorSchemeVariant>();
-  const colorSchemeVariant =
-    overridenColorSchemeVariant ??
-    colorSchemeVariantProp ??
-    inheritedThemeContext?.colorSchemeVariant ??
-    'light';
-
   const rootRef = useRef<HTMLDivElement | null>(null);
   const themeContextValue: IThemeContextValue = useMemo(
     () => ({
       getRoot: () => rootRef.current,
       theme: mergedTheme,
-      colorSchemeVariant,
+      colorSchemeVariant: colorSchemeVariant,
       getRootElement,
     }),
     [mergedTheme, colorSchemeVariant, getRootElement],
@@ -75,19 +87,36 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
   const themeSetterContextValue: IThemeSetterContextValue = useMemo(
     () => ({
       setTheme: setDynamicTheme,
-      setColorSchemeVariant: setOverridenColorSchemeVariant,
+      setColorSchemeVariant: setColorScheme,
+      toggleColorScheme,
+      clearColorScheme,
     }),
-    [],
+    [setColorScheme, toggleColorScheme, clearColorScheme],
   );
 
-  const themeTokensVars = useMemo(
-    () => ({
-      ...(inherit
+  // Generate CSS variables for ALL color schemes to prevent hydration mismatch
+  const baseThemeTokensVars = useMemo(
+    () =>
+      inherit
         ? mergedTheme.tokens
-        : deepMerge(defaultTheme.tokens, mergedTheme.tokens)),
-      colorScheme: mergedTheme.tokens.colorScheme[colorSchemeVariant],
+        : deepMerge(defaultTheme.tokens, mergedTheme.tokens),
+    [inherit, mergedTheme],
+  );
+
+  const lightThemeTokensVars = useMemo(
+    () => ({
+      ...baseThemeTokensVars,
+      colorScheme: mergedTheme.tokens.colorScheme.light,
     }),
-    [inherit, mergedTheme, colorSchemeVariant],
+    [baseThemeTokensVars, mergedTheme.tokens.colorScheme.light],
+  );
+
+  const darkThemeTokensVars = useMemo(
+    () => ({
+      ...baseThemeTokensVars,
+      colorScheme: mergedTheme.tokens.colorScheme.dark,
+    }),
+    [baseThemeTokensVars, mergedTheme.tokens.colorScheme.dark],
   );
 
   return (
@@ -103,15 +132,37 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
             id={randomClassName}
             className={classNames.root}
             ref={rootRef}
+            data-sixui-color-scheme={
+              inheritedThemeContext ? colorSchemeVariant : undefined
+            }
             {...other}
           >
             <InlineStyles
               layer={cssLayers.theme}
               selector={cssVariablesSelector}
-              styles={{
-                ...partialAssignInlineVars(themeTokens, themeTokensVars),
-                color: themeTokens.colorScheme.onSurface,
-              }}
+              styles={partialAssignInlineVars(themeTokens, baseThemeTokensVars)}
+              additionalSelectors={[
+                {
+                  selector: `${cssVariablesSelector}[data-sixui-color-scheme="light"]`,
+                  styles: {
+                    ...partialAssignInlineVars(
+                      themeTokens.colorScheme,
+                      lightThemeTokensVars.colorScheme,
+                    ),
+                    color: themeTokens.colorScheme.onSurface,
+                  },
+                },
+                {
+                  selector: `${cssVariablesSelector}[data-sixui-color-scheme="dark"]`,
+                  styles: {
+                    ...partialAssignInlineVars(
+                      themeTokens.colorScheme,
+                      darkThemeTokensVars.colorScheme,
+                    ),
+                    color: themeTokens.colorScheme.onSurface,
+                  },
+                },
+              ]}
               queries={[
                 {
                   query: '(pointer: fine)',

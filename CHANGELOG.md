@@ -53,7 +53,7 @@
 
 ### 🚀 Features
 
-- **core:** add useAfterHydration and useIsMounted hooks ([4fb2cd24](https://github.com/sixui/sixui/commit/4fb2cd24))
+- **core:** add useHydrated and useIsMounted hooks ([4fb2cd24](https://github.com/sixui/sixui/commit/4fb2cd24))
 - **core:** improve AppLayout hydration and add defaultComponentSet prop ([8af75ba2](https://github.com/sixui/sixui/commit/8af75ba2))
 - **example-nextjs:** add AppLayout demo page and rename home component ([660567f0](https://github.com/sixui/sixui/commit/660567f0))
 
@@ -69,7 +69,7 @@
 
 ### 🚀 Features
 
-- **core:** add useAfterHydration and useIsMounted hooks ([4fb2cd24](https://github.com/sixui/sixui/commit/4fb2cd24))
+- **core:** add useHydrated and useIsMounted hooks ([4fb2cd24](https://github.com/sixui/sixui/commit/4fb2cd24))
 - **core:** improve AppLayout hydration and add defaultComponentSet prop ([8af75ba2](https://github.com/sixui/sixui/commit/8af75ba2))
 - **example-nextjs:** add AppLayout demo page and rename home component ([660567f0](https://github.com/sixui/sixui/commit/660567f0))
 
@@ -578,17 +578,17 @@ This was a version bump only, there were no code changes.
 
 ### 🚀 Features
 
-- ⚠️  TextInputField -> TextInput, TextAreaField -> TextArea, ColorInputField -> ColorInput ([646a1d02](https://github.com/sixui/sixui/commit/646a1d02))
+- ⚠️ TextInputField -> TextInput, TextAreaField -> TextArea, ColorInputField -> ColorInput ([646a1d02](https://github.com/sixui/sixui/commit/646a1d02))
 - splitting FileDropZone and FileDropZoneControl ([214d7f71](https://github.com/sixui/sixui/commit/214d7f71))
-- ⚠️  splitted TextInput and TextInputControl ([d389239a](https://github.com/sixui/sixui/commit/d389239a))
-- ⚠️  splitted TextArea and TextAreaControl ([d6043830](https://github.com/sixui/sixui/commit/d6043830))
-- ⚠️  splitted ColorInput and ColorInputControl ([c28688f5](https://github.com/sixui/sixui/commit/c28688f5))
-- ⚠️  splitted HtmlSelect and HtmlSelectControl ([10626e09](https://github.com/sixui/sixui/commit/10626e09))
-- ⚠️  splitted MultiSelect and MultiSelectControl ([35e3e64f](https://github.com/sixui/sixui/commit/35e3e64f))
-- ⚠️  splitted Select and SelectControl ([b925f4bc](https://github.com/sixui/sixui/commit/b925f4bc))
-- ⚠️  splitted Suggest and SuggestControl ([0515c1e6](https://github.com/sixui/sixui/commit/0515c1e6))
-- ⚠️  @sixui/react-hook-form compatibility ([f95a9220](https://github.com/sixui/sixui/commit/f95a9220))
-- ⚠️  first version of react-hook-form bindings ([45ba72d7](https://github.com/sixui/sixui/commit/45ba72d7))
+- ⚠️ splitted TextInput and TextInputControl ([d389239a](https://github.com/sixui/sixui/commit/d389239a))
+- ⚠️ splitted TextArea and TextAreaControl ([d6043830](https://github.com/sixui/sixui/commit/d6043830))
+- ⚠️ splitted ColorInput and ColorInputControl ([c28688f5](https://github.com/sixui/sixui/commit/c28688f5))
+- ⚠️ splitted HtmlSelect and HtmlSelectControl ([10626e09](https://github.com/sixui/sixui/commit/10626e09))
+- ⚠️ splitted MultiSelect and MultiSelectControl ([35e3e64f](https://github.com/sixui/sixui/commit/35e3e64f))
+- ⚠️ splitted Select and SelectControl ([b925f4bc](https://github.com/sixui/sixui/commit/b925f4bc))
+- ⚠️ splitted Suggest and SuggestControl ([0515c1e6](https://github.com/sixui/sixui/commit/0515c1e6))
+- ⚠️ @sixui/react-hook-form compatibility ([f95a9220](https://github.com/sixui/sixui/commit/f95a9220))
+- ⚠️ first version of react-hook-form bindings ([45ba72d7](https://github.com/sixui/sixui/commit/45ba72d7))
 - **@sixui/react-hook-form:** Sortable ([4dc9df26](https://github.com/sixui/sixui/commit/4dc9df26))
 - **@sixui/react-hook-form:** CheckboxCard ([f191c439](https://github.com/sixui/sixui/commit/f191c439))
 - **@sixui/react-hook-form:** FileDropZone ([2b2c77d8](https://github.com/sixui/sixui/commit/2b2c77d8))
@@ -598,18 +598,18 @@ This was a version bump only, there were no code changes.
 
 - HtmlSelect style ([306203ca](https://github.com/sixui/sixui/commit/306203ca))
 
-### ⚠️  Breaking Changes
+### ⚠️ Breaking Changes
 
-- ⚠️  first version of react-hook-form bindings ([45ba72d7](https://github.com/sixui/sixui/commit/45ba72d7))
-- ⚠️  @sixui/react-hook-form compatibility ([f95a9220](https://github.com/sixui/sixui/commit/f95a9220))
-- ⚠️  splitted Suggest and SuggestControl ([0515c1e6](https://github.com/sixui/sixui/commit/0515c1e6))
-- ⚠️  splitted Select and SelectControl ([b925f4bc](https://github.com/sixui/sixui/commit/b925f4bc))
-- ⚠️  splitted MultiSelect and MultiSelectControl ([35e3e64f](https://github.com/sixui/sixui/commit/35e3e64f))
-- ⚠️  splitted HtmlSelect and HtmlSelectControl ([10626e09](https://github.com/sixui/sixui/commit/10626e09))
-- ⚠️  splitted ColorInput and ColorInputControl ([c28688f5](https://github.com/sixui/sixui/commit/c28688f5))
-- ⚠️  splitted TextArea and TextAreaControl ([d6043830](https://github.com/sixui/sixui/commit/d6043830))
-- ⚠️  splitted TextInput and TextInputControl ([d389239a](https://github.com/sixui/sixui/commit/d389239a))
-- ⚠️  TextInputField -> TextInput, TextAreaField -> TextArea, ColorInputField -> ColorInput ([646a1d02](https://github.com/sixui/sixui/commit/646a1d02))
+- ⚠️ first version of react-hook-form bindings ([45ba72d7](https://github.com/sixui/sixui/commit/45ba72d7))
+- ⚠️ @sixui/react-hook-form compatibility ([f95a9220](https://github.com/sixui/sixui/commit/f95a9220))
+- ⚠️ splitted Suggest and SuggestControl ([0515c1e6](https://github.com/sixui/sixui/commit/0515c1e6))
+- ⚠️ splitted Select and SelectControl ([b925f4bc](https://github.com/sixui/sixui/commit/b925f4bc))
+- ⚠️ splitted MultiSelect and MultiSelectControl ([35e3e64f](https://github.com/sixui/sixui/commit/35e3e64f))
+- ⚠️ splitted HtmlSelect and HtmlSelectControl ([10626e09](https://github.com/sixui/sixui/commit/10626e09))
+- ⚠️ splitted ColorInput and ColorInputControl ([c28688f5](https://github.com/sixui/sixui/commit/c28688f5))
+- ⚠️ splitted TextArea and TextAreaControl ([d6043830](https://github.com/sixui/sixui/commit/d6043830))
+- ⚠️ splitted TextInput and TextInputControl ([d389239a](https://github.com/sixui/sixui/commit/d389239a))
+- ⚠️ TextInputField -> TextInput, TextAreaField -> TextArea, ColorInputField -> ColorInput ([646a1d02](https://github.com/sixui/sixui/commit/646a1d02))
 
 ### ❤️ Thank You
 

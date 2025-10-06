@@ -19,7 +19,7 @@ export * from './CircularProgressIndicator';
 export * from './ColorInput';
 export * from './ColorPaletteGroup';
 export * from './ColorPickerContent';
-// export * from './ColorScheme';
+export * from './ColorScheme';
 export * from './ColorTag';
 // export * from './ComponentShowcase';
 export * from './ConfirmDialog';

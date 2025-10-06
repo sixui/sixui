@@ -1,13 +1,16 @@
-import { Flex, ThemeProvider } from '@sixui/core';
+import { Flex } from '@sixui/core';
 
-import { Demo } from './Demo';
+import { ColorSchemeSwitch } from '~/components/ColorSchemeSwitch';
+import { DarkThemeExample } from '~/components/DarkThemeExample';
+import { DialogButton } from '~/components/DialogButton';
 
 const HomeRoute: React.FC = () => (
-  <Flex direction="row" w="100%" mih="100vh">
-    <Demo />
-    <ThemeProvider colorSchemeVariant="dark">
-      <Demo />
-    </ThemeProvider>
+  <Flex direction="column" p="$lg" align="center" justify="center" h="100vh">
+    <Flex direction="column" gap="$lg">
+      <ColorSchemeSwitch />
+      <DialogButton />
+      <DarkThemeExample />
+    </Flex>
   </Flex>
 );
 

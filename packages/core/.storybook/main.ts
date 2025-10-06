@@ -4,6 +4,9 @@ import { dirname, join } from 'node:path';
 
 const require = createRequire(import.meta.url);
 
+const getAbsolutePath = (value: string): string =>
+  dirname(require.resolve(join(value, 'package.json')));
+
 const config: StorybookConfig = {
   stories: ['../src/**/*.stories.tsx'],
   addons: [
@@ -23,7 +26,3 @@ const config: StorybookConfig = {
 };
 
 export default config;
-
-function getAbsolutePath(value: string): any {
-  return dirname(require.resolve(join(value, 'package.json')));
-}

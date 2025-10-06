@@ -18,8 +18,8 @@ Ready-to-use foundational React components implementing Google's <a href="https:
 
 ## Features
 
-- 🎨 **Material Design 3** - Full implementation of Google's latest design system
-- 🎭 **Dynamic Theming** - Runtime theme customization with light/dark mode support
+- 🎨 **Material Design 3** - Full implementation of Google's latest design system with 110+ components
+- 🎭 **Dynamic Theming** - Runtime theme customization with SSR-safe light/dark mode and localStorage persistence
 - 🎯 **Type-Safe** - Built with TypeScript for excellent developer experience
 - 🎪 **Accessible** - ARIA-compliant components using react-aria primitives
 - 📦 **Tree-Shakeable** - Optimized bundle size with ES modules
@@ -37,9 +37,10 @@ yarn add @sixui/core
 
 ## Quick Start
 
+### Basic Usage
+
 ```tsx
 import { Button, ThemeProvider } from '@sixui/core';
-
 import '@sixui/core/styles.css';
 
 function App() {
@@ -47,6 +48,45 @@ function App() {
     <ThemeProvider>
       <Button variant="filled">Click me</Button>
     </ThemeProvider>
+  );
+}
+```
+
+### With Color Scheme Persistence (Next.js/SSR)
+
+Sixui provides complete SSR support with no hydration mismatches:
+
+```tsx
+// app/layout.tsx
+import { ColorSchemeScript, SixuiProvider, sixuiHtmlProps } from '@sixui/core';
+import '@sixui/core/styles.css';
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en" {...sixuiHtmlProps}>
+      <head>
+        <ColorSchemeScript defaultColorScheme="light" />
+      </head>
+      <body>
+        <SixuiProvider enableColorSchemePersistence defaultColorScheme="light">
+          {children}
+        </SixuiProvider>
+      </body>
+    </html>
+  );
+}
+
+// Use the useColorScheme hook anywhere in your app
+import { useColorScheme, Switch } from '@sixui/core';
+
+function ColorSchemeToggle() {
+  const { colorScheme, toggleColorScheme } = useColorScheme();
+  return (
+    <Switch
+      label="Dark mode"
+      checked={colorScheme === 'dark'}
+      onChange={toggleColorScheme}
+    />
   );
 }
 ```
@@ -59,7 +99,7 @@ function App() {
 
 This monorepo contains the following packages:
 
-- **[@sixui/core](packages/core)** - Core components library implementing Material Design 3
+- **[@sixui/core](packages/core)** - Core components library with 110+ Material Design 3 components
 - **[@sixui/react-hook-form](packages/react-hook-form)** - React Hook Form integration for Sixui components
 - **@sixui/toolchain** - Build tooling and compilation infrastructure
 - **@sixui/eslint-config** - Shared ESLint configuration
@@ -73,7 +113,7 @@ This project uses pnpm and Nx for monorepo management.
 ### Prerequisites
 
 - Node.js (latest LTS recommended)
-- pnpm >= 9
+- pnpm >= 10.17
 
 ### Setup
 
@@ -96,16 +136,32 @@ pnpm build
 ```
 sixui/
 ├── packages/
-│   ├── core/              # Main component library
+│   ├── core/              # Main component library (110+ components)
 │   ├── react-hook-form/   # React Hook Form bindings
 │   ├── toolchain/         # Build tools
 │   ├── eslint-config/     # ESLint configuration
 │   ├── prettier-config/   # Prettier configuration
 │   └── typescript-config/ # TypeScript configuration
 └── apps/
-    ├── example-vite/      # Vite example app
-    └── example-nextjs/    # Next.js example app
+    ├── example-nextjs/    # Next.js 15 example with SSR & color scheme persistence
+    └── example-vite/      # Vite example app
 ```
+
+### Key Features
+
+- **110+ Components**: Comprehensive Material Design 3 implementation including Button, TextField, Dialog, Snackbar, DataTable, and more
+- **Custom Hooks**:
+  - Theme & color scheme: `useColorScheme`, `useTheme`, `useOsColorScheme`
+  - Browser APIs: `useMediaQuery`, `useIntersection`, `useElementSize`
+  - Storage: `useLocalStorage` (SSR-safe with cross-tab sync)
+  - UI interaction: `useOverlays`, `useDisclosure`, `useSideSheet`, `useRippleEffect`
+  - SSR & hydration: `useHydrated`, `useIsMounted`, `useIsomorphicLayoutEffect`
+  - Forms: `useCheckbox`, `useRadio`, `useSwitch`, `useSelect`, `useMultiSelect`
+- **SSR-Safe Theming**:
+  - `ColorSchemeScript` prevents flash of incorrect theme (FOIT)
+  - Dual CSS generation eliminates hydration mismatches
+  - `sixuiHtmlProps` utility for hydration warning suppression
+- **React 19 Support**: Built and tested with latest React version
 
 ## Contributing
 
