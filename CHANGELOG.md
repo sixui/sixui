@@ -1,3 +1,21 @@
+# 3.0.0 (2025-10-06)
+
+### 🚀 Features
+
+- ⚠️  **core:** add SSR-safe color scheme system with hydration fix ([68e784b1](https://github.com/sixui/sixui/commit/68e784b1))
+
+### 🩹 Fixes
+
+- **core:** rename useColorSchemeVariant to useColorScheme and update example apps ([e2d3dd18](https://github.com/sixui/sixui/commit/e2d3dd18))
+
+### ⚠️  Breaking Changes
+
+- **core:** Renamed useAfterHydration to useHydrated for better semantics
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 2.28.0 (2025-10-05)
 
 ### 🚀 Features
