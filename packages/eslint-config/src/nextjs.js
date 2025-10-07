@@ -1,12 +1,12 @@
 import nextPlugin from '@next/eslint-plugin-next';
-import tseslint from 'typescript-eslint';
+import { defineConfig } from 'eslint/config';
 
 import base from './react.js';
 
 /**
  * A custom ESLint configuration for libraries that use Next.js.
  */
-export default tseslint.config(
+export default defineConfig(
   ...base,
   {
     files: [
@@ -15,6 +15,7 @@ export default tseslint.config(
       'src/app/layout.tsx',
       'src/app/**/page.tsx',
       'src/app/**/layout.tsx',
+      'src/middleware.ts',
     ],
     rules: {
       'import-x/no-default-export': 'off',

@@ -1,15 +1,15 @@
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
+import { defineConfig } from 'eslint/config';
 import globals from 'globals';
-import tseslint from 'typescript-eslint';
 
 import base from './typescript.js';
 
 /**
  * A custom ESLint configuration for libraries that use React.
  */
-export default tseslint.config(...base, {
+export default defineConfig(...base, {
   files: ['**/*.ts', '**/*.tsx'],
   extends: [
     // https://github.com/jsx-eslint/eslint-plugin-react/tree/master?tab=readme-ov-file#flat-configs

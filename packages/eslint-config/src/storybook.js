@@ -1,12 +1,12 @@
 import storybook from 'eslint-plugin-storybook';
-import tseslint from 'typescript-eslint';
+import { defineConfig } from 'eslint/config';
 
 import base from './react.js';
 
 /**
  * A custom ESLint configuration for libraries that use Storybook.
  */
-export default tseslint.config(
+export default defineConfig(
   ...base,
   {
     files: ['.storybook/main.ts', '.storybook/preview.tsx*'],
@@ -22,6 +22,7 @@ export default tseslint.config(
     ],
     rules: {
       'import-x/no-default-export': 'off',
+      '@next/next/no-img-element': 'off',
     },
   },
 );

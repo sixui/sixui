@@ -1,6 +1,7 @@
 import eslintPluginImportX from 'eslint-plugin-import-x';
 import tsdocPlugin from 'eslint-plugin-tsdoc';
-import tseslint, { configs as tseslintConfig } from 'typescript-eslint';
+import { defineConfig } from 'eslint/config';
+import tseslint from 'typescript-eslint';
 
 import base from './base.js';
 
@@ -12,12 +13,12 @@ console.log('[eslint] Using CWD:', CWD);
 /**
  * A custom ESLint configuration for TS files.
  */
-export default tseslint.config(...base, {
+export default defineConfig(...base, {
   files: ['**/*.ts', '**/*.tsx'],
   extends: [
     // https://typescript-eslint.io/getting-started#step-2-configuration
-    tseslintConfig.strictTypeChecked,
-    tseslintConfig.stylisticTypeChecked,
+    tseslint.configs.strict,
+    tseslint.configs.stylistic,
     // https://github.com/un-ts/eslint-plugin-import-x?tab=readme-ov-file#configuration-new-eslintconfigjs
     eslintPluginImportX.flatConfigs.typescript,
   ],
