@@ -1,3 +1,13 @@
+## 3.1.0 (2025-10-07)
+
+### 🚀 Features
+
+- **core:** add ColorSchemePalette component ([3c74316b](https://github.com/sixui/sixui/commit/3c74316b))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 # 3.0.0 (2025-10-06)
 
 ### 🚀 Features
