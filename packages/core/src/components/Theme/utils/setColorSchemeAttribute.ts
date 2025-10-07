@@ -1,7 +1,7 @@
-import type { IOsColorScheme } from '../theme.types';
+import type { IColorScheme } from '../theme.types';
 
 export const setColorSchemeAttribute = (
-  colorScheme: IOsColorScheme,
+  colorScheme: IColorScheme,
   getRootElement: () => HTMLElement | undefined,
 ): void => {
   const hasDarkColorScheme =

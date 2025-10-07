@@ -9,7 +9,6 @@ import type { IModifiers } from '~/utils/getDataAttributes';
 import type { ISixuiSize } from '~/utils/types';
 import type { IBoxSprinkles } from './Box.css';
 
-// eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
 export type ISpacingProp = `$${keyof IThemeSpacingValues}` | string;
 
 export type IResponsiveProp<TValue> =

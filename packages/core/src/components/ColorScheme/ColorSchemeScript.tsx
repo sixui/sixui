@@ -1,9 +1,8 @@
-import type { IThemeColorSchemeVariant } from './theme.types';
-
-export const DEFAULT_COLOR_SCHEME_STORAGE_KEY = 'sixui-color-scheme';
+import type { IStrictColorScheme } from '~/components/Theme/theme.types';
+import { DEFAULT_COLOR_SCHEME_STORAGE_KEY } from './ColorSchemeScript.constants';
 
 export type IColorSchemeScriptProps = {
-  defaultColorScheme?: IThemeColorSchemeVariant;
+  defaultColorScheme?: IStrictColorScheme;
   localStorageKey?: string;
 };
 

@@ -5,15 +5,14 @@ import type { IThemeContextValue } from './Theme.context';
 import type { IThemeOverride } from './theme.types';
 import type { IThemeProviderProps } from './ThemeProvider.types';
 import type { IThemeSetterContextValue } from './ThemeSetter.context';
+import { localStorageColorSchemeManager } from '~/components/ColorScheme';
 import { InlineStyles } from '~/components/InlineStyles';
 import { OverlaysProvider } from '~/components/Overlays';
 import { useClassName } from '~/hooks/useClassName';
 import { partialAssignInlineVars } from '~/utils/css/partialAssignInlineVars';
 import { deepMerge } from '~/utils/deepMerge';
 import { cssLayers } from '~/components/Theme/cssLayers.css';
-import { localStorageColorSchemeManager } from './colorSchemeManager/localStorageColorSchemeManager';
-import { DEFAULT_COLOR_SCHEME_STORAGE_KEY } from './ColorSchemeScript';
-import { useProviderColorSchemeVariant } from './hooks/useProviderColorSchemeVariant';
+import { useThemeProviderColorScheme } from './hooks/useThemeProviderColorScheme';
 import { ThemeContext } from './Theme.context';
 import { COMPONENT_NAME } from './ThemeProvider.constants';
 import { ThemeSetterProvider } from './ThemeSetter.context';
@@ -35,24 +34,18 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
     defaultColorScheme = 'light',
     enableColorSchemePersistence: _enableColorSchemePersistence = false,
     forceColorScheme,
-    colorSchemeStorageKey:
-      _colorSchemeStorageKey = DEFAULT_COLOR_SCHEME_STORAGE_KEY,
     ...other
   } = props;
 
-  const inheritedThemeContext = useContext(ThemeContext);
-  const {
-    colorSchemeVariant,
-    setColorScheme,
-    toggleColorScheme,
-    clearColorScheme,
-  } = useProviderColorSchemeVariant({
-    defaultColorScheme,
-    inheritedColorSchemeVariant: inheritedThemeContext?.colorSchemeVariant,
-    forceColorScheme,
-    manager: colorSchemeManager,
-    getRootElement,
-  });
+  const parentThemeContext = useContext(ThemeContext);
+  const { colorScheme, setColorScheme, toggleColorScheme, clearColorScheme } =
+    useThemeProviderColorScheme({
+      defaultColorScheme,
+      parentThemeColorScheme: parentThemeContext?.colorScheme,
+      forceColorScheme,
+      manager: colorSchemeManager,
+      getRootElement,
+    });
 
   const randomClassName = useClassName({
     prefix: COMPONENT_NAME,
@@ -66,11 +59,11 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
   const mergedTheme = useMemo(
     () =>
       mergeThemeOverrides(
-        (inherit ? inheritedThemeContext?.theme : undefined) ?? defaultTheme,
+        (inherit ? parentThemeContext?.theme : undefined) ?? defaultTheme,
         themeOverrides,
         dynamicTheme,
       ),
-    [inherit, inheritedThemeContext?.theme, themeOverrides, dynamicTheme],
+    [inherit, parentThemeContext?.theme, themeOverrides, dynamicTheme],
   );
 
   const rootRef = useRef<HTMLDivElement | null>(null);
@@ -78,16 +71,16 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
     () => ({
       getRoot: () => rootRef.current,
       theme: mergedTheme,
-      colorSchemeVariant: colorSchemeVariant,
+      colorScheme,
       getRootElement,
     }),
-    [mergedTheme, colorSchemeVariant, getRootElement],
+    [mergedTheme, colorScheme, getRootElement],
   );
 
   const themeSetterContextValue: IThemeSetterContextValue = useMemo(
     () => ({
       setTheme: setDynamicTheme,
-      setColorSchemeVariant: setColorScheme,
+      setColorScheme,
       toggleColorScheme,
       clearColorScheme,
     }),
@@ -133,7 +126,7 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
             className={classNames.root}
             ref={rootRef}
             data-sixui-color-scheme={
-              inheritedThemeContext ? colorSchemeVariant : undefined
+              parentThemeContext ? colorScheme : undefined
             }
             {...other}
           >

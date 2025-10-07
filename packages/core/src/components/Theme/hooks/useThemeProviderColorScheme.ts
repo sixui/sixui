@@ -1,33 +1,33 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import type { IColorSchemeManager } from '../colorSchemeManager/types';
-import type { IOsColorScheme, IThemeColorSchemeVariant } from '../theme.types';
+import type { IColorSchemeManager } from '~/components/ColorScheme';
+import type { IColorScheme, IStrictColorScheme } from '../theme.types';
 import { useIsomorphicLayoutEffect, useOsColorScheme } from '~/hooks';
 import { setColorSchemeAttribute } from '../utils/setColorSchemeAttribute';
 
-export interface IUseProviderColorSchemeVariantProps {
-  defaultColorScheme: IOsColorScheme;
-  inheritedColorSchemeVariant?: IThemeColorSchemeVariant;
-  forceColorScheme?: IOsColorScheme;
+export interface IUseThemeProviderColorSchemeProps {
+  defaultColorScheme: IColorScheme;
+  parentThemeColorScheme?: IStrictColorScheme;
+  forceColorScheme?: IColorScheme;
   manager: IColorSchemeManager;
   getRootElement: () => HTMLElement | undefined;
 }
 
-export interface IUseProviderColorSchemeVariantResult {
-  colorSchemeVariant: IThemeColorSchemeVariant;
-  setColorScheme: (variant: IOsColorScheme) => void;
+export interface IUseThemeProviderColorSchemeResult {
+  colorScheme: IStrictColorScheme;
+  setColorScheme: (variant: IColorScheme) => void;
   toggleColorScheme: () => void;
   clearColorScheme: () => void;
 }
 
 type IMediaQueryCallback = (event: { matches: boolean; media: string }) => void;
 
-export const useProviderColorSchemeVariant = (
-  props: IUseProviderColorSchemeVariantProps,
-): IUseProviderColorSchemeVariantResult => {
+export const useThemeProviderColorScheme = (
+  props: IUseThemeProviderColorSchemeProps,
+): IUseThemeProviderColorSchemeResult => {
   const {
     defaultColorScheme,
-    inheritedColorSchemeVariant,
+    parentThemeColorScheme,
     forceColorScheme,
     manager,
     getRootElement,
@@ -38,15 +38,15 @@ export const useProviderColorSchemeVariant = (
     manager.get(defaultColorScheme),
   );
   const colorScheme =
-    forceColorScheme || inheritedColorSchemeVariant || managedColorScheme;
+    forceColorScheme || parentThemeColorScheme || managedColorScheme;
   const osColorScheme = useOsColorScheme('light', {
     getInitialValueInEffect: false,
   });
-  const computedColorSchemeVariant =
+  const computedColorScheme =
     colorScheme === 'auto' ? osColorScheme : colorScheme;
 
   const setColorScheme = useCallback(
-    (colorScheme: IOsColorScheme) => {
+    (colorScheme: IColorScheme) => {
       if (forceColorScheme) {
         return;
       }
@@ -59,8 +59,8 @@ export const useProviderColorSchemeVariant = (
   );
 
   const toggleColorScheme = useCallback(() => {
-    setColorScheme(computedColorSchemeVariant === 'dark' ? 'light' : 'dark');
-  }, [setColorScheme, computedColorSchemeVariant]);
+    setColorScheme(computedColorScheme === 'dark' ? 'light' : 'dark');
+  }, [setColorScheme, computedColorScheme]);
 
   const clearColorScheme = useCallback(() => {
     setManagedColorScheme(defaultColorScheme);
@@ -106,7 +106,7 @@ export const useProviderColorSchemeVariant = (
   }, [managedColorScheme, forceColorScheme, getRootElement]);
 
   return {
-    colorSchemeVariant: computedColorSchemeVariant,
+    colorScheme: computedColorScheme,
     setColorScheme,
     toggleColorScheme,
     clearColorScheme,

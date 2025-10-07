@@ -2,12 +2,11 @@ import type { PartialDeep } from 'type-fest';
 
 import type { IOmit } from '~/utils/types';
 
-export const osColorSchemes = ['light', 'dark', 'auto'] as const;
-export type IOsColorScheme = (typeof osColorSchemes)[number];
+export const strictColorSchemes = ['light', 'dark'] as const;
+export type IStrictColorScheme = (typeof strictColorSchemes)[number];
 
-export const themeColorSchemeVariants = ['light', 'dark'] as const;
-export type IThemeColorSchemeVariant =
-  (typeof themeColorSchemeVariants)[number];
+export const colorSchemes = [...strictColorSchemes, 'auto'] as const;
+export type IColorScheme = (typeof colorSchemes)[number];
 
 export type IThemeColorScheme = {
   primary: string;
@@ -59,7 +58,7 @@ export type IThemeColorScheme = {
 };
 
 export type IThemeColorSchemeValues = Record<
-  IThemeColorSchemeVariant,
+  IStrictColorScheme,
   IThemeColorScheme
 >;
 

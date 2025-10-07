@@ -12,7 +12,6 @@ import { COMPONENT_NAME } from './Paper.constants';
 import { paperTheme } from './Paper.css';
 
 const getValue = <TKey extends string>(
-  // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
   key: `$${TKey}` | string,
   map?: Record<TKey, string>,
   transformer?: (value: string) => string,
@@ -26,7 +25,7 @@ const getValue = <TKey extends string>(
 
 const createThemeSprinkle = <TKey extends string>(
   cssVar: string,
-  // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
+
   key: `$${TKey}` | string | undefined,
   map?: Record<TKey, string>,
   transformer?: (value: string) => string,

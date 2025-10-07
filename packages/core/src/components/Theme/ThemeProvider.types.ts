@@ -1,5 +1,5 @@
-import type { IColorSchemeManager } from './colorSchemeManager/types';
-import type { IOsColorScheme, IThemeOverride } from './theme.types';
+import type { IColorSchemeManager } from '~/components/ColorScheme';
+import type { IColorScheme, IThemeOverride } from './theme.types';
 
 export interface IThemeProviderProps {
   children?: React.ReactNode;
@@ -8,8 +8,8 @@ export interface IThemeProviderProps {
   cssVariablesSelector?: string;
   getRootElement?: () => HTMLElement | undefined;
   colorSchemeManager?: IColorSchemeManager;
-  defaultColorScheme?: IOsColorScheme;
-  forceColorScheme?: IOsColorScheme;
+  defaultColorScheme?: IColorScheme;
+  forceColorScheme?: IColorScheme;
   enableColorSchemePersistence?: boolean;
   colorSchemeStorageKey?: string;
 }

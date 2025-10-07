@@ -1,11 +1,11 @@
 import type { PartialDeep } from 'type-fest';
 
-import type { IOsColorScheme, ITheme } from './theme.types';
+import type { IColorScheme, ITheme } from './theme.types';
 import { createSafeContext } from '~/utils/react/createSafeContext';
 
 export type IThemeSetterContextValue = {
   setTheme: (theme: PartialDeep<ITheme> | undefined) => void;
-  setColorSchemeVariant: (variant: IOsColorScheme) => void;
+  setColorScheme: (variant: IColorScheme) => void;
   toggleColorScheme: () => void;
   clearColorScheme: () => void;
 };

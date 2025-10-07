@@ -24,10 +24,8 @@ const attachMediaListener = (
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _error
   ) {
-    // eslint-disable-next-line @typescript-eslint/no-deprecated
     query.addListener(callback);
     return () => {
-      // eslint-disable-next-line @typescript-eslint/no-deprecated
       query.removeListener(callback);
     };
   }

@@ -1,11 +1,11 @@
 import { createContext, useContext } from 'react';
 
-import type { ITheme, IThemeColorSchemeVariant } from './theme.types';
+import type { IStrictColorScheme, ITheme } from './theme.types';
 
 export type IThemeContextValue = {
   getRoot: () => HTMLDivElement | null;
   theme: ITheme;
-  colorSchemeVariant: IThemeColorSchemeVariant;
+  colorScheme: IStrictColorScheme;
   getRootElement: () => HTMLElement | undefined;
 };
 

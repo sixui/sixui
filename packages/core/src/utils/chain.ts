@@ -8,7 +8,6 @@ export const chain =
   (...args: Array<IAny>) => {
     for (const callback of callbacks) {
       if (typeof callback === 'function') {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         callback(...args);
       }
     }

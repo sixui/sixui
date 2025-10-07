@@ -1,4 +1,4 @@
-export * from './ColorScheme.types';
-export * from './ColorScheme';
-export * from './ColorSchemeRole';
-export * from './useColorScheme';
+export * from './ColorSchemeScript';
+
+export * from './hooks/useColorScheme';
+export * from './colorSchemeManager';

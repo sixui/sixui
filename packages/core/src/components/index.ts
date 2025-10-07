@@ -20,6 +20,7 @@ export * from './ColorInput';
 export * from './ColorPaletteGroup';
 export * from './ColorPickerContent';
 export * from './ColorScheme';
+// export * from './ColorSchemePalette';
 export * from './ColorTag';
 // export * from './ComponentShowcase';
 export * from './ConfirmDialog';

@@ -2,15 +2,15 @@ import { createGlobalThemeContract } from '@vanilla-extract/css';
 
 import type {
   IRuntimeThemeTokens,
+  IStrictColorScheme,
   ITheme,
-  IThemeColorSchemeVariant,
 } from './theme.types';
 import { getCssVarName } from '~/utils/css/getCssVarName';
 import { getDefaultTheme } from './utils/getDefaultTheme';
 
 const getRuntimeThemeTokens = (
   theme: ITheme,
-  colorSchemeVariant: IThemeColorSchemeVariant = 'light',
+  colorSchemeVariant: IStrictColorScheme = 'light',
 ): IRuntimeThemeTokens => {
   const { colorScheme, ...otherTokens } = theme.tokens;
   const runtimeThemeTokens = {

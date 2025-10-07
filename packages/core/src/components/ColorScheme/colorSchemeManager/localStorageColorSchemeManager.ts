@@ -1,6 +1,6 @@
-import type { IThemeColorSchemeVariant } from '../theme.types';
+import type { IStrictColorScheme } from '~/components/Theme/theme.types';
 import type { IColorSchemeManager } from './types';
-import { DEFAULT_COLOR_SCHEME_STORAGE_KEY } from '../ColorSchemeScript';
+import { DEFAULT_COLOR_SCHEME_STORAGE_KEY } from '../ColorSchemeScript.constants';
 import { isValidColorScheme } from './isValidColorScheme';
 
 export interface ILocalStorageColorSchemeManagerOptions {
@@ -44,7 +44,7 @@ export const localStorageColorSchemeManager = ({
       handleStorageEvent = (event) => {
         if (event.storageArea === window.localStorage && event.key === key) {
           if (isValidColorScheme(event.newValue)) {
-            onUpdate(event.newValue as IThemeColorSchemeVariant);
+            onUpdate(event.newValue as IStrictColorScheme);
           }
         }
       };

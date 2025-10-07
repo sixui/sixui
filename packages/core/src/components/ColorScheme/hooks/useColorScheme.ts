@@ -1,13 +1,13 @@
 import type {
-  IOsColorScheme,
-  IThemeColorSchemeVariant,
+  IColorScheme,
+  IStrictColorScheme,
 } from '~/components/Theme/theme.types';
 import { useThemeContext } from '~/components/Theme/Theme.context';
 import { useThemeSetterContext } from '~/components/Theme/ThemeSetter.context';
 
 export type IUseColorSchemeResult = {
-  colorScheme: IThemeColorSchemeVariant;
-  setColorScheme: (variant: IOsColorScheme) => void;
+  colorScheme: IStrictColorScheme;
+  setColorScheme: (variant: IColorScheme) => void;
   toggleColorScheme: () => void;
 };
 
@@ -16,8 +16,8 @@ export const useColorScheme = (): IUseColorSchemeResult => {
   const themeSetterContext = useThemeSetterContext();
 
   return {
-    colorScheme: themeContext.colorSchemeVariant,
-    setColorScheme: themeSetterContext.setColorSchemeVariant,
+    colorScheme: themeContext.colorScheme,
+    setColorScheme: themeSetterContext.setColorScheme,
     toggleColorScheme: themeSetterContext.toggleColorScheme,
   };
 };

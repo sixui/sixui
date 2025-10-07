@@ -4,7 +4,7 @@ import { useState } from 'react';
 import type { IThemeProviderProps } from './ThemeProvider.types';
 import { Checkbox } from '~/components/Checkbox';
 import { ColorInput } from '~/components/ColorInput';
-import { ColorScheme } from '~/components/ColorScheme';
+import { ColorSchemePalette } from '~/components/ColorSchemePalette';
 import { Flex } from '~/components/Flex';
 import { Paper } from '~/components/Paper';
 import { generateThemeFromSourceColor } from '~/utils/colors/generateThemeFromSourceColor';
@@ -36,11 +36,11 @@ const DynamicThemeProviderDemo: React.FC = () => {
   };
 
   const [isDarkMode, setDarkMode] = useState(
-    themeContext.colorSchemeVariant === 'dark',
+    themeContext.colorScheme === 'dark',
   );
 
   const handleDarkModeChange = (isDarkMode: boolean): void => {
-    themeSetterContext.setColorSchemeVariant(isDarkMode ? 'dark' : 'light');
+    themeSetterContext.setColorScheme(isDarkMode ? 'dark' : 'light');
     setDarkMode(isDarkMode);
   };
 
@@ -56,7 +56,7 @@ const DynamicThemeProviderDemo: React.FC = () => {
       </Flex>
 
       <Paper p="$lg" outline="$xs" outlineStyle="dashed">
-        <ColorScheme />
+        <ColorSchemePalette />
       </Paper>
     </Flex>
   );
