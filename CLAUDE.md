@@ -150,22 +150,41 @@ Provides methods to control color scheme from any component:
 - `enableColorSchemePersistence` - Enable localStorage persistence
 - `defaultColorScheme` - Default scheme ('light', 'dark', or 'auto')
 - `forceColorScheme` - Override user preference
-- `colorSchemeStorageKey` - Custom localStorage key (default: 'sixui-color-scheme')
 - `colorSchemeManager` - Custom storage implementation (default: localStorage with cross-tab sync)
 
 **Example for Next.js:**
 ```tsx
 // app/layout.tsx
 import { ColorSchemeScript, SixuiProvider, sixuiHtmlProps } from '@sixui/core';
+import { Roboto } from 'next/font/google';
+import '@sixui/core/styles.css';
+
+const roboto = Roboto({
+  weight: ['400', '500', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-roboto',
+});
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" {...sixuiHtmlProps}>
+    <html lang="en" className={roboto.className} {...sixuiHtmlProps}>
       <head>
-        <ColorSchemeScript defaultColorScheme="light" />
+        <ColorSchemeScript />
       </head>
       <body>
-        <SixuiProvider enableColorSchemePersistence defaultColorScheme="light">
+        <SixuiProvider
+          theme={{
+            tokens: {
+              typeFace: {
+                plain: 'Roboto',
+                brand: 'Roboto',
+              },
+            },
+          }}
+          enableColorSchemePersistence
+        >
           {children}
         </SixuiProvider>
       </body>

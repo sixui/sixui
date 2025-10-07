@@ -40,14 +40,14 @@ yarn add @sixui/core
 ### Basic Usage
 
 ```tsx
-import { Button, ThemeProvider } from '@sixui/core';
+import { Button, SixuiProvider } from '@sixui/core';
 import '@sixui/core/styles.css';
 
 function App() {
   return (
-    <ThemeProvider>
+    <SixuiProvider>
       <Button variant="filled">Click me</Button>
-    </ThemeProvider>
+    </SixuiProvider>
   );
 }
 ```
@@ -59,16 +59,35 @@ Sixui provides complete SSR support with no hydration mismatches:
 ```tsx
 // app/layout.tsx
 import { ColorSchemeScript, SixuiProvider, sixuiHtmlProps } from '@sixui/core';
+import { Roboto } from 'next/font/google';
 import '@sixui/core/styles.css';
+
+const roboto = Roboto({
+  weight: ['400', '500', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-roboto',
+});
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" {...sixuiHtmlProps}>
+    <html lang="en" className={roboto.className} {...sixuiHtmlProps}>
       <head>
-        <ColorSchemeScript defaultColorScheme="light" />
+        <ColorSchemeScript />
       </head>
       <body>
-        <SixuiProvider enableColorSchemePersistence defaultColorScheme="light">
+        <SixuiProvider
+          theme={{
+            tokens: {
+              typeFace: {
+                plain: 'Roboto',
+                brand: 'Roboto',
+              },
+            },
+          }}
+          enableColorSchemePersistence
+        >
           {children}
         </SixuiProvider>
       </body>
