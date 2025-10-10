@@ -95,7 +95,6 @@ const classNames = createStyles({
     display: 'flex',
     alignItems: 'center',
     gap: px(space('$md')),
-    flexBasis: px(40),
   },
   headlineSection: {
     paddingLeft: px(calc.add(tokens.container.leadingSpace, space('$md'))),
