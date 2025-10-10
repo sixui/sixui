@@ -1,3 +1,13 @@
+## 3.1.1 (2025-10-10)
+
+### 🩹 Fixes
+
+- **core:** remove flexBasis constraint from TopAppBar action section ([107b532f](https://github.com/sixui/sixui/commit/107b532f))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 3.1.0 (2025-10-07)
 
 ### 🚀 Features
