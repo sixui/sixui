@@ -1,3 +1,13 @@
+## 3.1.2 (2025-10-13)
+
+### 🩹 Fixes
+
+- **core:** include completed prop in StepperStep previousCompleted logic ([22c661e5](https://github.com/sixui/sixui/commit/22c661e5))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 3.1.1 (2025-10-10)
 
 ### 🩹 Fixes
