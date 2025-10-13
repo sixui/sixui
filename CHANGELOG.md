@@ -1,3 +1,13 @@
+## 3.3.0 (2025-10-13)
+
+### 🚀 Features
+
+- **core:** add sideSheetContentProps to DrawerSideSheet and StandardSideSheet ([7e2c6c96](https://github.com/sixui/sixui/commit/7e2c6c96))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 3.2.2 (2025-10-13)
 
 ### 🩹 Fixes
