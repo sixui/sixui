@@ -1,3 +1,13 @@
+## 3.2.0 (2025-10-13)
+
+### 🚀 Features
+
+- **core:** add buttonProps prop to StepperStep component ([b296c1ff](https://github.com/sixui/sixui/commit/b296c1ff))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 3.1.2 (2025-10-13)
 
 ### 🩹 Fixes
