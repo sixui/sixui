@@ -8,6 +8,7 @@ import { Box } from '~/components/Box';
 import { extractBoxProps } from '~/components/Box/extractBoxProps';
 import { Button } from '~/components/Button';
 import { useComponentTheme, useProps } from '~/components/Theme';
+import { mergeProps } from '~/utils';
 import { componentFactory } from '~/utils/component/componentFactory';
 import { isFunction } from '~/utils/isFunction';
 import { useStepperContext } from '../Stepper.context';
@@ -168,8 +169,7 @@ export const StepperStep = componentFactory<IStepperStepFactory>(
                     disabled={disabled}
                   />
                 }
-                {...otherExceptBoxProps}
-                {...buttonProps}
+                {...mergeProps(otherExceptBoxProps, buttonProps)}
               >
                 {(label || supportingText) && (
                   <>
