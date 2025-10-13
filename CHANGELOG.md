@@ -1,3 +1,13 @@
+## 3.2.2 (2025-10-13)
+
+### 🩹 Fixes
+
+- **core:** include getStyles in mergeProps for StepperStep button ([f1e6dede](https://github.com/sixui/sixui/commit/f1e6dede))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 3.2.1 (2025-10-13)
 
 ### 🩹 Fixes
