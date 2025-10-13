@@ -1,3 +1,13 @@
+## 3.2.1 (2025-10-13)
+
+### 🩹 Fixes
+
+- **core:** use mergeProps for buttonProps in StepperStep ([412f0823](https://github.com/sixui/sixui/commit/412f0823))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 3.2.0 (2025-10-13)
 
 ### 🚀 Features
