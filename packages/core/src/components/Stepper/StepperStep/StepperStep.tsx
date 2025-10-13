@@ -55,8 +55,9 @@ export const StepperStep = componentFactory<IStepperStepFactory>(
             index < stepperStepperContext.activeStep)));
     const previousCompleted =
       !disabled &&
-      stepperStepperContext?.activeStep !== undefined &&
-      index <= stepperStepperContext.activeStep;
+      ((stepperStepperContext?.activeStep !== undefined &&
+        index <= stepperStepperContext.activeStep) ||
+        completed);
     const active =
       !disabled &&
       (activeProp ??
