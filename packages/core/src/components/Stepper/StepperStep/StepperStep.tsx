@@ -151,7 +151,6 @@ export const StepperStep = componentFactory<IStepperStepFactory>(
               {orientation === 'vertical' && renderInnerConnectors?.()}
 
               <Button
-                {...getStyles('button')}
                 loading={loading}
                 disabled={disabled}
                 variant={false}
@@ -169,7 +168,11 @@ export const StepperStep = componentFactory<IStepperStepFactory>(
                     disabled={disabled}
                   />
                 }
-                {...mergeProps(otherExceptBoxProps, buttonProps)}
+                {...mergeProps(
+                  getStyles('button'),
+                  otherExceptBoxProps,
+                  buttonProps,
+                )}
               >
                 {(label || supportingText) && (
                   <>
