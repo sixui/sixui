@@ -29,6 +29,7 @@ export const DrawerSideSheet = componentFactory<IDrawerSideSheetFactory>(
       modal,
       jail,
       closeEvents,
+      sideSheetContentProps,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -69,6 +70,7 @@ export const DrawerSideSheet = componentFactory<IDrawerSideSheetFactory>(
           onClose={onClose}
           {...getStyles('sideSheetContent')}
           {...other}
+          {...sideSheetContentProps}
           divider={false}
         />
       </DrawerAside>

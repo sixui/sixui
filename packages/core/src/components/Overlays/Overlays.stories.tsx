@@ -37,7 +37,7 @@ const OverlaysDemo: React.FC<IOverlaysDemoProps> = () => {
     });
 
   const renderContent = (): React.ReactNode => (
-    <Flex direction="column" p="$3" gap="$md" w="288px" ml="auto" mr="auto">
+    <Flex direction="column" p="$md" gap="$md" w="288px" ml="auto" mr="auto">
       <Flex direction="column" gap="$xs">
         <Button onClick={() => void openDialog()}>Open dialog</Button>
         <Button

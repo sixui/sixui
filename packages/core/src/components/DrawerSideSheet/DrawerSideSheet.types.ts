@@ -3,7 +3,10 @@ import type {
   IDrawerAsideOwnProps,
   IDrawerAsideProps,
 } from '~/components/DrawerAside';
-import type { ISideSheetContentOwnProps } from '~/components/SideSheet/SideSheetContent';
+import type {
+  ISideSheetContentOwnProps,
+  ISideSheetContentProps,
+} from '~/components/SideSheet/SideSheetContent';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IOmit } from '~/utils/types';
@@ -16,6 +19,7 @@ export interface IDrawerSideSheetOwnProps
   extends IOmit<IDrawerAsideOwnProps, 'children' | 'side'>,
     ISideSheetContentOwnProps {
   drawerAsideProps?: IDrawerAsideProps;
+  sideSheetContentProps?: ISideSheetContentProps;
 }
 
 export interface IDrawerSideSheetProps

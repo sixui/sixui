@@ -1,5 +1,8 @@
 import type { IBoxProps } from '~/components/Box';
-import type { ISideSheetContentOwnProps } from '~/components/SideSheet/SideSheetContent';
+import type {
+  ISideSheetContentOwnProps,
+  ISideSheetContentProps,
+} from '~/components/SideSheet/SideSheetContent';
 import type { IStandardAsideOwnProps } from '~/components/StandardAside';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
@@ -13,6 +16,7 @@ export interface IStandardSideSheetOwnProps
   extends IOmit<IStandardAsideOwnProps, 'children' | 'side'>,
     ISideSheetContentOwnProps {
   side?: IHorizontalSide;
+  sideSheetContentProps?: ISideSheetContentProps;
 }
 
 export interface IStandardSideSheetProps
