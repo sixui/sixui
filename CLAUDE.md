@@ -79,13 +79,51 @@ The repository uses Husky pre-commit hooks that run:
 
 ### Release Management
 
+**IMPORTANT**: Always use the correct release commands as documented below.
+
 ```bash
-# Preview release (dry run)
+# Preview release (dry run) - ALWAYS run this first
 pnpm release:dry
 
-# Publish release
-pnpm release
+# Publish release - Use the -y flag to skip prompts
+pnpm release -y
 ```
+
+**Release Process:**
+
+1. **Pre-release validation:**
+   - Ensure working directory is clean (`git status`)
+   - Ensure on main branch (`git branch --show-current`)
+   - Pull latest changes (`git pull origin main`)
+   - Verify all checks pass (`pnpm check`)
+   - Ensure build succeeds (`pnpm build`)
+
+2. **Preview release (required):**
+   ```bash
+   pnpm release:dry
+   ```
+   Review the output carefully:
+   - Version bump calculations
+   - Changelog entries
+   - GitHub release details
+   - Package metadata changes
+
+3. **Execute release:**
+   ```bash
+   pnpm release -y
+   ```
+   The `-y` flag skips interactive prompts and proceeds with the release.
+
+**What happens during release:**
+- Analyzes conventional commits since last release
+- Determines semantic version bumps (major/minor/patch)
+- Runs `nx run-many -t build` to ensure all packages build
+- Updates package.json versions across monorepo
+- Generates CHANGELOG.md
+- Creates git commit and tags
+- Pushes to remote
+- Creates GitHub release
+- Publishes packages to npm registry
 
 Uses Nx release with conventional commits and GitHub releases.
 
