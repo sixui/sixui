@@ -39,6 +39,7 @@ export const StepperStep = componentFactory<IStepperStepFactory>(
       alwaysExpanded,
       labelPosition: labelPositionProp,
       children,
+      buttonProps,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
     const { boxProps, other: otherExceptBoxProps } =
@@ -168,6 +169,7 @@ export const StepperStep = componentFactory<IStepperStepFactory>(
                   />
                 }
                 {...otherExceptBoxProps}
+                {...buttonProps}
               >
                 {(label || supportingText) && (
                   <>

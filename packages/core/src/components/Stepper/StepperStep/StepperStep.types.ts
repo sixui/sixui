@@ -1,5 +1,5 @@
 import type { IBoxProps } from '~/components/Box';
-import type { IButtonOwnProps } from '~/components/Button';
+import type { IButtonOwnProps, IButtonProps } from '~/components/Button';
 import type { IComponentThemeProps } from '~/components/Theme';
 import type { IComponentFactory } from '~/utils/component/componentFactory';
 import type { IOmit } from '~/utils/types';
@@ -27,6 +27,7 @@ export interface IStepperStepOwnProps
   supportingText?: React.ReactNode;
   hasError?: boolean;
   alwaysExpanded?: boolean;
+  buttonProps?: IButtonProps;
 
   /**
    * Only supported in vertical orientation.
