@@ -39,6 +39,7 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
     },
   },
   icon: {
+    size: px(18),
     color: {
       inactive: themeTokens.colorScheme.onSurface,
       active: themeTokens.colorScheme.primary,
@@ -132,6 +133,14 @@ const classNames = createStyles({
     },
   },
   icon: ({ root }) => ({
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+    fontSize: tokens.icon.size,
+    inlineSize: tokens.icon.size,
+    blockSize: tokens.icon.size,
+
     selectors: {
       [modifierSelector<IModifier>(
         ['!active', '!completed', '!has-error'],
