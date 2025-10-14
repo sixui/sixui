@@ -1,3 +1,13 @@
+## 3.4.2 (2025-10-14)
+
+### 🩹 Fixes
+
+- **core:** adjust StepperStepIndicator icon spacing ([0d39e083](https://github.com/sixui/sixui/commit/0d39e083))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 3.4.1 (2025-10-14)
 
 ### 🩹 Fixes
