@@ -38,6 +38,7 @@ export const useSideSheet = (
 
     // If the window size is compact, the side sheet should be displayed as
     // a modal side sheet.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setModalOpened(isModal && !!opened);
   }, [isModal, opened, previousOpened]);
 
@@ -53,6 +54,7 @@ export const useSideSheet = (
     // side sheet should already be removed from the DOM. Here we ensure
     // that its state is closed to prevent any glitch like a closing
     // animation when the window size shrinks back to compact.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setModalOpened(false);
 
     if (isModal) {

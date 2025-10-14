@@ -22,6 +22,7 @@ import type {
   IFilterableListItemRenderer,
   IFilterableListItemRendererProps,
 } from '~/components/FilterableListBase';
+import type { IElementProps } from '~/utils/types';
 import type { IFloatingFilterableListBaseFactory } from './FloatingFilterableListBase.types';
 import { filterableListBaseFactory } from '~/components/FilterableListBase';
 import { Motion } from '~/components/Motion';
@@ -34,7 +35,6 @@ import { polymorphicComponentFactory } from '~/utils/component/polymorphicCompon
 import { isFunction } from '~/utils/isFunction';
 import { mergeProps } from '~/utils/mergeProps';
 import { objectFromPlacement } from '~/utils/objectFromPlacement';
-import { IElementProps } from '~/utils/types';
 import { COMPONENT_NAME } from './FloatingFilterableListBase.constants';
 import { useFocusManagement } from './hooks/useFocusManagement';
 import { useKeyboardNavigation } from './hooks/useKeyboardNavigation';

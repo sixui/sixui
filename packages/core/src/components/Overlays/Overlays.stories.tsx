@@ -47,7 +47,7 @@ const OverlaysDemo: React.FC<IOverlaysDemoProps> = () => {
             })
           }
         >
-          Open modal dialog
+          Open dialog (modal)
         </Button>
       </Flex>
 
@@ -71,7 +71,7 @@ const OverlaysDemo: React.FC<IOverlaysDemoProps> = () => {
             })
           }
         >
-          Open modal left side sheet
+          Open left side sheet (modal)
         </Button>
       </Flex>
 
@@ -95,7 +95,7 @@ const OverlaysDemo: React.FC<IOverlaysDemoProps> = () => {
             })
           }
         >
-          Open modal right side sheet
+          Open right side sheet (modal)
         </Button>
       </Flex>
 
@@ -110,7 +110,7 @@ const OverlaysDemo: React.FC<IOverlaysDemoProps> = () => {
             })
           }
         >
-          Open modal bottom sheet
+          Open bottom sheet (modal)
         </Button>
       </Flex>
 

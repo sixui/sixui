@@ -56,7 +56,10 @@ export const useMediaQuery = (
   useEffect(() => {
     try {
       const mediaQuery = window.matchMedia(query);
+
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setMatches(mediaQuery.matches);
+
       return attachMediaListener(mediaQuery, (event) => {
         setMatches(event.matches);
       });

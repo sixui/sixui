@@ -117,8 +117,7 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = (props) => {
       <ThemeSetterProvider value={themeSetterContextValue}>
         <FloatingDelayGroup
           delay={{
-            open: 100,
-            close: 1500,
+            close: 600,
           }}
         >
           <div
