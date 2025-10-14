@@ -1,3 +1,13 @@
+## 3.4.0 (2025-10-14)
+
+### 🚀 Features
+
+- **core:** add enableGroupDelay prop to tooltip components ([ed5773bb](https://github.com/sixui/sixui/commit/ed5773bb))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 3.3.0 (2025-10-13)
 
 ### 🚀 Features
