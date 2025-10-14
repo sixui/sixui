@@ -1,3 +1,13 @@
+## 3.4.1 (2025-10-14)
+
+### 🩹 Fixes
+
+- **core:** conditionally apply top padding in SideSheetContent ([21c3307d](https://github.com/sixui/sixui/commit/21c3307d))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 3.4.0 (2025-10-14)
 
 ### 🚀 Features
