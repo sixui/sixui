@@ -42,7 +42,9 @@ const classNames = createStyles({
   root: {
     position: 'relative',
     color: tokens.activeIndicator.color.normal,
+
     contentVisibility: 'auto',
+    contain: 'strict',
 
     width: tokens.container.size,
     height: tokens.container.size,

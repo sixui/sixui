@@ -78,6 +78,7 @@ const linearRotateKeyframes = keyframes({
 
 const classNames = createStyles({
   root: {
+    contentVisibility: 'auto',
     contain: 'strict',
   },
   progress: {

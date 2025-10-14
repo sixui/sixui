@@ -94,6 +94,10 @@ const secondaryIndeterminateTranslateKeyframes = keyframes({
 });
 
 const classNames = createStyles({
+  root: {
+    contentVisibility: 'auto',
+    contain: 'strict',
+  },
   inactiveTrack: {
     position: 'absolute',
     inset: 0,

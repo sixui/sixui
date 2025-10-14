@@ -40,10 +40,12 @@ const classNames = createStyles({
     position: 'relative',
     display: 'flex',
     flexDirection: 'row',
-    contentVisibility: 'auto',
     height: tokens.container.height,
     borderRadius: tokens.container.shape,
     minWidth: px(80),
+
+    contentVisibility: 'auto',
+    contain: 'strict',
   },
   inactiveTrack: ({ root }) => ({
     borderRadius: 'inherit',
