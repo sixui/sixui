@@ -1,3 +1,13 @@
+## 3.4.3 (2025-10-14)
+
+### 🩹 Fixes
+
+- **core:** add none option to Button loadingAnimation ([6b980c64](https://github.com/sixui/sixui/commit/6b980c64))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 3.4.2 (2025-10-14)
 
 ### 🩹 Fixes
