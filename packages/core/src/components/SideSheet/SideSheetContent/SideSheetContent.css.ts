@@ -16,7 +16,12 @@ import { elevationLevelPreset } from '~/components/Elevation/Elevation.css';
 import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './SideSheetContent.constants';
 
-type IModifier = 'side' | 'with-divider' | 'with-leading-actions';
+type IModifier =
+  | 'side'
+  | 'with-divider'
+  | 'with-leading-actions'
+  | 'with-header'
+  | 'with-footer';
 
 const DENSITY = px(density({ min: -4, max: 0 }));
 
@@ -130,12 +135,17 @@ const classNames = createStyles({
     color: tokens.headline.color,
     ...typography(tokens.headline.typography),
   },
-  content: {
+  content: ({ root }) => ({
     height: '100%',
     overflowY: 'auto',
-    paddingTop: calc.add(tokens.content.topSpace, DENSITY),
     paddingBottom: calc.add(tokens.content.bottomSpace, DENSITY),
-  },
+
+    selectors: {
+      [modifierSelector<IModifier>('with-header', root)]: {
+        paddingTop: calc.add(tokens.content.topSpace, DENSITY),
+      },
+    },
+  }),
   footerContainer: {
     display: 'flex',
     flexDirection: 'column',

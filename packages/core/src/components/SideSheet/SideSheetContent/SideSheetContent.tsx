@@ -62,6 +62,8 @@ export const SideSheetContent = componentFactory<ISideSheetContentFactory>(
             side,
             'with-divider': divider,
             'with-leading-actions': !!leadingActions,
+            'with-header': !!header,
+            'with-footer': !!footer,
           },
         })}
         ref={forwardedRef}
