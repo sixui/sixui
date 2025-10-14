@@ -137,6 +137,7 @@ const classNames = createStyles({
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
+
     fontSize: tokens.icon.size,
     inlineSize: tokens.icon.size,
     blockSize: tokens.icon.size,
