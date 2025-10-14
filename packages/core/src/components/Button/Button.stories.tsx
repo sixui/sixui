@@ -21,6 +21,7 @@ const meta = {
   args: {
     onClick: (...args) => sbHandleEvent('onClick', args, 1000),
     children: 'Button',
+    loadingAnimation: 'none',
   },
 } satisfies Meta<typeof Button>;
 

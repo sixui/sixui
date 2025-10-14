@@ -47,9 +47,7 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
 
     const [animating, setAnimating] = useState(false);
     const [handlingClick, setHandlingClick] = useState(false);
-    const loading =
-      (loadingProp || handlingClick) &&
-      loadingAnimation === 'progressIndicator';
+    const loading = loadingProp || handlingClick;
     const readOnly = readOnlyProp || loading;
     const disabledOrReadOnly = disabled || readOnly;
 
@@ -57,15 +55,18 @@ export const Button = polymorphicComponentFactory<IButtonFactory>(
     const hasEnd = hasEndSlotProp ?? (!!trailingIcon || !!endSlot);
     const startSlotLoading =
       loading &&
+      loadingAnimation !== 'none' &&
       (loadingIndicatorPosition === 'start' ||
         (!loadingIndicatorPosition && !loadingText && !!leadingIcon));
     const labelSlotLoading =
       loading &&
+      loadingAnimation !== 'none' &&
       (loadingIndicatorPosition === 'label' ||
         (!loadingIndicatorPosition &&
           (!!loadingText || (!leadingIcon && !trailingIcon))));
     const endSlotLoading =
       loading &&
+      loadingAnimation !== 'none' &&
       (loadingIndicatorPosition === 'end' ||
         (!loadingIndicatorPosition &&
           !loadingText &&
