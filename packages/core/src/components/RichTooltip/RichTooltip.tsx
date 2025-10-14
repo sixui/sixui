@@ -72,6 +72,7 @@ export const RichTooltip = componentFactory<IRichTooltipFactory>(
           focusOut: !persistent,
           escapeKey: false,
         }}
+        enableGroupDelay
         {...other}
       >
         {(renderProps) => (

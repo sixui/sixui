@@ -205,6 +205,7 @@ export type IPopoverBaseOwnProps<TForwardedProps extends object = object> =
     keepMounted?: boolean;
     popoverProps?: IBoxProps;
     preventAutoFocus?: boolean;
+    enableGroupDelay?: boolean;
   };
 
 export interface IPopoverBaseProps

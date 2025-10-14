@@ -105,6 +105,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       keepMounted,
       popoverProps,
       preventAutoFocus,
+      enableGroupDelay,
       ...other
     } = useProps({ componentName: COMPONENT_NAME, props });
 
@@ -243,7 +244,7 @@ export const PopoverBase = componentFactory<IPopoverBaseFactory>(
       ],
     });
     const delayGroup = useDelayGroup(floating.context, {
-      id: openEvents.hover ? undefined : '__persistent',
+      enabled: !!enableGroupDelay,
     });
     const hover = useHover(floating.context, {
       enabled: !!children && !!openEvents.hover && !disabled,

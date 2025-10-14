@@ -55,6 +55,7 @@ export const PlainTooltip = componentFactory<IPlainTooltipFactory>(
         forwardForeignProps
         openEvents={{ hover: true, focus: true }}
         positioned
+        enableGroupDelay
         {...other}
       >
         {(renderProps) => (
