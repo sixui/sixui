@@ -17,7 +17,7 @@ export const DialogButton: React.FC = () => {
               cancel: 'Ask me later',
             },
           })
-          .catch(() => {
+          .promise.catch(() => {
             // canceled
           })
       }

@@ -138,7 +138,9 @@ const AsOverlayDemo: React.FC<ISideSheetOverlayProps> = (props) => {
   const overlays = useOverlays();
 
   return (
-    <Button onClick={() => overlays.open(SideSheetOverlay, props)}>Open</Button>
+    <Button onClick={() => overlays.open(SideSheetOverlay, props).promise}>
+      Open
+    </Button>
   );
 };
 

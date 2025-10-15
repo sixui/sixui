@@ -7,11 +7,16 @@ import { overlaysGlobals } from '../Overlays.globals';
 import { useOverlaysDispatchContext } from '../OverlaysDispatch.context';
 import { getOverlayId } from '../utils/getOverlayId';
 
+export interface IUseOverlaysOpenResult {
+  promise: Promise<unknown>;
+  instanceId: string;
+}
+
 export interface IUseOverlaysResult {
   open: <TProps extends object>(
     overlayIdOrComponent: string | IOverlayFC<TProps>,
     props?: TProps & { instanceId?: string },
-  ) => Promise<unknown>;
+  ) => IUseOverlaysOpenResult;
   close: (instanceId: string) => void;
   closeAll: (options?: {
     id?: string | IOverlayFC<IAny>;
@@ -62,7 +67,10 @@ export const useOverlays = (): IUseOverlaysResult => {
         };
       }
 
-      return overlaysGlobals.callbacks[instanceId].promise;
+      return {
+        promise: overlaysGlobals.callbacks[instanceId].promise,
+        instanceId,
+      };
     },
     [overlaysDispatchContext],
   );

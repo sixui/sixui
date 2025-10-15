@@ -34,7 +34,7 @@ const OverlaysDemo: React.FC<IOverlaysDemoProps> = () => {
         </>
       ),
       ...props,
-    });
+    }).promise;
 
   const renderContent = (): React.ReactNode => (
     <Flex direction="column" p="$md" gap="$md" w="288px" ml="auto" mr="auto">
@@ -122,13 +122,13 @@ const OverlaysDemo: React.FC<IOverlaysDemoProps> = () => {
     overlays.open(SideSheetOverlay, {
       children: renderContent(),
       ...props,
-    });
+    }).promise;
 
   const openSnackbar = (props?: ISnackbarOverlayProps): Promise<unknown> =>
     overlays.open(SnackbarOverlay, {
       children: 'Lorem ipsum dolor sit amet.',
       ...props,
-    });
+    }).promise;
 
   const openBottomSheet = (
     props?: IBottomSheetOverlayProps,
@@ -137,7 +137,7 @@ const OverlaysDemo: React.FC<IOverlaysDemoProps> = () => {
       children: renderContent(),
       showCloseButton: true,
       ...props,
-    });
+    }).promise;
 
   return renderContent();
 };

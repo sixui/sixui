@@ -171,7 +171,7 @@ const AsOverlayDemo: React.FC<IDialogOverlayProps> = (props) => {
               <Button onClick={close}>I agree</Button>
             </>
           ),
-        })
+        }).promise
       }
     >
       Open

@@ -109,11 +109,11 @@ const AsOverlayDemo: React.FC<IConfirmDialogOverlayProps> = (props) => {
                     },
                     ...props,
                   })
-                  .then((confirmed) => {
+                  .promise.then((confirmed) => {
                     setResult(confirmed ? 'Confirmed' : 'Canceled');
                   }),
             })
-            .then((confirmed) => {
+            .promise.then((confirmed) => {
               if (!confirmed) {
                 setResult('Canceled');
               }
