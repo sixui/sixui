@@ -1,3 +1,13 @@
+## 4.1.0 (2025-10-15)
+
+### 🚀 Features
+
+- **core:** add useOverlay hook for simplified overlay management ([9051f566](https://github.com/sixui/sixui/commit/9051f566))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 4.0.1 (2025-10-15)
 
 ### 🩹 Fixes
