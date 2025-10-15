@@ -1,3 +1,17 @@
+# 4.0.0 (2025-10-15)
+
+### 🚀 Features
+
+- ⚠️  **core:** expose instanceId from useOverlays.open ([5918994e](https://github.com/sixui/sixui/commit/5918994e))
+
+### ⚠️  Breaking Changes
+
+- **core:** useOverlays.open now returns { promise, instanceId }
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 3.4.3 (2025-10-14)
 
 ### 🩹 Fixes
