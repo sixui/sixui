@@ -1,3 +1,13 @@
+## 4.0.1 (2025-10-15)
+
+### 🩹 Fixes
+
+- **core:** call user onClose and onClosed callbacks in overlay components ([860d2e84](https://github.com/sixui/sixui/commit/860d2e84))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 # 4.0.0 (2025-10-15)
 
 ### 🚀 Features
