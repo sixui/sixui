@@ -12,10 +12,14 @@ export interface IUseOverlaysOpenResult {
   instanceId: string;
 }
 
+export interface IUseOverlaysOpenComponentProps {
+  instanceId?: string;
+}
+
 export interface IUseOverlaysResult {
   open: <TProps extends object>(
     overlayIdOrComponent: string | IOverlayFC<TProps>,
-    props?: TProps & { instanceId?: string },
+    props?: TProps & IUseOverlaysOpenComponentProps,
   ) => IUseOverlaysOpenResult;
   close: (instanceId: string) => void;
   closeAll: (options?: {
