@@ -1,3 +1,13 @@
+## 4.1.1 (2025-10-15)
+
+### 🩹 Fixes
+
+- **core:** correct SideSheetContent padding logic with headers ([2eb96a61](https://github.com/sixui/sixui/commit/2eb96a61))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 4.1.0 (2025-10-15)
 
 ### 🚀 Features
