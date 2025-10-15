@@ -139,10 +139,11 @@ const classNames = createStyles({
     height: '100%',
     overflowY: 'auto',
     paddingBottom: calc.add(tokens.content.bottomSpace, DENSITY),
+    paddingTop: calc.add(tokens.content.topSpace, DENSITY),
 
     selectors: {
       [modifierSelector<IModifier>('with-header', root)]: {
-        paddingTop: calc.add(tokens.content.topSpace, DENSITY),
+        paddingTop: 0,
       },
     },
   }),

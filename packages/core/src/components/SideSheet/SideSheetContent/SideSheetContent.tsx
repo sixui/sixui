@@ -47,12 +47,9 @@ export const SideSheetContent = componentFactory<ISideSheetContentFactory>(
       themeVariants: sideSheetContentThemeVariants,
     });
 
-    const hasHeader =
-      !!header ||
-      !!leadingActions ||
-      !!trailingActions ||
-      !!headline ||
-      showCloseButton;
+    const hasHeadline =
+      !!headline || !!leadingActions || !!trailingActions || showCloseButton;
+    const hasHeader = !!header || hasHeadline;
     const hasFooter = footer ?? bottomActions;
 
     return (
@@ -62,7 +59,7 @@ export const SideSheetContent = componentFactory<ISideSheetContentFactory>(
             side,
             'with-divider': divider,
             'with-leading-actions': !!leadingActions,
-            'with-header': !!header,
+            'with-header': hasHeadline && !hasHeader,
             'with-footer': !!footer,
           },
         })}
