@@ -7,7 +7,7 @@ export type ISnackbarOverlayProps = ISnackbarProps;
 
 export const SnackbarOverlay = registerOverlay<ISnackbarOverlayProps>(
   (props) => {
-    const { instanceId, onClose, onActionClick, ...other } = props;
+    const { instanceId, onClose, onClosed, onActionClick, ...other } = props;
     const overlay = useOverlayInstance(instanceId);
 
     return (
@@ -26,6 +26,7 @@ export const SnackbarOverlay = registerOverlay<ISnackbarOverlayProps>(
             .catch(overlay.reject)
         }
         onClosed={() => {
+          onClosed?.();
           overlay.remove();
         }}
       />

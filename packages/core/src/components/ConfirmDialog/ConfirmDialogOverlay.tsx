@@ -7,7 +7,8 @@ export type IConfirmDialogOverlayProps = IConfirmDialogProps;
 
 export const ConfirmDialogOverlay = registerOverlay<IConfirmDialogOverlayProps>(
   (props) => {
-    const { instanceId, onClose, onCancel, onConfirm, ...other } = props;
+    const { instanceId, onClose, onClosed, onCancel, onConfirm, ...other } =
+      props;
     const overlay = useOverlayInstance(instanceId);
 
     return (
@@ -37,6 +38,7 @@ export const ConfirmDialogOverlay = registerOverlay<IConfirmDialogOverlayProps>(
             .catch(overlay.reject)
         }
         onClosed={() => {
+          onClosed?.();
           overlay.remove();
         }}
       />

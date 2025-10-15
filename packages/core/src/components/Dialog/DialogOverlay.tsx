@@ -7,7 +7,7 @@ export type IDialogOverlayProps = IDialogProps;
 
 export const DialogOverlay = registerOverlay<IDialogOverlayProps>(
   (props) => {
-    const { instanceId, onClose, ...other } = props;
+    const { instanceId, onClose, onClosed, ...other } = props;
     const overlay = useOverlayInstance(instanceId);
 
     return (
@@ -20,6 +20,7 @@ export const DialogOverlay = registerOverlay<IDialogOverlayProps>(
           overlay.resolve();
         }}
         onClosed={() => {
+          onClosed?.();
           overlay.remove();
         }}
         withoutPortal

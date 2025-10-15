@@ -7,7 +7,7 @@ export type ISideSheetOverlayProps = IDrawerSideSheetProps;
 
 export const SideSheetOverlay = registerOverlay<ISideSheetOverlayProps>(
   (props) => {
-    const { instanceId, ...other } = props;
+    const { instanceId, onClose, onClosed, ...other } = props;
     const overlay = useOverlayInstance(instanceId);
 
     return (
@@ -15,10 +15,12 @@ export const SideSheetOverlay = registerOverlay<ISideSheetOverlayProps>(
         {...other}
         opened={overlay.opened}
         onClose={() => {
+          onClose?.();
           overlay.close();
           overlay.resolve();
         }}
         onClosed={() => {
+          onClosed?.();
           overlay.remove();
         }}
         withoutPortal
