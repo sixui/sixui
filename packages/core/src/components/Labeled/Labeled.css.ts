@@ -13,7 +13,12 @@ import { typography } from '~/utils/css/typography';
 import { themeTokens } from '~/components/Theme/theme.css';
 import { COMPONENT_NAME } from './Labeled.constants';
 
-type IModifier = 'disabled' | 'has-error' | 'horizontal' | 'unassociated';
+type IModifier =
+  | 'disabled'
+  | 'readOnly'
+  | 'has-error'
+  | 'horizontal'
+  | 'unassociated';
 
 const DENSITY = px(density({ min: -1, max: 0 }));
 
@@ -23,9 +28,11 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
     color: {
       normal: 'inherit',
       error: 'inherit',
+      readOnly: 'inherit',
       disabled: themeTokens.colorScheme.onSurface,
     },
     opacity: {
+      readOnly: 'inherit',
       disabled: themeTokens.state.opacity.disabled,
     },
   },
@@ -45,9 +52,11 @@ const [tokensClassName, tokens] = createComponentTheme(COMPONENT_NAME, {
     color: {
       normal: themeTokens.colorScheme.onSurfaceVariant,
       error: 'inherit',
+      readOnly: 'inherit',
       disabled: themeTokens.colorScheme.onSurface,
     },
     opacity: {
+      readOnly: 'inherit',
       disabled: themeTokens.state.opacity.disabled,
     },
   },
@@ -122,10 +131,14 @@ const classNames = createStyles({
       [modifierSelector<IModifier>('has-error', root)]: {
         color: fallbackVar(tokens.label.color.error, tokens.label.color.normal),
       },
-      [modifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>(['disabled', '!readOnly'], root)]: {
         color: tokens.label.color.disabled,
         opacity: tokens.label.opacity.disabled,
         cursor: 'unset',
+      },
+      [modifierSelector<IModifier>('readOnly', root)]: {
+        color: tokens.label.color.readOnly,
+        opacity: tokens.label.opacity.readOnly,
       },
     },
   }),
@@ -153,9 +166,13 @@ const classNames = createStyles({
     color: tokens.supportingText.color.normal,
 
     selectors: {
-      [modifierSelector<IModifier>('disabled', root)]: {
+      [modifierSelector<IModifier>(['disabled', '!readOnly'], root)]: {
         color: tokens.supportingText.color.disabled,
         opacity: tokens.supportingText.opacity.disabled,
+      },
+      [modifierSelector<IModifier>('readOnly', root)]: {
+        color: tokens.supportingText.color.readOnly,
+        opacity: tokens.supportingText.opacity.readOnly,
       },
     },
   }),

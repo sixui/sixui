@@ -83,6 +83,13 @@ const rows: Array<IComponentPresentation<ILabeledProps>> = [
     },
   },
   {
+    legend: 'Read-only',
+    props: {
+      supportingText: 'Supporting text',
+      readOnly: true,
+    },
+  },
+  {
     legend: 'Disabled',
     props: {
       supportingText: 'Supporting text',
