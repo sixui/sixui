@@ -108,6 +108,12 @@ export const useInteractions = <TElement extends HTMLElement>(
   const [pressed, setPressed] = useState(false);
   const pressProps = useMemo<DOMAttributes | undefined>(
     () => ({
+      onClick: (event) => {
+        const isLink = event.currentTarget.tagName === 'A';
+        if (!isLink) {
+          event.preventDefault();
+        }
+      },
       onPointerDown: (event) => {
         if (!propagateClick) {
           event.stopPropagation();
