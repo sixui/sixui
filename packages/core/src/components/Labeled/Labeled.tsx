@@ -163,7 +163,7 @@ export const Labeled = componentFactory<ILabeledFactory>(
         {...getStyles('root', {
           modifiers: {
             disabled: disabledOrReadOnly,
-            readOnly,
+            'read-only': readOnly,
             'has-error': hasError,
             horizontal: isHorizontal,
             unassociated,

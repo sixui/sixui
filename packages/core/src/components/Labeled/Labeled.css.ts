@@ -15,7 +15,7 @@ import { COMPONENT_NAME } from './Labeled.constants';
 
 type IModifier =
   | 'disabled'
-  | 'readOnly'
+  | 'read-only'
   | 'has-error'
   | 'horizontal'
   | 'unassociated';
@@ -131,12 +131,12 @@ const classNames = createStyles({
       [modifierSelector<IModifier>('has-error', root)]: {
         color: fallbackVar(tokens.label.color.error, tokens.label.color.normal),
       },
-      [modifierSelector<IModifier>(['disabled', '!readOnly'], root)]: {
+      [modifierSelector<IModifier>(['disabled', '!read-only'], root)]: {
         color: tokens.label.color.disabled,
         opacity: tokens.label.opacity.disabled,
         cursor: 'unset',
       },
-      [modifierSelector<IModifier>('readOnly', root)]: {
+      [modifierSelector<IModifier>('read-only', root)]: {
         color: tokens.label.color.readOnly,
         opacity: tokens.label.opacity.readOnly,
       },
@@ -166,11 +166,11 @@ const classNames = createStyles({
     color: tokens.supportingText.color.normal,
 
     selectors: {
-      [modifierSelector<IModifier>(['disabled', '!readOnly'], root)]: {
+      [modifierSelector<IModifier>(['disabled', '!read-only'], root)]: {
         color: tokens.supportingText.color.disabled,
         opacity: tokens.supportingText.opacity.disabled,
       },
-      [modifierSelector<IModifier>('readOnly', root)]: {
+      [modifierSelector<IModifier>('read-only', root)]: {
         color: tokens.supportingText.color.readOnly,
         opacity: tokens.supportingText.opacity.readOnly,
       },
