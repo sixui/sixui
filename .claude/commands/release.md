@@ -1,6 +1,5 @@
 ---
 description: Create and publish a new package release using Nx
-argument-hint: "dry" for dry-run preview
 ---
 
 ## Release Process
