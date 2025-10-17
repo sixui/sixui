@@ -1,3 +1,13 @@
+## 5.0.1 (2025-10-17)
+
+### 🩹 Fixes
+
+- **core:** use custom type for FileDropZone accepted file types ([de49fdf3](https://github.com/sixui/sixui/commit/de49fdf3))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 # 5.0.0 (2025-10-17)
 
 ### 🩹 Fixes
