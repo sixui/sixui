@@ -1,3 +1,17 @@
+# 5.0.0 (2025-10-17)
+
+### 🩹 Fixes
+
+- ⚠️  **core:** convert FileDropZone MIME exports to Accept format ([a83079e1](https://github.com/sixui/sixui/commit/a83079e1))
+
+### ⚠️  Breaking Changes
+
+- **core:** Renamed exports from *_MIME_TYPE to ACCEPT_* and changed
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 4.2.1 (2025-10-17)
 
 ### 🩹 Fixes
