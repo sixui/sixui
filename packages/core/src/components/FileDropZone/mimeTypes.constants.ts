@@ -1,3 +1,5 @@
+import type { Accept } from 'react-dropzone';
+
 export const MIME_TYPES = {
   // Images
   png: 'image/png',
@@ -25,7 +27,16 @@ export const MIME_TYPES = {
   exe: 'application/vnd.microsoft.portable-executable',
 } as const;
 
-export const IMAGE_MIME_TYPE = [
+const makeWhiteList = (mimeTypes: Array<string>): Accept =>
+  mimeTypes.reduce<Accept>(
+    (acc, key) => ({
+      ...acc,
+      [key]: [],
+    }),
+    {},
+  );
+
+export const ACCEPT_IMAGE = makeWhiteList([
   MIME_TYPES.png,
   MIME_TYPES.gif,
   MIME_TYPES.jpeg,
@@ -34,10 +45,13 @@ export const IMAGE_MIME_TYPE = [
   MIME_TYPES.avif,
   MIME_TYPES.heic,
   MIME_TYPES.heif,
-];
+]);
 
-export const PDF_MIME_TYPE = [MIME_TYPES.pdf];
-export const MS_WORD_MIME_TYPE = [MIME_TYPES.doc, MIME_TYPES.docx];
-export const MS_EXCEL_MIME_TYPE = [MIME_TYPES.xls, MIME_TYPES.xlsx];
-export const MS_POWERPOINT_MIME_TYPE = [MIME_TYPES.ppt, MIME_TYPES.pptx];
-export const EXE_MIME_TYPE = [MIME_TYPES.exe];
+export const ACCEPT_PDF = makeWhiteList([MIME_TYPES.pdf]);
+export const ACCEPT_MS_WORD = makeWhiteList([MIME_TYPES.doc, MIME_TYPES.docx]);
+export const ACCEPT_MS_EXCEL = makeWhiteList([MIME_TYPES.xls, MIME_TYPES.xlsx]);
+export const ACCEPT_MS_POWERPOINT = makeWhiteList([
+  MIME_TYPES.ppt,
+  MIME_TYPES.pptx,
+]);
+export const ACCEPT_EXE = makeWhiteList([MIME_TYPES.exe]);
