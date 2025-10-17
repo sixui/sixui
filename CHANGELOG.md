@@ -1,3 +1,13 @@
+## 4.2.1 (2025-10-17)
+
+### 🩹 Fixes
+
+- **core:** improve variable naming clarity in useInteractions hook ([1191cb5a](https://github.com/sixui/sixui/commit/1191cb5a))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 4.2.0 (2025-10-17)
 
 ### 🚀 Features
