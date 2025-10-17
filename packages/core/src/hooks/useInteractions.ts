@@ -109,8 +109,11 @@ export const useInteractions = <TElement extends HTMLElement>(
   const pressProps = useMemo<DOMAttributes | undefined>(
     () => ({
       onClick: (event) => {
-        const isLink = event.currentTarget.tagName === 'A';
-        if (!isLink) {
+        const shouldKeepDefaultBehavior =
+          event.currentTarget.tagName === 'A' ||
+          (event.currentTarget.tagName === 'BUTTON' &&
+            (event.currentTarget as HTMLButtonElement).type !== 'button');
+        if (!shouldKeepDefaultBehavior) {
           event.preventDefault();
         }
       },
