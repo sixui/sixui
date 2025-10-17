@@ -1,3 +1,17 @@
+## 4.2.0 (2025-10-17)
+
+### 🚀 Features
+
+- **core:** add read-only styling support to Labeled component ([813d15ef](https://github.com/sixui/sixui/commit/813d15ef))
+
+### 🩹 Fixes
+
+- **core:** preserve default behavior for submit and reset buttons in useInteractions ([8a083aac](https://github.com/sixui/sixui/commit/8a083aac))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 4.1.2 (2025-10-17)
 
 ### 🩹 Fixes
