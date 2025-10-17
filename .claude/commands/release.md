@@ -42,9 +42,6 @@ git pull origin main
 
 # Verify all checks pass
 pnpm check
-
-# Ensure build succeeds
-pnpm build
 ```
 
 **Pre-release checklist:**
@@ -53,36 +50,12 @@ pnpm build
 - [ ] Working directory is clean (no uncommitted changes)
 - [ ] On main branch
 - [ ] Local branch is up-to-date with remote
-- [ ] All tests pass
-- [ ] Build succeeds for all packages
+- [ ] All checks pass (linting, type checking)
 - [ ] No breaking changes without proper BREAKING CHANGE footer
 
-### 2. Preview Release (Dry Run)
+### 2. Execute Release
 
-**Always preview before publishing:**
-
-```bash
-pnpm release:dry
-```
-
-**Review the dry-run output carefully:**
-
-- Version bump calculations (which packages, what versions)
-- Changelog entries that will be generated
-- GitHub release details
-- Package metadata changes
-- Dependencies that will be updated
-
-**Common scenarios:**
-
-- `feat:` commits → minor version bump (0.x.0)
-- `fix:` commits → patch version bump (0.0.x)
-- `BREAKING CHANGE:` in footer → major version bump (x.0.0)
-- No conventional commits → no version bump
-
-### 3. Execute Release
-
-**If dry-run looks correct, proceed with actual release:**
+**Execute the release:**
 
 ```bash
 pnpm release -y
@@ -121,7 +94,7 @@ pnpm release -y
    - Respects package access settings (public/private)
    - Maintains workspace protocol for local dependencies
 
-### 4. Post-Release Verification
+### 3. Post-Release Verification
 
 **After release completes, verify:**
 
@@ -148,7 +121,7 @@ git ls-remote --tags origin
 - [ ] New versions visible on npm registry
 - [ ] Package metadata is correct
 
-### 5. Rollback (If Needed)
+### 4. Rollback (If Needed)
 
 **If release fails or needs rollback:**
 
@@ -186,11 +159,13 @@ fix(core): resolve hydration mismatch in SSR
 feat(Dialog): add fullscreen mode
 feat(core): add new Tooltip component
 
-# Major release (x.0.0) - Breaking changes
+# Major release (x.0.0) - Breaking changes (ONLY USE IF EXPLICITLY REQUESTED)
 feat(Button)!: remove deprecated variant prop
 
 BREAKING CHANGE: The `variant` prop has been removed.
 Use `appearance` prop instead.
+
+**Note:** Major releases should ONLY be created when explicitly requested by the user.
 ```
 
 ## Troubleshooting
@@ -224,11 +199,10 @@ Use `appearance` prop instead.
 
 **Before releasing:**
 
-- ✅ Run dry-run first, always
-- ✅ Verify all CI checks pass
-- ✅ Review generated changelog for accuracy
-- ✅ Ensure breaking changes are properly documented
-- ✅ Test built packages in isolation if possible
+- ✅ Verify all checks pass (linting, type checking)
+- ✅ Ensure working directory is clean
+- ✅ Verify on main branch and up-to-date
+- ✅ Ensure breaking changes are properly documented (if any)
 
 **Commit hygiene:**
 
@@ -239,6 +213,7 @@ Use `appearance` prop instead.
 
 **During release:**
 
+- ✅ The build will be run automatically during the release process
 - ✅ Monitor the release process output
 - ✅ Watch for errors or warnings
 - ✅ Don't interrupt the process once started
@@ -258,7 +233,8 @@ Use `appearance` prop instead.
 - **DO NOT** manually edit package.json versions (let Nx handle it)
 - **DO NOT** release with uncommitted changes
 - **DO NOT** interrupt the release process once started
-- **DO** always run dry-run first
+- **DO NOT** create major releases unless explicitly requested by the user
 - **DO** verify all checks pass before releasing
 - **DO** communicate breaking changes clearly
 - **DO** follow semantic versioning principles
+- **DO** let the release command handle building (build runs automatically during release)
