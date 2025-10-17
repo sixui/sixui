@@ -1,4 +1,4 @@
-import type { Accept } from 'react-dropzone';
+import type { IAcceptedFileTypes } from './FileDropZoneControl/FileDropZoneControl.types';
 
 export const MIME_TYPES = {
   // Images
@@ -27,8 +27,8 @@ export const MIME_TYPES = {
   exe: 'application/vnd.microsoft.portable-executable',
 } as const;
 
-const makeWhiteList = (mimeTypes: Array<string>): Accept =>
-  mimeTypes.reduce<Accept>(
+const makeWhiteList = (mimeTypes: Array<string>): IAcceptedFileTypes =>
+  mimeTypes.reduce<IAcceptedFileTypes>(
     (acc, key) => ({
       ...acc,
       [key]: [],

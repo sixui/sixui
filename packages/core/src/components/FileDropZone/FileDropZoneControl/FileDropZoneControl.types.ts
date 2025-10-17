@@ -9,6 +9,8 @@ import type {
 import type { fileDropZoneControlStrings } from './FileDropZoneControl.strings';
 import type { IImageSizeConstraints } from './utils/validateImageSize';
 
+export type IAcceptedFileTypes = Record<string, Array<string>>;
+
 export type IFileDropZoneControlStrings = Record<
   | 'dragSingle'
   | 'dragMultiple'
@@ -67,7 +69,7 @@ export interface IFileDropZoneControlOwnProps
    * @see
    * https://developer.mozilla.org/en-US/docs/Web/API/window/showOpenFilePicker
    */
-  acceptedFileTypes?: Record<string, Array<string>>;
+  acceptedFileTypes?: IAcceptedFileTypes;
 }
 
 export interface IFileDropZoneControlProps
