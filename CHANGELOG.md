@@ -1,3 +1,13 @@
+## 4.1.2 (2025-10-17)
+
+### 🩹 Fixes
+
+- **core:** prevent default behavior for non-link elements in useInteractions ([f83239ec](https://github.com/sixui/sixui/commit/f83239ec))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 4.1.1 (2025-10-15)
 
 ### 🩹 Fixes
