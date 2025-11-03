@@ -30,6 +30,7 @@ const classNames = createStyles({
     display: 'flex',
     flexDirection: 'row',
     flexGrow: 1,
+    minWidth: 0,
     minHeight: calc.subtract('100vh', appLayoutTheme.tokens.topBar.height),
 
     vars: overrideTokens(PaperBase.theme.tokens, {
@@ -52,6 +53,7 @@ const classNames = createStyles({
     display: 'flex',
     flexDirection: 'row',
     flexGrow: 1,
+    minWidth: 0,
     gap: px(space('$xl')),
     padding: px(space('$xl')),
     transitionProperty: 'margin',
