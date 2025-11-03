@@ -17,7 +17,8 @@
     "./react": "./src/react.js",
     "./storybook": "./src/storybook.js",
     "./vite": "./src/vite.js",
-    "./nextjs": "./src/nextjs.js"
+    "./nextjs": "./src/nextjs.js",
+    "./convex": "./src/convex.js"
   },
   "scripts": {
     "lint:check": "eslint . --fix",

@@ -16,6 +16,7 @@ export default defineConfig(
       'src/app/**/page.tsx',
       'src/app/**/layout.tsx',
       'src/middleware.ts',
+      'src/proxy.ts',
     ],
     rules: {
       'import-x/no-default-export': 'off',
