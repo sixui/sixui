@@ -1,3 +1,17 @@
+## 5.1.0 (2025-11-03)
+
+### 🚀 Features
+
+- **eslint-config:** add Convex preset and update Next.js config ([b5f04858](https://github.com/sixui/sixui/commit/b5f04858))
+
+### 🩹 Fixes
+
+- **core:** prevent flex layout overflow in AppLayoutBody ([bee58da7](https://github.com/sixui/sixui/commit/bee58da7))
+
+### ❤️ Thank You
+
+- Olivier Pascal @olivierpascal
+
 ## 5.0.1 (2025-10-17)
 
 ### 🩹 Fixes
